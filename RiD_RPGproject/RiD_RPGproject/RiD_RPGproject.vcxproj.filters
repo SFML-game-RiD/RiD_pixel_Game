@@ -28,12 +28,18 @@
     <ClCompile Include="Engine\StateMachine.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\AssetManager.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\State.h">
       <Filter>Engine\States</Filter>
     </ClInclude>
     <ClInclude Include="Engine\StateMachine.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\AssetManager.h">
       <Filter>Engine</Filter>
     </ClInclude>
   </ItemGroup>

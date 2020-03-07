@@ -146,11 +146,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\AssetManager.cpp" />
     <ClCompile Include="Engine\State.cpp" />
     <ClCompile Include="Engine\StateMachine.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\AssetManager.h" />
     <ClInclude Include="Engine\State.h" />
     <ClInclude Include="Engine\StateMachine.h" />
   </ItemGroup>
