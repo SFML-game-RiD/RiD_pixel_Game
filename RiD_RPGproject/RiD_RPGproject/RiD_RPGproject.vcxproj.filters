@@ -1,22 +1,43 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Pliki źródłowe">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{861ecfe2-e6ab-443c-aaf5-b113efa12a19}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Pliki nagłówkowe">
+    <Filter Include="Engine\Pliki nagłówkowe">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Pliki zasobów">
+    <Filter Include="Engine\Pliki źródłowe">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="main">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Map">
+      <UniqueIdentifier>{d233e847-3bca-4192-a430-76f73c41e2a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map\Pliki nagłówkowe">
+      <UniqueIdentifier>{48e8cce7-51ae-46a2-8920-9d827e47f828}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map\Pliki źródłowe">
+      <UniqueIdentifier>{f4c1fe51-d01f-4614-a45e-f06e998a028f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Behavior">
+      <UniqueIdentifier>{5f02e209-e1e7-4922-95ed-7e5d952985b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Behavior\Pliki nagłówkowe">
+      <UniqueIdentifier>{87b39efc-dbbd-4872-8a45-63624c49ec54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Behavior\Pliki źródłowe">
+      <UniqueIdentifier>{c134d9d2-1bac-47a0-a594-fb2f52f3bae8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Pliki źródłowe</Filter>
+      <Filter>main</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
