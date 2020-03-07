@@ -31,6 +31,12 @@
     <ClCompile Include="Engine\AssetManager.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\InputManager.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\MenuState.cpp">
+      <Filter>Engine\States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\State.h">
@@ -41,6 +47,12 @@
     </ClInclude>
     <ClInclude Include="Engine\AssetManager.h">
       <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\InputManager.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\MenuState.h">
+      <Filter>Engine\States</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
