@@ -1,5 +1,5 @@
-#include <iostream>
 #include "SFML/Graphics.hpp"
+#include "Engine/RiDGame.h"
 
 int main()
 {
