@@ -37,6 +37,9 @@
     <ClCompile Include="Engine\MenuState.cpp">
       <Filter>Engine\States</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\RiDGame.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\State.h">
@@ -53,6 +56,9 @@
     </ClInclude>
     <ClInclude Include="Engine\MenuState.h">
       <Filter>Engine\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\RiDGame.h">
+      <Filter>Engine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
