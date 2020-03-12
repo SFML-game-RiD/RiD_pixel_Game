@@ -3,6 +3,6 @@
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(1280, 720), "RiD");
+    RiD::RiDGame window(1280, 720, "RiD");
     return 0;
 }
