@@ -4,38 +4,30 @@
 
 namespace RiD
 {
-	Animation::Animation(sf::Sprite& sprite) :_animated_sprite(sprite), _p_texture(nullptr), _animation_length(0.0f), _animation_progression(0.0f) {}
-
-	void Animation::addFrame(frame&& newFrame)
+	Animation::Animation(sf::IntRect start_rectangle, double width, double end, sf::Time frame_duration, sf::Texture texture) :
+		_frame_start(sf::Time::Zero), _width(width), _end(end), _frame_duration(frame_duration), _rectangle(start_rectangle), _texture(texture)
 	{
-		this->_animation_length += newFrame.duration;
-		this->_frames.push_back(std::move(newFrame));
+		_object.setTexture(_texture);
+		_object.setTextureRect(_rectangle);
 	}
 
-	void Animation::setTexture(const sf::Texture &texture)
-	{
-		_p_texture = &texture;
-	}
 
-	unsigned int Animation::getFrameCount() const
+	void Animation::update(sf::Time time)
 	{
-		return _frames.size();
-	}
+		if (time.asSeconds() - _frame_start.asSeconds() >= _frame_duration.asSeconds()) {
+			if (_rectangle.left == _end)
+				_rectangle.left = 0;
+			else
+				_rectangle.left += _width;
 
-	void Animation::update(double time_passed)
-	{
-		_animation_progression += time_passed;
-		double progress_tmp = this->_animation_progression;
-		for (unsigned short i = 0; i < _frames.size(); i++)
-		{
-			progress_tmp -= _frames[i].duration;
-			if (progress_tmp < 0.0f || &(_frames[i]) == &_frames.back())
-			{
-				_animated_sprite.setTextureRect(_frames[i].rectangle);
-				break;
-			}
+			_object.setTextureRect(_rectangle);
+			_frame_start = time;
 		}
 	}
 
+	const sf::Sprite& Animation::getObjectSprite()
+	{
+		return this->_object;
+	}
 
 }

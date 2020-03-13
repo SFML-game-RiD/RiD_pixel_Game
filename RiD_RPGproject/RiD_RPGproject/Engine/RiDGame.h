@@ -21,7 +21,7 @@ namespace RiD
 	class RiDGame
 	{
 	private:
-		const double _delta_time = 1.0f / 60.0f; //60 fps
+		//const double _fps = 1.0f / 60.0f; //60 fps
 		sf::Clock _clock;
 		gameDatReference _data = std::make_shared<gameDat>();
 
