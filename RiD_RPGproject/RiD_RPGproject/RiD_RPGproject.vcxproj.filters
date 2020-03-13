@@ -40,6 +40,9 @@
     <ClCompile Include="Engine\RiDGame.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Animation.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\State.h">
@@ -58,6 +61,9 @@
       <Filter>Engine\States</Filter>
     </ClInclude>
     <ClInclude Include="Engine\RiDGame.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Animation.h">
       <Filter>Engine</Filter>
     </ClInclude>
   </ItemGroup>

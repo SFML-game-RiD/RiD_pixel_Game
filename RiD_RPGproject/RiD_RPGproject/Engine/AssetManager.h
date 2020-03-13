@@ -5,6 +5,12 @@
 
 namespace RiD
 {
+	struct frame
+	{
+		sf::IntRect rectangle;
+		double duration;
+	};
+
 	class AssetManager
 	{
 	private:

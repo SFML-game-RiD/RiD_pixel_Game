@@ -152,6 +152,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Animation.cpp" />
     <ClCompile Include="Engine\AssetManager.cpp" />
     <ClCompile Include="Engine\InputManager.cpp" />
     <ClCompile Include="Engine\MenuState.cpp" />
@@ -161,6 +162,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Animation.h" />
     <ClInclude Include="Engine\AssetManager.h" />
     <ClInclude Include="Engine\InputManager.h" />
     <ClInclude Include="Engine\MenuState.h" />
