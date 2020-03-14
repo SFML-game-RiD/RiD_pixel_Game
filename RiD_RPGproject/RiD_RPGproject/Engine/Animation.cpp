@@ -12,7 +12,7 @@ namespace RiD
 	}
 
 
-	void Animation::update(sf::Time time)
+	void Animation::updateAnimation(sf::Time time)
 	{
 		if (time.asSeconds() - _frame_start.asSeconds() >= _frame_duration.asSeconds()) {
 			if (_rectangle.left == _end)

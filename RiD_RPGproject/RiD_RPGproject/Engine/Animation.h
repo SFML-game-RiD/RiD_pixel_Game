@@ -26,7 +26,7 @@ namespace RiD
 		Updates animation
 		@param time elapsed time
 		*/
-		void update(sf::Time time);
+		void updateAnimation(sf::Time time);
 
 		//Returns sprite ready to be drawn
 		const sf::Sprite& getObjectSprite();
