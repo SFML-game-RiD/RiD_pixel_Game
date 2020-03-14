@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SFML/Graphics/Texture.hpp"
+#include "SFML/Graphics.hpp"
 #include "AssetManager.h"
 
 namespace RiD
@@ -29,6 +29,6 @@ namespace RiD
 		void updateAnimation(sf::Time time);
 
 		//Returns sprite ready to be drawn
-		const sf::Sprite& getObjectSprite();
+		sf::Sprite getObjectSprite();
 	};
 }

@@ -25,7 +25,7 @@ namespace RiD
 		}
 	}
 
-	const sf::Sprite& Animation::getObjectSprite()
+	sf::Sprite Animation::getObjectSprite()
 	{
 		return this->_object;
 	}
