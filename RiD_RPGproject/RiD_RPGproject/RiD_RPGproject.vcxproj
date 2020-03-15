@@ -158,6 +158,7 @@
     <ClCompile Include="Engine\ConfigurationLoader.cpp" />
     <ClCompile Include="Engine\InputManager.cpp" />
     <ClCompile Include="Engine\MenuState.cpp" />
+    <ClCompile Include="Engine\Movement.cpp" />
     <ClCompile Include="Engine\RiDGame.cpp" />
     <ClCompile Include="Engine\State.cpp" />
     <ClCompile Include="Engine\StateMachine.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="Engine\ConfigurationLoader.h" />
     <ClInclude Include="Engine\InputManager.h" />
     <ClInclude Include="Engine\MenuState.h" />
+    <ClInclude Include="Engine\Movement.h" />
     <ClInclude Include="Engine\RiDGame.h" />
     <ClInclude Include="Engine\State.h" />
     <ClInclude Include="Engine\StateMachine.h" />

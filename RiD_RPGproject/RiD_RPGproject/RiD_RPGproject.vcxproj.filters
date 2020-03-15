@@ -50,6 +50,9 @@
   master
       <Filter>Engine</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Movement.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\State.h">
@@ -78,6 +81,9 @@
  
     <ClInclude Include="Engine\ConfigurationLoader.h">
 master
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Movement.h">
       <Filter>Engine</Filter>
     </ClInclude>
   </ItemGroup>

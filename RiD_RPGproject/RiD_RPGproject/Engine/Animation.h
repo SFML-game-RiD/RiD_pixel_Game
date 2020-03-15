@@ -8,7 +8,7 @@ namespace RiD
 	class Animation
 	{
 	private:
-		bool _is_triggered, _is_playing;
+		bool _is_triggered;
 		short _number_of_frames, _playback_mode, _width, _end;
 		sf::Time _frame_start, _frame_duration;
 		sf::Sprite _object;
@@ -25,7 +25,7 @@ namespace RiD
 		@param playback_mode loop or single
 		*/
 		Animation(sf::IntRect start_rectangle, short width, short number_of_frames, sf::Time frame_duration, sf::Texture texture, short playback_mode);
-
+		Animation();
 		/*
 		Updates animation
 		@param time elapsed time
@@ -40,5 +40,14 @@ namespace RiD
 
 		//Stops looped animation
 		void stopLoopedAnimation();
+
+		//Sets all parameters needed to create animation
+		void setParameters(sf::IntRect start_rectangle, short width, short number_of_frames, sf::Time frame_duration, sf::Texture texture, short playback_mode);
+
+		//Sets position on the map
+		void setSpritePosition(sf::Vector2f position);
+
+		//Moves sprite to the new position
+		void moveSprite(sf::Vector2f new_position);
 	};
 }
