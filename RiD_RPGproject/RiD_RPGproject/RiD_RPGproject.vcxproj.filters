@@ -43,7 +43,7 @@
     <ClCompile Include="Engine\Animation.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="ConfigurationLoader.cpp">
+    <ClCompile Include="Engine\ConfigurationLoader.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>
@@ -69,7 +69,7 @@
     <ClInclude Include="Engine\Animation.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="ConfigurationLoader.h">
+    <ClInclude Include="Engine\ConfigurationLoader.h">
       <Filter>Engine</Filter>
     </ClInclude>
   </ItemGroup>

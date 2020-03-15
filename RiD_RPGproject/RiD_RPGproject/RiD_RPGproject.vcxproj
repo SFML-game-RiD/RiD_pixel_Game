@@ -152,9 +152,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ConfigurationLoader.cpp" />
     <ClCompile Include="Engine\Animation.cpp" />
     <ClCompile Include="Engine\AssetManager.cpp" />
+    <ClCompile Include="Engine\ConfigurationLoader.cpp" />
     <ClCompile Include="Engine\InputManager.cpp" />
     <ClCompile Include="Engine\MenuState.cpp" />
     <ClCompile Include="Engine\RiDGame.cpp" />
@@ -163,9 +163,9 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ConfigurationLoader.h" />
     <ClInclude Include="Engine\Animation.h" />
     <ClInclude Include="Engine\AssetManager.h" />
+    <ClInclude Include="Engine\ConfigurationLoader.h" />
     <ClInclude Include="Engine\InputManager.h" />
     <ClInclude Include="Engine\MenuState.h" />
     <ClInclude Include="Engine\RiDGame.h" />
