@@ -3,6 +3,7 @@
 #include <memory>
 
 #include "Animation.h"
+#include "Movement.h"
 #include "StateMachine.h"
 #include "InputManager.h"
 
