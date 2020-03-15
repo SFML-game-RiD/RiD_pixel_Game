@@ -1,90 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Engine">
-      <UniqueIdentifier>{861ecfe2-e6ab-443c-aaf5-b113efa12a19}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="main">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Map">
-      <UniqueIdentifier>{d233e847-3bca-4192-a430-76f73c41e2a7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Behavior">
-      <UniqueIdentifier>{5f02e209-e1e7-4922-95ed-7e5d952985b4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\States">
-      <UniqueIdentifier>{75eae645-05e1-4141-8503-aa9bcb42c80f}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="Engine\Animation.cpp" />
+    <ClCompile Include="Engine\AssetManager.cpp" />
+    <ClCompile Include="Engine\InputManager.cpp" />
+    <ClCompile Include="Engine\MenuState.cpp" />
+    <ClCompile Include="Engine\Movement.cpp" />
+    <ClCompile Include="Engine\RiDGame.cpp" />
+    <ClCompile Include="Engine\State.cpp" />
+    <ClCompile Include="Engine\StateMachine.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Engine\ConfigurationLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>main</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\State.cpp">
-      <Filter>Engine\States</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\StateMachine.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\AssetManager.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\InputManager.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\MenuState.cpp">
-      <Filter>Engine\States</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\RiDGame.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Animation.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-  RiD_configuration_loader
-    <ClCompile Include="ConfigurationLoader.cpp">
- 
-    <ClCompile Include="Engine\ConfigurationLoader.cpp">
-  master
-      <Filter>Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Movement.cpp">
-      <Filter>Engine</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Engine\State.h">
-      <Filter>Engine\States</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\StateMachine.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\AssetManager.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\InputManager.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\MenuState.h">
-      <Filter>Engine\States</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\RiDGame.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Animation.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
-  RiD_configuration_loader
-    <ClInclude Include="ConfigurationLoader.h">
- 
-    <ClInclude Include="Engine\ConfigurationLoader.h">
-master
-      <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Movement.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
+    <ClInclude Include="Engine\Animation.h" />
+    <ClInclude Include="Engine\AssetManager.h" />
+    <ClInclude Include="Engine\InputManager.h" />
+    <ClInclude Include="Engine\MenuState.h" />
+    <ClInclude Include="Engine\Movement.h" />
+    <ClInclude Include="Engine\RiDGame.h" />
+    <ClInclude Include="Engine\State.h" />
+    <ClInclude Include="Engine\StateMachine.h" />
+    <ClInclude Include="Engine\ConfigurationLoader.h" />
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 #include "SFML/Graphics.hpp"
 #include "Engine/RiDGame.h"
-#include "ConfigurationLoader.h"
+#include "Engine/ConfigurationLoader.h"
 
 int main()
 {
