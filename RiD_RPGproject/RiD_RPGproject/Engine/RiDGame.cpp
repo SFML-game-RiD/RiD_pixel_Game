@@ -22,8 +22,6 @@ namespace RiD
 			_data->window.clear();
 			//_data->window.draw(/*something*/);
 			_data->window.display();
-
-			// clock.restart();
 		}
 	}
 	RiDGame::RiDGame(int width, int height, std::string title)

@@ -43,7 +43,11 @@
     <ClCompile Include="Engine\Animation.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
+  RiD_configuration_loader
     <ClCompile Include="ConfigurationLoader.cpp">
+ 
+    <ClCompile Include="Engine\ConfigurationLoader.cpp">
+  master
       <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>
@@ -69,7 +73,11 @@
     <ClInclude Include="Engine\Animation.h">
       <Filter>Engine</Filter>
     </ClInclude>
+  RiD_configuration_loader
     <ClInclude Include="ConfigurationLoader.h">
+ 
+    <ClInclude Include="Engine\ConfigurationLoader.h">
+master
       <Filter>Engine</Filter>
     </ClInclude>
   </ItemGroup>
