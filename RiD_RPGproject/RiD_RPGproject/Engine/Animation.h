@@ -35,10 +35,10 @@ namespace RiD
 		//Returns sprite ready to be drawn
 		sf::Sprite getObjectSprite();
 
-		//Starts animation
+		//Starts both types of animations
 		void triggerAnimation();
 
-		//Stops animation
-		void stopAnimation();
+		//Stops looped animation
+		void stopLoopedAnimation();
 	};
 }

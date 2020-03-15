@@ -43,7 +43,7 @@ namespace RiD
 		_is_triggered = true;
 	}
 
-	void Animation::stopAnimation()
+	void Animation::stopLoopedAnimation()
 	{
 		_rectangle.left = 0;
 		_object.setTextureRect(_rectangle);
