@@ -4,18 +4,20 @@
 
 namespace RiD
 {
-	Movement::Movement(sf::Texture texture) : _texture(texture), animations{ sf::Time::Zero, sf::seconds(1.f / 12.f), sf::Time::Zero, sf::seconds(1.f / 12.f) }, _is_attack_triggered(false)
+	Movement::Movement(sf::Texture texture) : _texture(texture), animations{ sf::Time::Zero, sf::seconds(1.f / 12.f), sf::Time::Zero, sf::seconds(1.f / 12.f), sf::Time::Zero, sf::seconds(1.f/12.f) },
+		_is_attack_triggered(false), _is_shot_triggered(false)
 	{
 		_object.setTexture(_texture);
 		_xCord = 1;
 		_xAttackCord = 1;
+		_xshotCord = 1;
 		_direction = down;
 		_object.setPosition(120.0, 120.0);
 	}
 
 	void Movement::walkingUp(sf::Time time)
 	{
-		if (!_is_attack_triggered)
+		if (!_is_attack_triggered && !_is_shot_triggered)
 		{
 			_yCord = walkUpAnim;
 			_object.setOrigin(32.0, 32.0);
@@ -39,7 +41,7 @@ namespace RiD
 
 	void Movement::walkingDown(sf::Time time)
 	{
-		if (!_is_attack_triggered)
+		if (!_is_attack_triggered && !_is_shot_triggered)
 		{
 			_yCord = walkDownAnim;
 			_object.setOrigin(32.0, 32.0);
@@ -60,7 +62,7 @@ namespace RiD
 
 	void Movement::walkingLeft(sf::Time time)
 	{
-		if (!_is_attack_triggered)
+		if (!_is_attack_triggered && !_is_shot_triggered)
 		{
 			_yCord = walkLeftAnim;
 			_object.setOrigin(32.0, 32.0);
@@ -81,7 +83,7 @@ namespace RiD
 
 	void Movement::walkingRight(sf::Time time)
 	{
-		if (!_is_attack_triggered)
+		if (!_is_attack_triggered && !_is_shot_triggered)
 		{
 			_yCord = walkRightAnim;
 			_object.setOrigin(32.0, 32.0);
@@ -122,6 +124,27 @@ namespace RiD
 		}
 	}
 
+	void Movement::bowShot(sf::Time time)
+	{
+		if (_is_shot_triggered)
+		{
+			_yShotCord = shot*64;
+			_object.setOrigin(32.0, 32.0);
+			_object.setTextureRect(sf::IntRect(_xshotCord * 64, _yShotCord + (_direction * 64), 64, 64));
+
+			if (time - animations.bow_shot_animation_start_time >= animations.bow_shot_animation_frame_duration)
+			{
+				_xshotCord++;
+				animations.bow_shot_animation_start_time = time;
+				if (_xshotCord * 64 == 768)
+				{
+					_is_shot_triggered = false;
+					_xshotCord = 0;
+				}
+			}
+		}
+	}
+
 	void Movement::idle(sf::Time time)
 	{
 		_object.setOrigin(32.0, 32.0);
@@ -133,9 +156,19 @@ namespace RiD
 		_is_attack_triggered = true;
 	}
 
+	void Movement::triggerShot()
+	{
+		_is_shot_triggered = true;
+	}
+
 	bool Movement::isAttackTriggered()
 	{
 		return _is_attack_triggered;
+	}
+
+	bool Movement::isShotTriggered()
+	{
+		return _is_shot_triggered;
 	}
 
 	sf::Sprite Movement::getSprite()

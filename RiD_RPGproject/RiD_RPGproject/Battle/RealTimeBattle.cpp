@@ -16,7 +16,7 @@ namespace RTB
 		window.setView(camera);
 		RiD::AssetManager asset_manager;
 
-		asset_manager.setTexture("player", "img/character_with_sword.png");
+		asset_manager.setTexture("player", "img/character.png");
 		RiD::Movement character(asset_manager.getTexture("player"));
 		while (window.isOpen())
 		{
@@ -41,12 +41,16 @@ namespace RTB
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 				character.triggerAttack();
 
-			character.swordSwing(clock.getElapsedTime());
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+				character.triggerShot();
 
 			if ((!sf::Keyboard::isKeyPressed(sf::Keyboard::A)) && (!sf::Keyboard::isKeyPressed(sf::Keyboard::D)) &&
 				(!sf::Keyboard::isKeyPressed(sf::Keyboard::S)) && (!sf::Keyboard::isKeyPressed(sf::Keyboard::W)) &&
-				(character.isAttackTriggered() == false))
+				(character.isAttackTriggered() == false) && character.isShotTriggered() == false)
 				character.idle(clock.getElapsedTime());
+
+			character.swordSwing(clock.getElapsedTime());
+			character.bowShot(clock.getElapsedTime());
 
 
 			window.clear();
