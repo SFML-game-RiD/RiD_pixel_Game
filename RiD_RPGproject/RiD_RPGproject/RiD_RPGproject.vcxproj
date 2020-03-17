@@ -153,6 +153,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Battle\Character.cpp" />
+    <ClCompile Include="Battle\Hitbox.cpp" />
     <ClCompile Include="Battle\Player.cpp" />
     <ClCompile Include="Battle\RealTimeBattle.cpp" />
     <ClCompile Include="Engine\Animation.cpp" />
@@ -169,6 +170,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Battle\Character.h" />
+    <ClInclude Include="Battle\Hitbox.h" />
     <ClInclude Include="Battle\Player.h" />
     <ClInclude Include="Battle\RealTimeBattle.h" />
     <ClInclude Include="Engine\Animation.h" />

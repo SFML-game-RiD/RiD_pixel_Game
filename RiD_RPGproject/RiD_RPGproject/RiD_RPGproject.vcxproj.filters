@@ -35,6 +35,9 @@
     <ClCompile Include="Battle\Player.cpp">
       <Filter>RealTimeBattle</Filter>
     </ClCompile>
+    <ClCompile Include="Battle\Hitbox.cpp">
+      <Filter>RealTimeBattle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\InputManager.h" />
@@ -68,6 +71,9 @@
       <Filter>RealTimeBattle</Filter>
     </ClInclude>
     <ClInclude Include="Battle\Player.h">
+      <Filter>RealTimeBattle</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\Hitbox.h">
       <Filter>RealTimeBattle</Filter>
     </ClInclude>
   </ItemGroup>
