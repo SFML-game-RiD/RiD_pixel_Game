@@ -63,6 +63,82 @@ namespace RiD
 				_xCord = 0;
 		}
 	}
+
+	void Movement::walkingUp(sf::Time time)
+	{
+		_yCord = walkUpAnim;
+		_object.setOrigin(32.0, 32.0);
+		_object.setTextureRect(sf::IntRect(_xCord * 64, _yCord * 64, 64, 64));
+		_object.move(0.0f, -1.0f);
+		_direction = up;
+
+		if (_xCord * 64 >= 576)
+			_xCord = 0;
+
+		if (time - _animation_start_time >= _animation_frame_duration)
+		{
+			_xCord++;
+			_animation_start_time = time;
+
+			if (_xCord * 64 >= 576)
+				_xCord = 0;
+		}
+	}
+
+	void Movement::walkingDown(sf::Time time)
+	{
+		_yCord = walkDownAnim;
+		_object.setOrigin(32.0, 32.0);
+		_object.setTextureRect(sf::IntRect(_xCord * 64, _yCord * 64, 64, 64));
+		_object.move(0.0f, 1.0f);
+		_direction = down;
+
+		if (time - _animation_start_time >= _animation_frame_duration)
+		{
+			_xCord++;
+			_animation_start_time = time;
+
+			if (_xCord * 64 >= 576)
+				_xCord = 0;
+		}
+	}
+
+	void Movement::walkingLeft(sf::Time time)
+	{
+		_yCord = walkLeftAnim;
+		_object.setOrigin(32.0, 32.0);
+		_object.setTextureRect(sf::IntRect(_xCord * 64, _yCord * 64, 64, 64));
+		_object.move(-1.0f, 0.0f);
+		_direction = left;
+
+		if (time - _animation_start_time >= _animation_frame_duration)
+		{
+			_xCord++;
+			_animation_start_time = time;
+
+			if (_xCord * 64 >= 576)
+				_xCord = 0;
+		}
+	}
+
+	void Movement::walkingRight(sf::Time time)
+	{
+		_yCord = walkRightAnim;
+		_object.setOrigin(32.0, 32.0);
+		_object.setTextureRect(sf::IntRect(_xCord * 64, _yCord * 64, 64, 64));
+		_object.move(1.0f, 0.0f);
+		_direction = right;
+
+		if (time - _animation_start_time >= _animation_frame_duration)
+		{
+			_xCord++;
+			_animation_start_time = time;
+
+			if (_xCord * 64 >= 576)
+				_xCord = 0;
+		}
+	}
+
 	void Movement::idle(sf::Time time)
 	{
 		if ((!sf::Keyboard::isKeyPressed(sf::Keyboard::A)) && (!sf::Keyboard::isKeyPressed(sf::Keyboard::D)) && (!sf::Keyboard::isKeyPressed(sf::Keyboard::S)) && (!sf::Keyboard::isKeyPressed(sf::Keyboard::W)) && (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space)))

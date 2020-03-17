@@ -7,8 +7,9 @@ namespace RiD
 	class Movement
 	{
 	private:
-		short _row=0, _xCord=0, _yCord=0, _direction=0;
+		short _row = 0, _xCord = 0, _yCord = 0, _direction = 0;
 		enum directions { up, left, down, right };
+		enum rowsInPNGFile { walkUpAnim = 8, walkLeftAnim, walkDownAnim, walkRightAnim };
 		sf::Texture _texture;
 		sf::Sprite _object;
 		sf::Time _animation_start_time;
@@ -22,6 +23,14 @@ namespace RiD
 		@param time
 		*/
 		void walking(short starting_row, sf::Time time);
+
+		void walkingUp(sf::Time time);
+
+		void walkingDown(sf::Time time);
+
+		void walkingLeft(sf::Time time);
+
+		void walkingRight(sf::Time time);
 
 		/*
 		Idle animation

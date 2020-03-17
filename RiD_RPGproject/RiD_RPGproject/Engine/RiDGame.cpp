@@ -8,9 +8,7 @@ namespace RiD
 	{
 		sf::Event event;
 		sf::Clock clock;
-
-		_data->asset_manager.setTexture("player", "img/character.png");
-		Movement character(_data->asset_manager.getTexture("player"));
+		RTB::RealTimeBattle realTimeBattle;
 
 		while (this->_data->window.isOpen()) //program main loop
 		{
@@ -20,11 +18,12 @@ namespace RiD
 					this->_data->window.close();
 			}
 
-			character.walking(8, clock.getElapsedTime());
-			character.idle(clock.getElapsedTime());
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+			{
+				realTimeBattle.mainLoop(this->_data->window);
+			}
 
 			_data->window.clear();
-			_data->window.draw(character.getSprite());
 			_data->window.display();
 		}
 	}

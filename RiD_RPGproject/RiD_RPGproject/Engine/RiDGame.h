@@ -6,6 +6,7 @@
 #include "Movement.h"
 #include "StateMachine.h"
 #include "InputManager.h"
+#include "../Battle/RealTimeBattle.h"
 
 namespace RiD
 {
