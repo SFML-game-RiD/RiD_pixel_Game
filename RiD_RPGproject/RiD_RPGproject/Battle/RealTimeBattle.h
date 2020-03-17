@@ -3,6 +3,7 @@
 #include "SFML/Graphics.hpp"
 #include "../Engine/AssetManager.h"
 #include "../Engine/Movement.h"
+#include "../Map/TileMap.h"
 
 namespace RTB
 {

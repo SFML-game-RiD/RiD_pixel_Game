@@ -163,6 +163,7 @@
     <ClCompile Include="Engine\State.cpp" />
     <ClCompile Include="Engine\StateMachine.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Map\TileMap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Battle\RealTimeBattle.h" />
@@ -175,6 +176,7 @@
     <ClInclude Include="Engine\RiDGame.h" />
     <ClInclude Include="Engine\State.h" />
     <ClInclude Include="Engine\StateMachine.h" />
+    <ClInclude Include="Map\TileMap.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

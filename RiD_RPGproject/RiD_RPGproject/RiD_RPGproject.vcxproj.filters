@@ -26,6 +26,9 @@
     <ClCompile Include="Engine\StateMachine.cpp">
       <Filter>States</Filter>
     </ClCompile>
+    <ClCompile Include="Map\TileMap.cpp">
+      <Filter>Map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\InputManager.h" />
@@ -52,6 +55,9 @@
     <ClInclude Include="Engine\StateMachine.h">
       <Filter>States</Filter>
     </ClInclude>
+    <ClInclude Include="Map\TileMap.h">
+      <Filter>Map</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Graphics">
@@ -62,6 +68,9 @@
     </Filter>
     <Filter Include="States">
       <UniqueIdentifier>{b363b1b8-09fc-417a-9167-625c7e1e65bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map">
+      <UniqueIdentifier>{451275a9-f84e-44ad-92be-416a8cc5041e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

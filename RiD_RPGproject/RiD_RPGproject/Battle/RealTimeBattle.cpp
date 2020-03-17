@@ -11,11 +11,13 @@ namespace RTB
 	{
 		sf::Event event;
 		sf::Clock clock;
+		sf::View camera;
+		camera.reset(sf::FloatRect(0, 0, 853, 480));
+		window.setView(camera);
 		RiD::AssetManager asset_manager;
 
-		asset_manager.setTexture("player", "img/character.png");
+		asset_manager.setTexture("player", "img/character_with_sword.png");
 		RiD::Movement character(asset_manager.getTexture("player"));
-
 		while (window.isOpen())
 		{
 			while (window.pollEvent(event)) //handling events
@@ -35,7 +37,17 @@ namespace RTB
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 				character.walkingLeft(clock.getElapsedTime());
-			character.idle(clock.getElapsedTime());
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+				character.triggerAttack();
+
+			character.swordSwing(clock.getElapsedTime());
+
+			if ((!sf::Keyboard::isKeyPressed(sf::Keyboard::A)) && (!sf::Keyboard::isKeyPressed(sf::Keyboard::D)) &&
+				(!sf::Keyboard::isKeyPressed(sf::Keyboard::S)) && (!sf::Keyboard::isKeyPressed(sf::Keyboard::W)) &&
+				(character.isAttackTriggered() == false))
+				character.idle(clock.getElapsedTime());
+
 
 			window.clear();
 			window.draw(character.getSprite());
