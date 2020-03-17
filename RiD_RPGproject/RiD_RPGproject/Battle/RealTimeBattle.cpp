@@ -1,60 +1,36 @@
 #pragma once
 
 #include "RealTimeBattle.h"
+#include <iostream>
 
 namespace RTB
 {
 	RealTimeBattle::RealTimeBattle()
 	{
+		_camera.reset(sf::FloatRect(0, 0, 853, 480));
 	}
 	void RealTimeBattle::mainLoop(sf::RenderWindow& window)
 	{
-		sf::Event event;
-		sf::Clock clock;
-		sf::View camera;
-		camera.reset(sf::FloatRect(0, 0, 853, 480));
-		window.setView(camera);
-		RiD::AssetManager asset_manager;
+		window.setView(_camera);
+		_asset_manager.setTexture("player", "img/character.png");
+		RiD::Movement playerMovement(_asset_manager.getTexture("player"));
 
-		asset_manager.setTexture("player", "img/character.png");
-		RiD::Movement character(asset_manager.getTexture("player"));
+		Player player(playerMovement);
+		player.setPosition(120.0, 120.0);
+
 		while (window.isOpen())
 		{
-			while (window.pollEvent(event)) //handling events
+			while (window.pollEvent(_event)) //handling events
 			{
-				if (event.type == sf::Event::EventType::Closed)
+				if (_event.type == sf::Event::EventType::Closed)
 					window.close();
 			}
 
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-				character.walkingUp(clock.getElapsedTime());
-
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-				character.walkingDown(clock.getElapsedTime());
-
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-				character.walkingRight(clock.getElapsedTime());
-
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-				character.walkingLeft(clock.getElapsedTime());
-
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-				character.triggerAttack();
-
-			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-				character.triggerShot();
-
-			if ((!sf::Keyboard::isKeyPressed(sf::Keyboard::A)) && (!sf::Keyboard::isKeyPressed(sf::Keyboard::D)) &&
-				(!sf::Keyboard::isKeyPressed(sf::Keyboard::S)) && (!sf::Keyboard::isKeyPressed(sf::Keyboard::W)) &&
-				(character.isAttackTriggered() == false) && character.isShotTriggered() == false)
-				character.idle(clock.getElapsedTime());
-
-			character.swordSwing(clock.getElapsedTime());
-			character.bowShot(clock.getElapsedTime());
-
+			player.movement(_clock.getElapsedTime());
+			std::cout << player.getPosition().x << ", " << player.getPosition().y << std::endl;
 
 			window.clear();
-			window.draw(character.getSprite());
+			player.render(window);
 			window.display();
 		}
 	}

@@ -50,5 +50,7 @@ namespace RiD
 
 		//Returns sprite
 		sf::Sprite getSprite();
+
+		void setSpritePosition(float x, float y);
 	};
 }

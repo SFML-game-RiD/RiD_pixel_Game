@@ -12,7 +12,7 @@ namespace RiD
 		_xAttackCord = 1;
 		_xshotCord = 1;
 		_direction = down;
-		_object.setPosition(120.0, 120.0);
+		//_object.setPosition(120.0, 120.0);
 	}
 
 	void Movement::walkingUp(sf::Time time)
@@ -174,5 +174,10 @@ namespace RiD
 	sf::Sprite Movement::getSprite()
 	{
 		return _object;
+	}
+
+	void Movement::setSpritePosition(float x, float y)
+	{
+		_object.setPosition(x, y);
 	}
 }
