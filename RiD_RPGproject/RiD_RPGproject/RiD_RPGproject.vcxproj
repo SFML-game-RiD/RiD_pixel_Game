@@ -152,6 +152,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ActiveObiect.cpp" />
     <ClCompile Include="Battle\RealTimeBattle.cpp" />
     <ClCompile Include="Engine\Animation.cpp" />
     <ClCompile Include="Engine\AssetManager.cpp" />
@@ -163,9 +164,18 @@
     <ClCompile Include="Engine\State.cpp" />
     <ClCompile Include="Engine\StateMachine.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MapAnimation.cpp" />
+    <ClCompile Include="MapMove.cpp" />
     <ClCompile Include="Map\TileMap.cpp" />
+    <ClCompile Include="Obiect.cpp" />
+    <ClCompile Include="ObiectContainer.cpp" />
+    <ClCompile Include="ObiectManager.cpp" />
+    <ClCompile Include="PawnObiect.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="RiDmain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ActiveObiect.h" />
     <ClInclude Include="Battle\RealTimeBattle.h" />
     <ClInclude Include="Engine\Animation.h" />
     <ClInclude Include="Engine\AssetManager.h" />
@@ -176,7 +186,15 @@
     <ClInclude Include="Engine\RiDGame.h" />
     <ClInclude Include="Engine\State.h" />
     <ClInclude Include="Engine\StateMachine.h" />
+    <ClInclude Include="MapAnimation.h" />
+    <ClInclude Include="MapMove.h" />
     <ClInclude Include="Map\TileMap.h" />
+    <ClInclude Include="Obiect.h" />
+    <ClInclude Include="ObiectContainer.h" />
+    <ClInclude Include="ObiectManager.h" />
+    <ClInclude Include="PawnObiect.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="RiDmain.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
