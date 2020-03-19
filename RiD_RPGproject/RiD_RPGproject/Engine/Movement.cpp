@@ -4,13 +4,16 @@
 
 namespace RiD
 {
-	Movement::Movement(sf::Texture texture, sf::Sprite*& object) : _texture(texture), animations{ sf::Time::Zero, sf::seconds(1.f / 12.f), sf::Time::Zero, sf::seconds(1.f / 12.f), sf::Time::Zero, sf::seconds(1.f/12.f) },
-		_is_attack_triggered(false), _is_shot_triggered(false), _object(object)
+	Movement::Movement(sf::Texture texture, sf::Sprite*& object) : _texture(texture),
+		animations{ sf::Time::Zero, sf::seconds(1.f / 12.f), sf::Time::Zero, sf::seconds(1.f / 12.f),
+		sf::Time::Zero, sf::seconds(1.f/12.f),sf::Time::Zero, sf::seconds(1.f / 8.f) },
+		_is_attack_triggered(false), _is_shot_triggered(false), _is_death_triggered(false), _object(object)
 	{
 		_object->setTexture(_texture);
 		_xCord = 1;
 		_xAttackCord = 1;
 		_xshotCord = 1;
+		_xDeathCord = 1;
 		_direction = down;
 	}
 
@@ -127,7 +130,7 @@ namespace RiD
 	{
 		if (_is_shot_triggered)
 		{
-			_yShotCord = shot*64;
+			_yShotCord = shotAnim *64;
 			_object->setOrigin(32.0, 32.0);
 			_object->setTextureRect(sf::IntRect(_xshotCord * 64, _yShotCord + (_direction * 64), 64, 64));
 
@@ -148,6 +151,27 @@ namespace RiD
 	{
 		_object->setOrigin(32.0, 32.0);
 		_object->setTextureRect(sf::IntRect(1, 64 * _direction, 64, 64));
+	}
+
+	void Movement::death(sf::Time time)
+	{
+		if (_is_death_triggered)
+		{
+			_yDeathCord = deathAnim * 64;
+			_object->setOrigin(32.0, 32.0);
+			_object->setTextureRect(sf::IntRect(_xshotCord * 64, _yShotCord * 64, 64, 64));
+
+			if (time - animations.death_animation_start_time >= animations.death_animation_frame_duration)
+			{
+				_xDeathCord++;
+				animations.death_animation_start_time = time;
+				if (_xDeathCord * 64 == 384)
+				{
+					_is_death_triggered = false;
+					_xDeathCord = 0;
+				}
+			}
+		}
 	}
 
 	void Movement::triggerAttack()

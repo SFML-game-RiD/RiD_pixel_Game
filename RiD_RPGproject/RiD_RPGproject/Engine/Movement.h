@@ -14,13 +14,16 @@ namespace RiD
 			sf::Time sword_animation_frame_duration;
 			sf::Time bow_shot_animation_start_time;
 			sf::Time bow_shot_animation_frame_duration;
+			sf::Time death_animation_start_time;
+			sf::Time death_animation_frame_duration;
 		};
 	private:
 		animationDuration animations;
-		bool _is_attack_triggered, _is_shot_triggered;
-		short _row = 0, _xCord = 0, _yCord = 0, _direction = 0, _xAttackCord = 0, _yAttackCord = 0, _xshotCord = 0, _yShotCord = 0;
+		bool _is_attack_triggered, _is_shot_triggered, _is_death_triggered;
+		short _row = 0, _xCord = 0, _yCord = 0, _direction = 0, _xAttackCord = 0,
+			_yAttackCord = 0, _xshotCord = 0, _yShotCord = 0, _yDeathCord = 0, _xDeathCord = 0;
 		enum directions { up, left, down, right };
-		enum rowsInPNGFile { walkUpAnim = 8, walkLeftAnim, walkDownAnim, walkRightAnim, shot = 16, swordSwingAnim = 21 };
+		enum rowsInPNGFile { walkUpAnim = 8, walkLeftAnim, walkDownAnim, walkRightAnim, shotAnim = 16, deathAnim = 20, swordSwingAnim };
 		sf::Texture _texture;
 		sf::Sprite *_object;
 	public:
@@ -39,6 +42,8 @@ namespace RiD
 		void bowShot(sf::Time time);
 
 		void idle(sf::Time time);
+
+		void death(sf::Time time);
 
 		void triggerAttack();
 

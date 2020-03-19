@@ -8,11 +8,11 @@ namespace RTB
 	RealTimeBattle::RealTimeBattle()
 	{
 		_camera.reset(sf::FloatRect(0, 0, 853, 480));
+		_asset_manager.setTexture("player", "img/character.png");
 	}
 	void RealTimeBattle::mainLoop(sf::RenderWindow& window)
 	{
 		window.setView(_camera);
-		_asset_manager.setTexture("player", "img/character.png");
 
 		Player player(_asset_manager.getTexture("player"));
 		player.setPosition({ 120.0, 120.0 });
@@ -24,12 +24,18 @@ namespace RTB
 				if (_event.type == sf::Event::EventType::Closed)
 					window.close();
 			}
-
-			player.movement(_clock.getElapsedTime());
-			std::cout << player.getPosition().x << ", " << player.getPosition().y << std::endl;
-
+			
+			//Renders
 			window.clear();
-			player.render(window);
+			if (player.isAlive())
+			{
+				player.update(_clock.getElapsedTime());
+				std::cout << player.getPosition().x << ", " << player.getPosition().y << std::endl;
+				player.render(window);
+			}
+			else
+				return;
+			
 			window.display();
 		}
 	}

@@ -1,8 +1,7 @@
 #pragma once
 
 #include "Character.h"
-#include "../Engine/Movement.h"
-#include "Hitbox.h"
+
 
 namespace RTB
 {
@@ -10,10 +9,10 @@ namespace RTB
 		:Character
 	{
 	private:
-		sf::Sprite *_player;
 		sf::Texture _texture;
 		RiD::Movement* _movement = nullptr;
 		Hitbox* _hitbox = nullptr;
+		HPBar* _hp_bar = nullptr;
 	public:
 		Player(sf::Texture texture);
 		~Player();
@@ -21,11 +20,14 @@ namespace RTB
 		//Sets player position
 		void setPosition(sf::Vector2f position);
 
-		//Function responsible for all of the player moves
-		void movement(sf::Time time);
+		//Function responsible for all of the player moves and behaviors
+		void update(sf::Time time);
 
 		//Draws player sprite
 		void render(sf::RenderWindow& window);
+
+		//Checks if character is alive
+		bool isAlive();
 
 		//Gets player position
 		sf::Vector2f getPosition();
