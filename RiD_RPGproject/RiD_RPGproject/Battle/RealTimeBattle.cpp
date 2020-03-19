@@ -13,10 +13,9 @@ namespace RTB
 	{
 		window.setView(_camera);
 		_asset_manager.setTexture("player", "img/character.png");
-		RiD::Movement playerMovement(_asset_manager.getTexture("player"));
 
-		Player player(playerMovement);
-		player.setPosition(120.0, 120.0);
+		Player player(_asset_manager.getTexture("player"));
+		player.setPosition({ 120.0, 120.0 });
 
 		while (window.isOpen())
 		{

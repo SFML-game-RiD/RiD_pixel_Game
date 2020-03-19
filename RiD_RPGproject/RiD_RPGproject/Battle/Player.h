@@ -2,6 +2,7 @@
 
 #include "Character.h"
 #include "../Engine/Movement.h"
+#include "Hitbox.h"
 
 namespace RTB
 {
@@ -9,12 +10,16 @@ namespace RTB
 		:Character
 	{
 	private:
-		RiD::Movement _movement;
+		sf::Sprite *_player;
+		sf::Texture _texture;
+		RiD::Movement* _movement = nullptr;
+		Hitbox* _hitbox = nullptr;
 	public:
-		Player(RiD::Movement &movement);
+		Player(sf::Texture texture);
+		~Player();
 
 		//Sets player position
-		void setPosition(float x, float y);
+		void setPosition(sf::Vector2f position);
 
 		//Function responsible for all of the player moves
 		void movement(sf::Time time);

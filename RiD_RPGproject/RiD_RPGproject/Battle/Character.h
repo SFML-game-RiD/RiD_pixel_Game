@@ -15,7 +15,7 @@ namespace RTB
 		sf::Vector2f position;
 	public:
 		//Sets character position
-		virtual void setPosition(float x, float y) = 0;
+		virtual void setPosition(sf::Vector2f position) = 0;
 
 		//Function responsible for all of the moves
 		virtual void movement(sf::Time time) = 0;

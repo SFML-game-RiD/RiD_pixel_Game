@@ -22,9 +22,9 @@ namespace RiD
 		enum directions { up, left, down, right };
 		enum rowsInPNGFile { walkUpAnim = 8, walkLeftAnim, walkDownAnim, walkRightAnim, shot = 16, swordSwingAnim = 21 };
 		sf::Texture _texture;
-		sf::Sprite _object;
+		sf::Sprite *_object;
 	public:
-		Movement(sf::Texture texture);
+		Movement(sf::Texture texture, sf::Sprite *&object);
 
 		void walkingUp(sf::Time time);
 
@@ -51,6 +51,6 @@ namespace RiD
 		//Returns sprite
 		sf::Sprite getSprite();
 
-		void setSpritePosition(float x, float y);
+		void setSpritePosition(sf::Vector2f position);
 	};
 }
