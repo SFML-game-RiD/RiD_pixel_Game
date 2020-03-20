@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Obiect.h"
+#include "Player.h"
 
 namespace MP
 {
@@ -19,6 +20,8 @@ namespace MP
 		Obiect * aObiect;
 
 		ObiectContainer(Obiect *& newObiect);
+
+		ObiectContainer(Player*& newPlayer);
 
 		~ObiectContainer();
 	};

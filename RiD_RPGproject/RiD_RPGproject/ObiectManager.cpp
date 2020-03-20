@@ -1,12 +1,18 @@
 #include <SFML/Graphics.hpp>
 #include "ObiectManager.h"
 #include "ObiectContainer.h"
-#include "Player.h"
+
+
+MP::Player * MP::ObiectManager::getPlayerPtr()
+{
+	return player;
+}
 
 MP::ObiectManager::ObiectManager()
 {
 	activeObiectList = nullptr;
 	staticObiectList = nullptr;
+	player = nullptr;
 }
 
 MP::ObiectManager::~ObiectManager()
@@ -60,7 +66,8 @@ void MP::ObiectManager::deleteObiects(ObiectContainer*& head)
 
 void MP::ObiectManager::generateObiects()
 {
-	Obiect * tmp = new Player;
+	MP::Player * tmp = new MP::Player;
+	player = tmp;
 	ObiectContainer* tmpC = new ObiectContainer(tmp);
 	this->addObiect(this->activeObiectList, tmpC);
 }

@@ -1,17 +1,21 @@
 #pragma once
-#include "Obiect.h"
+#include "Player.h"
 #include "ObiectContainer.h"
 
 namespace MP
 {
 	class ObiectManager
 	{
+	private:
+
+		Player* player;
+
+		ObiectContainer* activeObiectList;
+		ObiectContainer* staticObiectList;
+
 	public:
 		
-		
-
-		ObiectContainer * activeObiectList;
-		ObiectContainer * staticObiectList;
+		MP::Player* getPlayerPtr();
 
 		ObiectManager();
 

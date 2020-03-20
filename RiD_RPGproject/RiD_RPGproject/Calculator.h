@@ -1,10 +1,10 @@
 #pragma once
 
+
 namespace MP
 {
-	class MapAnimation
+	class Calculator
 	{
-	private:
 
 	};
 }

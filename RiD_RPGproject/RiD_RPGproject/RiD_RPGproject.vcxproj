@@ -154,6 +154,7 @@
   <ItemGroup>
     <ClCompile Include="ActiveObiect.cpp" />
     <ClCompile Include="Battle\RealTimeBattle.cpp" />
+    <ClCompile Include="Calculator.cpp" />
     <ClCompile Include="Engine\Animation.cpp" />
     <ClCompile Include="Engine\AssetManager.cpp" />
     <ClCompile Include="Engine\ConfigurationLoader.cpp" />
@@ -177,6 +178,7 @@
   <ItemGroup>
     <ClInclude Include="ActiveObiect.h" />
     <ClInclude Include="Battle\RealTimeBattle.h" />
+    <ClInclude Include="Calculator.h" />
     <ClInclude Include="Engine\Animation.h" />
     <ClInclude Include="Engine\AssetManager.h" />
     <ClInclude Include="Engine\ConfigurationLoader.h" />

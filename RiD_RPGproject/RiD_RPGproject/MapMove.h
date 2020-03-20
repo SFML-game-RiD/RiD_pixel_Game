@@ -8,12 +8,20 @@ namespace MP
 	{
 	public:
 
-		void moveOnePixelLeft(ActiveObiect obiect);
+		void moveBlockDown(ActiveObiect& obiect,int blockLength);
 
-		void moveOnePixelRight(ActiveObiect obiect);
+		void moveBlockUp(ActiveObiect& obiect, int blockLength);
 
-		void moveOnePixelUp(ActiveObiect obiect);
+		void moveBlockRight(ActiveObiect& obiect, int blockLength);
 
-		void moveOnePixelDown(ActiveObiect obiect);
+		void moveBlockLeft(ActiveObiect& obiect, int blockLength);
+
+		void movePixelDown(ActiveObiect & obiect);
+
+		void movePixelUp(ActiveObiect & obiect);
+
+		void movePixelRight(ActiveObiect & obiect);
+
+		void movePixelLeft(ActiveObiect & obiect);
 	};
 }
