@@ -1,9 +1,11 @@
 #pragma once
 
+#include <list>
 #include "SFML/Graphics.hpp"
 #include "../Engine/AssetManager.h"
 #include "../Map/TileMap.h"
 #include "Player.h"
+#include "Bot.h"
 
 namespace RTB
 {
@@ -16,6 +18,7 @@ namespace RTB
 		RiD::AssetManager _asset_manager;
 	public:
 		RealTimeBattle();
+		~RealTimeBattle();
 		void mainLoop(sf::RenderWindow& window);
 	};
 }

@@ -21,7 +21,7 @@ namespace RTB
 		virtual void setPosition(sf::Vector2f position) = 0;
 
 		//Function responsible for all of the moves
-		virtual void update(sf::Time time) = 0;
+		//virtual void update(sf::Time time) = 0;
 
 		//Draws character sprite
 		virtual void render(sf::RenderWindow& window) = 0;
