@@ -9,7 +9,6 @@ namespace RTB
 		:Character
 	{
 	private:
-		sf::Texture _texture;
 		RiD::Movement* _movement = nullptr;
 		Hitbox* _hitbox = nullptr;
 		HPBar* _hp_bar = nullptr;
