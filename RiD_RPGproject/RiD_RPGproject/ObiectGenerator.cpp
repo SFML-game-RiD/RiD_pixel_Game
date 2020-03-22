@@ -1,6 +1,5 @@
 #include "ObiectGenerator.h"
 #include "Player.h"
-#include "ObiectContainer.h"
 #include "ActiveObiect.h"
 
 void MP::ObiectGenerator::generateObiects(ObiectManager& aObiectManager, ObiectDrawer& aObiectDrawer)
@@ -9,6 +8,4 @@ void MP::ObiectGenerator::generateObiects(ObiectManager& aObiectManager, ObiectD
 
 	aObiectManager.addObiect(tmp);
 
-	ObiectContainer* tmpC = new ObiectContainer(tmp);
-	aObiectDrawer.addObiect(aObiectDrawer.getActiveObiectsList(), tmpC);
 }

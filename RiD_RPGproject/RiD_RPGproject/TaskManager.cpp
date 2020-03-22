@@ -12,22 +12,26 @@ MP::TaskManager::taskType MP::TaskManager::getTask()
 
 void MP::TaskManager::startProcedureGoUp()
 {
+	if(_current_task == taskNone)
 	_current_task = taskGoUp;
 }
 
 void MP::TaskManager::startProcedureGoDown()
 {
-	_current_task = taskGoUp;
+	if (_current_task == taskNone)
+	_current_task = taskGoDown;
 }
 
 void MP::TaskManager::startProcedureGoLeft()
 {
-	_current_task = taskGoUp;
+	if (_current_task == taskNone)
+	_current_task = taskGoLeft;
 }
 
 void MP::TaskManager::startProcedureGoRight()
 {
-	_current_task = taskGoUp;
+	if (_current_task == taskNone)
+	_current_task = taskGoRight;
 }
 
 void MP::TaskManager::endTask()

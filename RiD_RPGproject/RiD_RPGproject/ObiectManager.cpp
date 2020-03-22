@@ -1,7 +1,5 @@
 #include <SFML/Graphics.hpp>
 #include "ObiectManager.h"
-#include "ObiectContainer.h"
-
 
 void MP::ObiectManager::addObiect(std::shared_ptr<Player> newPlayer)
 {

@@ -11,6 +11,8 @@ namespace MP
 	
 		sf::Time _last_active;
 
+		sf::Time _ready_time;
+
 		int _block_length;
 
 		int _block_length_copy;
@@ -29,6 +31,8 @@ namespace MP
 		void setLastActive(sf::Clock currentTime);
 
 		sf::Time getLastActiveTime();
+
+		sf::Time getReadyTime();
 
 		int getBlockLenghtCopy();
 

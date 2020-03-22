@@ -52,7 +52,7 @@ void RiD::RiDmain::_draw(sf::RenderWindow & mainWindow)
 {
 	_window.clear();
 
-	_a_obiect_drawer.drawAllObiects(mainWindow);
+	_a_obiect_drawer.drawAllObiects(mainWindow,_a_obiect_manager);
 
 	_window.display();
 }

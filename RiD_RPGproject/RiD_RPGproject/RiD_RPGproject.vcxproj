@@ -169,7 +169,6 @@
     <ClCompile Include="MapMove.cpp" />
     <ClCompile Include="Map\TileMap.cpp" />
     <ClCompile Include="Obiect.cpp" />
-    <ClCompile Include="ObiectContainer.cpp" />
     <ClCompile Include="ObiectDrawer.cpp" />
     <ClCompile Include="ObiectGenerator.cpp" />
     <ClCompile Include="ObiectManager.cpp" />
@@ -195,7 +194,6 @@
     <ClInclude Include="MapMove.h" />
     <ClInclude Include="Map\TileMap.h" />
     <ClInclude Include="Obiect.h" />
-    <ClInclude Include="ObiectContainer.h" />
     <ClInclude Include="ObiectDrawer.h" />
     <ClInclude Include="ObiectGenerator.h" />
     <ClInclude Include="ObiectManager.h" />

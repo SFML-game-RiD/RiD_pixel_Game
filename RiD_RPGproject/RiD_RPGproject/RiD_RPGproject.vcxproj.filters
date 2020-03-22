@@ -53,9 +53,6 @@
     <ClCompile Include="RiDmain.cpp">
       <Filter>the bosses</Filter>
     </ClCompile>
-    <ClCompile Include="ObiectContainer.cpp">
-      <Filter>OBIECT\DynStructObj</Filter>
-    </ClCompile>
     <ClCompile Include="Calculator.cpp">
       <Filter>the bosses</Filter>
     </ClCompile>
@@ -127,9 +124,6 @@
     <ClInclude Include="RiDmain.h">
       <Filter>the bosses</Filter>
     </ClInclude>
-    <ClInclude Include="ObiectContainer.h">
-      <Filter>OBIECT\DynStructObj</Filter>
-    </ClInclude>
     <ClInclude Include="Calculator.h">
       <Filter>the bosses</Filter>
     </ClInclude>
@@ -170,9 +164,6 @@
     </Filter>
     <Filter Include="IVANOVS CLASSES\Graphics">
       <UniqueIdentifier>{7bbe2dbb-b8a1-4384-b29d-731b1e455d25}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="OBIECT\DynStructObj">
-      <UniqueIdentifier>{f8f99a89-b1bf-4400-960c-784e9488e45d}</UniqueIdentifier>
     </Filter>
     <Filter Include="the bosses">
       <UniqueIdentifier>{a91205af-2276-4eff-99ab-1acf6d8a0453}</UniqueIdentifier>

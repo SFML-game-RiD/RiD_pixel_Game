@@ -1,29 +1,10 @@
 #include "MapMove.h"
 
-//void MP::MapMove::startProcedurePlayerMove(TaskManager& aTaskManager, MP::Player& aPlayer, sf::Clock& aGameClock)
-//{
-//	switch (aTaskManager.getTask())
-//	{
-//	case(MP::TaskManager::taskType::taskGoUp):
-//		//	moveBlockUp(*(aObiectManager.getPlayer()), aGameClock);
-//		break;
-//	case(MP::TaskManager::taskType::taskGoLeft):
-//		//moveBlockLeft(*(aObiectManager.getPlayer()), aGameClock);
-//		break;
-//	case(MP::TaskManager::taskType::taskGoDown):
-//		//moveBlockDown(*(aObiectManager.getPlayer()), aGameClock);
-//		break;
-//	case(MP::TaskManager::taskType::taskGoRight):
-//		//moveBlockRight(*(aObiectManager.getPlayer()), aGameClock);
-//		break;
-//
-//	}
-//}
 
 
-void MP::MapMove::moveBlockDown(ActiveObiect& obiect, sf::Clock currentTime)
+void MP::MapMove::moveBlockDown(ActiveObiect& obiect, sf::Clock& currentTime, TaskManager& aTaskManager)
 {
-	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= obiect.getLastActiveTime() && obiect.getIsMoving())
+	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= obiect.getReadyTime())
 	{
 		movePixelDown(obiect);
 		obiect.decreaseBlockLengthCopy();
@@ -35,12 +16,13 @@ void MP::MapMove::moveBlockDown(ActiveObiect& obiect, sf::Clock currentTime)
 
 		obiect.setIsMoving(false);
 		obiect.resetBlockLenghtCopy();
+		aTaskManager.endTask();
 	}
 }
 
-void MP::MapMove::moveBlockUp(ActiveObiect& obiect, sf::Clock currentTime)
+void MP::MapMove::moveBlockUp(ActiveObiect& obiect, sf::Clock& currentTime, TaskManager& aTaskManager)
 {
-	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= obiect.getLastActiveTime()&& obiect.getIsMoving())
+	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= obiect.getReadyTime())
 	{
 		movePixelUp(obiect);
 		obiect.decreaseBlockLengthCopy();
@@ -52,12 +34,13 @@ void MP::MapMove::moveBlockUp(ActiveObiect& obiect, sf::Clock currentTime)
 
 		obiect.setIsMoving(false);
 		obiect.resetBlockLenghtCopy();
+		aTaskManager.endTask();
 	}
 }
 
-void MP::MapMove::moveBlockRight(ActiveObiect& obiect, sf::Clock currentTime)
+void MP::MapMove::moveBlockRight(ActiveObiect& obiect, sf::Clock& currentTime, TaskManager& aTaskManager)
 {
-	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= obiect.getLastActiveTime() && obiect.getIsMoving())
+	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= obiect.getReadyTime())
 	{
 		movePixelRight(obiect);
 		obiect.decreaseBlockLengthCopy();
@@ -68,12 +51,13 @@ void MP::MapMove::moveBlockRight(ActiveObiect& obiect, sf::Clock currentTime)
 	{
 		obiect.setIsMoving(false);
 		obiect.resetBlockLenghtCopy();
+		aTaskManager.endTask();
 	}
 }
 
-void MP::MapMove::moveBlockLeft(ActiveObiect& obiect, sf::Clock currentTime)
+void MP::MapMove::moveBlockLeft(ActiveObiect& obiect, sf::Clock& currentTime, TaskManager& aTaskManager)
 {
-	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= obiect.getLastActiveTime() && obiect.getIsMoving())
+	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= obiect.getReadyTime())
 	{
 		movePixelLeft(obiect);
 		obiect.decreaseBlockLengthCopy();
@@ -84,26 +68,26 @@ void MP::MapMove::moveBlockLeft(ActiveObiect& obiect, sf::Clock currentTime)
 	{
 		obiect.setIsMoving(false);
 		obiect.resetBlockLenghtCopy();
-
+		aTaskManager.endTask();
 	}
 }
 
 void MP::MapMove::movePixelDown(ActiveObiect & obiect)
 {
-	obiect.setObiectCoord(obiect.getObiectCoord().first, obiect.getObiectCoord().second + 1);
+	obiect.setObiectCoord(obiect.getObiectCoord().first, obiect.getObiectCoord().second + 4);
 }
 
 void MP::MapMove::movePixelUp(ActiveObiect & obiect)
 {
-	obiect.setObiectCoord(obiect.getObiectCoord().first, obiect.getObiectCoord().second - 1);
+	obiect.setObiectCoord(obiect.getObiectCoord().first, obiect.getObiectCoord().second - 4);
 }
 
 void MP::MapMove::movePixelRight(ActiveObiect & obiect)
 {
-	obiect.setObiectCoord(obiect.getObiectCoord().first+1, obiect.getObiectCoord().second);
+	obiect.setObiectCoord(obiect.getObiectCoord().first+4, obiect.getObiectCoord().second);
 }
 
 void MP::MapMove::movePixelLeft(ActiveObiect & obiect)
 {
-	obiect.setObiectCoord(obiect.getObiectCoord().first-1, obiect.getObiectCoord().second);
+	obiect.setObiectCoord(obiect.getObiectCoord().first-4, obiect.getObiectCoord().second);
 }

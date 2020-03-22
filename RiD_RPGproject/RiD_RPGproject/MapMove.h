@@ -10,20 +10,6 @@ namespace MP
 	class MapMove
 	{
 	private:
-		
-
-
-	public:
-
-		//void startProcedurePlayerMove(TaskManager & aTaskManager, Player &aPlayer, sf::Clock &aGameClock);
-
-		void moveBlockDown(ActiveObiect& obiect, sf::Clock currentTime);
-
-		void moveBlockUp(ActiveObiect& obiect, sf::Clock currentTime);
-
-		void moveBlockRight(ActiveObiect& obiect, sf::Clock currentTime);
-
-		void moveBlockLeft(ActiveObiect& obiect, sf::Clock currentTime);
 
 		void movePixelDown(ActiveObiect& obiect);
 
@@ -32,6 +18,18 @@ namespace MP
 		void movePixelRight(ActiveObiect& obiect);
 
 		void movePixelLeft(ActiveObiect& obiect);
+
+	public:
+
+		void moveBlockDown(ActiveObiect& obiect, sf::Clock &currentTime,TaskManager & aTaskManager);
+
+		void moveBlockUp(ActiveObiect& obiect, sf::Clock &currentTime, TaskManager& aTaskManager);
+
+		void moveBlockRight(ActiveObiect& obiect, sf::Clock &currentTime, TaskManager& aTaskManager);
+
+		void moveBlockLeft(ActiveObiect& obiect, sf::Clock &currentTime, TaskManager& aTaskManager);
+
+	
 	};
 }
 #endif

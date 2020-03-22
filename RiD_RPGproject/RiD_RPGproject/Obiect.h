@@ -4,6 +4,7 @@
 #include <utility>
 #include <SFML/Graphics.hpp>
 
+
 namespace MP
 {
 	class Obiect
@@ -13,6 +14,8 @@ namespace MP
 		std::pair<int, int> _objCoord;
 
 	public:
+
+		//MapAnimation animation;
 
 		sf::Time objSleepTime;
 		sf::Texture objTexture;
