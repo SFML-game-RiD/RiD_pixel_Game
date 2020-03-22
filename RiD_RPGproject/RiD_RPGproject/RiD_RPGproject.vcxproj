@@ -170,10 +170,13 @@
     <ClCompile Include="Map\TileMap.cpp" />
     <ClCompile Include="Obiect.cpp" />
     <ClCompile Include="ObiectContainer.cpp" />
+    <ClCompile Include="ObiectDrawer.cpp" />
+    <ClCompile Include="ObiectGenerator.cpp" />
     <ClCompile Include="ObiectManager.cpp" />
     <ClCompile Include="PawnObiect.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RiDmain.cpp" />
+    <ClCompile Include="TaskManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ActiveObiect.h" />
@@ -193,10 +196,13 @@
     <ClInclude Include="Map\TileMap.h" />
     <ClInclude Include="Obiect.h" />
     <ClInclude Include="ObiectContainer.h" />
+    <ClInclude Include="ObiectDrawer.h" />
+    <ClInclude Include="ObiectGenerator.h" />
     <ClInclude Include="ObiectManager.h" />
     <ClInclude Include="PawnObiect.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RiDmain.h" />
+    <ClInclude Include="TaskManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,6 +1,10 @@
-#pragma once
+#ifndef _OBIECTMANAGER_H_
+#define _OBIECTMANAGER_H_
+
+
 #include "Player.h"
-#include "ObiectContainer.h"
+
+
 
 namespace MP
 {
@@ -8,28 +12,15 @@ namespace MP
 	{
 	private:
 
-		Player* player;
-
-		ObiectContainer* activeObiectList;
-		ObiectContainer* staticObiectList;
+		std::shared_ptr<Player> _player;
 
 	public:
 		
-		MP::Player* getPlayerPtr();
+		void addObiect(std::shared_ptr<Player> newPlayer);
 
-		ObiectManager();
-
-		~ObiectManager();
-
-		void drawAllObiects(sf::RenderWindow & mainWindow);
-
-		void drawActiveObiects(sf::RenderWindow & mainWindow);
-
-		void addObiect(ObiectContainer*& head, ObiectContainer *& obiect);
-
-		void deleteObiects(ObiectContainer*& head);
-
-		void generateObiects();
+		std::shared_ptr<Player> & getPlayer();
+	
 	};
 
 }
+#endif

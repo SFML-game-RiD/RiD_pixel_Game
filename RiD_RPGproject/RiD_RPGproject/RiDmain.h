@@ -1,7 +1,13 @@
-#pragma once
+#ifndef _RIDMAIN_H_
+#define _RIDMAIN_H_
+
 #include "SFML/Graphics.hpp"
-#include "ObiectManager.h"
+#include "ObiectDrawer.h"
 #include "MapMove.h"
+#include "ObiectManager.h"
+#include "ObiectGenerator.h"
+#include "TaskManager.h"
+#include "Calculator.h"
 
 namespace RiD
 {
@@ -9,20 +15,34 @@ namespace RiD
 	{
 	private:
 
+
+		//############# OBIECT MANAGING ##############
+		
+		MP::ObiectDrawer _a_obiect_drawer;
+
+		MP::ObiectManager _a_obiect_manager;
+
+		MP::ObiectGenerator _a_obiect_generator;
+
+		//############################################
+
 		//Put this variables somewhere!!!
+		MP::Calculator _a_calculator;
 
-		sf::RenderWindow window;
+		MP::TaskManager _a_task_manager;
 
-		MP::ObiectManager aObiectManager;
+		sf::RenderWindow _window;
 
-		MP::MapMove aMapMove;
+		MP::MapMove _a_map_move;
 
-		int _block_length;
+		sf::Event _event;
+
+		sf::Clock _clock;
 
      	//Executes creation of window
-		void createWindow();
+		void _create_window();
 
-		void _event(sf::Event& event);
+		void _event_function(sf::Event& event);
 
 		void _calculate();
 
@@ -39,3 +59,4 @@ namespace RiD
 	};
 
 }
+#endif

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _PAWNOBIECT_H_
+#define _PAWNOBIECT_H_
+
 #include "ActiveObiect.h"
 
 namespace MP 
@@ -26,3 +28,4 @@ namespace MP
 		void setTravelTime(int travelTimeInMs);
 	};
 }
+#endif

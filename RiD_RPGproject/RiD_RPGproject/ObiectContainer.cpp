@@ -2,19 +2,16 @@
 #include "Obiect.h" 
 #include "Player.h"
 
-MP::ObiectContainer::ObiectContainer(Obiect *& newObiect)
+MP::ObiectContainer::ObiectContainer(std::shared_ptr<Obiect> &newObiect)
 {
 	nextContainer = nullptr;
 	aObiect = newObiect;
 }
 
-MP::ObiectContainer::ObiectContainer(Player *& newObiect)
+MP::ObiectContainer::ObiectContainer(std::shared_ptr<Player> &newPlayer)
 {
 	nextContainer = nullptr;
-	aObiect = newObiect;
-}
+	aObiect =newPlayer;
 
-MP::ObiectContainer::~ObiectContainer()
-{
-	delete aObiect;
+	nextContainer = nullptr;
 }

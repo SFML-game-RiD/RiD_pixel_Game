@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _OBIECTCONTAINER_H_
+#define _OBIECTCONTAINER_H_
+
 
 #include "Obiect.h"
 #include "Player.h"
@@ -8,21 +10,14 @@ namespace MP
 	class ObiectContainer
 	{
 	public:
-		//enum ObiectType
-		//{
-
-		//};
-
+	
 		ObiectContainer* nextContainer;
 		
-		//ObiectType type;
+		std::shared_ptr<Obiect> aObiect;
 
-		Obiect * aObiect;
+		ObiectContainer(std::shared_ptr<Obiect>& newObiect);
 
-		ObiectContainer(Obiect *& newObiect);
-
-		ObiectContainer(Player*& newPlayer);
-
-		~ObiectContainer();
+		ObiectContainer(std::shared_ptr<Player> &newPlayer);
 	};
 }
+#endif

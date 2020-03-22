@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _OBIECT_H_
+#define _OBIECT_H_
 
 #include <utility>
 #include <SFML/Graphics.hpp>
@@ -13,6 +14,7 @@ namespace MP
 
 	public:
 
+		sf::Time objSleepTime;
 		sf::Texture objTexture;
 		sf::Sprite objSprite;
 		sf::IntRect objRectangle;
@@ -21,3 +23,4 @@ namespace MP
 		std::pair<int,int> getObiectCoord();
 	};
 }
+#endif

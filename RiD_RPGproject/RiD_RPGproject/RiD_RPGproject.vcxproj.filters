@@ -44,25 +44,34 @@
     <ClCompile Include="PawnObiect.cpp">
       <Filter>OBIECT</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>OBIECT</Filter>
-    </ClCompile>
     <ClCompile Include="MapAnimation.cpp">
-      <Filter>oh it%27s moving ..</Filter>
+      <Filter>OBIECT\oh it%27s moving ..</Filter>
     </ClCompile>
     <ClCompile Include="MapMove.cpp">
-      <Filter>oh it%27s moving ..</Filter>
+      <Filter>OBIECT\oh it%27s moving ..</Filter>
     </ClCompile>
     <ClCompile Include="RiDmain.cpp">
       <Filter>the bosses</Filter>
-    </ClCompile>
-    <ClCompile Include="ObiectManager.cpp">
-      <Filter>OBIECT\DynStructObj</Filter>
     </ClCompile>
     <ClCompile Include="ObiectContainer.cpp">
       <Filter>OBIECT\DynStructObj</Filter>
     </ClCompile>
     <ClCompile Include="Calculator.cpp">
+      <Filter>the bosses</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>OBIECT\Dora</Filter>
+    </ClCompile>
+    <ClCompile Include="ObiectGenerator.cpp">
+      <Filter>the bosses</Filter>
+    </ClCompile>
+    <ClCompile Include="ObiectManager.cpp">
+      <Filter>the bosses</Filter>
+    </ClCompile>
+    <ClCompile Include="ObiectDrawer.cpp">
+      <Filter>the bosses</Filter>
+    </ClCompile>
+    <ClCompile Include="TaskManager.cpp">
       <Filter>the bosses</Filter>
     </ClCompile>
   </ItemGroup>
@@ -109,20 +118,14 @@
     <ClInclude Include="PawnObiect.h">
       <Filter>OBIECT</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>OBIECT</Filter>
-    </ClInclude>
     <ClInclude Include="MapAnimation.h">
-      <Filter>oh it%27s moving ..</Filter>
+      <Filter>OBIECT\oh it%27s moving ..</Filter>
     </ClInclude>
     <ClInclude Include="MapMove.h">
-      <Filter>oh it%27s moving ..</Filter>
+      <Filter>OBIECT\oh it%27s moving ..</Filter>
     </ClInclude>
     <ClInclude Include="RiDmain.h">
       <Filter>the bosses</Filter>
-    </ClInclude>
-    <ClInclude Include="ObiectManager.h">
-      <Filter>OBIECT\DynStructObj</Filter>
     </ClInclude>
     <ClInclude Include="ObiectContainer.h">
       <Filter>OBIECT\DynStructObj</Filter>
@@ -130,13 +133,25 @@
     <ClInclude Include="Calculator.h">
       <Filter>the bosses</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>OBIECT\Dora</Filter>
+    </ClInclude>
+    <ClInclude Include="ObiectGenerator.h">
+      <Filter>the bosses</Filter>
+    </ClInclude>
+    <ClInclude Include="ObiectManager.h">
+      <Filter>the bosses</Filter>
+    </ClInclude>
+    <ClInclude Include="ObiectDrawer.h">
+      <Filter>the bosses</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskManager.h">
+      <Filter>the bosses</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Mr wroldwide">
       <UniqueIdentifier>{875c2c9c-9536-4316-af8f-186540127064}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="oh it%27s moving ..">
-      <UniqueIdentifier>{366204a4-da86-493d-be0b-d81d04255ad4}</UniqueIdentifier>
     </Filter>
     <Filter Include="OBIECT">
       <UniqueIdentifier>{5b2eb87f-393a-4b9d-8030-d14268c9cbc4}</UniqueIdentifier>
@@ -161,6 +176,12 @@
     </Filter>
     <Filter Include="the bosses">
       <UniqueIdentifier>{a91205af-2276-4eff-99ab-1acf6d8a0453}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OBIECT\oh it%27s moving ..">
+      <UniqueIdentifier>{366204a4-da86-493d-be0b-d81d04255ad4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OBIECT\Dora">
+      <UniqueIdentifier>{144664f1-b346-48c7-8aad-483e32a00fa4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

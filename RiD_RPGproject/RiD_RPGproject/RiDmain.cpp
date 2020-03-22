@@ -2,62 +2,63 @@
 #include "Engine/ConfigurationLoader.h"
 
 
-void RiD::RiDmain::createWindow()
+void RiD::RiDmain::_create_window()
 {
-	aObiectManager.generateObiects();
+	//############ Generating obiects ##############
 
-	sf::Event event;
-	sf::Clock clock;
+	_a_obiect_generator.generateObiects(_a_obiect_manager, _a_obiect_drawer);
+	std::printf("generated \n");
+	//##############################################
 
-	while (this->window.isOpen()) //program main loop
+	while (this->_window.isOpen()) //program main loop
 	{	
-		_event(event);
+		_event_function(_event);
 
 		_calculate();
 		
-		_draw(this->window);
+		_draw(this->_window);
 	}
 }
 
-void RiD::RiDmain::_event(sf::Event &event)
+void RiD::RiDmain::_event_function(sf::Event &event)
 {
 
-		while (this->window.pollEvent(event)) //handling events
+		while (this->_window.pollEvent(event)) //handling events
 		{
 			if (event.type == sf::Event::EventType::Closed)
-				this->window.close();
+				this->_window.close();
 			
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-			aMapMove.moveBlockUp(*aObiectManager.getPlayerPtr(),_block_length);
+				_a_task_manager.startProcedureGoUp();
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-				aMapMove.moveBlockLeft(*aObiectManager.getPlayerPtr(), _block_length);
+				_a_task_manager.startProcedureGoLeft();
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-				aMapMove.moveBlockDown(*aObiectManager.getPlayerPtr(), _block_length);
+				_a_task_manager.startProcedureGoDown();
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-				aMapMove.moveBlockRight(*aObiectManager.getPlayerPtr(), _block_length);
+				_a_task_manager.startProcedureGoRight();
 		}
 		
 }
 
 void RiD::RiDmain::_calculate()
 {
+	_a_calculator.startProcedurePlayerMove(_a_task_manager, *_a_obiect_manager.getPlayer(), _clock);
 }
 
 void RiD::RiDmain::_draw(sf::RenderWindow & mainWindow)
 {
-	window.clear();
+	_window.clear();
 
-	aObiectManager.drawAllObiects(mainWindow);
+	_a_obiect_drawer.drawAllObiects(mainWindow);
 
-	window.display();
+	_window.display();
 }
 RiD::RiDmain::RiDmain(int width, int height, std::string title)
 {
-	window.create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
-	window.setFramerateLimit(RiD::ConfigurationLoader::getIntData("video settings","gameFPS"));
-	_block_length = RiD::ConfigurationLoader::getIntData("video settings", "blockLength");
-	this->createWindow();
+	_window.create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
+	_window.setFramerateLimit(RiD::ConfigurationLoader::getIntData("video settings","gameFPS"));
+	this->_create_window();
 }

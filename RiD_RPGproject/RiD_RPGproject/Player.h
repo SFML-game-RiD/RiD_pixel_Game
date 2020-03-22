@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _PLAYER_H_
+#define _PLAYER_H_
+
 #include "MapMove.h"
 #include "PawnObiect.h"
 
@@ -13,3 +15,4 @@ namespace MP
 
 
 }
+#endif

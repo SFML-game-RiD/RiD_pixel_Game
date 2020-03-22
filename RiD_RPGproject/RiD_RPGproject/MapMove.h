@@ -1,27 +1,37 @@
-#pragma once
-#include "ActiveObiect.h"
+#ifndef _MAPMOVE_H_
+#define _MAPMOVE_H_
 
+#include "ActiveObiect.h"
+#include "TaskManager.h"
+#include "Player.h"
 
 namespace MP
 {
 	class MapMove
 	{
+	private:
+		
+
+
 	public:
 
-		void moveBlockDown(ActiveObiect& obiect,int blockLength);
+		//void startProcedurePlayerMove(TaskManager & aTaskManager, Player &aPlayer, sf::Clock &aGameClock);
 
-		void moveBlockUp(ActiveObiect& obiect, int blockLength);
+		void moveBlockDown(ActiveObiect& obiect, sf::Clock currentTime);
 
-		void moveBlockRight(ActiveObiect& obiect, int blockLength);
+		void moveBlockUp(ActiveObiect& obiect, sf::Clock currentTime);
 
-		void moveBlockLeft(ActiveObiect& obiect, int blockLength);
+		void moveBlockRight(ActiveObiect& obiect, sf::Clock currentTime);
 
-		void movePixelDown(ActiveObiect & obiect);
+		void moveBlockLeft(ActiveObiect& obiect, sf::Clock currentTime);
 
-		void movePixelUp(ActiveObiect & obiect);
+		void movePixelDown(ActiveObiect& obiect);
 
-		void movePixelRight(ActiveObiect & obiect);
+		void movePixelUp(ActiveObiect& obiect);
 
-		void movePixelLeft(ActiveObiect & obiect);
+		void movePixelRight(ActiveObiect& obiect);
+
+		void movePixelLeft(ActiveObiect& obiect);
 	};
 }
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _MAPANIMATION_H_
+#define _MAPANIMATION_H_
 
 namespace MP
 {
@@ -8,3 +9,4 @@ namespace MP
 
 	};
 }
+#endif
