@@ -4,23 +4,22 @@
 
 namespace RTB
 {
-	class Hitbox
+	class SwordHitbox
 	{
 	private:
 		sf::RectangleShape _hitbox;
-		sf::Sprite *_object;
+		sf::Sprite* _object;
 		sf::Vector2f _offset;
+		enum directions { up, left, down, right };
 	public:
-		Hitbox(sf::Sprite *&object, sf::Vector2f size, sf::Vector2f offset);
-		~Hitbox();
+		SwordHitbox(sf::Sprite*& object);
+		~SwordHitbox();
 
 		//Checks if hitbox collides with another object's hitbox given as rectangle
 		bool checkIntersection(const sf::FloatRect& rectangle);
 
-		void update();
+		void update(short direction);
 
 		void render(sf::RenderTarget& window);
-
-		sf::RectangleShape& getRectangle();
 	};
 }

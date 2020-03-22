@@ -44,6 +44,9 @@
     <ClCompile Include="Battle\Bot.cpp">
       <Filter>RealTimeBattle</Filter>
     </ClCompile>
+    <ClCompile Include="Battle\SwordHitbox.cpp">
+      <Filter>RealTimeBattle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\InputManager.h" />
@@ -86,6 +89,9 @@
       <Filter>RealTimeBattle</Filter>
     </ClInclude>
     <ClInclude Include="Battle\Bot.h">
+      <Filter>RealTimeBattle</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\SwordHitbox.h">
       <Filter>RealTimeBattle</Filter>
     </ClInclude>
   </ItemGroup>

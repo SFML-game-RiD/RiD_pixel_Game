@@ -1,6 +1,9 @@
 #pragma once
 
+#include <list>
 #include "Character.h"
+#include "Bot.h"
+#include "SwordHitbox.h"
 
 
 namespace RTB
@@ -11,9 +14,12 @@ namespace RTB
 	private:
 		RiD::Movement* _movement = nullptr;
 		Hitbox* _hitbox = nullptr;
+		SwordHitbox* _sword_hitbox = nullptr;
 		HPBar* _hp_bar = nullptr;
+
+		void _dealSwordDamage(std::list<Bot*> &list_of_bots);
 	public:
-		Player(sf::Texture texture);
+		Player(sf::Texture texture, short health_points);
 		~Player();
 
 		//Sets player position
@@ -30,5 +36,7 @@ namespace RTB
 
 		//Gets player position
 		sf::Vector2f getPosition();
+
+		void dealDamage(sf::Time time, std::list<Bot*>& list_of_bots, sf::RenderTarget& window);
 	};
 }

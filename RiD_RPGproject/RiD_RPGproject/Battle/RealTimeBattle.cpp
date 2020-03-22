@@ -21,9 +21,10 @@ namespace RTB
 
 		window.setView(_camera);
 
-		Player player(_asset_manager.getTexture("player"));
-		Bot bot(_asset_manager.getTexture("bot"));
-		bot.setPosition(sf::Vector2f(120, 120));
+		Player player(_asset_manager.getTexture("player"), 100);
+		Bot *bot = new Bot(_asset_manager.getTexture("bot"), 100);
+		bot->setPosition(sf::Vector2f(120, 120));
+		_list_of_bots.push_back(bot);
 	
 
 
@@ -41,14 +42,21 @@ namespace RTB
 			window.clear();
 
 			//Bots
-			bot.update(_clock.getElapsedTime());
-			bot.render(window);
+			for (std::list<Bot*>::iterator iterator = _list_of_bots.begin(); iterator != _list_of_bots.end(); iterator++)
+			{
+				if ((*iterator)->isAlive())
+				{
+					(*iterator)->update(_clock.getElapsedTime());
+					(*iterator)->render(window);
+				}
+			}
 
 			//Player
 			if (player.isAlive())
 			{
 				player.update(_clock.getElapsedTime());
-				std::cout << player.getPosition().x << ", " << player.getPosition().y << std::endl;
+				player.dealDamage(_clock.getElapsedTime(), _list_of_bots, window);
+				//std::cout << player.getPosition().x << ", " << player.getPosition().y << std::endl;
 				player.render(window);
 			}
 			else
@@ -56,6 +64,10 @@ namespace RTB
 			
 			
 			window.display();
+		}
+		for (std::list<Bot*>::iterator iterator = _list_of_bots.begin(); iterator != _list_of_bots.end(); iterator++)
+		{
+			delete (*iterator);
 		}
 	}
 }

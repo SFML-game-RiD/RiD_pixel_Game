@@ -32,4 +32,8 @@ namespace RTB
 	{
 		window.draw(_hitbox);
 	}
+	sf::RectangleShape& Hitbox::getRectangle()
+	{
+		return _hitbox;
+	}
 }

@@ -19,7 +19,7 @@ namespace RiD
 
 	void Movement::walkingUp(sf::Time time)
 	{
-		if (!_is_attack_triggered && !_is_shot_triggered)
+		if (!_is_attack_triggered && !_is_shot_triggered && !_is_death_triggered)
 		{
 			_yCord = walkUpAnim;
 			_object->setOrigin(32.0, 32.0);
@@ -43,7 +43,7 @@ namespace RiD
 
 	void Movement::walkingDown(sf::Time time)
 	{
-		if (!_is_attack_triggered && !_is_shot_triggered)
+		if (!_is_attack_triggered && !_is_shot_triggered && !_is_death_triggered)
 		{
 			_yCord = walkDownAnim;
 			_object->setOrigin(32.0, 32.0);
@@ -64,7 +64,7 @@ namespace RiD
 
 	void Movement::walkingLeft(sf::Time time)
 	{
-		if (!_is_attack_triggered && !_is_shot_triggered)
+		if (!_is_attack_triggered && !_is_shot_triggered && !_is_death_triggered)
 		{
 			_yCord = walkLeftAnim;
 			_object->setOrigin(32.0, 32.0);
@@ -85,7 +85,7 @@ namespace RiD
 
 	void Movement::walkingRight(sf::Time time)
 	{
-		if (!_is_attack_triggered && !_is_shot_triggered)
+		if (!_is_attack_triggered && !_is_shot_triggered && !_is_death_triggered)
 		{
 			_yCord = walkRightAnim;
 			_object->setOrigin(32.0, 32.0);
@@ -106,8 +106,8 @@ namespace RiD
 
 	void Movement::swordSwing(sf::Time time)
 	{
-		if (_is_attack_triggered)
-		{
+		//if (_is_attack_triggered)
+		//{
 			_yAttackCord = swordSwingAnim * 64;
 			_object->setOrigin(96.0, 96.0);
 			_object->setTextureRect(sf::IntRect(_xAttackCord * 192, _yAttackCord + (_direction * 192), 192, 192));
@@ -120,10 +120,11 @@ namespace RiD
 				if (_xAttackCord * 192 == 1152)
 				{
 					_is_attack_triggered = false;
+					_ready_to_deal_sword_damage = true;
 					_xAttackCord = 0;
 				}
 			}
-		}
+	//	}
 	}
 
 	void Movement::bowShot(sf::Time time)
@@ -157,9 +158,9 @@ namespace RiD
 	{
 		if (_is_death_triggered)
 		{
-			_yDeathCord = deathAnim * 64;
+			_yDeathCord = deathAnim;
 			_object->setOrigin(32.0, 32.0);
-			_object->setTextureRect(sf::IntRect(_xshotCord * 64, _yShotCord * 64, 64, 64));
+			_object->setTextureRect(sf::IntRect(_xDeathCord * 64, _yDeathCord * 64, 64, 64));
 
 			if (time - animations.death_animation_start_time >= animations.death_animation_frame_duration)
 			{
@@ -184,6 +185,11 @@ namespace RiD
 		_is_shot_triggered = true;
 	}
 
+	void Movement::triggerDeath()
+	{
+		_is_death_triggered = true;
+	}
+
 	bool Movement::isAttackTriggered()
 	{
 		return _is_attack_triggered;
@@ -194,9 +200,29 @@ namespace RiD
 		return _is_shot_triggered;
 	}
 
+	bool Movement::isDeathTriggered()
+	{
+		return _is_death_triggered;
+	}
+
+	bool Movement::isReadyToDealSwordDamage()
+	{
+		return _ready_to_deal_sword_damage;
+	}
+
+	void Movement::notReadyToDealSwordDamage()
+	{
+		_ready_to_deal_sword_damage = false;
+	}
+
 	sf::Sprite Movement::getSprite()
 	{
 		return *_object;
+	}
+
+	short Movement::getDirection()
+	{
+		return _direction;
 	}
 
 	void Movement::setSpritePosition(sf::Vector2f position)

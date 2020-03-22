@@ -4,14 +4,14 @@
 
 namespace RTB
 {
-	Bot::Bot(sf::Texture texture)
+	Bot::Bot(sf::Texture texture, short health_points)
 	{
+		_health_points = health_points;
 		_character_sprite = new sf::Sprite;
 		_movement = new RiD::Movement(texture, _character_sprite);
 		_hitbox = new Hitbox(_character_sprite, { 32.f, 48.f }, { -17.f,-16.f });
-		_hp_bar = new HPBar(_character_sprite);
+		_hp_bar = new HPBar(_character_sprite, _health_points);
 		_is_alive = true;
-		_health_points = 100;
 	}
 
 	Bot::~Bot()
@@ -34,10 +34,15 @@ namespace RTB
 		_movement->walkingRight(time);
 		_movement->walkingLeft(time);
 		*/
-
 		_movement->idle(time);
 		_hitbox->update();
 		_hp_bar->update();
+		if (_movement->isDeathTriggered())
+		{
+			_movement->death(time);
+			if(_movement->isDeathTriggered()==false)
+				_is_alive = false;
+		}
 	}
 
 	void Bot::render(sf::RenderWindow& window)
@@ -50,5 +55,26 @@ namespace RTB
 	bool Bot::isAlive()
 	{
 		return _is_alive;
+	}
+	sf::Vector2f Bot::getPosition()
+	{
+		return _movement->getSprite().getPosition();
+	}
+
+	sf::RectangleShape Bot::getHitbox()
+	{
+		return _hitbox->getRectangle();
+	}
+
+	void Bot::subtractHP(short value)
+	{
+		_health_points -= value;
+		_hp_bar->shortenBar(value);
+		if (_health_points < 1)
+		{
+			
+			_movement->triggerDeath();
+		}
+
 	}
 }

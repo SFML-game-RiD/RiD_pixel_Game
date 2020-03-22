@@ -26,6 +26,8 @@ namespace RiD
 		enum rowsInPNGFile { walkUpAnim = 8, walkLeftAnim, walkDownAnim, walkRightAnim, shotAnim = 16, deathAnim = 20, swordSwingAnim };
 		sf::Texture _texture;
 		sf::Sprite *_object;
+
+		bool _ready_to_deal_sword_damage = false;
 	public:
 		Movement(sf::Texture texture, sf::Sprite *&object);
 
@@ -49,12 +51,22 @@ namespace RiD
 
 		void triggerShot();
 
+		void triggerDeath();
+
 		bool isAttackTriggered();
 
 		bool isShotTriggered();
 
+		bool isDeathTriggered();
+
+		bool isReadyToDealSwordDamage();
+
+		void notReadyToDealSwordDamage();
+
 		//Returns sprite
 		sf::Sprite getSprite();
+
+		short getDirection();
 
 		void setSpritePosition(sf::Vector2f position);
 	};

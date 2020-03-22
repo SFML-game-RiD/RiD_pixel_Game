@@ -16,6 +16,7 @@ namespace RTB
 		sf::Clock _clock;
 		sf::View _camera;
 		RiD::AssetManager _asset_manager;
+		std::list<Bot*> _list_of_bots;
 	public:
 		RealTimeBattle();
 		~RealTimeBattle();

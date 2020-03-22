@@ -28,5 +28,10 @@ namespace RTB
 
 		//Checks if character is alive
 		virtual bool isAlive() = 0;
+
+		//Gets character position
+		virtual sf::Vector2f getPosition() = 0;
+
+		//virtual sf::FloatRect& getHitbox() = 0;
 	};
 }

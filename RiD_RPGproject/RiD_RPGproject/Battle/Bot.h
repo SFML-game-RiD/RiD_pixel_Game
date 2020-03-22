@@ -13,7 +13,7 @@ namespace RTB
 		Hitbox* _hitbox = nullptr;
 		HPBar* _hp_bar = nullptr;
 	public:
-		Bot(sf::Texture texture);
+		Bot(sf::Texture texture, short health_points);
 		~Bot();
 
 		//Sets bots position
@@ -27,5 +27,12 @@ namespace RTB
 
 		//Checks if character is alive
 		bool isAlive();
+
+		//Gets bots position
+		sf::Vector2f getPosition();
+
+		sf::RectangleShape getHitbox();
+
+		void subtractHP(short value);
 	};
 }
