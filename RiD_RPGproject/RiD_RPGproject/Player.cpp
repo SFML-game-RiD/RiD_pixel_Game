@@ -8,7 +8,8 @@ MP::Player::Player()
 	
 	animationMaker.changeSprite(6);
 
-	objSleepTime = sf::milliseconds(RiD::ConfigurationLoader::getIntData("player", "coordinateX"));
+	objSleepTime = sf::milliseconds(RiD::ConfigurationLoader::getIntData("player", "SleepTime"));
+	objAnimationSleepTime = sf::milliseconds(RiD::ConfigurationLoader::getIntData("player", "animationSleepTime"));
 	
 	setObiectCoord(RiD::ConfigurationLoader::getIntData("player", "coordinateX"), RiD::ConfigurationLoader::getIntData("player", "coordinateY"));
 	

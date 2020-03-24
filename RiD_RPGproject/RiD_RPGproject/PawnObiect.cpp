@@ -1,34 +1,62 @@
 #include "PawnObiect.h"
 
+
 MP::PawnObiect::PawnObiect()
 {
-	_past_pixels = 0;
-	_current_past_pixels = 0;
-	_current_direction = directionNone;
+	_ready_animation_time = sf::milliseconds(0);
+	_last_animation_active = sf::milliseconds(0);
 }
 
 
 
-void MP::PawnObiect::pawnAnimation()
+void MP::PawnObiect::pawnAnimation(sf::Clock & globalClock,MP::TaskManager &aTaskManager)
 {
-	//if(_current_direction == MP::PawnObiect::direction::directionUp)
+	if(aTaskManager.getTask()==MP::TaskManager::taskType::taskGoUp)
+	pawnAnimationUp(globalClock);
 
-	//if(_current_direction == MP::PawnObiect::direction::directionDown)
+	if(aTaskManager.getTask() == MP::TaskManager::taskType::taskGoDown)
+		pawnAnimationDown(globalClock);
 
-	//if(_current_direction == MP::PawnObiect::direction::directionLeft)
+	if(aTaskManager.getTask() == MP::TaskManager::taskType::taskGoLeft)
+		pawnAnimationLeft(globalClock);
 
-//	if (_current_direction == MP::PawnObiect::direction::directionRight)
-		pawnAnimationRight();
+	if (aTaskManager.getTask() == MP::TaskManager::taskType::taskGoRight)
+		pawnAnimationRight(globalClock);
 }
 
-void MP::PawnObiect::pawnAnimationRight()
+void MP::PawnObiect::pawnAnimationRight(sf::Clock & globalClock)
 {
-	_current_past_pixels = getTraveledDistance();
-	
-	if (_current_past_pixels > _past_pixels + 32)
+	if (globalClock.getElapsedTime() > _ready_animation_time)
 	{
-		s/*UseTime, No pixels!*/etNextSprite(6, 8);
-	_past_pixels = _current_past_pixels;
+		setNextSprite(6, 8);
+		setLastActiveAnimation(globalClock);
+	}
+}
+
+void MP::PawnObiect::pawnAnimationLeft(sf::Clock& globalClock)
+{
+	if (globalClock.getElapsedTime() > _ready_animation_time)
+	{
+		setNextSprite(3, 5);
+		setLastActiveAnimation(globalClock);
+	}
+}
+
+void MP::PawnObiect::pawnAnimationUp(sf::Clock& globalClock)
+{
+	if (globalClock.getElapsedTime() > _ready_animation_time)
+	{
+		setNextSprite(9, 11);
+		setLastActiveAnimation(globalClock);
+	}
+}
+
+void MP::PawnObiect::pawnAnimationDown(sf::Clock& globalClock)
+{
+	if (globalClock.getElapsedTime() > _ready_animation_time)
+	{
+		setNextSprite(0, 2);
+		setLastActiveAnimation(globalClock);
 	}
 }
 

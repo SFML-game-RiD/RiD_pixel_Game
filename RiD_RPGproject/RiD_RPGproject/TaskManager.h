@@ -1,6 +1,8 @@
 #ifndef _TASKMANAGER_H_
 #define _TASKMANAGER_H_
 
+#include "Obiect.h"
+
 namespace MP
 {
 	class TaskManager
@@ -26,13 +28,13 @@ namespace MP
 
 		taskType getTask();
 
-		void startProcedureGoUp();
+		void startProcedureGoUp(Obiect & pawn);
 
-		void startProcedureGoDown();
+		void startProcedureGoDown(Obiect& pawn);
 
-		void startProcedureGoLeft();
+		void startProcedureGoLeft(Obiect& pawn);
 
-		void startProcedureGoRight();
+		void startProcedureGoRight(Obiect& pawn);
 
 		void endTask();
 	};

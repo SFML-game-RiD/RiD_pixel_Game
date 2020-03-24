@@ -3,6 +3,7 @@
 
 #include "SFML/Graphics.hpp"
 #include "ActiveObiect.h"
+#include "TaskManager.h"
 #include <vector>
 
 namespace MP 
@@ -11,31 +12,20 @@ namespace MP
 	{
 	private:
 
-		enum direction 
-		{
-			directionUp,
-			directionDown,
-			directionLeft,
-			directionRight,
-			directionNone
-		};
-
-		direction _current_direction;
-		int _past_pixels;
-		int _current_past_pixels;
-
-	/*	std::vector<sf::IntRect> directionUpArray;
-		std::vector<sf::IntRect> directionDownArray;
-		std::vector<sf::IntRect> directionLeftArray;
-		std::vector<sf::IntRect> directionRightArray;*/
 
 	public:
 		
 		PawnObiect();
 
-		void pawnAnimation();
+		void pawnAnimation(sf::Clock & globalClock, MP::TaskManager& aTaskManager);
 
-		void pawnAnimationRight();
+		void pawnAnimationRight(sf::Clock & globalClock);
+
+		void pawnAnimationLeft(sf::Clock & globalClock);
+
+		void pawnAnimationUp(sf::Clock & globalClock);
+
+		void pawnAnimationDown(sf::Clock & globalClock);
 		
 		void setNextSprite(int from, int to);
 	};

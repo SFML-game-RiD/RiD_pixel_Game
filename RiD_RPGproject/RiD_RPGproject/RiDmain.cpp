@@ -30,23 +30,23 @@ void RiD::RiDmain::_event_function(sf::Event &event)
 				this->_window.close();
 			
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-				_a_task_manager.startProcedureGoUp();
+				_a_task_manager.startProcedureGoUp(*_a_obiect_manager.getPlayer());
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-				_a_task_manager.startProcedureGoLeft();
+				_a_task_manager.startProcedureGoLeft(*_a_obiect_manager.getPlayer());
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-				_a_task_manager.startProcedureGoDown();
+				_a_task_manager.startProcedureGoDown(*_a_obiect_manager.getPlayer());
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-				_a_task_manager.startProcedureGoRight();
+				_a_task_manager.startProcedureGoRight(*_a_obiect_manager.getPlayer());
 		}
 		
 }
 
 void RiD::RiDmain::_calculate()
 {
-	_a_obiect_manager.getPlayer()->pawnAnimationRight();
+	_a_obiect_manager.getPlayer()->pawnAnimation(_clock, _a_task_manager);
 	_a_calculator.startProcedurePlayerMove(_a_task_manager, *_a_obiect_manager.getPlayer(), _clock);
 }
 

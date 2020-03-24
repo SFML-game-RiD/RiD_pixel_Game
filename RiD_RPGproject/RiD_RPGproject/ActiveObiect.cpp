@@ -16,6 +16,12 @@ void MP::ActiveObiect::setLastActive(sf::Clock currentTime)
 	_ready_time += objSleepTime;
 }
 
+void MP::ActiveObiect::setLastActiveAnimation(sf::Clock currentTime)
+{
+	_ready_animation_time = _last_animation_active = currentTime.getElapsedTime();
+	_ready_animation_time += objAnimationSleepTime;
+}
+
 sf::Time MP::ActiveObiect::getLastActiveTime()
 {
 	return _last_active;

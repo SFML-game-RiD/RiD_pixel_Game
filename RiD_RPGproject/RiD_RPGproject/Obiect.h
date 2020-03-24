@@ -18,6 +18,7 @@ namespace MP
 		MapAnimation animationMaker;
 
 		sf::Time objSleepTime;
+		sf::Time objAnimationSleepTime;
 		//sf::Texture objTexture;
 		//sf::Sprite objSprite;
 		//sf::IntRect objRectangle;

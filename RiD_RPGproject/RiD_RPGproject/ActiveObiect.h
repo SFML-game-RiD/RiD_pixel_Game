@@ -7,11 +7,13 @@ namespace MP
 {
 	class ActiveObiect :public Obiect
 	{
-	private:
+	protected:
 	
 		sf::Time _last_active;
-
 		sf::Time _ready_time;
+
+		sf::Time _ready_animation_time;
+		sf::Time _last_animation_active;
 
 		int _block_length;
 
@@ -31,6 +33,8 @@ namespace MP
 		ActiveObiect();
 
 		void setLastActive(sf::Clock currentTime);
+
+		void setLastActiveAnimation(sf::Clock currentTime);
 
 		sf::Time getLastActiveTime();
 

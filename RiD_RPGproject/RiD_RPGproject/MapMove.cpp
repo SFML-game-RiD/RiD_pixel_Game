@@ -1,5 +1,5 @@
 #include "MapMove.h"
-
+#include <iostream>
 
 
 void MP::MapMove::moveBlockDown(ActiveObiect& obiect, sf::Clock& currentTime, TaskManager& aTaskManager)
@@ -40,7 +40,7 @@ void MP::MapMove::moveBlockUp(ActiveObiect& obiect, sf::Clock& currentTime, Task
 
 void MP::MapMove::moveBlockRight(ActiveObiect& obiect, sf::Clock& currentTime, TaskManager& aTaskManager)
 {
-	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= obiect.getReadyTime())
+	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() > obiect.getReadyTime())
 	{
 		movePixelRight(obiect);
 		obiect.decreaseBlockLengthCopy();
