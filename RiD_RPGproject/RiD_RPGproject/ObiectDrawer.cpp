@@ -20,13 +20,16 @@ void MP::ObiectDrawer::drawActiveObiects(sf::RenderWindow& mainWindow, ObiectMan
 {
 	//ObiectContainer* tmp = _active_obiects_list;
 
-	mainWindow.draw(aObiectManager.getPlayer()->objSprite);
+	mainWindow.draw(aObiectManager.getPlayer()->animationMaker.getObiectSprite());
 	/*while (tmp != nullptr)
 	{
 		mainWindow.draw(tmp->aObiect->objSprite);
 		tmp = tmp->nextContainer;
 	}*/
 }
+
+
+
 //
 //void MP::ObiectDrawer::addObiect(ObiectContainer*& head, ObiectContainer*& obiect)
 //{

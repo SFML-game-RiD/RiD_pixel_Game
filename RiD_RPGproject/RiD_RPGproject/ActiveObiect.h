@@ -17,6 +17,8 @@ namespace MP
 
 		int _block_length_copy;
 
+		int _distance_traveled;
+
 		bool _is_moving;
 
 	public:
@@ -45,6 +47,8 @@ namespace MP
 		void setIsMoving(bool isTrue);
 
 		bool getIsMoving();
+
+		int getTraveledDistance();
 	};
 }
 #endif

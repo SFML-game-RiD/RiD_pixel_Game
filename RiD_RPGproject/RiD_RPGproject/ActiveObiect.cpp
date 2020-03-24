@@ -3,6 +3,7 @@
 
 MP::ActiveObiect::ActiveObiect()
 {
+	_distance_traveled = 0;
 	_last_active = sf::milliseconds(0);
 	_ready_time = sf::milliseconds(0);
 	_block_length = _block_length_copy = RiD::ConfigurationLoader::getIntData("video settings", "blockLength");
@@ -33,11 +34,13 @@ int MP::ActiveObiect::getBlockLenghtCopy()
 void MP::ActiveObiect::resetBlockLenghtCopy()
 {
 	_block_length_copy = _block_length;
+	_distance_traveled = 0;
 }
 
 void MP::ActiveObiect::decreaseBlockLengthCopy()
 {
 	_block_length_copy-=4;
+	_distance_traveled += 4;
 }
 
 void MP::ActiveObiect::procedureMove()
@@ -52,4 +55,9 @@ void MP::ActiveObiect::setIsMoving(bool isTrue)
 bool MP::ActiveObiect::getIsMoving()
 {
 	return _is_moving;
+}
+
+int MP::ActiveObiect::getTraveledDistance()
+{
+	return _distance_traveled;
 }

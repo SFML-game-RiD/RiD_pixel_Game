@@ -1,7 +1,9 @@
 #ifndef _PAWNOBIECT_H_
 #define _PAWNOBIECT_H_
 
+#include "SFML/Graphics.hpp"
 #include "ActiveObiect.h"
+#include <vector>
 
 namespace MP 
 {
@@ -19,13 +21,23 @@ namespace MP
 		};
 
 		direction _current_direction;
-		int _past_pixel;
-		bool _is_moving;
-		int _travel_time;
+		int _past_pixels;
+		int _current_past_pixels;
+
+	/*	std::vector<sf::IntRect> directionUpArray;
+		std::vector<sf::IntRect> directionDownArray;
+		std::vector<sf::IntRect> directionLeftArray;
+		std::vector<sf::IntRect> directionRightArray;*/
 
 	public:
 		
-		void setTravelTime(int travelTimeInMs);
+		PawnObiect();
+
+		void pawnAnimation();
+
+		void pawnAnimationRight();
+		
+		void setNextSprite(int from, int to);
 	};
 }
 #endif

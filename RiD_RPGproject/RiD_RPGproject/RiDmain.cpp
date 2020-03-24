@@ -6,8 +6,9 @@ void RiD::RiDmain::_create_window()
 {
 	//############ Generating obiects ##############
 
-	_a_obiect_generator.generateObiects(_a_obiect_manager, _a_obiect_drawer);
+	_a_obiect_generator.generateObiects(_a_obiect_manager);
 	std::printf("generated \n");
+
 	//##############################################
 
 	while (this->_window.isOpen()) //program main loop
@@ -45,6 +46,7 @@ void RiD::RiDmain::_event_function(sf::Event &event)
 
 void RiD::RiDmain::_calculate()
 {
+	_a_obiect_manager.getPlayer()->pawnAnimationRight();
 	_a_calculator.startProcedurePlayerMove(_a_task_manager, *_a_obiect_manager.getPlayer(), _clock);
 }
 

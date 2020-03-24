@@ -20,7 +20,9 @@ void MP::Calculator::startProcedurePlayerMove(TaskManager& aTaskManager, MP::Pla
 		tmp.moveBlockRight(aPlayer, aGameClock, aTaskManager);
 		break;
 	default:
-	{}
+	{
+		aPlayer.resetBlockLenghtCopy();
+	}
 
 	}
 }

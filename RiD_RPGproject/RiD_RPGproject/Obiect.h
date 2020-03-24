@@ -3,7 +3,7 @@
 
 #include <utility>
 #include <SFML/Graphics.hpp>
-
+#include "MapAnimation.h"
 
 namespace MP
 {
@@ -15,15 +15,18 @@ namespace MP
 
 	public:
 
-		//MapAnimation animation;
+		MapAnimation animationMaker;
 
 		sf::Time objSleepTime;
-		sf::Texture objTexture;
-		sf::Sprite objSprite;
-		sf::IntRect objRectangle;
+		//sf::Texture objTexture;
+		//sf::Sprite objSprite;
+		//sf::IntRect objRectangle;
+
+		
 
 		void setObiectCoord(int x, int y);
 		std::pair<int,int> getObiectCoord();
+
 	};
 }
 #endif

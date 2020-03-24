@@ -8,9 +8,14 @@ namespace MP
 {
 	class ObiectGenerator
 	{
+	private:
+
+
+		void _generate_player(ObiectManager& aObiectManager);
+
 	public:
 
-		void generateObiects(ObiectManager & aObiectManager, ObiectDrawer & aObiectDrawer);
+		void generateObiects(ObiectManager & aObiectManager);
 
 	};
 }

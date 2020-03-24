@@ -1,28 +1,69 @@
 #include "MapAnimation.h"
 
-
-void MP::MapAnimation::setColumnsRowSqrWidHei(int columns, int rows, int squareLength)
-{
-	_columns = columns;
-	_rows = rows;
-	_square_length = squareLength;
-}
-
-void MP::MapAnimation::setRectangleArray(Obiect& aObiect)
+void  MP::MapAnimation::getRectangleArray(int columns, int rows, int squareLength)
 {
 	int x = 0, y = 0;
 
-	for (int i = 0; i < _rows; i++)
+	for (int i = 0; i < rows; i++)
 	{
-		for (int j = 0; j < _columns; j++)
+		for (int j = 0; j < columns; j++)
 		{
-			y += _square_length;
+			sf::IntRect tmp(y, x, squareLength, squareLength);
 
-			sf::IntRect tmp(x, y, _square_length, _square_length);
+			_obiect_rectangle_array.push_back(tmp);
 
-			_rectangle_array.push_back(tmp);
+			y += squareLength;
 		}
-		x += _square_length;
+		x += squareLength;
 		y = 0;
 	}
+}
+
+void MP::MapAnimation::setObiectSpritePosition(int x, int y)
+{
+	objSprite.setPosition(x, y);
+}
+
+void MP::MapAnimation::setObiectSpritePosition(std::pair<int, int> coord)
+{
+	objSprite.setPosition(coord.first, coord.second);
+}
+
+sf::Sprite& MP::MapAnimation::getObiectSprite()
+{
+	return objSprite;
+}
+
+void MP::MapAnimation::loadObiectTextures(std::string texturePath, int columns, int rows, int squareLength)
+{
+	objTexture.loadFromFile(texturePath);
+	setObiectTexture(objTexture);
+	getRectangleArray(columns, rows, squareLength);
+	changeSprite(0);
+}
+
+void MP::MapAnimation::setObiectTexture(sf::Texture &texture)
+{
+	objSprite.setTexture(texture);
+}
+
+void MP::MapAnimation::setObiectTextureRect(sf::IntRect &textureRect)
+{
+	objSprite.setTextureRect(textureRect);
+}
+
+void MP::MapAnimation::changeSprite(int spriteNumber)
+{
+	setObiectTextureRect(_obiect_rectangle_array[spriteNumber]);
+	currentSprite = spriteNumber;
+}
+
+const std::vector<sf::IntRect>& MP::MapAnimation::getOryginalArray()
+{
+	return _obiect_rectangle_array;
+}
+
+int MP::MapAnimation::getCurrentSprite()
+{
+	return currentSprite;
 }
