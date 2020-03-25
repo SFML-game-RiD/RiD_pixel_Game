@@ -154,6 +154,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Battle\Arrow.cpp" />
+    <ClCompile Include="Battle\ArrowHitbox.cpp" />
     <ClCompile Include="Battle\Bot.cpp" />
     <ClCompile Include="Battle\Character.cpp" />
     <ClCompile Include="Battle\Hitbox.cpp" />
@@ -175,6 +176,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Battle\Arrow.h" />
+    <ClInclude Include="Battle\ArrowHitbox.h" />
     <ClInclude Include="Battle\Bot.h" />
     <ClInclude Include="Battle\Character.h" />
     <ClInclude Include="Battle\Hitbox.h" />

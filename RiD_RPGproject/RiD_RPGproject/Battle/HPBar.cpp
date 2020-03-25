@@ -28,8 +28,13 @@ namespace RTB
 
 	void HPBar::shortenBar(short value)
 	{
-		_bar_width = (1 - ((float)value / (float)_health_points))*_bar_width;
-		_hp_bar.setSize(sf::Vector2f(_bar_width, 5.f));
-		_health_points -= value;
+		if (_health_points - value > 0)
+		{
+			_bar_width = (1 - ((float)value / (float)_health_points)) * _bar_width;
+			_hp_bar.setSize(sf::Vector2f(_bar_width, 5.f));
+			_health_points -= value;
+		}
+		else
+			_hp_bar.setSize(sf::Vector2f(0.f, 5.f));
 	}
 }

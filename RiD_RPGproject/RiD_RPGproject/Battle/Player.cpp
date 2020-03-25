@@ -17,6 +17,18 @@ namespace RTB
 		_movement->notReadyToDealSwordDamage();
 	}
 
+	void Player::dealBowDamage(std::list<Bot*>& list_of_bots)
+	{
+		for (std::list<Bot*>::iterator iterator = list_of_bots.begin();
+			iterator != list_of_bots.end(); iterator++)
+		{
+			if (_arrows->isFlying() && _arrows->checkIntersection((*iterator)->getHitbox().getGlobalBounds()) == true)
+			{
+				(*iterator)->subtractHP(1);
+			}
+		}
+	}
+
 	Player::Player(sf::Texture texture, short health_points, sf::Texture& arrow_texture)
 	{
 		_health_points = health_points;
@@ -101,6 +113,7 @@ namespace RTB
 
 	void Player::dealDamage(sf::Time time, std::list<Bot*>& list_of_bots, sf::RenderTarget& window)
 	{
+		//sword
 		if (_movement->isAttackTriggered())
 		{
 			_movement->swordSwing(time);
@@ -110,13 +123,18 @@ namespace RTB
 		if (_movement->isReadyToDealSwordDamage())
 			this->_dealSwordDamage(list_of_bots);
 
+		//bow
 		if (_movement->isShotTriggered())
 		{
 			_movement->bowShot(time);
 			_arrows->update();
-		}	
+		}
 		if (_movement->isReadyToShotArrow())
+		{
 			_arrows->fly(time, window, _direction);
+			this->dealBowDamage(list_of_bots);
+		}
+			
 		if (_arrows->isFlying() == false)
 			_movement->notReadyToShotArrow();
 	}

@@ -22,6 +22,7 @@ namespace RTB
 		short _direction;
 
 		void _dealSwordDamage(std::list<Bot*>& list_of_bots);
+		void dealBowDamage(std::list<Bot*>& list_of_bots);
 	public:
 		Player(sf::Texture texture, short health_points, sf::Texture& arrow_texture);
 		~Player();

@@ -72,7 +72,6 @@ namespace RTB
 		_hp_bar->shortenBar(value);
 		if (_health_points < 1)
 		{
-			
 			_movement->triggerDeath();
 		}
 

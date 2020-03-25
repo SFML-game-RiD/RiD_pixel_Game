@@ -29,26 +29,29 @@
     <ClCompile Include="Map\TileMap.cpp">
       <Filter>Map</Filter>
     </ClCompile>
-    <ClCompile Include="Battle\Character.cpp">
-      <Filter>RealTimeBattle</Filter>
-    </ClCompile>
-    <ClCompile Include="Battle\Player.cpp">
-      <Filter>RealTimeBattle</Filter>
-    </ClCompile>
-    <ClCompile Include="Battle\Hitbox.cpp">
-      <Filter>RealTimeBattle</Filter>
-    </ClCompile>
     <ClCompile Include="Battle\HPBar.cpp">
-      <Filter>RealTimeBattle</Filter>
-    </ClCompile>
-    <ClCompile Include="Battle\Bot.cpp">
-      <Filter>RealTimeBattle</Filter>
-    </ClCompile>
-    <ClCompile Include="Battle\SwordHitbox.cpp">
       <Filter>RealTimeBattle</Filter>
     </ClCompile>
     <ClCompile Include="Battle\Arrow.cpp">
       <Filter>RealTimeBattle</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\ArrowHitbox.cpp">
+      <Filter>RealTimeBattle\Hitboxes</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\Hitbox.cpp">
+      <Filter>RealTimeBattle\Hitboxes</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\SwordHitbox.cpp">
+      <Filter>RealTimeBattle\Hitboxes</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\Player.cpp">
+      <Filter>RealTimeBattle\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\Character.cpp">
+      <Filter>RealTimeBattle\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\Bot.cpp">
+      <Filter>RealTimeBattle\Characters</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -79,26 +82,29 @@
     <ClInclude Include="Map\TileMap.h">
       <Filter>Map</Filter>
     </ClInclude>
-    <ClInclude Include="Battle\Character.h">
-      <Filter>RealTimeBattle</Filter>
-    </ClInclude>
-    <ClInclude Include="Battle\Player.h">
-      <Filter>RealTimeBattle</Filter>
-    </ClInclude>
-    <ClInclude Include="Battle\Hitbox.h">
-      <Filter>RealTimeBattle</Filter>
-    </ClInclude>
     <ClInclude Include="Battle\HPBar.h">
-      <Filter>RealTimeBattle</Filter>
-    </ClInclude>
-    <ClInclude Include="Battle\Bot.h">
-      <Filter>RealTimeBattle</Filter>
-    </ClInclude>
-    <ClInclude Include="Battle\SwordHitbox.h">
       <Filter>RealTimeBattle</Filter>
     </ClInclude>
     <ClInclude Include="Battle\Arrow.h">
       <Filter>RealTimeBattle</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\ArrowHitbox.h">
+      <Filter>RealTimeBattle\Hitboxes</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\Hitbox.h">
+      <Filter>RealTimeBattle\Hitboxes</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\SwordHitbox.h">
+      <Filter>RealTimeBattle\Hitboxes</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\Player.h">
+      <Filter>RealTimeBattle\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\Character.h">
+      <Filter>RealTimeBattle\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\Bot.h">
+      <Filter>RealTimeBattle\Characters</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -113,6 +119,12 @@
     </Filter>
     <Filter Include="Map">
       <UniqueIdentifier>{451275a9-f84e-44ad-92be-416a8cc5041e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RealTimeBattle\Hitboxes">
+      <UniqueIdentifier>{2b87ce3b-17c5-4e70-9b3e-5e1ce07367de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RealTimeBattle\Characters">
+      <UniqueIdentifier>{e44483cf-abce-459a-a607-d456ce7706f7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
