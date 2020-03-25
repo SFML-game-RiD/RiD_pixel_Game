@@ -153,6 +153,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Battle\Arrow.cpp" />
     <ClCompile Include="Battle\Bot.cpp" />
     <ClCompile Include="Battle\Character.cpp" />
     <ClCompile Include="Battle\Hitbox.cpp" />
@@ -173,6 +174,7 @@
     <ClCompile Include="Map\TileMap.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Battle\Arrow.h" />
     <ClInclude Include="Battle\Bot.h" />
     <ClInclude Include="Battle\Character.h" />
     <ClInclude Include="Battle\Hitbox.h" />

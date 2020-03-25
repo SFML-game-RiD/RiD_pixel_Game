@@ -129,8 +129,8 @@ namespace RiD
 
 	void Movement::bowShot(sf::Time time)
 	{
-		if (_is_shot_triggered)
-		{
+		//if (_is_shot_triggered)
+		//{
 			_yShotCord = shotAnim *64;
 			_object->setOrigin(32.0, 32.0);
 			_object->setTextureRect(sf::IntRect(_xshotCord * 64, _yShotCord + (_direction * 64), 64, 64));
@@ -142,10 +142,11 @@ namespace RiD
 				if (_xshotCord * 64 == 768)
 				{
 					_is_shot_triggered = false;
+					_ready_to_shot_arrow = true;
 					_xshotCord = 0;
 				}
 			}
-		}
+		//}
 	}
 
 	void Movement::idle(sf::Time time)
@@ -213,6 +214,16 @@ namespace RiD
 	void Movement::notReadyToDealSwordDamage()
 	{
 		_ready_to_deal_sword_damage = false;
+	}
+
+	bool Movement::isReadyToShotArrow()
+	{
+		return _ready_to_shot_arrow;
+	}
+
+	void Movement::notReadyToShotArrow()
+	{
+		_ready_to_shot_arrow = false;
 	}
 
 	sf::Sprite Movement::getSprite()

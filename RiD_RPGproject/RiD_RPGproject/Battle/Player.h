@@ -4,6 +4,7 @@
 #include "Character.h"
 #include "Bot.h"
 #include "SwordHitbox.h"
+#include "Arrow.h"
 
 
 namespace RTB
@@ -16,10 +17,13 @@ namespace RTB
 		Hitbox* _hitbox = nullptr;
 		SwordHitbox* _sword_hitbox = nullptr;
 		HPBar* _hp_bar = nullptr;
+		Arrow* _arrows = nullptr;
+		enum directions { up, left, down, right };
+		short _direction;
 
-		void _dealSwordDamage(std::list<Bot*> &list_of_bots);
+		void _dealSwordDamage(std::list<Bot*>& list_of_bots);
 	public:
-		Player(sf::Texture texture, short health_points);
+		Player(sf::Texture texture, short health_points, sf::Texture& arrow_texture);
 		~Player();
 
 		//Sets player position

@@ -10,6 +10,7 @@ namespace RTB
 		_camera.reset(sf::FloatRect(0, 0, 853, 480));
 		_asset_manager.setTexture("player", "img/character.png");
 		_asset_manager.setTexture("bot", "img/bot.png");
+		_asset_manager.setTexture("arrow", "img/arrow.png");
 	}
 
 	RealTimeBattle::~RealTimeBattle()
@@ -21,7 +22,7 @@ namespace RTB
 
 		window.setView(_camera);
 
-		Player player(_asset_manager.getTexture("player"), 100);
+		Player player(_asset_manager.getTexture("player"), 100, _asset_manager.getTexture("arrow"));
 		Bot *bot = new Bot(_asset_manager.getTexture("bot"), 100);
 		bot->setPosition(sf::Vector2f(120, 120));
 		_list_of_bots.push_back(bot);
@@ -56,7 +57,6 @@ namespace RTB
 			{
 				player.update(_clock.getElapsedTime());
 				player.dealDamage(_clock.getElapsedTime(), _list_of_bots, window);
-				//std::cout << player.getPosition().x << ", " << player.getPosition().y << std::endl;
 				player.render(window);
 			}
 			else

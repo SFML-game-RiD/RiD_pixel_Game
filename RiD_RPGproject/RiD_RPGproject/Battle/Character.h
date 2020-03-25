@@ -31,7 +31,5 @@ namespace RTB
 
 		//Gets character position
 		virtual sf::Vector2f getPosition() = 0;
-
-		//virtual sf::FloatRect& getHitbox() = 0;
 	};
 }

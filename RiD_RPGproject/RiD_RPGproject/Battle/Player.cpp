@@ -17,7 +17,7 @@ namespace RTB
 		_movement->notReadyToDealSwordDamage();
 	}
 
-	Player::Player(sf::Texture texture, short health_points)
+	Player::Player(sf::Texture texture, short health_points, sf::Texture& arrow_texture)
 	{
 		_health_points = health_points;
 		_character_sprite = new sf::Sprite;
@@ -25,6 +25,7 @@ namespace RTB
 		_hitbox = new Hitbox(_character_sprite, { 32.f, 48.f }, { -17.f,-16.f });
 		_sword_hitbox = new SwordHitbox(_character_sprite);
 		_hp_bar = new HPBar(_character_sprite, _health_points);
+		_arrows = new Arrow(_character_sprite, arrow_texture);
 		_is_alive = true;
 	}
 
@@ -34,6 +35,8 @@ namespace RTB
 		delete _hitbox;
 		delete _character_sprite;
 		delete _hp_bar;
+		delete _arrows;
+		delete _sword_hitbox;
 	}
 
 	void Player::setPosition(sf::Vector2f position)
@@ -57,18 +60,20 @@ namespace RTB
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 			_movement->triggerAttack();
-			
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) && _arrows->isFlying() == false)
 			_movement->triggerShot();
 
 		if ((!sf::Keyboard::isKeyPressed(sf::Keyboard::A)) && (!sf::Keyboard::isKeyPressed(sf::Keyboard::D)) &&
 			(!sf::Keyboard::isKeyPressed(sf::Keyboard::S)) && (!sf::Keyboard::isKeyPressed(sf::Keyboard::W)) &&
 			(_movement->isAttackTriggered() == false) && _movement->isShotTriggered() == false)
 			_movement->idle(time);
-		
+
 
 		_hitbox->update();
 		_hp_bar->update();
+		_direction = _movement->getDirection();
+
 		if (_movement->isDeathTriggered())
 		{
 			_movement->death(time);
@@ -105,6 +110,14 @@ namespace RTB
 		if (_movement->isReadyToDealSwordDamage())
 			this->_dealSwordDamage(list_of_bots);
 
-		_movement->bowShot(time);
+		if (_movement->isShotTriggered())
+		{
+			_movement->bowShot(time);
+			_arrows->update();
+		}	
+		if (_movement->isReadyToShotArrow())
+			_arrows->fly(time, window, _direction);
+		if (_arrows->isFlying() == false)
+			_movement->notReadyToShotArrow();
 	}
 }

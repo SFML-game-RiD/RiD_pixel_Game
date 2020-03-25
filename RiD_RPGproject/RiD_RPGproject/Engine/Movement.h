@@ -25,11 +25,11 @@ namespace RiD
 		enum directions { up, left, down, right };
 		enum rowsInPNGFile { walkUpAnim = 8, walkLeftAnim, walkDownAnim, walkRightAnim, shotAnim = 16, deathAnim = 20, swordSwingAnim };
 		sf::Texture _texture;
-		sf::Sprite *_object;
+		sf::Sprite* _object;
 
-		bool _ready_to_deal_sword_damage = false;
+		bool _ready_to_deal_sword_damage = false, _ready_to_shot_arrow = false;
 	public:
-		Movement(sf::Texture texture, sf::Sprite *&object);
+		Movement(sf::Texture texture, sf::Sprite*& object);
 
 		void walkingUp(sf::Time time);
 
@@ -62,6 +62,10 @@ namespace RiD
 		bool isReadyToDealSwordDamage();
 
 		void notReadyToDealSwordDamage();
+
+		bool isReadyToShotArrow();
+
+		void notReadyToShotArrow();
 
 		//Returns sprite
 		sf::Sprite getSprite();
