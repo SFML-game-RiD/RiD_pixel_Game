@@ -9,26 +9,18 @@ namespace MP
 	{
 	protected:
 	
-		sf::Time _last_active;
-		sf::Time _ready_time;
+		//Responsible for moving
+		sf::Time _last_active;/// Last time, when obiect was moving.
+		sf::Time _ready_time;/// Calculated time, when obiect is able to move.
+		sf::Time active_obj_sleep_time;
+		sf::Time active_obj_animation_sleep_time;
 
-		sf::Time _ready_animation_time;
-		sf::Time _last_animation_active;
-
-		int _block_length;
-
+		int _block_length;//<<<< This variable should be downloaded from classes responsible for map !
 		int _block_length_copy;
-
 		int _distance_traveled;
-
-		bool _is_moving;
+		int _velocity; /// Ammount of pixel active_obj_animation_sleep_time
 
 	public:
-		
-		struct items
-		{
-			//here come items baby 
-		};
 
 		ActiveObiect();
 
@@ -42,17 +34,15 @@ namespace MP
 
 		int getBlockLenghtCopy();
 
+		int getTraveledDistance();
+		
+		int getVelocity();
+
 		void resetBlockLenghtCopy();
 
 		void decreaseBlockLengthCopy();
 
 		void procedureMove();
-
-		void setIsMoving(bool isTrue);
-
-		bool getIsMoving();
-
-		int getTraveledDistance();
 	};
 }
 #endif

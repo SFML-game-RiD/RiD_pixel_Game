@@ -1,6 +1,11 @@
 #include <SFML/Graphics.hpp>
 #include "ObiectManager.h"
 
+MP::ObiectManager::ObiectManager()
+{ 
+	_player = nullptr;
+}
+
 void MP::ObiectManager::addObiect(std::shared_ptr<Player> newPlayer)
 {
 	_player = newPlayer;

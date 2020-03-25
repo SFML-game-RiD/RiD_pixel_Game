@@ -3,23 +3,27 @@
 
 MP::ActiveObiect::ActiveObiect()
 {
-	_distance_traveled = 0;
 	_last_active = sf::milliseconds(0);
 	_ready_time = sf::milliseconds(0);
-	_block_length = _block_length_copy = RiD::ConfigurationLoader::getIntData("video settings", "blockLength");
-	_is_moving = false;
+	active_obj_sleep_time = sf::milliseconds(0);
+	active_obj_animation_sleep_time = sf::milliseconds(0);
+
+	_block_length_copy=_block_length  = RiD::ConfigurationLoader::getIntData("video settings", "blockLength");
+
+	_distance_traveled = 0;
+	_velocity = 0;
 }
 
 void MP::ActiveObiect::setLastActive(sf::Clock currentTime)
 {
 	_ready_time = _last_active = currentTime.getElapsedTime();
-	_ready_time += objSleepTime;
+	_ready_time += active_obj_sleep_time;
 }
 
 void MP::ActiveObiect::setLastActiveAnimation(sf::Clock currentTime)
 {
 	_ready_animation_time = _last_animation_active = currentTime.getElapsedTime();
-	_ready_animation_time += objAnimationSleepTime;
+	_ready_animation_time += active_obj_animation_sleep_time;
 }
 
 sf::Time MP::ActiveObiect::getLastActiveTime()
@@ -45,25 +49,20 @@ void MP::ActiveObiect::resetBlockLenghtCopy()
 
 void MP::ActiveObiect::decreaseBlockLengthCopy()
 {
-	_block_length_copy-=4;
-	_distance_traveled += 4;
+	_block_length_copy-=_velocity;
+	_distance_traveled += _velocity;
 }
 
 void MP::ActiveObiect::procedureMove()
 {
 }
 
-void MP::ActiveObiect::setIsMoving(bool isTrue)
-{
-	_is_moving = isTrue;
-}
-
-bool MP::ActiveObiect::getIsMoving()
-{
-	return _is_moving;
-}
-
 int MP::ActiveObiect::getTraveledDistance()
 {
 	return _distance_traveled;
+}
+
+int MP::ActiveObiect::getVelocity()
+{
+	return _velocity;
 }

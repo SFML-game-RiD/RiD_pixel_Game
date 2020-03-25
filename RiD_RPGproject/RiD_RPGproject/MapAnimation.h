@@ -39,6 +39,8 @@ namespace MP
 
 	int getCurrentSprite();
 
+	void setNextSprite(int from, int to);
+
 	};
 }
 #endif

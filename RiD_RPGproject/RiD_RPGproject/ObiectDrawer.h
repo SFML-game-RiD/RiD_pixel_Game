@@ -8,10 +8,6 @@ namespace MP
 	class ObiectDrawer
 	{
 	private:
-		
-		//ObiectContainer* _active_obiects_list;
-
-		//ObiectContainer* _static_obiects_list;
 
 	public:
 
@@ -19,13 +15,6 @@ namespace MP
 
 		void drawActiveObiects(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager);
 
-		//void addObiect(ObiectContainer*& head, ObiectContainer*& obiect);
-
-		//void deleteObiects(ObiectContainer*& head);
-
-		//ObiectContainer*& getActiveObiectsList();
-
-		//ObiectContainer*& getStaticObiectsList();
 	};
 
 }

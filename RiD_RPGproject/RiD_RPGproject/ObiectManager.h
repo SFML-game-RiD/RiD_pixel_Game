@@ -16,6 +16,8 @@ namespace MP
 
 	public:
 		
+		ObiectManager();
+
 		void addObiect(std::shared_ptr<Player> newPlayer);
 
 		std::shared_ptr<Player> & getPlayer();

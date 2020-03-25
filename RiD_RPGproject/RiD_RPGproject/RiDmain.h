@@ -26,10 +26,13 @@ namespace RiD
 
 		//############################################
 
-		//Put this variables somewhere!!!
+		//############# OBIECT MODIFYING #############
+
 		MP::Calculator _a_calculator;
 
 		MP::TaskManager _a_task_manager;
+
+		//############################################
 
 		sf::RenderWindow _window;
 

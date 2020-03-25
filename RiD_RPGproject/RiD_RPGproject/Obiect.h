@@ -13,19 +13,19 @@ namespace MP
 
 		std::pair<int, int> _objCoord;
 
+	protected:
+
+		sf::Time _ready_animation_time;
+		sf::Time _last_animation_active;
+
 	public:
 
 		MapAnimation animationMaker;
 
-		sf::Time objSleepTime;
-		sf::Time objAnimationSleepTime;
-		//sf::Texture objTexture;
-		//sf::Sprite objSprite;
-		//sf::IntRect objRectangle;
-
-		
+		Obiect();
 
 		void setObiectCoord(int x, int y);
+
 		std::pair<int,int> getObiectCoord();
 
 	};

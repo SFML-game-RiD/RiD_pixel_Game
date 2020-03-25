@@ -46,7 +46,9 @@ void RiD::RiDmain::_event_function(sf::Event &event)
 
 void RiD::RiDmain::_calculate()
 {
-	_a_obiect_manager.getPlayer()->pawnAnimation(_clock, _a_task_manager);
+	_a_obiect_manager.getPlayer()->playerAnimation(_clock, _a_task_manager);
+
+
 	_a_calculator.startProcedurePlayerMove(_a_task_manager, *_a_obiect_manager.getPlayer(), _clock);
 }
 

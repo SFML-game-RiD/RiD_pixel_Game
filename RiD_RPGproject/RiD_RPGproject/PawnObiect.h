@@ -12,22 +12,10 @@ namespace MP
 	{
 	private:
 
-
 	public:
-		
-		PawnObiect();
 
-		void pawnAnimation(sf::Clock & globalClock, MP::TaskManager& aTaskManager);
+		//void setNextSprite(int from, int to);
 
-		void pawnAnimationRight(sf::Clock & globalClock);
-
-		void pawnAnimationLeft(sf::Clock & globalClock);
-
-		void pawnAnimationUp(sf::Clock & globalClock);
-
-		void pawnAnimationDown(sf::Clock & globalClock);
-		
-		void setNextSprite(int from, int to);
 	};
 }
 #endif

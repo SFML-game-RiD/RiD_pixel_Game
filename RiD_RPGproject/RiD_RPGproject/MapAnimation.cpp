@@ -67,3 +67,17 @@ int MP::MapAnimation::getCurrentSprite()
 {
 	return currentSprite;
 }
+
+void MP::MapAnimation::setNextSprite(int from, int to)
+{
+	int currentSpriteNumber = getCurrentSprite();
+
+	if (currentSpriteNumber < to and currentSpriteNumber >=from)
+		currentSpriteNumber++;
+	else if (currentSpriteNumber == to)
+		currentSpriteNumber = from;
+	else if (currentSpriteNumber <from or currentSpriteNumber>=to)
+		currentSpriteNumber = from;
+
+	changeSprite(currentSpriteNumber);
+}
