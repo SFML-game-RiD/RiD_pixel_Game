@@ -8,7 +8,7 @@ MP::ActiveObiect::ActiveObiect()
 	active_obj_sleep_time = sf::milliseconds(0);
 	active_obj_animation_sleep_time = sf::milliseconds(0);
 
-	_block_length_copy=_block_length  = RiD::ConfigurationLoader::getIntData("video settings", "blockLength");
+	_block_length_copy=_block_length  = RiD::ConfigurationLoader::getIntData("game settings", "blockLength");
 
 	_distance_traveled = 0;
 	_velocity = 0;

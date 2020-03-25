@@ -10,6 +10,7 @@ namespace MP
 	{
 	private:
 
+		void _generate_map(ObiectManager& aObiectManager);
 
 		void _generate_player(ObiectManager& aObiectManager);
 

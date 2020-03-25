@@ -35,29 +35,14 @@
     <ClCompile Include="Engine\ConfigurationLoader.cpp">
       <Filter>Mr wroldwide</Filter>
     </ClCompile>
-    <ClCompile Include="ActiveObiect.cpp">
-      <Filter>OBIECT</Filter>
-    </ClCompile>
     <ClCompile Include="Obiect.cpp">
       <Filter>OBIECT</Filter>
     </ClCompile>
-    <ClCompile Include="PawnObiect.cpp">
-      <Filter>OBIECT</Filter>
-    </ClCompile>
     <ClCompile Include="MapAnimation.cpp">
-      <Filter>OBIECT\oh it%27s moving ..</Filter>
+      <Filter>oh it%27s moving ..</Filter>
     </ClCompile>
     <ClCompile Include="MapMove.cpp">
-      <Filter>OBIECT\oh it%27s moving ..</Filter>
-    </ClCompile>
-    <ClCompile Include="RiDmain.cpp">
-      <Filter>the bosses</Filter>
-    </ClCompile>
-    <ClCompile Include="Calculator.cpp">
-      <Filter>the bosses</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>OBIECT\Dora</Filter>
+      <Filter>oh it%27s moving ..</Filter>
     </ClCompile>
     <ClCompile Include="ObiectGenerator.cpp">
       <Filter>the bosses</Filter>
@@ -68,8 +53,29 @@
     <ClCompile Include="ObiectDrawer.cpp">
       <Filter>the bosses</Filter>
     </ClCompile>
+    <ClCompile Include="ActiveObiect.cpp">
+      <Filter>OBIECT\active obiects</Filter>
+    </ClCompile>
+    <ClCompile Include="PawnObiect.cpp">
+      <Filter>OBIECT\active obiects\obiects pawn</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>OBIECT\active obiects\obiects pawn\player</Filter>
+    </ClCompile>
+    <ClCompile Include="RiDmain.cpp">
+      <Filter>the bosses\mr kierownik</Filter>
+    </ClCompile>
+    <ClCompile Include="Calculator.cpp">
+      <Filter>the bosses\glowni podwladni kierownika</Filter>
+    </ClCompile>
     <ClCompile Include="TaskManager.cpp">
-      <Filter>the bosses</Filter>
+      <Filter>the bosses\glowni podwladni kierownika</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticObiect.cpp">
+      <Filter>OBIECT\static obiects</Filter>
+    </ClCompile>
+    <ClCompile Include="Land.cpp">
+      <Filter>OBIECT\static obiects\land</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -106,29 +112,14 @@
     <ClInclude Include="Engine\ConfigurationLoader.h">
       <Filter>Mr wroldwide</Filter>
     </ClInclude>
-    <ClInclude Include="ActiveObiect.h">
-      <Filter>OBIECT</Filter>
-    </ClInclude>
     <ClInclude Include="Obiect.h">
       <Filter>OBIECT</Filter>
     </ClInclude>
-    <ClInclude Include="PawnObiect.h">
-      <Filter>OBIECT</Filter>
-    </ClInclude>
     <ClInclude Include="MapAnimation.h">
-      <Filter>OBIECT\oh it%27s moving ..</Filter>
+      <Filter>oh it%27s moving ..</Filter>
     </ClInclude>
     <ClInclude Include="MapMove.h">
-      <Filter>OBIECT\oh it%27s moving ..</Filter>
-    </ClInclude>
-    <ClInclude Include="RiDmain.h">
-      <Filter>the bosses</Filter>
-    </ClInclude>
-    <ClInclude Include="Calculator.h">
-      <Filter>the bosses</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>OBIECT\Dora</Filter>
+      <Filter>oh it%27s moving ..</Filter>
     </ClInclude>
     <ClInclude Include="ObiectGenerator.h">
       <Filter>the bosses</Filter>
@@ -139,8 +130,29 @@
     <ClInclude Include="ObiectDrawer.h">
       <Filter>the bosses</Filter>
     </ClInclude>
+    <ClInclude Include="ActiveObiect.h">
+      <Filter>OBIECT\active obiects</Filter>
+    </ClInclude>
+    <ClInclude Include="PawnObiect.h">
+      <Filter>OBIECT\active obiects\obiects pawn</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>OBIECT\active obiects\obiects pawn\player</Filter>
+    </ClInclude>
+    <ClInclude Include="RiDmain.h">
+      <Filter>the bosses\mr kierownik</Filter>
+    </ClInclude>
+    <ClInclude Include="Calculator.h">
+      <Filter>the bosses\glowni podwladni kierownika</Filter>
+    </ClInclude>
     <ClInclude Include="TaskManager.h">
-      <Filter>the bosses</Filter>
+      <Filter>the bosses\glowni podwladni kierownika</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticObiect.h">
+      <Filter>OBIECT\static obiects</Filter>
+    </ClInclude>
+    <ClInclude Include="Land.h">
+      <Filter>OBIECT\static obiects\land</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -168,11 +180,29 @@
     <Filter Include="the bosses">
       <UniqueIdentifier>{a91205af-2276-4eff-99ab-1acf6d8a0453}</UniqueIdentifier>
     </Filter>
-    <Filter Include="OBIECT\oh it%27s moving ..">
+    <Filter Include="OBIECT\active obiects">
+      <UniqueIdentifier>{9856b24c-57a5-45b9-b105-8187a99dcf37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OBIECT\active obiects\obiects pawn">
+      <UniqueIdentifier>{1f9b6629-19c1-4984-bcdc-706d42602cc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OBIECT\active obiects\obiects pawn\player">
+      <UniqueIdentifier>{2e4f6744-32a8-4de6-a09c-a3c3c242d3a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="oh it%27s moving ..">
       <UniqueIdentifier>{366204a4-da86-493d-be0b-d81d04255ad4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="OBIECT\Dora">
-      <UniqueIdentifier>{144664f1-b346-48c7-8aad-483e32a00fa4}</UniqueIdentifier>
+    <Filter Include="the bosses\mr kierownik">
+      <UniqueIdentifier>{bcc76a78-f4cf-4b1c-8104-b4d97af2dc8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="the bosses\glowni podwladni kierownika">
+      <UniqueIdentifier>{3c1a7415-22fa-4d24-b5b7-3a53d0278cc0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OBIECT\static obiects">
+      <UniqueIdentifier>{001855a2-f094-4af1-82fe-62c3c470dc89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OBIECT\static obiects\land">
+      <UniqueIdentifier>{d5b922b2-85df-4733-8fe9-7ea15a642192}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -164,6 +164,7 @@
     <ClCompile Include="Engine\RiDGame.cpp" />
     <ClCompile Include="Engine\State.cpp" />
     <ClCompile Include="Engine\StateMachine.cpp" />
+    <ClCompile Include="Land.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MapAnimation.cpp" />
     <ClCompile Include="MapMove.cpp" />
@@ -175,6 +176,7 @@
     <ClCompile Include="PawnObiect.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RiDmain.cpp" />
+    <ClCompile Include="StaticObiect.cpp" />
     <ClCompile Include="TaskManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -190,6 +192,7 @@
     <ClInclude Include="Engine\RiDGame.h" />
     <ClInclude Include="Engine\State.h" />
     <ClInclude Include="Engine\StateMachine.h" />
+    <ClInclude Include="Land.h" />
     <ClInclude Include="MapAnimation.h" />
     <ClInclude Include="MapMove.h" />
     <ClInclude Include="Map\TileMap.h" />
@@ -200,6 +203,7 @@
     <ClInclude Include="PawnObiect.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RiDmain.h" />
+    <ClInclude Include="StaticObiect.h" />
     <ClInclude Include="TaskManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

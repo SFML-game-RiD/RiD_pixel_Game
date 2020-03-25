@@ -5,7 +5,7 @@
 MP::Player::Player()
 {
 	//Loading textures.
-	animationMaker.loadObiectTextures("img/mpimg/mpcharacter.png",3,4,96);
+	animationMaker.loadObiectTextures("img/mpimg/mpcharacter.png",3,4,64);
 	animationMaker.changeSprite(6);
 
 	//Getting player animation and move sleep time.
