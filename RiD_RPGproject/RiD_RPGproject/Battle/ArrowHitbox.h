@@ -13,10 +13,13 @@ namespace RTB
 	public:
 		ArrowHitbox(sf::Sprite*& arrow);
 
+		//Changes position of hitbox as arrow is moving
 		void update(short direction);
 
+		//Draws hitbox
 		void render(sf::RenderTarget& window);
 
+		//Returns rectangle of hitbox
 		sf::RectangleShape& getHitbox();
 
 	};

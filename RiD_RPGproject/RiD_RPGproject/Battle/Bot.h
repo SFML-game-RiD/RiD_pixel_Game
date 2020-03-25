@@ -31,8 +31,10 @@ namespace RTB
 		//Gets bots position
 		sf::Vector2f getPosition();
 
+		//Gets bot hitbox
 		sf::RectangleShape getHitbox();
 
+		//Subtracts health points
 		void subtractHP(short value);
 	};
 }

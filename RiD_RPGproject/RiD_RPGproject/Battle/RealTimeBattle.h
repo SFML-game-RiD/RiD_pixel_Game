@@ -20,6 +20,8 @@ namespace RTB
 	public:
 		RealTimeBattle();
 		~RealTimeBattle();
+
+		//Main loop of real time battle
 		void mainLoop(sf::RenderWindow& window);
 	};
 }

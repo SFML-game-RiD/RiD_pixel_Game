@@ -42,6 +42,10 @@ namespace RTB
 		//Gets player position
 		sf::Vector2f getPosition();
 
+		//Dealing damage to bots of enemy team
+		//@param time time needed for combat animations
+		//@param list_of_bots list of possible enemies
+		//@param window render window
 		void dealDamage(sf::Time time, std::list<Bot*>& list_of_bots, sf::RenderTarget& window);
 	};
 }

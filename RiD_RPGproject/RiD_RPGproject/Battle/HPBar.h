@@ -15,10 +15,13 @@ namespace RTB
 	public:
 		HPBar(sf::Sprite*& object, short hp);
 
+		//Updates bar position
 		void update();
 
+		//Renders bar
 		void render(sf::RenderTarget& window);
 
+		//Shortens bar after something hit the object
 		void shortenBar(short value);
 	};
 }

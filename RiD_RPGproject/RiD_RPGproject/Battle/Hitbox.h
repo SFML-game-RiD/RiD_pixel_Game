@@ -17,10 +17,13 @@ namespace RTB
 		//Checks if hitbox collides with another object's hitbox given as rectangle
 		bool checkIntersection(const sf::FloatRect& rectangle);
 
+		//Updates hitbox position
 		void update();
 
+		//Renders hitbox on the window
 		void render(sf::RenderTarget& window);
 
+		//Returns rectangle of hitbox
 		sf::RectangleShape& getRectangle();
 	};
 }
