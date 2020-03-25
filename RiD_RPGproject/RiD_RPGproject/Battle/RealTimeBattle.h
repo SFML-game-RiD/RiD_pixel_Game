@@ -17,6 +17,7 @@ namespace RTB
 		sf::View _camera;
 		RiD::AssetManager _asset_manager;
 		std::list<Bot*> _list_of_bots;
+		TileMap* _tile_map = nullptr;
 	public:
 		RealTimeBattle();
 		~RealTimeBattle();

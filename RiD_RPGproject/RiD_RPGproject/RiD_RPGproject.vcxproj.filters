@@ -11,9 +11,6 @@
     <ClCompile Include="Engine\AssetManager.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Movement.cpp">
-      <Filter>RealTimeBattle</Filter>
-    </ClCompile>
     <ClCompile Include="Battle\RealTimeBattle.cpp">
       <Filter>RealTimeBattle</Filter>
     </ClCompile>
@@ -53,6 +50,9 @@
     <ClCompile Include="Battle\Bot.cpp">
       <Filter>RealTimeBattle\Characters</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\Movement.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\InputManager.h" />
@@ -63,9 +63,6 @@
     </ClInclude>
     <ClInclude Include="Engine\AssetManager.h">
       <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Movement.h">
-      <Filter>RealTimeBattle</Filter>
     </ClInclude>
     <ClInclude Include="Battle\RealTimeBattle.h">
       <Filter>RealTimeBattle</Filter>
@@ -105,6 +102,9 @@
     </ClInclude>
     <ClInclude Include="Battle\Bot.h">
       <Filter>RealTimeBattle\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Movement.h">
+      <Filter>Graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

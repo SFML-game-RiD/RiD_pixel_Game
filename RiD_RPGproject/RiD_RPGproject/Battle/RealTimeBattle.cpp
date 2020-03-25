@@ -1,7 +1,6 @@
 #pragma once
 
 #include "RealTimeBattle.h"
-#include <iostream>
 
 namespace RTB
 {
@@ -56,13 +55,14 @@ namespace RTB
 			if (player.isAlive())
 			{
 				player.update(_clock.getElapsedTime());
+				_camera.setCenter(player.getPosition()); //camera is centered on the player
 				player.dealDamage(_clock.getElapsedTime(), _list_of_bots, window);
 				player.render(window);
 			}
 			else
 				return;
 			
-			
+			window.setView(_camera);
 			window.display();
 		}
 		for (std::list<Bot*>::iterator iterator = _list_of_bots.begin(); iterator != _list_of_bots.end(); iterator++)
