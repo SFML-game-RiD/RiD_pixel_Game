@@ -3,7 +3,8 @@
 
 
 void RiD::RiDmain::_create_window()
-{
+{	
+	
 	//############ Generating obiects ##############
 
 	_a_obiect_generator.generateObiects(_a_obiect_manager);
@@ -26,20 +27,22 @@ void RiD::RiDmain::_event_function(sf::Event &event)
 
 		while (this->_window.pollEvent(event)) //handling events
 		{
+		
+
 			if (event.type == sf::Event::EventType::Closed)
 				this->_window.close();
 			
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-				_a_task_manager.startProcedureGoUp(*_a_obiect_manager.getPlayer());
+			_a_task_manager.startProcedureGoUp(*_a_obiect_manager.getPlayer());
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-				_a_task_manager.startProcedureGoLeft(*_a_obiect_manager.getPlayer());
+		_a_task_manager.startProcedureGoLeft(*_a_obiect_manager.getPlayer());
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-				_a_task_manager.startProcedureGoDown(*_a_obiect_manager.getPlayer());
+			_a_task_manager.startProcedureGoDown(*_a_obiect_manager.getPlayer());
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-				_a_task_manager.startProcedureGoRight(*_a_obiect_manager.getPlayer());
+	_a_task_manager.startProcedureGoRight(*_a_obiect_manager.getPlayer());
 		}
 		
 }

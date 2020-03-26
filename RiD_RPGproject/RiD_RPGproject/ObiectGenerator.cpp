@@ -7,17 +7,6 @@
 
 void MP::ObiectGenerator::_generate_map(ObiectManager& aObiectManager)
 {
-	int columns;
-	int rows;
-	
-	
-	
-	
-	
-	
-	Land * tmp=new Land;
-
-	aObiectManager.addObiect(tmp);
 
 }
 

@@ -1,18 +1,16 @@
 #include "ObiectDrawer.h"
-
+#include "MapElement.h"
 
 
 //############ WARNING, functions are not complete. ####################
 
-void MP::ObiectDrawer::_draw_land(sf::RenderWindow& mainWindow, std::list<Land> & landList)
+void MP::ObiectDrawer::_draw_land(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager)
 {	
-	std::list<Land>::iterator it;
-	it = landList.begin();
-
-	for (int i = 0; i < landList.size(); i++)
+	MapElement * tmp= aObiectManager.getMapElementHead();
+	while (tmp != nullptr)
 	{
-		mainWindow.draw(it->animationMaker.getObiectSprite());
-		it++;
+		mainWindow.draw(tmp->getLandTile().animationMaker.getObiectSprite());
+		tmp = tmp->getNextElement();
 	}
 }
 
@@ -20,7 +18,7 @@ void MP::ObiectDrawer::drawAllObiects(sf::RenderWindow& mainWindow, ObiectManage
 {
 	
 	//Drawing map
-	_draw_land(mainWindow,aObiectManager.getLandList());
+	_draw_land(mainWindow,aObiectManager);
 
 	//Drawing player
 	drawActiveObiects(mainWindow, aObiectManager);

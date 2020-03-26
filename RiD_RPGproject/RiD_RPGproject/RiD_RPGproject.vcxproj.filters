@@ -77,6 +77,8 @@
     <ClCompile Include="Land.cpp">
       <Filter>OBIECT\static obiects\land</Filter>
     </ClCompile>
+    <ClCompile Include="MapElement.cpp" />
+    <ClCompile Include="Map.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Animation.h">
@@ -154,6 +156,8 @@
     <ClInclude Include="Land.h">
       <Filter>OBIECT\static obiects\land</Filter>
     </ClInclude>
+    <ClInclude Include="MapElement.h" />
+    <ClInclude Include="Map.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Mr wroldwide">

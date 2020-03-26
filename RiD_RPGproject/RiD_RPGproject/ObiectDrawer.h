@@ -9,7 +9,7 @@ namespace MP
 	{
 	private:
 
-		void _draw_land(sf::RenderWindow& mainWindow, std::list<Land>& landList);
+		void _draw_land(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager);
 
 	public:
 

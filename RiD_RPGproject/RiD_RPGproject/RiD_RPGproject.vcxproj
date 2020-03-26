@@ -166,7 +166,9 @@
     <ClCompile Include="Engine\StateMachine.cpp" />
     <ClCompile Include="Land.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="MapAnimation.cpp" />
+    <ClCompile Include="MapElement.cpp" />
     <ClCompile Include="MapMove.cpp" />
     <ClCompile Include="Map\TileMap.cpp" />
     <ClCompile Include="Obiect.cpp" />
@@ -193,7 +195,9 @@
     <ClInclude Include="Engine\State.h" />
     <ClInclude Include="Engine\StateMachine.h" />
     <ClInclude Include="Land.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="MapAnimation.h" />
+    <ClInclude Include="MapElement.h" />
     <ClInclude Include="MapMove.h" />
     <ClInclude Include="Map\TileMap.h" />
     <ClInclude Include="Obiect.h" />

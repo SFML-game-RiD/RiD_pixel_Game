@@ -28,8 +28,6 @@ namespace MP
 		void moveBlockRight(ActiveObiect& obiect, sf::Clock &currentTime, TaskManager& aTaskManager);
 
 		void moveBlockLeft(ActiveObiect& obiect, sf::Clock &currentTime, TaskManager& aTaskManager);
-
-	
 	};
 }
 #endif
