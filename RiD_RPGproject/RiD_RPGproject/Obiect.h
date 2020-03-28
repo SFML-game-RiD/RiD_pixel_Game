@@ -17,6 +17,7 @@ namespace MP
 
 		sf::Time _ready_animation_time;
 		sf::Time _last_animation_active;
+		sf::Time obj_animation_sleep_time;
 
 	public:
 
@@ -26,8 +27,11 @@ namespace MP
 
 		void setObiectCoord(int x, int y);
 
+		void setObiectCoord(std::pair<int,int> coord);
+
 		std::pair<int,int> getObiectCoord();
 
+		void setLastActiveAnimation(sf::Clock currentTime);
 	};
 }
 #endif

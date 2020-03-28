@@ -7,7 +7,8 @@ namespace MP
 
 class StaticObiect:public Obiect
 {
-
+private:
+	
 };
 }
 #endif // !_STATICOBIECT_H_

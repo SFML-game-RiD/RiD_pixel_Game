@@ -7,10 +7,10 @@ MP::Player::Player()
 	//Loading textures.
 	animationMaker.loadObiectTextures("img/mpimg/mpcharacter.png",3,4,64);
 	animationMaker.changeSprite(6);
-
+	animationMaker.setScale(0.5, 0.5);
 	//Getting player animation and move sleep time.
 	active_obj_sleep_time = sf::milliseconds(RiD::ConfigurationLoader::getIntData("player", "SleepTime"));
-	active_obj_animation_sleep_time = sf::milliseconds(RiD::ConfigurationLoader::getIntData("player", "animationSleepTime"));
+	obj_animation_sleep_time = sf::milliseconds(RiD::ConfigurationLoader::getIntData("player", "animationSleepTime"));
 	
 	//Loading velocity.
 	_velocity = RiD::ConfigurationLoader::getIntData("player", "velocity");

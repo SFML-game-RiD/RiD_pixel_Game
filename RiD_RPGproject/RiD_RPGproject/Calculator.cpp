@@ -26,3 +26,17 @@ void MP::Calculator::startProcedurePlayerMove(TaskManager& aTaskManager, MP::Pla
 
 	}
 }
+
+void MP::Calculator::startProcedureTreesAnimation(sf::Clock& globalClock,ObiectManager &aObiectManager)
+{
+	std::list<Tree>* aTree = aObiectManager.getTreeList();
+	std::list<Tree >::iterator iterator;
+	iterator = aTree->begin();
+
+	for (int i = 0; i < aTree->size(); i++)
+	{
+		if (aObiectManager._access())
+			iterator->treeAnimation(globalClock);
+		iterator++;
+	}
+}

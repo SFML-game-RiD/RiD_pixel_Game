@@ -10,36 +10,43 @@ namespace MP
 	{
 	private:
 
-		sf::Texture objTexture;
-		sf::Sprite objSprite;
-		sf::IntRect objRectangle;
+		sf::Texture _obj_texture;
+
+		sf::Sprite _obj_sprite;
+
+		sf::IntRect _obj_rectangle;
+
 		std::vector<sf::IntRect> _obiect_rectangle_array;
-		int currentSprite;
 
+		int _current_sprite;
 
-		void setObiectTexture(sf::Texture &texture);
+		void _set_obiect_texture(sf::Texture& texture);
 
-		void setObiectTextureRect(sf::IntRect &textureRect);
+		void _set_obiect_texture_rect(sf::IntRect& textureRect);
 
-		void getRectangleArray(int columns, int rows, int squareLength);
+		void _get_rectangle_array(int columns, int rows, int squareLength);
 
 	public:
 
-	void setObiectSpritePosition(int x, int y);
+		void setObiectSpritePosition(int x, int y);
 
-	void setObiectSpritePosition(std::pair<int,int> coord);
+		void setObiectSpritePosition(std::pair<int, int> coord);
 
-	 sf::Sprite& getObiectSprite();
-	
-	void loadObiectTextures(std::string texturePath, int columns, int rows, int squareLength);
+		sf::Sprite& getObiectSprite();
 
-	void changeSprite(int spriteNumber);
+		void loadObiectTextures(std::string texturePath, int columns, int rows, int squareLength);
 
-	const std::vector<sf::IntRect>& getOryginalArray();
+		void changeSprite(int spriteNumber);
 
-	int getCurrentSprite();
+		const std::vector<sf::IntRect>& getOryginalArray();
 
-	void setNextSprite(int from, int to);
+		int getCurrentSprite();
+
+		void setNextSprite(int from, int to);
+
+		void setScale(float x, float y);
+
+		void setOrigin(int x, int y);
 
 	};
 }

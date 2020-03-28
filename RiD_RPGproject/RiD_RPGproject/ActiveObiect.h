@@ -13,7 +13,7 @@ namespace MP
 		sf::Time _last_active;/// Last time, when obiect was moving.
 		sf::Time _ready_time;/// Calculated time, when obiect is able to move.
 		sf::Time active_obj_sleep_time;
-		sf::Time active_obj_animation_sleep_time;
+		//sf::Time active_obj_animation_sleep_time;
 
 		int _block_length;//<<<< This variable should be downloaded from classes responsible for map !
 		int _block_length_copy;
@@ -26,7 +26,7 @@ namespace MP
 
 		void setLastActive(sf::Clock currentTime);
 
-		void setLastActiveAnimation(sf::Clock currentTime);
+		//void setLastActiveAnimation(sf::Clock currentTime);
 
 		sf::Time getLastActiveTime();
 

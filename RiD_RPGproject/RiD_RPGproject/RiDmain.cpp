@@ -8,7 +8,8 @@ void RiD::RiDmain::_create_window()
 	//############ Generating obiects ##############
 
 	_a_obiect_generator.generateObiects(_a_obiect_manager);
-	std::printf("generated \n");
+	
+	std::printf("generated successful \n");
 
 	//##############################################
 
@@ -51,6 +52,8 @@ void RiD::RiDmain::_calculate()
 {
 	_a_obiect_manager.getPlayer()->playerAnimation(_clock, _a_task_manager);
 
+	//_a_obiect_manager.treesAnimation(_clock);
+	_a_calculator.startProcedureTreesAnimation(_clock, _a_obiect_manager);
 
 	_a_calculator.startProcedurePlayerMove(_a_task_manager, *_a_obiect_manager.getPlayer(), _clock);
 }
@@ -63,9 +66,13 @@ void RiD::RiDmain::_draw(sf::RenderWindow & mainWindow)
 
 	_window.display();
 }
+
 RiD::RiDmain::RiDmain(int width, int height, std::string title)
 {
+//	sf::VideoMode mode = sf::VideoMode::getFullscreenModes()[0];
+//	_window.create(mode, title, sf::Style::Close | sf::Style::Fullscreen);
 	_window.create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
 	_window.setFramerateLimit(RiD::ConfigurationLoader::getIntData("video settings","gameFPS"));
+	//sf::VideoMode Mode = sf::VideoMode::getFullscreenModes()[0];
 	this->_create_window();
 }

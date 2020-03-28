@@ -77,8 +77,27 @@
     <ClCompile Include="Land.cpp">
       <Filter>OBIECT\static obiects\land</Filter>
     </ClCompile>
-    <ClCompile Include="MapElement.cpp" />
-    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Map.cpp">
+      <Filter>OBIECT\mapsons</Filter>
+    </ClCompile>
+    <ClCompile Include="MapElement.cpp">
+      <Filter>OBIECT\mapsons</Filter>
+    </ClCompile>
+    <ClCompile Include="Places.cpp">
+      <Filter>OBIECT\places</Filter>
+    </ClCompile>
+    <ClCompile Include="Castle.cpp">
+      <Filter>OBIECT\places</Filter>
+    </ClCompile>
+    <ClCompile Include="Town.cpp">
+      <Filter>OBIECT\places</Filter>
+    </ClCompile>
+    <ClCompile Include="Village.cpp">
+      <Filter>OBIECT\places</Filter>
+    </ClCompile>
+    <ClCompile Include="Tree.cpp">
+      <Filter>OBIECT\static obiects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Animation.h">
@@ -156,8 +175,27 @@
     <ClInclude Include="Land.h">
       <Filter>OBIECT\static obiects\land</Filter>
     </ClInclude>
-    <ClInclude Include="MapElement.h" />
-    <ClInclude Include="Map.h" />
+    <ClInclude Include="Map.h">
+      <Filter>OBIECT\mapsons</Filter>
+    </ClInclude>
+    <ClInclude Include="MapElement.h">
+      <Filter>OBIECT\mapsons</Filter>
+    </ClInclude>
+    <ClInclude Include="Places.h">
+      <Filter>OBIECT\places</Filter>
+    </ClInclude>
+    <ClInclude Include="Castle.h">
+      <Filter>OBIECT\places</Filter>
+    </ClInclude>
+    <ClInclude Include="Town.h">
+      <Filter>OBIECT\places</Filter>
+    </ClInclude>
+    <ClInclude Include="Village.h">
+      <Filter>OBIECT\places</Filter>
+    </ClInclude>
+    <ClInclude Include="Tree.h">
+      <Filter>OBIECT\static obiects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Mr wroldwide">
@@ -207,6 +245,12 @@
     </Filter>
     <Filter Include="OBIECT\static obiects\land">
       <UniqueIdentifier>{d5b922b2-85df-4733-8fe9-7ea15a642192}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OBIECT\mapsons">
+      <UniqueIdentifier>{4a4dc6c9-4962-4040-9c5c-9c0569eaa35d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OBIECT\places">
+      <UniqueIdentifier>{ae191765-e778-4606-a7ae-b7cd710a5acb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

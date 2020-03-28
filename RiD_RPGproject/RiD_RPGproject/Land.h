@@ -11,7 +11,7 @@ namespace MP
 
 	public:
 
-		Land(int x,int y, char mark);
+		Land(int x,int y);
 
 	};
 }

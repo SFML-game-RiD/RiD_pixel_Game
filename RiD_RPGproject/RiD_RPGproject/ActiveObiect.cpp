@@ -6,7 +6,7 @@ MP::ActiveObiect::ActiveObiect()
 	_last_active = sf::milliseconds(0);
 	_ready_time = sf::milliseconds(0);
 	active_obj_sleep_time = sf::milliseconds(0);
-	active_obj_animation_sleep_time = sf::milliseconds(0);
+	obj_animation_sleep_time = sf::milliseconds(0);
 
 	_block_length_copy=_block_length  = RiD::ConfigurationLoader::getIntData("game settings", "blockLength");
 
@@ -18,12 +18,6 @@ void MP::ActiveObiect::setLastActive(sf::Clock currentTime)
 {
 	_ready_time = _last_active = currentTime.getElapsedTime();
 	_ready_time += active_obj_sleep_time;
-}
-
-void MP::ActiveObiect::setLastActiveAnimation(sf::Clock currentTime)
-{
-	_ready_animation_time = _last_animation_active = currentTime.getElapsedTime();
-	_ready_animation_time += active_obj_animation_sleep_time;
 }
 
 sf::Time MP::ActiveObiect::getLastActiveTime()

@@ -10,6 +10,42 @@ void MP::Map::_add_map_element(MapElement*& head, MapElement*& newElement)
 	_add_map_element(head->getNextElement(), newElement);
 }
 
+void MP::Map::_create_web()
+{
+	if (_map_element_list != nullptr)
+	{
+		MapElement* linkingElement = _map_element_list;
+
+
+		while (linkingElement != nullptr)
+		{
+			std::pair<int,int> tmpCoord= linkingElement->getLandTile().getObiectCoord();
+
+			//up
+			tmpCoord.second--;
+			linkingElement->setUpPtr(findElementAddress(tmpCoord, _map_element_list));
+			tmpCoord.second++;
+
+			//down
+			tmpCoord.second++;
+			linkingElement->setDownPtr(findElementAddress(tmpCoord, _map_element_list));
+			tmpCoord.second--;
+
+			//left
+			tmpCoord.first--;
+			linkingElement->setLeftPtr(findElementAddress(tmpCoord, _map_element_list));
+			tmpCoord.first++;
+
+			//right
+			tmpCoord.first++;
+			linkingElement->setRightPtr(findElementAddress(tmpCoord, _map_element_list));
+			tmpCoord.first--;
+
+			linkingElement = linkingElement->getNextElement();
+		}
+	}
+}
+
 MP::MapElement*& MP::Map::getMapElementList()
 {
 	return _map_element_list;
@@ -41,17 +77,19 @@ void MP::Map::_load_map()
 	while (mapFile)
 	{
 		int x = 0;
-		int columnsCounter = 0;
 		std::getline(mapFile, line);
-		while (columnsCounter != line.length())
+		
+		if (mapFile)
 		{
-			MapElement* tmp = new MapElement(y, x, line[columnsCounter]);
-			_add_map_element(getMapElementList(), tmp);
-			x += blockLength;
-			columnsCounter++;
+			for (int i = 0; i < line.length(); i++)
+			{
+				MapElement* tmp = new MapElement(x, y, line[i]);
+				_add_map_element(getMapElementList(), tmp);
+				x += blockLength;
+			}
+			y += blockLength;
 		}
-		y += blockLength;
-	}
+		}
 }
 
 MP::Map::Map()
@@ -59,9 +97,26 @@ MP::Map::Map()
 	_map_element_list = nullptr;
 
 	_load_map();
+
+	_create_web();
 }
 
 MP::Map::~Map()
 {
 	_delete_map(_map_element_list);
+}
+
+
+MP::MapElement * MP::Map::findElementAddress(std::pair<int, int> coordinates, MapElement*& mapElementHead)
+{
+	if (mapElementHead == nullptr)
+		return nullptr;
+	else
+	{
+
+		if (mapElementHead->getLandTile().getObiectCoord().first == coordinates.first and mapElementHead->getLandTile().getObiectCoord().second == coordinates.second)
+			return mapElementHead;
+
+		findElementAddress(coordinates, mapElementHead->getNextElement());
+	}
 }

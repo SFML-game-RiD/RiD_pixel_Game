@@ -14,7 +14,7 @@ namespace MP
 
 	public:
 
-		//void setNextSprite(int from, int to);
+
 
 	};
 }

@@ -17,6 +17,8 @@ namespace MP
 
 		void _add_map_element(MapElement*& head, MapElement*& newElement);
 
+		void _create_web();
+
 	public:
 
 		Map();
@@ -24,6 +26,8 @@ namespace MP
 		~Map();
 
 		MapElement*& getMapElementList();
+
+		MapElement* findElementAddress(std::pair<int, int> coordinates, MapElement*& mapElementHead);
 	};
 }
 #endif // !Map
