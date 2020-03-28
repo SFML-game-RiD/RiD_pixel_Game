@@ -18,9 +18,9 @@ namespace RTB
 
 	void RealTimeBattle::mainLoop(sf::RenderWindow& window)
 	{
-
+		_tile_map = new TileMap({50,50});
 		window.setView(_camera);
-
+	
 		Player player(_asset_manager.getTexture("player"), 100, _asset_manager.getTexture("arrow"));
 		Bot *bot = new Bot(_asset_manager.getTexture("bot"), 100);
 		bot->setPosition(sf::Vector2f(120, 120));
@@ -40,7 +40,7 @@ namespace RTB
 			
 			//Renders
 			window.clear();
-
+			_tile_map->drawTiles(window);
 			//Bots
 			for (std::list<Bot*>::iterator iterator = _list_of_bots.begin(); iterator != _list_of_bots.end(); iterator++)
 			{
@@ -61,7 +61,7 @@ namespace RTB
 			}
 			else
 				return;
-			
+			_tile_map->drawObjects(window);
 			window.setView(_camera);
 			window.display();
 		}
@@ -69,5 +69,6 @@ namespace RTB
 		{
 			delete (*iterator);
 		}
+		delete _tile_map;
 	}
 }
