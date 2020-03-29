@@ -5,6 +5,7 @@
 #include "Bot.h"
 #include "SwordHitbox.h"
 #include "Arrow.h"
+#include "../Map/TileMap.h"
 
 
 namespace RTB
@@ -20,9 +21,11 @@ namespace RTB
 		Arrow* _arrows = nullptr;
 		enum directions { up, left, down, right };
 		short _direction;
+		bool _moving_up = true, _moving_down = true, _moving_right = true, _moving_left = true;
 
 		void _dealSwordDamage(std::list<Bot*>& list_of_bots);
-		void dealBowDamage(std::list<Bot*>& list_of_bots);
+		void _dealBowDamage(std::list<Bot*>& list_of_bots);
+		void _isColidingWithTile(std::vector<std::vector<_obj>>& map_objects);
 	public:
 		Player(sf::Texture texture, short health_points, sf::Texture& arrow_texture);
 		~Player();
@@ -31,7 +34,7 @@ namespace RTB
 		void setPosition(sf::Vector2f position);
 
 		//Function responsible for all of the player moves and behaviors
-		void update(sf::Time time);
+		void update(sf::Time time, std::vector<std::vector<_obj>>& map_objects);
 
 		//Draws player sprite
 		void render(sf::RenderWindow& window);

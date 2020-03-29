@@ -28,7 +28,7 @@ namespace RTB
 	
 
 
-		player.setPosition(sf::Vector2f(120, 120));
+		player.setPosition(sf::Vector2f(-535, 581));
 
 		while (window.isOpen())
 		{
@@ -54,9 +54,10 @@ namespace RTB
 			//Player
 			if (player.isAlive())
 			{
-				player.update(_clock.getElapsedTime());
+				player.update(_clock.getElapsedTime(), _tile_map->getCollidableObjects());
 				_camera.setCenter(player.getPosition()); //camera is centered on the player
 				player.dealDamage(_clock.getElapsedTime(), _list_of_bots, window);
+				std::cout << player.getPosition().x << " " << player.getPosition().y << std::endl;
 				player.render(window);
 			}
 			else

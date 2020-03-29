@@ -17,7 +17,7 @@ namespace RTB
 		_movement->notReadyToDealSwordDamage();
 	}
 
-	void Player::dealBowDamage(std::list<Bot*>& list_of_bots)
+	void Player::_dealBowDamage(std::list<Bot*>& list_of_bots)
 	{
 		for (std::list<Bot*>::iterator iterator = list_of_bots.begin();
 			iterator != list_of_bots.end(); iterator++)
@@ -25,6 +25,30 @@ namespace RTB
 			if (_arrows->isFlying() && _arrows->checkIntersection((*iterator)->getHitbox().getGlobalBounds()) == true)
 			{
 				(*iterator)->subtractHP(1);
+			}
+		}
+	}
+
+	void Player::_isColidingWithTile(std::vector<std::vector<_obj>>& map_objects)
+	{
+		std::vector< std::vector<_obj> >::iterator row;
+		std::vector<_obj>::iterator col;
+		for (row = map_objects.begin(); row != map_objects.end(); row++) {
+			for (col = row->begin(); col != row->end(); col++) {
+				if (_hitbox->checkIntersection(col->hitbox.getGlobalBounds()))
+				{
+					if (_direction == up)
+						_moving_up = false;
+
+					else if (_direction == down)
+						_moving_down = false;
+
+					else if (_direction == right)
+						_moving_right = false;
+
+					else if (_direction == left)
+						_moving_left = false;
+				}
 			}
 		}
 	}
@@ -56,20 +80,33 @@ namespace RTB
 		_movement->setSpritePosition(position);
 	}
 
-	void Player::update(sf::Time time)
+	void Player::update(sf::Time time, std::vector<std::vector<_obj>>& map_objects)
 	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-			_movement->walkingUp(time);
+		_isColidingWithTile(map_objects);
+		
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-			_movement->walkingDown(time);
+		if ((sf::Keyboard::isKeyPressed(sf::Keyboard::A) && sf::Keyboard::isKeyPressed(sf::Keyboard::W) && _moving_left == false) ||
+			(sf::Keyboard::isKeyPressed(sf::Keyboard::A) && sf::Keyboard::isKeyPressed(sf::Keyboard::S) && _moving_left == false)) return;
+		else if ((sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::W) && _moving_right == false) ||
+			(sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::S) && _moving_right == false)) return;
+		else if ((sf::Keyboard::isKeyPressed(sf::Keyboard::A) && sf::Keyboard::isKeyPressed(sf::Keyboard::W) && _moving_up == false) ||
+			(sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::W) && _moving_up == false)) return;
+		else if ((sf::Keyboard::isKeyPressed(sf::Keyboard::A) && sf::Keyboard::isKeyPressed(sf::Keyboard::S) && _moving_down == false) ||
+			(sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::S) && _moving_down == false)) return;
+		else
+		{
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && _moving_up)
+				_movement->walkingUp(time);
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-			_movement->walkingRight(time);
+			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && _moving_down)
+				_movement->walkingDown(time);
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-			_movement->walkingLeft(time);
+			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && _moving_right)
+				_movement->walkingRight(time);
 
+			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && _moving_left)
+				_movement->walkingLeft(time);
+		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 			_movement->triggerAttack();
 
@@ -92,6 +129,7 @@ namespace RTB
 			if (_movement->isDeathTriggered() == false)
 				_is_alive = false;
 		}
+		_moving_up = _moving_down = _moving_right = _moving_left = true;
 	}
 
 	void Player::render(sf::RenderWindow& window)
@@ -132,9 +170,9 @@ namespace RTB
 		if (_movement->isReadyToShotArrow())
 		{
 			_arrows->fly(time, window, _direction);
-			this->dealBowDamage(list_of_bots);
+			this->_dealBowDamage(list_of_bots);
 		}
-			
+
 		if (_arrows->isFlying() == false)
 			_movement->notReadyToShotArrow();
 	}
