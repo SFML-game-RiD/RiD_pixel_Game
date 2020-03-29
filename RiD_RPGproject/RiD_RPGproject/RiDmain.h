@@ -8,6 +8,7 @@
 #include "ObiectGenerator.h"
 #include "TaskManager.h"
 #include "Calculator.h"
+#include "Camera.h"
 
 namespace RiD
 {
@@ -34,7 +35,7 @@ namespace RiD
 
 		//############################################
 
-		sf::RenderWindow _window;
+		MP::Camera _a_camera;
 
 		MP::MapMove _a_map_move;
 

@@ -1,6 +1,6 @@
 #include "Tree.h"
 
-MP::Tree::Tree(std::pair<int, int> coord)
+MP::Tree::Tree(/*std::pair<int, int> coord*/sf::Vector2f coord)
 {
 	animationMaker.loadObiectTextures("img/mpimg/mptree.png", 2, 2, 64);
 	setObiectCoord(coord);

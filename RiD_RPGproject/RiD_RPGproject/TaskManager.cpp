@@ -42,6 +42,22 @@ void MP::TaskManager::startProcedureGoRight(Obiect& pawn)
 	}
 }
 
+void MP::TaskManager::startProcedureZoomIn()
+{
+	if (_current_task == taskNone)
+	{
+		_current_task = zoomIn;
+	}
+}
+
+void MP::TaskManager::startProcedureZoomOut()
+{
+	if (_current_task == taskNone)
+	{
+		_current_task = zoomOut;
+	}
+}
+
 void MP::TaskManager::endTask()
 {
 	_current_task = taskNone;

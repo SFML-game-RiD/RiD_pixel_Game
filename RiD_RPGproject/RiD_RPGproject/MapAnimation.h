@@ -30,7 +30,7 @@ namespace MP
 
 		void setObiectSpritePosition(int x, int y);
 
-		void setObiectSpritePosition(std::pair<int, int> coord);
+		void setObiectSpritePosition(/*std::pair<int, int> coord*/sf::Vector2f coord);
 
 		sf::Sprite& getObiectSprite();
 

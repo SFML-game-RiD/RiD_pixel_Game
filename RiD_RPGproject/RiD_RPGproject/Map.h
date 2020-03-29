@@ -9,6 +9,8 @@ namespace MP
 	{
 	private:
 
+		int _block_length;
+
 		MapElement * _map_element_list;
 
 		void _delete_map(MapElement *&head);
@@ -27,7 +29,7 @@ namespace MP
 
 		MapElement*& getMapElementList();
 
-		MapElement* findElementAddress(std::pair<int, int> coordinates, MapElement*& mapElementHead);
+		MapElement* findElementAddress(/*std::pair<int, int> coordinates*/sf::Vector2f coordinates, MapElement*& mapElementHead);
 	};
 }
 #endif // !Map

@@ -11,11 +11,18 @@ namespace MP
 
 	enum taskType
 		{
+			//Move tasks
+
 			taskNone,
 			taskGoUp,
 			taskGoDown,
 			taskGoRight,
 			taskGoLeft,
+
+			//Camera tasks
+
+			zoomIn,
+			zoomOut
 		};
 
 	private:
@@ -35,6 +42,10 @@ namespace MP
 		void startProcedureGoLeft(Obiect& pawn);
 
 		void startProcedureGoRight(Obiect& pawn);
+
+		void startProcedureZoomIn();
+
+		void startProcedureZoomOut();
 
 		void endTask();
 	};

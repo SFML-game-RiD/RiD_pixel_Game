@@ -27,6 +27,11 @@ void MP::Calculator::startProcedurePlayerMove(TaskManager& aTaskManager, MP::Pla
 	}
 }
 
+void MP::Calculator::startProcedurePlayerAnimation(TaskManager& aTaskManager, MP::Player& aPlayer, sf::Clock& aGameClock)
+{
+	aPlayer.playerAnimation(aGameClock, aTaskManager);
+}
+
 void MP::Calculator::startProcedureTreesAnimation(sf::Clock& globalClock,ObiectManager &aObiectManager)
 {
 	std::list<Tree>* aTree = aObiectManager.getTreeList();
@@ -40,3 +45,19 @@ void MP::Calculator::startProcedureTreesAnimation(sf::Clock& globalClock,ObiectM
 		iterator++;
 	}
 }
+
+void MP::Calculator::startProcedureCameraZoom(TaskManager& aTaskManager, Camera& aCamera)
+{
+	if(aTaskManager.getTask()==MP::TaskManager::taskType::zoomIn or aTaskManager.getTask() == MP::TaskManager::taskType::zoomOut)
+	aCamera.changeZoom(aTaskManager);
+}
+
+void MP::Calculator::startProcedureCorrectCamera(TaskManager& aTaskManager, sf::Vector2f newCoord, Camera& aCamera)
+{
+	if(aTaskManager.getTask()== MP::TaskManager::taskType::taskGoUp or
+		aTaskManager.getTask() == MP::TaskManager::taskType::taskGoDown or
+		aTaskManager.getTask() == MP::TaskManager::taskType::taskGoRight or
+		aTaskManager.getTask() == MP::TaskManager::taskType::taskGoLeft)
+	aCamera.changeCamera(newCoord);
+}
+

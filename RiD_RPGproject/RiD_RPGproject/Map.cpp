@@ -19,27 +19,48 @@ void MP::Map::_create_web()
 
 		while (linkingElement != nullptr)
 		{
-			std::pair<int,int> tmpCoord= linkingElement->getLandTile().getObiectCoord();
+			//std::pair<int,int> tmpCoord= linkingElement->getLandTile().getObiectCoord();
+			sf::Vector2f tmpCoord= linkingElement->getLandTile().getObiectCoord();
 
-			//up
-			tmpCoord.second--;
+			////up
+			//tmpCoord.second--;
+			//linkingElement->setUpPtr(findElementAddress(tmpCoord, _map_element_list));
+			//tmpCoord.second++;
+
+			////down
+			//tmpCoord.second++;
+			//linkingElement->setDownPtr(findElementAddress(tmpCoord, _map_element_list));
+			//tmpCoord.second--;
+
+			////left
+			//tmpCoord.first--;
+			//linkingElement->setLeftPtr(findElementAddress(tmpCoord, _map_element_list));
+			//tmpCoord.first++;
+
+			////right
+			//tmpCoord.first++;
+			//linkingElement->setRightPtr(findElementAddress(tmpCoord, _map_element_list));
+			//tmpCoord.first--;
+
+						//up
+			tmpCoord.y-=_block_length;
 			linkingElement->setUpPtr(findElementAddress(tmpCoord, _map_element_list));
-			tmpCoord.second++;
+			tmpCoord.y+= _block_length;
 
 			//down
-			tmpCoord.second++;
+			tmpCoord.y+= _block_length;
 			linkingElement->setDownPtr(findElementAddress(tmpCoord, _map_element_list));
-			tmpCoord.second--;
+			tmpCoord.y-= _block_length;
 
 			//left
-			tmpCoord.first--;
+			tmpCoord.x-= _block_length;
 			linkingElement->setLeftPtr(findElementAddress(tmpCoord, _map_element_list));
-			tmpCoord.first++;
+			tmpCoord.x+= _block_length;
 
 			//right
-			tmpCoord.first++;
+			tmpCoord.x+= _block_length;
 			linkingElement->setRightPtr(findElementAddress(tmpCoord, _map_element_list));
-			tmpCoord.first--;
+			tmpCoord.x-= _block_length;
 
 			linkingElement = linkingElement->getNextElement();
 		}
@@ -95,7 +116,7 @@ void MP::Map::_load_map()
 MP::Map::Map()
 {
 	_map_element_list = nullptr;
-
+	_block_length = RiD::ConfigurationLoader::getIntData("game settings", "blockLength");
 	_load_map();
 
 	_create_web();
@@ -107,14 +128,16 @@ MP::Map::~Map()
 }
 
 
-MP::MapElement * MP::Map::findElementAddress(std::pair<int, int> coordinates, MapElement*& mapElementHead)
+MP::MapElement * MP::Map::findElementAddress(/*std::pair<int, int> coordinates*/sf::Vector2f coordinates, MapElement*& mapElementHead)
 {
 	if (mapElementHead == nullptr)
 		return nullptr;
 	else
 	{
 
-		if (mapElementHead->getLandTile().getObiectCoord().first == coordinates.first and mapElementHead->getLandTile().getObiectCoord().second == coordinates.second)
+		//if (mapElementHead->getLandTile().getObiectCoord().first == coordinates.first and mapElementHead->getLandTile().getObiectCoord().second == coordinates.second)
+		//	return mapElementHead;
+		if (mapElementHead->getLandTile().getObiectCoord().x == coordinates.x and mapElementHead->getLandTile().getObiectCoord().y == coordinates.y)
 			return mapElementHead;
 
 		findElementAddress(coordinates, mapElementHead->getNextElement());

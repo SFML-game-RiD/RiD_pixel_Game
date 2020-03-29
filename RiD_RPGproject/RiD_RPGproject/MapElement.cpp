@@ -4,17 +4,17 @@
 #include "Town.h"
 #include "Castle.h"
 
-void MP::MapElement::_create_village(std::pair<int, int> coord)
+void MP::MapElement::_create_village(/*std::pair<int, int> coord	*/sf::Vector2f coord)
 {
 	_a_place = std::make_shared<MP::Village>(this->getLandTile().getObiectCoord());
 }
 
-void MP::MapElement::_create_town(std::pair<int, int> coord)
+void MP::MapElement::_create_town(/*std::pair<int, int> coord	*/sf::Vector2f coord)
 {
 	_a_place = std::make_shared<MP::Town>(this->getLandTile().getObiectCoord());
 }
 
-void MP::MapElement::_create_castle(std::pair<int, int> coord)
+void MP::MapElement::_create_castle(/*std::pair<int, int> coord	*/sf::Vector2f coord)
 {
 	_a_place = std::make_shared<MP::Castle>(this->getLandTile().getObiectCoord());
 }

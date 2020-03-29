@@ -24,9 +24,10 @@ void MP::MapAnimation::setObiectSpritePosition(int x, int y)
 	_obj_sprite.setPosition(x, y);
 }
 
-void MP::MapAnimation::setObiectSpritePosition(std::pair<int, int> coord)
+void MP::MapAnimation::setObiectSpritePosition(/*std::pair<int, int> coord*/sf::Vector2f coord)
 {
-	_obj_sprite.setPosition(coord.first, coord.second);
+	//_obj_sprite.setPosition(coord.first, coord.second);
+	_obj_sprite.setPosition(coord.x, coord.y);
 }
 
 sf::Sprite& MP::MapAnimation::getObiectSprite()

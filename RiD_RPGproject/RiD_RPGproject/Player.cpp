@@ -7,7 +7,7 @@ MP::Player::Player()
 	//Loading textures.
 	animationMaker.loadObiectTextures("img/mpimg/mpcharacter.png",3,4,64);
 	animationMaker.changeSprite(6);
-	animationMaker.setScale(0.5, 0.5);
+	animationMaker.setScale(0.7, 0.7);
 	//Getting player animation and move sleep time.
 	active_obj_sleep_time = sf::milliseconds(RiD::ConfigurationLoader::getIntData("player", "SleepTime"));
 	obj_animation_sleep_time = sf::milliseconds(RiD::ConfigurationLoader::getIntData("player", "animationSleepTime"));

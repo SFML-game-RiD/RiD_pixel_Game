@@ -98,6 +98,9 @@
     <ClCompile Include="Tree.cpp">
       <Filter>OBIECT\static obiects</Filter>
     </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>the bosses</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Animation.h">
@@ -195,6 +198,9 @@
     </ClInclude>
     <ClInclude Include="Tree.h">
       <Filter>OBIECT\static obiects</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>the bosses</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

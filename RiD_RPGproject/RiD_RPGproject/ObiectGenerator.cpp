@@ -19,12 +19,20 @@ void MP::ObiectGenerator::_generate_trees(ObiectManager& aObiectManager)
 			spawnRange -= 10;
 			while (counter != 0)
 			{
-				std::pair<int, int> tmpCoord = tmp->getLandTile().getObiectCoord();
-				tmpCoord.first+=_random_number() % spawnRange;
+				sf::Vector2f tmpCoord = tmp->getLandTile().getObiectCoord();
+				tmpCoord.x += _random_number() % spawnRange;
+				tmpCoord.y += _random_number() % spawnRange;
+				Tree* tmpTree = new Tree(tmpCoord);
+				aObiectManager.getTreeList()->push_back(*tmpTree);
+				counter--;
+
+
+				//std::pair<int, int> tmpCoord = tmp->getLandTile().getObiectCoord();
+				/*tmpCoord.first+=_random_number() % spawnRange;
 				tmpCoord.second += _random_number() % spawnRange;
 				Tree *tmpTree=new Tree(tmpCoord);
 				aObiectManager.getTreeList()->push_back(*tmpTree);
-				counter--;
+				counter--;*/
 			}
 
 		}

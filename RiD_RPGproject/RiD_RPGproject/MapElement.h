@@ -23,12 +23,18 @@ namespace MP
 
 		bool walkable;
 
+	
+		void _create_village(sf::Vector2f coord);
 
-		void _create_village(std::pair<int, int> coord);
-		
-		void _create_town(std::pair<int, int> coord);
+		void _create_town(sf::Vector2f coord);
 
-		void _create_castle(std::pair<int, int> coord);
+		void _create_castle(sf::Vector2f coord);
+
+		//void _create_village(std::pair<int, int> coord);
+		//
+		//void _create_town(std::pair<int, int> coord);
+
+		//void _create_castle(std::pair<int, int> coord);
 
 	public:
 

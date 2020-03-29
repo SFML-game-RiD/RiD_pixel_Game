@@ -9,7 +9,7 @@ namespace MP
 	{
 	public:
 
-		Tree(std::pair<int,int> coord);
+		Tree(/*std::pair<int, int> coord*/sf::Vector2f coord);
 
 		void treeAnimation(sf::Clock& globalClock);
 
