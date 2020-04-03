@@ -8,7 +8,7 @@ namespace MP
 	{
 	public:
 
-		Village(/*std::pair<int, int> coord*/ sf::Vector2f coord);
+		Village(sf::Texture* texturePtr, sf::Vector2f coord);
 	};
 }
 #endif

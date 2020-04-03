@@ -7,7 +7,7 @@ namespace MP
 	class Town :public Places
 	{
 	public:
-		Town(/*std::pair<int, int> coord*/ sf::Vector2f coord);
+		Town(sf::Texture* texturePtr, sf::Vector2f coord);
 	};
 }
 #endif

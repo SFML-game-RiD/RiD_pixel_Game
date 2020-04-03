@@ -1,8 +1,8 @@
 #include "Land.h"
 
-MP::Land::Land(int x, int y)
+MP::Land::Land(sf::Texture* texturePtr, int x, int y)
 {
-	animationMaker.loadObiectTextures("img/mpimg/mpgrass.png", 1, 1, 64);
+	animationMaker.loadObiectTextures(texturePtr, 1, 1, 64);
 
 	setObiectCoord(x, y);
 }

@@ -30,9 +30,14 @@ std::shared_ptr<MP::Player> & MP::ObiectManager::getPlayer()
 	return _player;
 }
 
-MP::MapElement* MP::ObiectManager::getMapElementHead()
+MP::MapElement*& MP::ObiectManager::getMapElementHead()
 {
-	return _a_Map.getMapElementList();
+	return _a_map.getMapElementList();
+}
+
+MP::Map& MP::ObiectManager::getMap()
+{
+	return _a_map;
 }
 
 std::list<MP::Tree> * MP::ObiectManager::getTreeList()

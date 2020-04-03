@@ -1,11 +1,8 @@
 #ifndef _PAWNOBIECT_H_
 #define _PAWNOBIECT_H_
 
-#include "SFML/Graphics.hpp"
 #include "ActiveObiect.h"
-#include "TaskManager.h"
-#include <vector>
-
+#include "Map.h"
 namespace MP 
 {
 	class PawnObiect:public ActiveObiect
@@ -14,7 +11,13 @@ namespace MP
 
 	public:
 
+		bool checkGoUp(Map & aMap);
 
+		bool checkGoDown(Map & aMap);
+
+		bool checkGoLeft(Map & aMap);
+
+		bool checkGoRight(Map & aMap);
 
 	};
 }

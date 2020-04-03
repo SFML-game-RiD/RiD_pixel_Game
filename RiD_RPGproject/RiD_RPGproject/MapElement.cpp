@@ -4,19 +4,19 @@
 #include "Town.h"
 #include "Castle.h"
 
-void MP::MapElement::_create_village(/*std::pair<int, int> coord	*/sf::Vector2f coord)
+void MP::MapElement::_create_village(sf::Texture* texturePtr, sf::Vector2f coord)
 {
-	_a_place = std::make_shared<MP::Village>(this->getLandTile().getObiectCoord());
+	_a_place = std::make_shared<MP::Village>(texturePtr,this->getLandTile().getObiectCoord());
 }
 
-void MP::MapElement::_create_town(/*std::pair<int, int> coord	*/sf::Vector2f coord)
+void MP::MapElement::_create_town(sf::Texture* texturePtr, sf::Vector2f coord)
 {
-	_a_place = std::make_shared<MP::Town>(this->getLandTile().getObiectCoord());
+	_a_place = std::make_shared<MP::Town>(texturePtr,this->getLandTile().getObiectCoord());
 }
 
-void MP::MapElement::_create_castle(/*std::pair<int, int> coord	*/sf::Vector2f coord)
+void MP::MapElement::_create_castle(sf::Texture* texturePtr, sf::Vector2f coord)
 {
-	_a_place = std::make_shared<MP::Castle>(this->getLandTile().getObiectCoord());
+	_a_place = std::make_shared<MP::Castle>(texturePtr,this->getLandTile().getObiectCoord());
 }
 
 MP::Land & MP::MapElement::getLandTile()
@@ -30,7 +30,7 @@ std::shared_ptr<MP::Places>& MP::MapElement::getPlace()
 }
 
 
-MP::MapElement::MapElement(int cordX, int cordY, char mark)
+MP::MapElement::MapElement(RiD::AssetManager& aAssetManager, int cordX, int cordY, char mark)
 {
 	_up_element = nullptr;
 	_down_element = nullptr;
@@ -41,17 +41,21 @@ MP::MapElement::MapElement(int cordX, int cordY, char mark)
 
 	_mark = mark;
 
+	if (mark == RiD::ConfigurationLoader::getStringData("game settings", "treeWallMark")[0])
+		_walkable = false;
+	else
+		_walkable = true;
 
-	_land_tile = std::make_shared<MP::Land>(cordX, cordY);
+	_land_tile = std::make_shared<MP::Land>(&aAssetManager.getTexture("land"),cordX, cordY);
 
 	//Creating places.
 
 	if (mark == RiD::ConfigurationLoader::getStringData("village", "mark")[0])
-		_create_village(_land_tile->getObiectCoord());
+		_create_village(&aAssetManager.getTexture("village"), _land_tile->getObiectCoord());
 	else if (mark == RiD::ConfigurationLoader::getStringData("castle", "mark")[0])
-		_create_castle(_land_tile->getObiectCoord());
+		_create_castle(&aAssetManager.getTexture("castle"), _land_tile->getObiectCoord());
 	else if (mark == RiD::ConfigurationLoader::getStringData("town", "mark")[0])
-		_create_town(_land_tile->getObiectCoord());
+		_create_town(&aAssetManager.getTexture("town"), _land_tile->getObiectCoord());
 	else
 		_a_place = nullptr;
 
@@ -105,4 +109,9 @@ void MP::MapElement::setLeftPtr(MapElement* aMapElement)
 void MP::MapElement::setRightPtr(MapElement* aMapElement)
 {
 	_right_element = aMapElement;
+}
+
+bool MP::MapElement::isWalkable()
+{
+	return _walkable;
 }

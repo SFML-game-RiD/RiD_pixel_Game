@@ -4,6 +4,7 @@
 #include <memory>
 #include "Land.h"
 #include "Places.h"
+#include "Engine/AssetManager.h"
 
 namespace MP
 {
@@ -21,20 +22,14 @@ namespace MP
 
 		char _mark;
 
-		bool walkable;
+		bool _walkable;
 
 	
-		void _create_village(sf::Vector2f coord);
+		void _create_village(sf::Texture* texturePtr, sf::Vector2f coord);
 
-		void _create_town(sf::Vector2f coord);
+		void _create_town(sf::Texture* texturePtr, sf::Vector2f coord);
 
-		void _create_castle(sf::Vector2f coord);
-
-		//void _create_village(std::pair<int, int> coord);
-		//
-		//void _create_town(std::pair<int, int> coord);
-
-		//void _create_castle(std::pair<int, int> coord);
+		void _create_castle(sf::Texture* texturePtr, sf::Vector2f coord);
 
 	public:
 
@@ -42,7 +37,7 @@ namespace MP
 
 		std::shared_ptr<Places>& getPlace();
 
-		MapElement(int cordX,int cordY,char mark);
+		MapElement(RiD::AssetManager &aAssetManager,int cordX,int cordY,char mark);
 
 
 		MapElement *& getNextElement();
@@ -64,6 +59,8 @@ namespace MP
 		void setLeftPtr(MapElement* aMapElement);
 
 		void setRightPtr(MapElement* aMapElement);
+
+		bool isWalkable();
 	};
 }
 #endif

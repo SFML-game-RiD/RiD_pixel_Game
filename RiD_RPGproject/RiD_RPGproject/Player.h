@@ -1,6 +1,7 @@
 #ifndef _PLAYER_H_
 #define _PLAYER_H_
 
+//#include <SFML/Graphics.hpp>
 #include "MapMove.h"
 #include "PawnObiect.h"
 
@@ -13,7 +14,7 @@ namespace MP
 
 	public:
 
-		Player();
+		Player(sf::Texture *texturePtr);
 
 		//############ move animation ##############
 
@@ -28,6 +29,7 @@ namespace MP
 		void playerAnimationDown(sf::Clock& globalClock);
 
 		//##########################################
+
 	};
 
 

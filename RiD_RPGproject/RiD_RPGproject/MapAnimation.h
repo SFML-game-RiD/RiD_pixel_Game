@@ -10,7 +10,8 @@ namespace MP
 	{
 	private:
 
-		sf::Texture _obj_texture;
+		//sf::Texture _obj_texture;
+		sf::Texture *_obj_texture;
 
 		sf::Sprite _obj_sprite;
 
@@ -20,7 +21,8 @@ namespace MP
 
 		int _current_sprite;
 
-		void _set_obiect_texture(sf::Texture& texture);
+		//void _set_obiect_texture(sf::Texture& texture);
+		void _set_obiect_texture(sf::Texture * texture);
 
 		void _set_obiect_texture_rect(sf::IntRect& textureRect);
 
@@ -30,11 +32,12 @@ namespace MP
 
 		void setObiectSpritePosition(int x, int y);
 
-		void setObiectSpritePosition(/*std::pair<int, int> coord*/sf::Vector2f coord);
+		void setObiectSpritePosition(sf::Vector2f coord);
 
 		sf::Sprite& getObiectSprite();
 
-		void loadObiectTextures(std::string texturePath, int columns, int rows, int squareLength);
+	//	void loadObiectTextures(std::string texturePath, int columns, int rows, int squareLength);
+		void loadObiectTextures(sf::Texture* texturePtr, int columns, int rows, int squareLength);
 
 		void changeSprite(int spriteNumber);
 

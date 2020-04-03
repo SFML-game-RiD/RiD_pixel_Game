@@ -11,7 +11,6 @@ namespace MP
 	{
 	private:
 
-	//	std::pair<int, int> _objCoord;
 		sf::Vector2f _objCoord;
 	protected:
 
@@ -27,9 +26,9 @@ namespace MP
 
 		void setObiectCoord(int x, int y);
 
-		void setObiectCoord(/*std::pair<int, int> coord*/ sf::Vector2f coord);
+		void setObiectCoord( sf::Vector2f coord);
 
-		/*std::pair<int, int> */ sf::Vector2f getObiectCoord();
+		 sf::Vector2f getObiectCoord();
 
 		void setLastActiveAnimation(sf::Clock currentTime);
 	};

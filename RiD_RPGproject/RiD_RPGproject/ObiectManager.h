@@ -7,7 +7,7 @@
 #include "Land.h"
 #include "Map.h"
 #include "Tree.h"
-
+#include "ComputerPlayer.h"
 
 namespace MP
 {
@@ -19,11 +19,15 @@ namespace MP
 
 		std::mt19937 _random_number;
 
+		//OBIECTS
+
 		std::shared_ptr<Player> _player;
+
+		std::shared_ptr<ComputerPlayer> _computer_player;
 
 		std::list<Tree> _tree_list;
 
-		Map _a_Map;
+		Map _a_map;
 
 
 	
@@ -38,8 +42,10 @@ namespace MP
 
 		std::shared_ptr<Player> & getPlayer();
 		
-		MapElement* getMapElementHead();
+		MapElement *& getMapElementHead();
 	
+		Map& getMap();
+
 		std::list<Tree> * getTreeList();
 
 		bool _access();

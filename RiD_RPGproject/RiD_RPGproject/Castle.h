@@ -7,7 +7,7 @@ namespace MP
 	class Castle:public Places
 	{
 	public:
-		Castle(/*std::pair<int, int> coord*/ sf::Vector2f coord);
+		Castle(sf::Texture* texturePtr, sf::Vector2f coord);
 	};
 }
 #endif

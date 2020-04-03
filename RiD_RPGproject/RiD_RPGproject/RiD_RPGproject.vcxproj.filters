@@ -101,6 +101,7 @@
     <ClCompile Include="Camera.cpp">
       <Filter>the bosses</Filter>
     </ClCompile>
+    <ClCompile Include="ComputerPlayer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Animation.h">
@@ -202,6 +203,7 @@
     <ClInclude Include="Camera.h">
       <Filter>the bosses</Filter>
     </ClInclude>
+    <ClInclude Include="ComputerPlayer.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Mr wroldwide">

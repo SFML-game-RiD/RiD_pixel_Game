@@ -18,7 +18,7 @@ namespace RiD
 
 
 		//############# OBIECT MANAGING ##############
-		
+
 		MP::ObiectDrawer _a_obiect_drawer;
 
 		MP::ObiectManager _a_obiect_manager;

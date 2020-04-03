@@ -37,16 +37,16 @@ void RiD::RiDmain::_event_function(sf::Event &event)
 			_a_camera.getWindow().close();
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-			_a_task_manager.startProcedureGoUp(*_a_obiect_manager.getPlayer());
+			_a_task_manager.startProcedureGoUp(*_a_obiect_manager.getPlayer(), _a_obiect_manager.getMap());
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-			_a_task_manager.startProcedureGoLeft(*_a_obiect_manager.getPlayer());
+			_a_task_manager.startProcedureGoLeft(*_a_obiect_manager.getPlayer(),_a_obiect_manager.getMap());
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-			_a_task_manager.startProcedureGoDown(*_a_obiect_manager.getPlayer());
+			_a_task_manager.startProcedureGoDown(*_a_obiect_manager.getPlayer(), _a_obiect_manager.getMap());
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-			_a_task_manager.startProcedureGoRight(*_a_obiect_manager.getPlayer());
+			_a_task_manager.startProcedureGoRight(*_a_obiect_manager.getPlayer(), _a_obiect_manager.getMap());
 		if (event.type == sf::Event::MouseWheelScrolled) 
 		{
 			if (event.mouseWheelScroll.delta > 0)
@@ -82,11 +82,10 @@ void RiD::RiDmain::_draw(sf::RenderWindow & mainWindow)
 
 RiD::RiDmain::RiDmain(int width, int height, std::string title)
 {
-	/*sf::VideoMode mode = sf::VideoMode::getFullscreenModes()[0];
-	_a_camera.getWindow().create(mode, title, sf::Style::Close | sf::Style::Fullscreen);*/
+	//sf::VideoMode mode = sf::VideoMode::getFullscreenModes()[0];
+	//_a_camera.getWindow().create(mode, title, sf::Style::Close | sf::Style::Fullscreen);
 	
 	_a_camera.getWindow().create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
-
 	_a_camera.getWindow().setFramerateLimit(RiD::ConfigurationLoader::getIntData("video settings", "gameFPS"));
 	this->_create_window();
 }

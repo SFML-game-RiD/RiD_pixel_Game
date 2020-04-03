@@ -4,9 +4,7 @@
 
 MP::Obiect::Obiect()
 {
-	//_objCoord.first = 0;
-	//_objCoord.second = 0;
-		_objCoord.x = 0;
+	_objCoord.x = 0;
 	_objCoord.y = 0;
 	_ready_animation_time = sf::milliseconds(0);
 	_last_animation_active = sf::milliseconds(0);
@@ -15,19 +13,18 @@ MP::Obiect::Obiect()
 void MP::Obiect::setObiectCoord(int x, int y)
 {
 	animationMaker.setObiectSpritePosition(x, y);
-	//_objCoord.first = x;
-	//_objCoord.second = y;
+
 	_objCoord.x = x;
 	_objCoord.y = y;
 }
 
-void MP::Obiect::setObiectCoord(/*std::pair<int, int> coord*/ sf::Vector2f coord)
+void MP::Obiect::setObiectCoord(sf::Vector2f coord)
 {
 	animationMaker.setObiectSpritePosition(coord);
 	_objCoord = coord;
 }
 
-/*std::pair<int, int> */ sf::Vector2f  MP::Obiect::getObiectCoord()
+sf::Vector2f  MP::Obiect::getObiectCoord()
 {
 	return _objCoord;
 }

@@ -157,6 +157,7 @@
     <ClCompile Include="Calculator.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Castle.cpp" />
+    <ClCompile Include="ComputerPlayer.cpp" />
     <ClCompile Include="Engine\Animation.cpp" />
     <ClCompile Include="Engine\AssetManager.cpp" />
     <ClCompile Include="Engine\ConfigurationLoader.cpp" />
@@ -193,6 +194,7 @@
     <ClInclude Include="Calculator.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Castle.h" />
+    <ClInclude Include="ComputerPlayer.h" />
     <ClInclude Include="Engine\Animation.h" />
     <ClInclude Include="Engine\AssetManager.h" />
     <ClInclude Include="Engine\ConfigurationLoader.h" />

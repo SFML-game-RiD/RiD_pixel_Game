@@ -2,10 +2,11 @@
 #include "Engine/ConfigurationLoader.h"
 #include "MapAnimation.h"
 
-MP::Player::Player()
+MP::Player::Player(sf::Texture* texturePtr)
 {
 	//Loading textures.
-	animationMaker.loadObiectTextures("img/mpimg/mpcharacter.png",3,4,64);
+	//animationMaker.loadObiectTextures("img/mpimg/mpcharacter.png",3,4,64);
+	animationMaker.loadObiectTextures(texturePtr,3,4,64);
 	animationMaker.changeSprite(6);
 	animationMaker.setScale(0.7, 0.7);
 	//Getting player animation and move sleep time.

@@ -9,6 +9,10 @@ namespace MP
 	{
 	private:
 
+		int _max_x_size;
+
+		int _min_x_size;
+
 		sf::View _view;
 
 		sf::RenderWindow _window;
@@ -19,6 +23,7 @@ namespace MP
 
 	public:
 
+		Camera();
 
 		sf::RenderWindow & getWindow();
 

@@ -24,9 +24,8 @@ void MP::MapAnimation::setObiectSpritePosition(int x, int y)
 	_obj_sprite.setPosition(x, y);
 }
 
-void MP::MapAnimation::setObiectSpritePosition(/*std::pair<int, int> coord*/sf::Vector2f coord)
+void MP::MapAnimation::setObiectSpritePosition(sf::Vector2f coord)
 {
-	//_obj_sprite.setPosition(coord.first, coord.second);
 	_obj_sprite.setPosition(coord.x, coord.y);
 }
 
@@ -35,17 +34,16 @@ sf::Sprite& MP::MapAnimation::getObiectSprite()
 	return _obj_sprite;
 }
 
-void MP::MapAnimation::loadObiectTextures(std::string texturePath, int columns, int rows, int squareLength)
+void MP::MapAnimation::loadObiectTextures(sf::Texture *texturePtr, int columns, int rows, int squareLength)
 {
-	_obj_texture.loadFromFile(texturePath);
-	_set_obiect_texture(_obj_texture);
+	_set_obiect_texture(texturePtr);
 	_get_rectangle_array(columns, rows, squareLength);
 	changeSprite(0);
 }
 
-void MP::MapAnimation::_set_obiect_texture(sf::Texture &texture)
+void MP::MapAnimation::_set_obiect_texture(sf::Texture * texture)
 {
-	_obj_sprite.setTexture(texture);
+	_obj_sprite.setTexture(*texture);
 }
 
 void MP::MapAnimation::_set_obiect_texture_rect(sf::IntRect &textureRect)

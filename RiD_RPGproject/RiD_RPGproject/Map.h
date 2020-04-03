@@ -15,21 +15,23 @@ namespace MP
 
 		void _delete_map(MapElement *&head);
 
-		void _load_map();
-
-		void _add_map_element(MapElement*& head, MapElement*& newElement);
-
-		void _create_web();
-
 	public:
 
 		Map();
 
 		~Map();
 
+		void createWeb();
+
+		void addMapElement(MapElement*& head, MapElement*& newElement);
+
 		MapElement*& getMapElementList();
 
-		MapElement* findElementAddress(/*std::pair<int, int> coordinates*/sf::Vector2f coordinates, MapElement*& mapElementHead);
+		MapElement* findElementAddress(sf::Vector2f coordinates, MapElement*& mapElementHead);
+
+		MapElement* findElementAddressSquareRange(sf::Vector2f coordinates, MapElement*& mapElementHead);
+
+
 	};
 }
 #endif // !Map

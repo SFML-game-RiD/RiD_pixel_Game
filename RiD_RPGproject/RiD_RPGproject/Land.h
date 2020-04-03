@@ -11,7 +11,7 @@ namespace MP
 
 	public:
 
-		Land(int x,int y);
+		Land(sf::Texture* texturePtr, int x,int y);
 
 	};
 }

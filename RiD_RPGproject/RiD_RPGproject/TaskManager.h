@@ -1,7 +1,8 @@
 #ifndef _TASKMANAGER_H_
 #define _TASKMANAGER_H_
 
-#include "Obiect.h"
+#include "PawnObiect.h"
+#include "Map.h"
 
 namespace MP
 {
@@ -35,13 +36,13 @@ namespace MP
 
 		taskType getTask();
 
-		void startProcedureGoUp(Obiect & pawn);
+		void startProcedureGoUp(PawnObiect & pawn,MP::Map &aMap);
 
-		void startProcedureGoDown(Obiect& pawn);
+		void startProcedureGoDown(PawnObiect& pawn, MP::Map& aMap);
 
-		void startProcedureGoLeft(Obiect& pawn);
+		void startProcedureGoLeft(PawnObiect& pawn, MP::Map& aMap);
 
-		void startProcedureGoRight(Obiect& pawn);
+		void startProcedureGoRight(PawnObiect& pawn, MP::Map& aMap);
 
 		void startProcedureZoomIn();
 

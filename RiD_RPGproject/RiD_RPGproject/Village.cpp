@@ -1,7 +1,7 @@
 #include "Village.h"
 
-MP::Village::Village(/*std::pair<int, int> coord*/ sf::Vector2f coord)
+MP::Village::Village(sf::Texture* texturePtr, sf::Vector2f coord)
 {
-	animationMaker.loadObiectTextures("img/mpimg/places/mpvillage.png", 1, 1, 64);
+	animationMaker.loadObiectTextures(texturePtr, 1, 1, 64);
 	setObiectCoord(coord);
 }
