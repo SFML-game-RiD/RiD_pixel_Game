@@ -6,18 +6,18 @@ namespace RTB
 {
 	void Player::_dealSwordDamage(std::list<Bot*>& list_of_bots)
 	{
-		for (std::list<Bot*>::iterator iterator = list_of_bots.begin();
+		for (std::list<Bot*>::iterator iterator = list_of_bots.begin();//Iterates through list of bots...
 			iterator != list_of_bots.end(); iterator++)
 		{
-			if (_sword_hitbox->checkIntersection((*iterator)->getHitbox().getGlobalBounds()) == true)
+			if (_sword_hitbox->checkIntersection((*iterator)->getHitbox().getGlobalBounds()) == true)//checks if sword intersected one of them...
 			{
-				(*iterator)->subtractHP(10);
+				(*iterator)->subtractHP(10);//and subtracts hp
 			}
 		}
 		_movement->notReadyToDealSwordDamage();
 	}
 
-	void Player::_dealBowDamage(std::list<Bot*>& list_of_bots)
+	void Player::_dealBowDamage(std::list<Bot*>& list_of_bots)//as above
 	{
 		for (std::list<Bot*>::iterator iterator = list_of_bots.begin();
 			iterator != list_of_bots.end(); iterator++)
@@ -35,7 +35,7 @@ namespace RTB
 		std::vector<_obj>::iterator col;
 		for (row = map_objects.begin(); row != map_objects.end(); row++) {
 			for (col = row->begin(); col != row->end(); col++) {
-				if (_hitbox->checkIntersection(col->hitbox.getGlobalBounds()))
+				if (checkMapCollision(col->hitbox,_hitbox->getRectangle()))
 				{
 					if (_direction == up)
 						_moving_up = false;
@@ -58,7 +58,7 @@ namespace RTB
 		_health_points = health_points;
 		_character_sprite = new sf::Sprite;
 		_movement = new RiD::Movement(texture, _character_sprite);
-		_hitbox = new Hitbox(_character_sprite, { 32.f, 48.f }, { -17.f,-16.f });
+		_hitbox = new Hitbox(_character_sprite, { 24.f, 46.f }, { -12.f,-16.f });
 		_sword_hitbox = new SwordHitbox(_character_sprite);
 		_hp_bar = new HPBar(_character_sprite, _health_points);
 		_arrows = new Arrow(_character_sprite, arrow_texture);
@@ -175,5 +175,37 @@ namespace RTB
 
 		if (_arrows->isFlying() == false)
 			_movement->notReadyToShotArrow();
+	}
+	bool Player::checkMapCollision(const sf::RectangleShape& Object1, const sf::RectangleShape& Object2)
+	{
+		OrientedHitbox OH1(Object1, Object1.getSize().x, Object1.getSize().y);
+		OrientedHitbox OH2(Object2, Object2.getSize().x, Object2.getSize().y);
+
+		// Create the four distinct axes that are perpendicular to the edges of the two rectangles
+		sf::Vector2f Axes[4] = {
+			sf::Vector2f(OH1.Points[1].x - OH1.Points[0].x,
+			OH1.Points[1].y - OH1.Points[0].y),
+			sf::Vector2f(OH1.Points[1].x - OH1.Points[2].x,
+			OH1.Points[1].y - OH1.Points[2].y),
+			sf::Vector2f(OH2.Points[0].x - OH2.Points[3].x,
+			OH2.Points[0].y - OH2.Points[3].y),
+			sf::Vector2f(OH2.Points[0].x - OH2.Points[1].x,
+			OH2.Points[0].y - OH2.Points[1].y)
+		};
+
+		for (int i = 0; i < 4; i++) // For each axis...
+		{
+			float MinOH1, MaxOH1, MinOH2, MaxOH2;
+
+			// ... project the points of both OBBs onto the axis ...
+			OH1.ProjectOntoAxis(Axes[i], MinOH1, MaxOH1);
+			OH2.ProjectOntoAxis(Axes[i], MinOH2, MaxOH2);
+
+			// ... and check whether the outermost projected points of both OBBs overlap.
+			// If this is not the case, the Separating Axis Theorem states that there can be no collision between the rectangles
+			if (!((MinOH2 <= MaxOH1) && (MaxOH2 >= MinOH1)))
+				return false;
+		}
+		return true;
 	}
 }

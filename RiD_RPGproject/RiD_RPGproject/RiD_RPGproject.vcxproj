@@ -159,6 +159,7 @@
     <ClCompile Include="Battle\Character.cpp" />
     <ClCompile Include="Battle\Hitbox.cpp" />
     <ClCompile Include="Battle\HPBar.cpp" />
+    <ClCompile Include="Battle\OrientedHitbox.cpp" />
     <ClCompile Include="Battle\Player.cpp" />
     <ClCompile Include="Battle\RealTimeBattle.cpp" />
     <ClCompile Include="Battle\SwordHitbox.cpp" />
@@ -181,6 +182,7 @@
     <ClInclude Include="Battle\Character.h" />
     <ClInclude Include="Battle\Hitbox.h" />
     <ClInclude Include="Battle\HPBar.h" />
+    <ClInclude Include="Battle\OrientedHitbox.h" />
     <ClInclude Include="Battle\Player.h" />
     <ClInclude Include="Battle\RealTimeBattle.h" />
     <ClInclude Include="Battle\SwordHitbox.h" />

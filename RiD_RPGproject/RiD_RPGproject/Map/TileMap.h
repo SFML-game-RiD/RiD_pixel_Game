@@ -13,6 +13,8 @@ namespace RTB
 		sf::Sprite sprite;
 		sf::Vector2u size;
 		sf::RectangleShape hitbox;
+		int width;
+		int height;
 	};
 	class TileMap
 	{

@@ -9,7 +9,7 @@ namespace RTB
 		_health_points = health_points;
 		_character_sprite = new sf::Sprite;
 		_movement = new RiD::Movement(texture, _character_sprite);
-		_hitbox = new Hitbox(_character_sprite, { 32.f, 48.f }, { -17.f,-16.f });
+		_hitbox = new Hitbox(_character_sprite, { 24.f, 46.f }, { -12.f,-16.f });
 		_hp_bar = new HPBar(_character_sprite, _health_points);
 		_is_alive = true;
 	}

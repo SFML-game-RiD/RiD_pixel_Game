@@ -6,6 +6,7 @@
 #include "SwordHitbox.h"
 #include "Arrow.h"
 #include "../Map/TileMap.h"
+#include "OrientedHitbox.h"
 
 
 namespace RTB
@@ -50,5 +51,7 @@ namespace RTB
 		//@param list_of_bots list of possible enemies
 		//@param window render window
 		void dealDamage(sf::Time time, std::list<Bot*>& list_of_bots, sf::RenderTarget& window);
+
+		bool checkMapCollision(const sf::RectangleShape& Object1, const sf::RectangleShape& Object2);
 	};
 }

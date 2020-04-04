@@ -123,9 +123,11 @@ namespace RTB
 			_objects_textures[_position_x][_position_y].hitbox.setOutlineColor(sf::Color::Green);
 			_objects_textures[_position_x][_position_y].hitbox.setOutlineThickness(1.f);
 			_objects_textures[_position_x][_position_y].hitbox.setFillColor(sf::Color::Transparent);
-			_objects_textures[_position_x][_position_y].hitbox.setPosition(_objects_textures[_position_x][_position_y].sprite.getPosition().x + 14.f, _objects_textures[_position_x][_position_y].sprite.getPosition().y + 70);
+			_objects_textures[_position_x][_position_y].hitbox.setPosition(_objects_textures[_position_x][_position_y].sprite.getPosition().x + 18.f, _objects_textures[_position_x][_position_y].sprite.getPosition().y + 68);
 			_objects_textures[_position_x][_position_y].hitbox.rotate(-30);
 			_objects_textures[_position_x][_position_y].hitbox.setSize(sf::Vector2f(45, 12));
+			_objects_textures[_position_x][_position_y].width = _objects_textures[_position_x][_position_y].hitbox.getSize().x;
+			_objects_textures[_position_x][_position_y].height = _objects_textures[_position_x][_position_y].hitbox.getSize().y;
 			break;
 		case sign:
 			_objects_textures[_position_x][_position_y].sprite.setTexture(_asset_manager.getTexture("sign"));
