@@ -13,7 +13,7 @@ namespace MP
 
 		/************************************************* PRIVATE ATTRIBUTES *************************************************/
 
-		MP::Map* _map_copy;
+		MP::Map * _map_copy;
 
 		sf::Vector2f _start;//Starting coordinates.
 
@@ -88,13 +88,13 @@ namespace MP
 		/************************************************* PUBLIC METHODS *************************************************/
 
 		//Sets all pointers to nullptr.
-		PathCreator();
+		PathCreator(Map& aMap);
 
 		//Copies element's head, last coord and last line number, for pathCreator.
 		PathCreator& operator=(Map& aMap);
 
 		//Findes path from start to stop. Returns mapElement list.
-		MapElement*& indPath(sf::Vector2f start, sf::Vector2f stop);
+		MapElement*& findPath(sf::Vector2f start, sf::Vector2f stop);
 
 	};
 }

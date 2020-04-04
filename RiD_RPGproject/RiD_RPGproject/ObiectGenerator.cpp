@@ -24,7 +24,11 @@ void MP::ObiectGenerator::_generate_trees(ObiectManager& aObiectManager)
 				sf::Vector2f tmpCoord = tmp->getLandTile().getObiectCoord();
 				tmpCoord.x += _random_number() % spawnRange;
 				tmpCoord.y += _random_number() % spawnRange;
-				Tree* tmpTree = new Tree(&_a_asset_manager.getTexture("tree"),tmpCoord);
+
+				float newScale =(( _random_number() % 50)*0.01)+0.8;
+				
+
+				Tree* tmpTree = new Tree(&_a_asset_manager.getTexture("tree"),tmpCoord,newScale);
 				aObiectManager.getTreeList()->push_back(*tmpTree);
 				counter--;
 	
@@ -62,7 +66,7 @@ void MP::ObiectGenerator::_generate_map(ObiectManager& aObiectManager)
 		{
 			for (int i = 0; i < line.length(); i++)
 			{
-				MapElement* tmp = new MapElement(_a_asset_manager,x, y, line[i]);
+				MapElement* tmp = new MapElement(_a_asset_manager,x, y, line[i],aObiectManager.getMap().getWalkableCounter());
 				aObiectManager.getMap().addMapElement(aObiectManager.getMapElementHead(), tmp);
 				x += blockLength;
 			}

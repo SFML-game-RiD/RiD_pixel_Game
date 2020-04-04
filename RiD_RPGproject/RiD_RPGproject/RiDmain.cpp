@@ -17,6 +17,14 @@ void RiD::RiDmain::_create_window()
 	_a_camera.changeCamera(_a_obiect_manager.getPlayer()->getObiectCoord());
 
 	//##############################################
+
+	//TEST !! !! !! !! 
+
+
+	_a_obiect_manager.getComputerPlayer()->choseDestination(_a_obiect_manager.getMap());
+
+
+	//TEST end !! !! !! 
 	while (_a_camera.getWindow().isOpen()) //program main loop
 	{
 
@@ -69,6 +77,8 @@ void RiD::RiDmain::_calculate()
 	_a_calculator.startProcedureCameraZoom(_a_task_manager,_a_camera);
 
 	_a_calculator.startProcedureCorrectCamera(_a_task_manager,_a_obiect_manager.getPlayer()->getObiectCoord(), _a_camera);
+
+	_a_calculator.startProcedureComputerPlayer(*_a_obiect_manager.getComputerPlayer(), _clock, _a_obiect_manager.getMap());
 }
 
 void RiD::RiDmain::_draw(sf::RenderWindow & mainWindow)
@@ -82,10 +92,10 @@ void RiD::RiDmain::_draw(sf::RenderWindow & mainWindow)
 
 RiD::RiDmain::RiDmain(int width, int height, std::string title)
 {
-	//sf::VideoMode mode = sf::VideoMode::getFullscreenModes()[0];
-	//_a_camera.getWindow().create(mode, title, sf::Style::Close | sf::Style::Fullscreen);
+	sf::VideoMode mode = sf::VideoMode::getFullscreenModes()[0];
+	_a_camera.getWindow().create(mode, title, sf::Style::Close | sf::Style::Fullscreen);
 	
-	_a_camera.getWindow().create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
-	_a_camera.getWindow().setFramerateLimit(RiD::ConfigurationLoader::getIntData("video settings", "gameFPS"));
+	/*_a_camera.getWindow().create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
+	_a_camera.getWindow().setFramerateLimit(RiD::ConfigurationLoader::getIntData("video settings", "gameFPS"));*/
 	this->_create_window();
 }

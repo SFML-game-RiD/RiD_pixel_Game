@@ -2,7 +2,6 @@
 #define _PATHNODE_H_
 
 #include "MapElement.h"
-#include <Windows.h>
 
 namespace MP
 {

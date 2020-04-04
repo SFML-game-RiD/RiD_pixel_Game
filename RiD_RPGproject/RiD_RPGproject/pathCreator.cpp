@@ -1,15 +1,16 @@
 #include "pathCreator.h"
 
 
-MP::PathCreator::PathCreator()
+MP::PathCreator::PathCreator(Map &aMap)
 {
+	_map_copy = &aMap;
 	_path_map_element_for_export = nullptr;
 	_path = nullptr;
 	_closed_list = nullptr;
 	_open_list = nullptr;
 }
 
-MP::MapElement *& MP::PathCreator::indPath(sf::Vector2f start, sf::Vector2f stop)
+MP::MapElement *& MP::PathCreator::findPath(sf::Vector2f start, sf::Vector2f stop)
 {
 
 	_path_map_element_for_export = nullptr;
@@ -62,7 +63,8 @@ MP::PathCreator & MP::PathCreator::operator=(MP::Map & aMap)
 MP::PathCreator & MP::PathCreator::operator^(MP::PathNode *& aNode)
 {
 	RiD::AssetManager tempAsset;
-	MapElement *tmpElementPtr = new MapElement(tempAsset,aNode->getMapElementAddress()->getLandTile().getObiectCoord().x, aNode->getMapElementAddress()->getLandTile().getObiectCoord().y,'~');
+	int uslessInt;
+	MapElement *tmpElementPtr = new MapElement(tempAsset,aNode->getMapElementAddress()->getLandTile().getObiectCoord().x, aNode->getMapElementAddress()->getLandTile().getObiectCoord().y,'~',uslessInt);
 
 	if (_path_map_element_for_export == nullptr)
 	{

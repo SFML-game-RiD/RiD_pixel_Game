@@ -61,3 +61,10 @@ void MP::Calculator::startProcedureCorrectCamera(TaskManager& aTaskManager, sf::
 	aCamera.changeCamera(newCoord);
 }
 
+void MP::Calculator::startProcedureComputerPlayer(MP::ComputerPlayer& aComputerPlayer, sf::Clock& aGameClock,Map &aMap)
+{
+	aComputerPlayer.getNextTask(aMap);
+	aComputerPlayer.computerPlayerAnimation(aGameClock);
+	aComputerPlayer.computerPlayerMove(aGameClock);
+}
+

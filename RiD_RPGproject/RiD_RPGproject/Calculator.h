@@ -22,6 +22,8 @@ namespace MP
 		void startProcedureCameraZoom(TaskManager& aTaskManager, Camera &aCamera);
 
 		void startProcedureCorrectCamera(TaskManager& aTaskManager, sf::Vector2f newCoord, Camera& aCamera);
+
+		void startProcedureComputerPlayer(MP::ComputerPlayer& aComputerPlayer, sf::Clock& aGameClock,Map& aMap);
 	};
 }
 #endif

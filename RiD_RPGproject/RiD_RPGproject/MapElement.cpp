@@ -30,7 +30,7 @@ std::shared_ptr<MP::Places>& MP::MapElement::getPlace()
 }
 
 
-MP::MapElement::MapElement(RiD::AssetManager& aAssetManager, int cordX, int cordY, char mark)
+MP::MapElement::MapElement(RiD::AssetManager& aAssetManager, int cordX, int cordY, char mark, int &walkableCount)
 {
 	_up_element = nullptr;
 	_down_element = nullptr;
@@ -44,21 +44,29 @@ MP::MapElement::MapElement(RiD::AssetManager& aAssetManager, int cordX, int cord
 	if (mark == RiD::ConfigurationLoader::getStringData("game settings", "treeWallMark")[0])
 		_walkable = false;
 	else
+	{
+		walkableCount++;
 		_walkable = true;
+	}
+	if (mark != '~')
+	{
+		_land_tile = std::make_shared<MP::Land>(&aAssetManager.getTexture("land"), cordX, cordY);
 
-	_land_tile = std::make_shared<MP::Land>(&aAssetManager.getTexture("land"),cordX, cordY);
+		//Creating places.
 
-	//Creating places.
-
-	if (mark == RiD::ConfigurationLoader::getStringData("village", "mark")[0])
-		_create_village(&aAssetManager.getTexture("village"), _land_tile->getObiectCoord());
-	else if (mark == RiD::ConfigurationLoader::getStringData("castle", "mark")[0])
-		_create_castle(&aAssetManager.getTexture("castle"), _land_tile->getObiectCoord());
-	else if (mark == RiD::ConfigurationLoader::getStringData("town", "mark")[0])
-		_create_town(&aAssetManager.getTexture("town"), _land_tile->getObiectCoord());
+		if (mark == RiD::ConfigurationLoader::getStringData("village", "mark")[0])
+			_create_village(&aAssetManager.getTexture("village"), _land_tile->getObiectCoord());
+		else if (mark == RiD::ConfigurationLoader::getStringData("castle", "mark")[0])
+			_create_castle(&aAssetManager.getTexture("castle"), _land_tile->getObiectCoord());
+		else if (mark == RiD::ConfigurationLoader::getStringData("town", "mark")[0])
+			_create_town(&aAssetManager.getTexture("town"), _land_tile->getObiectCoord());
+		else
+			_a_place = nullptr;
+	}
 	else
-		_a_place = nullptr;
-
+	{
+		_land_tile = std::make_shared<MP::Land>(cordX, cordY);
+	}
 }
 
 MP::MapElement*& MP::MapElement::getNextElement()

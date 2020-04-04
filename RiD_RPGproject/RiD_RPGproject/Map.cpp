@@ -4,6 +4,8 @@
 
 void MP::Map::addMapElement(MapElement*& head, MapElement*& newElement)
 {
+	
+
 	if (head == nullptr)
 		head = newElement;
 	else
@@ -66,6 +68,8 @@ void MP::Map::_delete_map(MapElement*& head)
 
 MP::Map::Map()
 {
+	_walkable_map_element_count = 0;
+	_random_value.seed(time(0));
 	_map_element_list = nullptr;
 	_block_length = RiD::ConfigurationLoader::getIntData("game settings", "blockLength");
 }
@@ -106,4 +110,28 @@ MP::MapElement* MP::Map::findElementAddressSquareRange(sf::Vector2f coordinates,
 void MP::Map::copyMapElementList(MapElement* aMapElementList)
 {
 	_map_element_list = aMapElementList;
+}
+
+MP::MapElement* MP::Map::returnRandomWalkableElement()
+{
+	int counter = _random_value() % _walkable_map_element_count;
+	MapElement* tmp = _map_element_list;
+
+	while (counter != 0 and tmp!=nullptr)
+	{
+		if (tmp->isWalkable())
+		{
+			counter--;
+			if (counter == 0)
+				return tmp;
+		}
+		tmp = tmp->getNextElement();
+	}
+
+	return nullptr;
+}
+
+int& MP::Map::getWalkableCounter()
+{
+	return _walkable_map_element_count;
 }

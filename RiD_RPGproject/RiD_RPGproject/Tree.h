@@ -7,9 +7,12 @@ namespace MP
 {
 	class Tree :public StaticObiect
 	{
+	private:
+
+
 	public:
 
-		Tree(sf::Texture* texturePtr, sf::Vector2f coord);
+		Tree(sf::Texture* texturePtr, sf::Vector2f coord, float treeScale);
 
 		void treeAnimation(sf::Clock& globalClock);
 

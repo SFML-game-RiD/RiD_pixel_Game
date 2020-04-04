@@ -6,4 +6,9 @@ MP::Land::Land(sf::Texture* texturePtr, int x, int y)
 
 	setObiectCoord(x, y);
 }
+
+MP::Land::Land(int x, int y)
+{
+	setObiectCoord(x, y);
+}
  

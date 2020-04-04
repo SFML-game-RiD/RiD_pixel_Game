@@ -13,6 +13,8 @@ namespace MP
 
 		Land(sf::Texture* texturePtr, int x,int y);
 
+		Land( int x,int y); //Is only use for path creator, stores coordination.
+
 	};
 }
 #endif // !_LAND_H_

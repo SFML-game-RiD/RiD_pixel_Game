@@ -11,7 +11,7 @@ namespace MP
 	class MapElement
 	{
 	private:
-	
+
 		MapElement* _up_element, * _down_element, * _left_element, * _right_element;
 
 		MapElement* _next_element;
@@ -37,7 +37,7 @@ namespace MP
 
 		std::shared_ptr<Places>& getPlace();
 
-		MapElement(RiD::AssetManager &aAssetManager,int cordX,int cordY,char mark);
+		MapElement(RiD::AssetManager &aAssetManager,int cordX,int cordY,char mark,int &walkableCounter);
 
 
 

@@ -81,24 +81,3 @@ void MP::MapMove::movePixelLeft(ActiveObiect& obiect)
 {
 	obiect.setObiectCoord(obiect.getObiectCoord().x - obiect.getVelocity(), obiect.getObiectCoord().y);
 }
-
-
-//void MP::MapMove::movePixelDown(ActiveObiect & obiect)
-//{
-//	obiect.setObiectCoord(obiect.getObiectCoord().first, obiect.getObiectCoord().second + obiect.getVelocity());
-//}
-//
-//void MP::MapMove::movePixelUp(ActiveObiect & obiect)
-//{
-//	obiect.setObiectCoord(obiect.getObiectCoord().first, obiect.getObiectCoord().second - obiect.getVelocity());
-//}
-//
-//void MP::MapMove::movePixelRight(ActiveObiect & obiect)
-//{
-//	obiect.setObiectCoord(obiect.getObiectCoord().first+ obiect.getVelocity(), obiect.getObiectCoord().second);
-//}
-//
-//void MP::MapMove::movePixelLeft(ActiveObiect & obiect)
-//{
-//	obiect.setObiectCoord(obiect.getObiectCoord().first- obiect.getVelocity(), obiect.getObiectCoord().second);
-//}
