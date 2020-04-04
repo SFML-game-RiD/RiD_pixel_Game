@@ -102,3 +102,8 @@ MP::MapElement* MP::Map::findElementAddressSquareRange(sf::Vector2f coordinates,
 		findElementAddressSquareRange(coordinates, mapElementHead->getNextElement());
 	}
 }
+
+void MP::Map::copyMapElementList(MapElement* aMapElementList)
+{
+	_map_element_list = aMapElementList;
+}

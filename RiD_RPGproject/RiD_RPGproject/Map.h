@@ -31,6 +31,8 @@ namespace MP
 
 		MapElement* findElementAddressSquareRange(sf::Vector2f coordinates, MapElement*& mapElementHead);
 
+		void copyMapElementList(MapElement* aMapElementList);
+
 
 	};
 }

@@ -91,6 +91,11 @@ char MP::MapElement::getMark()
 	return _mark;
 }
 
+void MP::MapElement::setNextPtr(MapElement* aMapElement)
+{
+	_next_element = aMapElement;
+}
+
 void MP::MapElement::setUpPtr(MapElement* aMapElement)
 {
 	_up_element = aMapElement;
@@ -114,4 +119,9 @@ void MP::MapElement::setRightPtr(MapElement* aMapElement)
 bool MP::MapElement::isWalkable()
 {
 	return _walkable;
+}
+
+MP::MapElement* MP::MapElement::returnAddress()
+{
+	return this;
 }

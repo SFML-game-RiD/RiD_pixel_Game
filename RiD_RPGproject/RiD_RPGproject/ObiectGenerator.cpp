@@ -5,6 +5,7 @@
 #include "MapAnimation.h"
 #include "Land.h"
 #include "Engine/ConfigurationLoader.h"
+#include "ComputerPlayer.h"
 
 void MP::ObiectGenerator::_generate_trees(ObiectManager& aObiectManager)
 {
@@ -73,6 +74,9 @@ void MP::ObiectGenerator::_generate_map(ObiectManager& aObiectManager)
 
 void MP::ObiectGenerator::_generate_computer_player(ObiectManager& aObiectManager)
 {
+	std::shared_ptr<ComputerPlayer> tmp = std::make_shared<ComputerPlayer>(&_a_asset_manager.getTexture("player"));
+
+	aObiectManager.addObiect(tmp);
 }
 
 MP::ObiectGenerator::ObiectGenerator()
@@ -92,4 +96,5 @@ void MP::ObiectGenerator::generateObiects(ObiectManager& aObiectManager)
 	_generate_map(aObiectManager);
 	_generate_trees(aObiectManager);
 	_generate_player(aObiectManager);
+	_generate_computer_player(aObiectManager);
 }

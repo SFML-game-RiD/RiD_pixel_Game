@@ -9,6 +9,11 @@ bool MP::ObiectManager::_access()
 		return false;
 }
 
+std::shared_ptr<MP::ComputerPlayer>& MP::ObiectManager::getComputerPlayer()
+{
+	return _computer_player;
+}
+
 MP::ObiectManager::ObiectManager()
 { 
 	_mod_number = RiD::ConfigurationLoader::getIntData("game settings", "randModulo");
@@ -23,6 +28,11 @@ MP::ObiectManager::~ObiectManager()
 void MP::ObiectManager::addObiect(std::shared_ptr<Player> newPlayer)
 {
 	_player = newPlayer;
+}   
+
+void MP::ObiectManager::addObiect(std::shared_ptr<ComputerPlayer> newComputerPlayer)
+{
+	_computer_player = newComputerPlayer;
 }
 
 std::shared_ptr<MP::Player> & MP::ObiectManager::getPlayer()

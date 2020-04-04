@@ -54,6 +54,9 @@ void MP::ObiectDrawer::drawActiveObiects(sf::RenderWindow& mainWindow, ObiectMan
 
 
 	mainWindow.draw(aObiectManager.getPlayer()->animationMaker.getObiectSprite());
+	
+	
+	mainWindow.draw(aObiectManager.getComputerPlayer()->animationMaker.getObiectSprite());
 
 
 

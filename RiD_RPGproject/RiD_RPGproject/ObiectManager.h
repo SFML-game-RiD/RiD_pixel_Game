@@ -39,6 +39,8 @@ namespace MP
 		~ObiectManager();
 
 		void addObiect(std::shared_ptr<Player> newPlayer);
+		
+		void addObiect(std::shared_ptr<ComputerPlayer> newComputerPlayer);
 
 		std::shared_ptr<Player> & getPlayer();
 		
@@ -49,6 +51,8 @@ namespace MP
 		std::list<Tree> * getTreeList();
 
 		bool _access();
+
+		std::shared_ptr<ComputerPlayer>& getComputerPlayer();
 	};
 
 }

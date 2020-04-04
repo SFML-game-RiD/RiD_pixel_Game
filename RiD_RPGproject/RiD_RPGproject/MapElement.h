@@ -40,6 +40,8 @@ namespace MP
 		MapElement(RiD::AssetManager &aAssetManager,int cordX,int cordY,char mark);
 
 
+
+
 		MapElement *& getNextElement();
 
 		MapElement*& getUpPtr();
@@ -52,6 +54,8 @@ namespace MP
 
 		char getMark();
 
+		void setNextPtr(MapElement* aMapElement);
+
 		void setUpPtr(MapElement* aMapElement);
 
 		void setDownPtr(MapElement* aMapElement);
@@ -61,6 +65,8 @@ namespace MP
 		void setRightPtr(MapElement* aMapElement);
 
 		bool isWalkable();
+
+		MapElement* returnAddress();
 	};
 }
 #endif

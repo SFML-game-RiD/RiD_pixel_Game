@@ -101,7 +101,11 @@
     <ClCompile Include="Camera.cpp">
       <Filter>the bosses</Filter>
     </ClCompile>
-    <ClCompile Include="ComputerPlayer.cpp" />
+    <ClCompile Include="ComputerPlayer.cpp">
+      <Filter>OBIECT\active obiects\obiects pawn\player</Filter>
+    </ClCompile>
+    <ClCompile Include="pathCreator.cpp" />
+    <ClCompile Include="pathNode.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Animation.h">
@@ -203,7 +207,11 @@
     <ClInclude Include="Camera.h">
       <Filter>the bosses</Filter>
     </ClInclude>
-    <ClInclude Include="ComputerPlayer.h" />
+    <ClInclude Include="ComputerPlayer.h">
+      <Filter>OBIECT\active obiects\obiects pawn\player</Filter>
+    </ClInclude>
+    <ClInclude Include="pathCreator.h" />
+    <ClInclude Include="pathNode.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Mr wroldwide">

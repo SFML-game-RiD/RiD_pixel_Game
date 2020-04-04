@@ -178,6 +178,8 @@
     <ClCompile Include="ObiectDrawer.cpp" />
     <ClCompile Include="ObiectGenerator.cpp" />
     <ClCompile Include="ObiectManager.cpp" />
+    <ClCompile Include="pathCreator.cpp" />
+    <ClCompile Include="pathNode.cpp" />
     <ClCompile Include="PawnObiect.cpp" />
     <ClCompile Include="Places.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -214,6 +216,8 @@
     <ClInclude Include="ObiectDrawer.h" />
     <ClInclude Include="ObiectGenerator.h" />
     <ClInclude Include="ObiectManager.h" />
+    <ClInclude Include="pathCreator.h" />
+    <ClInclude Include="pathNode.h" />
     <ClInclude Include="PawnObiect.h" />
     <ClInclude Include="Places.h" />
     <ClInclude Include="Player.h" />
