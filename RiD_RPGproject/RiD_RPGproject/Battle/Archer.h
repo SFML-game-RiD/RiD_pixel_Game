@@ -1,22 +1,18 @@
 #pragma once
 
 #include "Character.h"
-#include <cmath>
 
 namespace RTB
 {
-	class Player
-		:public Character
+	class Archer :
+		public Character
 	{
 	private:
 		Arrow* _arrows = nullptr;
 		short _arrows_count;
-		void _dealSwordDamage(std::list<Character*>& list_of_bots);
-		void _dealBowDamage(std::list<Character*>& list_of_bots);
-		void _isColidingWithTile(std::vector<std::vector<_obj>>& map_objects);
 	public:
-		Player(sf::Texture texture, short health_points, sf::Texture& arrow_texture);
-		~Player();
+		Archer(sf::Texture texture, short health_points, sf::Texture& arrow_texture);
+		~Archer();
 
 		//Function responsible for all of the player moves and behaviors
 		void update(sf::Time time, std::vector<std::vector<_obj>>& map_objects);

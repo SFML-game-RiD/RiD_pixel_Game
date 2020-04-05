@@ -1,12 +1,12 @@
 #pragma once
 
 #include "Player.h"
-#include <iostream>
+
 namespace RTB
 {
-	void Player::_dealSwordDamage(std::list<Bot*>& list_of_bots)
+	void Player::_dealSwordDamage(std::list<Character*>& list_of_bots)
 	{
-		for (std::list<Bot*>::iterator iterator = list_of_bots.begin();//Iterates through list of bots...
+		for (std::list<Character*>::iterator iterator = list_of_bots.begin();//Iterates through list of bots...
 			iterator != list_of_bots.end(); iterator++)
 		{
 			if (_sword_hitbox->checkIntersection((*iterator)->getHitbox().getGlobalBounds()) == true)//checks if sword intersected one of them...
@@ -17,9 +17,9 @@ namespace RTB
 		_movement->notReadyToDealSwordDamage();
 	}
 
-	void Player::_dealBowDamage(std::list<Bot*>& list_of_bots)//as above
+	void Player::_dealBowDamage(std::list<Character*>& list_of_bots)//as above
 	{
-		for (std::list<Bot*>::iterator iterator = list_of_bots.begin();
+		for (std::list<Character*>::iterator iterator = list_of_bots.begin();
 			iterator != list_of_bots.end(); iterator++)
 		{
 			if (_arrows->isFlying() && _arrows->checkIntersection((*iterator)->getHitbox().getGlobalBounds()) == true)
@@ -31,23 +31,76 @@ namespace RTB
 
 	void Player::_isColidingWithTile(std::vector<std::vector<_obj>>& map_objects)
 	{
-		std::vector< std::vector<_obj> >::iterator row;
-		std::vector<_obj>::iterator col;
-		for (row = map_objects.begin(); row != map_objects.end(); row++) {
-			for (col = row->begin(); col != row->end(); col++) {
-				if (checkMapCollision(col->hitbox,_hitbox->getRectangle()))
+		sf::Vector2i character_position = { (int)(((2 * _character_sprite->getPosition().y + _character_sprite->getPosition().x) / 2) / 25), (int)(((2 * _character_sprite->getPosition().y - _character_sprite->getPosition().x) / 2) / 25) };
+		unsigned int height = map_objects[0].size(), width = map_objects.size();
+	
+		if (character_position.y > height -1 || character_position.x < 0 || character_position.x > width-1 || character_position.y < 0)//checks if character is situated "inside" the map
+		{
+			if (_direction == up)
+				_moving_up = false;
+
+			else if (_direction == down)
+				_moving_down = false;
+
+			else if (_direction == right)
+				_moving_right = false;
+
+			else if (_direction == left)
+				_moving_left = false;
+		}
+		else
+		{
+			short furthest_up = 0, furthest_down = 0, furthest_left = 0, furthest_right = 0;
+			//up
+			short iterator_y = character_position.y;
+			while (furthest_up < 6&& iterator_y > 0)
+			{
+				furthest_up++;
+				iterator_y--;
+			}
+			//down
+			iterator_y = character_position.y;
+			while (furthest_down < 6 && iterator_y < height)
+			{
+				furthest_down++;
+				iterator_y++;
+			}
+			//left
+			short iterator_x = character_position.x;
+			while (furthest_left < 6 && iterator_x > 0)
+			{
+				furthest_left++;
+				iterator_x--;
+			}
+			//right
+			iterator_x = character_position.x;
+			while (furthest_right < 6  && iterator_x < width)
+			{
+				furthest_right++;
+				iterator_x++;
+			}
+			int start_x = character_position.x - furthest_left;
+			int end_x = character_position.x + furthest_right;
+			int start_y = character_position.y - furthest_up;
+			int end_y = character_position.y + furthest_down;
+			for (unsigned int i = start_x; i < end_x; ++i)
+			{
+				for (unsigned int j = start_y; j < end_y; ++j)
 				{
-					if (_direction == up)
-						_moving_up = false;
+					if (checkMapCollision(map_objects[i][j].hitbox, _hitbox->getRectangle()))
+					{
+						if (_direction == up)
+							_moving_up = false;
 
-					else if (_direction == down)
-						_moving_down = false;
+						else if (_direction == down)
+							_moving_down = false;
 
-					else if (_direction == right)
-						_moving_right = false;
+						else if (_direction == right)
+							_moving_right = false;
 
-					else if (_direction == left)
-						_moving_left = false;
+						else if (_direction == left)
+							_moving_left = false;
+					}
 				}
 			}
 		}
@@ -75,15 +128,10 @@ namespace RTB
 		delete _sword_hitbox;
 	}
 
-	void Player::setPosition(sf::Vector2f position)
-	{
-		_movement->setSpritePosition(position);
-	}
-
 	void Player::update(sf::Time time, std::vector<std::vector<_obj>>& map_objects)
 	{
 		_isColidingWithTile(map_objects);
-		
+
 
 		if ((sf::Keyboard::isKeyPressed(sf::Keyboard::A) && sf::Keyboard::isKeyPressed(sf::Keyboard::W) && _moving_left == false) ||
 			(sf::Keyboard::isKeyPressed(sf::Keyboard::A) && sf::Keyboard::isKeyPressed(sf::Keyboard::S) && _moving_left == false)) return;
@@ -132,24 +180,7 @@ namespace RTB
 		_moving_up = _moving_down = _moving_right = _moving_left = true;
 	}
 
-	void Player::render(sf::RenderWindow& window)
-	{
-		window.draw(_movement->getSprite());
-		_hitbox->render(window);
-		_hp_bar->render(window);
-	}
-
-	bool Player::isAlive()
-	{
-		return _is_alive;
-	}
-
-	sf::Vector2f Player::getPosition()
-	{
-		return _movement->getSprite().getPosition();
-	}
-
-	void Player::dealDamage(sf::Time time, std::list<Bot*>& list_of_bots, sf::RenderTarget& window)
+	void Player::dealDamage(sf::Time time, std::list<Character*>& list_of_bots, sf::RenderTarget& window)
 	{
 		//sword
 		if (_movement->isAttackTriggered())
@@ -175,37 +206,5 @@ namespace RTB
 
 		if (_arrows->isFlying() == false)
 			_movement->notReadyToShotArrow();
-	}
-	bool Player::checkMapCollision(const sf::RectangleShape& Object1, const sf::RectangleShape& Object2)
-	{
-		OrientedHitbox OH1(Object1, Object1.getSize().x, Object1.getSize().y);
-		OrientedHitbox OH2(Object2, Object2.getSize().x, Object2.getSize().y);
-
-		// Create the four distinct axes that are perpendicular to the edges of the two rectangles
-		sf::Vector2f Axes[4] = {
-			sf::Vector2f(OH1.Points[1].x - OH1.Points[0].x,
-			OH1.Points[1].y - OH1.Points[0].y),
-			sf::Vector2f(OH1.Points[1].x - OH1.Points[2].x,
-			OH1.Points[1].y - OH1.Points[2].y),
-			sf::Vector2f(OH2.Points[0].x - OH2.Points[3].x,
-			OH2.Points[0].y - OH2.Points[3].y),
-			sf::Vector2f(OH2.Points[0].x - OH2.Points[1].x,
-			OH2.Points[0].y - OH2.Points[1].y)
-		};
-
-		for (int i = 0; i < 4; i++) // For each axis...
-		{
-			float MinOH1, MaxOH1, MinOH2, MaxOH2;
-
-			// ... project the points of both OBBs onto the axis ...
-			OH1.ProjectOntoAxis(Axes[i], MinOH1, MaxOH1);
-			OH2.ProjectOntoAxis(Axes[i], MinOH2, MaxOH2);
-
-			// ... and check whether the outermost projected points of both OBBs overlap.
-			// If this is not the case, the Separating Axis Theorem states that there can be no collision between the rectangles
-			if (!((MinOH2 <= MaxOH1) && (MaxOH2 >= MinOH1)))
-				return false;
-		}
-		return true;
 	}
 }

@@ -152,14 +152,14 @@ namespace RTB
 			break;
 		case chest:
 			_objects_textures[_position_x][_position_y].sprite.setTexture(_asset_manager.getTexture("chest"));
-			_objects_textures[_position_x][_position_y].sprite.setPosition(isometric.x + 14, isometric.y -30);
+			_objects_textures[_position_x][_position_y].sprite.setPosition(isometric.x + 14, isometric.y - 30);
 			_objects_textures[_position_x][_position_y].size = _asset_manager.getTexture("chest").getSize();
 			_objects_textures[_position_x][_position_y].hitbox.setOutlineColor(sf::Color::Green);
 			_objects_textures[_position_x][_position_y].hitbox.setOutlineThickness(1.f);
 			_objects_textures[_position_x][_position_y].hitbox.setFillColor(sf::Color::Transparent);
-			_objects_textures[_position_x][_position_y].hitbox.setPosition(_objects_textures[_position_x][_position_y].sprite.getPosition().x +18, _objects_textures[_position_x][_position_y].sprite.getPosition().y +50);
+			_objects_textures[_position_x][_position_y].hitbox.setPosition(_objects_textures[_position_x][_position_y].sprite.getPosition().x + 18, _objects_textures[_position_x][_position_y].sprite.getPosition().y + 50);
 			_objects_textures[_position_x][_position_y].hitbox.setSize(sf::Vector2f(38, 18));
-			break;
+			break; 
 
 		}
 	}
@@ -192,6 +192,8 @@ namespace RTB
 		for (unsigned int i = 0; i < _height; ++i)
 			_objects_textures[i].resize(_width);
 
+		std::ofstream tiles_positions("tiles_positions.txt");//////////////
+
 		for (unsigned int i = 0; i < _height; ++i)
 		{
 			for (unsigned int j = 0; j < _width; ++j)
@@ -200,6 +202,7 @@ namespace RTB
 				_point.y = j * 25;
 				_tile_type = _level[i][j];
 				this->_placeTile(i, j);
+				tiles_positions << "("<<_twoDToIso().x << "," << _twoDToIso().y<<")";
 
 				_tile_type = _flora[i][j];
 				this->_placeFlora(i, j);
@@ -207,6 +210,7 @@ namespace RTB
 				_tile_type = _objects[i][j];
 				this->_placeObjects(i, j);
 			}
+			tiles_positions << std::endl;
 		}
 	}
 

@@ -1,33 +1,35 @@
 #pragma once
 
-#include "Bot.h"
+#include "Swordsman.h"
 
 namespace RTB
 {
-	Bot::Bot(sf::Texture texture, short health_points)
+	Swordsman::Swordsman(sf::Texture texture, short health_points)
 	{
 		_health_points = health_points;
 		_character_sprite = new sf::Sprite;
 		_movement = new RiD::Movement(texture, _character_sprite);
 		_hitbox = new Hitbox(_character_sprite, { 24.f, 46.f }, { -12.f,-16.f });
+		_sword_hitbox = new SwordHitbox(_character_sprite);
 		_hp_bar = new HPBar(_character_sprite, _health_points);
 		_is_alive = true;
 	}
 
-	Bot::~Bot()
+	Swordsman::~Swordsman()
 	{
 		delete _movement;
 		delete _hitbox;
 		delete _character_sprite;
 		delete _hp_bar;
+		delete _sword_hitbox;
 	}
 
-	void Bot::setPosition(sf::Vector2f position)
+	void Swordsman::setPosition(sf::Vector2f position)
 	{
 		_movement->setSpritePosition(position);
 	}
 
-	const void Bot::update(sf::Time time)
+	void Swordsman::update(sf::Time time, std::vector<std::vector<_obj>>& map_objects)
 	{
 		/*_movement->walkingUp(time);
 		_movement->walkingDown(time);
@@ -45,28 +47,32 @@ namespace RTB
 		}
 	}
 
-	void Bot::render(sf::RenderWindow& window)
+	void Swordsman::render(sf::RenderWindow& window)
 	{
 		window.draw(_movement->getSprite());
 		_hitbox->render(window);
 		_hp_bar->render(window);
 	}
 
-	bool Bot::isAlive()
+	bool Swordsman::isAlive()
 	{
 		return _is_alive;
 	}
-	sf::Vector2f Bot::getPosition()
+	sf::Vector2f Swordsman::getPosition()
 	{
 		return _movement->getSprite().getPosition();
 	}
 
-	sf::RectangleShape Bot::getHitbox()
+	sf::RectangleShape Swordsman::getHitbox()
 	{
 		return _hitbox->getRectangle();
 	}
 
-	void Bot::subtractHP(short value)
+	void Swordsman::dealDamage(sf::Time time, std::list<Swordsman*>& list_of_Swordsmans, sf::RenderTarget& window)
+	{
+	}
+
+	void Swordsman::subtractHP(short value)
 	{
 		_health_points -= value;
 		_hp_bar->shortenBar(value);

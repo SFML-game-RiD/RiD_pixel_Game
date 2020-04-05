@@ -41,13 +41,7 @@
     <ClCompile Include="Battle\SwordHitbox.cpp">
       <Filter>RealTimeBattle\Hitboxes</Filter>
     </ClCompile>
-    <ClCompile Include="Battle\Player.cpp">
-      <Filter>RealTimeBattle\Characters</Filter>
-    </ClCompile>
     <ClCompile Include="Battle\Character.cpp">
-      <Filter>RealTimeBattle\Characters</Filter>
-    </ClCompile>
-    <ClCompile Include="Battle\Bot.cpp">
       <Filter>RealTimeBattle\Characters</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Movement.cpp">
@@ -55,6 +49,15 @@
     </ClCompile>
     <ClCompile Include="Battle\OrientedHitbox.cpp">
       <Filter>RealTimeBattle\Hitboxes</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\Player.cpp">
+      <Filter>RealTimeBattle\Characters\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\Swordsman.cpp">
+      <Filter>RealTimeBattle\Characters\Bots</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\Archer.cpp">
+      <Filter>RealTimeBattle\Characters\Bots</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -97,13 +100,7 @@
     <ClInclude Include="Battle\SwordHitbox.h">
       <Filter>RealTimeBattle\Hitboxes</Filter>
     </ClInclude>
-    <ClInclude Include="Battle\Player.h">
-      <Filter>RealTimeBattle\Characters</Filter>
-    </ClInclude>
     <ClInclude Include="Battle\Character.h">
-      <Filter>RealTimeBattle\Characters</Filter>
-    </ClInclude>
-    <ClInclude Include="Battle\Bot.h">
       <Filter>RealTimeBattle\Characters</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Movement.h">
@@ -111,6 +108,15 @@
     </ClInclude>
     <ClInclude Include="Battle\OrientedHitbox.h">
       <Filter>RealTimeBattle\Hitboxes</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\Player.h">
+      <Filter>RealTimeBattle\Characters\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\Swordsman.h">
+      <Filter>RealTimeBattle\Characters\Bots</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\Archer.h">
+      <Filter>RealTimeBattle\Characters\Bots</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -131,6 +137,12 @@
     </Filter>
     <Filter Include="RealTimeBattle\Characters">
       <UniqueIdentifier>{e44483cf-abce-459a-a607-d456ce7706f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RealTimeBattle\Characters\Bots">
+      <UniqueIdentifier>{46b01904-74ab-49a4-9624-73121cd6672e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RealTimeBattle\Characters\Player">
+      <UniqueIdentifier>{c0d5cf8e-2dab-494a-96c6-4a702ca4e545}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -153,9 +153,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Battle\Archer.cpp" />
     <ClCompile Include="Battle\Arrow.cpp" />
     <ClCompile Include="Battle\ArrowHitbox.cpp" />
-    <ClCompile Include="Battle\Bot.cpp" />
     <ClCompile Include="Battle\Character.cpp" />
     <ClCompile Include="Battle\Hitbox.cpp" />
     <ClCompile Include="Battle\HPBar.cpp" />
@@ -163,6 +163,7 @@
     <ClCompile Include="Battle\Player.cpp" />
     <ClCompile Include="Battle\RealTimeBattle.cpp" />
     <ClCompile Include="Battle\SwordHitbox.cpp" />
+    <ClCompile Include="Battle\Swordsman.cpp" />
     <ClCompile Include="Engine\Animation.cpp" />
     <ClCompile Include="Engine\AssetManager.cpp" />
     <ClCompile Include="Engine\ConfigurationLoader.cpp" />
@@ -176,9 +177,9 @@
     <ClCompile Include="Map\TileMap.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Battle\Archer.h" />
     <ClInclude Include="Battle\Arrow.h" />
     <ClInclude Include="Battle\ArrowHitbox.h" />
-    <ClInclude Include="Battle\Bot.h" />
     <ClInclude Include="Battle\Character.h" />
     <ClInclude Include="Battle\Hitbox.h" />
     <ClInclude Include="Battle\HPBar.h" />
@@ -186,6 +187,7 @@
     <ClInclude Include="Battle\Player.h" />
     <ClInclude Include="Battle\RealTimeBattle.h" />
     <ClInclude Include="Battle\SwordHitbox.h" />
+    <ClInclude Include="Battle\Swordsman.h" />
     <ClInclude Include="Engine\Animation.h" />
     <ClInclude Include="Engine\AssetManager.h" />
     <ClInclude Include="Engine\ConfigurationLoader.h" />
