@@ -11,7 +11,7 @@ bool MP::ObiectManager::_access()
 
 std::shared_ptr<MP::ComputerPlayer>& MP::ObiectManager::getComputerPlayer()
 {
-	return _computer_player;
+	return _computer_player_list;
 }
 
 MP::ObiectManager::ObiectManager()
@@ -32,7 +32,7 @@ void MP::ObiectManager::addObiect(std::shared_ptr<Player> newPlayer)
 
 void MP::ObiectManager::addObiect(std::shared_ptr<ComputerPlayer> newComputerPlayer)
 {
-	_computer_player = newComputerPlayer;
+	_computer_player_list = newComputerPlayer;
 }
 
 std::shared_ptr<MP::Player> & MP::ObiectManager::getPlayer()

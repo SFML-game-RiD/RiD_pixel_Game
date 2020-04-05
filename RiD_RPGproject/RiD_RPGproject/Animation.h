@@ -6,7 +6,7 @@
 
 namespace MP
 {
-	class MapAnimation
+	class Animation
 	{
 	private:
 

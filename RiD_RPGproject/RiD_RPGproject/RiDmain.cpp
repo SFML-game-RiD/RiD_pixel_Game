@@ -18,13 +18,6 @@ void RiD::RiDmain::_create_window()
 
 	//##############################################
 
-	//TEST !! !! !! !! 
-
-
-	_a_obiect_manager.getComputerPlayer()->choseDestination(_a_obiect_manager.getMap());
-
-
-	//TEST end !! !! !! 
 	while (_a_camera.getWindow().isOpen()) //program main loop
 	{
 
@@ -92,10 +85,10 @@ void RiD::RiDmain::_draw(sf::RenderWindow & mainWindow)
 
 RiD::RiDmain::RiDmain(int width, int height, std::string title)
 {
-	sf::VideoMode mode = sf::VideoMode::getFullscreenModes()[0];
-	_a_camera.getWindow().create(mode, title, sf::Style::Close | sf::Style::Fullscreen);
+	//sf::VideoMode mode = sf::VideoMode::getFullscreenModes()[0];
+	//_a_camera.getWindow().create(mode, title, sf::Style::Close | sf::Style::Fullscreen);
 	
-	/*_a_camera.getWindow().create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
-	_a_camera.getWindow().setFramerateLimit(RiD::ConfigurationLoader::getIntData("video settings", "gameFPS"));*/
+	_a_camera.getWindow().create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
+	_a_camera.getWindow().setFramerateLimit(RiD::ConfigurationLoader::getIntData("video settings", "gameFPS"));
 	this->_create_window();
 }

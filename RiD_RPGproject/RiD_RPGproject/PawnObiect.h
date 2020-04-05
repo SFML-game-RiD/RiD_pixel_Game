@@ -3,6 +3,7 @@
 
 #include "ActiveObiect.h"
 #include "Map.h"
+
 namespace MP 
 {
 	class PawnObiect:public ActiveObiect
@@ -10,6 +11,7 @@ namespace MP
 	private:
 
 	public:
+
 
 		bool checkGoUp(Map & aMap);
 

@@ -1,7 +1,7 @@
 #ifndef _CALCULATOR_H_
 #define _CALCULATOR_H_
 
-#include "MapMove.h"
+#include "Move.h"
 #include "TaskManager.h"
 #include "Player.h"
 #include "ObiectManager.h"

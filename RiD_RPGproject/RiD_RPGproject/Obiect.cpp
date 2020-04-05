@@ -1,6 +1,5 @@
 #include "Obiect.h"
 #include "Engine/ConfigurationLoader.h"
-#include <vector>
 
 MP::Obiect::Obiect()
 {
@@ -12,7 +11,7 @@ MP::Obiect::Obiect()
 
 void MP::Obiect::setObiectCoord(int x, int y)
 {
-	animationMaker.setObiectSpritePosition(x, y);
+	aAnimation.setObiectSpritePosition(x, y);
 
 	_objCoord.x = x;
 	_objCoord.y = y;
@@ -20,7 +19,7 @@ void MP::Obiect::setObiectCoord(int x, int y)
 
 void MP::Obiect::setObiectCoord(sf::Vector2f coord)
 {
-	animationMaker.setObiectSpritePosition(coord);
+	aAnimation.setObiectSpritePosition(coord);
 	_objCoord = coord;
 }
 
@@ -32,5 +31,5 @@ sf::Vector2f  MP::Obiect::getObiectCoord()
 void MP::Obiect::setLastActiveAnimation(sf::Clock currentTime)
 {
 	_ready_animation_time = _last_animation_active = currentTime.getElapsedTime();
-	_ready_animation_time += obj_animation_sleep_time;
+	_ready_animation_time += _obj_animation_sleep_time;
 }

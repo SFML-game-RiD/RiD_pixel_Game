@@ -22,8 +22,8 @@ namespace MP
 
 			//Camera tasks
 
-			zoomIn,
-			zoomOut
+			taskZoomIn,
+			taskZoomOut
 		};
 
 	private:

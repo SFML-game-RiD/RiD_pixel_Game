@@ -9,10 +9,10 @@ void MP::ObiectDrawer::_draw_land(sf::RenderWindow& mainWindow, ObiectManager& a
 	MapElement * tmp= aObiectManager.getMapElementHead();
 	while (tmp != nullptr)
 	{
-			mainWindow.draw(tmp->getLandTile().animationMaker.getObiectSprite()); //land drawing.
+			mainWindow.draw(tmp->getLandTile().aAnimation.getObiectSprite()); //land drawing.
 			
 			if (tmp->getPlace() != nullptr)
-			mainWindow.draw(tmp->getPlace()->animationMaker.getObiectSprite());//place drawing.
+			mainWindow.draw(tmp->getPlace()->aAnimation.getObiectSprite());//place drawing.
 		
 		tmp = tmp->getNextElement();
 	}
@@ -26,7 +26,7 @@ void MP::ObiectDrawer::_draw_trees(sf::RenderWindow& mainWindow, ObiectManager& 
 
 	for(int i =0;i<aTree->size();i++)
 	{
-		mainWindow.draw(iterator->animationMaker.getObiectSprite());
+		mainWindow.draw(iterator->aAnimation.getObiectSprite());
 		iterator++;
 	}
 }
@@ -53,10 +53,10 @@ void MP::ObiectDrawer::drawActiveObiects(sf::RenderWindow& mainWindow, ObiectMan
 
 
 
-	mainWindow.draw(aObiectManager.getPlayer()->animationMaker.getObiectSprite());
+	mainWindow.draw(aObiectManager.getPlayer()->aAnimation.getObiectSprite());
 	
 	
-	mainWindow.draw(aObiectManager.getComputerPlayer()->animationMaker.getObiectSprite());
+	mainWindow.draw(aObiectManager.getComputerPlayer()->aAnimation.getObiectSprite());
 
 
 

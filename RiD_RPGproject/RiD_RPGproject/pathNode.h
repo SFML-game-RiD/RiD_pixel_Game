@@ -11,17 +11,17 @@ namespace MP
 
 		/************************************************* PRIVATE ATTRIBUTES *************************************************/
 
-		MP::MapElement* aMapElement;//Stores map element address.
+		MP::MapElement* _a_map_element;//Stores map element address.
 
-		PathNode* nextNode;//Stores next element address.
+		PathNode* _next_node;//Stores next element address.
 
-		PathNode* parent;//Stores parent address.
+		PathNode* _parent;//Stores parent address.
 
-		float costF;//Additioned costG + costH.
+		float _cost_F;//Additioned costG + costH.
 
-		float costG;//Startpoint distance.
+		float _cost_G;//Startpoint distance.
 
-		float costH;//Destination distance.
+		float _cost_H;//Destination distance.
 
 	public:
 

@@ -1,8 +1,8 @@
-#include "MapMove.h"
+#include "Move.h"
 #include <iostream>
 
 
-void MP::MapMove::moveBlockDown(ActiveObiect& obiect, sf::Clock& currentTime, TaskManager& aTaskManager)
+void MP::Move::moveBlockDown(ActiveObiect& obiect, sf::Clock& currentTime, TaskManager& aTaskManager)
 {
 	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= obiect.getReadyTime())
 	{
@@ -17,7 +17,7 @@ void MP::MapMove::moveBlockDown(ActiveObiect& obiect, sf::Clock& currentTime, Ta
 	}
 }
 
-void MP::MapMove::moveBlockUp(ActiveObiect& obiect, sf::Clock& currentTime, TaskManager& aTaskManager)
+void MP::Move::moveBlockUp(ActiveObiect& obiect, sf::Clock& currentTime, TaskManager& aTaskManager)
 {
 	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= obiect.getReadyTime())
 	{
@@ -32,7 +32,7 @@ void MP::MapMove::moveBlockUp(ActiveObiect& obiect, sf::Clock& currentTime, Task
 	}
 }
 
-void MP::MapMove::moveBlockRight(ActiveObiect& obiect, sf::Clock& currentTime, TaskManager& aTaskManager)
+void MP::Move::moveBlockRight(ActiveObiect& obiect, sf::Clock& currentTime, TaskManager& aTaskManager)
 {
 	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() > obiect.getReadyTime())
 	{
@@ -47,7 +47,7 @@ void MP::MapMove::moveBlockRight(ActiveObiect& obiect, sf::Clock& currentTime, T
 	}
 }
 
-void MP::MapMove::moveBlockLeft(ActiveObiect& obiect, sf::Clock& currentTime, TaskManager& aTaskManager)
+void MP::Move::moveBlockLeft(ActiveObiect& obiect, sf::Clock& currentTime, TaskManager& aTaskManager)
 {
 	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= obiect.getReadyTime())
 	{
@@ -62,22 +62,22 @@ void MP::MapMove::moveBlockLeft(ActiveObiect& obiect, sf::Clock& currentTime, Ta
 	}
 }
 
-void MP::MapMove::movePixelDown(ActiveObiect& obiect)
+void MP::Move::movePixelDown(ActiveObiect& obiect)
 {
 	obiect.setObiectCoord(obiect.getObiectCoord().x, obiect.getObiectCoord().y + obiect.getVelocity());
 }
 
-void MP::MapMove::movePixelUp(ActiveObiect& obiect)
+void MP::Move::movePixelUp(ActiveObiect& obiect)
 {
 	obiect.setObiectCoord(obiect.getObiectCoord().x, obiect.getObiectCoord().y - obiect.getVelocity());
 }
 
-void MP::MapMove::movePixelRight(ActiveObiect& obiect)
+void MP::Move::movePixelRight(ActiveObiect& obiect)
 {
 	obiect.setObiectCoord(obiect.getObiectCoord().x + obiect.getVelocity(), obiect.getObiectCoord().y);
 }
 
-void MP::MapMove::movePixelLeft(ActiveObiect& obiect)
+void MP::Move::movePixelLeft(ActiveObiect& obiect)
 {
 	obiect.setObiectCoord(obiect.getObiectCoord().x - obiect.getVelocity(), obiect.getObiectCoord().y);
 }

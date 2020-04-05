@@ -2,7 +2,7 @@
 #include "ObiectGenerator.h"
 #include "Player.h"
 #include "ActiveObiect.h"
-#include "MapAnimation.h"
+#include "Animation.h"
 #include "Land.h"
 #include "Engine/ConfigurationLoader.h"
 #include "ComputerPlayer.h"
@@ -78,9 +78,13 @@ void MP::ObiectGenerator::_generate_map(ObiectManager& aObiectManager)
 
 void MP::ObiectGenerator::_generate_computer_player(ObiectManager& aObiectManager)
 {
+
+
 	std::shared_ptr<ComputerPlayer> tmp = std::make_shared<ComputerPlayer>(&_a_asset_manager.getTexture("player"));
 
 	aObiectManager.addObiect(tmp);
+
+
 }
 
 MP::ObiectGenerator::ObiectGenerator()

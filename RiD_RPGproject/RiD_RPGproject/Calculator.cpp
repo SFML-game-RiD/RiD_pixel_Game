@@ -3,7 +3,7 @@
 
 void MP::Calculator::startProcedurePlayerMove(TaskManager& aTaskManager, MP::Player& aPlayer, sf::Clock& aGameClock)
 {
-	MapMove tmp;
+	Move tmp;
 
 	switch (aTaskManager.getTask())
 	{
@@ -48,7 +48,7 @@ void MP::Calculator::startProcedureTreesAnimation(sf::Clock& globalClock,ObiectM
 
 void MP::Calculator::startProcedureCameraZoom(TaskManager& aTaskManager, Camera& aCamera)
 {
-	if(aTaskManager.getTask()==MP::TaskManager::taskType::zoomIn or aTaskManager.getTask() == MP::TaskManager::taskType::zoomOut)
+	if(aTaskManager.getTask()==MP::TaskManager::taskType::taskZoomIn or aTaskManager.getTask() == MP::TaskManager::taskType::taskZoomOut)
 	aCamera.changeZoom(aTaskManager);
 }
 

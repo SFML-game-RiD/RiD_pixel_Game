@@ -6,7 +6,7 @@ MP::ActiveObiect::ActiveObiect()
 	_last_active = sf::milliseconds(0);
 	_ready_time = sf::milliseconds(0);
 	active_obj_sleep_time = sf::milliseconds(0);
-	obj_animation_sleep_time = sf::milliseconds(0);
+	_obj_animation_sleep_time = sf::milliseconds(0);
 
 	_block_length_copy=_block_length  = RiD::ConfigurationLoader::getIntData("game settings", "blockLength");
 

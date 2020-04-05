@@ -1,8 +1,6 @@
 #ifndef _PLAYER_H_
 #define _PLAYER_H_
-
-//#include <SFML/Graphics.hpp>
-#include "MapMove.h"
+#include "Move.h"
 #include "PawnObiect.h"
 
 namespace MP
@@ -11,22 +9,23 @@ namespace MP
 	{
 	private:
 
+		void _player_animation_right(sf::Clock& globalClock);
+
+		void _player_animation_left(sf::Clock& globalClock);
+
+		void _player_animation_up(sf::Clock& globalClock);
+
+		void _player_animation_down(sf::Clock& globalClock);
 
 	public:
+
+		TaskManager aTaskManager;
 
 		Player(sf::Texture *texturePtr);
 
 		//############ move animation ##############
 
 		void playerAnimation(sf::Clock& globalClock, MP::TaskManager& aTaskManager);
-
-		void playerAnimationRight(sf::Clock& globalClock);
-
-		void playerAnimationLeft(sf::Clock& globalClock);
-
-		void playerAnimationUp(sf::Clock& globalClock);
-
-		void playerAnimationDown(sf::Clock& globalClock);
 
 		//##########################################
 

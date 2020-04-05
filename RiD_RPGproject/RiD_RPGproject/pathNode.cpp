@@ -5,47 +5,52 @@
 
 MP::PathNode::PathNode()
 {
-	nextNode = nullptr;
-	parent = nullptr;
+	_next_node = nullptr;
+	_parent = nullptr;
 }
 
 void MP::PathNode::calculateHValue(sf::Vector2f meta)
 {
-	int x, y;
+	//int x, y;
 
-	x = meta.x - this->aMapElement->getLandTile().getObiectCoord().x;
-	if (x < 0)
-	{
-		x = x * (-1);
-	}
-	y = meta.y - this->aMapElement->getLandTile().getObiectCoord().y;
-	if (y < 0)
-	{
-		y = y * (-1);
-	}
+	//x = meta.x - this->_a_map_element->getLandTile().getObiectCoord().x;
+	//if (x < 0)
+	//{
+	//	x = x * (-1);
+	//}
+	//y = meta.y - this->_a_map_element->getLandTile().getObiectCoord().y;
+	//if (y < 0)
+	//{
+	//	y = y * (-1);
+	//}
 
-	costH = x;
-	costH += y;
+	//_cost_H = x;
+	//_cost_H += y;
+	_cost_H = abs(meta.x - this->_a_map_element->getLandTile().getObiectCoord().x);
+	_cost_H += abs(meta.y - this->_a_map_element->getLandTile().getObiectCoord().y);
 }
 
 void MP::PathNode::calculateGValue(sf::Vector2f start)
 {
 
-	int x, y;
+	//int x, y;
 
-	x = start.x - this->aMapElement->getLandTile().getObiectCoord().x;
-	if (x < 0)
-	{
-		x = x * (-1);
-	}
-	y = start.y - this->aMapElement->getLandTile().getObiectCoord().y;
-	if (y < 0)
-	{
-		y = y * (-1);
-	}
+	//x = start.x - this->_a_map_element->getLandTile().getObiectCoord().x;
+	//if (x < 0)
+	//{
+	//	x = x * (-1);
+	//}
+	//y = start.y - this->_a_map_element->getLandTile().getObiectCoord().y;
+	//if (y < 0)
+	//{
+	//	y = y * (-1);
+	//}
 
-	costG = x;
-	costG += y;
+	//_cost_G = x;
+	//_cost_G += y;
+
+	_cost_G =  abs(start.x - this->_a_map_element->getLandTile().getObiectCoord().x);
+	_cost_G += abs(start.y - this->_a_map_element->getLandTile().getObiectCoord().y);
 }
 
 void MP::PathNode::setParentForElement(MP::PathNode*up, MP::PathNode*down, MP::PathNode*left, MP::PathNode*right)
@@ -53,61 +58,61 @@ void MP::PathNode::setParentForElement(MP::PathNode*up, MP::PathNode*down, MP::P
 
 	if (up != nullptr)
 	{
-		if (up->parent == nullptr) 
-			up->parent = this;		
+		if (up->_parent == nullptr) 
+			up->_parent = this;		
 	}
 	if (down != nullptr)
 	{
-		if (down->parent == nullptr)
-			down->parent = this;
+		if (down->_parent == nullptr)
+			down->_parent = this;
 	}
 	if (left != nullptr)
 	{
-		if (left->parent == nullptr)
-			left->parent = this;
+		if (left->_parent == nullptr)
+			left->_parent = this;
 	}
 	if (right != nullptr)
 	{
-		if (right->parent == nullptr)
-			right->parent = this;	
+		if (right->_parent == nullptr)
+			right->_parent = this;	
 	}
 }
 
 MP::MapElement *& MP::PathNode::getMapElementAddress()
 {
-	return aMapElement;
+	return _a_map_element;
 }
 
 MP::PathNode*& MP::PathNode::getNextNode()
 {
-	return nextNode;
+	return _next_node;
 }
 
 void MP::PathNode::setParent(MP::PathNode* aNode)
 {
-	parent = aNode;
+	_parent = aNode;
 }
 
 MP::PathNode*& MP::PathNode::getParent()
 {
-	return parent;
+	return _parent;
 }
 
 MP::PathNode& MP::PathNode::operator=(MP::MapElement *& anElement)
 {
-	this->aMapElement = anElement;
+	this->_a_map_element = anElement;
 	return *this;
 }
 
 int MP::PathNode::getCostF()
 {
-	return costF;
+	return _cost_F;
 }
 
 void MP::PathNode::calculate(sf::Vector2f start, sf::Vector2f stop)
 {
 	calculateHValue(stop);
 	calculateGValue(start);
-	costF = costH;
-	costF += costG;
+	_cost_F = _cost_H;
+	_cost_F += _cost_G;
 }

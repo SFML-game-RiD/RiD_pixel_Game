@@ -3,7 +3,7 @@
 
 #include "SFML/Graphics.hpp"
 #include "ObiectDrawer.h"
-#include "MapMove.h"
+#include "Move.h"
 #include "ObiectManager.h"
 #include "ObiectGenerator.h"
 #include "TaskManager.h"
@@ -37,7 +37,7 @@ namespace RiD
 
 		MP::Camera _a_camera;
 
-		MP::MapMove _a_map_move;
+		MP::Move _a_map_move;
 
 		sf::Event _event;
 

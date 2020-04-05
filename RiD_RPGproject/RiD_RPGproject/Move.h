@@ -7,7 +7,7 @@
 
 namespace MP
 {
-	class MapMove
+	class Move
 	{
 	private:
 

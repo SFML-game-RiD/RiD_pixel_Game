@@ -3,270 +3,275 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Engine\Animation.cpp">
-      <Filter>IVANOVS CLASSES\Graphics</Filter>
+      <Filter>aaareal time game\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Engine\AssetManager.cpp">
-      <Filter>IVANOVS CLASSES\Graphics</Filter>
+      <Filter>aaareal time game\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Movement.cpp">
-      <Filter>IVANOVS CLASSES\RealTimeBattle</Filter>
+      <Filter>aaareal time game\RealTimeBattle</Filter>
     </ClCompile>
     <ClCompile Include="Battle\RealTimeBattle.cpp">
-      <Filter>IVANOVS CLASSES\RealTimeBattle</Filter>
+      <Filter>aaareal time game\RealTimeBattle</Filter>
     </ClCompile>
     <ClCompile Include="Engine\MenuState.cpp">
-      <Filter>IVANOVS CLASSES\States</Filter>
+      <Filter>aaareal time game\States</Filter>
     </ClCompile>
     <ClCompile Include="Engine\State.cpp">
-      <Filter>IVANOVS CLASSES\States</Filter>
+      <Filter>aaareal time game\States</Filter>
     </ClCompile>
     <ClCompile Include="Engine\StateMachine.cpp">
-      <Filter>IVANOVS CLASSES\States</Filter>
+      <Filter>aaareal time game\States</Filter>
     </ClCompile>
     <ClCompile Include="Map\TileMap.cpp">
-      <Filter>IVANOVS CLASSES\Map</Filter>
+      <Filter>aaareal time game\Map</Filter>
     </ClCompile>
     <ClCompile Include="Engine\RiDGame.cpp">
-      <Filter>IVANOVS CLASSES</Filter>
+      <Filter>aaareal time game</Filter>
     </ClCompile>
     <ClCompile Include="Engine\InputManager.cpp">
-      <Filter>IVANOVS CLASSES</Filter>
+      <Filter>aaareal time game</Filter>
     </ClCompile>
     <ClCompile Include="Engine\ConfigurationLoader.cpp">
-      <Filter>Mr wroldwide</Filter>
+      <Filter>FILE LOADER</Filter>
     </ClCompile>
     <ClCompile Include="Obiect.cpp">
       <Filter>OBIECT</Filter>
     </ClCompile>
-    <ClCompile Include="MapAnimation.cpp">
-      <Filter>oh it%27s moving ..</Filter>
-    </ClCompile>
-    <ClCompile Include="MapMove.cpp">
-      <Filter>oh it%27s moving ..</Filter>
-    </ClCompile>
     <ClCompile Include="ObiectGenerator.cpp">
-      <Filter>the bosses</Filter>
+      <Filter>MANAGERS, HEAD CLASS</Filter>
     </ClCompile>
     <ClCompile Include="ObiectManager.cpp">
-      <Filter>the bosses</Filter>
+      <Filter>MANAGERS, HEAD CLASS</Filter>
     </ClCompile>
     <ClCompile Include="ObiectDrawer.cpp">
-      <Filter>the bosses</Filter>
+      <Filter>MANAGERS, HEAD CLASS</Filter>
     </ClCompile>
     <ClCompile Include="ActiveObiect.cpp">
-      <Filter>OBIECT\active obiects</Filter>
+      <Filter>OBIECT\ACTIVE OBIECT</Filter>
     </ClCompile>
     <ClCompile Include="PawnObiect.cpp">
-      <Filter>OBIECT\active obiects\obiects pawn</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>OBIECT\active obiects\obiects pawn\player</Filter>
+      <Filter>OBIECT\ACTIVE OBIECT\PAWNS</Filter>
     </ClCompile>
     <ClCompile Include="RiDmain.cpp">
-      <Filter>the bosses\mr kierownik</Filter>
-    </ClCompile>
-    <ClCompile Include="Calculator.cpp">
-      <Filter>the bosses\glowni podwladni kierownika</Filter>
-    </ClCompile>
-    <ClCompile Include="TaskManager.cpp">
-      <Filter>the bosses\glowni podwladni kierownika</Filter>
+      <Filter>MANAGERS, HEAD CLASS\MAIN CLASS</Filter>
     </ClCompile>
     <ClCompile Include="StaticObiect.cpp">
-      <Filter>OBIECT\static obiects</Filter>
+      <Filter>OBIECT\STATIC OBIECT</Filter>
     </ClCompile>
     <ClCompile Include="Land.cpp">
-      <Filter>OBIECT\static obiects\land</Filter>
+      <Filter>OBIECT\STATIC OBIECT\land</Filter>
     </ClCompile>
     <ClCompile Include="Map.cpp">
-      <Filter>OBIECT\mapsons</Filter>
+      <Filter>GAME MAP</Filter>
     </ClCompile>
     <ClCompile Include="MapElement.cpp">
-      <Filter>OBIECT\mapsons</Filter>
+      <Filter>GAME MAP</Filter>
     </ClCompile>
     <ClCompile Include="Places.cpp">
-      <Filter>OBIECT\places</Filter>
+      <Filter>OBIECT\PLACES</Filter>
     </ClCompile>
     <ClCompile Include="Castle.cpp">
-      <Filter>OBIECT\places</Filter>
+      <Filter>OBIECT\PLACES</Filter>
     </ClCompile>
     <ClCompile Include="Town.cpp">
-      <Filter>OBIECT\places</Filter>
+      <Filter>OBIECT\PLACES</Filter>
     </ClCompile>
     <ClCompile Include="Village.cpp">
-      <Filter>OBIECT\places</Filter>
+      <Filter>OBIECT\PLACES</Filter>
     </ClCompile>
     <ClCompile Include="Tree.cpp">
-      <Filter>OBIECT\static obiects</Filter>
+      <Filter>OBIECT\STATIC OBIECT</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
-      <Filter>the bosses</Filter>
+      <Filter>MANAGERS, HEAD CLASS</Filter>
+    </ClCompile>
+    <ClCompile Include="Calculator.cpp">
+      <Filter>MANAGERS, HEAD CLASS</Filter>
+    </ClCompile>
+    <ClCompile Include="TaskManager.cpp">
+      <Filter>MANAGERS, HEAD CLASS</Filter>
+    </ClCompile>
+    <ClCompile Include="Move.cpp">
+      <Filter>MOVE,ANIMATION</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>OBIECT\ACTIVE OBIECT\PAWNS</Filter>
     </ClCompile>
     <ClCompile Include="ComputerPlayer.cpp">
-      <Filter>OBIECT\active obiects\obiects pawn\player</Filter>
+      <Filter>OBIECT\ACTIVE OBIECT\PAWNS</Filter>
     </ClCompile>
-    <ClCompile Include="pathCreator.cpp" />
-    <ClCompile Include="pathNode.cpp" />
+    <ClCompile Include="pathNode.cpp">
+      <Filter>AI</Filter>
+    </ClCompile>
+    <ClCompile Include="pathCreator.cpp">
+      <Filter>AI</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>MOVE,ANIMATION</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Animation.h">
-      <Filter>IVANOVS CLASSES\Graphics</Filter>
+      <Filter>aaareal time game\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Engine\AssetManager.h">
-      <Filter>IVANOVS CLASSES\Graphics</Filter>
+      <Filter>aaareal time game\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Movement.h">
-      <Filter>IVANOVS CLASSES\RealTimeBattle</Filter>
+      <Filter>aaareal time game\RealTimeBattle</Filter>
     </ClInclude>
     <ClInclude Include="Battle\RealTimeBattle.h">
-      <Filter>IVANOVS CLASSES\RealTimeBattle</Filter>
+      <Filter>aaareal time game\RealTimeBattle</Filter>
     </ClInclude>
     <ClInclude Include="Engine\MenuState.h">
-      <Filter>IVANOVS CLASSES\States</Filter>
+      <Filter>aaareal time game\States</Filter>
     </ClInclude>
     <ClInclude Include="Engine\State.h">
-      <Filter>IVANOVS CLASSES\States</Filter>
+      <Filter>aaareal time game\States</Filter>
     </ClInclude>
     <ClInclude Include="Engine\StateMachine.h">
-      <Filter>IVANOVS CLASSES\States</Filter>
+      <Filter>aaareal time game\States</Filter>
     </ClInclude>
     <ClInclude Include="Map\TileMap.h">
-      <Filter>IVANOVS CLASSES\Map</Filter>
+      <Filter>aaareal time game\Map</Filter>
     </ClInclude>
     <ClInclude Include="Engine\RiDGame.h">
-      <Filter>IVANOVS CLASSES</Filter>
+      <Filter>aaareal time game</Filter>
     </ClInclude>
     <ClInclude Include="Engine\InputManager.h">
-      <Filter>IVANOVS CLASSES</Filter>
+      <Filter>aaareal time game</Filter>
     </ClInclude>
     <ClInclude Include="Engine\ConfigurationLoader.h">
-      <Filter>Mr wroldwide</Filter>
+      <Filter>FILE LOADER</Filter>
     </ClInclude>
     <ClInclude Include="Obiect.h">
       <Filter>OBIECT</Filter>
     </ClInclude>
-    <ClInclude Include="MapAnimation.h">
-      <Filter>oh it%27s moving ..</Filter>
-    </ClInclude>
-    <ClInclude Include="MapMove.h">
-      <Filter>oh it%27s moving ..</Filter>
-    </ClInclude>
     <ClInclude Include="ObiectGenerator.h">
-      <Filter>the bosses</Filter>
+      <Filter>MANAGERS, HEAD CLASS</Filter>
     </ClInclude>
     <ClInclude Include="ObiectManager.h">
-      <Filter>the bosses</Filter>
+      <Filter>MANAGERS, HEAD CLASS</Filter>
     </ClInclude>
     <ClInclude Include="ObiectDrawer.h">
-      <Filter>the bosses</Filter>
+      <Filter>MANAGERS, HEAD CLASS</Filter>
     </ClInclude>
     <ClInclude Include="ActiveObiect.h">
-      <Filter>OBIECT\active obiects</Filter>
+      <Filter>OBIECT\ACTIVE OBIECT</Filter>
     </ClInclude>
     <ClInclude Include="PawnObiect.h">
-      <Filter>OBIECT\active obiects\obiects pawn</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>OBIECT\active obiects\obiects pawn\player</Filter>
+      <Filter>OBIECT\ACTIVE OBIECT\PAWNS</Filter>
     </ClInclude>
     <ClInclude Include="RiDmain.h">
-      <Filter>the bosses\mr kierownik</Filter>
-    </ClInclude>
-    <ClInclude Include="Calculator.h">
-      <Filter>the bosses\glowni podwladni kierownika</Filter>
-    </ClInclude>
-    <ClInclude Include="TaskManager.h">
-      <Filter>the bosses\glowni podwladni kierownika</Filter>
+      <Filter>MANAGERS, HEAD CLASS\MAIN CLASS</Filter>
     </ClInclude>
     <ClInclude Include="StaticObiect.h">
-      <Filter>OBIECT\static obiects</Filter>
+      <Filter>OBIECT\STATIC OBIECT</Filter>
     </ClInclude>
     <ClInclude Include="Land.h">
-      <Filter>OBIECT\static obiects\land</Filter>
+      <Filter>OBIECT\STATIC OBIECT\land</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
-      <Filter>OBIECT\mapsons</Filter>
+      <Filter>GAME MAP</Filter>
     </ClInclude>
     <ClInclude Include="MapElement.h">
-      <Filter>OBIECT\mapsons</Filter>
+      <Filter>GAME MAP</Filter>
     </ClInclude>
     <ClInclude Include="Places.h">
-      <Filter>OBIECT\places</Filter>
+      <Filter>OBIECT\PLACES</Filter>
     </ClInclude>
     <ClInclude Include="Castle.h">
-      <Filter>OBIECT\places</Filter>
+      <Filter>OBIECT\PLACES</Filter>
     </ClInclude>
     <ClInclude Include="Town.h">
-      <Filter>OBIECT\places</Filter>
+      <Filter>OBIECT\PLACES</Filter>
     </ClInclude>
     <ClInclude Include="Village.h">
-      <Filter>OBIECT\places</Filter>
+      <Filter>OBIECT\PLACES</Filter>
     </ClInclude>
     <ClInclude Include="Tree.h">
-      <Filter>OBIECT\static obiects</Filter>
+      <Filter>OBIECT\STATIC OBIECT</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>the bosses</Filter>
+      <Filter>MANAGERS, HEAD CLASS</Filter>
+    </ClInclude>
+    <ClInclude Include="Calculator.h">
+      <Filter>MANAGERS, HEAD CLASS</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskManager.h">
+      <Filter>MANAGERS, HEAD CLASS</Filter>
+    </ClInclude>
+    <ClInclude Include="Move.h">
+      <Filter>MOVE,ANIMATION</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>OBIECT\ACTIVE OBIECT\PAWNS</Filter>
     </ClInclude>
     <ClInclude Include="ComputerPlayer.h">
-      <Filter>OBIECT\active obiects\obiects pawn\player</Filter>
+      <Filter>OBIECT\ACTIVE OBIECT\PAWNS</Filter>
     </ClInclude>
-    <ClInclude Include="pathCreator.h" />
-    <ClInclude Include="pathNode.h" />
+    <ClInclude Include="pathNode.h">
+      <Filter>AI</Filter>
+    </ClInclude>
+    <ClInclude Include="pathCreator.h">
+      <Filter>AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>MOVE,ANIMATION</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Mr wroldwide">
-      <UniqueIdentifier>{875c2c9c-9536-4316-af8f-186540127064}</UniqueIdentifier>
-    </Filter>
     <Filter Include="OBIECT">
       <UniqueIdentifier>{5b2eb87f-393a-4b9d-8030-d14268c9cbc4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="IVANOVS CLASSES">
-      <UniqueIdentifier>{15d43c2a-74e0-4803-94ec-aab86831ba74}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="IVANOVS CLASSES\States">
-      <UniqueIdentifier>{b363b1b8-09fc-417a-9167-625c7e1e65bc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="IVANOVS CLASSES\RealTimeBattle">
-      <UniqueIdentifier>{527538d0-5527-4348-a93d-2e9a31ab96c9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="IVANOVS CLASSES\Map">
-      <UniqueIdentifier>{451275a9-f84e-44ad-92be-416a8cc5041e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="IVANOVS CLASSES\Graphics">
-      <UniqueIdentifier>{7bbe2dbb-b8a1-4384-b29d-731b1e455d25}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="the bosses">
+    <Filter Include="MANAGERS, HEAD CLASS">
       <UniqueIdentifier>{a91205af-2276-4eff-99ab-1acf6d8a0453}</UniqueIdentifier>
     </Filter>
-    <Filter Include="OBIECT\active obiects">
-      <UniqueIdentifier>{9856b24c-57a5-45b9-b105-8187a99dcf37}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="OBIECT\active obiects\obiects pawn">
-      <UniqueIdentifier>{1f9b6629-19c1-4984-bcdc-706d42602cc5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="OBIECT\active obiects\obiects pawn\player">
-      <UniqueIdentifier>{2e4f6744-32a8-4de6-a09c-a3c3c242d3a4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="oh it%27s moving ..">
-      <UniqueIdentifier>{366204a4-da86-493d-be0b-d81d04255ad4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="the bosses\mr kierownik">
+    <Filter Include="MANAGERS, HEAD CLASS\MAIN CLASS">
       <UniqueIdentifier>{bcc76a78-f4cf-4b1c-8104-b4d97af2dc8c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="the bosses\glowni podwladni kierownika">
-      <UniqueIdentifier>{3c1a7415-22fa-4d24-b5b7-3a53d0278cc0}</UniqueIdentifier>
+    <Filter Include="MOVE,ANIMATION">
+      <UniqueIdentifier>{366204a4-da86-493d-be0b-d81d04255ad4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="OBIECT\static obiects">
-      <UniqueIdentifier>{001855a2-f094-4af1-82fe-62c3c470dc89}</UniqueIdentifier>
+    <Filter Include="FILE LOADER">
+      <UniqueIdentifier>{875c2c9c-9536-4316-af8f-186540127064}</UniqueIdentifier>
     </Filter>
-    <Filter Include="OBIECT\static obiects\land">
-      <UniqueIdentifier>{d5b922b2-85df-4733-8fe9-7ea15a642192}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="OBIECT\mapsons">
+    <Filter Include="GAME MAP">
       <UniqueIdentifier>{4a4dc6c9-4962-4040-9c5c-9c0569eaa35d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="OBIECT\places">
+    <Filter Include="OBIECT\ACTIVE OBIECT">
+      <UniqueIdentifier>{9856b24c-57a5-45b9-b105-8187a99dcf37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OBIECT\STATIC OBIECT">
+      <UniqueIdentifier>{001855a2-f094-4af1-82fe-62c3c470dc89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OBIECT\STATIC OBIECT\land">
+      <UniqueIdentifier>{d5b922b2-85df-4733-8fe9-7ea15a642192}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OBIECT\PLACES">
       <UniqueIdentifier>{ae191765-e778-4606-a7ae-b7cd710a5acb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OBIECT\ACTIVE OBIECT\PAWNS">
+      <UniqueIdentifier>{1f9b6629-19c1-4984-bcdc-706d42602cc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AI">
+      <UniqueIdentifier>{8c743e31-e8ce-452f-aa52-91b357456671}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="aaareal time game">
+      <UniqueIdentifier>{15d43c2a-74e0-4803-94ec-aab86831ba74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="aaareal time game\States">
+      <UniqueIdentifier>{b363b1b8-09fc-417a-9167-625c7e1e65bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="aaareal time game\RealTimeBattle">
+      <UniqueIdentifier>{527538d0-5527-4348-a93d-2e9a31ab96c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="aaareal time game\Map">
+      <UniqueIdentifier>{451275a9-f84e-44ad-92be-416a8cc5041e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="aaareal time game\Graphics">
+      <UniqueIdentifier>{7bbe2dbb-b8a1-4384-b29d-731b1e455d25}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -48,9 +48,9 @@ void MP::Camera::drawFrame()
 
 void MP::Camera::changeZoom(MP::TaskManager& aTaskManager)
 {
-	if (aTaskManager.getTask() == MP::TaskManager::taskType::zoomOut)
+	if (aTaskManager.getTask() == MP::TaskManager::taskType::taskZoomOut)
 		_zoom_out();
-	if (aTaskManager.getTask() == MP::TaskManager::taskType::zoomIn)
+	if (aTaskManager.getTask() == MP::TaskManager::taskType::taskZoomIn)
 		_zoom_in();
 
 	aTaskManager.endTask();

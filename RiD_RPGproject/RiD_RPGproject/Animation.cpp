@@ -1,6 +1,6 @@
-#include "MapAnimation.h"
+#include "Animation.h"
 
-void  MP::MapAnimation::_get_rectangle_array(int columns, int rows, int squareLength)
+void  MP::Animation::_get_rectangle_array(int columns, int rows, int squareLength)
 {
 	int x = 0, y = 0;
 
@@ -19,55 +19,55 @@ void  MP::MapAnimation::_get_rectangle_array(int columns, int rows, int squareLe
 	}
 }
 
-void MP::MapAnimation::setObiectSpritePosition(int x, int y)
+void MP::Animation::setObiectSpritePosition(int x, int y)
 {
 	_obj_sprite.setPosition(x, y);
 }
 
-void MP::MapAnimation::setObiectSpritePosition(sf::Vector2f coord)
+void MP::Animation::setObiectSpritePosition(sf::Vector2f coord)
 {
 	_obj_sprite.setPosition(coord.x, coord.y);
 }
 
-sf::Sprite& MP::MapAnimation::getObiectSprite()
+sf::Sprite& MP::Animation::getObiectSprite()
 {
 	return _obj_sprite;
 }
 
-void MP::MapAnimation::loadObiectTextures(sf::Texture *texturePtr, int columns, int rows, int squareLength)
+void MP::Animation::loadObiectTextures(sf::Texture *texturePtr, int columns, int rows, int squareLength)
 {
 	_set_obiect_texture(texturePtr);
 	_get_rectangle_array(columns, rows, squareLength);
 	changeSprite(0);
 }
 
-void MP::MapAnimation::_set_obiect_texture(sf::Texture * texture)
+void MP::Animation::_set_obiect_texture(sf::Texture * texture)
 {
 	_obj_sprite.setTexture(*texture);
 }
 
-void MP::MapAnimation::_set_obiect_texture_rect(sf::IntRect &textureRect)
+void MP::Animation::_set_obiect_texture_rect(sf::IntRect &textureRect)
 {
 	_obj_sprite.setTextureRect(textureRect);
 }
 
-void MP::MapAnimation::changeSprite(int spriteNumber)
+void MP::Animation::changeSprite(int spriteNumber)
 {
 	_set_obiect_texture_rect(_obiect_rectangle_array[spriteNumber]);
 	_current_sprite = spriteNumber;
 }
 
-const std::vector<sf::IntRect>& MP::MapAnimation::getOryginalArray()
+const std::vector<sf::IntRect>& MP::Animation::getOryginalArray()
 {
 	return _obiect_rectangle_array;
 }
 
-int MP::MapAnimation::getCurrentSprite()
+int MP::Animation::getCurrentSprite()
 {
 	return _current_sprite;
 }
 
-void MP::MapAnimation::setNextSprite(int from, int to)
+void MP::Animation::setNextSprite(int from, int to)
 {
 	int currentSpriteNumber = getCurrentSprite();
 
@@ -81,12 +81,12 @@ void MP::MapAnimation::setNextSprite(int from, int to)
 	changeSprite(currentSpriteNumber);
 }
 
-void MP::MapAnimation::setScale(float x, float y)
+void MP::Animation::setScale(float x, float y)
 {
 	_obj_sprite.setScale(x, y);
 }
 
-void MP::MapAnimation::setOrigin(int x, int y)
+void MP::Animation::setOrigin(int x, int y)
 {
 	_obj_sprite.setOrigin(x, y);
 }

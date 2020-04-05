@@ -11,13 +11,17 @@ namespace MP
 	
 		//Responsible for moving
 		sf::Time _last_active;/// Last time, when obiect was moving.
-		sf::Time _ready_time;/// Calculated time, when obiect is able to move.
-		sf::Time active_obj_sleep_time;
-		//sf::Time active_obj_animation_sleep_time;
 
-		int _block_length;//<<<< This variable should be downloaded from classes responsible for map !
+		sf::Time _ready_time;/// Calculated time, when obiect is able to move.
+
+		sf::Time active_obj_sleep_time;
+
+		int _block_length;
+
 		int _block_length_copy;
+
 		int _distance_traveled;
+
 		int _velocity; /// Ammount of pixel active_obj_animation_sleep_time
 
 	public:
@@ -25,8 +29,6 @@ namespace MP
 		ActiveObiect();
 
 		void setLastActive(sf::Clock currentTime);
-
-		//void setLastActiveAnimation(sf::Clock currentTime);
 
 		sf::Time getLastActiveTime();
 

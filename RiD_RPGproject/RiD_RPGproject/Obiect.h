@@ -1,9 +1,8 @@
 #ifndef _OBIECT_H_
 #define _OBIECT_H_
 
-#include <utility>
 #include <SFML/Graphics.hpp>
-#include "MapAnimation.h"
+#include "Animation.h"
 
 namespace MP
 {
@@ -12,15 +11,18 @@ namespace MP
 	private:
 
 		sf::Vector2f _objCoord;
+
 	protected:
 
 		sf::Time _ready_animation_time;
+
 		sf::Time _last_animation_active;
-		sf::Time obj_animation_sleep_time;
+
+		sf::Time _obj_animation_sleep_time;
 
 	public:
 
-		MapAnimation animationMaker;
+		Animation aAnimation;
 
 		Obiect();
 

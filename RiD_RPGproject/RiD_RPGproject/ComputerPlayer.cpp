@@ -1,12 +1,12 @@
 #include "ComputerPlayer.h"
-#include "MapMove.h"
+#include "Move.h"
 
 
 void MP::ComputerPlayer::choseDestination(Map &aMap)
 {
 	MP::PathCreator tmp(aMap);
-	//The element where computer player stand is being took from map element list. After that, path finder will return map element list from
-	//start point to destination.
+
+	//Chose random destination and calculate path.
 	_path =  tmp.findPath(aMap.findElementAddressSquareRange(getObiectCoord(), aMap.getMapElementList())->getLandTile().getObiectCoord(),
 		aMap.returnRandomWalkableElement()->getLandTile().getObiectCoord());
 }
@@ -14,7 +14,7 @@ void MP::ComputerPlayer::choseDestination(Map &aMap)
 void MP::ComputerPlayer::getNextTask(Map& aMap)
 {
 
-	if (computerTasks.getTask() == MP::TaskManager::taskType::taskNone)
+	if (aTaskManager.getTask() == MP::TaskManager::taskType::taskNone)
 	{
 		if (_path == nullptr)//Sets new destination.
 		choseDestination(aMap);
@@ -26,20 +26,21 @@ void MP::ComputerPlayer::getNextTask(Map& aMap)
 
 		if (tmp->getLandTile().getObiectCoord().x == nextDestination->getLandTile().getObiectCoord().x
 			and tmp->getLandTile().getObiectCoord().y + _block_length == nextDestination->getLandTile().getObiectCoord().y)//Goes down
-			computerTasks.startProcedureGoDown(*this, aMap);
+			aTaskManager.startProcedureGoDown(*this, aMap);
 
 		else if (tmp->getLandTile().getObiectCoord().x == nextDestination->getLandTile().getObiectCoord().x
 			and tmp->getLandTile().getObiectCoord().y - _block_length == nextDestination->getLandTile().getObiectCoord().y)//Goes up
-			computerTasks.startProcedureGoUp(*this, aMap);
+			aTaskManager.startProcedureGoUp(*this, aMap);
 
 		else if (tmp->getLandTile().getObiectCoord().x + _block_length == nextDestination->getLandTile().getObiectCoord().x//Goes right
 			and tmp->getLandTile().getObiectCoord().y == nextDestination->getLandTile().getObiectCoord().y)
-			computerTasks.startProcedureGoRight(*this, aMap);
+			aTaskManager.startProcedureGoRight(*this, aMap);
 
 		else if (tmp->getLandTile().getObiectCoord().x - _block_length == nextDestination->getLandTile().getObiectCoord().x//Goes left
 			and tmp->getLandTile().getObiectCoord().y == nextDestination->getLandTile().getObiectCoord().y)
-			computerTasks.startProcedureGoLeft(*this, aMap);
+			aTaskManager.startProcedureGoLeft(*this, aMap);
 		
+
 		_path = _path->getNextElement();//Deleting usless element
 		delete nextDestination;
 		
@@ -48,21 +49,21 @@ void MP::ComputerPlayer::getNextTask(Map& aMap)
 
 void MP::ComputerPlayer::computerPlayerMove(sf::Clock& globalClock)
 {
-	MP::MapMove tmp;
+	MP::Move tmp;
 
-	switch (computerTasks.getTask())
+	switch (aTaskManager.getTask())
 	{
 	case(MP::TaskManager::taskType::taskGoUp):
-		tmp.moveBlockUp(*this, globalClock, computerTasks);
+		tmp.moveBlockUp(*this, globalClock, aTaskManager);
 		break;
 	case(MP::TaskManager::taskType::taskGoLeft):
-		tmp.moveBlockLeft(*this, globalClock, computerTasks);
+		tmp.moveBlockLeft(*this, globalClock, aTaskManager);
 		break;
 	case(MP::TaskManager::taskType::taskGoDown):
-		tmp.moveBlockDown(*this, globalClock, computerTasks);
+		tmp.moveBlockDown(*this, globalClock, aTaskManager);
 		break;
 	case(MP::TaskManager::taskType::taskGoRight):
-		tmp.moveBlockRight(*this, globalClock, computerTasks);
+		tmp.moveBlockRight(*this, globalClock, aTaskManager);
 		break;
 	default:
 	{
@@ -79,68 +80,68 @@ MP::ComputerPlayer::ComputerPlayer(sf::Texture* texturePtr)
 	_path = nullptr;
 
 	//Loading textures.
-	animationMaker.loadObiectTextures(texturePtr, 3, 4, 64);
-	animationMaker.changeSprite(6);
-	animationMaker.setScale(0.7, 0.7);
+	aAnimation.loadObiectTextures(texturePtr, 3, 4, 64);
+	aAnimation.changeSprite(6);
+	aAnimation.setScale(0.7, 0.7);
 
 	//Getting computer player animation and move sleep time.
-	active_obj_sleep_time = sf::milliseconds(RiD::ConfigurationLoader::getIntData("player", "SleepTime"));
-	obj_animation_sleep_time = sf::milliseconds(RiD::ConfigurationLoader::getIntData("player", "animationSleepTime"));
+	active_obj_sleep_time = sf::milliseconds(RiD::ConfigurationLoader::getIntData("computer player", "SleepTime"));
+	_obj_animation_sleep_time = sf::milliseconds(RiD::ConfigurationLoader::getIntData("computer player", "animationSleepTime"));
 
 	//Loading velocity.
-	_velocity = RiD::ConfigurationLoader::getIntData("player", "velocity");
+	_velocity = RiD::ConfigurationLoader::getIntData("computer player", "velocity");
 
 	//Getting player coordinates.
-	setObiectCoord(RiD::ConfigurationLoader::getIntData("player", "coordinateX"), RiD::ConfigurationLoader::getIntData("player", "coordinateY"));
+	setObiectCoord(RiD::ConfigurationLoader::getIntData("computer player", "coordinateX"), RiD::ConfigurationLoader::getIntData("computer player", "coordinateY"));
 }
 
 void MP::ComputerPlayer::computerPlayerAnimation(sf::Clock& globalClock)
 {
-	if (computerTasks.getTask() == MP::TaskManager::taskType::taskGoUp)
-		computerPlayerAnimationUp(globalClock);
+	if (aTaskManager.getTask() == MP::TaskManager::taskType::taskGoUp)
+		_computer_player_animation_up(globalClock);
 
-	if (computerTasks.getTask() == MP::TaskManager::taskType::taskGoDown)
-		computerPlayerAnimationDown(globalClock);
+	if (aTaskManager.getTask() == MP::TaskManager::taskType::taskGoDown)
+		_computer_player_animation_down(globalClock);
 
-	if (computerTasks.getTask() == MP::TaskManager::taskType::taskGoLeft)
-		computerPlayerAnimationLeft(globalClock);
+	if (aTaskManager.getTask() == MP::TaskManager::taskType::taskGoLeft)
+		_computer_player_animation_left(globalClock);
 
-	if (computerTasks.getTask() == MP::TaskManager::taskType::taskGoRight)
-		computerPlayerAnimationRight(globalClock);
+	if (aTaskManager.getTask() == MP::TaskManager::taskType::taskGoRight)
+		_computer_player_animation_right(globalClock);
 }
 
-void MP::ComputerPlayer::computerPlayerAnimationRight(sf::Clock& globalClock)
+void MP::ComputerPlayer::_computer_player_animation_right(sf::Clock& globalClock)
 {
 	if (globalClock.getElapsedTime() > _ready_animation_time)
 	{
-		animationMaker.setNextSprite(6, 8);
+		aAnimation.setNextSprite(6, 8);
 		setLastActiveAnimation(globalClock);
 	}
 }
 
-void MP::ComputerPlayer::computerPlayerAnimationLeft(sf::Clock& globalClock)
+void MP::ComputerPlayer::_computer_player_animation_left(sf::Clock& globalClock)
 {
 	if (globalClock.getElapsedTime() > _ready_animation_time)
 	{
-		animationMaker.setNextSprite(3, 5);
+		aAnimation.setNextSprite(3, 5);
 		setLastActiveAnimation(globalClock);
 	}
 }
 
-void MP::ComputerPlayer::computerPlayerAnimationUp(sf::Clock& globalClock)
+void MP::ComputerPlayer::_computer_player_animation_up(sf::Clock& globalClock)
 {
 	if (globalClock.getElapsedTime() > _ready_animation_time)
 	{
-		animationMaker.setNextSprite(9, 11);
+		aAnimation.setNextSprite(9, 11);
 		setLastActiveAnimation(globalClock);
 	}
 }
 
-void MP::ComputerPlayer::computerPlayerAnimationDown(sf::Clock& globalClock)
+void MP::ComputerPlayer::_computer_player_animation_down(sf::Clock& globalClock)
 {
 	if (globalClock.getElapsedTime() > _ready_animation_time)
 	{
-		animationMaker.setNextSprite(0, 2);
+		aAnimation.setNextSprite(0, 2);
 		setLastActiveAnimation(globalClock);
 	}
 }

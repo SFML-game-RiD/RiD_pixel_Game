@@ -23,7 +23,7 @@ namespace MP
 
 		std::shared_ptr<Player> _player;
 
-		std::shared_ptr<ComputerPlayer> _computer_player;
+		std::shared_ptr<ComputerPlayer> _computer_player_list;
 
 		std::list<Tree> _tree_list;
 

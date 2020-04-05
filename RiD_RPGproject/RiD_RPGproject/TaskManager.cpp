@@ -50,7 +50,7 @@ void MP::TaskManager::startProcedureZoomIn()
 {
 	if (_current_task == taskNone)
 	{
-		_current_task = zoomIn;
+		_current_task = taskZoomIn;
 	}
 }
 
@@ -58,7 +58,7 @@ void MP::TaskManager::startProcedureZoomOut()
 {
 	if (_current_task == taskNone)
 	{
-		_current_task = zoomOut;
+		_current_task = taskZoomOut;
 	}
 }
 

@@ -55,8 +55,7 @@ MP::MapElement *& MP::PathCreator::findPath(sf::Vector2f start, sf::Vector2f sto
 MP::PathCreator & MP::PathCreator::operator=(MP::Map & aMap)
 {
 	_map_copy->copyMapElementList(aMap.getMapElementList());
-	//this->lastCoord = aMap.get_last_coord();
-	//this->lastLineNumb = aMap.get_last_line_number();*/
+
 	return *this;
 }
 

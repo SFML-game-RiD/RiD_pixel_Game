@@ -1,25 +1,21 @@
 #include "Player.h"
 #include "Engine/ConfigurationLoader.h"
-#include "MapAnimation.h"
+#include "Animation.h"
 
 MP::Player::Player(sf::Texture* texturePtr)
 {
 	//Loading textures.
-	//animationMaker.loadObiectTextures("img/mpimg/mpcharacter.png",3,4,64);
-	animationMaker.loadObiectTextures(texturePtr,3,4,64);
-	animationMaker.changeSprite(6);
-	animationMaker.setScale(0.7, 0.7);
+	aAnimation.loadObiectTextures(texturePtr,3,4,64);
+	aAnimation.changeSprite(6);
+	aAnimation.setScale(0.7, 0.7);
 	//Getting player animation and move sleep time.
 	active_obj_sleep_time = sf::milliseconds(RiD::ConfigurationLoader::getIntData("player", "SleepTime"));
-	obj_animation_sleep_time = sf::milliseconds(RiD::ConfigurationLoader::getIntData("player", "animationSleepTime"));
+	_obj_animation_sleep_time = sf::milliseconds(RiD::ConfigurationLoader::getIntData("player", "animationSleepTime"));
 	
 	//Loading velocity.
 	_velocity = RiD::ConfigurationLoader::getIntData("player", "velocity");
 	//Getting player coordinates.
 	setObiectCoord(RiD::ConfigurationLoader::getIntData("player", "coordinateX"), RiD::ConfigurationLoader::getIntData("player", "coordinateY"));
-	
-
-	
 
 }
 
@@ -27,50 +23,50 @@ MP::Player::Player(sf::Texture* texturePtr)
 void MP::Player::playerAnimation(sf::Clock& globalClock, MP::TaskManager& aTaskManager)
 {
 	if (aTaskManager.getTask() == MP::TaskManager::taskType::taskGoUp)
-		playerAnimationUp(globalClock);
+		_player_animation_up(globalClock);
 
 	if (aTaskManager.getTask() == MP::TaskManager::taskType::taskGoDown)
-		playerAnimationDown(globalClock);
+		_player_animation_down(globalClock);
 
 	if (aTaskManager.getTask() == MP::TaskManager::taskType::taskGoLeft)
-		playerAnimationLeft(globalClock);
+		_player_animation_left(globalClock);
 
 	if (aTaskManager.getTask() == MP::TaskManager::taskType::taskGoRight)
-		playerAnimationRight(globalClock);
+		_player_animation_right(globalClock);
 }
 
-void MP::Player::playerAnimationRight(sf::Clock& globalClock)
+void MP::Player::_player_animation_right(sf::Clock& globalClock)
 {
 	if (globalClock.getElapsedTime() > _ready_animation_time)
 	{
-		animationMaker.setNextSprite(6, 8);
+		aAnimation.setNextSprite(6, 8);
 		setLastActiveAnimation(globalClock);
 	}
 }
 
-void MP::Player::playerAnimationLeft(sf::Clock& globalClock)
+void MP::Player::_player_animation_left(sf::Clock& globalClock)
 {
 	if (globalClock.getElapsedTime() > _ready_animation_time)
 	{
-		animationMaker.setNextSprite(3, 5);
+		aAnimation.setNextSprite(3, 5);
 		setLastActiveAnimation(globalClock);
 	}
 }
 
-void MP::Player::playerAnimationUp(sf::Clock& globalClock)
+void MP::Player::_player_animation_up(sf::Clock& globalClock)
 {
 	if (globalClock.getElapsedTime() > _ready_animation_time)
 	{
-		animationMaker.setNextSprite(9, 11);
+		aAnimation.setNextSprite(9, 11);
 		setLastActiveAnimation(globalClock);
 	}
 }
 
-void MP::Player::playerAnimationDown(sf::Clock& globalClock)
+void MP::Player::_player_animation_down(sf::Clock& globalClock)
 {
 	if (globalClock.getElapsedTime() > _ready_animation_time)
 	{
-		animationMaker.setNextSprite(0, 2);
+		aAnimation.setNextSprite(0, 2);
 		setLastActiveAnimation(globalClock);
 	}
 }
