@@ -11,7 +11,7 @@ namespace MP
 	{
 	private:
 
-		int _walkable_map_element_count;
+		sf::Vector2i _last_element_coord;
 
 		std::mt19937 _random_value;
 
@@ -20,6 +20,7 @@ namespace MP
 		MapElement * _map_element_list;
 
 		void _delete_map(MapElement *&head);
+
 
 	public:
 
@@ -41,7 +42,8 @@ namespace MP
 
 		MapElement* returnRandomWalkableElement();
 
-		int& getWalkableCounter();
+		void  setLastElementCoord(sf::Vector2f aVector);
+
 	};
 }
 #endif // !Map

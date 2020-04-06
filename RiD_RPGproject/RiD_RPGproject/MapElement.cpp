@@ -30,7 +30,7 @@ std::shared_ptr<MP::Places>& MP::MapElement::getPlace()
 }
 
 
-MP::MapElement::MapElement(RiD::AssetManager& aAssetManager, int cordX, int cordY, char mark, int &walkableCount)
+MP::MapElement::MapElement(RiD::AssetManager& aAssetManager, int cordX, int cordY, char mark)
 {
 	_up_element = nullptr;
 	_down_element = nullptr;
@@ -45,7 +45,6 @@ MP::MapElement::MapElement(RiD::AssetManager& aAssetManager, int cordX, int cord
 		_walkable = false;
 	else
 	{
-		walkableCount++;
 		_walkable = true;
 	}
 	if (mark != '~')
@@ -132,4 +131,29 @@ bool MP::MapElement::isWalkable()
 MP::MapElement* MP::MapElement::returnAddress()
 {
 	return this;
+}
+
+MP::MapElement* MP::MapElement::getNextElementCopy()
+{
+	return _next_element;
+}
+
+MP::MapElement* MP::MapElement::getUpPtrCopy()
+{
+	return _up_element;
+}
+
+MP::MapElement* MP::MapElement::getDownPtrCopy()
+{
+	return _down_element;
+}
+
+MP::MapElement* MP::MapElement::getLeftPtrCopy()
+{
+	return _left_element;
+}
+
+MP::MapElement* MP::MapElement::getRightPtrCopy()
+{
+	return _right_element;
 }

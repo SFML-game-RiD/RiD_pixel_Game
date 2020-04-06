@@ -13,7 +13,7 @@ namespace MP
 
 		/************************************************* PRIVATE ATTRIBUTES *************************************************/
 
-		MP::Map * _map_copy;
+		MP::Map* _map_copy;
 
 		sf::Vector2f _start;//Starting coordinates.
 

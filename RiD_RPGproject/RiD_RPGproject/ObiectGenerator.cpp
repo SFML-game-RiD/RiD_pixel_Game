@@ -28,7 +28,7 @@ void MP::ObiectGenerator::_generate_trees(ObiectManager& aObiectManager)
 				float newScale =(( _random_number() % 50)*0.01)+0.8;
 				
 
-				Tree* tmpTree = new Tree(&_a_asset_manager.getTexture("tree"),tmpCoord,newScale);
+				std::shared_ptr<Tree> tmpTree = std::make_shared<Tree>(&_a_asset_manager.getTexture("tree"),tmpCoord,newScale);
 				aObiectManager.getTreeList()->push_back(*tmpTree);
 				counter--;
 	
@@ -66,9 +66,10 @@ void MP::ObiectGenerator::_generate_map(ObiectManager& aObiectManager)
 		{
 			for (int i = 0; i < line.length(); i++)
 			{
-				MapElement* tmp = new MapElement(_a_asset_manager,x, y, line[i],aObiectManager.getMap().getWalkableCounter());
+				MapElement* tmp = new MapElement(_a_asset_manager,x, y, line[i]);
 				aObiectManager.getMap().addMapElement(aObiectManager.getMapElementHead(), tmp);
 				x += blockLength;
+				aObiectManager.getMap().setLastElementCoord(tmp->getLandTile().getObiectCoord());
 			}
 			y += blockLength;
 		}
@@ -78,12 +79,16 @@ void MP::ObiectGenerator::_generate_map(ObiectManager& aObiectManager)
 
 void MP::ObiectGenerator::_generate_computer_player(ObiectManager& aObiectManager)
 {
+	int computerPlayerAmmount = RiD::ConfigurationLoader::getIntData("computer player", "numberOfPlayers");
 
+	while (computerPlayerAmmount != 0)
+	{
+		std::shared_ptr<ComputerPlayer> tmp= std::make_shared<ComputerPlayer>(&_a_asset_manager.getTexture("player"));
 
-	std::shared_ptr<ComputerPlayer> tmp = std::make_shared<ComputerPlayer>(&_a_asset_manager.getTexture("player"));
+		aObiectManager.addObiect(*tmp);
 
-	aObiectManager.addObiect(tmp);
-
+		computerPlayerAmmount--;
+	}
 
 }
 

@@ -23,7 +23,7 @@ namespace MP
 
 		void startProcedureCorrectCamera(TaskManager& aTaskManager, sf::Vector2f newCoord, Camera& aCamera);
 
-		void startProcedureComputerPlayer(MP::ComputerPlayer& aComputerPlayer, sf::Clock& aGameClock,Map& aMap);
+		void startProcedureComputerPlayer(ObiectManager& aObiectManager, sf::Clock& aGameClock,Map& aMap);
 	};
 }
 #endif

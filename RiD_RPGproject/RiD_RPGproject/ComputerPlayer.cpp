@@ -5,10 +5,15 @@
 void MP::ComputerPlayer::choseDestination(Map &aMap)
 {
 	MP::PathCreator tmp(aMap);
+	sf::Vector2f destinationCoord = aMap.returnRandomWalkableElement()->getLandTile().getObiectCoord();
+	MapElement* startingElement = aMap.findElementAddressSquareRange(getObiectCoord(), aMap.getMapElementList());
+
+	while(destinationCoord == startingElement->getLandTile().getObiectCoord())
+		destinationCoord = aMap.returnRandomWalkableElement()->getLandTile().getObiectCoord();
 
 	//Chose random destination and calculate path.
-	_path =  tmp.findPath(aMap.findElementAddressSquareRange(getObiectCoord(), aMap.getMapElementList())->getLandTile().getObiectCoord(),
-		aMap.returnRandomWalkableElement()->getLandTile().getObiectCoord());
+	
+	_path =  tmp.findPath(startingElement->getLandTile().getObiectCoord(),destinationCoord);
 }
 
 void MP::ComputerPlayer::getNextTask(Map& aMap)

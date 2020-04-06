@@ -68,7 +68,6 @@ void MP::Map::_delete_map(MapElement*& head)
 
 MP::Map::Map()
 {
-	_walkable_map_element_count = 0;
 	_random_value.seed(time(0));
 	_map_element_list = nullptr;
 	_block_length = RiD::ConfigurationLoader::getIntData("game settings", "blockLength");
@@ -99,6 +98,8 @@ MP::MapElement* MP::Map::findElementAddressSquareRange(sf::Vector2f coordinates,
 		return nullptr;
 	else
 	{
+		if (mapElementHead == nullptr)
+			mapElementHead = nullptr;
 		if (coordinates.x <= mapElementHead->getLandTile().getObiectCoord().x+_block_length and
 			coordinates.y <= mapElementHead->getLandTile().getObiectCoord().y + _block_length )
 			return mapElementHead;
@@ -114,24 +115,27 @@ void MP::Map::copyMapElementList(MapElement* aMapElementList)
 
 MP::MapElement* MP::Map::returnRandomWalkableElement()
 {
-	int counter = _random_value() % _walkable_map_element_count;
-	MapElement* tmp = _map_element_list;
 
-	while (counter != 0 and tmp!=nullptr)
+	MapElement* tmp=nullptr;
+	sf::Vector2f randVector;
+	randVector.x = _random_value() % _last_element_coord.x;
+	randVector.y = _random_value() % _last_element_coord.y;
+
+	tmp = findElementAddressSquareRange(randVector, _map_element_list);
+
+	while (tmp->isWalkable() ==false)
 	{
-		if (tmp->isWalkable())
-		{
-			counter--;
-			if (counter == 0)
-				return tmp;
-		}
-		tmp = tmp->getNextElement();
+		randVector.x = _random_value() % _last_element_coord.x;
+		randVector.y = _random_value() % _last_element_coord.y;
+	tmp=findElementAddressSquareRange(randVector, _map_element_list);
+	if (tmp == nullptr)
+		tmp = nullptr;
 	}
-
-	return nullptr;
+	return tmp;
 }
 
-int& MP::Map::getWalkableCounter()
+void MP::Map::setLastElementCoord(sf::Vector2f aVector)
 {
-	return _walkable_map_element_count;
+	_last_element_coord.x = aVector.x;
+	_last_element_coord.y = aVector.y;
 }

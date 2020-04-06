@@ -61,10 +61,18 @@ void MP::Calculator::startProcedureCorrectCamera(TaskManager& aTaskManager, sf::
 	aCamera.changeCamera(newCoord);
 }
 
-void MP::Calculator::startProcedureComputerPlayer(MP::ComputerPlayer& aComputerPlayer, sf::Clock& aGameClock,Map &aMap)
+void MP::Calculator::startProcedureComputerPlayer(ObiectManager& aObiectManager, sf::Clock& aGameClock, Map& aMap)
 {
-	aComputerPlayer.getNextTask(aMap);
-	aComputerPlayer.computerPlayerAnimation(aGameClock);
-	aComputerPlayer.computerPlayerMove(aGameClock);
+	std::list<ComputerPlayer> *computerPlayerList = aObiectManager.getComputerPlayerList();
+	std::list<ComputerPlayer>::iterator it;
+
+	it = computerPlayerList->begin();
+
+	for (it; it != computerPlayerList->end(); it++)
+	{
+		it->getNextTask(aMap);
+		it->computerPlayerAnimation(aGameClock);
+		it->computerPlayerMove(aGameClock);
+	}
 }
 

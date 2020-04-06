@@ -37,7 +37,7 @@ namespace MP
 
 		std::shared_ptr<Places>& getPlace();
 
-		MapElement(RiD::AssetManager &aAssetManager,int cordX,int cordY,char mark,int &walkableCounter);
+		MapElement(RiD::AssetManager &aAssetManager,int cordX,int cordY,char mark);
 
 
 
@@ -67,6 +67,18 @@ namespace MP
 		bool isWalkable();
 
 		MapElement* returnAddress();
+
+		//SPECIAL GETTERS
+
+		MapElement* getNextElementCopy();
+
+		MapElement* getUpPtrCopy();
+
+		MapElement* getDownPtrCopy();
+
+		MapElement* getLeftPtrCopy();
+
+		MapElement* getRightPtrCopy();
 	};
 }
 #endif

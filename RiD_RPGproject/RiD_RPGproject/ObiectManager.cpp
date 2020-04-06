@@ -9,9 +9,9 @@ bool MP::ObiectManager::_access()
 		return false;
 }
 
-std::shared_ptr<MP::ComputerPlayer>& MP::ObiectManager::getComputerPlayer()
+std::list<MP::ComputerPlayer>* MP::ObiectManager::getComputerPlayerList()
 {
-	return _computer_player_list;
+	return &_computer_player_list;
 }
 
 MP::ObiectManager::ObiectManager()
@@ -23,6 +23,8 @@ MP::ObiectManager::ObiectManager()
 MP::ObiectManager::~ObiectManager()
 {
 	_tree_list.clear();
+
+	_computer_player_list.clear();
 }
 
 void MP::ObiectManager::addObiect(std::shared_ptr<Player> newPlayer)
@@ -30,9 +32,9 @@ void MP::ObiectManager::addObiect(std::shared_ptr<Player> newPlayer)
 	_player = newPlayer;
 }   
 
-void MP::ObiectManager::addObiect(std::shared_ptr<ComputerPlayer> newComputerPlayer)
+void MP::ObiectManager::addObiect(ComputerPlayer newComputerPlayer)
 {
-	_computer_player_list = newComputerPlayer;
+	_computer_player_list.push_back(newComputerPlayer);
 }
 
 std::shared_ptr<MP::Player> & MP::ObiectManager::getPlayer()

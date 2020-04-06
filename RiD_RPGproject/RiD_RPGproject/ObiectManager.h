@@ -23,7 +23,7 @@ namespace MP
 
 		std::shared_ptr<Player> _player;
 
-		std::shared_ptr<ComputerPlayer> _computer_player_list;
+		std::list<ComputerPlayer> _computer_player_list;
 
 		std::list<Tree> _tree_list;
 
@@ -40,7 +40,7 @@ namespace MP
 
 		void addObiect(std::shared_ptr<Player> newPlayer);
 		
-		void addObiect(std::shared_ptr<ComputerPlayer> newComputerPlayer);
+		void addObiect(ComputerPlayer newComputerPlayer);
 
 		std::shared_ptr<Player> & getPlayer();
 		
@@ -52,7 +52,7 @@ namespace MP
 
 		bool _access();
 
-		std::shared_ptr<ComputerPlayer>& getComputerPlayer();
+		std::list<MP::ComputerPlayer>* getComputerPlayerList();
 	};
 
 }

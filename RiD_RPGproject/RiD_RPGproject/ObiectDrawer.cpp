@@ -55,9 +55,14 @@ void MP::ObiectDrawer::drawActiveObiects(sf::RenderWindow& mainWindow, ObiectMan
 
 	mainWindow.draw(aObiectManager.getPlayer()->aAnimation.getObiectSprite());
 	
-	
-	mainWindow.draw(aObiectManager.getComputerPlayer()->aAnimation.getObiectSprite());
+	std::list<MP::ComputerPlayer> *computerPlayerList = aObiectManager.getComputerPlayerList();
+	std::list<MP::ComputerPlayer>::iterator it;
+	it = computerPlayerList->begin();
 
+	for (it; it != computerPlayerList->end(); it++)
+	{
+		mainWindow.draw(it->aAnimation.getObiectSprite());
+	}
 
 
 
