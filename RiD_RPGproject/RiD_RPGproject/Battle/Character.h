@@ -15,7 +15,7 @@ namespace RTB
 	class Character
 	{
 	protected:
-		sf::Sprite* _character_sprite;
+		sf::Sprite* _character_sprite = nullptr;
 		HPBar* _hp_bar = nullptr;
 		RiD::Movement* _movement = nullptr;
 		Hitbox* _hitbox = nullptr;
@@ -52,5 +52,11 @@ namespace RTB
 
 		//Returns character's hitbox as rectangle
 		virtual sf::RectangleShape getHitbox();
+
+		//Dealing damage to bots of enemy team
+		//@param time time needed for combat animations
+		//@param list_of_bots list of possible enemies
+		//@param window render window
+		virtual void dealDamage(sf::Time time, std::list<std::shared_ptr<Character>>& list_of_bots, sf::RenderTarget& window) = 0;
 	};
 }

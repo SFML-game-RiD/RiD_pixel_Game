@@ -23,10 +23,28 @@ namespace RTB
 		delete _hp_bar;
 		delete _arrows;
 	}
+
 	void Archer::update(sf::Time time, std::vector<std::vector<_obj>>& map_objects)
 	{
+		_movement->idle(time);
+		_hitbox->update();
+		_hp_bar->update();
+		if (_movement->isDeathTriggered())
+		{
+			_movement->death(time);
+			if (_movement->isDeathTriggered() == false)
+				_is_alive = false;
+		}
 	}
-	void Archer::dealDamage(sf::Time time, std::list<Character*>& list_of_bots, sf::RenderTarget& window)
+
+	void Archer::dealDamage(sf::Time time, std::list<std::shared_ptr<Character>>& list_of_bots, sf::RenderTarget& window)
 	{
+	}
+
+	void Archer::render(sf::RenderWindow& window)
+	{
+		window.draw(_movement->getSprite());
+		_hitbox->render(window);
+		_hp_bar->render(window);
 	}
 }

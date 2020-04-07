@@ -4,7 +4,7 @@
 
 namespace RTB
 {
-	void RealTimeBattle::zoomEvent()
+	void RealTimeBattle::_zoomEvent()
 	{
 		if (_event.mouseWheel.delta == -1)
 		{
@@ -27,12 +27,83 @@ namespace RTB
 			}
 		}
 	}
+
+	void RealTimeBattle::_armyCreation()
+	{
+		unsigned seed = static_cast<unsigned>(std::chrono::high_resolution_clock::now().time_since_epoch().count());
+		std::mt19937 RNG(seed);
+		std::uniform_real_distribution<float> enemy_position_height(12,36);
+		std::uniform_real_distribution<float> enemy_position_width(1, 5);
+		sf::Vector2f position;
+
+		for (unsigned short i = 0; i < 5; ++i)
+			_list_of_enemies.emplace_back(new Swordsman(_asset_manager.getTexture("enemy_swordsman"), 100));
+		for (unsigned short i = 0; i < 5; ++i)
+			_list_of_enemies.emplace_back(new Archer(_asset_manager.getTexture("enemy_archer"), 100, _asset_manager.getTexture("arrow")));
+		for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_enemies.begin(); iterator != _list_of_enemies.end(); iterator++)
+		{
+			position.x = enemy_position_height(RNG)*25;
+			position.y = enemy_position_width(RNG)*25;
+			position = _tile_map->_twoDToIso(position);
+			(*iterator)->setPosition({ position.x,position.y});
+			while (_checkPlacementCollisions(iterator))
+			{
+				position.x = enemy_position_height(RNG) * 25;
+				position.y = enemy_position_width(RNG) * 25;
+				position = _tile_map->_twoDToIso(position);
+				(*iterator)->setPosition({ position.x,position.y });
+			}
+		}
+
+		for (unsigned short i = 0; i < 4; ++i)
+			_list_of_allies.emplace_back(new Swordsman(_asset_manager.getTexture("ally_swordsman"), 100));
+		for (unsigned short i = 0; i < 5; ++i)
+			_list_of_allies.emplace_back(new Archer(_asset_manager.getTexture("ally_archer"), 100, _asset_manager.getTexture("arrow")));
+
+		_list_of_allies.emplace_back(new Player(_asset_manager.getTexture("player"), 100, _asset_manager.getTexture("arrow")));
+		_player = _list_of_allies.back();
+
+		std::uniform_real_distribution<float> ally_position_height(12, 36);
+		std::uniform_real_distribution<float> ally_position_width(59, 63);
+
+		for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_allies.begin(); iterator != _list_of_allies.end(); iterator++)
+		{
+			position.x = ally_position_height(RNG) * 25;
+			position.y = ally_position_width(RNG) * 25;
+			position = _tile_map->_twoDToIso(position);
+			(*iterator)->setPosition({ position.x,position.y });
+			while (_checkPlacementCollisions(iterator))
+			{
+				position.x = ally_position_height(RNG) * 25;
+				position.y = ally_position_width(RNG) * 25;
+				position = _tile_map->_twoDToIso(position);
+				(*iterator)->setPosition({ position.x,position.y });
+			}
+		}
+	}
+
+	bool RealTimeBattle::_checkPlacementCollisions(std::list<std::shared_ptr<Character>>::iterator character)
+	{
+		sf::Vector2f position;
+		position.x = ((2 * (*character)->getPosition().y + (*character)->getPosition().x) / 2)/25;
+		position.y = ((2 * (*character)->getPosition().y - (*character)->getPosition().x) / 2)/25;
+		if (position.x > _tile_map->getHeight()  || position.x < 0 ||
+			position.y > _tile_map->getWidth()  || position.y < 0)//checks if character is not situated "inside" the map
+			return true;//collides
+		else ///////////to do
+		{
+			return false;// do not collides
+		}
+	}
+
 	RealTimeBattle::RealTimeBattle()
 	{
 		_camera.reset(sf::FloatRect(0, 0, 853, 480));
 		_asset_manager.setTexture("player", "img/character.png");
 		_asset_manager.setTexture("enemy_swordsman", "img/enemy_swordsman.png");
+		_asset_manager.setTexture("ally_swordsman", "img/ally_swordsman.png");
 		_asset_manager.setTexture("enemy_archer", "img/enemy_archer.png");
+		_asset_manager.setTexture("ally_archer", "img/ally_archer.png");
 		_asset_manager.setTexture("arrow", "img/arrow.png");
 	}
 
@@ -42,15 +113,10 @@ namespace RTB
 
 	void RealTimeBattle::mainLoop(sf::RenderWindow& window)
 	{
-		_tile_map = new TileMap({ 50,50 });
-		window.setView(_camera);
+		_tile_map = std::unique_ptr<TileMap>(new TileMap({ 50,50 }));
+		window.setView(_camera);		
 
-		Player player(_asset_manager.getTexture("player"), 100, _asset_manager.getTexture("arrow"));
-		Swordsman* bot = new Swordsman(_asset_manager.getTexture("enemy_swordsman"), 100);
-		bot->setPosition(sf::Vector2f(145, 230));
-		_list_of_enemies.push_back(bot);
-
-		player.setPosition(sf::Vector2f(200, 200));
+		this->_armyCreation();
 		while (window.isOpen())
 		{
 			while (window.pollEvent(_event)) //handling events
@@ -58,14 +124,14 @@ namespace RTB
 				if (_event.type == sf::Event::EventType::Closed)
 					window.close();
 				if (_event.type == sf::Event::MouseWheelMoved)
-					this->zoomEvent();
+					this->_zoomEvent();
 			}
 
 			//Renders
 			window.clear();
 			_tile_map->drawTiles(window);
 			//Bots
-			for (std::list<Character*>::iterator iterator = _list_of_enemies.begin(); iterator != _list_of_enemies.end(); iterator++)
+			for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_enemies.begin(); iterator != _list_of_enemies.end(); iterator++)
 			{
 				if ((*iterator)->isAlive())
 				{
@@ -73,28 +139,22 @@ namespace RTB
 					(*iterator)->render(window);
 				}
 			}
+			if (_player->isAlive())
+				_camera.setCenter(_player->getPosition()); //camera is centered on the player
+			else return;
 
-			//Player
-			if (player.isAlive())
+			for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_allies.begin(); iterator != _list_of_allies.end(); iterator++)
 			{
-				player.update(_clock.getElapsedTime(), _tile_map->getCollidableObjects());
-				_camera.setCenter(player.getPosition()); //camera is centered on the player
-				player.dealDamage(_clock.getElapsedTime(), _list_of_enemies, window);
-				std::cout << "iso: "<< (int)(player.getPosition().x-player.getPosition().y)/25 << " " << (int)((player.getPosition().x + player.getPosition().y) / 2)/25 << std::endl;
-				std::cout << "isoto2d: " << (int)(((2*player.getPosition().y+ player.getPosition().x)/2)/25) << " " << (int)(((2 * player.getPosition().y - player.getPosition().x) / 2) / 25) << std::endl;
-				std::cout << "carthesian: " << (int)(player.getPosition().x / 25) << " " << (int)(player.getPosition().y / 25) << std::endl;
-				player.render(window);
+				if ((*iterator)->isAlive())
+				{
+					(*iterator)->update(_clock.getElapsedTime(), _tile_map->getCollidableObjects());
+					(*iterator)->dealDamage(_clock.getElapsedTime(), _list_of_enemies, window);
+					(*iterator)->render(window);
+				}
 			}
-			else
-				return;
 			_tile_map->drawObjects(window);
 			window.setView(_camera);
 			window.display();
 		}
-		for (std::list<Character*>::iterator iterator = _list_of_enemies.begin(); iterator != _list_of_enemies.end(); iterator++)
-		{
-			delete (*iterator);
-		}
-		delete _tile_map;
 	}
 }

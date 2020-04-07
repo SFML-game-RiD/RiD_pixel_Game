@@ -4,9 +4,9 @@
 
 namespace RTB
 {
-	void Player::_dealSwordDamage(std::list<Character*>& list_of_bots)
+	void Player::_dealSwordDamage(std::list<std::shared_ptr<Character>>& list_of_bots)
 	{
-		for (std::list<Character*>::iterator iterator = list_of_bots.begin();//Iterates through list of bots...
+		for (std::list<std::shared_ptr<Character>>::iterator iterator = list_of_bots.begin();//Iterates through list of bots...
 			iterator != list_of_bots.end(); iterator++)
 		{
 			if (_sword_hitbox->checkIntersection((*iterator)->getHitbox().getGlobalBounds()) == true)//checks if sword intersected one of them...
@@ -17,9 +17,9 @@ namespace RTB
 		_movement->notReadyToDealSwordDamage();
 	}
 
-	void Player::_dealBowDamage(std::list<Character*>& list_of_bots)//as above
+	void Player::_dealBowDamage(std::list<std::shared_ptr<Character>>& list_of_bots)//as above
 	{
-		for (std::list<Character*>::iterator iterator = list_of_bots.begin();
+		for (std::list<std::shared_ptr<Character>>::iterator iterator = list_of_bots.begin();
 			iterator != list_of_bots.end(); iterator++)
 		{
 			if (_arrows->isFlying() && _arrows->checkIntersection((*iterator)->getHitbox().getGlobalBounds()) == true)
@@ -33,8 +33,8 @@ namespace RTB
 	{
 		sf::Vector2i character_position = { (int)(((2 * _character_sprite->getPosition().y + _character_sprite->getPosition().x) / 2) / 25), (int)(((2 * _character_sprite->getPosition().y - _character_sprite->getPosition().x) / 2) / 25) };
 		unsigned int height = map_objects[0].size(), width = map_objects.size();
-	
-		if (character_position.y > height -1 || character_position.x < 0 || character_position.x > width-1 || character_position.y < 0)//checks if character is situated "inside" the map
+
+		if (character_position.y > height - 1 || character_position.x < 0 || character_position.x > width - 1 || character_position.y < 0)//checks if character is situated "inside" the map
 		{
 			if (_direction == up)
 				_moving_up = false;
@@ -50,31 +50,31 @@ namespace RTB
 		}
 		else
 		{
-			short furthest_up = 0, furthest_down = 0, furthest_left = 0, furthest_right = 0;
+			short furthest_up = 0, furthest_down = 0, furthest_left = 0, furthest_right = 0, range = 3;
 			//up
 			short iterator_y = character_position.y;
-			while (furthest_up < 6&& iterator_y > 0)
+			while (furthest_up < range && iterator_y > 0)
 			{
 				furthest_up++;
 				iterator_y--;
 			}
 			//down
 			iterator_y = character_position.y;
-			while (furthest_down < 6 && iterator_y < height)
+			while (furthest_down < range && iterator_y < height)
 			{
 				furthest_down++;
 				iterator_y++;
 			}
 			//left
 			short iterator_x = character_position.x;
-			while (furthest_left < 6 && iterator_x > 0)
+			while (furthest_left < range && iterator_x > 0)
 			{
 				furthest_left++;
 				iterator_x--;
 			}
 			//right
 			iterator_x = character_position.x;
-			while (furthest_right < 6  && iterator_x < width)
+			while (furthest_right < range && iterator_x < width)
 			{
 				furthest_right++;
 				iterator_x++;
@@ -116,6 +116,7 @@ namespace RTB
 		_hp_bar = new HPBar(_character_sprite, _health_points);
 		_arrows = new Arrow(_character_sprite, arrow_texture);
 		_is_alive = true;
+		_arrows_count = 10;
 	}
 
 	Player::~Player()
@@ -180,7 +181,7 @@ namespace RTB
 		_moving_up = _moving_down = _moving_right = _moving_left = true;
 	}
 
-	void Player::dealDamage(sf::Time time, std::list<Character*>& list_of_bots, sf::RenderTarget& window)
+	void Player::dealDamage(sf::Time time, std::list<std::shared_ptr<Character>>& list_of_bots, sf::RenderTarget& window)
 	{
 		//sword
 		if (_movement->isAttackTriggered())
@@ -195,6 +196,7 @@ namespace RTB
 		//bow
 		if (_movement->isShotTriggered())
 		{
+			_arrows_count--;
 			_movement->bowShot(time);
 			_arrows->update();
 		}

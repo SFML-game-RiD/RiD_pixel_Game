@@ -68,7 +68,7 @@ namespace RTB
 		return _hitbox->getRectangle();
 	}
 
-	void Swordsman::dealDamage(sf::Time time, std::list<Swordsman*>& list_of_Swordsmans, sf::RenderTarget& window)
+	void Swordsman::dealDamage(sf::Time time, std::list<std::shared_ptr<Character>>& list_of_bots, sf::RenderTarget& window)
 	{
 	}
 

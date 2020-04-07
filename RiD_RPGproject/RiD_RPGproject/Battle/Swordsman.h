@@ -37,7 +37,7 @@ namespace RTB
 		//@param time time needed for combat animations
 		//@param list_of_Swordsmans list of possible enemies
 		//@param window render window
-		void dealDamage(sf::Time time, std::list<Swordsman*>& list_of_Swordsmans, sf::RenderTarget& window);
+		void dealDamage(sf::Time time, std::list<std::shared_ptr<Character>>& list_of_bots, sf::RenderTarget& window);
 
 		//Subtracts health points
 		void subtractHP(short value);

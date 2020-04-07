@@ -72,7 +72,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(VC_IncludePath);$(IncludePath);C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um;C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(IncludePath);C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um;C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared;C:\Program Files (x86)\Visual Leak Detector</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -160,6 +160,7 @@
     <ClCompile Include="Battle\Hitbox.cpp" />
     <ClCompile Include="Battle\HPBar.cpp" />
     <ClCompile Include="Battle\OrientedHitbox.cpp" />
+    <ClCompile Include="Battle\PathNode.cpp" />
     <ClCompile Include="Battle\Player.cpp" />
     <ClCompile Include="Battle\RealTimeBattle.cpp" />
     <ClCompile Include="Battle\SwordHitbox.cpp" />
@@ -184,6 +185,7 @@
     <ClInclude Include="Battle\Hitbox.h" />
     <ClInclude Include="Battle\HPBar.h" />
     <ClInclude Include="Battle\OrientedHitbox.h" />
+    <ClInclude Include="Battle\PathNode.h" />
     <ClInclude Include="Battle\Player.h" />
     <ClInclude Include="Battle\RealTimeBattle.h" />
     <ClInclude Include="Battle\SwordHitbox.h" />

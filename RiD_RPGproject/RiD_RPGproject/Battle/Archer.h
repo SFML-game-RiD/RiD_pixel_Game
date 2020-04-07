@@ -21,6 +21,9 @@ namespace RTB
 		//@param time time needed for combat animations
 		//@param list_of_bots list of possible enemies
 		//@param window render window
-		void dealDamage(sf::Time time, std::list<Character*>& list_of_bots, sf::RenderTarget& window);
+		void dealDamage(sf::Time time, std::list<std::shared_ptr<Character>>& list_of_bots, sf::RenderTarget& window);
+
+		//Draws Archer's sprite
+		void render(sf::RenderWindow& window);
 	};
 }

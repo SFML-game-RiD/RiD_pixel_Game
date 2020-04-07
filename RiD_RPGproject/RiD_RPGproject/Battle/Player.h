@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Character.h"
-#include <cmath>
+#include <memory>
 
 namespace RTB
 {
@@ -11,8 +11,8 @@ namespace RTB
 	private:
 		Arrow* _arrows = nullptr;
 		short _arrows_count;
-		void _dealSwordDamage(std::list<Character*>& list_of_bots);
-		void _dealBowDamage(std::list<Character*>& list_of_bots);
+		void _dealSwordDamage(std::list<std::shared_ptr<Character>>& list_of_bots);
+		void _dealBowDamage(std::list<std::shared_ptr<Character>>& list_of_bots);
 		void _isColidingWithTile(std::vector<std::vector<_obj>>& map_objects);
 	public:
 		Player(sf::Texture texture, short health_points, sf::Texture& arrow_texture);
@@ -25,6 +25,6 @@ namespace RTB
 		//@param time time needed for combat animations
 		//@param list_of_bots list of possible enemies
 		//@param window render window
-		void dealDamage(sf::Time time, std::list<Character*>& list_of_bots, sf::RenderTarget& window);
+		void dealDamage(sf::Time time, std::list<std::shared_ptr<Character>>& list_of_bots, sf::RenderTarget& window);
 	};
 }

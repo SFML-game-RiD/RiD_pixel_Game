@@ -118,12 +118,13 @@ namespace RTB
 			break;
 		case fence1:
 			_objects_textures[_position_x][_position_y].sprite.setTexture(_asset_manager.getTexture("fence1"));
-			_objects_textures[_position_x][_position_y].sprite.setPosition(isometric.x + 10, isometric.y - 40);
+			_objects_textures[_position_x][_position_y].sprite.setOrigin(15, 55);
+			_objects_textures[_position_x][_position_y].sprite.setPosition(isometric.x, isometric.y);
 			_objects_textures[_position_x][_position_y].size = _asset_manager.getTexture("fence1").getSize();
 			_objects_textures[_position_x][_position_y].hitbox.setOutlineColor(sf::Color::Green);
 			_objects_textures[_position_x][_position_y].hitbox.setOutlineThickness(1.f);
 			_objects_textures[_position_x][_position_y].hitbox.setFillColor(sf::Color::Transparent);
-			_objects_textures[_position_x][_position_y].hitbox.setPosition(_objects_textures[_position_x][_position_y].sprite.getPosition().x + 18.f, _objects_textures[_position_x][_position_y].sprite.getPosition().y + 68);
+			_objects_textures[_position_x][_position_y].hitbox.setPosition(_objects_textures[_position_x][_position_y].sprite.getPosition().x + 8.f, _objects_textures[_position_x][_position_y].sprite.getPosition().y + 10);
 			_objects_textures[_position_x][_position_y].hitbox.rotate(-30);
 			_objects_textures[_position_x][_position_y].hitbox.setSize(sf::Vector2f(45, 12));
 			_objects_textures[_position_x][_position_y].width = _objects_textures[_position_x][_position_y].hitbox.getSize().x;
@@ -142,12 +143,13 @@ namespace RTB
 			break;
 		case tree:
 			_objects_textures[_position_x][_position_y].sprite.setTexture(_asset_manager.getTexture("tree"));
-			_objects_textures[_position_x][_position_y].sprite.setPosition(isometric.x - 20, isometric.y - 120);
+			_objects_textures[_position_x][_position_y].sprite.setOrigin(50, 136);
+			_objects_textures[_position_x][_position_y].sprite.setPosition(isometric.x, isometric.y);
 			_objects_textures[_position_x][_position_y].size = _asset_manager.getTexture("tree").getSize();
 			_objects_textures[_position_x][_position_y].hitbox.setOutlineColor(sf::Color::Green);
 			_objects_textures[_position_x][_position_y].hitbox.setOutlineThickness(1.f);
 			_objects_textures[_position_x][_position_y].hitbox.setFillColor(sf::Color::Transparent);
-			_objects_textures[_position_x][_position_y].hitbox.setPosition(_objects_textures[_position_x][_position_y].sprite.getPosition().x + 54.f, _objects_textures[_position_x][_position_y].sprite.getPosition().y + 134.f);
+			_objects_textures[_position_x][_position_y].hitbox.setPosition(_objects_textures[_position_x][_position_y].sprite.getPosition().x, _objects_textures[_position_x][_position_y].sprite.getPosition().y);
 			_objects_textures[_position_x][_position_y].hitbox.setSize(sf::Vector2f(44, 18));
 			break;
 		case chest:
@@ -242,4 +244,20 @@ namespace RTB
 	{
 		return _objects_textures;
 	}
+
+	unsigned short& TileMap::getWidth()
+	{
+		return _width;
+	}
+
+	unsigned short& TileMap::getHeight()
+	{
+		return _height;
+	}
+
+	sf::Vector2f TileMap::_twoDToIso(sf::Vector2f position)
+	{
+		return sf::Vector2f(position.x - position.y, (position.x + position.y) / 2);
+	}
+
 }

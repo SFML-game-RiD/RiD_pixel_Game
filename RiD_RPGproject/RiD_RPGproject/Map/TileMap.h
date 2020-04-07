@@ -49,5 +49,11 @@ namespace RTB
 		void drawObjects(sf::RenderTarget& window);
 
 		std::vector<std::vector<_obj>>& getCollidableObjects();
+
+		unsigned short& getWidth();
+
+		unsigned short& getHeight();
+
+		sf::Vector2f _twoDToIso(sf::Vector2f position);
 	};
 }
