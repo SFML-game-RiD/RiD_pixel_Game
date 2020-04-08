@@ -42,7 +42,7 @@ void MP::ObiectGenerator::_generate_trees(ObiectManager& aObiectManager)
 void MP::ObiectGenerator::_generate_player(ObiectManager& aObiectManager)
 {
 
-	std::shared_ptr<MP::Player> tmp = std::make_shared< Player >(&_a_asset_manager.getTexture("player"));
+	std::shared_ptr<MP::Player> tmp = std::make_shared< Player >(&_a_asset_manager.getTexture("player"), &_a_asset_manager.getTexture("pathicon"));
 
 	aObiectManager.addObiect(tmp);
 }
@@ -92,6 +92,13 @@ void MP::ObiectGenerator::_generate_computer_player(ObiectManager& aObiectManage
 
 }
 
+void MP::ObiectGenerator::_generate_cursor(ObiectManager& aObiectManager)
+{
+	std::shared_ptr<Cursor> tmp = std::make_shared<Cursor>(&_a_asset_manager.getTexture("cursor"));
+	aObiectManager.setCursor(tmp);
+
+}
+
 MP::ObiectGenerator::ObiectGenerator()
 {
 	_random_number.seed(time(NULL));
@@ -100,14 +107,16 @@ MP::ObiectGenerator::ObiectGenerator()
 void MP::ObiectGenerator::generateObiects(ObiectManager& aObiectManager)
 {
 	_a_asset_manager.setTexture("tree", "img/mpimg/mptree.png");
-	_a_asset_manager.setTexture("land", "img/mpimg/mpgrass.png");
+	_a_asset_manager.setTexture("land", "img/mpimg/mpgrass8.png");
 	_a_asset_manager.setTexture("player", "img/mpimg/mpcharacter.png");
 	_a_asset_manager.setTexture("village", "img/mpimg/places/mpvillage.png");
 	_a_asset_manager.setTexture("town", "img/mpimg/places/mptown.png");
 	_a_asset_manager.setTexture("castle", "img/mpimg/places/mpcastle.png");
-
+	_a_asset_manager.setTexture("cursor", "img/mpimg/icons/hand.png");
+	_a_asset_manager.setTexture("pathicon", "img/mpimg/icons/move.png");
 	_generate_map(aObiectManager);
 	_generate_trees(aObiectManager);
 	_generate_player(aObiectManager);
 	_generate_computer_player(aObiectManager);
+	_generate_cursor(aObiectManager);
 }

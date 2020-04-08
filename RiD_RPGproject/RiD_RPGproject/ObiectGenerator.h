@@ -24,6 +24,8 @@ namespace MP
 
 		void _generate_computer_player(ObiectManager& aObiectManager);
 
+		void _generate_cursor(ObiectManager& aObiectManager);
+
 	public:
 
 		ObiectGenerator();

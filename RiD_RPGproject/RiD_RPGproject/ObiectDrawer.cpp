@@ -40,10 +40,11 @@ void MP::ObiectDrawer::drawAllObiects(sf::RenderWindow& mainWindow, ObiectManage
 	//Drawing player
 	drawActiveObiects(mainWindow, aObiectManager);
 
-	//Drwaing Trees
+	//Drwaing trees
 	_draw_trees(mainWindow, aObiectManager);
 
-
+	//Drawing cursor
+	_draw_cursor(mainWindow, aObiectManager);
 
 
 }
@@ -52,9 +53,15 @@ void MP::ObiectDrawer::drawActiveObiects(sf::RenderWindow& mainWindow, ObiectMan
 {
 
 
-
+	//drawing player and path icon ( if exist);
 	mainWindow.draw(aObiectManager.getPlayer()->aAnimation.getObiectSprite());
-	
+	std::vector<PathIcon> tmpPathCopy = aObiectManager.getPlayer()->getPathIcon();
+	for (int i = 0; i < tmpPathCopy.size(); i++)
+	{
+		mainWindow.draw(tmpPathCopy[i].aAnimation.getObiectSprite());
+	}
+
+	//drawing computer player
 	std::list<MP::ComputerPlayer> *computerPlayerList = aObiectManager.getComputerPlayerList();
 	std::list<MP::ComputerPlayer>::iterator it;
 	it = computerPlayerList->begin();
@@ -70,4 +77,9 @@ void MP::ObiectDrawer::drawActiveObiects(sf::RenderWindow& mainWindow, ObiectMan
 
 
 
+}
+
+void MP::ObiectDrawer::_draw_cursor(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager)
+{
+	mainWindow.draw(aObiectManager.getCursor()->aAnimation.getObiectSprite());
 }

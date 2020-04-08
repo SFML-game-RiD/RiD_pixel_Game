@@ -1,0 +1,8 @@
+#include "PathIcon.h"
+
+MP::PathIcon::PathIcon(sf::Texture* texturePtr, sf::Vector2f spawnCoord)
+{
+	aAnimation.loadObiectTextures(texturePtr, 1, 1, 60);
+	setObiectCoord(spawnCoord);
+	aAnimation.setScale(0.5, 0.5);
+}

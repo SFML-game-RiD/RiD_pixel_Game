@@ -159,6 +159,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Castle.cpp" />
     <ClCompile Include="ComputerPlayer.cpp" />
+    <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Engine\Animation.cpp" />
     <ClCompile Include="Engine\AssetManager.cpp" />
     <ClCompile Include="Engine\ConfigurationLoader.cpp" />
@@ -180,6 +181,7 @@
     <ClCompile Include="ObiectGenerator.cpp" />
     <ClCompile Include="ObiectManager.cpp" />
     <ClCompile Include="pathCreator.cpp" />
+    <ClCompile Include="PathIcon.cpp" />
     <ClCompile Include="pathNode.cpp" />
     <ClCompile Include="PawnObiect.cpp" />
     <ClCompile Include="Places.cpp" />
@@ -198,6 +200,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Castle.h" />
     <ClInclude Include="ComputerPlayer.h" />
+    <ClInclude Include="Cursor.h" />
     <ClInclude Include="Engine\Animation.h" />
     <ClInclude Include="Engine\AssetManager.h" />
     <ClInclude Include="Engine\ConfigurationLoader.h" />
@@ -218,6 +221,7 @@
     <ClInclude Include="ObiectGenerator.h" />
     <ClInclude Include="ObiectManager.h" />
     <ClInclude Include="pathCreator.h" />
+    <ClInclude Include="PathIcon.h" />
     <ClInclude Include="pathNode.h" />
     <ClInclude Include="PawnObiect.h" />
     <ClInclude Include="Places.h" />

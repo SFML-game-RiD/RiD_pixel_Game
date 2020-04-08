@@ -23,18 +23,32 @@ namespace MP
 			//Camera tasks
 
 			taskZoomIn,
-			taskZoomOut
+			taskZoomOut,
+
+			//Mouse tasks
+
+			taskClickLeft,
+			taskClickRight,
+			taskDoubleClickLeft,
+			taskWaitForDoubleClickLeft,
+
+			//Auto move tasks
+
+			taskAutoMove
 		};
 
 	private:
 
 		taskType _current_task;
 
+		taskType _mouse_task;
 	public:
 
 		TaskManager();
 
 		taskType getTask();
+
+		taskType getMouseTask();
 
 		void startProcedureGoUp(PawnObiect & pawn,MP::Map &aMap);
 
@@ -48,7 +62,16 @@ namespace MP
 
 		void startProcedureZoomOut();
 
+		void startProcedureClickLeft();
+
 		void endTask();
+
+		void endMouseTask();
+
+		void startProcedureAutoMove();
+
+		void startProcedureWaitForDoubleClick();
+
 	};
 }
 

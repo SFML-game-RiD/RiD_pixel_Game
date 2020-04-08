@@ -14,6 +14,16 @@ std::list<MP::ComputerPlayer>* MP::ObiectManager::getComputerPlayerList()
 	return &_computer_player_list;
 }
 
+std::shared_ptr<MP::Cursor>& MP::ObiectManager::getCursor()
+{
+	return _a_cursor;
+}
+
+void MP::ObiectManager::setCursor(std::shared_ptr<Cursor> &aCursor)
+{
+	_a_cursor = aCursor;
+}
+
 MP::ObiectManager::ObiectManager()
 { 
 	_mod_number = RiD::ConfigurationLoader::getIntData("game settings", "randModulo");

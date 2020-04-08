@@ -11,19 +11,29 @@ namespace MP
 {
 	class Calculator
 	{
+	private:
+
+		sf::Vector2f checkingVector;
+
+		void _start_procedure_player_move(TaskManager& aTaskManager, MP::Player& aPlayer, sf::Clock& aGameClock);
+
+		void _start_procedure_player_animation(TaskManager& aTaskManager, MP::Player& aPlayer, sf::Clock& aGameClock);
+
+		void _start_procedure_camera_zoom(TaskManager& aTaskManager, Camera& aCamera);
+
+		void _start_procedure_correct_camera(TaskManager& aTaskManager, sf::Vector2f newCoord, Camera& aCamera);
+
 	public:
 
-		void startProcedurePlayerMove(TaskManager& aTaskManager, MP::Player& aPlayer, sf::Clock& aGameClock);
+		void startProcedurePlayer(TaskManager& aTaskManager, ObiectManager& aObiectManager, sf::Clock& aGameClock);
 
-		void startProcedurePlayerAnimation(TaskManager& aTaskManager, MP::Player& aPlayer, sf::Clock& aGameClock);
+		void startProcedureTrees(sf::Clock& globalClock, ObiectManager& aObiectManager);
 
-		void startProcedureTreesAnimation(sf::Clock& globalClock, ObiectManager& aObiectManager);
+		void startProcedureComputerPlayers(ObiectManager& aObiectManager, sf::Clock& aGameClock,Map& aMap);
 
-		void startProcedureCameraZoom(TaskManager& aTaskManager, Camera &aCamera);
+		void startProcedureCamera(TaskManager& aTaskManager, sf::Vector2f newCoord, Camera& aCamera);
 
-		void startProcedureCorrectCamera(TaskManager& aTaskManager, sf::Vector2f newCoord, Camera& aCamera);
-
-		void startProcedureComputerPlayer(ObiectManager& aObiectManager, sf::Clock& aGameClock,Map& aMap);
+		void startProcedureCursor(TaskManager& aTaskManager, ObiectManager& aObiectManager, Camera& aCamera);
 	};
 }
 #endif

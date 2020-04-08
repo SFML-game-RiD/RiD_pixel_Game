@@ -8,6 +8,7 @@
 #include "Map.h"
 #include "Tree.h"
 #include "ComputerPlayer.h"
+#include "Cursor.h"
 
 namespace MP
 {
@@ -28,6 +29,8 @@ namespace MP
 		std::list<Tree> _tree_list;
 
 		Map _a_map;
+
+		std::shared_ptr<Cursor> _a_cursor;
 
 
 	
@@ -53,6 +56,10 @@ namespace MP
 		bool _access();
 
 		std::list<MP::ComputerPlayer>* getComputerPlayerList();
+
+		std::shared_ptr<Cursor>& getCursor();
+
+		void setCursor(std::shared_ptr<Cursor> &aCursor);
 	};
 
 }

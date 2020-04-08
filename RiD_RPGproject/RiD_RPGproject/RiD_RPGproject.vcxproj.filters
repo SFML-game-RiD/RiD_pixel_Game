@@ -110,6 +110,12 @@
     <ClCompile Include="Animation.cpp">
       <Filter>MOVE,ANIMATION</Filter>
     </ClCompile>
+    <ClCompile Include="Cursor.cpp">
+      <Filter>OBIECT</Filter>
+    </ClCompile>
+    <ClCompile Include="PathIcon.cpp">
+      <Filter>OBIECT</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Animation.h">
@@ -219,6 +225,12 @@
     </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>MOVE,ANIMATION</Filter>
+    </ClInclude>
+    <ClInclude Include="Cursor.h">
+      <Filter>OBIECT</Filter>
+    </ClInclude>
+    <ClInclude Include="PathIcon.h">
+      <Filter>OBIECT</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

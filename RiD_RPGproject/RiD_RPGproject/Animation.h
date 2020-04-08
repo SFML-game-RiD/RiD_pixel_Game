@@ -16,6 +16,8 @@ namespace MP
 
 		sf::IntRect _obj_rectangle;
 
+		sf::Color _obj_color;
+
 		std::vector<sf::IntRect> _obiect_rectangle_array;
 
 		int _current_sprite;
@@ -47,6 +49,8 @@ namespace MP
 		void setScale(float x, float y);
 
 		void setOrigin(int x, int y);
+
+		void setColor(sf::Color newColor);
 
 	};
 }

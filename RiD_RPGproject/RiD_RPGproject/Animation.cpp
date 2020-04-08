@@ -90,3 +90,8 @@ void MP::Animation::setOrigin(int x, int y)
 {
 	_obj_sprite.setOrigin(x, y);
 }
+
+void MP::Animation::setColor(sf::Color newColor)
+{
+	_obj_sprite.setColor(newColor);
+}

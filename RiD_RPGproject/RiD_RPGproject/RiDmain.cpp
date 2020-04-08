@@ -49,6 +49,7 @@ void RiD::RiDmain::_event_function(sf::Event &event)
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 			_a_task_manager.startProcedureGoRight(*_a_obiect_manager.getPlayer(), _a_obiect_manager.getMap());
+		
 		if (event.type == sf::Event::MouseWheelScrolled) 
 		{
 			if (event.mouseWheelScroll.delta > 0)
@@ -56,23 +57,27 @@ void RiD::RiDmain::_event_function(sf::Event &event)
 			else
 				_a_task_manager.startProcedureZoomOut();
 		}
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+			_a_task_manager.startProcedureClickLeft();
+		}
+	/*	if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
+			_a_task_manager.*/
 	}
 		
 }
 
 void RiD::RiDmain::_calculate()
 {
-	_a_calculator.startProcedurePlayerAnimation(_a_task_manager, *_a_obiect_manager.getPlayer(), _clock);
+	_a_calculator.startProcedurePlayer(_a_task_manager, _a_obiect_manager, _clock);
 
-	_a_calculator.startProcedurePlayerMove(_a_task_manager,* _a_obiect_manager.getPlayer(), _clock);
+	_a_calculator.startProcedureTrees(_clock, _a_obiect_manager);
 
-	_a_calculator.startProcedureTreesAnimation(_clock, _a_obiect_manager);
+	_a_calculator.startProcedureCamera(_a_task_manager,_a_obiect_manager.getPlayer()->getObiectCoord(), _a_camera);
 
-	_a_calculator.startProcedureCameraZoom(_a_task_manager,_a_camera);
+	_a_calculator.startProcedureComputerPlayers(_a_obiect_manager, _clock, _a_obiect_manager.getMap());
 
-	_a_calculator.startProcedureCorrectCamera(_a_task_manager,_a_obiect_manager.getPlayer()->getObiectCoord(), _a_camera);
-
-	_a_calculator.startProcedureComputerPlayer(_a_obiect_manager, _clock, _a_obiect_manager.getMap());
+	_a_calculator.startProcedureCursor(_a_task_manager,_a_obiect_manager, _a_camera);
 }
 
 void RiD::RiDmain::_draw(sf::RenderWindow & mainWindow)
@@ -81,16 +86,18 @@ void RiD::RiDmain::_draw(sf::RenderWindow & mainWindow)
 
 	_a_obiect_drawer.drawAllObiects(mainWindow,_a_obiect_manager);
 
-	_a_camera.drawFrame();
+	_a_camera.drawFrame(); 
 }
 
 RiD::RiDmain::RiDmain(int width, int height, std::string title)
 {
-	sf::VideoMode mode = sf::VideoMode::getFullscreenModes()[0];
-	_a_camera.getWindow().create(mode, title, sf::Style::Close | sf::Style::Fullscreen);
-	//
-	//_a_camera.getWindow().create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
-	//_a_camera.getWindow().setFramerateLimit(RiD::ConfigurationLoader::getIntData("video settings", "gameFPS"));
+	//sf::VideoMode mode = sf::VideoMode::getFullscreenModes()[0];
+	//_a_camera.getWindow().create(mode, title, sf::Style::Close | sf::Style::Fullscreen);
+	
+	
+	_a_camera.getWindow().create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
+	_a_camera.getWindow().setFramerateLimit(RiD::ConfigurationLoader::getIntData("video settings", "gameFPS"));
+	_a_camera.getWindow().setMouseCursorVisible(false);
 	this->_create_window();
 
 

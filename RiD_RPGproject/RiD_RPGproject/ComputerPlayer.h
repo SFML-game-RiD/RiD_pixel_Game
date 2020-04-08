@@ -39,6 +39,8 @@ namespace MP
 		void getNextTask(Map& aMap);
 
 		void computerPlayerMove(sf::Clock& globalClock);
+
+
 	};
 
 }

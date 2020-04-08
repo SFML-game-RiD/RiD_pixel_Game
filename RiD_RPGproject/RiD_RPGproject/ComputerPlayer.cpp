@@ -29,20 +29,16 @@ void MP::ComputerPlayer::getNextTask(Map& aMap)
 		MapElement* nextDestination = _path;//Takes new destination (new block).
 		MapElement* tmp = aMap.findElementAddressSquareRange(getObiectCoord(), aMap.getMapElementList());//Return element where computer player stands.
 
-		if (tmp->getLandTile().getObiectCoord().x == nextDestination->getLandTile().getObiectCoord().x
-			and tmp->getLandTile().getObiectCoord().y + _block_length == nextDestination->getLandTile().getObiectCoord().y)//Goes down
+		if (tmp->getLandTile().getObiectCoord().x == nextDestination->getLandTile().getObiectCoord().x and tmp->getLandTile().getObiectCoord().y + _block_length == nextDestination->getLandTile().getObiectCoord().y)//Goes down
 			aTaskManager.startProcedureGoDown(*this, aMap);
 
-		else if (tmp->getLandTile().getObiectCoord().x == nextDestination->getLandTile().getObiectCoord().x
-			and tmp->getLandTile().getObiectCoord().y - _block_length == nextDestination->getLandTile().getObiectCoord().y)//Goes up
+		else if (tmp->getLandTile().getObiectCoord().x == nextDestination->getLandTile().getObiectCoord().x and tmp->getLandTile().getObiectCoord().y - _block_length == nextDestination->getLandTile().getObiectCoord().y)//Goes up
 			aTaskManager.startProcedureGoUp(*this, aMap);
 
-		else if (tmp->getLandTile().getObiectCoord().x + _block_length == nextDestination->getLandTile().getObiectCoord().x//Goes right
-			and tmp->getLandTile().getObiectCoord().y == nextDestination->getLandTile().getObiectCoord().y)
+		else if (tmp->getLandTile().getObiectCoord().x + _block_length == nextDestination->getLandTile().getObiectCoord().x and tmp->getLandTile().getObiectCoord().y == nextDestination->getLandTile().getObiectCoord().y)
 			aTaskManager.startProcedureGoRight(*this, aMap);
 
-		else if (tmp->getLandTile().getObiectCoord().x - _block_length == nextDestination->getLandTile().getObiectCoord().x//Goes left
-			and tmp->getLandTile().getObiectCoord().y == nextDestination->getLandTile().getObiectCoord().y)
+		else if (tmp->getLandTile().getObiectCoord().x - _block_length == nextDestination->getLandTile().getObiectCoord().x and tmp->getLandTile().getObiectCoord().y == nextDestination->getLandTile().getObiectCoord().y)
 			aTaskManager.startProcedureGoLeft(*this, aMap);
 		
 
@@ -77,7 +73,6 @@ void MP::ComputerPlayer::computerPlayerMove(sf::Clock& globalClock)
 
 	}
 }
-
 
 MP::ComputerPlayer::ComputerPlayer(sf::Texture* texturePtr)
 {
@@ -150,3 +145,4 @@ void MP::ComputerPlayer::_computer_player_animation_down(sf::Clock& globalClock)
 		setLastActiveAnimation(globalClock);
 	}
 }
+
