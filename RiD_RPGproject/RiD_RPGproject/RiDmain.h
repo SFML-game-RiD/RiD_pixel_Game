@@ -31,7 +31,7 @@ namespace RiD
 
 		MP::Calculator _a_calculator;
 
-		MP::TaskManager _a_task_manager;
+		MP::TaskManager _a_main_task_manager;
 
 		//############################################
 

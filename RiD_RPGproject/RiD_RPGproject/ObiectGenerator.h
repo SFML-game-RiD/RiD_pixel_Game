@@ -26,6 +26,8 @@ namespace MP
 
 		void _generate_cursor(ObiectManager& aObiectManager);
 
+		void _generate_gui(ObiectManager& aObiectManager);
+
 	public:
 
 		ObiectGenerator();

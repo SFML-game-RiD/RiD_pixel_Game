@@ -48,6 +48,8 @@ namespace MP
 
 		void setScale(float x, float y);
 
+		sf::Vector2f getScale();
+
 		void setOrigin(int x, int y);
 
 		void setColor(sf::Color newColor);

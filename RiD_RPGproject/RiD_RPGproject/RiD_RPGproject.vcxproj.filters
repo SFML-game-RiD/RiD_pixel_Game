@@ -116,6 +116,12 @@
     <ClCompile Include="PathIcon.cpp">
       <Filter>OBIECT</Filter>
     </ClCompile>
+    <ClCompile Include="MapGui.cpp">
+      <Filter>OBIECT\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiManager.cpp">
+      <Filter>OBIECT\GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Animation.h">
@@ -232,6 +238,12 @@
     <ClInclude Include="PathIcon.h">
       <Filter>OBIECT</Filter>
     </ClInclude>
+    <ClInclude Include="MapGui.h">
+      <Filter>OBIECT\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiManager.h">
+      <Filter>OBIECT\GUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="OBIECT">
@@ -284,6 +296,9 @@
     </Filter>
     <Filter Include="aaareal time game\Graphics">
       <UniqueIdentifier>{7bbe2dbb-b8a1-4384-b29d-731b1e455d25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OBIECT\GUI">
+      <UniqueIdentifier>{b31011f7-b679-428f-8242-a4e2d0d65396}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

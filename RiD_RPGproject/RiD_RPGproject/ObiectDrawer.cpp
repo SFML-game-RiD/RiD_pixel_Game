@@ -38,18 +38,20 @@ void MP::ObiectDrawer::drawAllObiects(sf::RenderWindow& mainWindow, ObiectManage
 	_draw_land(mainWindow,aObiectManager);
 
 	//Drawing player
-	drawActiveObiects(mainWindow, aObiectManager);
+	_draw_active_obiects(mainWindow, aObiectManager);
 
 	//Drwaing trees
 	_draw_trees(mainWindow, aObiectManager);
 
+	//Drawing map gui
+	_draw_map_gui(mainWindow, aObiectManager);
+
 	//Drawing cursor
 	_draw_cursor(mainWindow, aObiectManager);
 
-
 }
 
-void MP::ObiectDrawer::drawActiveObiects(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager)
+void MP::ObiectDrawer::_draw_active_obiects(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager)
 {
 
 
@@ -77,6 +79,11 @@ void MP::ObiectDrawer::drawActiveObiects(sf::RenderWindow& mainWindow, ObiectMan
 
 
 
+}
+
+void MP::ObiectDrawer::_draw_map_gui(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager)
+{
+	mainWindow.draw(aObiectManager.getGuiManager().getMapGui()->aAnimation.getObiectSprite());
 }
 
 void MP::ObiectDrawer::_draw_cursor(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager)

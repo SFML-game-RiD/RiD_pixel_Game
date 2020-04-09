@@ -11,44 +11,12 @@ MP::PathNode::PathNode()
 
 void MP::PathNode::calculateHValue(sf::Vector2f meta)
 {
-	//int x, y;
-
-	//x = meta.x - this->_a_map_element->getLandTile().getObiectCoord().x;
-	//if (x < 0)
-	//{
-	//	x = x * (-1);
-	//}
-	//y = meta.y - this->_a_map_element->getLandTile().getObiectCoord().y;
-	//if (y < 0)
-	//{
-	//	y = y * (-1);
-	//}
-
-	//_cost_H = x;
-	//_cost_H += y;
 	_cost_H = abs(meta.x - this->_a_map_element->getLandTile().getObiectCoord().x);
 	_cost_H += abs(meta.y - this->_a_map_element->getLandTile().getObiectCoord().y);
 }
 
 void MP::PathNode::calculateGValue(sf::Vector2f start)
 {
-
-	//int x, y;
-
-	//x = start.x - this->_a_map_element->getLandTile().getObiectCoord().x;
-	//if (x < 0)
-	//{
-	//	x = x * (-1);
-	//}
-	//y = start.y - this->_a_map_element->getLandTile().getObiectCoord().y;
-	//if (y < 0)
-	//{
-	//	y = y * (-1);
-	//}
-
-	//_cost_G = x;
-	//_cost_G += y;
-
 	_cost_G = abs(start.x - this->_a_map_element->getLandTile().getObiectCoord().x);
 	_cost_G += abs(start.y - this->_a_map_element->getLandTile().getObiectCoord().y);
 }

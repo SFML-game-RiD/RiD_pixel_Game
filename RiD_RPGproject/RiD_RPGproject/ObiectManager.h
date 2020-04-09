@@ -9,6 +9,7 @@
 #include "Tree.h"
 #include "ComputerPlayer.h"
 #include "Cursor.h"
+#include "GuiManager.h"
 
 namespace MP
 {
@@ -32,8 +33,7 @@ namespace MP
 
 		std::shared_ptr<Cursor> _a_cursor;
 
-
-	
+		GuiManager _a_gui_manager;
 
 	public:
 		
@@ -60,6 +60,8 @@ namespace MP
 		std::shared_ptr<Cursor>& getCursor();
 
 		void setCursor(std::shared_ptr<Cursor> &aCursor);
+
+		GuiManager& getGuiManager();
 	};
 
 }

@@ -99,6 +99,11 @@ void MP::ObiectGenerator::_generate_cursor(ObiectManager& aObiectManager)
 
 }
 
+void MP::ObiectGenerator::_generate_gui(ObiectManager& aObiectManager)
+{
+	aObiectManager.getGuiManager().getMapGui() = std::make_unique<MapGui>(&_a_asset_manager.getTexture("mapgui"));
+}
+
 MP::ObiectGenerator::ObiectGenerator()
 {
 	_random_number.seed(time(NULL));
@@ -114,9 +119,12 @@ void MP::ObiectGenerator::generateObiects(ObiectManager& aObiectManager)
 	_a_asset_manager.setTexture("castle", "img/mpimg/places/mpcastle.png");
 	_a_asset_manager.setTexture("cursor", "img/mpimg/icons/hand.png");
 	_a_asset_manager.setTexture("pathicon", "img/mpimg/icons/move.png");
+	_a_asset_manager.setTexture("mapgui", "img/GUI/rid_map_gui.png");
+
 	_generate_map(aObiectManager);
 	_generate_trees(aObiectManager);
 	_generate_player(aObiectManager);
 	_generate_computer_player(aObiectManager);
 	_generate_cursor(aObiectManager);
+	_generate_gui(aObiectManager);
 }

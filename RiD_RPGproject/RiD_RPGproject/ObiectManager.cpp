@@ -24,6 +24,11 @@ void MP::ObiectManager::setCursor(std::shared_ptr<Cursor> &aCursor)
 	_a_cursor = aCursor;
 }
 
+MP::GuiManager& MP::ObiectManager::getGuiManager()
+{
+	return _a_gui_manager;
+}
+
 MP::ObiectManager::ObiectManager()
 { 
 	_mod_number = RiD::ConfigurationLoader::getIntData("game settings", "randModulo");

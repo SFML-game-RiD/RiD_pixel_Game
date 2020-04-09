@@ -2,6 +2,7 @@
 #define _CAMERA_H_
 
 #include "TaskManager.h"
+#include "GuiManager.h"
 
 namespace MP
 {
@@ -17,9 +18,9 @@ namespace MP
 
 		sf::RenderWindow _window;
 
-		void _zoom_in();
+		void _zoom_in(GuiManager & aGuiManager);
 
-		void _zoom_out();
+		void _zoom_out(GuiManager& aGuiManager);
 
 	public:
 
@@ -31,9 +32,9 @@ namespace MP
 
 		void drawFrame();
 
-		void changeZoom(MP::TaskManager &aTaskManager);
+		void changeZoom(GuiManager& aGuiManager, MP::TaskManager &aTaskManager);
 
-		void changeCamera(sf::Vector2f coord);
+		void changeCamera(GuiManager& aGuiManager,sf::Vector2f coord);
 
 	};
 }

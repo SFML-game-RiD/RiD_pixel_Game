@@ -14,7 +14,7 @@ void RiD::RiDmain::_create_window()
 	//##############################################
 	//############ Corecting camera ##############
 
-	_a_camera.changeCamera(_a_obiect_manager.getPlayer()->getObiectCoord());
+	_a_camera.changeCamera(_a_obiect_manager.getGuiManager(),_a_obiect_manager.getPlayer()->getObiectCoord());
 
 	//##############################################
 
@@ -38,28 +38,31 @@ void RiD::RiDmain::_event_function(sf::Event &event)
 		if (event.type == sf::Event::EventType::Closed)
 			_a_camera.getWindow().close();
 
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+			_a_camera.getWindow().close();
+
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-			_a_task_manager.startProcedureGoUp(*_a_obiect_manager.getPlayer(), _a_obiect_manager.getMap());
+			_a_main_task_manager.startProcedureGoUp(*_a_obiect_manager.getPlayer(), _a_obiect_manager.getMap());
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-			_a_task_manager.startProcedureGoLeft(*_a_obiect_manager.getPlayer(),_a_obiect_manager.getMap());
+			_a_main_task_manager.startProcedureGoLeft(*_a_obiect_manager.getPlayer(),_a_obiect_manager.getMap());
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-			_a_task_manager.startProcedureGoDown(*_a_obiect_manager.getPlayer(), _a_obiect_manager.getMap());
+			_a_main_task_manager.startProcedureGoDown(*_a_obiect_manager.getPlayer(), _a_obiect_manager.getMap());
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-			_a_task_manager.startProcedureGoRight(*_a_obiect_manager.getPlayer(), _a_obiect_manager.getMap());
+			_a_main_task_manager.startProcedureGoRight(*_a_obiect_manager.getPlayer(), _a_obiect_manager.getMap());
 		
 		if (event.type == sf::Event::MouseWheelScrolled) 
 		{
 			if (event.mouseWheelScroll.delta > 0)
-				_a_task_manager.startProcedureZoomIn();
+				_a_main_task_manager.startProcedureZoomIn();
 			else
-				_a_task_manager.startProcedureZoomOut();
+				_a_main_task_manager.startProcedureZoomOut();
 		}
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-			_a_task_manager.startProcedureClickLeft();
+			_a_main_task_manager.startProcedureClickLeft();
 		}
 	/*	if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
 			_a_task_manager.*/
@@ -69,15 +72,15 @@ void RiD::RiDmain::_event_function(sf::Event &event)
 
 void RiD::RiDmain::_calculate()
 {
-	_a_calculator.startProcedurePlayer(_a_task_manager, _a_obiect_manager, _clock);
+	_a_calculator.startProcedurePlayer(_a_main_task_manager, _a_obiect_manager, _clock);
 
 	_a_calculator.startProcedureTrees(_clock, _a_obiect_manager);
 
-	_a_calculator.startProcedureCamera(_a_task_manager,_a_obiect_manager.getPlayer()->getObiectCoord(), _a_camera);
+	_a_calculator.startProcedureCamera(_a_obiect_manager,_a_main_task_manager,_a_obiect_manager.getPlayer()->getObiectCoord(), _a_camera);
 
 	_a_calculator.startProcedureComputerPlayers(_a_obiect_manager, _clock, _a_obiect_manager.getMap());
 
-	_a_calculator.startProcedureCursor(_a_task_manager,_a_obiect_manager, _a_camera);
+	_a_calculator.startProcedureCursor(_a_main_task_manager,_a_obiect_manager, _a_camera);
 }
 
 void RiD::RiDmain::_draw(sf::RenderWindow & mainWindow)
@@ -91,12 +94,12 @@ void RiD::RiDmain::_draw(sf::RenderWindow & mainWindow)
 
 RiD::RiDmain::RiDmain(int width, int height, std::string title)
 {
-	//sf::VideoMode mode = sf::VideoMode::getFullscreenModes()[0];
-	//_a_camera.getWindow().create(mode, title, sf::Style::Close | sf::Style::Fullscreen);
+	sf::VideoMode mode = sf::VideoMode::getFullscreenModes()[0];
+	_a_camera.getWindow().create(mode, title, sf::Style::Close | sf::Style::Fullscreen);
 	
 	
-	_a_camera.getWindow().create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
-	_a_camera.getWindow().setFramerateLimit(RiD::ConfigurationLoader::getIntData("video settings", "gameFPS"));
+	//_a_camera.getWindow().create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
+	//_a_camera.getWindow().setFramerateLimit(RiD::ConfigurationLoader::getIntData("video settings", "gameFPS"));
 	_a_camera.getWindow().setMouseCursorVisible(false);
 	this->_create_window();
 

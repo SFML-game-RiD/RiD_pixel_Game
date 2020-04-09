@@ -19,9 +19,11 @@ namespace MP
 
 		void _start_procedure_player_animation(TaskManager& aTaskManager, MP::Player& aPlayer, sf::Clock& aGameClock);
 
-		void _start_procedure_camera_zoom(TaskManager& aTaskManager, Camera& aCamera);
+		void _start_procedure_camera_zoom(ObiectManager& aObiectManager, TaskManager& aTaskManager, Camera& aCamera);
 
-		void _start_procedure_correct_camera(TaskManager& aTaskManager, sf::Vector2f newCoord, Camera& aCamera);
+		void _start_procedure_correct_camera(ObiectManager& aObiectManager, TaskManager& aTaskManager, sf::Vector2f newCoord, Camera& aCamera);
+
+		void _start_procedure_player_auto_or_normal_move(TaskManager& aTaskManager, ObiectManager& aObiectManager, sf::Clock& aGameClock);
 
 	public:
 
@@ -31,7 +33,7 @@ namespace MP
 
 		void startProcedureComputerPlayers(ObiectManager& aObiectManager, sf::Clock& aGameClock,Map& aMap);
 
-		void startProcedureCamera(TaskManager& aTaskManager, sf::Vector2f newCoord, Camera& aCamera);
+		void startProcedureCamera(ObiectManager& aObiectManager, TaskManager& aTaskManager, sf::Vector2f newCoord, Camera& aCamera);
 
 		void startProcedureCursor(TaskManager& aTaskManager, ObiectManager& aObiectManager, Camera& aCamera);
 	};
