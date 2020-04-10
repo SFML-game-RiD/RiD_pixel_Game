@@ -9,11 +9,11 @@ namespace MP
 	{
 	private:
 			
-		sf::Vector2f _gui_coord;
+		sf::Vector2f _game_coord;
 
 	public:
 
-		void saveGuiCoord(sf::Vector2f guiCoord);
+		void saveGameCoord(sf::Vector2f guiCoord);
 
 		sf::Vector2f getGuiCoord();
 

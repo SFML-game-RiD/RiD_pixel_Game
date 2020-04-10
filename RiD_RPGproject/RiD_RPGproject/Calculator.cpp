@@ -104,7 +104,7 @@ void MP::Calculator::_start_procedure_player_auto_or_normal_move(TaskManager& aT
 	else if (aTaskManager.getMouseTask() == MP::TaskManager::taskType::taskDoubleClickLeft)//starts procedure auto move if player clicked second time
 	{
 
-		MapElement* checkingElement = aObiectManager.getMap().findElementAddressSquareRange(aObiectManager.getCursor()->getObiectCoord(), aObiectManager.getMapElementHead());
+		MapElement* checkingElement = aObiectManager.getMap().findElementAddressSquareRange(aObiectManager.getCursor()->getGuiCoord(), aObiectManager.getMapElementHead());
 
 		if (checkingElement->getLandTile().getObiectCoord().x == checkingVector.x and checkingElement->getLandTile().getObiectCoord().y == checkingVector.y)
 		{
@@ -178,15 +178,15 @@ void MP::Calculator::startProcedureCursor(TaskManager& aTaskManager, ObiectManag
 	//Mapin from pixel to game view
 	aCamera.changeViewToGame();
 	sf::Vector2f gameMouseCoord = aCamera.getWindow().mapPixelToCoords(screenMouseCoord);
-	aObiectManager.getCursor()->saveGuiCoord(gameMouseCoord);
-	if (aTaskManager.getMouseTask() == MP::TaskManager::taskType::taskClickLeft)
-	{
-		//TO DO ...
-	}
-	if(aTaskManager.getMouseTask() == MP::TaskManager::taskType::taskClickRight)
-	{ 
-		//TO DO ...
-	}
+	aObiectManager.getCursor()->saveGameCoord(gameMouseCoord);
+	//if (aTaskManager.getMouseTask() == MP::TaskManager::taskType::taskClickLeft)
+	//{
+	//	//TO DO ...
+	//}
+	//if(aTaskManager.getMouseTask() == MP::TaskManager::taskType::taskClickRight)
+	//{ 
+	//	//TO DO ...
+	//}
 
 }
 

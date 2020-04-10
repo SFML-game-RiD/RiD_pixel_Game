@@ -12,6 +12,8 @@ void RiD::RiDmain::_create_window()
 	std::printf("generated successful \n");
 
 	//##############################################
+
+
 	//############ Corecting camera ##############
 
 	_a_camera.changeCamera(_a_obiect_manager.getPlayer()->getObiectCoord());
@@ -62,7 +64,7 @@ void RiD::RiDmain::_event_function(sf::Event &event)
 		}
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-			_a_main_task_manager.startProcedureClickLeft();
+ 			_a_main_task_manager.startProcedureClickLeft();
 		}
 	/*	if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
 			_a_task_manager.*/
@@ -72,22 +74,23 @@ void RiD::RiDmain::_event_function(sf::Event &event)
 
 void RiD::RiDmain::_calculate()
 {
-	_a_calculator.startProcedurePlayer(_a_main_task_manager, _a_obiect_manager, _clock);
 
-	_a_calculator.startProcedureTrees(_clock, _a_obiect_manager);
+		_a_calculator.startProcedurePlayer(_a_main_task_manager, _a_obiect_manager, _clock);
 
-	_a_calculator.startProcedureCamera(_a_obiect_manager,_a_main_task_manager,_a_obiect_manager.getPlayer()->getObiectCoord(), _a_camera);
+		_a_calculator.startProcedureTrees(_clock, _a_obiect_manager);
 
-	_a_calculator.startProcedureComputerPlayers(_a_obiect_manager, _clock, _a_obiect_manager.getMap());
+		_a_calculator.startProcedureCamera(_a_obiect_manager, _a_main_task_manager, _a_obiect_manager.getPlayer()->getObiectCoord(), _a_camera);
 
-	_a_calculator.startProcedureCursor(_a_main_task_manager,_a_obiect_manager, _a_camera);
+		_a_calculator.startProcedureComputerPlayers(_a_obiect_manager, _clock, _a_obiect_manager.getMap());
+	
+	    _a_calculator.startProcedureCursor(_a_main_task_manager,_a_obiect_manager, _a_camera);
 }
 
 void RiD::RiDmain::_draw()
 {
 	_a_camera.clearCamera();
 
-	_a_obiect_drawer.drawAllObiects(_a_camera,_a_obiect_manager);
+	_a_obiect_drawer.drawAllObiects(_a_main_task_manager,_a_camera,_a_obiect_manager);
 
 	_a_camera.drawFrame(); 
 }

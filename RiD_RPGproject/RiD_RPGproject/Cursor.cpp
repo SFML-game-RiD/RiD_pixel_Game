@@ -1,13 +1,13 @@
 #include "Cursor.h"
 
-void MP::Cursor::saveGuiCoord(sf::Vector2f guiCoord)
+void MP::Cursor::saveGameCoord(sf::Vector2f guiCoord)
 {
-	_gui_coord = guiCoord;
+	_game_coord = guiCoord;
 }
 
 sf::Vector2f MP::Cursor::getGuiCoord()
 {
-	return _gui_coord;
+	return _game_coord;
 }
 
 MP::Cursor::Cursor(sf::Texture* texturePtr)

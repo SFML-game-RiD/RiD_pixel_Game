@@ -122,6 +122,12 @@
     <ClCompile Include="Cursor.cpp">
       <Filter>OBIECT\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="GuiMenu.cpp">
+      <Filter>OBIECT\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiButton.cpp">
+      <Filter>OBIECT\GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Animation.h">
@@ -242,6 +248,12 @@
       <Filter>OBIECT\GUI</Filter>
     </ClInclude>
     <ClInclude Include="Cursor.h">
+      <Filter>OBIECT\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiMenu.h">
+      <Filter>OBIECT\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiButton.h">
       <Filter>OBIECT\GUI</Filter>
     </ClInclude>
   </ItemGroup>

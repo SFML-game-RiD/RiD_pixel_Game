@@ -101,7 +101,18 @@ void MP::ObiectGenerator::_generate_cursor(ObiectManager& aObiectManager)
 
 void MP::ObiectGenerator::_generate_gui(ObiectManager& aObiectManager)
 {
+	//WORK IN PROGRESS
+
+	//creating map gui
 	aObiectManager.getGuiManager().getMapGui() = std::make_unique<MapGui>(&_a_asset_manager.getTexture("mapgui"));
+
+
+	//creating main menu
+	aObiectManager.getGuiManager().getGuiMainMenu() = std::make_unique<GuiMenu>(&_a_asset_manager.getTexture("menu"), &_a_asset_manager.getTexture("button"));
+
+
+	//creating places menu
+	//aObiectManager.getGuiManager().getGuiPlacesMenu() = std::make_unique<GuiMenu>(&_a_asset_manager.getTexture("menu"));
 }
 
 MP::ObiectGenerator::ObiectGenerator()
@@ -120,6 +131,8 @@ void MP::ObiectGenerator::generateObiects(ObiectManager& aObiectManager)
 	_a_asset_manager.setTexture("cursor", "img/mpimg/icons/hand.png");
 	_a_asset_manager.setTexture("pathicon", "img/mpimg/icons/move.png");
 	_a_asset_manager.setTexture("mapgui", "img/GUI/rid_map_gui.png");
+	_a_asset_manager.setTexture("menu", "img/GUI/rid_main_menu.png");
+	_a_asset_manager.setTexture("button", "img/GUI/button.png");
 
 	_generate_map(aObiectManager);
 	_generate_trees(aObiectManager);

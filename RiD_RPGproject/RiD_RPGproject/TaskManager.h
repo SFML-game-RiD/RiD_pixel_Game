@@ -42,6 +42,8 @@ namespace MP
 		taskType _current_task;
 
 		taskType _mouse_task;
+
+		//new task required
 	public:
 
 		TaskManager();
@@ -49,6 +51,10 @@ namespace MP
 		taskType getTask();
 
 		taskType getMouseTask();
+
+		void endTask();
+
+		void endMouseTask();
 
 		void startProcedureGoUp(PawnObiect & pawn,MP::Map &aMap);
 
@@ -64,14 +70,9 @@ namespace MP
 
 		void startProcedureClickLeft();
 
-		void endTask();
-
-		void endMouseTask();
-
 		void startProcedureAutoMove();
 
 		void startProcedureWaitForDoubleClick();
-
 	};
 }
 
