@@ -13,13 +13,13 @@ namespace RTB
 		short _arrows_count;
 		void _dealSwordDamage(std::list<std::shared_ptr<Character>>& list_of_bots);
 		void _dealBowDamage(std::list<std::shared_ptr<Character>>& list_of_bots);
-		void _isColidingWithTile(std::vector<std::vector<_obj>>& map_objects);
+		void _isColidingWithTile(std::vector<std::vector<std::unique_ptr<MapElement>>>& map_objects);
 	public:
 		Player(sf::Texture texture, short health_points, sf::Texture& arrow_texture);
 		~Player();
 
 		//Function responsible for all of the player moves and behaviors
-		void update(sf::Time time, std::vector<std::vector<_obj>>& map_objects);
+		void update(sf::Time time, std::vector<std::vector<std::unique_ptr<MapElement>>>& map_objects);
 
 		//Dealing damage to bots of enemy team
 		//@param time time needed for combat animations

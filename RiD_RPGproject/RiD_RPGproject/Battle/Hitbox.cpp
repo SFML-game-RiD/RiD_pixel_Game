@@ -41,7 +41,7 @@ namespace RTB
 		position.x /= 25;
 		position.y /= 25;
 		std::ostringstream sstream;
-		sstream << "x:" << (int)position.x << " y: " << (int)position.y;
+		sstream << "x:" << (int)position.x << " y: " << (int)position.y+1;
 		std::string text(sstream.str());
 		_cords_map.setString(text);
 		_cords_map.setPosition(_object->getPosition().x + _offset.x + 28, _object->getPosition().y + _offset.y);

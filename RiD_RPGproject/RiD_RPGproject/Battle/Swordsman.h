@@ -19,7 +19,7 @@ namespace RTB
 		void setPosition(sf::Vector2f position);
 
 		//Function responsible for all of the Swordsmans moves and behaviors
-		void update(sf::Time time, std::vector<std::vector<_obj>>& map_objects);
+		void update(sf::Time time, std::vector<std::vector<std::unique_ptr<MapElement>>>& map_objects);
 
 		//Draws Swordsmans sprite
 		void render(sf::RenderWindow& window);

@@ -2,9 +2,11 @@
 
 #include "SFML/Graphics.hpp"
 #include "../Engine/AssetManager.h"
+#include "MapElement.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <memory>
 
 namespace RTB
 {
@@ -13,8 +15,6 @@ namespace RTB
 		sf::Sprite sprite;
 		sf::Vector2u size;
 		sf::RectangleShape hitbox;
-		int width;
-		int height;
 	};
 	class TileMap
 	{
@@ -25,13 +25,11 @@ namespace RTB
 		enum _Collidable_objects {no_object, fence1, sign, tree, chest};
 
 		std::vector<std::vector<unsigned int>> _level;
-		std::vector<std::vector<sf::Sprite>> _level_textures;
-
 		std::vector<std::vector<unsigned int>> _flora;
-		std::vector<std::vector<sf::Sprite>> _flora_textures;
-
 		std::vector<std::vector<unsigned int>> _objects;
-		std::vector<std::vector<_obj>> _objects_textures;
+		std::vector<std::vector<std::unique_ptr<MapElement>>> _map_elements;
+
+		std::vector<std::vector<bool>> _walkable_area;
 
 		unsigned short _width , _height , _tile_type;
 		sf::Vector2f _point;
@@ -41,6 +39,7 @@ namespace RTB
 		void _placeTile(unsigned short _position_x, unsigned short _position_y);
 		void _placeFlora(unsigned short _position_x, unsigned short _position_y);
 		void _placeObjects(unsigned short _position_x, unsigned short _position_y);
+		void _generateWalkableArea();
 	public:
 		TileMap(sf::Vector2i tile_size);
 
@@ -48,7 +47,7 @@ namespace RTB
 
 		void drawObjects(sf::RenderTarget& window);
 
-		std::vector<std::vector<_obj>>& getCollidableObjects();
+		std::vector<std::vector<std::unique_ptr<MapElement>>>& getCollidableObjects();
 
 		unsigned short& getWidth();
 

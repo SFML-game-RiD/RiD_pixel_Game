@@ -33,7 +33,7 @@ namespace RTB
 		virtual void setPosition(sf::Vector2f position);
 
 		//Function responsible for all of the moves
-		virtual void update(sf::Time time, std::vector<std::vector<_obj>>& map_objects) = 0;
+		virtual void update(sf::Time time, std::vector<std::vector<std::unique_ptr<MapElement>>>& map_objects) = 0;
 
 		//Draws character's sprite
 		virtual void render(sf::RenderWindow& window);

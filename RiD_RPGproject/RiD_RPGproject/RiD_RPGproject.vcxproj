@@ -163,6 +163,7 @@
     <ClCompile Include="Battle\PathNode.cpp" />
     <ClCompile Include="Battle\Player.cpp" />
     <ClCompile Include="Battle\RealTimeBattle.cpp" />
+    <ClCompile Include="Battle\RTBPathGenerator.cpp" />
     <ClCompile Include="Battle\SwordHitbox.cpp" />
     <ClCompile Include="Battle\Swordsman.cpp" />
     <ClCompile Include="Engine\Animation.cpp" />
@@ -175,6 +176,7 @@
     <ClCompile Include="Engine\State.cpp" />
     <ClCompile Include="Engine\StateMachine.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Map\MapElement.cpp" />
     <ClCompile Include="Map\TileMap.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -188,6 +190,7 @@
     <ClInclude Include="Battle\PathNode.h" />
     <ClInclude Include="Battle\Player.h" />
     <ClInclude Include="Battle\RealTimeBattle.h" />
+    <ClInclude Include="Battle\RTBPathGenerator.h" />
     <ClInclude Include="Battle\SwordHitbox.h" />
     <ClInclude Include="Battle\Swordsman.h" />
     <ClInclude Include="Engine\Animation.h" />
@@ -199,6 +202,7 @@
     <ClInclude Include="Engine\RiDGame.h" />
     <ClInclude Include="Engine\State.h" />
     <ClInclude Include="Engine\StateMachine.h" />
+    <ClInclude Include="Map\MapElement.h" />
     <ClInclude Include="Map\TileMap.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

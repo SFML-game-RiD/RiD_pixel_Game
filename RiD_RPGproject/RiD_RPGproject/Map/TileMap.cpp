@@ -69,21 +69,29 @@ namespace RTB
 		switch (_tile_type)
 		{
 		case dirt:
-			_level_textures[_position_x][_position_y].setTexture(_asset_manager.getTexture("dirt"));
-			_level_textures[_position_x][_position_y].setPosition(this->_twoDToIso());
+		{
+			std::unique_ptr<MapElement> ptr = std::unique_ptr<MapElement>(new MapElement(_asset_manager.getTexture("dirt"), this->_twoDToIso()));
+			_map_elements[_position_x][_position_y] = std::move(ptr);
 			break;
+		}
 		case grass:
-			_level_textures[_position_x][_position_y].setTexture(_asset_manager.getTexture("grass"));
-			_level_textures[_position_x][_position_y].setPosition(this->_twoDToIso());
+		{
+			std::unique_ptr<MapElement> ptr = std::unique_ptr<MapElement>(new MapElement(_asset_manager.getTexture("grass"), this->_twoDToIso()));
+			_map_elements[_position_x][_position_y] = std::move(ptr);
 			break;
+		}
 		case water:
-			_level_textures[_position_x][_position_y].setTexture(_asset_manager.getTexture("water"));
-			_level_textures[_position_x][_position_y].setPosition(this->_twoDToIso());
+		{
+			std::unique_ptr<MapElement> ptr = std::unique_ptr<MapElement>(new MapElement(_asset_manager.getTexture("water"), this->_twoDToIso()));
+			_map_elements[_position_x][_position_y] = std::move(ptr);
 			break;
+		}
 		case road:
-			_level_textures[_position_x][_position_y].setTexture(_asset_manager.getTexture("road"));
-			_level_textures[_position_x][_position_y].setPosition(this->_twoDToIso());
+		{
+			std::unique_ptr<MapElement> ptr = std::unique_ptr<MapElement>(new MapElement(_asset_manager.getTexture("road"), this->_twoDToIso()));
+			_map_elements[_position_x][_position_y] = std::move(ptr);
 			break;
+		}
 		}
 	}
 
@@ -95,16 +103,13 @@ namespace RTB
 		case no_flora:
 			break;
 		case tinyFlower:
-			_flora_textures[_position_x][_position_y].setTexture(_asset_manager.getTexture("tinyFlowers"));
-			_flora_textures[_position_x][_position_y].setPosition(this->_twoDToIso());
+			_map_elements[_position_x][_position_y]->setFlora(_asset_manager.getTexture("tinyFlowers"), this->_twoDToIso());
 			break;
 		case redFlower:
-			_flora_textures[_position_x][_position_y].setTexture(_asset_manager.getTexture("redFlower"));
-			_flora_textures[_position_x][_position_y].setPosition(this->_twoDToIso());
+			_map_elements[_position_x][_position_y]->setFlora(_asset_manager.getTexture("redFlower"), this->_twoDToIso());
 			break;
 		case fence1Fallen:
-			_flora_textures[_position_x][_position_y].setTexture(_asset_manager.getTexture("fence1Fallen"));
-			_flora_textures[_position_x][_position_y].setPosition(this->_twoDToIso());
+			_map_elements[_position_x][_position_y]->setFlora(_asset_manager.getTexture("fence1Fallen"), this->_twoDToIso());
 			break;
 		}
 	}
@@ -117,52 +122,94 @@ namespace RTB
 		case no_object:
 			break;
 		case fence1:
-			_objects_textures[_position_x][_position_y].sprite.setTexture(_asset_manager.getTexture("fence1"));
-			_objects_textures[_position_x][_position_y].sprite.setOrigin(15, 55);
-			_objects_textures[_position_x][_position_y].sprite.setPosition(isometric.x, isometric.y);
-			_objects_textures[_position_x][_position_y].size = _asset_manager.getTexture("fence1").getSize();
-			_objects_textures[_position_x][_position_y].hitbox.setOutlineColor(sf::Color::Green);
-			_objects_textures[_position_x][_position_y].hitbox.setOutlineThickness(1.f);
-			_objects_textures[_position_x][_position_y].hitbox.setFillColor(sf::Color::Transparent);
-			_objects_textures[_position_x][_position_y].hitbox.setPosition(_objects_textures[_position_x][_position_y].sprite.getPosition().x + 8.f, _objects_textures[_position_x][_position_y].sprite.getPosition().y + 10);
-			_objects_textures[_position_x][_position_y].hitbox.rotate(-30);
-			_objects_textures[_position_x][_position_y].hitbox.setSize(sf::Vector2f(45, 12));
-			_objects_textures[_position_x][_position_y].width = _objects_textures[_position_x][_position_y].hitbox.getSize().x;
-			_objects_textures[_position_x][_position_y].height = _objects_textures[_position_x][_position_y].hitbox.getSize().y;
+			_map_elements[_position_x][_position_y]->setObject(_asset_manager.getTexture("fence1"), { isometric.x, isometric.y }, { 15, 55 }, { 45,12 }, { 8.f, 10.f }, -30);
 			break;
 		case sign:
-			_objects_textures[_position_x][_position_y].sprite.setTexture(_asset_manager.getTexture("sign"));
-			_objects_textures[_position_x][_position_y].sprite.setPosition(isometric.x + 26, isometric.y - 28);
-			_objects_textures[_position_x][_position_y].size = _asset_manager.getTexture("sign").getSize();
-			_objects_textures[_position_x][_position_y].hitbox.setOutlineColor(sf::Color::Green);
-			_objects_textures[_position_x][_position_y].hitbox.setOutlineThickness(1.f);
-			_objects_textures[_position_x][_position_y].hitbox.setFillColor(sf::Color::Transparent);
-			_objects_textures[_position_x][_position_y].hitbox.setPosition(_objects_textures[_position_x][_position_y].sprite.getPosition().x + 22.f, _objects_textures[_position_x][_position_y].sprite.getPosition().y + 52);
-			_objects_textures[_position_x][_position_y].hitbox.rotate(-30);
-			_objects_textures[_position_x][_position_y].hitbox.setSize(sf::Vector2f(5, 5));
+			_map_elements[_position_x][_position_y]->setObject(_asset_manager.getTexture("sign"), { isometric.x + 20 , isometric.y + 8 }, { 24, 50 }, { 5,5 }, { 0.f, 0.f }, 0);
 			break;
 		case tree:
-			_objects_textures[_position_x][_position_y].sprite.setTexture(_asset_manager.getTexture("tree"));
-			_objects_textures[_position_x][_position_y].sprite.setOrigin(50, 136);
-			_objects_textures[_position_x][_position_y].sprite.setPosition(isometric.x, isometric.y);
-			_objects_textures[_position_x][_position_y].size = _asset_manager.getTexture("tree").getSize();
-			_objects_textures[_position_x][_position_y].hitbox.setOutlineColor(sf::Color::Green);
-			_objects_textures[_position_x][_position_y].hitbox.setOutlineThickness(1.f);
-			_objects_textures[_position_x][_position_y].hitbox.setFillColor(sf::Color::Transparent);
-			_objects_textures[_position_x][_position_y].hitbox.setPosition(_objects_textures[_position_x][_position_y].sprite.getPosition().x, _objects_textures[_position_x][_position_y].sprite.getPosition().y);
-			_objects_textures[_position_x][_position_y].hitbox.setSize(sf::Vector2f(44, 18));
+			_map_elements[_position_x][_position_y]->setObject(_asset_manager.getTexture("tree"), { isometric.x, isometric.y }, { 50, 136 }, { 44,18 }, { 0.f, 0.f }, 0);
 			break;
 		case chest:
-			_objects_textures[_position_x][_position_y].sprite.setTexture(_asset_manager.getTexture("chest"));
-			_objects_textures[_position_x][_position_y].sprite.setPosition(isometric.x + 14, isometric.y - 30);
-			_objects_textures[_position_x][_position_y].size = _asset_manager.getTexture("chest").getSize();
-			_objects_textures[_position_x][_position_y].hitbox.setOutlineColor(sf::Color::Green);
-			_objects_textures[_position_x][_position_y].hitbox.setOutlineThickness(1.f);
-			_objects_textures[_position_x][_position_y].hitbox.setFillColor(sf::Color::Transparent);
-			_objects_textures[_position_x][_position_y].hitbox.setPosition(_objects_textures[_position_x][_position_y].sprite.getPosition().x + 18, _objects_textures[_position_x][_position_y].sprite.getPosition().y + 50);
-			_objects_textures[_position_x][_position_y].hitbox.setSize(sf::Vector2f(38, 18));
-			break; 
+			_map_elements[_position_x][_position_y]->setObject(_asset_manager.getTexture("chest"), { isometric.x + 30, isometric.y + 30 }, { 42, 72 }, { 38,18 }, { -24.f, -24.f }, 0);
+			break;
 
+		}
+	}
+
+	void TileMap::_generateWalkableArea()
+	{
+		for (unsigned int i = 0; i < _height; i++)
+		{
+			for (unsigned int j = 0; j < _width; j++)
+			{
+				if (!_map_elements[i][j]->isWalkable())
+				{
+					if (i > 0 && j > 0 && j < _width-1 && i < _height-1)
+					{
+						unsigned short end_k = i + 1, end_l = j + 1;
+						for (unsigned short k = i - 1; k <= end_k; k++)
+						{
+							for (unsigned short l = j - 1; l <= end_l; l++)
+							{
+								_walkable_area[k][l] = 1;
+							}
+						}
+					}
+					else if (i == 0 && j > 0 && j < _width-1)
+					{
+						for (unsigned short k = i; k <= i + 1; k++)
+							for (unsigned short l = j - 1; l < j + 1; l++)
+								_walkable_area[k][l] = 1;
+					}
+					else if (i == _height - 1 && j > 0 && j < _width-1)
+					{
+						for (unsigned short k = i - 1; k <= i; k++)
+							for (unsigned short l = j - 1; l < j + 1; l++)
+								_walkable_area[k][l] = 1;
+					}
+					else if (j == 0 && i > 0 && i < _height-1)
+					{
+						for (unsigned short k = i - 1; k <= i + 1; k++)
+							for (unsigned short l = j; l < j + 1; l++)
+								_walkable_area[k][l] = 1;
+					}
+					else if (j == _width - 1 && i > 0 && i < _height-1)
+					{
+						for (unsigned short k = i - 1; k < i + 1; k++)
+							for (unsigned short l = j - 1; l < j; l++)
+								_walkable_area[k][l] = 1;
+					}
+					else if (j == 0 && i == 0)
+					{
+						_walkable_area[0][0] = 1;
+						_walkable_area[0][1] = 1;
+						_walkable_area[1][0] = 1;
+						_walkable_area[1][1] = 1;
+					}
+					else if (j == 0 && i == _height - 1)
+					{
+						_walkable_area[_height - 2][0] = 1;
+						_walkable_area[_height - 2][1] = 1;
+						_walkable_area[_height - 1][0] = 1;
+						_walkable_area[_height - 1][1] = 1;
+					}
+					else if (j == _width - 1 && i == _height - 1)
+					{
+						_walkable_area[_height - 2][_width - 2] = 1;
+						_walkable_area[_height - 2][_width - 1] = 1;
+						_walkable_area[_height - 1][_width - 2] = 1;
+						_walkable_area[_height - 1][_width - 1] = 1;
+					}
+					else if (j == _width - 1 && i == 0)
+					{
+						_walkable_area[0][_width - 1] = 1;
+						_walkable_area[0][_width - 2] = 1;
+						_walkable_area[1][_width - 1] = 1;
+						_walkable_area[1][_width - 2] = 1;
+					}
+				}
+			}
 		}
 	}
 
@@ -182,20 +229,14 @@ namespace RTB
 
 		this->_loadFromFile("Map/map.txt", "Map/mapFlora.txt", "Map/mapObjects.txt");
 
-		_level_textures.resize(_height);
+		_map_elements.resize(_height);
 		for (unsigned int i = 0; i < _height; ++i)
-			_level_textures[i].resize(_width);
+			_map_elements[i].resize(_width);
 
-		_flora_textures.resize(_height);
+		_walkable_area.resize(_height);
 		for (unsigned int i = 0; i < _height; ++i)
-			_flora_textures[i].resize(_width);
-
-		_objects_textures.resize(_height);
-		for (unsigned int i = 0; i < _height; ++i)
-			_objects_textures[i].resize(_width);
-
-		std::ofstream tiles_positions("tiles_positions.txt");//////////////
-
+			_walkable_area[i].resize(_width);
+		
 		for (unsigned int i = 0; i < _height; ++i)
 		{
 			for (unsigned int j = 0; j < _width; ++j)
@@ -204,7 +245,6 @@ namespace RTB
 				_point.y = j * 25;
 				_tile_type = _level[i][j];
 				this->_placeTile(i, j);
-				tiles_positions << "("<<_twoDToIso().x << "," << _twoDToIso().y<<")";
 
 				_tile_type = _flora[i][j];
 				this->_placeFlora(i, j);
@@ -212,8 +252,8 @@ namespace RTB
 				_tile_type = _objects[i][j];
 				this->_placeObjects(i, j);
 			}
-			tiles_positions << std::endl;
 		}
+		this->_generateWalkableArea();
 	}
 
 
@@ -223,8 +263,9 @@ namespace RTB
 		{
 			for (unsigned short j = 0; j < _width; ++j)
 			{
-				window.draw(_level_textures[i][j]);
-				window.draw(_flora_textures[i][j]);
+				window.draw(_map_elements[i][j]->getGround());
+				if (!_map_elements[i][j]->isFloraNull())
+					window.draw(_map_elements[i][j]->getFlora());
 			}
 		}
 	}
@@ -234,15 +275,18 @@ namespace RTB
 		{
 			for (unsigned short j = 0; j < _width; ++j)
 			{
-				window.draw(_objects_textures[i][j].sprite);
-				window.draw(_objects_textures[i][j].hitbox);
+				if (!_map_elements[i][j]->isObjectNull())
+				{
+					window.draw(_map_elements[i][j]->getObjects());
+					window.draw(_map_elements[i][j]->getObjectsHitbox());
+				}
 			}
 		}
 	}
 
-	std::vector<std::vector<_obj>>& TileMap::getCollidableObjects()
+	std::vector<std::vector<std::unique_ptr<MapElement>>>& TileMap::getCollidableObjects()
 	{
-		return _objects_textures;
+		return _map_elements;
 	}
 
 	unsigned short& TileMap::getWidth()

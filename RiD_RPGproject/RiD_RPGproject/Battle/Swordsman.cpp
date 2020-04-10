@@ -29,7 +29,7 @@ namespace RTB
 		_movement->setSpritePosition(position);
 	}
 
-	void Swordsman::update(sf::Time time, std::vector<std::vector<_obj>>& map_objects)
+	void Swordsman::update(sf::Time time, std::vector<std::vector<std::unique_ptr<MapElement>>>& map_objects)
 	{
 		/*_movement->walkingUp(time);
 		_movement->walkingDown(time);

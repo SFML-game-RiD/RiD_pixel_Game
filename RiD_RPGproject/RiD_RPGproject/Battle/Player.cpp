@@ -29,7 +29,7 @@ namespace RTB
 		}
 	}
 
-	void Player::_isColidingWithTile(std::vector<std::vector<_obj>>& map_objects)
+	void Player::_isColidingWithTile(std::vector<std::vector<std::unique_ptr<MapElement>>>& map_objects)
 	{
 		sf::Vector2i character_position = { (int)(((2 * _character_sprite->getPosition().y + _character_sprite->getPosition().x) / 2) / 25), (int)(((2 * _character_sprite->getPosition().y - _character_sprite->getPosition().x) / 2) / 25) };
 		unsigned int height = map_objects[0].size(), width = map_objects.size();
@@ -87,7 +87,7 @@ namespace RTB
 			{
 				for (unsigned int j = start_y; j < end_y; ++j)
 				{
-					if (checkMapCollision(map_objects[i][j].hitbox, _hitbox->getRectangle()))
+					if (checkMapCollision(map_objects[i][j]->getObjectsHitbox(), _hitbox->getRectangle()))
 					{
 						if (_direction == up)
 							_moving_up = false;
@@ -129,7 +129,7 @@ namespace RTB
 		delete _sword_hitbox;
 	}
 
-	void Player::update(sf::Time time, std::vector<std::vector<_obj>>& map_objects)
+	void Player::update(sf::Time time, std::vector<std::vector<std::unique_ptr<MapElement>>>& map_objects)
 	{
 		_isColidingWithTile(map_objects);
 

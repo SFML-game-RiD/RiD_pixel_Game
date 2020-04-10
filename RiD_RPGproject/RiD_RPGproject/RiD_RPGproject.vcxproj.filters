@@ -62,6 +62,12 @@
     <ClCompile Include="Battle\PathNode.cpp">
       <Filter>RealTimeBattle\AI</Filter>
     </ClCompile>
+    <ClCompile Include="Map\MapElement.cpp">
+      <Filter>Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\RTBPathGenerator.cpp">
+      <Filter>RealTimeBattle\AI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\InputManager.h" />
@@ -122,6 +128,12 @@
       <Filter>RealTimeBattle\Characters\Bots</Filter>
     </ClInclude>
     <ClInclude Include="Battle\PathNode.h">
+      <Filter>RealTimeBattle\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Map\MapElement.h">
+      <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\RTBPathGenerator.h">
       <Filter>RealTimeBattle\AI</Filter>
     </ClInclude>
   </ItemGroup>
