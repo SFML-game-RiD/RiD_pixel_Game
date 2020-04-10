@@ -31,24 +31,39 @@ void MP::ObiectDrawer::_draw_trees(sf::RenderWindow& mainWindow, ObiectManager& 
 	}
 }
 
-void MP::ObiectDrawer::drawAllObiects(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager)
+void MP::ObiectDrawer::drawAllObiects(Camera& aGameCamera, ObiectManager& aObiectManager)
 {
-	
+	//GAME DRAWING
+	aGameCamera.changeViewToGame();
+
+
 	//Drawing map
-	_draw_land(mainWindow,aObiectManager);
+	_draw_land(aGameCamera.getWindow(),aObiectManager);
 
 	//Drawing player
-	_draw_active_obiects(mainWindow, aObiectManager);
+	_draw_active_obiects(aGameCamera.getWindow(), aObiectManager);
 
 	//Drwaing trees
-	_draw_trees(mainWindow, aObiectManager);
+	_draw_trees(aGameCamera.getWindow(), aObiectManager);
 
+	//GAME DRAWING END
+
+	//GUI DRAWING
+	aGameCamera.changeViewToGui();
+
+	_draw_gui_obiects(aGameCamera.getWindow(), aObiectManager);
+
+	aGameCamera.changeViewToGame();
+	//GUI DRAWING END
+}
+
+void MP::ObiectDrawer::_draw_gui_obiects(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager)
+{
 	//Drawing map gui
-	_draw_map_gui(mainWindow, aObiectManager);
+	_draw_map_gui(mainWindow,aObiectManager);
 
 	//Drawing cursor
 	_draw_cursor(mainWindow, aObiectManager);
-
 }
 
 void MP::ObiectDrawer::_draw_active_obiects(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager)

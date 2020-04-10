@@ -50,7 +50,7 @@ namespace RiD
 
 		void _calculate();
 
-		void _draw(sf::RenderWindow& mainWindow);
+		void _draw();
 
 	public:
 		/*

@@ -110,9 +110,6 @@
     <ClCompile Include="Animation.cpp">
       <Filter>MOVE,ANIMATION</Filter>
     </ClCompile>
-    <ClCompile Include="Cursor.cpp">
-      <Filter>OBIECT</Filter>
-    </ClCompile>
     <ClCompile Include="PathIcon.cpp">
       <Filter>OBIECT</Filter>
     </ClCompile>
@@ -120,6 +117,9 @@
       <Filter>OBIECT\GUI</Filter>
     </ClCompile>
     <ClCompile Include="GuiManager.cpp">
+      <Filter>OBIECT\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Cursor.cpp">
       <Filter>OBIECT\GUI</Filter>
     </ClCompile>
   </ItemGroup>
@@ -232,9 +232,6 @@
     <ClInclude Include="Animation.h">
       <Filter>MOVE,ANIMATION</Filter>
     </ClInclude>
-    <ClInclude Include="Cursor.h">
-      <Filter>OBIECT</Filter>
-    </ClInclude>
     <ClInclude Include="PathIcon.h">
       <Filter>OBIECT</Filter>
     </ClInclude>
@@ -242,6 +239,9 @@
       <Filter>OBIECT\GUI</Filter>
     </ClInclude>
     <ClInclude Include="GuiManager.h">
+      <Filter>OBIECT\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Cursor.h">
       <Filter>OBIECT\GUI</Filter>
     </ClInclude>
   </ItemGroup>

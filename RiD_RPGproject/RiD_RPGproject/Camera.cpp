@@ -2,38 +2,36 @@
 #include "Camera.h"
 #include "ActiveObiect.h"
 
-void MP::Camera::_zoom_in(GuiManager& aGuiManager)
+void MP::Camera::_zoom_in()
 {
-	if (_view.getSize().x > _min_x_size)
+	if (_game_view.getSize().x > _min_x_size)
 	{
-		_view = _window.getView();
-		//_view.zoom(0.9);
-		_view.setSize(_view.getSize().x- 533.333333, _view.getSize().y-300); //I hope player won't see it :(
-		aGuiManager.scaleGui(_view.getSize());
+		_game_view = _window.getView();
+		_game_view.setSize(_game_view.getSize().x- 266.66655, _game_view.getSize().y-150); //I hope player won't see it :(
 
-		_window.setView(_view);
+		_window.setView(_game_view);
 	}
-	std::cout << _view.getSize().x << " x " << _view.getSize().y << std::endl;
+	std::cout << _game_view.getSize().x << " x " << _game_view.getSize().y << std::endl;
 }
 
-void MP::Camera::_zoom_out(GuiManager& aGuiManager)
+void MP::Camera::_zoom_out()
 {
-	if (_view.getSize().x < _max_x_size)
+	if (_game_view.getSize().x < _max_x_size)
 	{
-		_view = _window.getView();
-		//_view.zoom(1.1);
-		_view.setSize(_view.getSize().x+ 533.333333, _view.getSize().y+300); //I hope player won't see it :(
-		aGuiManager.scaleGui(_view.getSize());
-		_window.setView(_view);
+		_game_view = _window.getView();
+		_game_view.setSize(_game_view.getSize().x+ 266.66655, _game_view.getSize().y+150); //I hope player won't see it :(
+		_window.setView(_game_view);
 	}
-	std::cout << _view.getSize().x << " x " << _view.getSize().y << std::endl;
+	std::cout << _game_view.getSize().x << " x " << _game_view.getSize().y << std::endl;
 }
 
 MP::Camera::Camera()
 {
 	_min_x_size = RiD::ConfigurationLoader::getIntData("video settings", "minCameraView");
 	_max_x_size = RiD::ConfigurationLoader::getIntData("video settings", "maxCameraView");
-	_view.setSize(RiD::ConfigurationLoader::getIntData("video settings", "screenWidth"), RiD::ConfigurationLoader::getIntData("video settings", "screenHeight"));
+	_game_view.setSize(RiD::ConfigurationLoader::getIntData("video settings", "screenWidth"), RiD::ConfigurationLoader::getIntData("video settings", "screenHeight"));
+	_gui_view.setSize(RiD::ConfigurationLoader::getIntData("video settings", "screenWidth"), RiD::ConfigurationLoader::getIntData("video settings", "screenHeight"));
+
 }
 
 sf::RenderWindow& MP::Camera::getWindow()
@@ -51,23 +49,35 @@ void MP::Camera::drawFrame()
 	_window.display();
 }
 
-void MP::Camera::changeZoom(GuiManager& aGuiManager, MP::TaskManager& aTaskManager)
+void MP::Camera::changeZoom(MP::TaskManager& aTaskManager)
 {
+	changeViewToGame();
+
 	if (aTaskManager.getTask() == MP::TaskManager::taskType::taskZoomOut)
-		_zoom_out(aGuiManager);
+		_zoom_out();
 	if (aTaskManager.getTask() == MP::TaskManager::taskType::taskZoomIn)
-		_zoom_in(aGuiManager);
+		_zoom_in();
 
 	aTaskManager.endTask();
 }
 
-void MP::Camera::changeCamera(GuiManager& aGuiManager, sf::Vector2f coord)
+void MP::Camera::changeCamera(sf::Vector2f coord)
 {
-	aGuiManager.getMapGui()->setObiectCoord(coord);
-
-	coord.x += 32;
-	coord.y += 32;
+	//Correcting camera position
+	coord.x += 0;
+	coord.y += 0;
 	
-	_view.setCenter(coord);
-	_window.setView(_view);
+	_game_view.setCenter(coord);
+	_window.setView(_game_view);
+
+}
+
+void MP::Camera::changeViewToGame()
+{
+	_window.setView(_game_view);
+}
+
+void MP::Camera::changeViewToGui()
+{
+	_window.setView(_gui_view);
 }

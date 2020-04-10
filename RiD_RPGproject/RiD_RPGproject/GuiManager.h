@@ -19,8 +19,6 @@ namespace MP
 
 		std::unique_ptr<MapGui>& getMapGui();
 
-		void scaleGui(sf::Vector2f newCameraViewSize);
-
 	};
 }
 #endif // !_GUIMANAGER_H_

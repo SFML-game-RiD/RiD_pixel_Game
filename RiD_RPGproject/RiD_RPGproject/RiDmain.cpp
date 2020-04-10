@@ -14,7 +14,7 @@ void RiD::RiDmain::_create_window()
 	//##############################################
 	//############ Corecting camera ##############
 
-	_a_camera.changeCamera(_a_obiect_manager.getGuiManager(),_a_obiect_manager.getPlayer()->getObiectCoord());
+	_a_camera.changeCamera(_a_obiect_manager.getPlayer()->getObiectCoord());
 
 	//##############################################
 
@@ -26,7 +26,7 @@ void RiD::RiDmain::_create_window()
 
 		_calculate();
 		
-		_draw(_a_camera.getWindow());
+		_draw();
 	}
 }
 
@@ -83,11 +83,11 @@ void RiD::RiDmain::_calculate()
 	_a_calculator.startProcedureCursor(_a_main_task_manager,_a_obiect_manager, _a_camera);
 }
 
-void RiD::RiDmain::_draw(sf::RenderWindow & mainWindow)
+void RiD::RiDmain::_draw()
 {
 	_a_camera.clearCamera();
 
-	_a_obiect_drawer.drawAllObiects(mainWindow,_a_obiect_manager);
+	_a_obiect_drawer.drawAllObiects(_a_camera,_a_obiect_manager);
 
 	_a_camera.drawFrame(); 
 }
@@ -100,7 +100,7 @@ RiD::RiDmain::RiDmain(int width, int height, std::string title)
 	
 	//_a_camera.getWindow().create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
 	//_a_camera.getWindow().setFramerateLimit(RiD::ConfigurationLoader::getIntData("video settings", "gameFPS"));
-	_a_camera.getWindow().setMouseCursorVisible(false);
+	_a_camera.getWindow().setMouseCursorVisible(true);
 	this->_create_window();
 
 

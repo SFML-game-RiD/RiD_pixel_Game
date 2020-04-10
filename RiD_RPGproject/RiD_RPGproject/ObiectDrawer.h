@@ -2,6 +2,7 @@
 #define _OBIECTDRAWER_H_
 
 #include "ObiectManager.h"
+#include "Camera.h"
 
 namespace MP
 {
@@ -18,11 +19,13 @@ namespace MP
 		void _draw_active_obiects(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager);
 
 		void _draw_map_gui(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager);
-
+		
+		void _draw_gui_obiects(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager);
 	public:
 
-		void drawAllObiects(sf::RenderWindow& mainWindow, ObiectManager & aObiectManager);
+		void drawAllObiects(Camera &aGameCamera, ObiectManager & aObiectManager);
 
+		
 	
 	
 

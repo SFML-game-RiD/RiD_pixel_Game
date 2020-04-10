@@ -1,4 +1,5 @@
 #include "Calculator.h"
+#include <iostream>
 
 void MP::Calculator::_start_procedure_player_move(TaskManager& aTaskManager, MP::Player& aPlayer, sf::Clock& aGameClock)
 {
@@ -34,13 +35,13 @@ void MP::Calculator::_start_procedure_player_animation(TaskManager& aTaskManager
 void MP::Calculator::_start_procedure_camera_zoom(ObiectManager & aObiectManager,TaskManager& aTaskManager, Camera& aCamera)
 {
 	if (aTaskManager.getTask() == MP::TaskManager::taskType::taskZoomIn or aTaskManager.getTask() == MP::TaskManager::taskType::taskZoomOut)
-		aCamera.changeZoom(aObiectManager.getGuiManager(),aTaskManager);
+		aCamera.changeZoom(aTaskManager);
 }
 
 void MP::Calculator::_start_procedure_correct_camera(ObiectManager& aObiectManager, TaskManager& aTaskManager, sf::Vector2f newCoord, Camera& aCamera)
 {
 	if (aTaskManager.getTask() != MP::TaskManager::taskType::taskNone)
-		aCamera.changeCamera(aObiectManager.getGuiManager(),newCoord);
+		aCamera.changeCamera(newCoord);
 }
 
 void MP::Calculator::_start_procedure_player_auto_or_normal_move(TaskManager& aTaskManager, ObiectManager& aObiectManager, sf::Clock& aGameClock)
@@ -57,7 +58,7 @@ void MP::Calculator::_start_procedure_player_auto_or_normal_move(TaskManager& aT
 
 		MapElement* start = aObiectManager.getMap().findElementAddressSquareRange(aObiectManager.getPlayer()->getObiectCoord(), aObiectManager.getMapElementHead());
 
-		MapElement* stop = aObiectManager.getMap().findElementAddressSquareRange(aObiectManager.getCursor()->getObiectCoord(), aObiectManager.getMapElementHead());
+		MapElement* stop = aObiectManager.getMap().findElementAddressSquareRange(aObiectManager.getCursor()->getGuiCoord(), aObiectManager.getMapElementHead());
 
 		if (stop->isWalkable())
 		{
@@ -158,6 +159,7 @@ void MP::Calculator::startProcedureComputerPlayers(ObiectManager& aObiectManager
 
 void MP::Calculator::startProcedureCamera(ObiectManager& aObiectManager, TaskManager& aTaskManager, sf::Vector2f newCoord, Camera& aCamera)
 {
+	
 	_start_procedure_camera_zoom(aObiectManager, aTaskManager, aCamera);
 
 	_start_procedure_correct_camera(aObiectManager, aTaskManager, newCoord, aCamera);
@@ -165,19 +167,26 @@ void MP::Calculator::startProcedureCamera(ObiectManager& aObiectManager, TaskMan
 
 void MP::Calculator::startProcedureCursor(TaskManager& aTaskManager, ObiectManager& aObiectManager, Camera& aCamera)
 {
-	sf::Vector2f worldPos = aCamera.getWindow().mapPixelToCoords(sf::Mouse::getPosition(aCamera.getWindow())); //Converting coordinates, important.
+	//saving gui cursor coord for drawing 
+	aCamera.changeViewToGui();
+	sf::Vector2f guiMouseCoord = aCamera.getWindow().mapPixelToCoords(sf::Mouse::getPosition(aCamera.getWindow()));
+	aObiectManager.getCursor()->setObiectCoord(guiMouseCoord);
+	
+	//Maping to pixel from gui view
+	sf::Vector2i screenMouseCoord = sf::Mouse::getPosition(aCamera.getWindow());
 
-	aObiectManager.getCursor()->setObiectCoord(worldPos);
-
+	//Mapin from pixel to game view
+	aCamera.changeViewToGame();
+	sf::Vector2f gameMouseCoord = aCamera.getWindow().mapPixelToCoords(screenMouseCoord);
+	aObiectManager.getCursor()->saveGuiCoord(gameMouseCoord);
 	if (aTaskManager.getMouseTask() == MP::TaskManager::taskType::taskClickLeft)
 	{
-		aObiectManager.getCursor();
-		MapElement* tmp = aObiectManager.getMap().findElementAddressSquareRange(aObiectManager.getCursor()->getObiectCoord(), aObiectManager.getMapElementHead()); //Returns square pointed by mouse.
-
+		//TO DO ...
 	}
 	if(aTaskManager.getMouseTask() == MP::TaskManager::taskType::taskClickRight)
 	{ 
 		//TO DO ...
 	}
+
 }
 

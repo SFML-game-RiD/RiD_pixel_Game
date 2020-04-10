@@ -14,16 +14,19 @@ namespace MP
 
 		int _min_x_size;
 
-		sf::View _view;
-
 		sf::RenderWindow _window;
 
-		void _zoom_in(GuiManager & aGuiManager);
+		sf::View _game_view;
 
-		void _zoom_out(GuiManager& aGuiManager);
+		sf::View _gui_view;
 
-	public:
+//		sf::Vector2f _current_virtual_game_corner_position;
 
+		void _zoom_in();
+
+		void _zoom_out();
+
+	public:	
 		Camera();
 
 		sf::RenderWindow & getWindow();
@@ -32,9 +35,13 @@ namespace MP
 
 		void drawFrame();
 
-		void changeZoom(GuiManager& aGuiManager, MP::TaskManager &aTaskManager);
+		void changeZoom(MP::TaskManager &aTaskManager);
 
-		void changeCamera(GuiManager& aGuiManager,sf::Vector2f coord);
+		void changeCamera(sf::Vector2f coord);
+		
+		void changeViewToGame();//allows to update game
+
+		void changeViewToGui();//updates gui
 
 	};
 }

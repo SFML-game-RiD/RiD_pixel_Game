@@ -9,8 +9,13 @@ namespace MP
 	{
 	private:
 			
+		sf::Vector2f _gui_coord;
 
 	public:
+
+		void saveGuiCoord(sf::Vector2f guiCoord);
+
+		sf::Vector2f getGuiCoord();
 
 		Cursor(sf::Texture* texturePtr);
 	};
