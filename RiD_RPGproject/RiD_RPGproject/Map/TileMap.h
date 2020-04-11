@@ -3,6 +3,7 @@
 #include "SFML/Graphics.hpp"
 #include "../Engine/AssetManager.h"
 #include "MapElement.h"
+#include "../Battle/PathNode.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -10,12 +11,6 @@
 
 namespace RTB
 {
-	struct _obj
-	{
-		sf::Sprite sprite;
-		sf::Vector2u size;
-		sf::RectangleShape hitbox;
-	};
 	class TileMap
 	{
 	private:
@@ -29,7 +24,7 @@ namespace RTB
 		std::vector<std::vector<unsigned int>> _objects;
 		std::vector<std::vector<std::unique_ptr<MapElement>>> _map_elements;
 
-		std::vector<std::vector<bool>> _walkable_area;
+		std::vector<std::vector<AI::PathNode>> _walkable_area;
 
 		unsigned short _width , _height , _tile_type;
 		sf::Vector2f _point;
@@ -48,6 +43,8 @@ namespace RTB
 		void drawObjects(sf::RenderTarget& window);
 
 		std::vector<std::vector<std::unique_ptr<MapElement>>>& getCollidableObjects();
+
+		std::vector<std::vector<AI::PathNode>>& getWalkableArea();
 
 		unsigned short& getWidth();
 

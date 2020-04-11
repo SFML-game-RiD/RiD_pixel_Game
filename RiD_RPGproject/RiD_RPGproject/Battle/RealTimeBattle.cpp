@@ -1,7 +1,7 @@
 #pragma once
 
 #include "RealTimeBattle.h"
-
+#include "RTBPathGenerator.h"
 namespace RTB
 {
 	void RealTimeBattle::_zoomEvent()
@@ -115,6 +115,12 @@ namespace RTB
 	{
 		_tile_map = std::unique_ptr<TileMap>(new TileMap({ 50,50 }));
 		window.setView(_camera);		
+
+		while (tmp)
+		{
+			std::cout << tmp->getPosition().x << " " << tmp->getPosition().y << std::endl;
+			tmp = tmp->getPNext();
+		}
 
 		this->_armyCreation();
 		while (window.isOpen())

@@ -145,70 +145,71 @@ namespace RTB
 			{
 				if (!_map_elements[i][j]->isWalkable())
 				{
-					if (i > 0 && j > 0 && j < _width-1 && i < _height-1)
+					if (i > 0 && j > 0 && j < _width - 1 && i < _height - 1)
 					{
 						unsigned short end_k = i + 1, end_l = j + 1;
 						for (unsigned short k = i - 1; k <= end_k; k++)
 						{
 							for (unsigned short l = j - 1; l <= end_l; l++)
 							{
-								_walkable_area[k][l] = 1;
+								_walkable_area[k][l].setNotWalkable();
 							}
 						}
 					}
-					else if (i == 0 && j > 0 && j < _width-1)
+					else if (i == 0 && j > 0 && j < _width - 1)
 					{
 						for (unsigned short k = i; k <= i + 1; k++)
 							for (unsigned short l = j - 1; l < j + 1; l++)
-								_walkable_area[k][l] = 1;
+								_walkable_area[k][l].setNotWalkable();
 					}
-					else if (i == _height - 1 && j > 0 && j < _width-1)
+					else if (i == _height - 1 && j > 0 && j < _width - 1)
 					{
 						for (unsigned short k = i - 1; k <= i; k++)
 							for (unsigned short l = j - 1; l < j + 1; l++)
-								_walkable_area[k][l] = 1;
+								_walkable_area[k][l].setNotWalkable();
 					}
-					else if (j == 0 && i > 0 && i < _height-1)
+					else if (j == 0 && i > 0 && i < _height - 1)
 					{
 						for (unsigned short k = i - 1; k <= i + 1; k++)
 							for (unsigned short l = j; l < j + 1; l++)
-								_walkable_area[k][l] = 1;
+								_walkable_area[k][l].setNotWalkable();
 					}
-					else if (j == _width - 1 && i > 0 && i < _height-1)
+					else if (j == _width - 1 && i > 0 && i < _height - 1)
 					{
 						for (unsigned short k = i - 1; k < i + 1; k++)
 							for (unsigned short l = j - 1; l < j; l++)
-								_walkable_area[k][l] = 1;
+								_walkable_area[k][l].setNotWalkable();
 					}
 					else if (j == 0 && i == 0)
 					{
-						_walkable_area[0][0] = 1;
-						_walkable_area[0][1] = 1;
-						_walkable_area[1][0] = 1;
-						_walkable_area[1][1] = 1;
+						_walkable_area[0][0].setNotWalkable();
+						_walkable_area[0][1].setNotWalkable();
+						_walkable_area[1][0].setNotWalkable();
+						_walkable_area[1][1].setNotWalkable();
 					}
 					else if (j == 0 && i == _height - 1)
 					{
-						_walkable_area[_height - 2][0] = 1;
-						_walkable_area[_height - 2][1] = 1;
-						_walkable_area[_height - 1][0] = 1;
-						_walkable_area[_height - 1][1] = 1;
+						_walkable_area[_height - 2][0].setNotWalkable();
+						_walkable_area[_height - 2][1].setNotWalkable();
+						_walkable_area[_height - 1][0].setNotWalkable();
+						_walkable_area[_height - 1][1].setNotWalkable();
 					}
 					else if (j == _width - 1 && i == _height - 1)
 					{
-						_walkable_area[_height - 2][_width - 2] = 1;
-						_walkable_area[_height - 2][_width - 1] = 1;
-						_walkable_area[_height - 1][_width - 2] = 1;
-						_walkable_area[_height - 1][_width - 1] = 1;
+						_walkable_area[_height - 2][_width - 2].setNotWalkable();
+						_walkable_area[_height - 2][_width - 1].setNotWalkable();
+						_walkable_area[_height - 1][_width - 2].setNotWalkable();
+						_walkable_area[_height - 1][_width - 1].setNotWalkable();
 					}
 					else if (j == _width - 1 && i == 0)
 					{
-						_walkable_area[0][_width - 1] = 1;
-						_walkable_area[0][_width - 2] = 1;
-						_walkable_area[1][_width - 1] = 1;
-						_walkable_area[1][_width - 2] = 1;
+						_walkable_area[0][_width - 1].setNotWalkable();
+						_walkable_area[0][_width - 2].setNotWalkable();
+						_walkable_area[1][_width - 1].setNotWalkable();
+						_walkable_area[1][_width - 2].setNotWalkable();
 					}
 				}
+				_walkable_area[i][j].setPosition(sf::Vector2i(i, j));
 			}
 		}
 	}
@@ -236,7 +237,7 @@ namespace RTB
 		_walkable_area.resize(_height);
 		for (unsigned int i = 0; i < _height; ++i)
 			_walkable_area[i].resize(_width);
-		
+
 		for (unsigned int i = 0; i < _height; ++i)
 		{
 			for (unsigned int j = 0; j < _width; ++j)
@@ -287,6 +288,11 @@ namespace RTB
 	std::vector<std::vector<std::unique_ptr<MapElement>>>& TileMap::getCollidableObjects()
 	{
 		return _map_elements;
+	}
+
+	std::vector<std::vector<AI::PathNode>>& RTB::TileMap::getWalkableArea()
+	{
+		return _walkable_area;
 	}
 
 	unsigned short& TileMap::getWidth()

@@ -4,9 +4,9 @@
 
 namespace AI
 {
-	PathNode::PathNode(sf::Vector2i position)
+	PathNode::PathNode()
 	{
-		_position = position;
+		_walkable = 1;
 	}
 
 	sf::Vector2i PathNode::getPosition()
@@ -14,11 +14,8 @@ namespace AI
 		return _position;
 	}
 
-	int PathNode::getFCost(sf::Vector2i start, sf::Vector2i end)
+	int PathNode::getFCost()
 	{
-		_calcG(start);
-		_calcH(end);
-		_F = _G + _H;
 		return _F;
 	}
 
@@ -40,6 +37,31 @@ namespace AI
 	void PathNode::setParent(PathNode* node)
 	{
 		this->_parent_node = node;
+	}
+
+	void PathNode::setNotWalkable()
+	{
+		_walkable = 0;
+	}
+
+	void PathNode::setFCost(sf::Vector2i end)
+	{
+		_calcG(_position);
+		_calcH(end);
+		_F = _G + _H;
+	}
+
+	void PathNode::setPosition(sf::Vector2i pos)
+	{
+		_position = pos;
+	}
+
+	bool PathNode::isWalkable()
+	{
+		if (_walkable)
+			return true;
+		else
+			return false;
 	}
 
 	void PathNode::_calcG(sf::Vector2i start)

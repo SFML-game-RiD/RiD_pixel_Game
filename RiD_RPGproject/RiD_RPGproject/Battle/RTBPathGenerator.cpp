@@ -10,6 +10,7 @@ namespace AI
 		{
 			node->setPNext(_opened_list_head);
 			_opened_list_head = node;
+
 		}
 		else
 		{
@@ -18,39 +19,80 @@ namespace AI
 		}
 	}
 
+	void RTBPathGenerator::_addToPathList(PathNode*& node)
+	{
+		if (_path)
+		{
+			node->setPNext(_path);
+			_path = node;
+
+		}
+		else
+		{
+			_path = node;
+			node->setPNext(nullptr);
+		}
+	}
+
 	void RTBPathGenerator::_moveToClosedList(PathNode*& node)
 	{
 		PathNode* tmp = this->_cutOffNodeFromOpen(node);
-		this->_addToOpenedList(tmp);;
+		if (_closed_list_head)
+		{
+			tmp->setPNext(_closed_list_head);
+			_closed_list_head = tmp;
+
+		}
+		else
+		{
+			_closed_list_head = tmp;
+			tmp->setPNext(nullptr);
+		}
+	}
+
+	void RTBPathGenerator::_moveToExportList(PathNode*& node)
+	{
+		PathNode* tmp = this->_cutOffNodeFromClosed(node);
+		if (!_path)
+			_path = tmp;
+		else
+		{
+			PathNode* head = _path;
+			while (head->getPNext())
+				head = head->getPNext();
+			head->setPNext(tmp);
+		}
 	}
 
 	void RTBPathGenerator::_deleteOpenedList()
 	{
-		PathNode* curr = _opened_list_head;
-		PathNode* next;
-		while (curr)
+		PathNode* iterator = _opened_list_head;
+
+		while (iterator != 0)
 		{
-			next = curr->getPNext();
-			delete curr;
-			curr = next;
+			_opened_list_head = iterator->getPNext();
+			delete iterator;
+			iterator = _opened_list_head;
 		}
+
 		delete _opened_list_head;
 	}
 
 	void RTBPathGenerator::_deleteClosedList()
 	{
-		PathNode* curr = _closed_list_head;
-		PathNode* next;
-		while (curr)
+		PathNode* iterator = _closed_list_head;
+
+		while (iterator != 0)
 		{
-			next = curr->getPNext();
-			delete curr;
-			curr = next;
+			_closed_list_head = iterator->getPNext();
+			delete iterator;
+			iterator = _closed_list_head;
 		}
+
 		delete _closed_list_head;
 	}
 
-	bool RTBPathGenerator::_ifExists(sf::Vector2i position, PathNode* pHead)
+	bool RTBPathGenerator::_ifExists(PathNode neighbour, PathNode* pHead)
 	{
 		PathNode* tmp;
 		if (pHead == nullptr)
@@ -58,7 +100,7 @@ namespace AI
 		else
 		{
 			tmp = pHead;
-			while (tmp->getPosition() != position)
+			while (tmp->getPosition() != neighbour.getPosition())
 			{
 				if (tmp->getPNext() == nullptr)
 					return false;
@@ -67,6 +109,58 @@ namespace AI
 			}
 		}
 		return true;
+	}
+
+	void RTBPathGenerator::_NeighbourPosition(unsigned short i, unsigned short j, unsigned short points[])
+	{
+		if (i > 0 && j > 0 && j < _width - 1 && i < _height - 1)
+		{
+			points[0] = i - 1;
+			points[1] = i + 1;
+			points[2] = j - 1;
+			points[3] = j + 1;
+		}
+		else if (i == 0 && j > 0 && j < _width - 1)
+		{
+			points[0] = i;
+			points[1] = i + 1;
+			points[2] = j - 1;
+			points[3] = j + 1;
+		}
+		else if (i == _height - 1 && j > 0 && j < _width - 1)
+		{
+			points[0] = i - 1;
+			points[1] = i;
+			points[2] = j - 1;
+			points[3] = j + 1;
+		}
+		else if (j == 0 && i > 0 && i < _height - 1)
+		{
+			points[0] = i - 1;
+			points[1] = i + 1;
+			points[2] = j;
+			points[3] = j + 1;
+		}
+		else if (j == _width - 1 && i > 0 && i < _height - 1)
+		{
+			points[0] = i - 1;
+			points[1] = i + 1;
+			points[2] = j - 1;
+			points[3] = j;
+		}
+	}
+
+	void RTBPathGenerator::_generatePath()
+	{
+		PathNode* end_node = _findByPosition(_end);
+		_path = _cutOffNodeFromClosed(end_node);
+		PathNode* tmp = _path;
+		while (tmp->getParent())
+		{
+			PathNode* new_node = _cutOffNodeFromClosed(tmp->getParent());
+			_addToPathList(new_node);
+			tmp = tmp->getParent();
+		}
 	}
 
 	PathNode* RTBPathGenerator::_cutOffNodeFromOpen(PathNode*& node)
@@ -95,11 +189,36 @@ namespace AI
 		}
 	}
 
+	PathNode* RTBPathGenerator::_cutOffNodeFromClosed(PathNode*& node)
+	{
+		if (_closed_list_head == node)
+		{
+			PathNode* ptr = _closed_list_head;
+			_closed_list_head = ptr->getPNext();
+			ptr->setPNext(nullptr);
+			return ptr;
+		}
+		else
+		{
+			PathNode* ptr = _closed_list_head;
+			while (ptr->getPNext())
+			{
+				if (ptr->getPNext() == node)
+				{
+					node = ptr->getPNext();
+					ptr->setPNext(node->getPNext());
+					node->setPNext(nullptr);
+					return node;
+				}
+				ptr = ptr->getPNext();
+			}
+		}
+	}
+
 	PathNode* RTBPathGenerator::_findSmallestF()
 	{
 		PathNode* smallestFElement;
 		PathNode* tmp = _opened_list_head;
-
 		smallestFElement = tmp;
 
 		if (tmp->getPNext() != nullptr)
@@ -107,7 +226,7 @@ namespace AI
 
 		while (tmp != nullptr)
 		{
-			if (smallestFElement->getFCost(_start, _end) > tmp->getFCost(_start, _end))
+			if (smallestFElement->getFCost() > tmp->getFCost())
 			{
 				smallestFElement = tmp;
 			}
@@ -116,16 +235,35 @@ namespace AI
 		return smallestFElement;
 	}
 
-	RTBPathGenerator::RTBPathGenerator() : _path(nullptr), _opened_list_head(nullptr), _closed_list_head(nullptr)
+	PathNode* RTBPathGenerator::_findByPosition(sf::Vector2i position)
 	{
+		PathNode* tmp = _closed_list_head;
+		while (tmp)
+		{
+			if (tmp->getPosition() == position)
+				return tmp;
+			tmp = tmp->getPNext();
+		}
+		return nullptr;
+	}
+
+	RTBPathGenerator::RTBPathGenerator(std::vector<std::vector<PathNode>>& walkable_area) :
+		_path(nullptr), _opened_list_head(nullptr), _closed_list_head(nullptr)
+	{
+		_walkable_area = walkable_area;
+		_width = _walkable_area[0].size();
+		_height = _walkable_area.size();
 	}
 
 	void RTBPathGenerator::findPath(sf::Vector2i start, sf::Vector2i end)
 	{
 		_start = start;
 		_end = end;
+		unsigned short neighbors_bounds[4];
 
-		PathNode* first = new PathNode(_start);
+		PathNode* first = new PathNode();
+		first->setPosition(_start);
+		first->setFCost(_end);
 		this->_addToOpenedList(first);
 		while (_opened_list_head)
 		{
@@ -133,22 +271,41 @@ namespace AI
 			_moveToClosedList(current);
 
 			if (current->getPosition() == _end)
-				return;
-
-			for (unsigned short i = ;;++j)
+				break;
+			_NeighbourPosition(current->getPosition().x, current->getPosition().y, neighbors_bounds);
+			for (unsigned short i = neighbors_bounds[0]; i <= neighbors_bounds[1]; ++i)
 			{
-				for (unsigned short j=;;++j)
+				for (unsigned short j = neighbors_bounds[2]; j <= neighbors_bounds[3]; ++j)
 				{
-					if (_walkable_area[i][j] == 1 || _ifExists(sf::Vector2i(i, j), _closed_list_head))
-						continue;
-					else if(!_ifExists(sf::Vector2i(i,j), _opened_list_head) || )///to do
+					if (i != current->getPosition().x && j != current->getPosition().y)
 					{
-
+						_walkable_area[i][j].setFCost(_end);
+						if (!_walkable_area[i][j].isWalkable() || _ifExists(_walkable_area[i][j], _closed_list_head))
+							continue;
+						else if (!_ifExists(_walkable_area[i][j], _opened_list_head) || _walkable_area[i][j].getFCost() <= current->getFCost())
+						{
+							PathNode* neighbour = new PathNode();
+							neighbour->setPosition(sf::Vector2i(i, j));
+							neighbour->setFCost(_end);
+							neighbour->setParent(current);
+							if (!_ifExists(_walkable_area[i][j], _opened_list_head))
+							{
+								this->_addToOpenedList(neighbour);
+							}
+							else
+								delete neighbour;
+						}
 					}
 				}
 			}
 		}
+
+		this->_generatePath();
 		_deleteOpenedList();
 		_deleteClosedList();
+	}
+	PathNode*& RTBPathGenerator::getPath()
+	{
+		return _path;
 	}
 }
