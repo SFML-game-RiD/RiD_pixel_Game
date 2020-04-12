@@ -1,10 +1,11 @@
 #ifndef _PLAYER_H_
 #define _PLAYER_H_
-#include "Move.h"
+
 #include "PawnObiect.h"
 #include "Map.h"
 #include "PathIcon.h"
 #include <vector>
+#include "TaskManager.h"
 
 namespace MP
 {
@@ -30,13 +31,13 @@ namespace MP
 
 	public:
 
-		TaskManager aPlayerTaskManager;
+
 
 		Player(sf::Texture *texturePtr,sf::Texture *pathIconTexturePtr);
 
 		//############ move animation ##############
 
-		void playerAnimation(sf::Clock& globalClock, MP::TaskManager& aTaskManager);
+		void playerAnimation(sf::Clock& globalClock,TaskManager& aMainTaskManager);
 
 		void playerAutomaticMove(Map &aMap,TaskManager &aTaskManager);
 

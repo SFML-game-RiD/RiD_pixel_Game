@@ -39,8 +39,6 @@ void MP::ObiectDrawer::_draw_map_gui_obiects(sf::RenderWindow& mainWindow, Obiec
 
 void MP::ObiectDrawer::_draw_active_obiects(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager)
 {
-
-
 	//drawing player and path icon ( if exist);
 	mainWindow.draw(aObiectManager.getPlayer()->aAnimation.getObiectSprite());
 	std::vector<PathIcon> tmpPathCopy = aObiectManager.getPlayer()->getPathIcon();
@@ -58,13 +56,6 @@ void MP::ObiectDrawer::_draw_active_obiects(sf::RenderWindow& mainWindow, Obiect
 	{
 		mainWindow.draw(it->aAnimation.getObiectSprite());
 	}
-
-
-
-
-
-
-
 }
 
 void MP::ObiectDrawer::_draw_map_gui(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager)
@@ -79,7 +70,6 @@ void MP::ObiectDrawer::_draw_cursor(sf::RenderWindow& mainWindow, ObiectManager&
 
 void MP::ObiectDrawer::drawAllObiects(TaskManager& aMainTaskManager, Camera& aGameCamera, ObiectManager& aObiectManager)
 {
-
 		//GAME DRAWING
 		aGameCamera.changeViewToGame();
 		//Drawing map
@@ -96,6 +86,4 @@ void MP::ObiectDrawer::drawAllObiects(TaskManager& aMainTaskManager, Camera& aGa
 		//drawing gui
 		_draw_map_gui_obiects(aGameCamera.getWindow(), aObiectManager);
 		//GUI DRAWING END
-
-
 }

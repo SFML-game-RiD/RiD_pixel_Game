@@ -13,17 +13,18 @@ namespace MP
 	{
 	private:
 
-		sf::Vector2f checkingVector;
+		
+		sf::Vector2f checkingVector;//Variable used in player auto move procedure;
 
-		void _start_procedure_player_move(TaskManager& aTaskManager, MP::Player& aPlayer, sf::Clock& aGameClock);
+		void _start_procedure_player_move( MP::Player& aPlayer, sf::Clock& aGameClock, TaskManager& aMainTaskManager);
 
-		void _start_procedure_player_animation(TaskManager& aTaskManager, MP::Player& aPlayer, sf::Clock& aGameClock);
+		void _start_procedure_player_animation( MP::Player& aPlayer, sf::Clock& aGameClock, TaskManager& aMainTaskManager);
 
 		void _start_procedure_camera_zoom(ObiectManager& aObiectManager, TaskManager& aTaskManager, Camera& aCamera);
 
-		void _start_procedure_correct_camera(ObiectManager& aObiectManager, TaskManager& aTaskManager, sf::Vector2f newCoord, Camera& aCamera);
+		void _start_procedure_correct_camera(sf::Vector2f newCoord, Camera& aCamera);
 
-		void _start_procedure_player_auto_or_normal_move(TaskManager& aTaskManager, ObiectManager& aObiectManager, sf::Clock& aGameClock);
+		void _start_procedure_player_auto_or_normal_move(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, sf::Clock& aGameClock);
 
 	public:
 

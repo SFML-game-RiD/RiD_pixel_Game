@@ -1,23 +1,23 @@
 #include "Calculator.h"
 #include <iostream>
 
-void MP::Calculator::_start_procedure_player_move(TaskManager& aTaskManager, MP::Player& aPlayer, sf::Clock& aGameClock)
+void MP::Calculator::_start_procedure_player_move(MP::Player& aPlayer, sf::Clock& aGameClock, TaskManager& aMainTaskManager)
 {
 	Move tmp;
 
-	switch (aTaskManager.getTask())
+	switch (aMainTaskManager.getTask(MP::TaskManager::taskRange::order))
 	{
 	case(MP::TaskManager::taskType::taskGoUp):
-		tmp.moveBlockUp(aPlayer, aGameClock, aTaskManager);
+		tmp.moveBlockUp(aPlayer, aGameClock,aMainTaskManager);
 		break;
 	case(MP::TaskManager::taskType::taskGoLeft):
-		tmp.moveBlockLeft(aPlayer, aGameClock, aTaskManager);
+		tmp.moveBlockLeft(aPlayer, aGameClock,  aMainTaskManager);
 		break;
 	case(MP::TaskManager::taskType::taskGoDown):
-		tmp.moveBlockDown(aPlayer, aGameClock, aTaskManager);
+		tmp.moveBlockDown(aPlayer, aGameClock,  aMainTaskManager);
 		break;
 	case(MP::TaskManager::taskType::taskGoRight):
-		tmp.moveBlockRight(aPlayer, aGameClock, aTaskManager);
+		tmp.moveBlockRight(aPlayer, aGameClock, aMainTaskManager);
 		break;
 	default:
 	{
@@ -27,101 +27,113 @@ void MP::Calculator::_start_procedure_player_move(TaskManager& aTaskManager, MP:
 	}
 }
 
-void MP::Calculator::_start_procedure_player_animation(TaskManager& aTaskManager, MP::Player& aPlayer, sf::Clock& aGameClock)
+void MP::Calculator::_start_procedure_player_animation(MP::Player& aPlayer, sf::Clock& aGameClock, TaskManager& aMainTaskManager)
 {
-	aPlayer.playerAnimation(aGameClock, aTaskManager);
+	aPlayer.playerAnimation(aGameClock, aMainTaskManager);
 }
 
 void MP::Calculator::_start_procedure_camera_zoom(ObiectManager & aObiectManager,TaskManager& aTaskManager, Camera& aCamera)
 {
-	if (aTaskManager.getTask() == MP::TaskManager::taskType::taskZoomIn or aTaskManager.getTask() == MP::TaskManager::taskType::taskZoomOut)
+	if (aTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskZoomIn or aTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskZoomOut)
 		aCamera.changeZoom(aTaskManager);
 }
 
-void MP::Calculator::_start_procedure_correct_camera(ObiectManager& aObiectManager, TaskManager& aTaskManager, sf::Vector2f newCoord, Camera& aCamera)
+void MP::Calculator::_start_procedure_correct_camera( sf::Vector2f newCoord, Camera& aCamera)
 {
-	if (aTaskManager.getTask() != MP::TaskManager::taskType::taskNone)
 		aCamera.changeCamera(newCoord);
 }
 
-void MP::Calculator::_start_procedure_player_auto_or_normal_move(TaskManager& aTaskManager, ObiectManager& aObiectManager, sf::Clock& aGameClock)
+void MP::Calculator::_start_procedure_player_auto_or_normal_move(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, sf::Clock& aGameClock)
 {
-	if (aTaskManager.getMouseTask() == MP::TaskManager::taskType::taskNone) //keyboard move
+	switch (aMainTaskManager.getTask(MP::TaskManager::taskRange::mainOrder))
 	{
-		_start_procedure_player_move(aTaskManager, *aObiectManager.getPlayer(), aGameClock);
-
-		_start_procedure_player_animation(aTaskManager, *aObiectManager.getPlayer(), aGameClock);
-	}
-	else if (aTaskManager.getMouseTask() == MP::TaskManager::taskType::taskClickLeft and aTaskManager.getTask() == MP::TaskManager::taskType::taskNone) //creates path
+	case(MP::TaskManager::taskType::taskNormalMove):
 	{
-		//geting start and stop coordinates
+		_start_procedure_player_move(*aObiectManager.getPlayer(), aGameClock, aMainTaskManager);
 
-		MapElement* start = aObiectManager.getMap().findElementAddressSquareRange(aObiectManager.getPlayer()->getObiectCoord(), aObiectManager.getMapElementHead());
+		_start_procedure_player_animation(*aObiectManager.getPlayer(), aGameClock, aMainTaskManager);
+	}break;
+	case(MP::TaskManager::taskType::taskAutoMove):
+	{
 
-		MapElement* stop = aObiectManager.getMap().findElementAddressSquareRange(aObiectManager.getCursor()->getGuiCoord(), aObiectManager.getMapElementHead());
 
-		if (stop->isWalkable())
+
+		switch (aMainTaskManager.getTask(MP::TaskManager::taskRange::order))
 		{
-			if (start->getLandTile().getObiectCoord() != stop->getLandTile().getObiectCoord())
+		case(MP::TaskManager::taskType::taskCreateAutoPath):
+		{
+			//geting start and stop coordinates
+
+			MapElement* start = aObiectManager.getMap().findElementAddressSquareRange(aObiectManager.getPlayer()->getObiectCoord(), aObiectManager.getMapElementHead());
+
+			MapElement* stop = aObiectManager.getMap().findElementAddressSquareRange(aObiectManager.getCursor()->getGameCoord(), aObiectManager.getMapElementHead());
+
+			if (stop->isWalkable())
 			{
+				if (start->getLandTile().getObiectCoord() != stop->getLandTile().getObiectCoord())
+				{
 
-				checkingVector = stop->getLandTile().getObiectCoord();
+					checkingVector = stop->getLandTile().getObiectCoord();
 
-				//creating path
-				MP::PathCreator  tmp(aObiectManager.getMap());
+					//creating path
+					MP::PathCreator  tmp(aObiectManager.getMap());
 
-				aTaskManager.startProcedureWaitForDoubleClick();
+					aMainTaskManager.setTask(MP::TaskManager::taskRange::reply, MP::TaskManager::taskType::taskWaitForDoubleClickLeft); //computer waiting for player reply
+					aObiectManager.getPlayer()->setPath(tmp.findPath(start->getLandTile().getObiectCoord(), stop->getLandTile().getObiectCoord()));
 
-				aObiectManager.getPlayer()->setPath(tmp.findPath(start->getLandTile().getObiectCoord(), stop->getLandTile().getObiectCoord()));
+					aObiectManager.getPlayer()->markPath();
+				}
 
-				aObiectManager.getPlayer()->markPath();
+			}
+
+
+			aMainTaskManager.endTask(MP::TaskManager::taskRange::order);
+			aMainTaskManager.endTask(MP::TaskManager::taskRange::mainOrder);
+
+
+		}break;
+		case(MP::TaskManager::taskType::taskBreakAutoMove)://breaks auto move
+		{
+			if (aObiectManager.getPlayer()->aPawnObiectTaskManager.getTask(TaskManager::taskRange::order) != TaskManager::taskType::taskNone)
+			{
+				aObiectManager.getPlayer()->playerAutoAnimation(aGameClock);
+				aObiectManager.getPlayer()->playerAutoMove(aGameClock);
 			}
 			else
 			{
-				aTaskManager.endMouseTask();
+				aObiectManager.getPlayer()->deletePlayerPath();
+				aMainTaskManager.resetOrdersAndReply();
 			}
-		}
-		else
+		}break;
+		case(MP::TaskManager::taskType::taskExecuteAutoMove)://execute auto move		
 		{
-			aTaskManager.endMouseTask();
-		}
+			aObiectManager.getPlayer()->playerAutomaticMove(aObiectManager.getMap(), aMainTaskManager);
+			aObiectManager.getPlayer()->playerAutoAnimation(aGameClock);
+			aObiectManager.getPlayer()->playerAutoMove(aGameClock);
 
-	}
-	else if (aTaskManager.getMouseTask() == MP::TaskManager::taskType::taskClickLeft and aTaskManager.getTask() == MP::TaskManager::taskType::taskAutoMove and aObiectManager.getPlayer()->aPlayerTaskManager.getTask() == MP::TaskManager::taskType::taskNone)//breaks auto move
-	{
-		aObiectManager.getPlayer()->deletePlayerPath();
-		aTaskManager.endMouseTask();
-		aTaskManager.endTask();
-	}
-	else if (aTaskManager.getTask() == MP::TaskManager::taskType::taskAutoMove or aObiectManager.getPlayer()->aPlayerTaskManager.getTask() != MP::TaskManager::taskType::taskNone)//execute auto move
-	{
-		aObiectManager.getPlayer()->playerAutomaticMove(aObiectManager.getMap(), aTaskManager);
-
-		aObiectManager.getPlayer()->playerAutoAnimation(aGameClock);
-
-		aObiectManager.getPlayer()->playerAutoMove(aGameClock);
-	}
-	else if (aTaskManager.getMouseTask() == MP::TaskManager::taskType::taskDoubleClickLeft)//starts procedure auto move if player clicked second time
-	{
-
-		MapElement* checkingElement = aObiectManager.getMap().findElementAddressSquareRange(aObiectManager.getCursor()->getGuiCoord(), aObiectManager.getMapElementHead());
-
-		if (checkingElement->getLandTile().getObiectCoord().x == checkingVector.x and checkingElement->getLandTile().getObiectCoord().y == checkingVector.y)
+		}break;
+		case(MP::TaskManager::taskType::taskDoubleClickLeft)://starts procedure auto move if player clicked second time
 		{
 
-			aObiectManager.getPlayer()->unmarkPath();
+			MapElement* checkingElement = aObiectManager.getMap().findElementAddressSquareRange(aObiectManager.getCursor()->getGameCoord(), aObiectManager.getMapElementHead());
 
-			aTaskManager.startProcedureAutoMove();
+			if (checkingElement->getLandTile().getObiectCoord().x == checkingVector.x and checkingElement->getLandTile().getObiectCoord().y == checkingVector.y)
+			{
+				aObiectManager.getPlayer()->unmarkPath();
+				aMainTaskManager.setTask(MP::TaskManager::taskRange::order, MP::TaskManager::taskType::taskExecuteAutoMove);
+			}
+			else
+			{
+				aMainTaskManager.setTask(MP::TaskManager::taskRange::order, MP::TaskManager::taskType::taskBreakAutoMove);
+				aObiectManager.getPlayer()->unmarkPath();
+			}
+		}break;
 		}
-		else
-		{
-			aTaskManager.endMouseTask();
-			aTaskManager.endTask();
-			aObiectManager.getPlayer()->unmarkPath();
-		}
+	}break;
+
 	}
-
 }
+
 
 void MP::Calculator::startProcedurePlayer(TaskManager& aTaskManager, ObiectManager& aObiectManager, sf::Clock& aGameClock)
 {
@@ -162,31 +174,13 @@ void MP::Calculator::startProcedureCamera(ObiectManager& aObiectManager, TaskMan
 	
 	_start_procedure_camera_zoom(aObiectManager, aTaskManager, aCamera);
 
-	_start_procedure_correct_camera(aObiectManager, aTaskManager, newCoord, aCamera);
+	_start_procedure_correct_camera(newCoord, aCamera);
 }
 
 void MP::Calculator::startProcedureCursor(TaskManager& aTaskManager, ObiectManager& aObiectManager, Camera& aCamera)
 {
-	//saving gui cursor coord for drawing 
-	aCamera.changeViewToGui();
-	sf::Vector2f guiMouseCoord = aCamera.getWindow().mapPixelToCoords(sf::Mouse::getPosition(aCamera.getWindow()));
-	aObiectManager.getCursor()->setObiectCoord(guiMouseCoord);
-	
-	//Maping to pixel from gui view
-	sf::Vector2i screenMouseCoord = sf::Mouse::getPosition(aCamera.getWindow());
+	aObiectManager.getCursor()->updateCursor(aTaskManager,aCamera);
 
-	//Mapin from pixel to game view
-	aCamera.changeViewToGame();
-	sf::Vector2f gameMouseCoord = aCamera.getWindow().mapPixelToCoords(screenMouseCoord);
-	aObiectManager.getCursor()->saveGameCoord(gameMouseCoord);
-	//if (aTaskManager.getMouseTask() == MP::TaskManager::taskType::taskClickLeft)
-	//{
-	//	//TO DO ...
-	//}
-	//if(aTaskManager.getMouseTask() == MP::TaskManager::taskType::taskClickRight)
-	//{ 
-	//	//TO DO ...
-	//}
-
+	aObiectManager.getCursor()->checkIfPlayerClicked(aTaskManager, aCamera);
 }
 

@@ -3,7 +3,6 @@
 #include <SFML/Graphics.hpp>
 #include "Obiect.h"
 #include "GuiButton.h"
-#include "Cursor.h"
 #include "TaskManager.h"
 
 namespace MP
@@ -20,17 +19,17 @@ namespace MP
 		std::unique_ptr<GuiButton> _load_button;
 		std::unique_ptr<GuiButton> _exit_button;
 
-		bool	_check_if_start_pressed(Cursor& aCursor);
-		bool	_check_if_save_pressed(Cursor& aCursor);
-		bool	_check_if_load_pressed(Cursor& aCursor);
-		bool	_check_if_exit_pressed(Cursor& aCursor);
+		//bool	_check_if_start_pressed(Cursor& aCursor);
+		//bool	_check_if_save_pressed(Cursor& aCursor);
+		//bool	_check_if_load_pressed(Cursor& aCursor);
+		//bool	_check_if_exit_pressed(Cursor& aCursor);
 
 
 	public:
 
 		GuiMenu(sf::Texture* texturePtr, sf::Texture* buttonTexture);
 
-		void drawMenu(Cursor& aCursor,sf::RenderWindow& aMainWindow);
+		void drawMenu(sf::RenderWindow& aMainWindow);
 
 	};
 }

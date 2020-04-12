@@ -2,105 +2,83 @@
 
 MP::TaskManager::TaskManager()
 {
-	_current_task = taskNone;
-	_mouse_task = taskNone;
+	_game_state = taskType:: taskNone;
+	_game_order = taskType::taskNone;
+	_game_reply = taskType::taskNone;
+	_game_main_order = taskType::taskNone;
+
 }
 
-MP::TaskManager::taskType MP::TaskManager::getTask()
+MP::TaskManager::taskType MP::TaskManager::getTask(taskRange aTaskRange)
 {
-	return _current_task;
-}
-
-MP::TaskManager::taskType MP::TaskManager::getMouseTask()
-{
-	return _mouse_task;
-}
-
-void MP::TaskManager::startProcedureGoUp(PawnObiect& pawn, MP::Map& aMap)
-{
-	if (_current_task == taskNone)
+	switch (aTaskRange) {
+	case(taskRange::state):
 	{
-		if (pawn.checkGoUp(aMap))
-		_current_task = taskGoUp;
+		return _game_state;
+	}break;
+	case(taskRange::order):
+	{
+		return _game_order;
+	}break;
+	case(taskRange::reply):
+	{
+		return _game_reply;
+	}break;
+	case(taskRange::mainOrder):
+	{
+		return _game_main_order;
+	}break;
 	}
 }
 
-void MP::TaskManager::startProcedureGoDown(PawnObiect& pawn, MP::Map& aMap)
+void MP::TaskManager::endTask(taskRange aTaskRange)
 {
-	if (_current_task == taskNone)
+	switch (aTaskRange) {
+	case(taskRange::state):
 	{
-		if (pawn.checkGoDown(aMap))
-		_current_task = taskGoDown;
+		_game_state = taskType::taskNone;
+	}break;
+	case(taskRange::order):
+	{
+		_game_order = taskType::taskNone;
+	}break;
+	case(taskRange::reply):
+	{
+		_game_reply = taskType::taskNone;
+	}break;
+	case(taskRange::mainOrder):
+	{
+		_game_main_order = taskType::taskNone;
+	}break;
 	}
 }
 
-void MP::TaskManager::startProcedureGoLeft(PawnObiect& pawn, MP::Map& aMap)
+void MP::TaskManager::setTask(taskRange aTaskRange, taskType typeOfTask)
 {
-	if (_current_task == taskNone)
+	switch (aTaskRange) {
+	case(taskRange::state):
 	{
-		if (pawn.checkGoLeft(aMap))
-		_current_task = taskGoLeft;
+		_game_state = typeOfTask;
+	}break;
+	case(taskRange::order):
+	{
+		_game_order = typeOfTask;
+	}break;
+	case(taskRange::reply):
+	{
+		_game_reply = typeOfTask;
+	}break;
+	case(taskRange::mainOrder):
+	{
+		_game_main_order = typeOfTask;
+	}break;
 	}
 }
 
-void MP::TaskManager::startProcedureGoRight(PawnObiect& pawn, MP::Map& aMap)
+void MP::TaskManager::resetOrdersAndReply()
 {
-	if (_current_task == taskNone)
-	{
-		if(pawn.checkGoRight(aMap))
-		_current_task = taskGoRight;
-	}
+	_game_main_order = taskType::taskNone;
+	_game_order = taskType::taskNone;
+	_game_reply = taskType::taskNone;
 }
 
-void MP::TaskManager::startProcedureZoomIn()
-{
-	if (_current_task == taskNone)
-	{
-		_current_task = taskZoomIn;
-	}
-}
-
-void MP::TaskManager::startProcedureZoomOut()
-{
-	if (_current_task == taskNone)
-	{
-		_current_task = taskZoomOut;}
-}
-
-void MP::TaskManager::startProcedureClickLeft()
-{
-	if ((_mouse_task == taskNone and _current_task == taskNone) or  _current_task == taskAutoMove)
-	{
-		_mouse_task = taskClickLeft;
-	}
-	else if (_mouse_task == taskWaitForDoubleClickLeft)
-	{
-		_mouse_task = taskDoubleClickLeft;
-	}
-}
-
-void MP::TaskManager::endTask()
-{
-	_current_task = taskNone;
-}
-
-void MP::TaskManager::endMouseTask()
-{
-	_mouse_task = taskNone;
-}
-
-void MP::TaskManager::startProcedureAutoMove()
-{
-	if (_mouse_task == taskDoubleClickLeft)
-	{
-		_current_task = taskAutoMove;
-	}
-}
-
-void MP::TaskManager::startProcedureWaitForDoubleClick()
-{
-	if (_mouse_task == taskClickLeft)
-	{
-		_mouse_task = taskWaitForDoubleClickLeft;
-	}
-}

@@ -1,10 +1,9 @@
-#ifndef  _CONPUTER_PLAYER_H_
-#define _CONPUTER_PLAYER_H_
+#ifndef  _COMPUTER_PLAYER_H_
+#define _COMPUTER_PLAYER_H_
 
 #include <SFML/Graphics.hpp>
 #include "PawnObiect.h"
 #include "pathCreator.h"
-#include "TaskManager.h"
 
 namespace MP
 {
@@ -24,7 +23,8 @@ namespace MP
 
 	public:
 
-		TaskManager aTaskManager;
+
+
 
 		ComputerPlayer(sf::Texture* texturePtr);
 
@@ -44,4 +44,4 @@ namespace MP
 	};
 
 }
-#endif // ! _CONPUTER_PLAYER_H_
+#endif // ! _COMPUTER_PLAYER_H_

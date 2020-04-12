@@ -2,25 +2,6 @@
 
 
 
-bool MP::GuiMenu::_check_if_start_pressed(Cursor& aCursor)
-{
-	return false;
-}
-
-bool MP::GuiMenu::_check_if_save_pressed(Cursor& aCursor)
-{
-	return false;
-}
-
-bool MP::GuiMenu::_check_if_load_pressed(Cursor& aCursor)
-{
-	return false;
-}
-
-bool MP::GuiMenu::_check_if_exit_pressed(Cursor& aCursor)
-{
-	return false;
-}
 
 MP::GuiMenu::GuiMenu(sf::Texture* texturePtr, sf::Texture* buttonTexture)
 {
@@ -45,7 +26,8 @@ MP::GuiMenu::GuiMenu(sf::Texture* texturePtr, sf::Texture* buttonTexture)
 	_exit_button = std::make_unique<GuiButton>(buttonTexture, _exit_button_coord);
 }
 
-void MP::GuiMenu::drawMenu(Cursor& aCursor,sf::RenderWindow& aMainWindow)
+void MP::GuiMenu::drawMenu(sf::RenderWindow& aMainWindow)
 {
+//	aMainWindow.draw()
 }
 

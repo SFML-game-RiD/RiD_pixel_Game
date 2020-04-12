@@ -1,7 +1,7 @@
 #include "Player.h"
 #include "Engine/ConfigurationLoader.h"
 #include "Animation.h"
-
+#include "Move.h"
 
 void MP::Player::_player_animation_right(sf::Clock& globalClock)
 {
@@ -59,24 +59,24 @@ MP::Player::Player(sf::Texture* texturePtr, sf::Texture* pathIconTexturePtr)
 }
 
 
-void MP::Player::playerAnimation(sf::Clock& globalClock, MP::TaskManager& aTaskManager)
+void MP::Player::playerAnimation(sf::Clock& globalClock, TaskManager &aMainTaskManager)
 {
-	if (aTaskManager.getTask() == MP::TaskManager::taskType::taskGoUp)
+	if (aMainTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskGoUp)
 		_player_animation_up(globalClock);
 
-	if (aTaskManager.getTask() == MP::TaskManager::taskType::taskGoDown)
+	if (aMainTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskGoDown)
 		_player_animation_down(globalClock);
 
-	if (aTaskManager.getTask() == MP::TaskManager::taskType::taskGoLeft)
+	if (aMainTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskGoLeft)
 		_player_animation_left(globalClock);
 
-	if (aTaskManager.getTask() == MP::TaskManager::taskType::taskGoRight)
+	if (aMainTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskGoRight)
 		_player_animation_right(globalClock);
 }
 
 void MP::Player::playerAutomaticMove(Map& aMap, TaskManager& aTaskManager)
 {
-	if (getPath() != nullptr and aPlayerTaskManager.getTask() == MP::TaskManager::taskType::taskNone and aTaskManager.getTask() == MP::TaskManager::taskType::taskAutoMove)
+	if (getPath() != nullptr and  aPawnObiectTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskNone)
 	{
 
 		MapElement* nextDestination = getPath();//Takes new destination (new block).
@@ -84,28 +84,31 @@ void MP::Player::playerAutomaticMove(Map& aMap, TaskManager& aTaskManager)
 
 		if (tmp->getLandTile().getObiectCoord().x == nextDestination->getLandTile().getObiectCoord().x
 			and tmp->getLandTile().getObiectCoord().y + _block_length == nextDestination->getLandTile().getObiectCoord().y)//Goes down
-			aPlayerTaskManager.startProcedureGoDown(*this, aMap);
+
+			aPawnObiectTaskManager.setTask(MP::TaskManager::taskRange::order, MP::TaskManager::taskType::taskGoDown);
 
 		else if (tmp->getLandTile().getObiectCoord().x == nextDestination->getLandTile().getObiectCoord().x
 			and tmp->getLandTile().getObiectCoord().y - _block_length == nextDestination->getLandTile().getObiectCoord().y)//Goes up
-			aPlayerTaskManager.startProcedureGoUp(*this, aMap);
+
+			aPawnObiectTaskManager.setTask(MP::TaskManager::taskRange::order, MP::TaskManager::taskType::taskGoUp);
 
 		else if (tmp->getLandTile().getObiectCoord().x + _block_length == nextDestination->getLandTile().getObiectCoord().x//Goes right
 			and tmp->getLandTile().getObiectCoord().y == nextDestination->getLandTile().getObiectCoord().y)
-			aPlayerTaskManager.startProcedureGoRight(*this, aMap);
+
+			aPawnObiectTaskManager.setTask(MP::TaskManager::taskRange::order, MP::TaskManager::taskType::taskGoRight);
 
 		else if (tmp->getLandTile().getObiectCoord().x - _block_length == nextDestination->getLandTile().getObiectCoord().x//Goes left
 			and tmp->getLandTile().getObiectCoord().y == nextDestination->getLandTile().getObiectCoord().y)
-			aPlayerTaskManager.startProcedureGoLeft(*this, aMap);
+
+			aPawnObiectTaskManager.setTask(MP::TaskManager::taskRange::order, MP::TaskManager::taskType::taskGoLeft);
 
 
 		setPath(getPath()->getNextElement());//Deleting usless element
 		delete nextDestination;
 	}
-	else if(getPath() == nullptr and aPlayerTaskManager.getTask() == MP::TaskManager::taskType::taskNone and aTaskManager.getTask() == MP::TaskManager::taskType::taskAutoMove)
+	else if(getPath() == nullptr and aPawnObiectTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskNone)
 	{
-		aTaskManager.endMouseTask();
-		aTaskManager.endTask();
+		aTaskManager.resetOrdersAndReply();
 	}
 }
 
@@ -123,16 +126,16 @@ MP::MapElement*& MP::Player::getPath()
 
 void MP::Player::playerAutoAnimation(sf::Clock& globalClock)
 {
-	if (aPlayerTaskManager.getTask() == MP::TaskManager::taskType::taskGoUp)
+	if (aPawnObiectTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskGoUp)
 		_player_animation_up(globalClock);
 
-	if (aPlayerTaskManager.getTask() == MP::TaskManager::taskType::taskGoDown)
+	if (aPawnObiectTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskGoDown)
 		_player_animation_down(globalClock);
 
-	if (aPlayerTaskManager.getTask() == MP::TaskManager::taskType::taskGoLeft)
+	if (aPawnObiectTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskGoLeft)
 		_player_animation_left(globalClock);
 
-	if (aPlayerTaskManager.getTask() == MP::TaskManager::taskType::taskGoRight)
+	if (aPawnObiectTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskGoRight)
 		_player_animation_right(globalClock);
 }
 
@@ -140,19 +143,19 @@ void MP::Player::playerAutoMove(sf::Clock& globalClock)
 {
 	MP::Move tmp;
 
-	switch (aPlayerTaskManager.getTask())
+	switch (aPawnObiectTaskManager.getTask(MP::TaskManager::taskRange::order))
 	{
 	case(MP::TaskManager::taskType::taskGoUp):
-		tmp.moveBlockUp(*this, globalClock, aPlayerTaskManager);
+		tmp.moveBlockUp(*this, globalClock);
 		break;
 	case(MP::TaskManager::taskType::taskGoLeft):
-		tmp.moveBlockLeft(*this, globalClock, aPlayerTaskManager);
+		tmp.moveBlockLeft(*this, globalClock);
 		break;
 	case(MP::TaskManager::taskType::taskGoDown):
-		tmp.moveBlockDown(*this, globalClock, aPlayerTaskManager);
+		tmp.moveBlockDown(*this, globalClock);
 		break;
 	case(MP::TaskManager::taskType::taskGoRight):
-		tmp.moveBlockRight(*this, globalClock, aPlayerTaskManager);
+		tmp.moveBlockRight(*this, globalClock);
 		break;
 	default:
 	{
@@ -191,33 +194,11 @@ void MP::Player::markPath()
 		tmp = tmp->getNextElement();
 	}
 
-
-
-
-
-
-
-	//MapElement* tmp = getPath();
-	//while (tmp != nullptr)
-	//{
-	//	MapElement* tmp2 = aMap.findElementAddress(tmp->getLandTile().getObiectCoord(), aMap.getMapElementList());
-	//	tmp2->getLandTile().aAnimation.setColor(sf::Color(255, 255, 0, 128));
-	//	tmp = tmp->getNextElement();
-	//}
 }
 
 void MP::Player::unmarkPath()
 {
 	_a_path_icon.clear();
-
-
-	//MapElement* tmp = getPath();
-	//while (tmp != nullptr)
-	//{
-	//	MapElement* tmp2 = aMap.findElementAddress(tmp->getLandTile().getObiectCoord(), aMap.getMapElementList());
-	//	tmp2->getLandTile().aAnimation.setColor(sf::Color(255, 255, 255));
-	//	tmp = tmp->getNextElement();
-	//}
 }
 
 std::vector<MP::PathIcon>& MP::Player::getPathIcon()

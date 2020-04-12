@@ -1,8 +1,6 @@
 #ifndef _TASKMANAGER_H_
 #define _TASKMANAGER_H_
 
-#include "PawnObiect.h"
-#include "Map.h"
 
 namespace MP
 {
@@ -10,16 +8,22 @@ namespace MP
 	{
 	public:
 
-	enum taskType
+	enum class taskType
 		{
-			//Move tasks
+			//Move basic tasks
 
 			taskNone,
 			taskGoUp,
 			taskGoDown,
 			taskGoRight,
 			taskGoLeft,
-
+			
+			//Auto move tasks
+			taskAutoMove,
+			taskNormalMove,
+			taskBreakAutoMove,
+			taskExecuteAutoMove,
+			taskCreateAutoPath,
 			//Camera tasks
 
 			taskZoomIn,
@@ -30,49 +34,44 @@ namespace MP
 			taskClickLeft,
 			taskClickRight,
 			taskDoubleClickLeft,
-			taskWaitForDoubleClickLeft,
+			taskWaitForDoubleClickLeft
 
-			//Auto move tasks
+		
 
-			taskAutoMove
+		
+
 		};
 
+	enum class taskRange
+	{
+		state,
+		mainOrder,
+		order,
+		reply
+	
+	};
+
 	private:
+		
+		taskType _game_state;
 
-		taskType _current_task;
+		taskType _game_order;
+	
+		taskType _game_reply;
 
-		taskType _mouse_task;
-
-		//new task required
+		taskType _game_main_order;
+	
 	public:
 
 		TaskManager();
 
-		taskType getTask();
+		taskType getTask(taskRange aTaskRange);
 
-		taskType getMouseTask();
+		void endTask(taskRange aTaskRange);
 
-		void endTask();
+		void setTask(taskRange aTaskRange, taskType typeOfTask);
 
-		void endMouseTask();
-
-		void startProcedureGoUp(PawnObiect & pawn,MP::Map &aMap);
-
-		void startProcedureGoDown(PawnObiect& pawn, MP::Map& aMap);
-
-		void startProcedureGoLeft(PawnObiect& pawn, MP::Map& aMap);
-
-		void startProcedureGoRight(PawnObiect& pawn, MP::Map& aMap);
-
-		void startProcedureZoomIn();
-
-		void startProcedureZoomOut();
-
-		void startProcedureClickLeft();
-
-		void startProcedureAutoMove();
-
-		void startProcedureWaitForDoubleClick();
+		void resetOrdersAndReply();
 	};
 }
 

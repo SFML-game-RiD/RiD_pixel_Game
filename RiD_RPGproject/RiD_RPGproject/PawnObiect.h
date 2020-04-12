@@ -3,6 +3,7 @@
 
 #include "ActiveObiect.h"
 #include "Map.h"
+#include "TaskManager.h"
 
 namespace MP 
 {
@@ -12,6 +13,7 @@ namespace MP
 
 	public:
 
+		TaskManager aPawnObiectTaskManager;
 
 		bool checkGoUp(Map & aMap);
 
@@ -21,6 +23,13 @@ namespace MP
 
 		bool checkGoRight(Map & aMap);
 
+		void tryToMoveUp(Map& aMap, TaskManager& aMainTaskManager);
+
+		void tryToMoveDown(Map& aMap, TaskManager& aMainTaskManager);
+
+		void tryToMoveLeft(Map& aMap, TaskManager& aMainTaskManager);
+
+		void tryToMoveRight(Map& aMap,TaskManager &aMainTaskManager);
 	};
 }
 #endif

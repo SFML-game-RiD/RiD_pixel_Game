@@ -43,6 +43,8 @@ namespace MP
 
 		void changeViewToGui();//updates gui
 
+		sf::View getGuiView();
+
 	};
 }
 #endif // !_CAMERA_H_

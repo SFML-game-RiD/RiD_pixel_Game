@@ -19,7 +19,7 @@ void MP::ComputerPlayer::choseDestination(Map &aMap)
 void MP::ComputerPlayer::getNextTask(Map& aMap)
 {
 
-	if (aTaskManager.getTask() == MP::TaskManager::taskType::taskNone)
+	if (aPawnObiectTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskNone)
 	{
 		if (_path == nullptr)//Sets new destination.
 		choseDestination(aMap);
@@ -30,16 +30,16 @@ void MP::ComputerPlayer::getNextTask(Map& aMap)
 		MapElement* tmp = aMap.findElementAddressSquareRange(getObiectCoord(), aMap.getMapElementList());//Return element where computer player stands.
 
 		if (tmp->getLandTile().getObiectCoord().x == nextDestination->getLandTile().getObiectCoord().x and tmp->getLandTile().getObiectCoord().y + _block_length == nextDestination->getLandTile().getObiectCoord().y)//Goes down
-			aTaskManager.startProcedureGoDown(*this, aMap);
+			aPawnObiectTaskManager.setTask(MP::TaskManager::taskRange::order, MP::TaskManager::taskType::taskGoDown);
 
 		else if (tmp->getLandTile().getObiectCoord().x == nextDestination->getLandTile().getObiectCoord().x and tmp->getLandTile().getObiectCoord().y - _block_length == nextDestination->getLandTile().getObiectCoord().y)//Goes up
-			aTaskManager.startProcedureGoUp(*this, aMap);
+			aPawnObiectTaskManager.setTask(MP::TaskManager::taskRange::order, MP::TaskManager::taskType::taskGoUp);
 
 		else if (tmp->getLandTile().getObiectCoord().x + _block_length == nextDestination->getLandTile().getObiectCoord().x and tmp->getLandTile().getObiectCoord().y == nextDestination->getLandTile().getObiectCoord().y)
-			aTaskManager.startProcedureGoRight(*this, aMap);
+			aPawnObiectTaskManager.setTask(MP::TaskManager::taskRange::order,MP::TaskManager::taskType::taskGoRight);
 
 		else if (tmp->getLandTile().getObiectCoord().x - _block_length == nextDestination->getLandTile().getObiectCoord().x and tmp->getLandTile().getObiectCoord().y == nextDestination->getLandTile().getObiectCoord().y)
-			aTaskManager.startProcedureGoLeft(*this, aMap);
+			aPawnObiectTaskManager.setTask(MP::TaskManager::taskRange::order, MP::TaskManager::taskType::taskGoLeft);
 		
 
 		_path = _path->getNextElement();//Deleting usless element
@@ -52,19 +52,19 @@ void MP::ComputerPlayer::computerPlayerMove(sf::Clock& globalClock)
 {
 	MP::Move tmp;
 
-	switch (aTaskManager.getTask())
+	switch (aPawnObiectTaskManager.getTask(MP::TaskManager::taskRange::order))
 	{
 	case(MP::TaskManager::taskType::taskGoUp):
-		tmp.moveBlockUp(*this, globalClock, aTaskManager);
+		tmp.moveBlockUp(*this, globalClock);
 		break;
 	case(MP::TaskManager::taskType::taskGoLeft):
-		tmp.moveBlockLeft(*this, globalClock, aTaskManager);
+		tmp.moveBlockLeft(*this, globalClock);
 		break;
 	case(MP::TaskManager::taskType::taskGoDown):
-		tmp.moveBlockDown(*this, globalClock, aTaskManager);
+		tmp.moveBlockDown(*this, globalClock);
 		break;
 	case(MP::TaskManager::taskType::taskGoRight):
-		tmp.moveBlockRight(*this, globalClock, aTaskManager);
+		tmp.moveBlockRight(*this, globalClock);
 		break;
 	default:
 	{
@@ -97,16 +97,16 @@ MP::ComputerPlayer::ComputerPlayer(sf::Texture* texturePtr)
 
 void MP::ComputerPlayer::computerPlayerAnimation(sf::Clock& globalClock)
 {
-	if (aTaskManager.getTask() == MP::TaskManager::taskType::taskGoUp)
+	if (aPawnObiectTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskGoUp)
 		_computer_player_animation_up(globalClock);
 
-	if (aTaskManager.getTask() == MP::TaskManager::taskType::taskGoDown)
+	if (aPawnObiectTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskGoDown)
 		_computer_player_animation_down(globalClock);
 
-	if (aTaskManager.getTask() == MP::TaskManager::taskType::taskGoLeft)
+	if (aPawnObiectTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskGoLeft)
 		_computer_player_animation_left(globalClock);
 
-	if (aTaskManager.getTask() == MP::TaskManager::taskType::taskGoRight)
+	if (aPawnObiectTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskGoRight)
 		_computer_player_animation_right(globalClock);
 }
 

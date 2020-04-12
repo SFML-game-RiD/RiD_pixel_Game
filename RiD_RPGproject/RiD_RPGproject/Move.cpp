@@ -2,7 +2,7 @@
 #include <iostream>
 
 
-void MP::Move::moveBlockDown(ActiveObiect& obiect, sf::Clock& currentTime, TaskManager& aTaskManager)
+void MP::Move::moveBlockDown(PawnObiect& obiect, sf::Clock& currentTime)
 {
 	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= obiect.getReadyTime())
 	{
@@ -13,11 +13,11 @@ void MP::Move::moveBlockDown(ActiveObiect& obiect, sf::Clock& currentTime, TaskM
 	else if (obiect.getBlockLenghtCopy() <= 0)
 	{
 		obiect.resetBlockLenghtCopy();
-		aTaskManager.endTask();
+		obiect.aPawnObiectTaskManager.endTask(MP::TaskManager::taskRange::order);
 	}
 }
 
-void MP::Move::moveBlockUp(ActiveObiect& obiect, sf::Clock& currentTime, TaskManager& aTaskManager)
+void MP::Move::moveBlockUp(PawnObiect& obiect, sf::Clock& currentTime)
 {
 	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= obiect.getReadyTime())
 	{
@@ -28,11 +28,11 @@ void MP::Move::moveBlockUp(ActiveObiect& obiect, sf::Clock& currentTime, TaskMan
 	else if (obiect.getBlockLenghtCopy() <= 0) // Arrived
 	{
 		obiect.resetBlockLenghtCopy();
-		aTaskManager.endTask();
+		obiect.aPawnObiectTaskManager.endTask(MP::TaskManager::taskRange::order);
 	}
 }
 
-void MP::Move::moveBlockRight(ActiveObiect& obiect, sf::Clock& currentTime, TaskManager& aTaskManager)
+void MP::Move::moveBlockRight(PawnObiect& obiect, sf::Clock& currentTime)
 {
 	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() > obiect.getReadyTime())
 	{
@@ -43,11 +43,11 @@ void MP::Move::moveBlockRight(ActiveObiect& obiect, sf::Clock& currentTime, Task
 	else if (obiect.getBlockLenghtCopy() <= 0) // Arrived
 	{
 		obiect.resetBlockLenghtCopy();
-		aTaskManager.endTask();
+		obiect.aPawnObiectTaskManager.endTask(MP::TaskManager::taskRange::order);
 	}
 }
 
-void MP::Move::moveBlockLeft(ActiveObiect& obiect, sf::Clock& currentTime, TaskManager& aTaskManager)
+void MP::Move::moveBlockLeft(PawnObiect& obiect, sf::Clock& currentTime)
 {
 	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= obiect.getReadyTime())
 	{
@@ -58,7 +58,71 @@ void MP::Move::moveBlockLeft(ActiveObiect& obiect, sf::Clock& currentTime, TaskM
 	else if (obiect.getBlockLenghtCopy() <= 0) // Arrived
 	{
 		obiect.resetBlockLenghtCopy();
-		aTaskManager.endTask();
+		obiect.aPawnObiectTaskManager.endTask(MP::TaskManager::taskRange::order);
+	}
+}
+
+void MP::Move::moveBlockDown(Player& obiect, sf::Clock& currentTime, TaskManager& aMainTaskManager)
+{
+	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= obiect.getReadyTime())
+	{
+		movePixelDown(obiect);
+		obiect.decreaseBlockLengthCopy();
+		obiect.setLastActive(currentTime);
+	}
+	else if (obiect.getBlockLenghtCopy() <= 0)
+	{
+		obiect.resetBlockLenghtCopy();
+		aMainTaskManager.endTask(MP::TaskManager::taskRange::order);
+		aMainTaskManager.endTask(MP::TaskManager::taskRange::mainOrder);
+	}
+}
+
+void MP::Move::moveBlockUp(Player& obiect, sf::Clock& currentTime, TaskManager& aMainTaskManager)
+{
+	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= obiect.getReadyTime())
+	{
+		movePixelUp(obiect);
+		obiect.decreaseBlockLengthCopy();
+		obiect.setLastActive(currentTime);
+	}
+	else if (obiect.getBlockLenghtCopy() <= 0) // Arrived
+	{
+		obiect.resetBlockLenghtCopy();
+		aMainTaskManager.endTask(MP::TaskManager::taskRange::order);
+		aMainTaskManager.endTask(MP::TaskManager::taskRange::mainOrder);
+	}
+}
+
+void MP::Move::moveBlockRight(Player& obiect, sf::Clock& currentTime, TaskManager& aMainTaskManager)
+{
+	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() > obiect.getReadyTime())
+	{
+		movePixelRight(obiect);
+		obiect.decreaseBlockLengthCopy();
+		obiect.setLastActive(currentTime);
+	}
+	else if (obiect.getBlockLenghtCopy() <= 0) // Arrived
+	{
+		obiect.resetBlockLenghtCopy();
+		aMainTaskManager.endTask(MP::TaskManager::taskRange::order);
+		aMainTaskManager.endTask(MP::TaskManager::taskRange::mainOrder);
+	}
+}
+
+void MP::Move::moveBlockLeft(Player& obiect, sf::Clock& currentTime, TaskManager& aMainTaskManager)
+{
+	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= obiect.getReadyTime())
+	{
+		movePixelLeft(obiect);
+		obiect.decreaseBlockLengthCopy();
+		obiect.setLastActive(currentTime);
+	}
+	else if (obiect.getBlockLenghtCopy() <= 0) // Arrived
+	{
+		obiect.resetBlockLenghtCopy();
+		aMainTaskManager.endTask(MP::TaskManager::taskRange::order);
+		aMainTaskManager.endTask(MP::TaskManager::taskRange::mainOrder);
 	}
 }
 

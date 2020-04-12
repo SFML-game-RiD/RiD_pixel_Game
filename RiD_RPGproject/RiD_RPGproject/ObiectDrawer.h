@@ -22,13 +22,13 @@ namespace MP
 		
 		void _draw_map_gui_obiects(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager);
 
-		void _draw_main_menu(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager);
+	
 
 	public:
 
 		void drawAllObiects(TaskManager &aMainTaskManager ,Camera &aGameCamera, ObiectManager & aObiectManager);
 
-		
+		void drawMainMenu(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager);
 	
 	
 

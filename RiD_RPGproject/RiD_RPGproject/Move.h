@@ -1,7 +1,7 @@
 #ifndef _MAPMOVE_H_
 #define _MAPMOVE_H_
 
-#include "ActiveObiect.h"
+#include "PawnObiect.h"
 #include "TaskManager.h"
 #include "Player.h"
 
@@ -21,13 +21,22 @@ namespace MP
 
 	public:
 
-		void moveBlockDown(ActiveObiect& obiect, sf::Clock &currentTime,TaskManager & aTaskManager);
+		void moveBlockDown(PawnObiect& obiect, sf::Clock &currentTime);
 
-		void moveBlockUp(ActiveObiect& obiect, sf::Clock &currentTime, TaskManager& aTaskManager);
+		void moveBlockUp(PawnObiect& obiect, sf::Clock &currentTime);
 
-		void moveBlockRight(ActiveObiect& obiect, sf::Clock &currentTime, TaskManager& aTaskManager);
+		void moveBlockRight(PawnObiect& obiect, sf::Clock &currentTime);
 
-		void moveBlockLeft(ActiveObiect& obiect, sf::Clock &currentTime, TaskManager& aTaskManager);
+		void moveBlockLeft(PawnObiect& obiect, sf::Clock &currentTime);
+
+
+		void moveBlockDown(Player& obiect, sf::Clock& currentTime,TaskManager &aMainTaskManager);
+
+		void moveBlockUp(Player& obiect, sf::Clock& currentTime, TaskManager& aMainTaskManager);
+
+		void moveBlockRight(Player& obiect, sf::Clock& currentTime, TaskManager& aMainTaskManager);
+
+		void moveBlockLeft(Player& obiect, sf::Clock& currentTime, TaskManager& aMainTaskManager);
 	};
 }
 #endif

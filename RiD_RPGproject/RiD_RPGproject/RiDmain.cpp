@@ -44,37 +44,41 @@ void RiD::RiDmain::_event_function(sf::Event &event)
 			_a_camera.getWindow().close();
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-			_a_main_task_manager.startProcedureGoUp(*_a_obiect_manager.getPlayer(), _a_obiect_manager.getMap());
+			_a_obiect_manager.getPlayer()->tryToMoveUp(_a_obiect_manager.getMap(),_a_main_task_manager);
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-			_a_main_task_manager.startProcedureGoLeft(*_a_obiect_manager.getPlayer(),_a_obiect_manager.getMap());
+			_a_obiect_manager.getPlayer()->tryToMoveLeft(_a_obiect_manager.getMap(),_a_main_task_manager);
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-			_a_main_task_manager.startProcedureGoDown(*_a_obiect_manager.getPlayer(), _a_obiect_manager.getMap());
+			_a_obiect_manager.getPlayer()->tryToMoveDown(_a_obiect_manager.getMap(), _a_main_task_manager);
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-			_a_main_task_manager.startProcedureGoRight(*_a_obiect_manager.getPlayer(), _a_obiect_manager.getMap());
-		
-		if (event.type == sf::Event::MouseWheelScrolled) 
+			_a_obiect_manager.getPlayer()->tryToMoveRight(_a_obiect_manager.getMap(), _a_main_task_manager);
+
+		if (event.type == sf::Event::MouseWheelScrolled)
 		{
-			if (event.mouseWheelScroll.delta > 0)
-				_a_main_task_manager.startProcedureZoomIn();
-			else
-				_a_main_task_manager.startProcedureZoomOut();
+			if (_a_main_task_manager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskNone)
+			{
+				if (event.mouseWheelScroll.delta > 0)
+					_a_main_task_manager.setTask(MP::TaskManager::taskRange::order, MP::TaskManager::taskType::taskZoomIn);
+				else
+					_a_main_task_manager.setTask(MP::TaskManager::taskRange::order, MP::TaskManager::taskType::taskZoomOut);
+			}
 		}
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
- 			_a_main_task_manager.startProcedureClickLeft();
+			if (_a_main_task_manager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskNone or
+				_a_main_task_manager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskExecuteAutoMove)
+			{
+				_a_main_task_manager.setTask(MP::TaskManager::taskRange::mainOrder, MP::TaskManager::taskType::taskClickLeft);
+			}
 		}
-	/*	if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
-			_a_task_manager.*/
 	}
-		
 }
 
 void RiD::RiDmain::_calculate()
 {
-
+	 
 		_a_calculator.startProcedurePlayer(_a_main_task_manager, _a_obiect_manager, _clock);
 
 		_a_calculator.startProcedureTrees(_clock, _a_obiect_manager);
@@ -97,12 +101,13 @@ void RiD::RiDmain::_draw()
 
 RiD::RiDmain::RiDmain(int width, int height, std::string title)
 {
-	sf::VideoMode mode = sf::VideoMode::getFullscreenModes()[0];
-	_a_camera.getWindow().create(mode, title, sf::Style::Close | sf::Style::Fullscreen);
+	//sf::VideoMode mode = sf::VideoMode::getFullscreenModes()[0];
+	//_a_camera.getWindow().create(mode, title, sf::Style::Close | sf::Style::Fullscreen);
 	
 	
-	//_a_camera.getWindow().create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
-	//_a_camera.getWindow().setFramerateLimit(RiD::ConfigurationLoader::getIntData("video settings", "gameFPS"));
+	
+	_a_camera.getWindow().create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
+	_a_camera.getWindow().setFramerateLimit(RiD::ConfigurationLoader::getIntData("video settings", "gameFPS"));
 	_a_camera.getWindow().setMouseCursorVisible(true);
 	this->_create_window();
 
