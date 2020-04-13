@@ -2,6 +2,7 @@
 #define _ACTIVEOBIECT_H_
 
 #include "Obiect.h"
+#include "ItemsManager.h"
 
 namespace MP
 {
@@ -25,6 +26,8 @@ namespace MP
 		int _velocity; /// Ammount of pixel active_obj_animation_sleep_time
 
 	public:
+
+		ItemsManager aItemsManager;
 
 		ActiveObiect();
 

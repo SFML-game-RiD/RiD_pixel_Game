@@ -201,6 +201,14 @@ void MP::Calculator::startMainGameProcedures(TaskManager& aMainTaskManager, Obie
 	startProcedureComputerPlayers(aObiectManager, globalClock, aObiectManager.getMap());
 
 	startProcedureCursor(aMainTaskManager, aObiectManager, aCamera);
+
+	startProcedureMapGui(aObiectManager);
+}
+
+void MP::Calculator::startProcedureMapGui(ObiectManager& aObiectManager)
+{
+	aObiectManager.getPlayer();
+	aObiectManager.getGuiManager().getMapGui()->updateItems(aObiectManager.getPlayer()->aItemsManager);
 }
 
 void MP::Calculator::startMainMenuProcedures(TaskManager &aMainTaskManager, ObiectManager & aObiectManager,Camera& aCamera)

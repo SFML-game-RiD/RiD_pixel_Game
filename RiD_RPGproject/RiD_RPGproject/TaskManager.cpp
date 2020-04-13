@@ -2,7 +2,7 @@
 
 MP::TaskManager::TaskManager()
 {
-	_game_state = stateType::stateMainMenu;
+	_game_state = stateType::stateGame;
 	_game_order = taskType::taskNone;
 	_game_reply = taskType::taskNone;
 	_game_main_order = taskType::taskNone;

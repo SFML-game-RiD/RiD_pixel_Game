@@ -128,6 +128,36 @@
     <ClCompile Include="GuiButton.cpp">
       <Filter>OBIECT\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="ItemsManager.cpp">
+      <Filter>MANAGERS, HEAD CLASS</Filter>
+    </ClCompile>
+    <ClCompile Include="Wood.cpp">
+      <Filter>OBIECT\ITEMS</Filter>
+    </ClCompile>
+    <ClCompile Include="Swordsman.cpp">
+      <Filter>OBIECT\ITEMS</Filter>
+    </ClCompile>
+    <ClCompile Include="Spearman.cpp">
+      <Filter>OBIECT\ITEMS</Filter>
+    </ClCompile>
+    <ClCompile Include="Iron.cpp">
+      <Filter>OBIECT\ITEMS</Filter>
+    </ClCompile>
+    <ClCompile Include="Gold.cpp">
+      <Filter>OBIECT\ITEMS</Filter>
+    </ClCompile>
+    <ClCompile Include="Food.cpp">
+      <Filter>OBIECT\ITEMS</Filter>
+    </ClCompile>
+    <ClCompile Include="Archer.cpp">
+      <Filter>OBIECT\ITEMS</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>OBIECT\ITEMS</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiPlacesMenu.cpp">
+      <Filter>OBIECT\GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Animation.h">
@@ -256,6 +286,36 @@
     <ClInclude Include="GuiButton.h">
       <Filter>OBIECT\GUI</Filter>
     </ClInclude>
+    <ClInclude Include="ItemsManager.h">
+      <Filter>MANAGERS, HEAD CLASS</Filter>
+    </ClInclude>
+    <ClInclude Include="Wood.h">
+      <Filter>OBIECT\ITEMS</Filter>
+    </ClInclude>
+    <ClInclude Include="Swordsman.h">
+      <Filter>OBIECT\ITEMS</Filter>
+    </ClInclude>
+    <ClInclude Include="Spearman.h">
+      <Filter>OBIECT\ITEMS</Filter>
+    </ClInclude>
+    <ClInclude Include="Iron.h">
+      <Filter>OBIECT\ITEMS</Filter>
+    </ClInclude>
+    <ClInclude Include="Gold.h">
+      <Filter>OBIECT\ITEMS</Filter>
+    </ClInclude>
+    <ClInclude Include="Food.h">
+      <Filter>OBIECT\ITEMS</Filter>
+    </ClInclude>
+    <ClInclude Include="Archer.h">
+      <Filter>OBIECT\ITEMS</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>OBIECT\ITEMS</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiPlacesMenu.h">
+      <Filter>OBIECT\GUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="OBIECT">
@@ -311,6 +371,9 @@
     </Filter>
     <Filter Include="OBIECT\GUI">
       <UniqueIdentifier>{b31011f7-b679-428f-8242-a4e2d0d65396}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OBIECT\ITEMS">
+      <UniqueIdentifier>{8e1c16ad-1742-47a1-993d-c901e392a4d9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -4,21 +4,15 @@
 #include "Obiect.h"
 #include "GuiButton.h"
 #include "TaskManager.h"
+#include <vector>
 
 namespace MP
 {
 	class GuiMenu :public Obiect
 	{
-		sf::Vector2f _start_button_coord;
-		sf::Vector2f _save_button_coord;
-		sf::Vector2f _load_button_coord;
-		sf::Vector2f _exit_button_coord;
+		std::vector< std::shared_ptr<GuiButton>> _button_array;
 
-		std::unique_ptr<GuiButton> _start_button;
-		std::unique_ptr<GuiButton> _save_button;
-		std::unique_ptr<GuiButton> _load_button;
-		std::unique_ptr<GuiButton> _exit_button;
-
+		void _create_buttons(sf::Texture* buttonTexture, sf::Font& aFont);
 
 	public:
 

@@ -1,7 +1,7 @@
 #include "GuiButton.h"
 
 
-MP::GuiButton::GuiButton(sf::Texture* texturePtr, sf::Vector2f buttonPosition, sf::Font &aFont, std::string buttonName)
+MP::GuiButton::GuiButton(sf::Texture* texturePtr, sf::Vector2f buttonPosition,sf::Vector2f relativelyTextPosition, sf::Font &aFont, std::string buttonName)
 {
 
 	aAnimation.loadObiectTextures(texturePtr, 2, 1, 275);
@@ -10,13 +10,15 @@ MP::GuiButton::GuiButton(sf::Texture* texturePtr, sf::Vector2f buttonPosition, s
 	sf::Vector2f realTextPostion = buttonPosition;
 	realTextPostion.x += 70;
 	realTextPostion.y += 115;
+
+	realTextPostion.x += relativelyTextPosition.x;
+	realTextPostion.y += relativelyTextPosition.y;
 	_a_text.setPosition(realTextPostion);
 	_a_text.setString(buttonName);
 	_a_text.setLetterSpacing(1.5);
 	_a_text.setCharacterSize(30);
 	_is_active = false;
-	//sf::Color aColor = sf::Color::Black;
-	//_a_text.setColor(aColor);
+
 }
 
 void MP::GuiButton::setPressed()
@@ -41,4 +43,11 @@ void MP::GuiButton::setButtonActive(bool isActive)
 bool MP::GuiButton::getButtonActive()
 {
 	return _is_active;
+}
+
+void MP::GuiButton::drawButton(sf::RenderWindow& aMainWindow)
+{
+
+	aMainWindow.draw(aAnimation.getObiectSprite());
+	aMainWindow.draw(_a_text);
 }

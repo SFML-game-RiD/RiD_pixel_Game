@@ -44,6 +44,15 @@ void MP::ObiectGenerator::_generate_player(ObiectManager& aObiectManager)
 
 	std::shared_ptr<MP::Player> tmp = std::make_shared< Player >(&_a_asset_manager.getTexture("player"), &_a_asset_manager.getTexture("pathicon"));
 
+	tmp->aItemsManager.setItems(_a_asset_manager.getFont("font"),
+		RiD::ConfigurationLoader::getIntData("player", "gold"), &_a_asset_manager.getTexture("gold"),
+		RiD::ConfigurationLoader::getIntData("player", "iron"), &_a_asset_manager.getTexture("iron"),
+		RiD::ConfigurationLoader::getIntData("player", "wood"),&_a_asset_manager.getTexture("wood"),
+		RiD::ConfigurationLoader::getIntData("player", "food"),&_a_asset_manager.getTexture("food"),
+		RiD::ConfigurationLoader::getIntData("player", "spearman"),&_a_asset_manager.getTexture("spearman"), 
+		RiD::ConfigurationLoader::getIntData("player", "archer"),&_a_asset_manager.getTexture("archer"),
+		RiD::ConfigurationLoader::getIntData("player", "swordsman"),&_a_asset_manager.getTexture("swordsman"));
+
 	aObiectManager.addObiect(tmp);
 }
 
@@ -129,6 +138,13 @@ void MP::ObiectGenerator::generateObiects(ObiectManager& aObiectManager)
 	_a_asset_manager.setTexture("town", "img/mpimg/places/mptown.png");
 	_a_asset_manager.setTexture("castle", "img/mpimg/places/mpcastle.png");
 	_a_asset_manager.setTexture("cursor", "img/mpimg/icons/hand.png");
+	_a_asset_manager.setTexture("wood", "img/mpimg/icons/wood.png");
+	_a_asset_manager.setTexture("iron", "img/mpimg/icons/iron.png");
+	_a_asset_manager.setTexture("food", "img/mpimg/icons/food.png");
+	_a_asset_manager.setTexture("gold", "img/mpimg/icons/gold.png");
+	_a_asset_manager.setTexture("archer", "img/mpimg/icons/archer.png");
+	_a_asset_manager.setTexture("swordsman", "img/mpimg/icons/swordsman.png");
+	_a_asset_manager.setTexture("spearman", "img/mpimg/icons/spearman.png");
 	_a_asset_manager.setTexture("pathicon", "img/mpimg/icons/move.png");
 	_a_asset_manager.setTexture("mapgui", "img/GUI/rid_map_gui.png");
 	_a_asset_manager.setTexture("menu", "img/GUI/rid_main_menu.png");

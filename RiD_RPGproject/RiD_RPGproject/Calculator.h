@@ -42,6 +42,8 @@ namespace MP
 
 		void startMainGameProcedures(TaskManager& aTaskManager, ObiectManager& aObiectManager, sf::Clock& globalClock, Camera& aCamera);
 
+		void startProcedureMapGui(ObiectManager& aObiectManager);
+
 		void startMainMenuProcedures(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, Camera& aCamera);
 
 		void startPlacesProcedures();

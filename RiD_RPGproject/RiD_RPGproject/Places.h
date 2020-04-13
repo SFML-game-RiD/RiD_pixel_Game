@@ -6,6 +6,8 @@ namespace MP
 {
 	class Places:public ActiveObiect
 	{
+
+
 	public:
 		Places();
 	};

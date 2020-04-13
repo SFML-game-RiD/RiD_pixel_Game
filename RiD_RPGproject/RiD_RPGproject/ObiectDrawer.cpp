@@ -60,7 +60,7 @@ void MP::ObiectDrawer::_draw_active_obiects(sf::RenderWindow& mainWindow, Obiect
 
 void MP::ObiectDrawer::_draw_map_gui(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager)
 {
-	mainWindow.draw(aObiectManager.getGuiManager().getMapGui()->aAnimation.getObiectSprite());
+	aObiectManager.getGuiManager().getMapGui()->drawMapGui(mainWindow, aObiectManager.getPlayer()->aItemsManager);
 }
 
 void MP::ObiectDrawer::_draw_cursor(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager)
