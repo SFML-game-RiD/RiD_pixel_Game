@@ -9,7 +9,7 @@ namespace RTB
 		for (std::list<std::shared_ptr<Character>>::iterator iterator = list_of_bots.begin();//Iterates through list of bots...
 			iterator != list_of_bots.end(); iterator++)
 		{
-			if (_sword_hitbox->checkIntersection((*iterator)->getHitbox().getGlobalBounds()) == true)//checks if sword intersected one of them...
+			if ((*iterator)->isAlive() && _sword_hitbox->checkIntersection((*iterator)->getHitbox().getGlobalBounds()) == true)//checks if sword intersected one of them...
 			{
 				(*iterator)->subtractHP(10);//and subtracts hp
 			}
@@ -22,7 +22,7 @@ namespace RTB
 		for (std::list<std::shared_ptr<Character>>::iterator iterator = list_of_bots.begin();
 			iterator != list_of_bots.end(); iterator++)
 		{
-			if (_arrows->isFlying() && _arrows->checkIntersection((*iterator)->getHitbox().getGlobalBounds()) == true)
+			if ((*iterator)->isAlive() && _arrows->isFlying() && _arrows->checkIntersection((*iterator)->getHitbox().getGlobalBounds()) == true)
 			{
 				(*iterator)->subtractHP(1);
 			}
@@ -117,6 +117,7 @@ namespace RTB
 		_arrows = new Arrow(_character_sprite, arrow_texture);
 		_is_alive = true;
 		_arrows_count = 10;
+		_speed = 1.f;
 	}
 
 	Player::~Player()
@@ -129,32 +130,50 @@ namespace RTB
 		delete _sword_hitbox;
 	}
 
-	void Player::update(sf::Time time, std::vector<std::vector<std::unique_ptr<MapElement>>>& map_objects)
+	void Player::update(sf::Time time, std::vector<std::vector<std::unique_ptr<MapElement>>>& map_objects,
+		std::list<std::shared_ptr<Character>>& list_of_bots)
 	{
 		_isColidingWithTile(map_objects);
 
-
-		if ((sf::Keyboard::isKeyPressed(sf::Keyboard::A) && sf::Keyboard::isKeyPressed(sf::Keyboard::W) && _moving_left == false) ||
-			(sf::Keyboard::isKeyPressed(sf::Keyboard::A) && sf::Keyboard::isKeyPressed(sf::Keyboard::S) && _moving_left == false)) return;
-		else if ((sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::W) && _moving_right == false) ||
-			(sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::S) && _moving_right == false)) return;
-		else if ((sf::Keyboard::isKeyPressed(sf::Keyboard::A) && sf::Keyboard::isKeyPressed(sf::Keyboard::W) && _moving_up == false) ||
-			(sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::W) && _moving_up == false)) return;
-		else if ((sf::Keyboard::isKeyPressed(sf::Keyboard::A) && sf::Keyboard::isKeyPressed(sf::Keyboard::S) && _moving_down == false) ||
-			(sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::S) && _moving_down == false)) return;
-		else
+		if (!_movement->isAttackTriggered() && !_movement->isShotTriggered())
 		{
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && _moving_up)
-				_movement->walkingUp(time);
+			if ((sf::Keyboard::isKeyPressed(sf::Keyboard::A) && sf::Keyboard::isKeyPressed(sf::Keyboard::W) && _moving_left == false) ||
+				(sf::Keyboard::isKeyPressed(sf::Keyboard::A) && sf::Keyboard::isKeyPressed(sf::Keyboard::S) && _moving_left == false)) return;
+			else if ((sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::W) && _moving_right == false) ||
+				(sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::S) && _moving_right == false)) return;
+			else if ((sf::Keyboard::isKeyPressed(sf::Keyboard::A) && sf::Keyboard::isKeyPressed(sf::Keyboard::W) && _moving_up == false) ||
+				(sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::W) && _moving_up == false)) return;
+			else if ((sf::Keyboard::isKeyPressed(sf::Keyboard::A) && sf::Keyboard::isKeyPressed(sf::Keyboard::S) && _moving_down == false) ||
+				(sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::S) && _moving_down == false)) return;
+			else
+			{
+				if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && _moving_up)
+				{
+					_movement->walkingUp(time);
+					_character_sprite->move(0.0f, -_speed);
+				}
 
-			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && _moving_down)
-				_movement->walkingDown(time);
 
-			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && _moving_right)
-				_movement->walkingRight(time);
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && _moving_down)
+				{
+					_movement->walkingDown(time);
+					_character_sprite->move(0.0f, _speed);
+				}
 
-			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && _moving_left)
-				_movement->walkingLeft(time);
+
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && _moving_right)
+				{
+					_movement->walkingRight(time);
+					_character_sprite->move(_speed, 0.0f);
+				}
+
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && _moving_left)
+				{
+					_movement->walkingLeft(time);
+					_character_sprite->move(-_speed, 0.0f);
+				}
+
+			}
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 			_movement->triggerAttack();

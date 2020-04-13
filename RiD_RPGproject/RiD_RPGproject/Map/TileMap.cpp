@@ -145,72 +145,61 @@ namespace RTB
 			{
 				if (!_map_elements[i][j]->isWalkable())
 				{
-					if (i > 0 && j > 0 && j < _width - 1 && i < _height - 1)
+					short furthest_up = 0, furthest_down = 0, furthest_left = 0, furthest_right = 0, range = 2;
+					//up
+					short iterator_y = i;
+					while (furthest_up < range && iterator_y > 0)
 					{
-						unsigned short end_k = i + 1, end_l = j + 1;
-						for (unsigned short k = i - 1; k <= end_k; k++)
+						furthest_up++;
+						iterator_y--;
+					}
+					//down
+					iterator_y = i;
+					while (furthest_down < range && iterator_y < _height-1)
+					{
+						furthest_down++;
+						iterator_y++;
+					}
+					//left
+					short iterator_x = j;
+					while (furthest_left < range && iterator_x > 0)
+					{
+						furthest_left++;
+						iterator_x--;
+					}
+					//right
+					iterator_x = j;
+					while (furthest_right < range && iterator_x < _width-1)
+					{
+						furthest_right++;
+						iterator_x++;
+					}
+					int start_x = j - furthest_left;
+					int end_x = j + furthest_right;
+					int start_y = i - furthest_up;
+					int end_y = i + furthest_down;
+					for (unsigned int k = start_y; k <= end_y; ++k)
+					{
+						for (unsigned int l = start_x; l <= end_x; ++l)
 						{
-							for (unsigned short l = j - 1; l <= end_l; l++)
-							{
-								_walkable_area[k][l].setNotWalkable();
-							}
+							_walkable_area[k][l].setNotWalkable();
 						}
-					}
-					else if (i == 0 && j > 0 && j < _width - 1)
-					{
-						for (unsigned short k = i; k <= i + 1; k++)
-							for (unsigned short l = j - 1; l < j + 1; l++)
-								_walkable_area[k][l].setNotWalkable();
-					}
-					else if (i == _height - 1 && j > 0 && j < _width - 1)
-					{
-						for (unsigned short k = i - 1; k <= i; k++)
-							for (unsigned short l = j - 1; l < j + 1; l++)
-								_walkable_area[k][l].setNotWalkable();
-					}
-					else if (j == 0 && i > 0 && i < _height - 1)
-					{
-						for (unsigned short k = i - 1; k <= i + 1; k++)
-							for (unsigned short l = j; l < j + 1; l++)
-								_walkable_area[k][l].setNotWalkable();
-					}
-					else if (j == _width - 1 && i > 0 && i < _height - 1)
-					{
-						for (unsigned short k = i - 1; k < i + 1; k++)
-							for (unsigned short l = j - 1; l < j; l++)
-								_walkable_area[k][l].setNotWalkable();
-					}
-					else if (j == 0 && i == 0)
-					{
-						_walkable_area[0][0].setNotWalkable();
-						_walkable_area[0][1].setNotWalkable();
-						_walkable_area[1][0].setNotWalkable();
-						_walkable_area[1][1].setNotWalkable();
-					}
-					else if (j == 0 && i == _height - 1)
-					{
-						_walkable_area[_height - 2][0].setNotWalkable();
-						_walkable_area[_height - 2][1].setNotWalkable();
-						_walkable_area[_height - 1][0].setNotWalkable();
-						_walkable_area[_height - 1][1].setNotWalkable();
-					}
-					else if (j == _width - 1 && i == _height - 1)
-					{
-						_walkable_area[_height - 2][_width - 2].setNotWalkable();
-						_walkable_area[_height - 2][_width - 1].setNotWalkable();
-						_walkable_area[_height - 1][_width - 2].setNotWalkable();
-						_walkable_area[_height - 1][_width - 1].setNotWalkable();
-					}
-					else if (j == _width - 1 && i == 0)
-					{
-						_walkable_area[0][_width - 1].setNotWalkable();
-						_walkable_area[0][_width - 2].setNotWalkable();
-						_walkable_area[1][_width - 1].setNotWalkable();
-						_walkable_area[1][_width - 2].setNotWalkable();
 					}
 				}
 				_walkable_area[i][j].setPosition(sf::Vector2i(i, j));
 			}
+		}
+		std::ofstream file("walkable.txt");
+		for (unsigned int i = 0; i < _height; i++)
+		{
+			for (unsigned int j = 0; j < _width; j++)
+			{
+				if (_walkable_area[i][j].isWalkable())
+					file << "1 ";
+				else
+					file << "0 ";
+			}
+			file << std::endl;
 		}
 	}
 

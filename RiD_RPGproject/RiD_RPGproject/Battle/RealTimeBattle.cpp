@@ -1,7 +1,7 @@
 #pragma once
 
 #include "RealTimeBattle.h"
-#include "RTBPathGenerator.h"
+
 namespace RTB
 {
 	void RealTimeBattle::_zoomEvent()
@@ -32,20 +32,20 @@ namespace RTB
 	{
 		unsigned seed = static_cast<unsigned>(std::chrono::high_resolution_clock::now().time_since_epoch().count());
 		std::mt19937 RNG(seed);
-		std::uniform_real_distribution<float> enemy_position_height(12,36);
+		std::uniform_real_distribution<float> enemy_position_height(12, 36);
 		std::uniform_real_distribution<float> enemy_position_width(1, 5);
 		sf::Vector2f position;
 
-		for (unsigned short i = 0; i < 5; ++i)
-			_list_of_enemies.emplace_back(new Swordsman(_asset_manager.getTexture("enemy_swordsman"), 100));
-		for (unsigned short i = 0; i < 5; ++i)
+		for (unsigned short i = 0; i < 10; ++i)
+			_list_of_enemies.emplace_back(new Swordsman(_asset_manager.getTexture("enemy_swordsman"), 100, _tile_map->getWalkableArea()));
+		for (unsigned short i = 0; i < 0; ++i)
 			_list_of_enemies.emplace_back(new Archer(_asset_manager.getTexture("enemy_archer"), 100, _asset_manager.getTexture("arrow")));
 		for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_enemies.begin(); iterator != _list_of_enemies.end(); iterator++)
 		{
-			position.x = enemy_position_height(RNG)*25;
-			position.y = enemy_position_width(RNG)*25;
+			position.x = enemy_position_height(RNG) * 25;
+			position.y = enemy_position_width(RNG) * 25;
 			position = _tile_map->_twoDToIso(position);
-			(*iterator)->setPosition({ position.x,position.y});
+			(*iterator)->setPosition({ position.x,position.y });
 			while (_checkPlacementCollisions(iterator))
 			{
 				position.x = enemy_position_height(RNG) * 25;
@@ -55,9 +55,9 @@ namespace RTB
 			}
 		}
 
-		for (unsigned short i = 0; i < 4; ++i)
-			_list_of_allies.emplace_back(new Swordsman(_asset_manager.getTexture("ally_swordsman"), 100));
-		for (unsigned short i = 0; i < 5; ++i)
+		for (unsigned short i = 0; i < 9; ++i)
+			_list_of_allies.emplace_back(new Swordsman(_asset_manager.getTexture("ally_swordsman"), 100, _tile_map->getWalkableArea()));
+		for (unsigned short i = 0; i < 0; ++i)
 			_list_of_allies.emplace_back(new Archer(_asset_manager.getTexture("ally_archer"), 100, _asset_manager.getTexture("arrow")));
 
 		_list_of_allies.emplace_back(new Player(_asset_manager.getTexture("player"), 100, _asset_manager.getTexture("arrow")));
@@ -85,10 +85,10 @@ namespace RTB
 	bool RealTimeBattle::_checkPlacementCollisions(std::list<std::shared_ptr<Character>>::iterator character)
 	{
 		sf::Vector2f position;
-		position.x = ((2 * (*character)->getPosition().y + (*character)->getPosition().x) / 2)/25;
-		position.y = ((2 * (*character)->getPosition().y - (*character)->getPosition().x) / 2)/25;
-		if (position.x > _tile_map->getHeight()  || position.x < 0 ||
-			position.y > _tile_map->getWidth()  || position.y < 0)//checks if character is not situated "inside" the map
+		position.x = ((2 * (*character)->getPosition().y + (*character)->getPosition().x) / 2) / 25;
+		position.y = ((2 * (*character)->getPosition().y - (*character)->getPosition().x) / 2) / 25;
+		if (position.x > _tile_map->getHeight() || position.x < 0 ||
+			position.y > _tile_map->getWidth() || position.y < 0)//checks if character is not situated "inside" the map
 			return true;//collides
 		else ///////////to do
 		{
@@ -114,14 +114,7 @@ namespace RTB
 	void RealTimeBattle::mainLoop(sf::RenderWindow& window)
 	{
 		_tile_map = std::unique_ptr<TileMap>(new TileMap({ 50,50 }));
-		window.setView(_camera);		
-
-		while (tmp)
-		{
-			std::cout << tmp->getPosition().x << " " << tmp->getPosition().y << std::endl;
-			tmp = tmp->getPNext();
-		}
-
+		window.setView(_camera);
 		this->_armyCreation();
 		while (window.isOpen())
 		{
@@ -136,24 +129,27 @@ namespace RTB
 			//Renders
 			window.clear();
 			_tile_map->drawTiles(window);
+
 			//Bots
+			if (_player->isAlive())
+				_camera.setCenter(_player->getPosition()); //camera is centered on the player
+			else return;
+
 			for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_enemies.begin(); iterator != _list_of_enemies.end(); iterator++)
 			{
 				if ((*iterator)->isAlive())
 				{
-					(*iterator)->update(_clock.getElapsedTime(), _tile_map->getCollidableObjects());
+					(*iterator)->update(_clock.getElapsedTime(), _tile_map->getCollidableObjects(), _list_of_allies);
+					(*iterator)->dealDamage(_clock.getElapsedTime(), _list_of_allies, window);
 					(*iterator)->render(window);
 				}
 			}
-			if (_player->isAlive())
-				_camera.setCenter(_player->getPosition()); //camera is centered on the player
-			else return;
 
 			for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_allies.begin(); iterator != _list_of_allies.end(); iterator++)
 			{
 				if ((*iterator)->isAlive())
 				{
-					(*iterator)->update(_clock.getElapsedTime(), _tile_map->getCollidableObjects());
+					(*iterator)->update(_clock.getElapsedTime(), _tile_map->getCollidableObjects(), _list_of_enemies);
 					(*iterator)->dealDamage(_clock.getElapsedTime(), _list_of_enemies, window);
 					(*iterator)->render(window);
 				}

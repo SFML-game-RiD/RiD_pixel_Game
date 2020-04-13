@@ -28,5 +28,7 @@ namespace AI
 		void setPosition(sf::Vector2i pos);
 
 		bool isWalkable();
+
+		int getGCost(sf::Vector2i start);
 	};
 }

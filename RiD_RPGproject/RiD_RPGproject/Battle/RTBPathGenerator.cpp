@@ -221,15 +221,10 @@ namespace AI
 		PathNode* tmp = _opened_list_head;
 		smallestFElement = tmp;
 
-		if (tmp->getPNext() != nullptr)
-			tmp = tmp->getPNext();
-
-		while (tmp != nullptr)
+		while (tmp)
 		{
-			if (smallestFElement->getFCost() > tmp->getFCost())
-			{
+			if (tmp->getFCost() < smallestFElement->getFCost())
 				smallestFElement = tmp;
-			}
 			tmp = tmp->getPNext();
 		}
 		return smallestFElement;
@@ -257,55 +252,93 @@ namespace AI
 
 	void RTBPathGenerator::findPath(sf::Vector2i start, sf::Vector2i end)
 	{
-		_start = start;
-		_end = end;
-		unsigned short neighbors_bounds[4];
-
-		PathNode* first = new PathNode();
-		first->setPosition(_start);
-		first->setFCost(_end);
-		this->_addToOpenedList(first);
-		while (_opened_list_head)
+		if (_walkable_area[end.x][end.y].isWalkable() && start.y < _walkable_area[0].size()
+			&& start.x < _walkable_area.size() && start != end)
 		{
-			PathNode* current = _findSmallestF();
-			_moveToClosedList(current);
+			_start = start;
+			_end = end;
+			int neighbour_current_cost;
+			unsigned short neighbors_bounds[4];
 
-			if (current->getPosition() == _end)
-				break;
-			_NeighbourPosition(current->getPosition().x, current->getPosition().y, neighbors_bounds);
-			for (unsigned short i = neighbors_bounds[0]; i <= neighbors_bounds[1]; ++i)
+			PathNode* first = new PathNode();
+			first->setPosition(_start);
+			first->setFCost(_end);
+			this->_addToOpenedList(first);
+			while (_opened_list_head)
 			{
-				for (unsigned short j = neighbors_bounds[2]; j <= neighbors_bounds[3]; ++j)
+				PathNode* current = _findSmallestF();
+				_moveToClosedList(current);
+
+				if (current->getPosition() == _end)
+					break;
+				_NeighbourPosition(current->getPosition().x, current->getPosition().y, neighbors_bounds);
+				for (unsigned short i = neighbors_bounds[0]; i <= neighbors_bounds[1]; ++i)
 				{
-					if (i != current->getPosition().x && j != current->getPosition().y)
+					for (unsigned short j = neighbors_bounds[2]; j <= neighbors_bounds[3]; ++j)
 					{
-						_walkable_area[i][j].setFCost(_end);
-						if (!_walkable_area[i][j].isWalkable() || _ifExists(_walkable_area[i][j], _closed_list_head))
-							continue;
-						else if (!_ifExists(_walkable_area[i][j], _opened_list_head) || _walkable_area[i][j].getFCost() <= current->getFCost())
+						if (i != current->getPosition().x || j != current->getPosition().y)
 						{
-							PathNode* neighbour = new PathNode();
-							neighbour->setPosition(sf::Vector2i(i, j));
-							neighbour->setFCost(_end);
-							neighbour->setParent(current);
-							if (!_ifExists(_walkable_area[i][j], _opened_list_head))
+							_walkable_area[i][j].setFCost(_end);
+							if (!_walkable_area[i][j].isWalkable() || _ifExists(_walkable_area[i][j], _closed_list_head))
+								continue;
+							else if (current->getGCost(_start)+distance(current->getPosition(),_walkable_area[i][j].getPosition())<_walkable_area[i][j].getGCost(_start)|| !_ifExists(_walkable_area[i][j], _opened_list_head))
 							{
-								this->_addToOpenedList(neighbour);
+								PathNode* neighbour = new PathNode();
+								neighbour->setPosition(sf::Vector2i(i, j));
+								neighbour->setFCost(_end);
+								neighbour->setParent(current);
+								if (!_ifExists(_walkable_area[i][j], _opened_list_head))
+								{
+									this->_addToOpenedList(neighbour);
+								}
+								else
+									delete neighbour;
 							}
-							else
-								delete neighbour;
 						}
 					}
 				}
 			}
+			//if (_findByPosition(_end))
+			//{
+				this->_generatePath();
+				_deleteOpenedList();
+				_deleteClosedList();
+			//}
+			//else
+				//_path = nullptr;
 		}
-
-		this->_generatePath();
-		_deleteOpenedList();
-		_deleteClosedList();
+		else
+		{
+			_path = nullptr;
+		}
 	}
+
 	PathNode*& RTBPathGenerator::getPath()
 	{
 		return _path;
+	}
+
+	PathNode* RTBPathGenerator::getMiddle()
+	{
+		PathNode* slow_ptr = _path;
+		PathNode* fast_ptr = _path;
+
+		if (_path)
+		{
+			while (fast_ptr != NULL && fast_ptr->getPNext() != nullptr)
+			{
+				fast_ptr = fast_ptr->getPNext()->getPNext();
+				slow_ptr = slow_ptr->getPNext();
+			}
+			return slow_ptr;
+		}
+		else
+			return nullptr;
+	}
+
+	int RTBPathGenerator::distance(sf::Vector2i start, sf::Vector2i end)
+	{
+		sqrt(2);
+		return sqrt(pow(start.x - end.x,2 )+ pow((start.y - end.y),2));
 	}
 }

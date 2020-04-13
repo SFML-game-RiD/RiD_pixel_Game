@@ -64,6 +64,14 @@ namespace AI
 			return false;
 	}
 
+	int PathNode::getGCost(sf::Vector2i start)
+	{
+		_G = abs(_position.x - start.x);
+		_G += abs(_position.y - start.y);
+		return _G;
+
+	}
+
 	void PathNode::_calcG(sf::Vector2i start)
 	{
 		_G = abs(start.x - _position.x);

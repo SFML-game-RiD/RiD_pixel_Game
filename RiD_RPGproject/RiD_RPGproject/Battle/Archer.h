@@ -15,7 +15,8 @@ namespace RTB
 		~Archer();
 
 		//Function responsible for all of the player moves and behaviors
-		void update(sf::Time time, std::vector<std::vector<std::unique_ptr<MapElement>>>& map_objects);
+		void update(sf::Time time, std::vector<std::vector<std::unique_ptr<MapElement>>>& map_objects,
+			std::list<std::shared_ptr<Character>>& list_of_bots);
 
 		//Dealing damage to bots of enemy team
 		//@param time time needed for combat animations

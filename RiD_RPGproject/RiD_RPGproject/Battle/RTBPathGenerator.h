@@ -38,5 +38,8 @@ namespace AI
 
 		void findPath(sf::Vector2i start, sf::Vector2i end);
 		PathNode*& getPath();
+		PathNode* getMiddle();
+
+		int distance(sf::Vector2i start, sf::Vector2i end);
 	};
 }

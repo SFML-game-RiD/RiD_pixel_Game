@@ -1,6 +1,8 @@
 #pragma once
 
 #include <iostream>
+#include <random>
+#include <chrono>
 #include <list>
 #include "../Engine/Movement.h"
 #include "Hitbox.h"
@@ -25,6 +27,7 @@ namespace RTB
 		sf::Vector2f _position;
 		bool _is_alive;
 		short _direction;
+		float _speed;
 		enum directions { up, left, down, right };
 		bool _moving_up = true, _moving_down = true, _moving_right = true, _moving_left = true;
 	public:
@@ -33,7 +36,8 @@ namespace RTB
 		virtual void setPosition(sf::Vector2f position);
 
 		//Function responsible for all of the moves
-		virtual void update(sf::Time time, std::vector<std::vector<std::unique_ptr<MapElement>>>& map_objects) = 0;
+		virtual void update(sf::Time time, std::vector<std::vector<std::unique_ptr<MapElement>>>& map_objects,
+			std::list<std::shared_ptr<Character>>& list_of_bots) = 0;
 
 		//Draws character's sprite
 		virtual void render(sf::RenderWindow& window);

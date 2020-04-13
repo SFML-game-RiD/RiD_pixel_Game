@@ -121,9 +121,6 @@
     <ClInclude Include="Battle\Player.h">
       <Filter>RealTimeBattle\Characters\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Battle\Swordsman.h">
-      <Filter>RealTimeBattle\Characters\Bots</Filter>
-    </ClInclude>
     <ClInclude Include="Battle\Archer.h">
       <Filter>RealTimeBattle\Characters\Bots</Filter>
     </ClInclude>
@@ -135,6 +132,9 @@
     </ClInclude>
     <ClInclude Include="Battle\RTBPathGenerator.h">
       <Filter>RealTimeBattle\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\Swordsman.h">
+      <Filter>RealTimeBattle\Characters\Bots</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

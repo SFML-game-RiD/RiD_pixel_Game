@@ -24,7 +24,8 @@ namespace RTB
 		delete _arrows;
 	}
 
-	void Archer::update(sf::Time time, std::vector<std::vector<std::unique_ptr<MapElement>>>& map_objects)
+	void Archer::update(sf::Time time, std::vector<std::vector<std::unique_ptr<MapElement>>>& map_objects,
+		std::list<std::shared_ptr<Character>>& list_of_bots)
 	{
 		_movement->idle(time);
 		_hitbox->update();

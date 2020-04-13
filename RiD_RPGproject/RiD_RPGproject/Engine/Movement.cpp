@@ -24,7 +24,6 @@ namespace RiD
 			_yCord = walkUpAnim;
 			_object->setOrigin(32.0, 32.0);
 			_object->setTextureRect(sf::IntRect(_xCord * 64, _yCord * 64, 64, 64));
-			_object->move(0.0f, -2.f);
 			_direction = up;
 
 			if (_xCord * 64 >= 576)
@@ -48,7 +47,6 @@ namespace RiD
 			_yCord = walkDownAnim;
 			_object->setOrigin(32.0, 32.0);
 			_object->setTextureRect(sf::IntRect(_xCord * 64, _yCord * 64, 64, 64));
-			_object->move(0.0f, 2.f);
 			_direction = down;
 
 			if (time - animations.walking_animation_start_time >= animations.walking_animation_frame_duration)
@@ -69,7 +67,6 @@ namespace RiD
 			_yCord = walkLeftAnim;
 			_object->setOrigin(32.0, 32.0);
 			_object->setTextureRect(sf::IntRect(_xCord * 64, _yCord * 64, 64, 64));
-			_object->move(-2.0f, 0.0f);
 			_direction = left;
 
 			if (time - animations.walking_animation_start_time >= animations.walking_animation_frame_duration)
@@ -90,7 +87,6 @@ namespace RiD
 			_yCord = walkRightAnim;
 			_object->setOrigin(32.0, 32.0);
 			_object->setTextureRect(sf::IntRect(_xCord * 64, _yCord * 64, 64, 64));
-			_object->move(2.0f, 0.0f);
 			_direction = right;
 
 			if (time - animations.walking_animation_start_time >= animations.walking_animation_frame_duration)
