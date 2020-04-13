@@ -1,6 +1,7 @@
 #include "RiDmain.h"
 #include "Engine/ConfigurationLoader.h"
 #include <iostream>
+#include "TaskManager.h"
 
 void RiD::RiDmain::_create_window()
 {	
@@ -24,25 +25,36 @@ void RiD::RiDmain::_create_window()
 
 	while (_a_camera.getWindow().isOpen()) //program main loop
 	{
-		_event_function(_event);
-
-		_calculate();
-		
-		_draw();
+		if (_a_main_task_manager.getCurrentState() == MP::TaskManager::stateType::stateGame) //If is faster than switch 
+		{
+			_event_function_for_state_game();
+			_calculate_for_state_game();
+			_draw_for_state_game();
+		}
+		else if (_a_main_task_manager.getCurrentState() == MP::TaskManager::stateType::stateMainMenu)
+		{
+			_event_function_for_main_menu();
+			_calculate_for_state_main_menu();
+			_draw_for_main_menu();
+		}
 	}
 }
 
-void RiD::RiDmain::_event_function(sf::Event &event)
+void RiD::RiDmain::_event_function_for_state_game()
 {
 
-	while (_a_camera.getWindow().pollEvent(event)) //handling events
+	while (_a_camera.getWindow().pollEvent(_event)) //handling events
 	{
-		if (event.type == sf::Event::EventType::Closed)
+		if (_event.type == sf::Event::EventType::Closed)
 			_a_camera.getWindow().close();
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-			_a_camera.getWindow().close();
+		{
+			if (_a_main_task_manager.getTask(MP::TaskManager::taskRange::mainOrder) == MP::TaskManager::taskType::taskNone
+				and _a_main_task_manager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskNone)
 
+				_a_main_task_manager.setState(MP::TaskManager::stateType::stateMainMenu);
+		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 			_a_obiect_manager.getPlayer()->tryToMoveUp(_a_obiect_manager.getMap(),_a_main_task_manager);
 
@@ -55,11 +67,11 @@ void RiD::RiDmain::_event_function(sf::Event &event)
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 			_a_obiect_manager.getPlayer()->tryToMoveRight(_a_obiect_manager.getMap(), _a_main_task_manager);
 
-		if (event.type == sf::Event::MouseWheelScrolled)
+		if (_event.type == sf::Event::MouseWheelScrolled)
 		{
 			if (_a_main_task_manager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskNone)
 			{
-				if (event.mouseWheelScroll.delta > 0)
+				if (_event.mouseWheelScroll.delta > 0)
 					_a_main_task_manager.setTask(MP::TaskManager::taskRange::order, MP::TaskManager::taskType::taskZoomIn);
 				else
 					_a_main_task_manager.setTask(MP::TaskManager::taskRange::order, MP::TaskManager::taskType::taskZoomOut);
@@ -76,21 +88,33 @@ void RiD::RiDmain::_event_function(sf::Event &event)
 	}
 }
 
-void RiD::RiDmain::_calculate()
+void RiD::RiDmain::_event_function_for_main_menu()
 {
-	 
-		_a_calculator.startProcedurePlayer(_a_main_task_manager, _a_obiect_manager, _clock);
+	while (_a_camera.getWindow().pollEvent(_event)) //handling events
+	{
+		if (_event.type == sf::Event::EventType::Closed)
+			_a_camera.getWindow().close();
 
-		_a_calculator.startProcedureTrees(_clock, _a_obiect_manager);
-
-		_a_calculator.startProcedureCamera(_a_obiect_manager, _a_main_task_manager, _a_obiect_manager.getPlayer()->getObiectCoord(), _a_camera);
-
-		_a_calculator.startProcedureComputerPlayers(_a_obiect_manager, _clock, _a_obiect_manager.getMap());
 	
-	    _a_calculator.startProcedureCursor(_a_main_task_manager,_a_obiect_manager, _a_camera);
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		{
+				_a_main_task_manager.setTask(MP::TaskManager::taskRange::mainOrder, MP::TaskManager::taskType::taskClickLeft);
+		}
+	}
 }
 
-void RiD::RiDmain::_draw()
+void RiD::RiDmain::_calculate_for_state_game()
+{
+	
+		_a_calculator.startMainGameProcedures(_a_main_task_manager, _a_obiect_manager, _clock, _a_camera);
+}
+
+void RiD::RiDmain::_calculate_for_state_main_menu()
+{
+	_a_calculator.startMainMenuProcedures(_a_main_task_manager, _a_obiect_manager, _a_camera);
+}
+
+void RiD::RiDmain::_draw_for_state_game()
 {
 	_a_camera.clearCamera();
 
@@ -99,19 +123,24 @@ void RiD::RiDmain::_draw()
 	_a_camera.drawFrame(); 
 }
 
+void RiD::RiDmain::_draw_for_main_menu()
+{
+	_a_camera.clearCamera();
+
+	_a_obiect_drawer.drawMainMenu(_a_camera.getWindow(),_a_obiect_manager,_a_camera);
+
+	_a_camera.drawFrame();
+}
+
 RiD::RiDmain::RiDmain(int width, int height, std::string title)
 {
-	//sf::VideoMode mode = sf::VideoMode::getFullscreenModes()[0];
-	//_a_camera.getWindow().create(mode, title, sf::Style::Close | sf::Style::Fullscreen);
+	sf::VideoMode mode = sf::VideoMode::getFullscreenModes()[0];
+	_a_camera.getWindow().create(mode, title, sf::Style::Close | sf::Style::Fullscreen);
 	
-	
-	
-	_a_camera.getWindow().create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
-	_a_camera.getWindow().setFramerateLimit(RiD::ConfigurationLoader::getIntData("video settings", "gameFPS"));
-	_a_camera.getWindow().setMouseCursorVisible(true);
+
+	/*_a_camera.getWindow().create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
+	_a_camera.getWindow().setFramerateLimit(RiD::ConfigurationLoader::getIntData("video settings", "gameFPS"));*/
+	_a_camera.getWindow().setMouseCursorVisible(false);
 	this->_create_window();
-
-
-
 
 }

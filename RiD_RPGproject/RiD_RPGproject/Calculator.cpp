@@ -134,6 +134,12 @@ void MP::Calculator::_start_procedure_player_auto_or_normal_move(TaskManager& aM
 	}
 }
 
+void MP::Calculator::_start_procedure_main_menu(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, Camera& aCamera)
+{
+	aObiectManager.getGuiManager().getGuiMainMenu()->selectButton(aObiectManager.getCursor()->getGuiCoord());
+	aObiectManager.getGuiManager().getGuiMainMenu()->pressButton(aMainTaskManager, aCamera.getWindow());
+}
+
 
 void MP::Calculator::startProcedurePlayer(TaskManager& aTaskManager, ObiectManager& aObiectManager, sf::Clock& aGameClock)
 {
@@ -182,5 +188,29 @@ void MP::Calculator::startProcedureCursor(TaskManager& aTaskManager, ObiectManag
 	aObiectManager.getCursor()->updateCursor(aTaskManager,aCamera);
 
 	aObiectManager.getCursor()->checkIfPlayerClicked(aTaskManager, aCamera);
+}
+
+void MP::Calculator::startMainGameProcedures(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, sf::Clock& globalClock, Camera& aCamera)
+{
+	startProcedurePlayer(aMainTaskManager, aObiectManager, globalClock);
+
+	startProcedureTrees(globalClock, aObiectManager);
+
+	startProcedureCamera(aObiectManager, aMainTaskManager,aObiectManager.getPlayer()->getObiectCoord(), aCamera);
+
+	startProcedureComputerPlayers(aObiectManager, globalClock, aObiectManager.getMap());
+
+	startProcedureCursor(aMainTaskManager, aObiectManager, aCamera);
+}
+
+void MP::Calculator::startMainMenuProcedures(TaskManager &aMainTaskManager, ObiectManager & aObiectManager,Camera& aCamera)
+{
+	_start_procedure_main_menu(aMainTaskManager,aObiectManager,aCamera);
+
+	startProcedureCursor(aMainTaskManager, aObiectManager, aCamera);
+}
+
+void MP::Calculator::startPlacesProcedures()
+{
 }
 

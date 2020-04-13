@@ -82,8 +82,3 @@ void MP::Camera::changeViewToGui()
 {
 	_window.setView(_gui_view);
 }
-
-sf::View MP::Camera::getGuiView()
-{
-	return _gui_view;
-}

@@ -26,17 +26,25 @@ namespace MP
 
 		void _start_procedure_player_auto_or_normal_move(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, sf::Clock& aGameClock);
 
+		void _start_procedure_main_menu(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, Camera& aCamera);
+
 	public:
 
-		void startProcedurePlayer(TaskManager& aTaskManager, ObiectManager& aObiectManager, sf::Clock& aGameClock);
+		void startProcedurePlayer(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, sf::Clock& aGameClock);
 
 		void startProcedureTrees(sf::Clock& globalClock, ObiectManager& aObiectManager);
 
 		void startProcedureComputerPlayers(ObiectManager& aObiectManager, sf::Clock& aGameClock,Map& aMap);
 
-		void startProcedureCamera(ObiectManager& aObiectManager, TaskManager& aTaskManager, sf::Vector2f newCoord, Camera& aCamera);
+		void startProcedureCamera(ObiectManager& aObiectManager, TaskManager& aMainTaskManager, sf::Vector2f newCoord, Camera& aCamera);
 
-		void startProcedureCursor(TaskManager& aTaskManager, ObiectManager& aObiectManager, Camera& aCamera);
+		void startProcedureCursor(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, Camera& aCamera);
+
+		void startMainGameProcedures(TaskManager& aTaskManager, ObiectManager& aObiectManager, sf::Clock& globalClock, Camera& aCamera);
+
+		void startMainMenuProcedures(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, Camera& aCamera);
+
+		void startPlacesProcedures();
 	};
 }
 #endif

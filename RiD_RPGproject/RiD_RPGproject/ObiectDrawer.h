@@ -28,7 +28,7 @@ namespace MP
 
 		void drawAllObiects(TaskManager &aMainTaskManager ,Camera &aGameCamera, ObiectManager & aObiectManager);
 
-		void drawMainMenu(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager);
+		void drawMainMenu(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager, Camera& aGameCamera);
 	
 	
 

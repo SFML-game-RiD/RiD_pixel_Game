@@ -46,11 +46,17 @@ namespace RiD
      	//Executes creation of window
 		void _create_window();
 
-		void _event_function(sf::Event& event);
+		void _event_function_for_state_game();
 
-		void _calculate();
+		void _event_function_for_main_menu();
 
-		void _draw();
+		void _calculate_for_state_game();
+
+		void _calculate_for_state_main_menu();
+
+		void _draw_for_state_game();
+
+	    void _draw_for_main_menu();
 
 	public:
 		/*

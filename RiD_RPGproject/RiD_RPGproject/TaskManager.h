@@ -8,6 +8,13 @@ namespace MP
 	{
 	public:
 
+		
+		enum class stateType
+	{
+			stateGame,
+			stateMainMenu,
+			StatePlacesMenu
+	};
 	enum class taskType
 		{
 			//Move basic tasks
@@ -36,7 +43,6 @@ namespace MP
 			taskDoubleClickLeft,
 			taskWaitForDoubleClickLeft
 
-		
 
 		
 
@@ -44,7 +50,6 @@ namespace MP
 
 	enum class taskRange
 	{
-		state,
 		mainOrder,
 		order,
 		reply
@@ -53,7 +58,7 @@ namespace MP
 
 	private:
 		
-		taskType _game_state;
+		stateType _game_state;
 
 		taskType _game_order;
 	
@@ -72,6 +77,10 @@ namespace MP
 		void setTask(taskRange aTaskRange, taskType typeOfTask);
 
 		void resetOrdersAndReply();
+
+		void setState(stateType aNewStateType);
+
+		stateType getCurrentState();
 	};
 }
 

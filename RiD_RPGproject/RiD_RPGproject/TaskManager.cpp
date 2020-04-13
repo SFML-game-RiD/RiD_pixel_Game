@@ -2,7 +2,7 @@
 
 MP::TaskManager::TaskManager()
 {
-	_game_state = taskType:: taskNone;
+	_game_state = stateType::stateMainMenu;
 	_game_order = taskType::taskNone;
 	_game_reply = taskType::taskNone;
 	_game_main_order = taskType::taskNone;
@@ -12,10 +12,6 @@ MP::TaskManager::TaskManager()
 MP::TaskManager::taskType MP::TaskManager::getTask(taskRange aTaskRange)
 {
 	switch (aTaskRange) {
-	case(taskRange::state):
-	{
-		return _game_state;
-	}break;
 	case(taskRange::order):
 	{
 		return _game_order;
@@ -34,10 +30,6 @@ MP::TaskManager::taskType MP::TaskManager::getTask(taskRange aTaskRange)
 void MP::TaskManager::endTask(taskRange aTaskRange)
 {
 	switch (aTaskRange) {
-	case(taskRange::state):
-	{
-		_game_state = taskType::taskNone;
-	}break;
 	case(taskRange::order):
 	{
 		_game_order = taskType::taskNone;
@@ -56,10 +48,6 @@ void MP::TaskManager::endTask(taskRange aTaskRange)
 void MP::TaskManager::setTask(taskRange aTaskRange, taskType typeOfTask)
 {
 	switch (aTaskRange) {
-	case(taskRange::state):
-	{
-		_game_state = typeOfTask;
-	}break;
 	case(taskRange::order):
 	{
 		_game_order = typeOfTask;
@@ -80,5 +68,15 @@ void MP::TaskManager::resetOrdersAndReply()
 	_game_main_order = taskType::taskNone;
 	_game_order = taskType::taskNone;
 	_game_reply = taskType::taskNone;
+}
+
+void MP::TaskManager::setState(stateType aNewStateType)
+{
+	_game_state = aNewStateType;
+}
+
+MP::TaskManager::stateType MP::TaskManager::getCurrentState()
+{
+	return _game_state;
 }
 

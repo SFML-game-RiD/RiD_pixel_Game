@@ -20,8 +20,6 @@ namespace MP
 
 		sf::View _gui_view;
 
-//		sf::Vector2f _current_virtual_game_corner_position;
-
 		void _zoom_in();
 
 		void _zoom_out();
@@ -42,8 +40,6 @@ namespace MP
 		void changeViewToGame();//allows to update game
 
 		void changeViewToGui();//updates gui
-
-		sf::View getGuiView();
 
 	};
 }

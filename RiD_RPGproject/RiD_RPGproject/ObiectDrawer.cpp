@@ -87,3 +87,12 @@ void MP::ObiectDrawer::drawAllObiects(TaskManager& aMainTaskManager, Camera& aGa
 		_draw_map_gui_obiects(aGameCamera.getWindow(), aObiectManager);
 		//GUI DRAWING END
 }
+
+void MP::ObiectDrawer::drawMainMenu(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager,Camera& aGameCamera)
+{
+	aGameCamera.changeViewToGui();
+
+	aObiectManager.getGuiManager().getGuiMainMenu()->drawMenu(mainWindow);
+
+	mainWindow.draw(aObiectManager.getCursor()->aAnimation.getObiectSprite());
+}

@@ -19,18 +19,16 @@ namespace MP
 		std::unique_ptr<GuiButton> _load_button;
 		std::unique_ptr<GuiButton> _exit_button;
 
-		//bool	_check_if_start_pressed(Cursor& aCursor);
-		//bool	_check_if_save_pressed(Cursor& aCursor);
-		//bool	_check_if_load_pressed(Cursor& aCursor);
-		//bool	_check_if_exit_pressed(Cursor& aCursor);
-
 
 	public:
 
-		GuiMenu(sf::Texture* texturePtr, sf::Texture* buttonTexture);
+		GuiMenu(sf::Texture* texturePtr, sf::Texture* buttonTexture,sf::Font &aFont);
 
 		void drawMenu(sf::RenderWindow& aMainWindow);
+	
+		void selectButton(sf::Vector2f mouseCoord);
 
+		void pressButton(TaskManager &aMainTaskManager, sf::RenderWindow &aMainWindow);
 	};
 }
 #endif // !_GUIMENU_H_
