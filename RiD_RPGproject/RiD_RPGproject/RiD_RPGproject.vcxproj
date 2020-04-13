@@ -174,6 +174,7 @@
     <ClCompile Include="Gold.cpp" />
     <ClCompile Include="GuiButton.cpp" />
     <ClCompile Include="GuiManager.cpp" />
+    <ClCompile Include="GuiMainMenu.cpp" />
     <ClCompile Include="GuiMenu.cpp" />
     <ClCompile Include="GuiPlacesMenu.cpp" />
     <ClCompile Include="Iron.cpp" />
@@ -229,6 +230,7 @@
     <ClInclude Include="Gold.h" />
     <ClInclude Include="GuiButton.h" />
     <ClInclude Include="GuiManager.h" />
+    <ClInclude Include="GuiMainMenu.h" />
     <ClInclude Include="GuiMenu.h" />
     <ClInclude Include="GuiPlacesMenu.h" />
     <ClInclude Include="Iron.h" />

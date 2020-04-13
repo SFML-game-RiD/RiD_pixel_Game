@@ -1,7 +1,7 @@
 #ifndef _GUIMANAGER_H_
 #define _GUIMANAGER_H_
 #include "MapGui.h"
-#include "GuiMenu.h"
+#include "GuiMainMenu.h"
 
 namespace MP
 {

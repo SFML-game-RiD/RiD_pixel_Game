@@ -11,6 +11,7 @@ namespace MP
 		sf::Text _a_text;
 
 		bool _is_active;
+
 	public:
 
 		GuiButton(sf::Texture* texturePtr,sf::Vector2f buttonPosition, sf::Vector2f relativelyTextPosition, sf::Font &aFont, std::string buttonName);

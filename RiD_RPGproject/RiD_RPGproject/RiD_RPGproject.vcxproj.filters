@@ -122,9 +122,6 @@
     <ClCompile Include="Cursor.cpp">
       <Filter>OBIECT\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="GuiMenu.cpp">
-      <Filter>OBIECT\GUI</Filter>
-    </ClCompile>
     <ClCompile Include="GuiButton.cpp">
       <Filter>OBIECT\GUI</Filter>
     </ClCompile>
@@ -156,6 +153,12 @@
       <Filter>OBIECT\ITEMS</Filter>
     </ClCompile>
     <ClCompile Include="GuiPlacesMenu.cpp">
+      <Filter>OBIECT\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiMainMenu.cpp">
+      <Filter>OBIECT\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="GuiMenu.cpp">
       <Filter>OBIECT\GUI</Filter>
     </ClCompile>
   </ItemGroup>
@@ -280,9 +283,6 @@
     <ClInclude Include="Cursor.h">
       <Filter>OBIECT\GUI</Filter>
     </ClInclude>
-    <ClInclude Include="GuiMenu.h">
-      <Filter>OBIECT\GUI</Filter>
-    </ClInclude>
     <ClInclude Include="GuiButton.h">
       <Filter>OBIECT\GUI</Filter>
     </ClInclude>
@@ -314,6 +314,12 @@
       <Filter>OBIECT\ITEMS</Filter>
     </ClInclude>
     <ClInclude Include="GuiPlacesMenu.h">
+      <Filter>OBIECT\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiMainMenu.h">
+      <Filter>OBIECT\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="GuiMenu.h">
       <Filter>OBIECT\GUI</Filter>
     </ClInclude>
   </ItemGroup>

@@ -117,7 +117,7 @@ void MP::ObiectGenerator::_generate_gui(ObiectManager& aObiectManager)
 
 
 	//creating main menu
-	aObiectManager.getGuiManager().getGuiMainMenu() = std::make_unique<GuiMenu>(&_a_asset_manager.getTexture("menu"), &_a_asset_manager.getTexture("button"),_a_asset_manager.getFont("font"));
+	aObiectManager.getGuiManager().getGuiMainMenu() = std::make_unique<GuiMainMenu>(&_a_asset_manager.getTexture("menu"), &_a_asset_manager.getTexture("button"),_a_asset_manager.getFont("font"));
 
 
 	//creating places menu
