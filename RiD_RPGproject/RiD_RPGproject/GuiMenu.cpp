@@ -2,17 +2,17 @@
 
 void MP::GuiMenu::_create_buttons(sf::Texture* buttonTexture, sf::Font& aFont)
 {
-	std::shared_ptr<GuiButton> tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(365, 25), sf::Vector2f(38, 0), aFont, "start");
-	_button_array.push_back(tmp);
+	//std::shared_ptr<GuiButton> tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(365, 25), sf::Vector2f(38, 0), aFont, "start");
+	//_button_array.push_back(tmp);
 
-	tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(365, 175), sf::Vector2f(10, 0), aFont, "save game");
-	_button_array.push_back(tmp);
+	//tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(365, 175), sf::Vector2f(10, 0), aFont, "save game");
+	//_button_array.push_back(tmp);
 
-	tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(365, 325), sf::Vector2f(10, 0), aFont, "load game");
-	_button_array.push_back(tmp);
+	//tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(365, 325), sf::Vector2f(10, 0), aFont, "load game");
+	//_button_array.push_back(tmp);
 
-	tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(365, 475), sf::Vector2f(40, 0), aFont, "exit");
-	_button_array.push_back(tmp);
+	//tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(365, 475), sf::Vector2f(40, 0), aFont, "exit");
+	//_button_array.push_back(tmp);
 }
 
 MP::GuiMenu::GuiMenu()

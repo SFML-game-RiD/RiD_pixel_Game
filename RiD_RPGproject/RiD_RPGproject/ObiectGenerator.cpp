@@ -132,7 +132,7 @@ MP::ObiectGenerator::ObiectGenerator()
 void MP::ObiectGenerator::generateObiects(ObiectManager& aObiectManager)
 {
 	_a_asset_manager.setTexture("tree", "img/mpimg/mptree.png");
-	_a_asset_manager.setTexture("land", "img/mpimg/mpgrass8.png");
+	_a_asset_manager.setTexture("land", "img/mpimg/mpgrass6.png");
 	_a_asset_manager.setTexture("player", "img/mpimg/mpcharacter.png");
 	_a_asset_manager.setTexture("village", "img/mpimg/places/mpvillage.png");
 	_a_asset_manager.setTexture("town", "img/mpimg/places/mptown.png");
@@ -146,7 +146,7 @@ void MP::ObiectGenerator::generateObiects(ObiectManager& aObiectManager)
 	_a_asset_manager.setTexture("swordsman", "img/mpimg/icons/swordsman.png");
 	_a_asset_manager.setTexture("spearman", "img/mpimg/icons/spearman.png");
 	_a_asset_manager.setTexture("pathicon", "img/mpimg/icons/move.png");
-	_a_asset_manager.setTexture("mapgui", "img/GUI/rid_map_gui.png");
+	_a_asset_manager.setTexture("mapgui", "img/GUI/rid_map_gui_2.png");
 	_a_asset_manager.setTexture("menu", "img/GUI/rid_main_menu.png");
 	_a_asset_manager.setTexture("button", "img/GUI/button.png");
 	_a_asset_manager.setFont("font", "font/MerchantCopy-GOXq.ttf");

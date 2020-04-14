@@ -6,12 +6,14 @@ MP::Archer::Archer()
 
 MP::Archer::Archer(sf::Texture* texturePtr, sf::Font& aFont)
 {
+
 	aAnimation.loadObiectTextures(texturePtr, 1, 1, 64);
-	aAnimation.setScale(1.5, 1.5);
+	aAnimation.setScale(1.6, 1.6);
 	_item_amount_text.setFont(aFont);
 	setItemAmount(0);//it set text to
 	_item_amount_text.setLetterSpacing(1);
-	_item_amount_text.setCharacterSize(40);
+	_item_amount_text.setCharacterSize(25);
+	_item_amount_text.setFillColor(sf::Color(224,224,224));
 }
 
 void MP::Archer::setItemAmount(unsigned int newItemAmount)
@@ -29,6 +31,9 @@ unsigned int& MP::Archer::getItemAmount()
 void MP::Archer::setItemPosition(sf::Vector2f itemPosition)
 {
 	setObiectCoord(itemPosition);
+	itemPosition.x += 70;
+	itemPosition.y += 90;
+
 	_item_amount_text.setPosition(itemPosition);
 }
 

@@ -10,7 +10,8 @@ MP::Food::Food(sf::Texture* texturePtr, sf::Font& aFont)
 	_item_amount_text.setFont(aFont);
 	setItemAmount(0);//it set text to
 	_item_amount_text.setLetterSpacing(1);
-	_item_amount_text.setCharacterSize(40);
+	_item_amount_text.setCharacterSize(25);
+	_item_amount_text.setFillColor(sf::Color(224, 224, 224));
 }
 
 void MP::Food::setItemAmount(unsigned int newItemAmount)
@@ -28,6 +29,9 @@ unsigned int& MP::Food::getItemAmount()
 void MP::Food::setItemPosition(sf::Vector2f itemPosition)
 {
 	setObiectCoord(itemPosition);
+	itemPosition.x += 68;
+	itemPosition.y += 30;
+
 	_item_amount_text.setPosition(itemPosition);
 }
 

@@ -25,7 +25,7 @@ namespace MP
 
 		virtual unsigned int& getItemAmount();
 
-		void setItemPosition(sf::Vector2f itemPosition);
+		virtual void setItemPosition(sf::Vector2f itemPosition);
 
 		virtual void drawItem(sf::RenderWindow& mainWindow);
 	};
