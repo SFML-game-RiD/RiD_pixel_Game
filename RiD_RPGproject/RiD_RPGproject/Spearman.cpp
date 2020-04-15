@@ -6,8 +6,7 @@ MP::Spearman::Spearman()
 
 MP::Spearman::Spearman(sf::Texture* texturePtr, sf::Font& aFont)
 {
-	aAnimation.loadObiectTextures(texturePtr, 1, 1, 64);
-	aAnimation.setScale(2, 2);
+	aAnimation.loadObiectTextures(texturePtr, 1, 1, 236);
 	_item_amount_text.setFont(aFont);
 	setItemAmount(0);//it set text to
 	_item_amount_text.setLetterSpacing(1);
@@ -30,8 +29,8 @@ unsigned int& MP::Spearman::getItemAmount()
 void MP::Spearman::setItemPosition(sf::Vector2f itemPosition)
 {
 	setObiectCoord(itemPosition);
-	itemPosition.x += 70;
-	itemPosition.y += 100;
+	itemPosition.x += 80;
+	itemPosition.y += 221;
 	_item_amount_text.setPosition(itemPosition);
 }
 
