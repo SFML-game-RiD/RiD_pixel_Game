@@ -72,27 +72,28 @@ void MP::ObiectDrawer::drawAllObiects(TaskManager& aMainTaskManager, Camera& aGa
 {
 		//GAME DRAWING
 		aGameCamera.changeViewToGame();
-		//Drawing map
 		_draw_land(aGameCamera.getWindow(), aObiectManager);
-		//Drawing player
 		_draw_active_obiects(aGameCamera.getWindow(), aObiectManager);
-		//Drwaing trees
 		_draw_trees(aGameCamera.getWindow(), aObiectManager);
-		//GAME DRAWING END
-
 
 		//GUI DRAWING
 		aGameCamera.changeViewToGui();
-		//drawing gui
 		_draw_map_gui_obiects(aGameCamera.getWindow(), aObiectManager);
-		//GUI DRAWING END
 }
 
-void MP::ObiectDrawer::drawMainMenu(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager,Camera& aGameCamera)
+void MP::ObiectDrawer::drawMenu(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, Camera& aGameCamera)
 {
 	aGameCamera.changeViewToGui();
 
-	aObiectManager.getGuiManager().getGuiMainMenu()->drawMenu(mainWindow);
-
-	mainWindow.draw(aObiectManager.getCursor()->aAnimation.getObiectSprite());
+	if (aMainTaskManager.getCurrentState() == TaskManager::stateType::stateMainMenu)
+	{
+		aObiectManager.getGuiManager().getGuiMainMenu()->drawMenu(aGameCamera.getWindow());
+//		aGameCamera.getWindow().draw(aObiectManager.getCursor()->aAnimation.getObiectSprite());
+	}
+	else if (aMainTaskManager.getCurrentState() == TaskManager::stateType::statePlacesMenu)
+	{
+		aObiectManager.getGuiManager().getGuiPlacesMenu()->drawMenu(aGameCamera.getWindow());
+//		aGameCamera.getWindow().draw(aObiectManager.getCursor()->aAnimation.getObiectSprite());
+	}
+	_draw_cursor(aGameCamera.getWindow(), aObiectManager);
 }

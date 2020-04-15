@@ -1,5 +1,5 @@
-#ifndef _MAPELEMENT_H_
-#define _MAPELEMENT_H_
+#ifndef MAPELEMENT_H
+#define MAPELEMENT_H
 
 #include <memory>
 #include "Land.h"
@@ -68,7 +68,7 @@ namespace MP
 
 		MapElement* returnAddress();
 
-		//SPECIAL GETTERS
+		//SPECIAL GETTERS (used in path creator)
 
 		MapElement* getNextElementCopy();
 

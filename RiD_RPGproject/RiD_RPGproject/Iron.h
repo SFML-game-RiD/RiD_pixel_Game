@@ -1,5 +1,5 @@
-#ifndef _IRON_H_
-#define _IRON_H_
+#ifndef IRON_H
+#define IRON_H
 #include "Item.h"
 
 namespace MP

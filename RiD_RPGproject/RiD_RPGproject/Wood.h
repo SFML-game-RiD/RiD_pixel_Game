@@ -1,5 +1,5 @@
-#ifndef _WOOD_H_
-#define _WOOD_H_
+#ifndef WOOD_H
+#define WOOD_H
 #include "Item.h"
 
 namespace MP

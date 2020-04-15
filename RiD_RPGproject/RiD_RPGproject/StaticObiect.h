@@ -1,5 +1,5 @@
-#ifndef _STATICOBIECT_H_
-#define _STATICOBIECT_H_
+#ifndef STATICOBIECT_H
+#define STATICOBIECT_H
 #include "Obiect.h"
 
 namespace MP

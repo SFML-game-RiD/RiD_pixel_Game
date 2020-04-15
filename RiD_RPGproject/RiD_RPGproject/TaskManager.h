@@ -1,5 +1,5 @@
-#ifndef _TASKMANAGER_H_
-#define _TASKMANAGER_H_
+#ifndef TASKMANAGER_H
+#define TASKMANAGER_H
 
 
 namespace MP
@@ -13,7 +13,7 @@ namespace MP
 	{
 			stateGame,
 			stateMainMenu,
-			StatePlacesMenu
+			statePlacesMenu
 	};
 	enum class taskType
 		{
@@ -81,6 +81,8 @@ namespace MP
 		void setState(stateType aNewStateType);
 
 		stateType getCurrentState();
+
+		bool isFree();
 	};
 }
 

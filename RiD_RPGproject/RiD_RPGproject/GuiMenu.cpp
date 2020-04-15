@@ -2,17 +2,7 @@
 
 void MP::GuiMenu::_create_buttons(sf::Texture* buttonTexture, sf::Font& aFont)
 {
-	//std::shared_ptr<GuiButton> tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(365, 25), sf::Vector2f(38, 0), aFont, "start");
-	//_button_array.push_back(tmp);
 
-	//tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(365, 175), sf::Vector2f(10, 0), aFont, "save game");
-	//_button_array.push_back(tmp);
-
-	//tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(365, 325), sf::Vector2f(10, 0), aFont, "load game");
-	//_button_array.push_back(tmp);
-
-	//tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(365, 475), sf::Vector2f(40, 0), aFont, "exit");
-	//_button_array.push_back(tmp);
 }
 
 MP::GuiMenu::GuiMenu()
@@ -35,8 +25,17 @@ void MP::GuiMenu::drawMenu(sf::RenderWindow& aMainWindow)
 
 void MP::GuiMenu::selectButton(sf::Vector2f mouseCoord)
 {
+	for (int i = 0; i < _button_array.size(); i++)
+	{
+		if (mouseCoord.x >= _button_array[i]->getObiectCoord().x and mouseCoord.x <= _button_array[i]->getObiectCoord().x + 275
+			and mouseCoord.y >= _button_array[i]->getObiectCoord().y + 112 and mouseCoord.y <= _button_array[i]->getObiectCoord().y + 163)
+			_button_array[i]->setButtonActive(true);
+		else
+			_button_array[i]->setButtonActive(false);
+	}
 }
 
 void MP::GuiMenu::pressButton(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow)
 {
+
 }

@@ -1,5 +1,5 @@
-#ifndef _MAPMOVE_H_
-#define _MAPMOVE_H_
+#ifndef MAPMOVE_H
+#define MAPMOVE_H
 
 #include "PawnObiect.h"
 #include "TaskManager.h"

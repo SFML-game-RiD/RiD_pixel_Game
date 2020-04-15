@@ -1,5 +1,5 @@
-#ifndef _ARCHER_H_
-#define _ARCHER_H_
+#ifndef ARCHER_H
+#define ARCHER_H
 #include "Item.h"
 
 namespace MP

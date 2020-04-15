@@ -1,5 +1,5 @@
-#ifndef _OBIECTMANAGER_H_
-#define _OBIECTMANAGER_H_
+#ifndef OBIECTMANAGER_H
+#define OBIECTMANAGER_H
 
 #include <random>
 #include <list>

@@ -1,5 +1,5 @@
-#ifndef _OBIECTGENERATOR_H_
-#define _OBIECTGENERATOR_H_
+#ifndef OBIECTGENERATOR_H
+#define OBIECTGENERATOR_H
 
 #include <random>
 #include "ObiectDrawer.h"

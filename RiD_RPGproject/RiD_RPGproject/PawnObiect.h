@@ -1,5 +1,5 @@
-#ifndef _PAWNOBIECT_H_
-#define _PAWNOBIECT_H_
+#ifndef PAWNOBIECT_H
+#define PAWNOBIECT_H
 
 #include "ActiveObiect.h"
 #include "Map.h"

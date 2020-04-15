@@ -1,5 +1,5 @@
-#ifndef _CURSOR_H_
-#define _CURSOR_H_
+#ifndef CURSOR_H
+#define CURSOR_H
 #include "SFML/Graphics.hpp"
 #include "Obiect.h"
 #include "Camera.h"

@@ -1,5 +1,5 @@
-#ifndef _PATHICON_H_
-#define _PATHICON_H_
+#ifndef PATHICON_H
+#define PATHICON_H
 #include "Obiect.h" 
 
 namespace MP

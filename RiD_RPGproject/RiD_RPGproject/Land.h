@@ -1,5 +1,5 @@
-#ifndef _LAND_H_
-#define _LAND_H_
+#ifndef LAND_H
+#define LAND_H
 
 #include "StaticObiect.h"
 

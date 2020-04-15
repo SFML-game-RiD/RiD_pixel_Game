@@ -1,5 +1,5 @@
-#ifndef _GUIMANAGER_H_
-#define _GUIMANAGER_H_
+#ifndef GUIMANAGER_H
+#define GUIMANAGER_H
 #include "MapGui.h"
 #include "GuiMainMenu.h"
 

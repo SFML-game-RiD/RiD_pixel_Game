@@ -1,5 +1,5 @@
-#ifndef _PLAYER_H_
-#define _PLAYER_H_
+#ifndef PLAYER_H
+#define PLAYER_H
 
 #include "PawnObiect.h"
 #include "Map.h"
@@ -56,6 +56,8 @@ namespace MP
 		void unmarkPath();
 
 		std::vector<PathIcon>& getPathIcon();
+
+		void goToPlace(Map& aGameMap,TaskManager &aMainTaskManger);
 	};
 
 

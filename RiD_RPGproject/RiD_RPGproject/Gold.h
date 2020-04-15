@@ -1,5 +1,5 @@
-#ifndef _GOLD_H_
-#define _GOLD_H_
+#ifndef GOLD_H
+#define GOLD_H
 #include "Item.h"
 
 namespace MP

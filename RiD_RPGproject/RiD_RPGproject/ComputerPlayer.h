@@ -1,5 +1,5 @@
-#ifndef  _COMPUTER_PLAYER_H_
-#define _COMPUTER_PLAYER_H_
+#ifndef  COMPUTER_PLAYER_H
+#define COMPUTER_PLAYER_H
 
 #include <SFML/Graphics.hpp>
 #include "PawnObiect.h"
@@ -27,8 +27,6 @@ namespace MP
 
 
 		ComputerPlayer(sf::Texture* texturePtr);
-
-		//############ move animation ##############
 
 		void computerPlayerAnimation(sf::Clock& globalClock);
 

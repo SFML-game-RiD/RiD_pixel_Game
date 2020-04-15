@@ -1,5 +1,5 @@
-#ifndef _ITEMSMANAGER_H_
-#define _ITEMSMANAGER_H_ 
+#ifndef ITEMSMANAGER_H
+#define ITEMSMANAGER_H
 #include "Item.h"
 
 namespace MP

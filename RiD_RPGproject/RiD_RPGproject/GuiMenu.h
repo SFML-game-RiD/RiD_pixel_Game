@@ -1,5 +1,5 @@
-#ifndef _GUIMENU_H_
-#define _GUIMENU_H_
+#ifndef GUIMENU_H
+#define GUIMENU_H
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "Obiect.h"

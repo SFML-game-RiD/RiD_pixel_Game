@@ -1,5 +1,5 @@
-#ifndef _GUI_BUTTON_H
-#define _GUIBUTTON_H_
+#ifndef GUI_BUTTON_H
+#define GUIBUTTON_H
 #include "Obiect.h"
 
 namespace MP

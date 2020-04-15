@@ -1,5 +1,5 @@
-#ifndef _CASTLE_H_
-#define _CASTLE_H_
+#ifndef CASTLE_H
+#define CASTLE_H
 #include "Places.h" 
 
 namespace MP

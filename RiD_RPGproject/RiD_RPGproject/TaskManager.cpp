@@ -80,3 +80,13 @@ MP::TaskManager::stateType MP::TaskManager::getCurrentState()
 	return _game_state;
 }
 
+bool MP::TaskManager::isFree()
+{
+	if (getTask(MP::TaskManager::taskRange::mainOrder) == MP::TaskManager::taskType::taskNone
+		and getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskNone
+		and getTask(MP::TaskManager::taskRange::reply) == MP::TaskManager::taskType::taskNone)
+		return true;
+	else
+		return false;
+}
+

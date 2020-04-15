@@ -1,5 +1,5 @@
-#ifndef _VILLAGE_H_
-#define _VILLAGE_H_
+#ifndef VILLAGE_H
+#define VILLAGE_H
 #include "Places.h" 
 
 namespace MP

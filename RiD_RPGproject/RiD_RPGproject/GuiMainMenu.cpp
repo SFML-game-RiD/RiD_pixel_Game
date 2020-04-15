@@ -4,7 +4,7 @@
 
 void MP::GuiMainMenu::_create_buttons(sf::Texture* buttonTexture, sf::Font& aFont)
 {
-	std::shared_ptr<GuiButton> tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(365, 25), sf::Vector2f(38, 0), aFont, "start");
+	std::shared_ptr<GuiButton> tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(365, 25), sf::Vector2f(36, 0), aFont, "start");
 	_button_array.push_back(tmp);
 
 	tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(365, 175), sf::Vector2f(10, 0), aFont, "save game");
@@ -65,4 +65,4 @@ void MP::GuiMainMenu::pressButton(TaskManager& aTaskManager,  sf::RenderWindow& 
 		aTaskManager.resetOrdersAndReply();
 		aMainWindow.close();
 	}
-}
+}  

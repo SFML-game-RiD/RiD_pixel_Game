@@ -1,5 +1,5 @@
-#ifndef _TREE_H_
-#define _TREE_H_
+#ifndef TREE_H
+#define TREE_H
 
 #include "StaticObiect.h"
 

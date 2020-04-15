@@ -1,5 +1,5 @@
-#ifndef _PLACES_H_
-#define _PLACES_H_
+#ifndef PLACES_H
+#define PLACES_H
 #include "ActiveObiect.h"
 
 namespace MP

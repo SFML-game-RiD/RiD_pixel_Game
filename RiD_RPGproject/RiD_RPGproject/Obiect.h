@@ -1,5 +1,5 @@
-#ifndef _OBIECT_H_
-#define _OBIECT_H_
+#ifndef OBIECT_H
+#define OBIECT_H
 
 #include <SFML/Graphics.hpp>
 #include "Animation.h"

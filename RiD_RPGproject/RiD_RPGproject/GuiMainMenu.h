@@ -1,5 +1,5 @@
-#ifndef _GUIMAINMENU_H_
-#define _GUIMAINMENU_H_
+#ifndef GUIMAINMENU_H
+#define GUIMAINMENU_H
 #include "GuiMenu.h"
 
 

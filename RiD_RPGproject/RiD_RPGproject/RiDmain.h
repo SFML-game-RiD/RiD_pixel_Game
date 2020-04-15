@@ -1,5 +1,5 @@
-#ifndef _RIDMAIN_H_
-#define _RIDMAIN_H_
+#ifndef RIDMAIN_H
+#define RIDMAIN_H
 
 #include "SFML/Graphics.hpp"
 #include "ObiectDrawer.h"
@@ -48,7 +48,7 @@ namespace RiD
 
 		void _event_function_for_state_game();
 
-		void _event_function_for_main_menu();
+		void _event_function_for_menu();
 
 		void _calculate_for_state_game();
 
@@ -56,7 +56,8 @@ namespace RiD
 
 		void _draw_for_state_game();
 
-	    void _draw_for_main_menu();
+	    void _draw_for_menu();
+
 
 	public:
 		/*

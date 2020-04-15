@@ -1,5 +1,5 @@
-#ifndef _CALCULATOR_H_
-#define _CALCULATOR_H_
+#ifndef CALCULATOR_H
+#define CALCULATOR_H
 
 #include "Move.h"
 #include "TaskManager.h"
@@ -26,27 +26,25 @@ namespace MP
 
 		void _start_procedure_player_auto_or_normal_move(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, sf::Clock& aGameClock);
 
-		void _start_procedure_main_menu(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, Camera& aCamera);
+		void _start_procedure_menu(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, Camera& aCamera);
+		
+		void _start_procedure_map_gui(ObiectManager& aObiectManager);
+
+		void _start_procedure_player(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, sf::Clock& aGameClock);
+
+		void _start_procedure_trees(sf::Clock& globalClock, ObiectManager& aObiectManager);
+
+		void _start_procedure_computer_players(ObiectManager& aObiectManager, sf::Clock& aGameClock,Map& aMap);
+
+		void _start_procedure_camera(ObiectManager& aObiectManager, TaskManager& aMainTaskManager, sf::Vector2f newCoord, Camera& aCamera);
+
+		void _start_procedure_cursor(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, Camera& aCamera);
 
 	public:
 
-		void startProcedurePlayer(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, sf::Clock& aGameClock);
-
-		void startProcedureTrees(sf::Clock& globalClock, ObiectManager& aObiectManager);
-
-		void startProcedureComputerPlayers(ObiectManager& aObiectManager, sf::Clock& aGameClock,Map& aMap);
-
-		void startProcedureCamera(ObiectManager& aObiectManager, TaskManager& aMainTaskManager, sf::Vector2f newCoord, Camera& aCamera);
-
-		void startProcedureCursor(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, Camera& aCamera);
-
 		void startMainGameProcedures(TaskManager& aTaskManager, ObiectManager& aObiectManager, sf::Clock& globalClock, Camera& aCamera);
 
-		void startProcedureMapGui(ObiectManager& aObiectManager);
-
-		void startMainMenuProcedures(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, Camera& aCamera);
-
-		void startPlacesProcedures();
+		void startMenuProcedures(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, Camera& aCamera);
 	};
 }
 #endif

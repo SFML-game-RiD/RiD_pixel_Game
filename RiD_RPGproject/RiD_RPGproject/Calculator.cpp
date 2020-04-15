@@ -134,19 +134,28 @@ void MP::Calculator::_start_procedure_player_auto_or_normal_move(TaskManager& aM
 	}
 }
 
-void MP::Calculator::_start_procedure_main_menu(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, Camera& aCamera)
+void MP::Calculator::_start_procedure_menu(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, Camera& aCamera)
 {
-	aObiectManager.getGuiManager().getGuiMainMenu()->selectButton(aObiectManager.getCursor()->getGuiCoord());
-	aObiectManager.getGuiManager().getGuiMainMenu()->pressButton(aMainTaskManager, aCamera.getWindow());
+	if (aMainTaskManager.getCurrentState() == TaskManager::stateType::stateMainMenu)
+	{
+		aObiectManager.getGuiManager().getGuiMainMenu()->selectButton(aObiectManager.getCursor()->getGuiCoord());
+		aObiectManager.getGuiManager().getGuiMainMenu()->pressButton(aMainTaskManager, aCamera.getWindow());
+	}
+	else if (aMainTaskManager.getCurrentState() == TaskManager::stateType::statePlacesMenu)
+	{
+		aObiectManager.getGuiManager().getGuiPlacesMenu()->selectButton(aObiectManager.getCursor()->getGuiCoord());
+		aObiectManager.getGuiManager().getGuiPlacesMenu()->pressButton(aMainTaskManager, aCamera.getWindow());
+	}
+	aMainTaskManager.endTask(TaskManager::taskRange::mainOrder);
 }
 
 
-void MP::Calculator::startProcedurePlayer(TaskManager& aTaskManager, ObiectManager& aObiectManager, sf::Clock& aGameClock)
+void MP::Calculator::_start_procedure_player(TaskManager& aTaskManager, ObiectManager& aObiectManager, sf::Clock& aGameClock)
 {
 	_start_procedure_player_auto_or_normal_move(aTaskManager, aObiectManager, aGameClock);
 }
 
-void MP::Calculator::startProcedureTrees(sf::Clock& globalClock,ObiectManager &aObiectManager)
+void MP::Calculator::_start_procedure_trees(sf::Clock& globalClock,ObiectManager &aObiectManager)
 {
 	std::list<Tree>* aTree = aObiectManager.getTreeList();
 	std::list<Tree >::iterator iterator;
@@ -160,7 +169,7 @@ void MP::Calculator::startProcedureTrees(sf::Clock& globalClock,ObiectManager &a
 	}
 }
 
-void MP::Calculator::startProcedureComputerPlayers(ObiectManager& aObiectManager, sf::Clock& aGameClock, Map& aMap)
+void MP::Calculator::_start_procedure_computer_players(ObiectManager& aObiectManager, sf::Clock& aGameClock, Map& aMap)
 {
 	std::list<ComputerPlayer> *computerPlayerList = aObiectManager.getComputerPlayerList();
 	std::list<ComputerPlayer>::iterator it;
@@ -175,7 +184,7 @@ void MP::Calculator::startProcedureComputerPlayers(ObiectManager& aObiectManager
 	}
 }
 
-void MP::Calculator::startProcedureCamera(ObiectManager& aObiectManager, TaskManager& aTaskManager, sf::Vector2f newCoord, Camera& aCamera)
+void MP::Calculator::_start_procedure_camera(ObiectManager& aObiectManager, TaskManager& aTaskManager, sf::Vector2f newCoord, Camera& aCamera)
 {
 	
 	_start_procedure_camera_zoom(aObiectManager, aTaskManager, aCamera);
@@ -183,42 +192,39 @@ void MP::Calculator::startProcedureCamera(ObiectManager& aObiectManager, TaskMan
 	_start_procedure_correct_camera(newCoord, aCamera);
 }
 
-void MP::Calculator::startProcedureCursor(TaskManager& aTaskManager, ObiectManager& aObiectManager, Camera& aCamera)
+void MP::Calculator::_start_procedure_cursor(TaskManager& aTaskManager, ObiectManager& aObiectManager, Camera& aCamera)
 {
 	aObiectManager.getCursor()->updateCursor(aTaskManager,aCamera);
 
 	aObiectManager.getCursor()->checkIfPlayerClicked(aTaskManager, aCamera);
 }
 
-void MP::Calculator::startMainGameProcedures(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, sf::Clock& globalClock, Camera& aCamera)
-{
-	startProcedurePlayer(aMainTaskManager, aObiectManager, globalClock);
 
-	startProcedureTrees(globalClock, aObiectManager);
 
-	startProcedureCamera(aObiectManager, aMainTaskManager,aObiectManager.getPlayer()->getObiectCoord(), aCamera);
-
-	startProcedureComputerPlayers(aObiectManager, globalClock, aObiectManager.getMap());
-
-	startProcedureCursor(aMainTaskManager, aObiectManager, aCamera);
-
-	startProcedureMapGui(aObiectManager);
-}
-
-void MP::Calculator::startProcedureMapGui(ObiectManager& aObiectManager)
+void MP::Calculator::_start_procedure_map_gui(ObiectManager& aObiectManager)
 {
 	aObiectManager.getPlayer();
 	aObiectManager.getGuiManager().getMapGui()->updateItems(aObiectManager.getPlayer()->aItemsManager);
 }
 
-void MP::Calculator::startMainMenuProcedures(TaskManager &aMainTaskManager, ObiectManager & aObiectManager,Camera& aCamera)
+void MP::Calculator::startMainGameProcedures(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, sf::Clock& globalClock, Camera& aCamera)
 {
-	_start_procedure_main_menu(aMainTaskManager,aObiectManager,aCamera);
+	_start_procedure_player(aMainTaskManager, aObiectManager, globalClock);
 
-	startProcedureCursor(aMainTaskManager, aObiectManager, aCamera);
+	_start_procedure_trees(globalClock, aObiectManager);
+
+	_start_procedure_camera(aObiectManager, aMainTaskManager,aObiectManager.getPlayer()->getObiectCoord(), aCamera);
+
+	_start_procedure_computer_players(aObiectManager, globalClock, aObiectManager.getMap());
+
+	_start_procedure_cursor(aMainTaskManager, aObiectManager, aCamera);
+
+	_start_procedure_map_gui(aObiectManager);
 }
 
-void MP::Calculator::startPlacesProcedures()
+void MP::Calculator::startMenuProcedures(TaskManager &aMainTaskManager, ObiectManager & aObiectManager,Camera& aCamera)
 {
-}
+	_start_procedure_menu(aMainTaskManager,aObiectManager,aCamera);
 
+	_start_procedure_cursor(aMainTaskManager, aObiectManager, aCamera);
+}

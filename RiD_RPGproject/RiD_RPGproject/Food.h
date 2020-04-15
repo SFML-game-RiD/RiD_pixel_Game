@@ -1,5 +1,5 @@
-#ifndef _FOOD_H_
-#define _FOOD_H_
+#ifndef FOOD_H
+#define FOOD_H
 #include "Item.h"
 
 namespace MP

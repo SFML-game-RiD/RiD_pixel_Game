@@ -1,5 +1,5 @@
-#ifndef _SPEARMAN_H_
-#define _SPEARMAN_H_
+#ifndef SPEARMAN_H
+#define SPEARMAN_H
 #include "Item.h"
 
 namespace MP

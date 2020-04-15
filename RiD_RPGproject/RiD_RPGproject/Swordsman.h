@@ -1,5 +1,5 @@
-#ifndef _SWORDSMAN_H_
-#define _SWORDSMAN_H_
+#ifndef SWORDSMAN_H
+#define SWORDSMAN_H
 #include "Item.h"
 
 namespace MP

@@ -205,3 +205,14 @@ std::vector<MP::PathIcon>& MP::Player::getPathIcon()
 {
 	return _a_path_icon;
 }
+
+void MP::Player::goToPlace(Map& aGameMap, TaskManager& aMainTaskManger)
+{
+	MapElement *currentBlock = aGameMap.findElementAddressSquareRange(this->getObiectCoord(), aGameMap.getMapElementList());
+
+
+	if (currentBlock->getPlace() != nullptr)
+	{
+		aMainTaskManger.setState(TaskManager::stateType::statePlacesMenu);
+	}
+}

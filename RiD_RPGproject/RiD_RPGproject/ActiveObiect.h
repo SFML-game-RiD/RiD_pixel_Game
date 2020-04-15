@@ -1,5 +1,5 @@
-#ifndef _ACTIVEOBIECT_H_
-#define _ACTIVEOBIECT_H_
+#ifndef ACTIVEOBIECT_H
+#define ACTIVEOBIECT_H
 
 #include "Obiect.h"
 #include "ItemsManager.h"

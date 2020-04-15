@@ -6,6 +6,7 @@
 #include "Land.h"
 #include "Engine/ConfigurationLoader.h"
 #include "ComputerPlayer.h"
+#include "GuiPlacesMenu.h"
 
 void MP::ObiectGenerator::_generate_trees(ObiectManager& aObiectManager)
 {
@@ -121,7 +122,8 @@ void MP::ObiectGenerator::_generate_gui(ObiectManager& aObiectManager)
 
 
 	//creating places menu
-	//aObiectManager.getGuiManager().getGuiPlacesMenu() = std::make_unique<GuiMenu>(&_a_asset_manager.getTexture("menu"));
+	aObiectManager.getGuiManager().getGuiPlacesMenu() = std::make_unique<GuiPlacesMenu>(&_a_asset_manager.getTexture("menu"), &_a_asset_manager.getTexture("button"), _a_asset_manager.getFont("font"));
+
 }
 
 MP::ObiectGenerator::ObiectGenerator()
@@ -149,6 +151,7 @@ void MP::ObiectGenerator::generateObiects(ObiectManager& aObiectManager)
 	_a_asset_manager.setTexture("mapgui", "img/GUI/rid_map_gui_2.png");
 	_a_asset_manager.setTexture("menu", "img/GUI/rid_main_menu.png");
 	_a_asset_manager.setTexture("button", "img/GUI/button.png");
+
 	_a_asset_manager.setFont("font", "font/MerchantCopy-GOXq.ttf");
 
 	_generate_map(aObiectManager);

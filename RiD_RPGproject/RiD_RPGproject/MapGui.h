@@ -1,5 +1,5 @@
-#ifndef _MAPGUI_H_
-#define _MAPGUI_H_
+#ifndef MAPGUI_H
+#define MAPGUI_H
 #include "Obiect.h"
 #include "TaskManager.h"
 #include "ItemsManager.h"

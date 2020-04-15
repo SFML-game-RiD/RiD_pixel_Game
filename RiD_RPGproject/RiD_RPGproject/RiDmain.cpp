@@ -31,11 +31,11 @@ void RiD::RiDmain::_create_window()
 			_calculate_for_state_game();
 			_draw_for_state_game();
 		}
-		else if (_a_main_task_manager.getCurrentState() == MP::TaskManager::stateType::stateMainMenu)
+		else if (_a_main_task_manager.getCurrentState() == MP::TaskManager::stateType::stateMainMenu or _a_main_task_manager.getCurrentState() == MP::TaskManager::stateType::statePlacesMenu)
 		{
-			_event_function_for_main_menu();
+			_event_function_for_menu();
 			_calculate_for_state_main_menu();
-			_draw_for_main_menu();
+			_draw_for_menu();//same as below
 		}
 	}
 }
@@ -49,12 +49,9 @@ void RiD::RiDmain::_event_function_for_state_game()
 			_a_camera.getWindow().close();
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-		{
-			if (_a_main_task_manager.getTask(MP::TaskManager::taskRange::mainOrder) == MP::TaskManager::taskType::taskNone
-				and _a_main_task_manager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskNone)
-
+			if (_a_main_task_manager.isFree())
 				_a_main_task_manager.setState(MP::TaskManager::stateType::stateMainMenu);
-		}
+
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 			_a_obiect_manager.getPlayer()->tryToMoveUp(_a_obiect_manager.getMap(),_a_main_task_manager);
 
@@ -66,6 +63,11 @@ void RiD::RiDmain::_event_function_for_state_game()
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 			_a_obiect_manager.getPlayer()->tryToMoveRight(_a_obiect_manager.getMap(), _a_main_task_manager);
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+			if (_a_main_task_manager.isFree())
+				_a_obiect_manager.getPlayer()->goToPlace(_a_obiect_manager.getMap(), _a_main_task_manager);
+			
 
 		if (_event.type == sf::Event::MouseWheelScrolled)
 		{
@@ -88,7 +90,7 @@ void RiD::RiDmain::_event_function_for_state_game()
 	}
 }
 
-void RiD::RiDmain::_event_function_for_main_menu()
+void RiD::RiDmain::_event_function_for_menu()
 {
 	while (_a_camera.getWindow().pollEvent(_event)) //handling events
 	{
@@ -98,20 +100,20 @@ void RiD::RiDmain::_event_function_for_main_menu()
 	
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-				_a_main_task_manager.setTask(MP::TaskManager::taskRange::mainOrder, MP::TaskManager::taskType::taskClickLeft);
+			if(_a_main_task_manager.isFree())
+			_a_main_task_manager.setTask(MP::TaskManager::taskRange::mainOrder, MP::TaskManager::taskType::taskClickLeft);
 		}
 	}
 }
 
 void RiD::RiDmain::_calculate_for_state_game()
 {
-	
-		_a_calculator.startMainGameProcedures(_a_main_task_manager, _a_obiect_manager, _clock, _a_camera);
+	_a_calculator.startMainGameProcedures(_a_main_task_manager, _a_obiect_manager, _clock, _a_camera);
 }
 
 void RiD::RiDmain::_calculate_for_state_main_menu()
 {
-	_a_calculator.startMainMenuProcedures(_a_main_task_manager, _a_obiect_manager, _a_camera);
+	_a_calculator.startMenuProcedures(_a_main_task_manager, _a_obiect_manager, _a_camera);
 }
 
 void RiD::RiDmain::_draw_for_state_game()
@@ -123,14 +125,15 @@ void RiD::RiDmain::_draw_for_state_game()
 	_a_camera.drawFrame(); 
 }
 
-void RiD::RiDmain::_draw_for_main_menu()
+void RiD::RiDmain::_draw_for_menu()
 {
 	_a_camera.clearCamera();
 
-	_a_obiect_drawer.drawMainMenu(_a_camera.getWindow(),_a_obiect_manager,_a_camera);
+	_a_obiect_drawer.drawMenu(_a_main_task_manager,_a_obiect_manager,_a_camera);
 
 	_a_camera.drawFrame();
 }
+
 
 RiD::RiDmain::RiDmain(int width, int height, std::string title)
 {

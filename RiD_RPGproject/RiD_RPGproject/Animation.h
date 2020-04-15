@@ -1,5 +1,5 @@
-#ifndef _MAPANIMATION_H_
-#define _MAPANIMATION_H_
+#ifndef MAPANIMATION_H
+#define MAPANIMATION_H
 #include <vector>
 #include "Engine/ConfigurationLoader.h"
 #include <SFML/Graphics.hpp>
@@ -30,30 +30,23 @@ namespace MP
 
 	public:
 
-		void setObiectSpritePosition(int x, int y);
-
-		void setObiectSpritePosition(sf::Vector2f coord);
-
-		sf::Sprite& getObiectSprite();
-
 		void loadObiectTextures(sf::Texture* texturePtr, int columns, int rows, int squareLength);
-
 		void changeSprite(int spriteNumber);
-
-		const std::vector<sf::IntRect>& getOryginalArray();
-
-		int getCurrentSprite();
-
+	
+		void setObiectSpritePosition(int x, int y);
+		void setObiectSpritePosition(sf::Vector2f coord);
 		void setNextSprite(int from, int to);
-
 		void setScale(float x, float y);
-
-		sf::Vector2f getScale();
-
 		void setOrigin(int x, int y);
-
 		void setColor(sf::Color newColor);
+	
+		sf::Sprite& getObiectSprite();
+		sf::Vector2f getScale();
+		int getCurrentSprite();
+		const std::vector<sf::IntRect>& getOryginalArray();
+	
 
+	
 	};
 }
 #endif
