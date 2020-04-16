@@ -14,7 +14,7 @@ namespace RTB
 		ArrowHitbox(sf::Sprite*& arrow);
 
 		//Changes position of hitbox as arrow is moving
-		void update(short direction);
+		void update(short direction, float angle);
 
 		//Draws hitbox
 		void render(sf::RenderTarget& window);

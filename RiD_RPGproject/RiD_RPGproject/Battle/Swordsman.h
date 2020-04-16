@@ -16,11 +16,11 @@ namespace RTB
 		AI::PathNode* _current_path = nullptr, *_tmp_current_path = nullptr, *_half_way = nullptr;
 		sf::Vector2i _current_enemy_position, _end_path_position;
 		bool _is_enemy_choosen;
+		std::list<std::shared_ptr<Character>>::iterator _choosen_enemy;
 
 		void _dealSwordDamage(std::list<std::shared_ptr<Character>>& list_of_bots);
-		std::list<std::shared_ptr<Character>>::iterator _choosen_enemy;
 		sf::Vector2i _isoTo2D(sf::Vector2f position);
-		std::list<std::shared_ptr<Character>>::iterator _selectRandomEnemy(std::list<std::shared_ptr<Character>>::iterator iterator, std::list<std::shared_ptr<Character>>::iterator end);
+		std::list<std::shared_ptr<Character>>::iterator _selectRandomEnemy(std::list<std::shared_ptr<Character>>::iterator start, std::list<std::shared_ptr<Character>>::iterator end);
 	public:
 		Swordsman(sf::Texture texture, short health_points, std::vector<std::vector<AI::PathNode>>& walkable_area);
 		~Swordsman();
@@ -30,7 +30,7 @@ namespace RTB
 
 		//Function responsible for all of the Swordsmans moves and behaviors
 		void update(sf::Time time, std::vector<std::vector<std::unique_ptr<MapElement>>>& map_objects,
-			 std::list<std::shared_ptr<Character>>& list_of_bots);
+			 std::list<std::shared_ptr<Character>>& list_of_bots, sf::RenderWindow& window);
 
 		//Draws Swordsmans sprite
 		void render(sf::RenderWindow& window);
@@ -54,5 +54,7 @@ namespace RTB
 		void subtractHP(short value);
 
 		void delete_path();
+
+		void deadBody(sf::RenderWindow& window);
 	};
 }

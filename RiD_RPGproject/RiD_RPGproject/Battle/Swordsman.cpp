@@ -60,7 +60,7 @@ namespace RTB
 	}
 
 	void Swordsman::update(sf::Time time, std::vector<std::vector<std::unique_ptr<MapElement>>>& map_objects,
-		std::list<std::shared_ptr<Character>>& list_of_bots)
+		std::list<std::shared_ptr<Character>>& list_of_bots, sf::RenderWindow& window)
 	{
 		_position = _movement->getSprite().getPosition();
 		if (!_movement->isAttackTriggered())
@@ -76,7 +76,7 @@ namespace RTB
 					_tmp_current_path = _current_path;
 					_end_path_position = _current_enemy_position;
 				}
-				else if (_current_enemy_position != _end_path_position && _tmp_current_path/*->getPNext()*/ == _half_way)
+				else if (_current_enemy_position != _end_path_position && _tmp_current_path == _half_way)
 				{
 					delete_path();
 					_path_generator->findPath(_isoTo2D(_position), _isoTo2D((*_choosen_enemy)->getPosition()));
@@ -90,49 +90,41 @@ namespace RTB
 					if (_tmp_current_path->getPNext()->getPosition().x > _isoTo2D(_position).x &&
 						_tmp_current_path->getPNext()->getPosition().y < _isoTo2D(_position).y)
 					{
-						_movement->walkingRight(time);
-						_character_sprite->move(_speed, -_speed);
+						_movement->walkingRight(time, _speed, -_speed);
 					}
 					else if (_tmp_current_path->getPNext()->getPosition().x < _isoTo2D(_position).x &&
 						_tmp_current_path->getPNext()->getPosition().y < _isoTo2D(_position).y)
 					{
-						_movement->walkingLeft(time);
-						_character_sprite->move(-_speed, -_speed);
+						_movement->walkingLeft(time, -_speed, -_speed);
 					}
 					else if (_tmp_current_path->getPNext()->getPosition().x < _isoTo2D(_position).x &&
 						_tmp_current_path->getPNext()->getPosition().y > _isoTo2D(_position).y)
 					{
-						_movement->walkingLeft(time);
-						_character_sprite->move(-_speed, _speed);
+						_movement->walkingLeft(time, -_speed, _speed);
 					}
 					else if (_tmp_current_path->getPNext()->getPosition().x > _isoTo2D(_position).x &&
 						_tmp_current_path->getPNext()->getPosition().y > _isoTo2D(_position).y)
 					{
-						_movement->walkingRight(time);
-						_character_sprite->move(_speed, _speed);
+						_movement->walkingRight(time, _speed, _speed);
 					}
 					else if (_tmp_current_path->getPNext()->getPosition().x > _isoTo2D(_position).x)
 					{
-						_movement->walkingRight(time);
-						_character_sprite->move(_speed, 0.0f);
+						_movement->walkingRight(time, _speed, 0.0f);
 					}
 
 					else if (_tmp_current_path->getPNext()->getPosition().x < _isoTo2D(_position).x)
 					{
-						_movement->walkingLeft(time);
-						_character_sprite->move(-_speed, 0.0f);
+						_movement->walkingLeft(time, -_speed, 0.0f);
 					}
 
 					else if (_tmp_current_path->getPNext()->getPosition().y < _isoTo2D(_position).y)
 					{
-						_movement->walkingUp(time);
-						_character_sprite->move(0.0f, -_speed);
+						_movement->walkingUp(time, 0.0f, -_speed);
 					}
 
 					else if (_tmp_current_path->getPNext()->getPosition().y > _isoTo2D(_position).y)
 					{
-						_movement->walkingDown(time);
-						_character_sprite->move(0.0f, _speed);
+						_movement->walkingDown(time, 0.0f, _speed);
 					}
 					else
 						_movement->idle(time);
@@ -158,9 +150,9 @@ namespace RTB
 			if (distance < 2)
 				_movement->triggerAttack();
 		}
-
 		_hitbox->update();
 		_hp_bar->update();
+
 		if (_movement->isDeathTriggered())
 		{
 			delete_path();
@@ -226,5 +218,11 @@ namespace RTB
 		}
 
 		delete _current_path;
+	}
+
+	void Swordsman::deadBody(sf::RenderWindow& window)
+	{
+		_movement->dead();
+		window.draw(_movement->getSprite());
 	}
 }

@@ -31,19 +31,21 @@ namespace RiD
 	public:
 		Movement(sf::Texture texture, sf::Sprite*& object);
 
-		void walkingUp(sf::Time time);
+		void walkingUp(sf::Time time, float speed_x, float speed_y);
 
-		void walkingDown(sf::Time time);
+		void walkingDown(sf::Time time, float speed_x, float speed_y);
 
-		void walkingLeft(sf::Time time);
+		void walkingLeft(sf::Time time, float speed_x, float speed_y);
 
-		void walkingRight(sf::Time time);
+		void walkingRight(sf::Time time, float speed_x, float speed_y);
 
 		void swordSwing(sf::Time time);
 
-		void bowShot(sf::Time time);
+		void bowShot(sf::Time time, short direction);
 
 		void idle(sf::Time time);
+
+		void dead();
 
 		void death(sf::Time time);
 

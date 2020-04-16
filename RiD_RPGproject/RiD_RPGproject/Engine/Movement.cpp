@@ -6,7 +6,7 @@ namespace RiD
 {
 	Movement::Movement(sf::Texture texture, sf::Sprite*& object) : _texture(texture),
 		animations{ sf::Time::Zero, sf::seconds(1.f / 12.f), sf::Time::Zero, sf::seconds(1.f / 12.f),
-		sf::Time::Zero, sf::seconds(1.f/12.f),sf::Time::Zero, sf::seconds(1.f / 8.f) },
+		sf::Time::Zero, sf::seconds(1.f / 12.f),sf::Time::Zero, sf::seconds(1.f / 6.f) },
 		_is_attack_triggered(false), _is_shot_triggered(false), _is_death_triggered(false), _object(object)
 	{
 		_object->setTexture(_texture);
@@ -17,13 +17,14 @@ namespace RiD
 		_direction = down;
 	}
 
-	void Movement::walkingUp(sf::Time time)
+	void Movement::walkingUp(sf::Time time, float speed_x, float speed_y)
 	{
 		if (!_is_attack_triggered && !_is_shot_triggered && !_is_death_triggered)
 		{
 			_yCord = walkUpAnim;
 			_object->setOrigin(32.0, 32.0);
 			_object->setTextureRect(sf::IntRect(_xCord * 64, _yCord * 64, 64, 64));
+			_object->move(speed_x, speed_y);
 			_direction = up;
 
 			if (_xCord * 64 >= 576)
@@ -40,13 +41,14 @@ namespace RiD
 		}
 	}
 
-	void Movement::walkingDown(sf::Time time)
+	void Movement::walkingDown(sf::Time time, float speed_x, float speed_y)
 	{
 		if (!_is_attack_triggered && !_is_shot_triggered && !_is_death_triggered)
 		{
 			_yCord = walkDownAnim;
 			_object->setOrigin(32.0, 32.0);
 			_object->setTextureRect(sf::IntRect(_xCord * 64, _yCord * 64, 64, 64));
+			_object->move(speed_x, speed_y);
 			_direction = down;
 
 			if (time - animations.walking_animation_start_time >= animations.walking_animation_frame_duration)
@@ -60,13 +62,14 @@ namespace RiD
 		}
 	}
 
-	void Movement::walkingLeft(sf::Time time)
+	void Movement::walkingLeft(sf::Time time, float speed_x, float speed_y)
 	{
 		if (!_is_attack_triggered && !_is_shot_triggered && !_is_death_triggered)
 		{
 			_yCord = walkLeftAnim;
 			_object->setOrigin(32.0, 32.0);
 			_object->setTextureRect(sf::IntRect(_xCord * 64, _yCord * 64, 64, 64));
+			_object->move(speed_x, speed_y);
 			_direction = left;
 
 			if (time - animations.walking_animation_start_time >= animations.walking_animation_frame_duration)
@@ -80,13 +83,14 @@ namespace RiD
 		}
 	}
 
-	void Movement::walkingRight(sf::Time time)
+	void Movement::walkingRight(sf::Time time, float speed_x, float speed_y)
 	{
 		if (!_is_attack_triggered && !_is_shot_triggered && !_is_death_triggered)
 		{
 			_yCord = walkRightAnim;
 			_object->setOrigin(32.0, 32.0);
 			_object->setTextureRect(sf::IntRect(_xCord * 64, _yCord * 64, 64, 64));
+			_object->move(speed_x, speed_y);
 			_direction = right;
 
 			if (time - animations.walking_animation_start_time >= animations.walking_animation_frame_duration)
@@ -102,53 +106,54 @@ namespace RiD
 
 	void Movement::swordSwing(sf::Time time)
 	{
-		//if (_is_attack_triggered)
-		//{
-			_yAttackCord = swordSwingAnim * 64;
-			_object->setOrigin(96.0, 96.0);
-			_object->setTextureRect(sf::IntRect(_xAttackCord * 192, _yAttackCord + (_direction * 192), 192, 192));
+		_yAttackCord = swordSwingAnim * 64;
+		_object->setOrigin(96.0, 96.0);
+		_object->setTextureRect(sf::IntRect(_xAttackCord * 192, _yAttackCord + (_direction * 192), 192, 192));
 
-			
-			if (time - animations.sword_animation_start_time >= animations.sword_animation_frame_duration)
+
+		if (time - animations.sword_animation_start_time >= animations.sword_animation_frame_duration)
+		{
+			_xAttackCord++;
+			animations.sword_animation_start_time = time;
+			if (_xAttackCord * 192 == 1152)
 			{
-				_xAttackCord++;
-				animations.sword_animation_start_time = time;
-				if (_xAttackCord * 192 == 1152)
-				{
-					_is_attack_triggered = false;
-					_ready_to_deal_sword_damage = true;
-					_xAttackCord = 0;
-				}
+				_is_attack_triggered = false;
+				_ready_to_deal_sword_damage = true;
+				_xAttackCord = 0;
 			}
-	//	}
+		}
 	}
 
-	void Movement::bowShot(sf::Time time)
+	void Movement::bowShot(sf::Time time, short direction)
 	{
-		//if (_is_shot_triggered)
-		//{
-			_yShotCord = shotAnim *64;
-			_object->setOrigin(32.0, 32.0);
-			_object->setTextureRect(sf::IntRect(_xshotCord * 64, _yShotCord + (_direction * 64), 64, 64));
 
-			if (time - animations.bow_shot_animation_start_time >= animations.bow_shot_animation_frame_duration)
+		_yShotCord = shotAnim * 64;
+		_object->setOrigin(32.0, 32.0);
+		_object->setTextureRect(sf::IntRect(_xshotCord * 64, _yShotCord + (direction * 64), 64, 64));
+
+		if (time - animations.bow_shot_animation_start_time >= animations.bow_shot_animation_frame_duration)
+		{
+			_xshotCord++;
+			animations.bow_shot_animation_start_time = time;
+			if (_xshotCord * 64 == 768)
 			{
-				_xshotCord++;
-				animations.bow_shot_animation_start_time = time;
-				if (_xshotCord * 64 == 768)
-				{
-					_is_shot_triggered = false;
-					_ready_to_shot_arrow = true;
-					_xshotCord = 0;
-				}
+				_is_shot_triggered = false;
+				_ready_to_shot_arrow = true;
+				_xshotCord = 0;
 			}
-		//}
+		}
 	}
 
 	void Movement::idle(sf::Time time)
 	{
 		_object->setOrigin(32.0, 32.0);
 		_object->setTextureRect(sf::IntRect(1, 64 * _direction, 64, 64));
+	}
+
+	void Movement::dead()
+	{
+		_object->setOrigin(32.0, 32.0);
+		_object->setTextureRect(sf::IntRect(320, 1280, 64, 64));
 	}
 
 	void Movement::death(sf::Time time)

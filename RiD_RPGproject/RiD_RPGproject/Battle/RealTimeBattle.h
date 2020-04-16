@@ -14,6 +14,7 @@
 #include "Player.h"
 #include "Swordsman.h"
 #include "Archer.h"
+#include "Spearman.h"
 
 namespace RTB
 {
@@ -28,6 +29,7 @@ namespace RTB
 		std::list<std::shared_ptr<Character>> _list_of_enemies;
 		std::list<std::shared_ptr<Character>> _list_of_allies;
 		std::unique_ptr<TileMap> _tile_map = nullptr;
+		sf::Sprite _window_border;
 		float zoom = 1.f;
 
 		void _zoomEvent();

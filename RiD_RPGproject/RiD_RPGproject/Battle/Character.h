@@ -30,6 +30,8 @@ namespace RTB
 		float _speed;
 		enum directions { up, left, down, right };
 		bool _moving_up = true, _moving_down = true, _moving_right = true, _moving_left = true;
+
+		sf::Vector2i _isoTo2D(sf::Vector2f position);
 	public:
 
 		//Sets character's position
@@ -37,7 +39,7 @@ namespace RTB
 
 		//Function responsible for all of the moves
 		virtual void update(sf::Time time, std::vector<std::vector<std::unique_ptr<MapElement>>>& map_objects,
-			std::list<std::shared_ptr<Character>>& list_of_bots) = 0;
+			std::list<std::shared_ptr<Character>>& list_of_bots, sf::RenderWindow& window) = 0;
 
 		//Draws character's sprite
 		virtual void render(sf::RenderWindow& window);
@@ -49,7 +51,7 @@ namespace RTB
 		virtual sf::Vector2f getPosition();
 
 		//Checks if two objects collide witch each other
-		bool checkMapCollision(const sf::RectangleShape& Object1, const sf::RectangleShape& Object2);
+		bool checkOrientedCollision(const sf::RectangleShape& Object1, const sf::RectangleShape& Object2);
 
 		//Subtracts character's hp
 		virtual void subtractHP(short value);
@@ -62,5 +64,7 @@ namespace RTB
 		//@param list_of_bots list of possible enemies
 		//@param window render window
 		virtual void dealDamage(sf::Time time, std::list<std::shared_ptr<Character>>& list_of_bots, sf::RenderTarget& window) = 0;
+
+		virtual void deadBody(sf::RenderWindow& window) = 0;
 	};
 }

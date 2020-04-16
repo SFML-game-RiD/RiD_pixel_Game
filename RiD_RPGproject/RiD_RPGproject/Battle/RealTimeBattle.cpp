@@ -36,10 +36,12 @@ namespace RTB
 		std::uniform_real_distribution<float> enemy_position_width(1, 5);
 		sf::Vector2f position;
 
-		for (unsigned short i = 0; i < 10; ++i)
-			_list_of_enemies.emplace_back(new Swordsman(_asset_manager.getTexture("enemy_swordsman"), 100, _tile_map->getWalkableArea()));
 		for (unsigned short i = 0; i < 0; ++i)
-			_list_of_enemies.emplace_back(new Archer(_asset_manager.getTexture("enemy_archer"), 100, _asset_manager.getTexture("arrow")));
+			_list_of_enemies.emplace_back(new Swordsman(_asset_manager.getTexture("enemy_swordsman"), 100, _tile_map->getWalkableArea()));
+		for (unsigned short i = 0; i < 2; ++i)
+			_list_of_enemies.emplace_back(new Archer(_asset_manager.getTexture("enemy_archer"), 100, _asset_manager.getTexture("arrow"), _tile_map->getWalkableArea()));
+		for (unsigned short i = 0; i < 0; ++i)
+			_list_of_enemies.emplace_back(new Spearman(_asset_manager.getTexture("enemy_spearman"), 100, _tile_map->getWalkableArea()));
 		for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_enemies.begin(); iterator != _list_of_enemies.end(); iterator++)
 		{
 			position.x = enemy_position_height(RNG) * 25;
@@ -55,10 +57,12 @@ namespace RTB
 			}
 		}
 
-		for (unsigned short i = 0; i < 9; ++i)
-			_list_of_allies.emplace_back(new Swordsman(_asset_manager.getTexture("ally_swordsman"), 100, _tile_map->getWalkableArea()));
 		for (unsigned short i = 0; i < 0; ++i)
-			_list_of_allies.emplace_back(new Archer(_asset_manager.getTexture("ally_archer"), 100, _asset_manager.getTexture("arrow")));
+			_list_of_allies.emplace_back(new Swordsman(_asset_manager.getTexture("ally_swordsman"), 100, _tile_map->getWalkableArea()));
+		for (unsigned short i = 0; i < 2; ++i)
+			_list_of_allies.emplace_back(new Archer(_asset_manager.getTexture("ally_archer"), 100, _asset_manager.getTexture("arrow"), _tile_map->getWalkableArea()));
+		for (unsigned short i = 0; i < 0; ++i)
+			_list_of_enemies.emplace_back(new Spearman(_asset_manager.getTexture("ally_spearman"), 100, _tile_map->getWalkableArea()));
 
 		_list_of_allies.emplace_back(new Player(_asset_manager.getTexture("player"), 100, _asset_manager.getTexture("arrow")));
 		_player = _list_of_allies.back();
@@ -104,7 +108,12 @@ namespace RTB
 		_asset_manager.setTexture("ally_swordsman", "img/ally_swordsman.png");
 		_asset_manager.setTexture("enemy_archer", "img/enemy_archer.png");
 		_asset_manager.setTexture("ally_archer", "img/ally_archer.png");
+		_asset_manager.setTexture("ally_spearman", "img/ally_spearman.png");
+		_asset_manager.setTexture("enemy_spearman", "img/enemy_spearman.png");
 		_asset_manager.setTexture("arrow", "img/arrow.png");
+		_asset_manager.setTexture("window_border", "img/WindowBorder.png");
+
+		_window_border.setTexture(_asset_manager.getTexture("window_border"));
 	}
 
 	RealTimeBattle::~RealTimeBattle()
@@ -114,13 +123,13 @@ namespace RTB
 	void RealTimeBattle::mainLoop(sf::RenderWindow& window)
 	{
 		_tile_map = std::unique_ptr<TileMap>(new TileMap({ 50,50 }));
-		window.setView(_camera);
+
 		this->_armyCreation();
 		while (window.isOpen())
 		{
 			while (window.pollEvent(_event)) //handling events
 			{
-				if (_event.type == sf::Event::EventType::Closed)
+				if (_event.type == sf::Event::EventType::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 					window.close();
 				if (_event.type == sf::Event::MouseWheelMoved)
 					this->_zoomEvent();
@@ -128,18 +137,31 @@ namespace RTB
 
 			//Renders
 			window.clear();
+			window.draw(_window_border);
 			_tile_map->drawTiles(window);
 
 			//Bots
 			if (_player->isAlive())
 				_camera.setCenter(_player->getPosition()); //camera is centered on the player
-			else return;
+
+			for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_enemies.begin(); iterator != _list_of_enemies.end(); iterator++)
+			{
+				if (!(*iterator)->isAlive())
+					(*iterator)->deadBody(window);
+				else continue;
+			}
+			for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_allies.begin(); iterator != _list_of_allies.end(); iterator++)
+			{
+				if (!(*iterator)->isAlive())
+					(*iterator)->deadBody(window);
+				else continue;
+			}
 
 			for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_enemies.begin(); iterator != _list_of_enemies.end(); iterator++)
 			{
 				if ((*iterator)->isAlive())
 				{
-					(*iterator)->update(_clock.getElapsedTime(), _tile_map->getCollidableObjects(), _list_of_allies);
+					(*iterator)->update(_clock.getElapsedTime(), _tile_map->getCollidableObjects(), _list_of_allies, window);
 					(*iterator)->dealDamage(_clock.getElapsedTime(), _list_of_allies, window);
 					(*iterator)->render(window);
 				}
@@ -149,7 +171,7 @@ namespace RTB
 			{
 				if ((*iterator)->isAlive())
 				{
-					(*iterator)->update(_clock.getElapsedTime(), _tile_map->getCollidableObjects(), _list_of_enemies);
+					(*iterator)->update(_clock.getElapsedTime(), _tile_map->getCollidableObjects(), _list_of_enemies, window);
 					(*iterator)->dealDamage(_clock.getElapsedTime(), _list_of_enemies, window);
 					(*iterator)->render(window);
 				}

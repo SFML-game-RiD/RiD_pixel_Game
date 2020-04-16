@@ -22,7 +22,7 @@ namespace RTB
 		for (std::list<std::shared_ptr<Character>>::iterator iterator = list_of_bots.begin();
 			iterator != list_of_bots.end(); iterator++)
 		{
-			if ((*iterator)->isAlive() && _arrows->isFlying() && _arrows->checkIntersection((*iterator)->getHitbox().getGlobalBounds()) == true)
+			if ((*iterator)->isAlive() && _arrows->isFlying() && checkOrientedCollision((*iterator)->getHitbox(), _arrows->getHitbox())/*_arrows->checkIntersection((*iterator)->getHitbox().getGlobalBounds()) == true*/)
 			{
 				(*iterator)->subtractHP(1);
 			}
@@ -87,7 +87,7 @@ namespace RTB
 			{
 				for (unsigned int j = start_y; j < end_y; ++j)
 				{
-					if (checkMapCollision(map_objects[i][j]->getObjectsHitbox(), _hitbox->getRectangle()))
+					if (checkOrientedCollision(map_objects[i][j]->getObjectsHitbox(), _hitbox->getRectangle()))
 					{
 						if (_direction == up)
 							_moving_up = false;
@@ -131,7 +131,7 @@ namespace RTB
 	}
 
 	void Player::update(sf::Time time, std::vector<std::vector<std::unique_ptr<MapElement>>>& map_objects,
-		std::list<std::shared_ptr<Character>>& list_of_bots)
+		std::list<std::shared_ptr<Character>>& list_of_bots, sf::RenderWindow& window)
 	{
 		_isColidingWithTile(map_objects);
 
@@ -149,28 +149,19 @@ namespace RTB
 			{
 				if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && _moving_up)
 				{
-					_movement->walkingUp(time);
-					_character_sprite->move(0.0f, -_speed);
+					_movement->walkingUp(time, 0.0f, -_speed);
 				}
-
-
 				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && _moving_down)
 				{
-					_movement->walkingDown(time);
-					_character_sprite->move(0.0f, _speed);
+					_movement->walkingDown(time, 0.0f, _speed);
 				}
-
-
 				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && _moving_right)
 				{
-					_movement->walkingRight(time);
-					_character_sprite->move(_speed, 0.0f);
+					_movement->walkingRight(time, _speed, 0.0f);
 				}
-
 				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && _moving_left)
 				{
-					_movement->walkingLeft(time);
-					_character_sprite->move(-_speed, 0.0f);
+					_movement->walkingLeft(time, -_speed, 0.0f);
 				}
 
 			}
@@ -178,8 +169,13 @@ namespace RTB
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 			_movement->triggerAttack();
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) && _arrows->isFlying() == false)
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) && _arrows->isFlying() == false)
+		{
+			_shot_destination = sf::Mouse::getPosition(window);
+			sf::Vector2i worldPos = {(int)window.mapPixelToCoords(_shot_destination).x, (int)window.mapPixelToCoords(_shot_destination).y };
+			_shot_destination = worldPos;
 			_movement->triggerShot();
+		}
 
 		if ((!sf::Keyboard::isKeyPressed(sf::Keyboard::A)) && (!sf::Keyboard::isKeyPressed(sf::Keyboard::D)) &&
 			(!sf::Keyboard::isKeyPressed(sf::Keyboard::S)) && (!sf::Keyboard::isKeyPressed(sf::Keyboard::W)) &&
@@ -215,17 +211,32 @@ namespace RTB
 		//bow
 		if (_movement->isShotTriggered())
 		{
+			_position = _character_sprite->getPosition();
 			_arrows_count--;
-			_movement->bowShot(time);
+			if (_shot_destination.x - _position.x > 0 && abs(_shot_destination.x - _position.x) > abs(_shot_destination.y - _position.y))
+				_direction = right;
+			else if (_shot_destination.x - _position.x < 0 && abs(_shot_destination.x - _position.x)> abs(_shot_destination.y - _position.y))
+				_direction = left;
+			else if (_shot_destination.y - _position.y > 0 && abs(_shot_destination.x - _position.x) < abs(_shot_destination.y - _position.y))
+				_direction = down;
+			else if (_shot_destination.y - _position.y < 0 && abs(_shot_destination.x - _position.x) < abs(_shot_destination.y - _position.y))
+				_direction = up;
+			_movement->bowShot(time, _direction);
 			_arrows->update();
 		}
 		if (_movement->isReadyToShotArrow())
 		{
-			_arrows->fly(time, window, _direction);
+			_arrows->fly(time, window, _shot_destination);
 			this->_dealBowDamage(list_of_bots);
 		}
 
 		if (_arrows->isFlying() == false)
 			_movement->notReadyToShotArrow();
+	}
+
+	void Player::deadBody(sf::RenderWindow& window)
+	{
+		_movement->dead();
+		window.draw(_movement->getSprite());
 	}
 }
