@@ -103,6 +103,7 @@ namespace RTB
 	RealTimeBattle::RealTimeBattle()
 	{
 		_camera.reset(sf::FloatRect(0, 0, 853, 480));
+		_default_view.reset(sf::FloatRect(0, 0, 0, 480));
 		_asset_manager.setTexture("player", "img/character.png");
 		_asset_manager.setTexture("enemy_swordsman", "img/enemy_swordsman.png");
 		_asset_manager.setTexture("ally_swordsman", "img/ally_swordsman.png");
@@ -122,8 +123,9 @@ namespace RTB
 
 	void RealTimeBattle::mainLoop(sf::RenderWindow& window)
 	{
+		_window_width = window.getSize().x, _window_height = window.getSize().y;
+		_window_border.setScale(window.getSize().x / _window_border.getScale().x, window.getSize().y / _window_border.getScale().y);
 		_tile_map = std::unique_ptr<TileMap>(new TileMap({ 50,50 }));
-
 		this->_armyCreation();
 		while (window.isOpen())
 		{
@@ -177,7 +179,9 @@ namespace RTB
 				}
 			}
 			_tile_map->drawObjects(window);
+
 			window.setView(_camera);
+			//window.draw(_window_border);
 			window.display();
 		}
 	}

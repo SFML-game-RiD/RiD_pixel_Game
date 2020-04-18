@@ -24,12 +24,13 @@ namespace RTB
 		std::shared_ptr<Character> _player = nullptr;
 		sf::Event _event;
 		sf::Clock _clock;
-		sf::View _camera;
+		sf::View _camera, _default_view;
 		RiD::AssetManager _asset_manager;
 		std::list<std::shared_ptr<Character>> _list_of_enemies;
 		std::list<std::shared_ptr<Character>> _list_of_allies;
 		std::unique_ptr<TileMap> _tile_map = nullptr;
 		sf::Sprite _window_border;
+		float _window_width, _window_height;
 		float zoom = 1.f;
 
 		void _zoomEvent();

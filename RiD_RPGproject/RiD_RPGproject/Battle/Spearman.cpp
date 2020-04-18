@@ -140,9 +140,9 @@ namespace RTB
 			_is_enemy_choosen = false;
 		else
 		{
-			int distance;
+			float distance;
 			distance = sqrt(pow((_isoTo2D((*_choosen_enemy)->getPosition()).x - _isoTo2D(_position).x), 2) + pow((_isoTo2D((*_choosen_enemy)->getPosition()).y - _isoTo2D(_position).y), 2));
-			if (distance < 3)
+			if (distance < 2.7)
 				_movement->triggerSpear();
 		}
 		_hitbox->update();
