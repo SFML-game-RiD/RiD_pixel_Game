@@ -20,3 +20,8 @@ std::unique_ptr<MP::GuiMenu>& MP::GuiManager::getGuiPlacesMenu()
 {
 	return _a_gui_places_menu;
 }
+
+std::unique_ptr<MP::GuiMarketPlace>& MP::GuiManager::getGuiMarketPlace()
+{
+	return _a_gui_market_place;
+}

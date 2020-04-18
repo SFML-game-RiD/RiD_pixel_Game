@@ -51,3 +51,16 @@ void MP::GuiButton::drawButton(sf::RenderWindow& aMainWindow)
 	aMainWindow.draw(aAnimation.getObiectSprite());
 	aMainWindow.draw(_a_text);
 }
+
+void MP::GuiButton::setButtonPosition(sf::Vector2f newPostion)
+{	
+	sf::Vector2f oldTextPosition =_a_text.getPosition();
+	sf::Vector2f oldObjCoord = getObiectCoord();
+
+	setObiectCoord(newPostion);
+
+	newPostion.x+= oldTextPosition.x - oldObjCoord.x;
+	newPostion.y+= oldTextPosition.y - oldObjCoord.y;
+
+	_a_text.setPosition(newPostion);
+}

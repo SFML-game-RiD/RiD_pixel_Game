@@ -80,6 +80,34 @@ void MP::ObiectGenerator::_generate_map(ObiectManager& aObiectManager)
 				aObiectManager.getMap().addMapElement(aObiectManager.getMapElementHead(), tmp);
 				x += blockLength;
 				aObiectManager.getMap().setLastElementCoord(tmp->getLandTile().getObiectCoord());
+
+				char placesMark = tmp->getMark();
+
+				if (tmp->getPlace() != nullptr)
+				{
+					tmp->getPlace()->aItemsManager.setItems(_a_asset_manager.getFont("font"),
+						0, &_a_asset_manager.getTexture("gold"),
+						0, &_a_asset_manager.getTexture("iron"),
+						0, &_a_asset_manager.getTexture("wood"),
+					    0, &_a_asset_manager.getTexture("food"),
+						0, &_a_asset_manager.getTexture("spearman"),
+						0, &_a_asset_manager.getTexture("archer"),
+						0, &_a_asset_manager.getTexture("swordsman"));
+
+
+					if (placesMark == RiD::ConfigurationLoader::getStringData("village", "mark")[0])
+					{
+						_generate_items_for_places(tmp->getPlace()->aItemsManager, RiD::ConfigurationLoader::getIntData("village", "modulo"));
+					}
+					else if (placesMark == RiD::ConfigurationLoader::getStringData("castle", "mark")[0])
+					{
+						_generate_items_for_places(tmp->getPlace()->aItemsManager, RiD::ConfigurationLoader::getIntData("castle", "modulo"));
+					}
+					else if (placesMark == RiD::ConfigurationLoader::getStringData("town", "mark")[0])
+					{
+						_generate_items_for_places(tmp->getPlace()->aItemsManager, RiD::ConfigurationLoader::getIntData("town", "modulo"));
+					}
+				}
 			}
 			y += blockLength;
 		}
@@ -123,7 +151,34 @@ void MP::ObiectGenerator::_generate_gui(ObiectManager& aObiectManager)
 
 	//creating places menu
 	aObiectManager.getGuiManager().getGuiPlacesMenu() = std::make_unique<GuiPlacesMenu>(&_a_asset_manager.getTexture("menu"), &_a_asset_manager.getTexture("button"), _a_asset_manager.getFont("font"));
+	
+	//creating market place menu
+	aObiectManager.getGuiManager().getGuiMarketPlace() = std::make_unique<GuiMarketPlace>(
+		&_a_asset_manager.getTexture("marketplace"),
+		&_a_asset_manager.getTexture("button"),
+		&_a_asset_manager.getTexture("panelleft"),
+		&_a_asset_manager.getTexture("panelright"),
+		_a_asset_manager.getFont("font"));
 
+	aObiectManager.getGuiManager().getGuiMarketPlace()->itemsSample.setItems(_a_asset_manager.getFont("font"),
+		0, &_a_asset_manager.getTexture("gold"),
+		0, &_a_asset_manager.getTexture("iron"),
+		0, &_a_asset_manager.getTexture("wood"),
+		0, &_a_asset_manager.getTexture("food"),
+		0, &_a_asset_manager.getTexture("spearman"),
+		0, &_a_asset_manager.getTexture("archer"),
+		0, &_a_asset_manager.getTexture("swordsman"));
+}
+
+void MP::ObiectGenerator::_generate_items_for_places(ItemsManager& itemsFromPlaces,int multiplier)
+{
+	itemsFromPlaces.getWood()->setItemAmount(_random_number()%multiplier);
+	itemsFromPlaces.getIron()->setItemAmount(_random_number() % multiplier);
+	itemsFromPlaces.getGold()->setItemAmount(_random_number() % multiplier);
+	itemsFromPlaces.getFood()->setItemAmount(_random_number() % multiplier);
+	itemsFromPlaces.getArcher()->setItemAmount(_random_number() % multiplier);
+	itemsFromPlaces.getSwordsman()->setItemAmount(_random_number() % multiplier);
+	itemsFromPlaces.getSpearman()->setItemAmount(_random_number() % multiplier);
 }
 
 MP::ObiectGenerator::ObiectGenerator()
@@ -151,6 +206,9 @@ void MP::ObiectGenerator::generateObiects(ObiectManager& aObiectManager)
 	_a_asset_manager.setTexture("mapgui", "img/GUI/rid_map_gui_2.png");
 	_a_asset_manager.setTexture("menu", "img/GUI/rid_main_menu.png");
 	_a_asset_manager.setTexture("button", "img/GUI/button.png");
+	_a_asset_manager.setTexture("marketplace", "img/GUI/rid_marketplace_background.png");
+	_a_asset_manager.setTexture("panelleft", "img/GUI/rid_panel_bottom_left.png");
+	_a_asset_manager.setTexture("panelright", "img/GUI/rid_panel_bottom_right.png");
 
 	_a_asset_manager.setFont("font", "font/MerchantCopy-GOXq.ttf");
 

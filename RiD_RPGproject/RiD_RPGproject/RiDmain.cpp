@@ -31,10 +31,12 @@ void RiD::RiDmain::_create_window()
 			_calculate_for_state_game();
 			_draw_for_state_game();
 		}
-		else if (_a_main_task_manager.getCurrentState() == MP::TaskManager::stateType::stateMainMenu or _a_main_task_manager.getCurrentState() == MP::TaskManager::stateType::statePlacesMenu)
+		else if (_a_main_task_manager.getCurrentState() == MP::TaskManager::stateType::stateMainMenu 
+			or _a_main_task_manager.getCurrentState() == MP::TaskManager::stateType::statePlacesMenu
+			or _a_main_task_manager.getCurrentState() == MP::TaskManager::stateType::stateMarketPlace)
 		{
 			_event_function_for_menu();
-			_calculate_for_state_main_menu();
+			_calculate_for_state_menu();
 			_draw_for_menu();//same as below
 		}
 	}
@@ -111,9 +113,9 @@ void RiD::RiDmain::_calculate_for_state_game()
 	_a_calculator.startMainGameProcedures(_a_main_task_manager, _a_obiect_manager, _clock, _a_camera);
 }
 
-void RiD::RiDmain::_calculate_for_state_main_menu()
+void RiD::RiDmain::_calculate_for_state_menu()
 {
-	_a_calculator.startMenuProcedures(_a_main_task_manager, _a_obiect_manager, _a_camera);
+	_a_calculator.StartMenuProcedures(_a_main_task_manager, _a_obiect_manager, _a_camera);
 }
 
 void RiD::RiDmain::_draw_for_state_game()

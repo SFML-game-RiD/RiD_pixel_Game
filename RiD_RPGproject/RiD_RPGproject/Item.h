@@ -28,6 +28,8 @@ namespace MP
 		virtual void setItemPosition(sf::Vector2f itemPosition);
 
 		virtual void drawItem(sf::RenderWindow& mainWindow);
+
+		void setTextPostion(sf::Vector2f newPosition); //retlative to obj coordination
 	};
 }
 #endif // !_ITEM_H_

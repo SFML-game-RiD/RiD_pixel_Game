@@ -1,6 +1,7 @@
 #ifndef GUIPLACESMENU_H
 #define  GUIPLACESMENU_H
 #include "GuiMenu.h"
+#include "GuiMarketPlace.h"
 
 namespace MP
 {
@@ -15,12 +16,11 @@ namespace MP
 
 		GuiPlacesMenu();
 
-		GuiPlacesMenu(sf::Texture* texturePtr, sf::Texture* buttonTexture, sf::Font& aFont);
+		GuiPlacesMenu(sf::Texture* placesMenuTexture, sf::Texture* buttonTexture, sf::Font& aFont);
 
 		void selectButton(sf::Vector2f mouseCoord);
 
 		void pressButton(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow);
-
 
 	};
 }

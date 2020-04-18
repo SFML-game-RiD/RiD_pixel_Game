@@ -25,6 +25,8 @@ namespace MP
 		bool getButtonActive();
 
 		void drawButton(sf::RenderWindow& aMainWindow);
+
+		void setButtonPosition(sf::Vector2f newPostion);
 	};
 }
 #endif // !1

@@ -26,6 +26,7 @@ MP::GuiPlacesMenu::GuiPlacesMenu(sf::Texture* texturePtr, sf::Texture* buttonTex
 	aAnimation.setOrigin(460, 460);
 
 	_create_buttons(buttonTexture, aFont);
+
 }
 
 void MP::GuiPlacesMenu::selectButton(sf::Vector2f mouseCoord)
@@ -45,6 +46,8 @@ void MP::GuiPlacesMenu::pressButton(TaskManager& aMainTaskManager, sf::RenderWin
 	if (_button_array[0]->getButtonActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft)
 	{
 		aMainTaskManager.resetOrdersAndReply();
+		aMainTaskManager.setState(TaskManager::stateType::stateMarketPlace);
+	
 	}
 	if (_button_array[1]->getButtonActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft)
 	{

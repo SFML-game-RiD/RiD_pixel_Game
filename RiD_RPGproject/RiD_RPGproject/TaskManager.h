@@ -13,7 +13,8 @@ namespace MP
 	{
 			stateGame,
 			stateMainMenu,
-			statePlacesMenu
+			statePlacesMenu,
+			stateMarketPlace
 	};
 	enum class taskType
 		{

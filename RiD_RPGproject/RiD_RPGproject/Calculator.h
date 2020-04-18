@@ -39,12 +39,15 @@ namespace MP
 		void _start_procedure_camera(ObiectManager& aObiectManager, TaskManager& aMainTaskManager, sf::Vector2f newCoord, Camera& aCamera);
 
 		void _start_procedure_cursor(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, Camera& aCamera);
-
+		
+		void _start_procedure_marketplace(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, Camera& aCamera);
+	
 	public:
 
 		void startMainGameProcedures(TaskManager& aTaskManager, ObiectManager& aObiectManager, sf::Clock& globalClock, Camera& aCamera);
 
-		void startMenuProcedures(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, Camera& aCamera);
+		void StartMenuProcedures(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, Camera& aCamera);
+	
 	};
 }
 #endif

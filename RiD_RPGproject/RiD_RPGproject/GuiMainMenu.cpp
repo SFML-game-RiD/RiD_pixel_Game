@@ -30,6 +30,7 @@ MP::GuiMainMenu::GuiMainMenu(sf::Texture* texturePtr, sf::Texture* buttonTexture
 
 	_create_buttons(buttonTexture,aFont);
 
+
 }
 
 void MP::GuiMainMenu::selectButton(sf::Vector2f mouseCoord)
@@ -45,24 +46,24 @@ void MP::GuiMainMenu::selectButton(sf::Vector2f mouseCoord)
 	}
 }
 
-void MP::GuiMainMenu::pressButton(TaskManager& aTaskManager,  sf::RenderWindow& aMainWindow)
+void MP::GuiMainMenu::pressButton(TaskManager& aMainTaskManager,  sf::RenderWindow& aMainWindow)
 {
-	if (_button_array[0]->getButtonActive() == true and aTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft)
+	if (_button_array[0]->getButtonActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft)
 	{
-		aTaskManager.resetOrdersAndReply();
-		aTaskManager.setState(TaskManager::stateType::stateGame);
+		aMainTaskManager.resetOrdersAndReply();
+		aMainTaskManager.setState(TaskManager::stateType::stateGame);
 	}
-	if (_button_array[1]->getButtonActive() == true and aTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft)
+	if (_button_array[1]->getButtonActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft)
 	{
-		aTaskManager.resetOrdersAndReply();
+		aMainTaskManager.resetOrdersAndReply();
 	}
-	if (_button_array[2]->getButtonActive() == true and aTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft)
+	if (_button_array[2]->getButtonActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft)
 	{
-		aTaskManager.resetOrdersAndReply();
+		aMainTaskManager.resetOrdersAndReply();
 	}
-	if (_button_array[3]->getButtonActive() == true and aTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft)
+	if (_button_array[3]->getButtonActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft)
 	{
-		aTaskManager.resetOrdersAndReply();
+		aMainTaskManager.resetOrdersAndReply();
 		aMainWindow.close();
 	}
 }  

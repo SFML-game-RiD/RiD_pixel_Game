@@ -84,16 +84,23 @@ void MP::ObiectDrawer::drawAllObiects(TaskManager& aMainTaskManager, Camera& aGa
 void MP::ObiectDrawer::drawMenu(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, Camera& aGameCamera)
 {
 	aGameCamera.changeViewToGui();
-
-	if (aMainTaskManager.getCurrentState() == TaskManager::stateType::stateMainMenu)
+	if (aMainTaskManager.getCurrentState() == MP::TaskManager::stateType::stateMainMenu
+		or aMainTaskManager.getCurrentState() == MP::TaskManager::stateType::statePlacesMenu)
 	{
-		aObiectManager.getGuiManager().getGuiMainMenu()->drawMenu(aGameCamera.getWindow());
-//		aGameCamera.getWindow().draw(aObiectManager.getCursor()->aAnimation.getObiectSprite());
+		if (aMainTaskManager.getCurrentState() == TaskManager::stateType::stateMainMenu)
+		{
+			aObiectManager.getGuiManager().getGuiMainMenu()->drawMenu(aGameCamera.getWindow());
+		}
+		else if (aMainTaskManager.getCurrentState() == TaskManager::stateType::statePlacesMenu)
+		{
+			aObiectManager.getGuiManager().getGuiPlacesMenu()->drawMenu(aGameCamera.getWindow());
+		}
 	}
-	else if (aMainTaskManager.getCurrentState() == TaskManager::stateType::statePlacesMenu)
+	else if (aMainTaskManager.getCurrentState() == MP::TaskManager::stateType::stateMarketPlace)
 	{
-		aObiectManager.getGuiManager().getGuiPlacesMenu()->drawMenu(aGameCamera.getWindow());
-//		aGameCamera.getWindow().draw(aObiectManager.getCursor()->aAnimation.getObiectSprite());
+		aObiectManager.getGuiManager().getGuiMarketPlace()->drawMenu(aGameCamera.getWindow(), 
+			*aObiectManager.getMap().findElementAddressSquareRange(aObiectManager.getPlayer()->getObiectCoord(),aObiectManager.getMapElementHead())->getPlace(),//getting places
+			*aObiectManager.getPlayer());//getting player
 	}
 	_draw_cursor(aGameCamera.getWindow(), aObiectManager);
 }

@@ -12,6 +12,7 @@ namespace MP
 
 		void _create_buttons(sf::Texture* buttonTexture, sf::Font& aFont);
 
+
 	public:
 
 		GuiMainMenu();

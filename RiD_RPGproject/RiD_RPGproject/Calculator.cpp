@@ -222,9 +222,34 @@ void MP::Calculator::startMainGameProcedures(TaskManager& aMainTaskManager, Obie
 	_start_procedure_map_gui(aObiectManager);
 }
 
-void MP::Calculator::startMenuProcedures(TaskManager &aMainTaskManager, ObiectManager & aObiectManager,Camera& aCamera)
+void MP::Calculator::StartMenuProcedures(TaskManager &aMainTaskManager, ObiectManager & aObiectManager,Camera& aCamera)
 {
-	_start_procedure_menu(aMainTaskManager,aObiectManager,aCamera);
-
+	if (aMainTaskManager.getCurrentState() == MP::TaskManager::stateType::stateMainMenu
+		or aMainTaskManager.getCurrentState() == MP::TaskManager::stateType::statePlacesMenu)
+	{
+		_start_procedure_menu(aMainTaskManager, aObiectManager, aCamera);
+	}
+	else if (aMainTaskManager.getCurrentState() == MP::TaskManager::stateType::stateMarketPlace)
+	{
+		_start_procedure_marketplace(aMainTaskManager, aObiectManager, aCamera);
+	}
 	_start_procedure_cursor(aMainTaskManager, aObiectManager, aCamera);
+}
+
+void MP::Calculator::_start_procedure_marketplace(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, Camera& aCamera)
+{
+
+  //Gettings current places and player for updating market status.
+	aObiectManager.getGuiManager().getGuiMarketPlace()->updateMarketPlace(*aObiectManager.getMap().findElementAddressSquareRange(aObiectManager.getPlayer()->getObiectCoord(),
+		aObiectManager.getMapElementHead())->getPlace(),*aObiectManager.getPlayer());
+
+
+
+
+
+	aObiectManager.getGuiManager().getGuiMarketPlace()->selectButton(aObiectManager.getCursor()->getGuiCoord());
+	aObiectManager.getGuiManager().getGuiMarketPlace()->pressButton(aMainTaskManager, aCamera.getWindow());
+
+	aObiectManager.getGuiManager().getGuiMarketPlace()->pressItem(aMainTaskManager, aCamera.getWindow());
+	aObiectManager.getGuiManager().getGuiMarketPlace()->pressItem(aMainTaskManager, aCamera.getWindow());
 }

@@ -2,6 +2,7 @@
 #define GUIMANAGER_H
 #include "MapGui.h"
 #include "GuiMainMenu.h"
+#include "GuiMarketPlace.h"
 
 namespace MP
 {
@@ -17,6 +18,8 @@ namespace MP
 
 		std::unique_ptr<GuiMenu> _a_gui_places_menu;
 
+		std::unique_ptr<GuiMarketPlace> _a_gui_market_place;
+
 	public:
 
 		GuiManager();
@@ -26,6 +29,8 @@ namespace MP
 		std::unique_ptr<GuiMenu>& getGuiMainMenu();
 
 		std::unique_ptr<GuiMenu>& getGuiPlacesMenu();
+
+		std::unique_ptr<MP::GuiMarketPlace>& getGuiMarketPlace();
 
 	};
 }

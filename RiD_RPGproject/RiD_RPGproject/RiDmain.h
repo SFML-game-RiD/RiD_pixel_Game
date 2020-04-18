@@ -52,7 +52,7 @@ namespace RiD
 
 		void _calculate_for_state_game();
 
-		void _calculate_for_state_main_menu();
+		void _calculate_for_state_menu();
 
 		void _draw_for_state_game();
 
