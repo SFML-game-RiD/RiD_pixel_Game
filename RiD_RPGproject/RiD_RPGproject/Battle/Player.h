@@ -10,6 +10,7 @@ namespace RTB
 	{
 	private:
 		Arrow* _arrows = nullptr;
+		SwordHitbox* _sword_hitbox = nullptr;
 		short _arrows_count;
 		sf::Vector2i _shot_destination;
 		void _dealSwordDamage(std::list<std::shared_ptr<Character>>& list_of_bots);

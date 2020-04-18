@@ -13,12 +13,13 @@ namespace RTB
 		RiD::Movement* _movement = nullptr;
 		Hitbox* _hitbox = nullptr;
 		HPBar* _hp_bar = nullptr;
+		SpearHitbox* _spear_hitbox = nullptr;
 		AI::PathNode* _current_path = nullptr, * _tmp_current_path = nullptr, * _half_way = nullptr;
 		sf::Vector2i _current_enemy_position, _end_path_position;
 		bool _is_enemy_choosen;
 		std::list<std::shared_ptr<Character>>::iterator _choosen_enemy;
 
-		void _dealSwordDamage(std::list<std::shared_ptr<Character>>& list_of_bots);
+		void _dealSpearDamage(std::list<std::shared_ptr<Character>>& list_of_bots);
 		std::list<std::shared_ptr<Character>>::iterator _selectRandomEnemy(std::list<std::shared_ptr<Character>>::iterator start, std::list<std::shared_ptr<Character>>::iterator end);
 	public:
 		Spearman(sf::Texture texture, short health_points, std::vector<std::vector<AI::PathNode>>& walkable_area);

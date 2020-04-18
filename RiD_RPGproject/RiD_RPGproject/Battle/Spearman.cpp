@@ -4,8 +4,17 @@
 
 namespace RTB
 {
-	void Spearman::_dealSwordDamage(std::list<std::shared_ptr<Character>>& list_of_bots)
+	void Spearman::_dealSpearDamage(std::list<std::shared_ptr<Character>>& list_of_bots)
 	{
+		for (std::list<std::shared_ptr<Character>>::iterator iterator = list_of_bots.begin();//Iterates through list of bots...
+			iterator != list_of_bots.end(); iterator++)
+		{
+			if ((*iterator)->isAlive() && _spear_hitbox->checkIntersection((*iterator)->getHitbox().getGlobalBounds()) == true)//checks if spear intersected one of them...
+			{
+				(*iterator)->subtractHP(10);//and subtracts hp
+			}
+		}
+		_movement->notReadyToDealSpearDamage();
 	}
 
 	std::list<std::shared_ptr<Character>>::iterator Spearman::_selectRandomEnemy(std::list<std::shared_ptr<Character>>::iterator start, std::list<std::shared_ptr<Character>>::iterator end)
@@ -24,7 +33,7 @@ namespace RTB
 		_character_sprite = new sf::Sprite;
 		_movement = new RiD::Movement(texture, _character_sprite);
 		_hitbox = new Hitbox(_character_sprite, { 24.f, 46.f }, { -12.f,-16.f });
-		_sword_hitbox = new SwordHitbox(_character_sprite);
+		_spear_hitbox = new SpearHitbox(_character_sprite);
 		_hp_bar = new HPBar(_character_sprite, _health_points);
 		_is_alive = true;
 		_is_enemy_choosen = false;
@@ -37,7 +46,7 @@ namespace RTB
 		delete _hitbox;
 		delete _character_sprite;
 		delete _hp_bar;
-		delete _sword_hitbox;
+		delete _spear_hitbox;
 		delete _path_generator;
 	}
 
@@ -48,8 +57,8 @@ namespace RTB
 
 	void Spearman::update(sf::Time time, std::vector<std::vector<std::unique_ptr<MapElement>>>& map_objects, std::list<std::shared_ptr<Character>>& list_of_bots, sf::RenderWindow& window)
 	{
-		/*_position = _movement->getSprite().getPosition();
-		if (!_movement->isAttackTriggered())
+		_position = _movement->getSprite().getPosition();
+		if (!_movement->isSpearTriggered())
 		{
 			if (_is_enemy_choosen)
 			{
@@ -133,8 +142,8 @@ namespace RTB
 		{
 			int distance;
 			distance = sqrt(pow((_isoTo2D((*_choosen_enemy)->getPosition()).x - _isoTo2D(_position).x), 2) + pow((_isoTo2D((*_choosen_enemy)->getPosition()).y - _isoTo2D(_position).y), 2));
-			//if (distance < 2)
-				//_movement->triggerAttack();
+			if (distance < 3)
+				_movement->triggerSpear();
 		}
 		_hitbox->update();
 		_hp_bar->update();
@@ -145,7 +154,7 @@ namespace RTB
 			_movement->death(time);
 			if (_movement->isDeathTriggered() == false)
 				_is_alive = false;
-		}*/
+		}
 	}
 
 	void Spearman::render(sf::RenderWindow& window)
@@ -172,6 +181,14 @@ namespace RTB
 
 	void Spearman::dealDamage(sf::Time time, std::list<std::shared_ptr<Character>>& list_of_bots, sf::RenderTarget& window)
 	{
+		if (_movement->isSpearTriggered())
+		{
+			_movement->spearPoke(time);
+			_spear_hitbox->update(_movement->getDirection());
+			_spear_hitbox->render(window);
+		}
+		if (_movement->isReadyToDealSpearDamage())
+			this->_dealSpearDamage(list_of_bots);
 	}
 
 	void Spearman::subtractHP(short value)

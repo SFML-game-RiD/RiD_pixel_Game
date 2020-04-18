@@ -8,6 +8,7 @@
 #include "Hitbox.h"
 #include "HPBar.h"
 #include "SwordHitbox.h"
+#include "SpearHitbox.h"
 #include "Arrow.h"
 #include "../Map/TileMap.h"
 #include "OrientedHitbox.h"
@@ -21,7 +22,6 @@ namespace RTB
 		HPBar* _hp_bar = nullptr;
 		RiD::Movement* _movement = nullptr;
 		Hitbox* _hitbox = nullptr;
-		SwordHitbox* _sword_hitbox = nullptr;
 		short _health_points;
 		short _damage;
 		sf::Vector2f _position;

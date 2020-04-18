@@ -71,6 +71,9 @@
     <ClCompile Include="Battle\Spearman.cpp">
       <Filter>RealTimeBattle\Characters\Bots</Filter>
     </ClCompile>
+    <ClCompile Include="Battle\SpearHitbox.cpp">
+      <Filter>RealTimeBattle\Hitboxes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\InputManager.h" />
@@ -141,6 +144,9 @@
     </ClInclude>
     <ClInclude Include="Battle\Spearman.h">
       <Filter>RealTimeBattle\Characters\Bots</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\SpearHitbox.h">
+      <Filter>RealTimeBattle\Hitboxes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

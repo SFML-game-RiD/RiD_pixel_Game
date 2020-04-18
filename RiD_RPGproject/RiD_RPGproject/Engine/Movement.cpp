@@ -6,12 +6,13 @@ namespace RiD
 {
 	Movement::Movement(sf::Texture texture, sf::Sprite*& object) : _texture(texture),
 		animations{ sf::Time::Zero, sf::seconds(1.f / 12.f), sf::Time::Zero, sf::seconds(1.f / 12.f),
-		sf::Time::Zero, sf::seconds(1.f / 12.f),sf::Time::Zero, sf::seconds(1.f / 6.f) },
-		_is_attack_triggered(false), _is_shot_triggered(false), _is_death_triggered(false), _object(object)
+		sf::Time::Zero, sf::seconds(1.f / 12.f),sf::Time::Zero, sf::seconds(1.f / 6.f), sf::Time::Zero, sf::seconds(1.f / 10.f) },
+		_is_attack_triggered(false), _is_shot_triggered(false), _is_death_triggered(false), _object(object), _is_spear_triggered(false)
 	{
 		_object->setTexture(_texture);
 		_xCord = 1;
 		_xAttackCord = 1;
+		_xSpearCord = 1;
 		_xshotCord = 1;
 		_xDeathCord = 1;
 		_direction = down;
@@ -124,6 +125,25 @@ namespace RiD
 		}
 	}
 
+	void Movement::spearPoke(sf::Time time)
+	{
+		_ySpearCord = swordSwingAnim * 64;
+		_object->setOrigin(96.0, 96.0);
+		_object->setTextureRect(sf::IntRect(_xSpearCord * 192, _ySpearCord + (_direction * 192), 192, 192));
+
+		if (time - animations.spear_animation_start_time >= animations.spear_animation_frame_duration)
+		{
+			_xSpearCord++;
+			animations.spear_animation_start_time = time;
+			if (_xSpearCord * 192 == 1536)
+			{
+				_is_spear_triggered = false;
+				_ready_to_deal_spear_damage = true;
+				_xSpearCord = 0;
+			}
+		}
+	}
+
 	void Movement::bowShot(sf::Time time, short direction)
 	{
 
@@ -177,6 +197,11 @@ namespace RiD
 		}
 	}
 
+	void Movement::triggerSpear()
+	{
+		_is_spear_triggered = true;
+	}
+
 	void Movement::triggerAttack()
 	{
 		_is_attack_triggered = true;
@@ -190,6 +215,11 @@ namespace RiD
 	void Movement::triggerDeath()
 	{
 		_is_death_triggered = true;
+	}
+
+	bool Movement::isSpearTriggered()
+	{
+		return _is_spear_triggered;
 	}
 
 	bool Movement::isAttackTriggered()
@@ -207,9 +237,19 @@ namespace RiD
 		return _is_death_triggered;
 	}
 
+	bool Movement::isReadyToDealSpearDamage()
+	{
+		return _ready_to_deal_spear_damage;
+	}
+
 	bool Movement::isReadyToDealSwordDamage()
 	{
 		return _ready_to_deal_sword_damage;
+	}
+
+	void Movement::notReadyToDealSpearDamage()
+	{
+		_ready_to_deal_spear_damage = false;
 	}
 
 	void Movement::notReadyToDealSwordDamage()

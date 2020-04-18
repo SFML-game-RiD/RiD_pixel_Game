@@ -13,6 +13,7 @@ namespace RTB
 		RiD::Movement* _movement = nullptr;
 		Hitbox* _hitbox = nullptr;
 		HPBar* _hp_bar = nullptr;
+		SwordHitbox* _sword_hitbox = nullptr;
 		AI::PathNode* _current_path = nullptr, *_tmp_current_path = nullptr, *_half_way = nullptr;
 		sf::Vector2i _current_enemy_position, _end_path_position;
 		bool _is_enemy_choosen;

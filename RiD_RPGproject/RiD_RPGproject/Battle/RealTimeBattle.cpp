@@ -36,11 +36,11 @@ namespace RTB
 		std::uniform_real_distribution<float> enemy_position_width(1, 5);
 		sf::Vector2f position;
 
-		for (unsigned short i = 0; i < 0; ++i)
+		for (unsigned short i = 0; i < 8; ++i)
 			_list_of_enemies.emplace_back(new Swordsman(_asset_manager.getTexture("enemy_swordsman"), 100, _tile_map->getWalkableArea()));
-		for (unsigned short i = 0; i < 2; ++i)
+		for (unsigned short i = 0; i < 4; ++i)
 			_list_of_enemies.emplace_back(new Archer(_asset_manager.getTexture("enemy_archer"), 100, _asset_manager.getTexture("arrow"), _tile_map->getWalkableArea()));
-		for (unsigned short i = 0; i < 0; ++i)
+		for (unsigned short i = 0; i < 4; ++i)
 			_list_of_enemies.emplace_back(new Spearman(_asset_manager.getTexture("enemy_spearman"), 100, _tile_map->getWalkableArea()));
 		for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_enemies.begin(); iterator != _list_of_enemies.end(); iterator++)
 		{
@@ -57,12 +57,12 @@ namespace RTB
 			}
 		}
 
-		for (unsigned short i = 0; i < 0; ++i)
+		for (unsigned short i = 0; i < 8; ++i)
 			_list_of_allies.emplace_back(new Swordsman(_asset_manager.getTexture("ally_swordsman"), 100, _tile_map->getWalkableArea()));
-		for (unsigned short i = 0; i < 2; ++i)
+		for (unsigned short i = 0; i < 4; ++i)
 			_list_of_allies.emplace_back(new Archer(_asset_manager.getTexture("ally_archer"), 100, _asset_manager.getTexture("arrow"), _tile_map->getWalkableArea()));
-		for (unsigned short i = 0; i < 0; ++i)
-			_list_of_enemies.emplace_back(new Spearman(_asset_manager.getTexture("ally_spearman"), 100, _tile_map->getWalkableArea()));
+		for (unsigned short i = 0; i < 3; ++i)
+			_list_of_allies.emplace_back(new Spearman(_asset_manager.getTexture("ally_spearman"), 100, _tile_map->getWalkableArea()));
 
 		_list_of_allies.emplace_back(new Player(_asset_manager.getTexture("player"), 100, _asset_manager.getTexture("arrow")));
 		_player = _list_of_allies.back();

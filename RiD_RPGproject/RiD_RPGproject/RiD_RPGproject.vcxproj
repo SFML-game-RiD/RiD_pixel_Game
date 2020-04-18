@@ -164,6 +164,7 @@
     <ClCompile Include="Battle\Player.cpp" />
     <ClCompile Include="Battle\RealTimeBattle.cpp" />
     <ClCompile Include="Battle\RTBPathGenerator.cpp" />
+    <ClCompile Include="Battle\SpearHitbox.cpp" />
     <ClCompile Include="Battle\Spearman.cpp" />
     <ClCompile Include="Battle\SwordHitbox.cpp" />
     <ClCompile Include="Battle\Swordsman.cpp" />
@@ -192,6 +193,7 @@
     <ClInclude Include="Battle\Player.h" />
     <ClInclude Include="Battle\RealTimeBattle.h" />
     <ClInclude Include="Battle\RTBPathGenerator.h" />
+    <ClInclude Include="Battle\SpearHitbox.h" />
     <ClInclude Include="Battle\Spearman.h" />
     <ClInclude Include="Battle\SwordHitbox.h" />
     <ClInclude Include="Battle\Swordsman.h" />
