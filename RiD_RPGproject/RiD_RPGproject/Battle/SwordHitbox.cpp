@@ -49,6 +49,6 @@ namespace RTB
 
 	void SwordHitbox::render(sf::RenderTarget& window)
 	{
-		window.draw(_hitbox);
+		//window.draw(_hitbox);
 	}
 }

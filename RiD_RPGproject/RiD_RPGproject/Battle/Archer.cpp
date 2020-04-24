@@ -171,6 +171,7 @@ namespace RTB
 			}
 			else
 			{
+				delete_path();
 				_choosen_enemy = _selectRandomEnemy(list_of_bots.begin(), list_of_bots.end());
 				_current_enemy_position = _isoTo2D((*_choosen_enemy)->getPosition());
 				_is_enemy_choosen = true;
@@ -194,7 +195,10 @@ namespace RTB
 		{
 			_movement->death(time);
 			if (_movement->isDeathTriggered() == false)
+			{
 				_is_alive = false;
+				delete_path();
+			}
 		}
 	}
 
@@ -228,7 +232,7 @@ namespace RTB
 	void Archer::render(sf::RenderWindow& window)
 	{
 		window.draw(_movement->getSprite());
-		_hitbox->render(window);
+		//_hitbox->render(window);
 		_hp_bar->render(window);
 	}
 

@@ -48,6 +48,6 @@ namespace RTB
 
 	void SpearHitbox::render(sf::RenderTarget& window)
 	{
-		window.draw(_hitbox);
+		//window.draw(_hitbox);
 	}
 }

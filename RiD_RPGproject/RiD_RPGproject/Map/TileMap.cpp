@@ -268,7 +268,7 @@ namespace RTB
 				if (!_map_elements[i][j]->isObjectNull())
 				{
 					window.draw(_map_elements[i][j]->getObjects());
-					window.draw(_map_elements[i][j]->getObjectsHitbox());
+					//window.draw(_map_elements[i][j]->getObjectsHitbox());
 				}
 			}
 		}

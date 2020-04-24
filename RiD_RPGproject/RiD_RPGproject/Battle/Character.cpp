@@ -16,7 +16,7 @@ namespace RTB
 	void Character::render(sf::RenderWindow& window)
 	{
 		window.draw(_movement->getSprite());
-		_hitbox->render(window);
+		//_hitbox->render(window);
 		_hp_bar->render(window);
 	}
 

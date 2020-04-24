@@ -8,22 +8,22 @@ namespace RTB
 	{
 		if (_event.mouseWheel.delta == -1)
 		{
-			if (zoom * ZOOM_UP >= 1.2)
+			if (_zoom * ZOOM_UP >= 0.8)
 				return;
 			else
 			{
-				zoom *= ZOOM_UP;
-				_camera.zoom(ZOOM_UP);
+				_zoom *= ZOOM_UP;
+				_camera.zoom((float)ZOOM_UP);
 			}
 		}
 		else if (_event.mouseWheel.delta == 1)
 		{
-			if (zoom * ZOOM_DOWN <= 0.8)
+			if (_zoom * ZOOM_DOWN <= 0.5)
 				return;
 			else
 			{
-				zoom *= ZOOM_DOWN;
-				_camera.zoom(ZOOM_DOWN);
+				_zoom *= ZOOM_DOWN;
+				_camera.zoom((float)ZOOM_DOWN);
 			}
 		}
 	}
@@ -100,10 +100,36 @@ namespace RTB
 		}
 	}
 
-	RealTimeBattle::RealTimeBattle()
+	bool RealTimeBattle::_isEnemyTeamDead()
 	{
-		_camera.reset(sf::FloatRect(0, 0, 853, 480));
-		_default_view.reset(sf::FloatRect(0, 0, 0, 480));
+		for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_enemies.begin(); iterator != _list_of_enemies.end(); iterator++)
+		{
+			if ((*iterator)->isAlive())
+				return false;
+			else
+				continue;
+		}
+		return true;
+	}
+
+	bool RealTimeBattle::_isAllyTeamDead()
+	{
+		for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_allies.begin(); iterator != _list_of_allies.end(); iterator++)
+		{
+			if ((*iterator)->isAlive())
+				return false;
+			else
+				continue;
+		}
+		return true;
+	}
+
+	RealTimeBattle::RealTimeBattle(sf::RenderWindow& window) :
+		_player(nullptr), _tile_map(nullptr), _user_interface(nullptr), _is_paused(false)
+	{
+		_window = &window;
+		_camera.reset(sf::FloatRect(0, 0, 1280, 720));
+		_user_interface = std::make_unique<RTBGUI::GUI>(window);
 		_asset_manager.setTexture("player", "img/character.png");
 		_asset_manager.setTexture("enemy_swordsman", "img/enemy_swordsman.png");
 		_asset_manager.setTexture("ally_swordsman", "img/ally_swordsman.png");
@@ -113,76 +139,105 @@ namespace RTB
 		_asset_manager.setTexture("enemy_spearman", "img/enemy_spearman.png");
 		_asset_manager.setTexture("arrow", "img/arrow.png");
 		_asset_manager.setTexture("window_border", "img/WindowBorder.png");
-
-		_window_border.setTexture(_asset_manager.getTexture("window_border"));
 	}
 
 	RealTimeBattle::~RealTimeBattle()
 	{
+		_window = nullptr;
 	}
 
-	void RealTimeBattle::mainLoop(sf::RenderWindow& window)
+	void RealTimeBattle::mainLoop()
 	{
-		_window_width = window.getSize().x, _window_height = window.getSize().y;
-		_window_border.setScale(window.getSize().x / _window_border.getScale().x, window.getSize().y / _window_border.getScale().y);
 		_tile_map = std::unique_ptr<TileMap>(new TileMap({ 50,50 }));
 		this->_armyCreation();
-		while (window.isOpen())
+		_camera.zoom(0.8);
+		while (_window->isOpen())
 		{
-			while (window.pollEvent(_event)) //handling events
+			while (_window->pollEvent(_event)) //handling events
 			{
-				if (_event.type == sf::Event::EventType::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-					window.close();
+				if (_event.type == sf::Event::EventType::Closed)
+					_window->close();
 				if (_event.type == sf::Event::MouseWheelMoved)
 					this->_zoomEvent();
-			}
-
-			//Renders
-			window.clear();
-			window.draw(_window_border);
-			_tile_map->drawTiles(window);
-
-			//Bots
-			if (_player->isAlive())
-				_camera.setCenter(_player->getPosition()); //camera is centered on the player
-
-			for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_enemies.begin(); iterator != _list_of_enemies.end(); iterator++)
-			{
-				if (!(*iterator)->isAlive())
-					(*iterator)->deadBody(window);
-				else continue;
-			}
-			for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_allies.begin(); iterator != _list_of_allies.end(); iterator++)
-			{
-				if (!(*iterator)->isAlive())
-					(*iterator)->deadBody(window);
-				else continue;
-			}
-
-			for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_enemies.begin(); iterator != _list_of_enemies.end(); iterator++)
-			{
-				if ((*iterator)->isAlive())
+				if (_event.type == sf::Event::KeyPressed)
 				{
-					(*iterator)->update(_clock.getElapsedTime(), _tile_map->getCollidableObjects(), _list_of_allies, window);
-					(*iterator)->dealDamage(_clock.getElapsedTime(), _list_of_allies, window);
-					(*iterator)->render(window);
+					if (_event.key.code == sf::Keyboard::Escape)
+					{
+						if (_is_paused)
+							_is_paused = false;
+						else
+							_is_paused = true;
+					}
 				}
 			}
 
-			for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_allies.begin(); iterator != _list_of_allies.end(); iterator++)
+			_window->clear();
+			if (!_is_paused)
 			{
-				if ((*iterator)->isAlive())
-				{
-					(*iterator)->update(_clock.getElapsedTime(), _tile_map->getCollidableObjects(), _list_of_enemies, window);
-					(*iterator)->dealDamage(_clock.getElapsedTime(), _list_of_enemies, window);
-					(*iterator)->render(window);
-				}
-			}
-			_tile_map->drawObjects(window);
+				_window->setView(_camera);
 
-			window.setView(_camera);
-			//window.draw(_window_border);
-			window.display();
+				//Drawing first layer of map
+				_tile_map->drawTiles(*_window);
+
+				//Bots
+				if (_player->isAlive())
+				{
+					_user_interface->setCameraCenter(_player->getPosition());
+					_camera.setCenter(_player->getPosition()); //camera is centered on the player
+				}
+
+				for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_enemies.begin(); iterator != _list_of_enemies.end(); iterator++)
+				{
+					if (!(*iterator)->isAlive())
+						(*iterator)->deadBody(*_window);
+					else continue;
+				}
+				for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_allies.begin(); iterator != _list_of_allies.end(); iterator++)
+				{
+					if (!(*iterator)->isAlive())
+						(*iterator)->deadBody(*_window);
+					else continue;
+				}
+
+				for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_enemies.begin(); iterator != _list_of_enemies.end(); iterator++)
+				{
+					if ((*iterator)->isAlive())
+					{
+						(*iterator)->update(_clock.getElapsedTime(), _tile_map->getCollidableObjects(), _list_of_allies, *_window);
+						(*iterator)->dealDamage(_clock.getElapsedTime(), _list_of_allies, *_window);
+						(*iterator)->render(*_window);
+					}
+				}
+
+				for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_allies.begin(); iterator != _list_of_allies.end(); iterator++)
+				{
+					if ((*iterator)->isAlive())
+					{
+						(*iterator)->update(_clock.getElapsedTime(), _tile_map->getCollidableObjects(), _list_of_enemies, *_window);
+						(*iterator)->dealDamage(_clock.getElapsedTime(), _list_of_enemies, *_window);
+						(*iterator)->render(*_window);
+					}
+				}
+				_tile_map->drawObjects(*_window);
+			}
+			//Updating and drawing user interface
+			_window->setView(_user_interface->getCamera());
+			_user_interface->update(_is_paused);
+			_user_interface->render();
+
+			//Displaying everything
+			_window->display();
+
+			if (this->_isAllyTeamDead())
+			{
+				std::cout << "you lost";
+				return;
+			}
+			else if (this->_isEnemyTeamDead())
+			{
+				std::cout << "you won";
+				return;
+			}
 		}
 	}
 }

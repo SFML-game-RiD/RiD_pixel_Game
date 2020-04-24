@@ -41,7 +41,7 @@ namespace RTB
 
 	void ArrowHitbox::render(sf::RenderTarget& window)
 	{
-		window.draw(_hitbox);
+		//window.draw(_hitbox);
 	}
 
 	sf::RectangleShape& ArrowHitbox::getHitbox()
