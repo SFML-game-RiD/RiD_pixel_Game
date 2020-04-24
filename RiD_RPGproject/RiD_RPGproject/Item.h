@@ -9,9 +9,9 @@ namespace MP
 	{
 	protected:
 
-		unsigned int _item_amount;
+		int _item_amount;
 
-		unsigned int _item_cost;
+		int _item_cost;
 
 		sf::Text _item_amount_text;
 
@@ -21,15 +21,18 @@ namespace MP
 
 		Item(sf::Texture* texturePtr, sf::Font& aFont);
 
-		virtual void setItemAmount(unsigned int newItemAmount);
+		 void setItemAmount(unsigned int newItemAmount);
 
-		virtual unsigned int& getItemAmount();
+		 int getItemAmount();
 
 		virtual void setItemPosition(sf::Vector2f itemPosition);
 
 		virtual void drawItem(sf::RenderWindow& mainWindow);
 
 		void setTextPostion(sf::Vector2f newPosition); //retlative to obj coordination
+
+		int getItemCost();
+
 	};
 }
 #endif // !_ITEM_H_

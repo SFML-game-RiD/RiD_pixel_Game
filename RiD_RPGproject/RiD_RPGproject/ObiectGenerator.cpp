@@ -121,7 +121,7 @@ void MP::ObiectGenerator::_generate_computer_player(ObiectManager& aObiectManage
 
 	while (computerPlayerAmmount != 0)
 	{
-		std::shared_ptr<ComputerPlayer> tmp= std::make_shared<ComputerPlayer>(&_a_asset_manager.getTexture("player"));
+		std::shared_ptr<ComputerPlayer> tmp= std::make_shared<ComputerPlayer>(&_a_asset_manager.getTexture("computerplayer"));
 
 		aObiectManager.addObiect(*tmp);
 
@@ -191,6 +191,7 @@ void MP::ObiectGenerator::generateObiects(ObiectManager& aObiectManager)
 	_a_asset_manager.setTexture("tree", "img/mpimg/mptree.png");
 	_a_asset_manager.setTexture("land", "img/mpimg/mpgrass8.png");
 	_a_asset_manager.setTexture("player", "img/mpimg/mpcharacter.png");
+	_a_asset_manager.setTexture("computerplayer", "img/mpimg/mpcomputerplayer.png");
 	_a_asset_manager.setTexture("village", "img/mpimg/places/mpvillage.png");
 	_a_asset_manager.setTexture("town", "img/mpimg/places/mptown.png");
 	_a_asset_manager.setTexture("castle", "img/mpimg/places/mpcastle.png");

@@ -15,9 +15,17 @@ void MP::MapGui::updateItems(ItemsManager& aItemsManager)
 	aItemsManager.getIron()->setItemPosition(sf::Vector2f(1300, 25));
 	aItemsManager.getGold()->setItemPosition(sf::Vector2f(1100, 100));
 	aItemsManager.getFood()->setItemPosition(sf::Vector2f(1300, 100));
+
+
 	aItemsManager.getArcher()->setItemPosition(sf::Vector2f(1040, 310));
+	aItemsManager.getArcher()->aAnimation.setScale(1, 1);
+
 	aItemsManager.getSwordsman()->setItemPosition(sf::Vector2f(1155, 310));
+	aItemsManager.getSwordsman()->aAnimation.setScale(1, 1);
+
 	aItemsManager.getSpearman()->setItemPosition(sf::Vector2f(1250, 290));
+	aItemsManager.getSpearman()->aAnimation.setScale(1, 1);
+
 }
 
 void MP::MapGui::drawMapGui(sf::RenderWindow& mainWindow, ItemsManager& aItemsManager)

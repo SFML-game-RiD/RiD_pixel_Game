@@ -80,7 +80,7 @@ MP::ComputerPlayer::ComputerPlayer(sf::Texture* texturePtr)
 	_path = nullptr;
 
 	//Loading textures.
-	aAnimation.loadObiectTextures(texturePtr, 3, 4, 64);
+	aAnimation.loadObiectTextures(texturePtr, 4, 4, 64);
 	aAnimation.changeSprite(6);
 	aAnimation.setScale(0.7, 0.7);
 
@@ -114,7 +114,7 @@ void MP::ComputerPlayer::_computer_player_animation_right(sf::Clock& globalClock
 {
 	if (globalClock.getElapsedTime() > _ready_animation_time)
 	{
-		aAnimation.setNextSprite(6, 8);
+		aAnimation.setNextSprite(8, 11);
 		setLastActiveAnimation(globalClock);
 	}
 }
@@ -123,7 +123,7 @@ void MP::ComputerPlayer::_computer_player_animation_left(sf::Clock& globalClock)
 {
 	if (globalClock.getElapsedTime() > _ready_animation_time)
 	{
-		aAnimation.setNextSprite(3, 5);
+		aAnimation.setNextSprite(4, 7);
 		setLastActiveAnimation(globalClock);
 	}
 }
@@ -132,7 +132,7 @@ void MP::ComputerPlayer::_computer_player_animation_up(sf::Clock& globalClock)
 {
 	if (globalClock.getElapsedTime() > _ready_animation_time)
 	{
-		aAnimation.setNextSprite(9, 11);
+		aAnimation.setNextSprite(12, 15);
 		setLastActiveAnimation(globalClock);
 	}
 }
@@ -141,7 +141,7 @@ void MP::ComputerPlayer::_computer_player_animation_down(sf::Clock& globalClock)
 {
 	if (globalClock.getElapsedTime() > _ready_animation_time)
 	{
-		aAnimation.setNextSprite(0, 2);
+		aAnimation.setNextSprite(0, 3);
 		setLastActiveAnimation(globalClock);
 	}
 }

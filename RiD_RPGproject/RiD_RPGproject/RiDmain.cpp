@@ -99,12 +99,22 @@ void RiD::RiDmain::_event_function_for_menu()
 		if (_event.type == sf::Event::EventType::Closed)
 			_a_camera.getWindow().close();
 
-	
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+		{
+			if (_a_main_task_manager.getCurrentState() == MP::TaskManager::stateType::stateMarketPlace)
+				_a_main_task_manager.setState(MP::TaskManager::stateType::statePlacesMenu);
+
+			if(_a_main_task_manager.getCurrentState() == MP::TaskManager::stateType::statePlacesMenu)
+				_a_main_task_manager.setState(MP::TaskManager::stateType::stateGame);
+
+		}
+
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
 			if(_a_main_task_manager.isFree())
 			_a_main_task_manager.setTask(MP::TaskManager::taskRange::mainOrder, MP::TaskManager::taskType::taskClickLeft);
 		}
+	
 	}
 }
 

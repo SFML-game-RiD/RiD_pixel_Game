@@ -10,9 +10,12 @@ MP::Item::Item(sf::Texture* texturePtr,  sf::Font& aFont)
 
 void MP::Item::setItemAmount(unsigned int newItemAmount)
 {
+	std::string tmp = std::to_string(newItemAmount);
+	_item_amount = newItemAmount;
+	_item_amount_text.setString(std::string("X") + tmp);
 }
 
-unsigned int& MP::Item::getItemAmount()
+ int MP::Item::getItemAmount()
 {
 	return _item_amount;
 }
@@ -36,4 +39,9 @@ void MP::Item::setTextPostion(sf::Vector2f newPosition)
 	newPosition.x += getObiectCoord().x;
 	newPosition.y += getObiectCoord().y;
 	_item_amount_text.setPosition(newPosition);
+}
+
+int MP::Item::getItemCost()
+{
+	return _item_cost;
 }

@@ -8,8 +8,10 @@
 #include "Spearman.h"
 
 
+
+
 void MP::ItemsManager::setItems(sf::Font &aFont,unsigned int gold, sf::Texture* goldTextures, unsigned int iron, sf::Texture* ironTextures,
-	unsigned int wood, sf::Texture* woodTextures, unsigned food, sf::Texture* foodTextures, unsigned int spearman,
+	unsigned int wood, sf::Texture* woodTextures, unsigned int food, sf::Texture* foodTextures, unsigned int spearman,
 	sf::Texture* spearmanTextures, unsigned int archer, sf::Texture* archerTextures, unsigned int swordsman, sf::Texture* swordsmanTextures)
 {
 	_gold = std::make_shared<Gold>(goldTextures,aFont);
@@ -67,4 +69,28 @@ std::shared_ptr<MP::Item>& MP::ItemsManager::getArcher()
 std::shared_ptr<MP::Item>& MP::ItemsManager::getSwordsman()
 {
 	return _swordsman;
+}
+
+
+bool MP::ItemsManager::addItem(std::shared_ptr <Item>& aItem, int ammount)
+{
+	if (_gold->getItemAmount() - (ammount * aItem->getItemCost()) >= 0)
+	{
+		aItem->setItemAmount(aItem->getItemAmount() + ammount);
+		_gold->setItemAmount(_gold->getItemAmount() - (ammount * aItem->getItemCost()));
+		return true;
+	}
+	else
+		return false;
+}
+
+bool MP::ItemsManager::subtractItem(std::shared_ptr <Item>& aItem, int ammount, int buyerGold)
+{
+	if ((aItem->getItemAmount() - ammount) >= 0 and aItem->getItemCost()*ammount <= buyerGold)
+	{
+		aItem->setItemAmount(aItem->getItemAmount() - ammount);
+		_gold->setItemAmount(_gold->getItemAmount() + (ammount * aItem->getItemCost()));
+	}
+	else
+		return false;
 }

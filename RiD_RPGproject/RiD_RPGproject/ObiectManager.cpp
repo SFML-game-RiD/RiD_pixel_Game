@@ -42,12 +42,12 @@ MP::ObiectManager::~ObiectManager()
 	_computer_player_list.clear();
 }
 
-void MP::ObiectManager::addObiect(std::shared_ptr<Player> newPlayer)
+void MP::ObiectManager::addObiect(std::shared_ptr<Player> &newPlayer)
 {
 	_player = newPlayer;
 }   
 
-void MP::ObiectManager::addObiect(ComputerPlayer newComputerPlayer)
+void MP::ObiectManager::addObiect(ComputerPlayer& newComputerPlayer)
 {
 	_computer_player_list.push_back(newComputerPlayer);
 }

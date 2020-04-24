@@ -41,9 +41,9 @@ namespace MP
 
 		~ObiectManager();
 
-		void addObiect(std::shared_ptr<Player> newPlayer);
+		void addObiect(std::shared_ptr<Player> &newPlayer);
 		
-		void addObiect(ComputerPlayer newComputerPlayer);
+		void addObiect(ComputerPlayer &newComputerPlayer);
 
 		std::shared_ptr<Player> & getPlayer();
 		

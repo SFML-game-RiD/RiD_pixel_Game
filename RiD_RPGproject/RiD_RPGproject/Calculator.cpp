@@ -238,18 +238,11 @@ void MP::Calculator::StartMenuProcedures(TaskManager &aMainTaskManager, ObiectMa
 
 void MP::Calculator::_start_procedure_marketplace(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, Camera& aCamera)
 {
-
-  //Gettings current places and player for updating market status.
-	aObiectManager.getGuiManager().getGuiMarketPlace()->updateMarketPlace(*aObiectManager.getMap().findElementAddressSquareRange(aObiectManager.getPlayer()->getObiectCoord(),
-		aObiectManager.getMapElementHead())->getPlace(),*aObiectManager.getPlayer());
-
-
-
+	//Gettings current places and player for updating market status.
+	std::shared_ptr<Places> tmp = aObiectManager.getMap().findElementAddressSquareRange(aObiectManager.getPlayer()->getObiectCoord(),	aObiectManager.getMapElementHead())->getPlace();
+	aObiectManager.getGuiManager().getGuiMarketPlace()->updateMarketPlace(*tmp,*aObiectManager.getPlayer());
 
 
 	aObiectManager.getGuiManager().getGuiMarketPlace()->selectButton(aObiectManager.getCursor()->getGuiCoord());
-	aObiectManager.getGuiManager().getGuiMarketPlace()->pressButton(aMainTaskManager, aCamera.getWindow());
-
-	aObiectManager.getGuiManager().getGuiMarketPlace()->pressItem(aMainTaskManager, aCamera.getWindow());
-	aObiectManager.getGuiManager().getGuiMarketPlace()->pressItem(aMainTaskManager, aCamera.getWindow());
+	aObiectManager.getGuiManager().getGuiMarketPlace()->pressButton(aMainTaskManager, aCamera.getWindow(), aObiectManager.getPlayer(),tmp);
 }
