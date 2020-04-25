@@ -33,6 +33,11 @@ namespace MP
 		 sf::Vector2f getObiectCoord();
 
 		void setLastActiveAnimation(sf::Clock currentTime);
+	
+		//virtual void update()=0;
+
+		//virtual void render()=0;
+
 	};
 }
 #endif

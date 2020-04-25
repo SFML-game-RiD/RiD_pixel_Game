@@ -10,6 +10,9 @@ namespace MP
 
 	public:
 		Places();
+
+		void update();
+		void render();
 	};
 }
 #endif // !_PLACES_H_

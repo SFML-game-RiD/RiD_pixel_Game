@@ -11,4 +11,12 @@ MP::Land::Land(int x, int y)
 {
 	setObiectCoord(x, y);
 }
+
+void MP::Land::update()
+{
+}
+
+void MP::Land::render()
+{
+}
  

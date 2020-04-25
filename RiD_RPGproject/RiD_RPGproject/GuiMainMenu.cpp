@@ -33,13 +33,13 @@ MP::GuiMainMenu::GuiMainMenu(sf::Texture* texturePtr, sf::Texture* buttonTexture
 
 }
 
-void MP::GuiMainMenu::selectButton(sf::Vector2f mouseCoord)
+void MP::GuiMainMenu::selectButton(sf::Vector2f guiMouseCoord)
 {
 
 	for (int i = 0; i < _button_array.size(); i++)
 	{
-		if (mouseCoord.x >=_button_array[i]->getObiectCoord().x and mouseCoord.x <= _button_array[i]->getObiectCoord().x + 275
-			and mouseCoord.y >= _button_array[i]->getObiectCoord().y + 112 and mouseCoord.y <= _button_array[i]->getObiectCoord().y + 163)
+		if (guiMouseCoord.x >=_button_array[i]->getObiectCoord().x and guiMouseCoord.x <= _button_array[i]->getObiectCoord().x + 275
+			and guiMouseCoord.y >= _button_array[i]->getObiectCoord().y + 112 and guiMouseCoord.y <= _button_array[i]->getObiectCoord().y + 163)
 			_button_array[i]->setButtonActive(true);
 		else
 			_button_array[i]->setButtonActive(false);
@@ -66,4 +66,17 @@ void MP::GuiMainMenu::pressButton(TaskManager& aMainTaskManager,  sf::RenderWind
 		aMainTaskManager.resetOrdersAndReply();
 		aMainWindow.close();
 	}
-}  
+}
+
+void MP::GuiMainMenu::update(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, sf::Vector2f guiMouseCoord)
+{
+	if (aMainTaskManager.getCurrentState() == TaskManager::stateType::stateMainMenu)
+	{
+		selectButton(guiMouseCoord);
+		pressButton(aMainTaskManager, aMainWindow);
+	}
+}
+
+void MP::GuiMainMenu::render()
+{
+}

@@ -15,6 +15,8 @@ namespace MP
 		void setItemPosition(sf::Vector2f itemPosition);
 
 		void drawItem(sf::RenderWindow& mainWindow);
+
+
 	};
 
 }

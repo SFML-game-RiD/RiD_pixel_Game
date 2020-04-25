@@ -9,6 +9,9 @@ namespace MP
 	public:
 		
 		PathIcon(sf::Texture* texturePtr,sf::Vector2f spawnCoord);
+
+		void update();
+		void render();
 	};
 }
 #endif // !_PATHICON_H_

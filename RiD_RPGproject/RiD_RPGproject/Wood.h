@@ -18,6 +18,10 @@ namespace MP
 		void setItemPosition(sf::Vector2f itemPosition);
 
 		void drawItem(sf::RenderWindow& mainWindow);
+
+		void update();
+
+		void render();
 	};
 }
 #endif // !_WOOD_H_

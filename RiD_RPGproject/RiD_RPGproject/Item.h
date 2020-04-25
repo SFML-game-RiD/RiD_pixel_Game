@@ -33,6 +33,10 @@ namespace MP
 
 		int getItemCost();
 
+
+		void update();
+		void render();
+
 	};
 }
 #endif // !_ITEM_H_

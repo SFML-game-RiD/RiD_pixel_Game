@@ -34,6 +34,15 @@ void MP::MapGui::drawMapGui(sf::RenderWindow& mainWindow, ItemsManager& aItemsMa
 	_draw_items(mainWindow, aItemsManager);
 }
 
+void MP::MapGui::update(ItemsManager& aItemsManager)
+{
+	updateItems(aItemsManager);
+}
+
+void MP::MapGui::render()
+{
+}
+
 void MP::MapGui::_draw_items(sf::RenderWindow& mainWindow, ItemsManager& aItemsManager)
 {
 	aItemsManager.getWood()->drawItem(mainWindow);

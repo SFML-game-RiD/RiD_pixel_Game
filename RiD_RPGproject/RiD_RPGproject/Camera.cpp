@@ -50,7 +50,7 @@ void MP::Camera::drawFrame()
 	_window.display();
 }
 
-void MP::Camera::changeZoom(MP::TaskManager& aTaskManager)
+void MP::Camera::_change_zoom(MP::TaskManager& aTaskManager)
 {
 	changeViewToGame();
 
@@ -62,7 +62,7 @@ void MP::Camera::changeZoom(MP::TaskManager& aTaskManager)
 	aTaskManager.endTask(MP::TaskManager::taskRange::order);
 }
 
-void MP::Camera::changeCamera(sf::Vector2f coord)
+void MP::Camera::_change_camera(sf::Vector2f coord)
 {
 	//Correcting camera position
 	coord.x += 30;
@@ -81,4 +81,12 @@ void MP::Camera::changeViewToGame()
 void MP::Camera::changeViewToGui()
 {
 	_window.setView(_gui_view);
+}
+
+void MP::Camera::update(sf::Vector2f newFocusCoord, TaskManager& aMainTaskManager)
+{
+	if (aMainTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskZoomIn or aMainTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskZoomOut)
+		_change_zoom(aMainTaskManager);
+
+	_change_camera(newFocusCoord);
 }

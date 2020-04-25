@@ -9,12 +9,15 @@ namespace MP
 	{
 	private:
 
+		void _tree_animation(sf::Clock& globalClock);
 
 	public:
 
 		Tree(sf::Texture* texturePtr, sf::Vector2f coord, float treeScale);
 
-		void treeAnimation(sf::Clock& globalClock);
+		void update(sf::Clock& globalClock);
+
+		void render(sf::RenderWindow &mainWindow);
 
 	};
 }

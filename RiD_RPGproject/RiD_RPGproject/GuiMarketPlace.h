@@ -5,6 +5,7 @@
 #include "ActiveObiect.h"
 #include "Places.h"
 #include "Player.h"
+#include "GuiPanel.h"
 
 namespace MP
 
@@ -14,9 +15,9 @@ namespace MP
 	{
 	private:
 
-		std::unique_ptr<Obiect> panelA;
+		std::unique_ptr<GuiPanel> panelA;
 
-		std::unique_ptr<Obiect> panelB;
+		std::unique_ptr<GuiPanel> panelB;
 
 		std::unique_ptr<Item> _current_item;
 
@@ -38,10 +39,15 @@ namespace MP
 
 		void drawMenu(sf::RenderWindow& aMainWindow,ActiveObiect& place, ActiveObiect& player);
 
-		void selectButton(sf::Vector2f mouseCoord);
+		void selectButton(sf::Vector2f guiMouseCoord);
 
-		void pressButton(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, std::shared_ptr<Player>& aPlayer, std::shared_ptr<Places>& aPlaces);
+		void pressButton(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, std::shared_ptr<Player>& aPlayer, std::shared_ptr<Places>& aPlace);
 	
+
+
+		void update(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, sf::Vector2f guiMouseCoord, std::shared_ptr<Player>& aPlayer, std::shared_ptr<Places>& aPlace);
+
+		void render();
 	};
 
 }

@@ -39,13 +39,9 @@ void MP::ObiectDrawer::_draw_map_gui_obiects(sf::RenderWindow& mainWindow, Obiec
 
 void MP::ObiectDrawer::_draw_active_obiects(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager)
 {
-	//drawing player and path icon ( if exist);
-	mainWindow.draw(aObiectManager.getPlayer()->aAnimation.getObiectSprite());
-	std::vector<PathIcon> tmpPathCopy = aObiectManager.getPlayer()->getPathIcon();
-	for (int i = 0; i < tmpPathCopy.size(); i++)
-	{
-		mainWindow.draw(tmpPathCopy[i].aAnimation.getObiectSprite());
-	}
+	//drawing player and path icon (if exist);
+	aObiectManager.getPlayer()->render(mainWindow);
+
 
 	//drawing computer player
 	std::list<MP::ComputerPlayer> *computerPlayerList = aObiectManager.getComputerPlayerList();
@@ -53,9 +49,8 @@ void MP::ObiectDrawer::_draw_active_obiects(sf::RenderWindow& mainWindow, Obiect
 	it = computerPlayerList->begin();
 
 	for (it; it != computerPlayerList->end(); it++)
-	{
-		mainWindow.draw(it->aAnimation.getObiectSprite());
-	}
+		it->render(mainWindow);
+
 }
 
 void MP::ObiectDrawer::_draw_map_gui(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager)

@@ -21,6 +21,10 @@ namespace MP
 
 		void drawMapGui(sf::RenderWindow& mainWindow, ItemsManager& aItemsManager);
 
+
+		void update(ItemsManager& aItemsManager);
+		void render();
+
 	};
 }
 #endif // !_MAPGUI_H_

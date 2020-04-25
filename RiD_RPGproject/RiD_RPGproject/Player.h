@@ -13,11 +13,15 @@ namespace MP
 	{
 	private:
 
+		sf::Vector2f checkingVector;//Variable used in player auto move procedure;
+
 		MapElement* _path;
 
 		sf::Texture * _a_path_icon_texture;
 
 		std::vector<PathIcon> _a_path_icon;
+
+
 
 		void _player_animation_right(sf::Clock& globalClock);
 
@@ -27,37 +31,35 @@ namespace MP
 
 		void _player_animation_down(sf::Clock& globalClock);
 
+		void _player_animation(sf::Clock& globalClock, TaskManager& aMainTaskManager);
 
+		void _player_move(sf::Clock& globalClock, TaskManager& aMainTaskManager);
+
+		void _player_automatic_move(Map& aMap, TaskManager& aTaskManager);
+
+		void _set_path(MapElement*& newPath);
+
+		void _player_auto_animation(sf::Clock& globalClock);
+
+		void _player_auto_move(sf::Clock& globalClock);
+
+		void _delete_player_path();
+
+		void _mark_path();
+
+		void _unmark_path();
 
 	public:
 
-
-
 		Player(sf::Texture *texturePtr,sf::Texture *pathIconTexturePtr);
 
-		//############ move animation ##############
+		void goToPlace(Map& aGameMap, TaskManager& aMainTaskManger);
 
-		void playerAnimation(sf::Clock& globalClock,TaskManager& aMainTaskManager);
+		void update(TaskManager& aMainTaskManager, sf::Clock& GameClock, MP::Map& aMap, sf::Vector2f mouseGameCoord);
 
-		void playerAutomaticMove(Map &aMap,TaskManager &aTaskManager);
+		void render(sf::RenderWindow &mainWindow);
 
-		void setPath(MapElement*& newPath);
-
-		MapElement*& getPath();
-
-		void playerAutoAnimation(sf::Clock& globalClock);
-
-		void playerAutoMove(sf::Clock& globalClock);
-
-		void deletePlayerPath();
-
-		void markPath();
-
-		void unmarkPath();
-
-		std::vector<PathIcon>& getPathIcon();
-
-		void goToPlace(Map& aGameMap,TaskManager &aMainTaskManger);
+		void procedurePlayerAutoOrNormalMove(TaskManager& aMainTaskManager, sf::Clock& GameClock, MP::Map& aMap, sf::Vector2f &mouseGameCoord);
 	};
 
 

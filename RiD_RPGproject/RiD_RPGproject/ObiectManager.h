@@ -11,14 +11,15 @@
 #include "Cursor.h"
 #include "GuiManager.h"
 
+
 namespace MP
 {
 	class ObiectManager
 	{
 	private:
 
+		//This two variables below should be exported to another class.
 		int _mod_number;
-
 		std::mt19937 _random_number;
 
 		//OBIECTS
@@ -28,10 +29,10 @@ namespace MP
 		std::list<ComputerPlayer> _computer_player_list;
 
 		std::list<Tree> _tree_list;
-
-		Map _a_map;
-
+		
 		std::shared_ptr<Cursor> _a_cursor;
+	
+		Map _a_map;
 
 		GuiManager _a_gui_manager;
 
@@ -53,7 +54,7 @@ namespace MP
 
 		std::list<Tree> * getTreeList();
 
-		bool _access();
+		bool access();
 
 		std::list<MP::ComputerPlayer>* getComputerPlayerList();
 

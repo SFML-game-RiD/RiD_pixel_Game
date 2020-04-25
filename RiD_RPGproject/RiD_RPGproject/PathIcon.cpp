@@ -7,3 +7,11 @@ MP::PathIcon::PathIcon(sf::Texture* texturePtr, sf::Vector2f spawnCoord)
 	aAnimation.setScale(0.6, 0.6);
 	aAnimation.setOrigin(-29,-29);
 }
+
+void MP::PathIcon::update()
+{
+}
+
+void MP::PathIcon::render()
+{
+}

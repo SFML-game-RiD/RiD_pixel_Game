@@ -45,3 +45,11 @@ int MP::Item::getItemCost()
 {
 	return _item_cost;
 }
+
+void MP::Item::update()
+{
+}
+
+void MP::Item::render()
+{
+}

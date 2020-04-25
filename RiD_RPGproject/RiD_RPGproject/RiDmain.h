@@ -10,6 +10,7 @@
 #include "Calculator.h"
 #include "Camera.h"
 
+
 namespace RiD
 {
 	class RiDmain
@@ -37,8 +38,6 @@ namespace RiD
 
 		MP::Camera _a_camera;
 
-		MP::Move _a_map_move;
-
 		sf::Event _event;
 
 		sf::Clock _clock;
@@ -47,15 +46,12 @@ namespace RiD
 		void _create_window();
 
 		void _event_function_for_state_game();
-
 		void _event_function_for_menu();
 
 		void _calculate_for_state_game();
-
 		void _calculate_for_state_menu();
 
 		void _draw_for_state_game();
-
 	    void _draw_for_menu();
 
 

@@ -24,10 +24,11 @@ namespace MP
 
 		void drawMenu(sf::RenderWindow& aMainWindow);
 
-		virtual void selectButton(sf::Vector2f mouseCoord);
+		virtual void selectButton(sf::Vector2f guiMouseCoord);
 
 		virtual void pressButton(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow);
 
+		virtual void update(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, sf::Vector2f guiMouseCoord);
 	};
 }
 #endif // !_GUIMENU_H_

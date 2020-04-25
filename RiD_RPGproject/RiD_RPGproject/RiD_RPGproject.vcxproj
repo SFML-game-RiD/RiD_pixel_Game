@@ -177,6 +177,7 @@
     <ClCompile Include="GuiMainMenu.cpp" />
     <ClCompile Include="GuiMarketPlace.cpp" />
     <ClCompile Include="GuiMenu.cpp" />
+    <ClCompile Include="GuiPanel.cpp" />
     <ClCompile Include="GuiPlacesMenu.cpp" />
     <ClCompile Include="Iron.cpp" />
     <ClCompile Include="Item.cpp" />
@@ -234,6 +235,7 @@
     <ClInclude Include="GuiMainMenu.h" />
     <ClInclude Include="GuiMarketPlace.h" />
     <ClInclude Include="GuiMenu.h" />
+    <ClInclude Include="GuiPanel.h" />
     <ClInclude Include="GuiPlacesMenu.h" />
     <ClInclude Include="Iron.h" />
     <ClInclude Include="Item.h" />

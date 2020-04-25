@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "ObiectManager.h"
 
-bool MP::ObiectManager::_access()
+bool MP::ObiectManager::access()
 {
 	if (1 == _random_number() % _mod_number)
 		return true;

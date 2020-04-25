@@ -32,3 +32,11 @@ void MP::Wood::drawItem(sf::RenderWindow& mainWindow)
 	mainWindow.draw(aAnimation.getObiectSprite());
 	mainWindow.draw(_item_amount_text);
 }
+
+void MP::Wood::update()
+{
+}
+
+void MP::Wood::render()
+{
+}

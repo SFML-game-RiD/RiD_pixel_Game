@@ -27,6 +27,11 @@ namespace MP
 		void drawButton(sf::RenderWindow& aMainWindow);
 
 		void setButtonPosition(sf::Vector2f newPostion);
+
+
+		void update();
+
+		void render();
 	};
 }
 #endif // !1

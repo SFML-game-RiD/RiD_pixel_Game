@@ -63,3 +63,16 @@ void MP::GuiPlacesMenu::pressButton(TaskManager& aMainTaskManager, sf::RenderWin
 		aMainTaskManager.setState(TaskManager::stateType::stateGame);
 	}
 }
+
+void MP::GuiPlacesMenu::update(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, sf::Vector2f GuiMouseCoord)
+{
+	if (aMainTaskManager.getCurrentState() == TaskManager::stateType::statePlacesMenu)
+	{
+		selectButton(GuiMouseCoord);
+		pressButton(aMainTaskManager,aMainWindow);
+	}
+}
+
+void MP::GuiPlacesMenu::render()
+{
+}

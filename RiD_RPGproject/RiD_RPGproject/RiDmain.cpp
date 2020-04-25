@@ -6,21 +6,9 @@
 void RiD::RiDmain::_create_window()
 {	
 	
-	//############ Generating obiects ##############
-
+	//generating obiects
 	_a_obiect_generator.generateObiects(_a_obiect_manager);
-	
 	std::printf("generated successful \n");
-
-	//##############################################
-
-
-	//############ Corecting camera ##############
-
-	_a_camera.changeCamera(_a_obiect_manager.getPlayer()->getObiectCoord());
-
-	//##############################################
-
 	
 
 	while (_a_camera.getWindow().isOpen()) //program main loop
@@ -37,7 +25,7 @@ void RiD::RiDmain::_create_window()
 		{
 			_event_function_for_menu();
 			_calculate_for_state_menu();
-			_draw_for_menu();//same as below
+			_draw_for_menu();
 		}
 	}
 }
@@ -149,12 +137,12 @@ void RiD::RiDmain::_draw_for_menu()
 
 RiD::RiDmain::RiDmain(int width, int height, std::string title)
 {
-	sf::VideoMode mode = sf::VideoMode::getFullscreenModes()[0];
-	_a_camera.getWindow().create(mode, title, sf::Style::Close | sf::Style::Fullscreen);
+	//sf::VideoMode mode = sf::VideoMode::getFullscreenModes()[0];
+	//_a_camera.getWindow().create(mode, title, sf::Style::Close | sf::Style::Fullscreen);
 	
 
-	/*_a_camera.getWindow().create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
-	_a_camera.getWindow().setFramerateLimit(RiD::ConfigurationLoader::getIntData("video settings", "gameFPS"));*/
+	_a_camera.getWindow().create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
+	_a_camera.getWindow().setFramerateLimit(RiD::ConfigurationLoader::getIntData("video settings", "gameFPS"));
 	_a_camera.getWindow().setMouseCursorVisible(false);
 	this->_create_window();
 

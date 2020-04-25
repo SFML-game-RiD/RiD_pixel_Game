@@ -164,6 +164,7 @@
     <ClCompile Include="GuiMarketPlace.cpp">
       <Filter>OBIECT\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="GuiPanel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Animation.h">
@@ -328,6 +329,7 @@
     <ClInclude Include="GuiMarketPlace.h">
       <Filter>OBIECT\GUI</Filter>
     </ClInclude>
+    <ClInclude Include="GuiPanel.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="OBIECT">

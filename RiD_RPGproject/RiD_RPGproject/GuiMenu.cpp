@@ -39,3 +39,7 @@ void MP::GuiMenu::pressButton(TaskManager& aMainTaskManager, sf::RenderWindow& a
 {
 
 }
+
+void MP::GuiMenu::update(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, sf::Vector2f mouseCoord)
+{
+}

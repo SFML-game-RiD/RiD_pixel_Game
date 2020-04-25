@@ -2,7 +2,7 @@
 #include "Move.h"
 
 
-void MP::ComputerPlayer::choseDestination(Map &aMap)
+void MP::ComputerPlayer::_chose_destination(Map &aMap)
 {
 	MP::PathCreator tmp(aMap);
 	sf::Vector2f destinationCoord = aMap.returnRandomWalkableElement()->getLandTile().getObiectCoord();
@@ -16,13 +16,13 @@ void MP::ComputerPlayer::choseDestination(Map &aMap)
 	_path =  tmp.findPath(startingElement->getLandTile().getObiectCoord(),destinationCoord);
 }
 
-void MP::ComputerPlayer::getNextTask(Map& aMap)
+void MP::ComputerPlayer::_get_next_task(Map& aMap)
 {
 
 	if (aPawnObiectTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskNone)
 	{
 		if (_path == nullptr)//Sets new destination.
-		choseDestination(aMap);
+		_chose_destination(aMap);
 		
 
 
@@ -48,7 +48,7 @@ void MP::ComputerPlayer::getNextTask(Map& aMap)
 	}
 }
 
-void MP::ComputerPlayer::computerPlayerMove(sf::Clock& globalClock)
+void MP::ComputerPlayer::_computer_player_move(sf::Clock& globalClock)
 {
 	MP::Move tmp;
 
@@ -74,6 +74,18 @@ void MP::ComputerPlayer::computerPlayerMove(sf::Clock& globalClock)
 	}
 }
 
+void MP::ComputerPlayer::update(Map& aMap, sf::Clock& gameClock)
+{
+	_get_next_task(aMap);
+	_computer_player_animation(gameClock);
+	_computer_player_move(gameClock);
+}
+
+void MP::ComputerPlayer::render(sf::RenderWindow& mainWindow)
+{
+	mainWindow.draw(aAnimation.getObiectSprite());
+}
+
 MP::ComputerPlayer::ComputerPlayer(sf::Texture* texturePtr)
 {
 
@@ -95,7 +107,7 @@ MP::ComputerPlayer::ComputerPlayer(sf::Texture* texturePtr)
 	setObiectCoord(RiD::ConfigurationLoader::getIntData("computer player", "coordinateX"), RiD::ConfigurationLoader::getIntData("computer player", "coordinateY"));
 }
 
-void MP::ComputerPlayer::computerPlayerAnimation(sf::Clock& globalClock)
+void MP::ComputerPlayer::_computer_player_animation(sf::Clock& globalClock)
 {
 	if (aPawnObiectTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskGoUp)
 		_computer_player_animation_up(globalClock);

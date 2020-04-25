@@ -84,3 +84,13 @@ void MP::Cursor::checkIfPlayerClicked(TaskManager& aTaskManager, Camera& aCamera
 		}
 	}
 }
+
+void MP::Cursor::update(TaskManager& aMainTaskManager, Camera& aCamera)
+{
+	updateCursor(aMainTaskManager, aCamera);
+	checkIfPlayerClicked(aMainTaskManager, aCamera);
+}
+
+void MP::Cursor::render()
+{
+}

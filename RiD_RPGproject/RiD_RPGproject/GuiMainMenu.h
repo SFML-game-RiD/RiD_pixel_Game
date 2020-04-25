@@ -12,7 +12,6 @@ namespace MP
 
 		void _create_buttons(sf::Texture* buttonTexture, sf::Font& aFont);
 
-
 	public:
 
 		GuiMainMenu();
@@ -22,6 +21,10 @@ namespace MP
 		void selectButton(sf::Vector2f mouseCoord);
 
 		void pressButton(TaskManager &aMainTaskManager, sf::RenderWindow &aMainWindow);
+
+		void update(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, sf::Vector2f mouseCoord);
+
+		void render();
 	};
 }
 #endif // !_GUIMENU_H_

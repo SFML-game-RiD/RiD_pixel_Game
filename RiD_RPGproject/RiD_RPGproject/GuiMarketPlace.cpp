@@ -36,8 +36,8 @@ void MP::GuiMarketPlace::_create_buttons(sf::Texture* buttonTexture, sf::Font& a
 
 void MP::GuiMarketPlace::_create_panels(sf::Texture* panelLeftTexture, sf::Texture* panelRightTexture)
 {
-	panelA = std::make_unique<Obiect>();
-	panelB = std::make_unique<Obiect>();
+	panelA = std::make_unique<GuiPanel>();
+	panelB = std::make_unique<GuiPanel>();
 
 	panelA->aAnimation.loadObiectTextures(panelLeftTexture, 1, 1,785);
 	panelB->aAnimation.loadObiectTextures(panelRightTexture, 1, 1,785);
@@ -271,4 +271,18 @@ void MP::GuiMarketPlace::pressButton(TaskManager& aMainTaskManager, sf::RenderWi
 	}
 
 	aMainTaskManager.endTask(TaskManager::taskRange::mainOrder);
+}
+
+void MP::GuiMarketPlace::update(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, sf::Vector2f guiMouseCoord, std::shared_ptr<Player>& aPlayer, std::shared_ptr<Places>& aPlace)
+{
+	if (aMainTaskManager.getCurrentState() == MP::TaskManager::stateType::stateMarketPlace)
+	{
+		updateMarketPlace(*aPlace, *aPlayer);
+		selectButton(guiMouseCoord);
+		pressButton(aMainTaskManager, aMainWindow, aPlayer, aPlace);
+	}
+}
+
+void MP::GuiMarketPlace::render()
+{
 }

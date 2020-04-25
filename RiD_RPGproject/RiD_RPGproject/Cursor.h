@@ -30,6 +30,11 @@ namespace MP
 		void updateCursor(TaskManager& aMainTaskManager, Camera& aCamera);
 
 		void checkIfPlayerClicked(TaskManager& aTaskManager, Camera& aCamera);
+
+
+		void update(TaskManager& aMainTaskManager, Camera& aCamera);
+
+		void render();
 	};
 }
 #endif // !_CURSOR_H_

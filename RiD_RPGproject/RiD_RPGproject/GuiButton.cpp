@@ -64,3 +64,11 @@ void MP::GuiButton::setButtonPosition(sf::Vector2f newPostion)
 
 	_a_text.setPosition(newPostion);
 }
+
+void MP::GuiButton::update()
+{
+}
+
+void MP::GuiButton::render()
+{
+}

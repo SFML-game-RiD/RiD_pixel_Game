@@ -22,6 +22,10 @@ namespace MP
 
 		void pressButton(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow);
 
+
+		void update(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, sf::Vector2f guiMouseCoord);
+		void render();
+
 	};
 }
 #endif // !_GUIPLACESMENU_H_

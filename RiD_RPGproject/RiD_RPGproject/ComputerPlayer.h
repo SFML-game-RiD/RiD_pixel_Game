@@ -21,23 +21,21 @@ namespace MP
 
 		void _computer_player_animation_down(sf::Clock& globalClock);
 
+		void _computer_player_animation(sf::Clock& globalClock);
+
+		void _computer_player_move(sf::Clock& globalClock);
+
+		void _get_next_task(Map& aMap);
+
+		void _chose_destination(Map& aMap);
+
 	public:
-
-
-
 
 		ComputerPlayer(sf::Texture* texturePtr);
 
-		void computerPlayerAnimation(sf::Clock& globalClock);
+		void update(Map& aMap, sf::Clock& gameClock);
 
-		//##########################################
-
-		void choseDestination(Map& aMap);
-
-		void getNextTask(Map& aMap);
-
-		void computerPlayerMove(sf::Clock& globalClock);
-
+		void render(sf::RenderWindow &mainWindow);
 
 	};
 

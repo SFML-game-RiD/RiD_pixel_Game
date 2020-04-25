@@ -24,7 +24,12 @@ namespace MP
 
 		void _zoom_out();
 
+		void _change_zoom(MP::TaskManager& aTaskManager);
+
+		void _change_camera(sf::Vector2f coord);
+
 	public:	
+
 		Camera();
 
 		sf::RenderWindow & getWindow();
@@ -32,14 +37,12 @@ namespace MP
 		void clearCamera();
 
 		void drawFrame();
-
-		void changeZoom(MP::TaskManager &aTaskManager);
-
-		void changeCamera(sf::Vector2f coord);
 		
 		void changeViewToGame();//allows to update game
 
 		void changeViewToGui();//updates gui
+
+		void update(sf::Vector2f newFocusCoord, TaskManager &aMainTaskManager);
 
 	};
 }
