@@ -16,6 +16,22 @@ void MP::ComputerPlayer::_chose_destination(Map &aMap)
 	_path =  tmp.findPath(startingElement->getLandTile().getObiectCoord(),destinationCoord);
 }
 
+void MP::ComputerPlayer::_delete_path()
+{
+	if (_path == nullptr)
+		return;
+	else
+	{
+		while (_path != nullptr)
+		{
+			MapElement* tmp = _path;
+
+			_path = _path->getNextElementCopy();
+			delete tmp;
+		}
+	}
+}
+
 void MP::ComputerPlayer::_get_next_task(Map& aMap)
 {
 
@@ -94,7 +110,7 @@ MP::ComputerPlayer::ComputerPlayer(sf::Texture* texturePtr)
 	//Loading textures.
 	aAnimation.loadObiectTextures(texturePtr, 4, 4, 64);
 	aAnimation.changeSprite(6);
-	aAnimation.setScale(0.7, 0.7);
+	aAnimation.setScale(0.85, 0.85);
 
 	//Getting computer player animation and move sleep time.
 	active_obj_sleep_time = sf::milliseconds(RiD::ConfigurationLoader::getIntData("computer player", "SleepTime"));
@@ -105,6 +121,11 @@ MP::ComputerPlayer::ComputerPlayer(sf::Texture* texturePtr)
 
 	//Getting player coordinates.
 	setObiectCoord(RiD::ConfigurationLoader::getIntData("computer player", "coordinateX"), RiD::ConfigurationLoader::getIntData("computer player", "coordinateY"));
+}
+
+MP::ComputerPlayer::~ComputerPlayer()
+{
+	_delete_path();
 }
 
 void MP::ComputerPlayer::_computer_player_animation(sf::Clock& globalClock)

@@ -74,6 +74,7 @@ void MP::GuiMainMenu::update(TaskManager& aMainTaskManager, sf::RenderWindow& aM
 	{
 		_select_button(guiMouseCoord);
 		_press_button(aMainTaskManager, aMainWindow);
+		aMainTaskManager.resetOrdersAndReply();
 	}
 }
 

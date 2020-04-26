@@ -4,6 +4,11 @@ MP::Places::Places()
 {
 }
 
+MP::ItemsManager& MP::Places::getItemsForTrade()
+{
+	return itemsForTrade;
+}
+
 void MP::Places::update()
 {
 }

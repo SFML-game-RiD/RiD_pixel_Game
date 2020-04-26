@@ -27,9 +27,9 @@ namespace MP
 
 		void _buy_item(ItemsManager& seller, ItemsManager& buyer);
 	
-		void _update_market_place(ActiveObiect& place,ActiveObiect &player);
+		void _update_market_place(Places& place,ActiveObiect &player);
 
-		void _draw_menu(sf::RenderWindow& aMainWindow,ActiveObiect& place, ActiveObiect& player);
+		void _draw_menu(sf::RenderWindow& aMainWindow,Places& place, ActiveObiect& player);
 
 		void _select_button(sf::Vector2f guiMouseCoord);
 

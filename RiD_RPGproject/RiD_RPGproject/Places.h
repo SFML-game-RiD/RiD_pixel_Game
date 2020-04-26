@@ -6,12 +6,18 @@ namespace MP
 {
 	class Places:public ActiveObiect
 	{
+	private:
 
+		ItemsManager itemsForTrade;
 
 	public:
+
 		Places();
 
+		ItemsManager & getItemsForTrade();
+
 		void update();
+
 		void render(sf::RenderWindow& mainWindow);
 	};
 }

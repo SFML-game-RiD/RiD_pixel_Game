@@ -40,12 +40,21 @@ void MP::Player::_player_animation_down(sf::Clock& globalClock)
 	}
 }
 
+void MP::Player::_player_animation_idle(sf::Clock& globalClock)
+{
+	if (globalClock.getElapsedTime() > _ready_animation_time+ sf::milliseconds(1000))
+	{
+		aAnimation.setNextSprite(12, 14);
+		setLastActiveAnimation(globalClock);
+	}
+}
+
 MP::Player::Player(sf::Texture* texturePtr, sf::Texture* pathIconTexturePtr)
 {	
 	//saving path icon texture
 	_a_path_icon_texture = pathIconTexturePtr;
 	//Loading textures.
-	aAnimation.loadObiectTextures(texturePtr,3,4,64);
+	aAnimation.loadObiectTextures(texturePtr,3,5,64);
 	aAnimation.changeSprite(6);
 	aAnimation.setScale(0.7, 0.7);
 	//Getting player animation and move sleep time.
@@ -73,6 +82,9 @@ void MP::Player::_player_animation(sf::Clock& globalClock, TaskManager &aMainTas
 
 	if (aMainTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskGoRight)
 		_player_animation_right(globalClock);
+
+	if (aMainTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskNone)
+		_player_animation_idle(globalClock);
 }
 
 void MP::Player::_player_move(sf::Clock& aGameClock, TaskManager& aMainTaskManager)
@@ -261,6 +273,10 @@ void MP::Player::_procedure_player_auto_or_normal_move(TaskManager& aMainTaskMan
 
 		_player_animation(gameClock, aMainTaskManager);
 
+	}break;
+	case(MP::TaskManager::taskType::taskNone):
+	{
+		_player_animation(gameClock, aMainTaskManager);
 	}break;
 	case(MP::TaskManager::taskType::taskAutoMove):
 	{

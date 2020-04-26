@@ -28,7 +28,7 @@ namespace MP
 
 		void _generate_gui(ObiectManager& aObiectManager);
 
-		void _generate_items_for_places(ItemsManager &itemsFromPlaces, int modulo);
+		void _generate_items_for_places(ItemsManager& itemsFromPlaces, ItemsManager& itemsForTrade, int multiplier, int tradeMultiplier,char placesMark);
 
 	public:
 

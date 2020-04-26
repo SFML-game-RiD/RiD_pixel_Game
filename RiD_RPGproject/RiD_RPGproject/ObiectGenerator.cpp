@@ -94,18 +94,26 @@ void MP::ObiectGenerator::_generate_map(ObiectManager& aObiectManager)
 						0, &_a_asset_manager.getTexture("archer"),
 						0, &_a_asset_manager.getTexture("swordsman"));
 
+					tmp->getPlace()->getItemsForTrade().setItems(_a_asset_manager.getFont("font"),
+						0, & _a_asset_manager.getTexture("gold"),
+						0, & _a_asset_manager.getTexture("iron"),
+						0, & _a_asset_manager.getTexture("wood"),
+						0, & _a_asset_manager.getTexture("food"),
+						0, & _a_asset_manager.getTexture("spearman"),
+						0, & _a_asset_manager.getTexture("archer"),
+						0, & _a_asset_manager.getTexture("swordsman"));
 
 					if (placesMark == RiD::ConfigurationLoader::getStringData("village", "mark")[0])
 					{
-						_generate_items_for_places(tmp->getPlace()->aItemsManager, RiD::ConfigurationLoader::getIntData("village", "modulo"));
+						_generate_items_for_places(tmp->getPlace()->aItemsManager,tmp->getPlace()->getItemsForTrade(), RiD::ConfigurationLoader::getIntData("village", "modulo"), RiD::ConfigurationLoader::getIntData("village", "moduloTrade"), placesMark);
 					}
 					else if (placesMark == RiD::ConfigurationLoader::getStringData("castle", "mark")[0])
 					{
-						_generate_items_for_places(tmp->getPlace()->aItemsManager, RiD::ConfigurationLoader::getIntData("castle", "modulo"));
+						_generate_items_for_places(tmp->getPlace()->aItemsManager, tmp->getPlace()->getItemsForTrade(), RiD::ConfigurationLoader::getIntData("castle", "modulo"), RiD::ConfigurationLoader::getIntData("village", "moduloTrade"), placesMark);
 					}
 					else if (placesMark == RiD::ConfigurationLoader::getStringData("town", "mark")[0])
 					{
-						_generate_items_for_places(tmp->getPlace()->aItemsManager, RiD::ConfigurationLoader::getIntData("town", "modulo"));
+						_generate_items_for_places(tmp->getPlace()->aItemsManager, tmp->getPlace()->getItemsForTrade(), RiD::ConfigurationLoader::getIntData("town", "modulo"), RiD::ConfigurationLoader::getIntData("village", "moduloTrade"), placesMark);
 					}
 				}
 			}
@@ -139,7 +147,6 @@ void MP::ObiectGenerator::_generate_cursor(ObiectManager& aObiectManager)
 
 void MP::ObiectGenerator::_generate_gui(ObiectManager& aObiectManager)
 {
-	//WORK IN PROGRESS
 
 	//creating map gui
 	aObiectManager.getGuiManager().getMapGui() = std::make_unique<MapGui>(&_a_asset_manager.getTexture("mapgui"));
@@ -162,15 +169,64 @@ void MP::ObiectGenerator::_generate_gui(ObiectManager& aObiectManager)
 
 }
 
-void MP::ObiectGenerator::_generate_items_for_places(ItemsManager& itemsFromPlaces,int multiplier)
+void MP::ObiectGenerator::_generate_items_for_places(ItemsManager& itemsFromPlaces,ItemsManager &itemsForTrade,int multiplier,int tradeMultiplier, char placesMark)
 {
-	itemsFromPlaces.getWood()->setItemAmount(_random_number()%multiplier);
-	itemsFromPlaces.getIron()->setItemAmount(_random_number() % multiplier);
-	itemsFromPlaces.getGold()->setItemAmount(_random_number() % multiplier);
-	itemsFromPlaces.getFood()->setItemAmount(_random_number() % multiplier);
-	itemsFromPlaces.getArcher()->setItemAmount(_random_number() % multiplier);
-	itemsFromPlaces.getSwordsman()->setItemAmount(_random_number() % multiplier);
-	itemsFromPlaces.getSpearman()->setItemAmount(_random_number() % multiplier);
+
+
+	if (placesMark == RiD::ConfigurationLoader::getStringData("village", "mark")[0])
+	{
+		itemsFromPlaces.getWood()->setItemAmount(_random_number() % multiplier);
+		itemsFromPlaces.getIron()->setItemAmount(_random_number() % multiplier);
+		itemsFromPlaces.getGold()->setItemAmount(_random_number() % multiplier);
+		itemsFromPlaces.getFood()->setItemAmount(_random_number() % multiplier);
+		itemsFromPlaces.getArcher()->setItemAmount(_random_number() % multiplier);
+		itemsFromPlaces.getSwordsman()->setItemAmount(_random_number() % multiplier);
+		itemsFromPlaces.getSpearman()->setItemAmount(_random_number() % multiplier);
+
+		itemsForTrade.getWood()->setItemAmount(_random_number() % tradeMultiplier*25);
+		itemsForTrade.getIron()->setItemAmount(_random_number() % tradeMultiplier*25);
+		itemsForTrade.getGold()->setItemAmount(_random_number() % tradeMultiplier*20);
+		itemsForTrade.getFood()->setItemAmount(_random_number() % tradeMultiplier*25);
+		itemsForTrade.getArcher()->setItemAmount(0);
+		itemsForTrade.getSwordsman()->setItemAmount(0);
+		itemsForTrade.getSpearman()->setItemAmount(0);
+	}
+	if (placesMark == RiD::ConfigurationLoader::getStringData("castle", "mark")[0])
+	{
+		itemsFromPlaces.getWood()->setItemAmount(_random_number() % multiplier);
+		itemsFromPlaces.getIron()->setItemAmount(_random_number() % multiplier);
+		itemsFromPlaces.getGold()->setItemAmount(_random_number() % multiplier);
+		itemsFromPlaces.getFood()->setItemAmount(_random_number() % multiplier);
+		itemsFromPlaces.getArcher()->setItemAmount(_random_number() % multiplier);
+		itemsFromPlaces.getSwordsman()->setItemAmount(_random_number() % multiplier);
+		itemsFromPlaces.getSpearman()->setItemAmount(_random_number() % multiplier);
+
+		itemsForTrade.getWood()->setItemAmount(0);
+		itemsForTrade.getIron()->setItemAmount(0);
+		itemsForTrade.getGold()->setItemAmount(_random_number() % tradeMultiplier*100);
+		itemsForTrade.getFood()->setItemAmount(_random_number() % tradeMultiplier*5);
+		itemsForTrade.getArcher()->setItemAmount(_random_number() % tradeMultiplier*3);
+		itemsForTrade.getSwordsman()->setItemAmount(_random_number() % tradeMultiplier * 3);
+		itemsForTrade.getSpearman()->setItemAmount(_random_number() % tradeMultiplier * 3);
+	}
+	if (placesMark == RiD::ConfigurationLoader::getStringData("town", "mark")[0])
+	{
+		itemsFromPlaces.getWood()->setItemAmount(_random_number() % multiplier);
+		itemsFromPlaces.getIron()->setItemAmount(_random_number() % multiplier);
+		itemsFromPlaces.getGold()->setItemAmount(_random_number() % multiplier);
+		itemsFromPlaces.getFood()->setItemAmount(_random_number() % multiplier);
+		itemsFromPlaces.getArcher()->setItemAmount(_random_number() % multiplier);
+		itemsFromPlaces.getSwordsman()->setItemAmount(_random_number() % multiplier);
+		itemsFromPlaces.getSpearman()->setItemAmount(_random_number() % multiplier);
+
+		itemsForTrade.getWood()->setItemAmount(_random_number() % tradeMultiplier*5);
+		itemsForTrade.getIron()->setItemAmount(_random_number() % tradeMultiplier*5);
+		itemsForTrade.getGold()->setItemAmount(_random_number() % tradeMultiplier*500);
+		itemsForTrade.getFood()->setItemAmount(_random_number() % tradeMultiplier*10);
+		itemsForTrade.getArcher()->setItemAmount(0);
+		itemsForTrade.getSwordsman()->setItemAmount(0);
+		itemsForTrade.getSpearman()->setItemAmount(0);
+	}
 }
 
 MP::ObiectGenerator::ObiectGenerator()

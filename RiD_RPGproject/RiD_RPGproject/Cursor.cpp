@@ -82,6 +82,7 @@ void MP::Cursor::_check_if_player_clicked(TaskManager& aTaskManager, Camera& aCa
 				aTaskManager.setTask(TaskManager::taskRange::order, TaskManager::taskType::taskBreakAutoMove);
 			}
 		}
+		
 	}
 }
 

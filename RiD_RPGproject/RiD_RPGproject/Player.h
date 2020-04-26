@@ -31,6 +31,8 @@ namespace MP
 
 		void _player_animation_down(sf::Clock& globalClock);
 
+		void _player_animation_idle(sf::Clock& globalClock);
+
 		void _player_animation(sf::Clock& globalClock, TaskManager& aMainTaskManager);
 
 		void _player_move(sf::Clock& globalClock, TaskManager& aMainTaskManager);

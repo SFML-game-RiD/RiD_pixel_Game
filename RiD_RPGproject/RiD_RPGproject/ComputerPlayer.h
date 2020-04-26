@@ -29,9 +29,12 @@ namespace MP
 
 		void _chose_destination(Map& aMap);
 
+		void _delete_path();
+
 	public:
 
 		ComputerPlayer(sf::Texture* texturePtr);
+		~ComputerPlayer();
 
 		void update(Map& aMap, sf::Clock& gameClock);
 

@@ -36,8 +36,6 @@ void MP::GuiMarketPlace::_create_buttons(sf::Texture* buttonTexture, sf::Font& a
 
 void MP::GuiMarketPlace::_create_panels(sf::Texture* panelLeftTexture, sf::Texture* panelRightTexture)
 {
-	panelA = std::make_unique<GuiPanel>();
-	panelB = std::make_unique<GuiPanel>();
 
 	panelA->aAnimation.loadObiectTextures(panelLeftTexture, 1, 1,785);
 	panelB->aAnimation.loadObiectTextures(panelRightTexture, 1, 1,785);
@@ -123,7 +121,9 @@ MP::GuiMarketPlace::GuiMarketPlace(sf::Texture* marketplaceBackgroundTexture, sf
 	aAnimation.setOrigin(460, 460);
 
 	_create_buttons(buttonTexture, aFont);
-	_create_panels(panelLeftTexture, panelRightTexture);
+
+	panelA = std::make_unique<GuiPanel>(panelLeftTexture,aFont);
+	panelB = std::make_unique<GuiPanel>(panelRightTexture,aFont);
 
 	_current_item = std::make_unique<Food>();
 	
@@ -131,29 +131,29 @@ MP::GuiMarketPlace::GuiMarketPlace(sf::Texture* marketplaceBackgroundTexture, sf
 
 }
 
-void MP::GuiMarketPlace::_update_market_place(ActiveObiect& place, ActiveObiect& player)
+void MP::GuiMarketPlace::_update_market_place(Places& place, ActiveObiect& player)
 {
-	
-	panelA->setObiectCoord(-400, 60);
-	panelB->setObiectCoord(620, 60);
-
-	place.aItemsManager.getWood()->setItemPosition(sf::Vector2f(-80,192));
-	place.aItemsManager.getIron()->setItemPosition(sf::Vector2f(-80,256));
-	place.aItemsManager.getGold()->setItemPosition(sf::Vector2f(-80,320));
-	place.aItemsManager.getFood()->setItemPosition(sf::Vector2f(-80, 384));
-
-	place.aItemsManager.getArcher()->setItemPosition(sf::Vector2f(-88, 460));
-	place.aItemsManager.getArcher()->aAnimation.setScale(0.5, 0.5);
-	place.aItemsManager.getArcher()->setTextPostion(sf::Vector2f(70,64));
+	panelA->update(sf::Vector2f(-400, 60), "      Trader");
+	panelB->update(sf::Vector2f(620, 60), "       Player");
 
 
-	place.aItemsManager.getSwordsman()->setItemPosition(sf::Vector2f(-88, 560));
-	place.aItemsManager.getSwordsman()->aAnimation.setScale(0.5, 0.5);
-	place.aItemsManager.getSwordsman()->setTextPostion(sf::Vector2f(72, 64));
+	place.getItemsForTrade().getWood()->setItemPosition(sf::Vector2f(-80,192));
+	place.getItemsForTrade().getIron()->setItemPosition(sf::Vector2f(-80,256));
+	place.getItemsForTrade().getGold()->setItemPosition(sf::Vector2f(-80,320));
+	place.getItemsForTrade().getFood()->setItemPosition(sf::Vector2f(-80, 384));
 
-	place.aItemsManager.getSpearman()->setItemPosition(sf::Vector2f(-100, 660));
-	place.aItemsManager.getSpearman()->aAnimation.setScale(0.5, 0.5);
-	place.aItemsManager.getSpearman()->setTextPostion(sf::Vector2f(84, 78));
+	place.getItemsForTrade().getArcher()->setItemPosition(sf::Vector2f(-88, 460));
+	place.getItemsForTrade().getArcher()->aAnimation.setScale(0.5, 0.5);
+	place.getItemsForTrade().getArcher()->setTextPostion(sf::Vector2f(70,64));
+
+
+	place.getItemsForTrade().getSwordsman()->setItemPosition(sf::Vector2f(-88, 560));
+	place.getItemsForTrade().getSwordsman()->aAnimation.setScale(0.5, 0.5);
+	place.getItemsForTrade().getSwordsman()->setTextPostion(sf::Vector2f(72, 64));
+
+	place.getItemsForTrade().getSpearman()->setItemPosition(sf::Vector2f(-100, 660));
+	place.getItemsForTrade().getSpearman()->aAnimation.setScale(0.5, 0.5);
+	place.getItemsForTrade().getSpearman()->setTextPostion(sf::Vector2f(84, 78));
 
 
 
@@ -176,25 +176,23 @@ void MP::GuiMarketPlace::_update_market_place(ActiveObiect& place, ActiveObiect&
 
 }
 
-void MP::GuiMarketPlace::_draw_menu(sf::RenderWindow& aMainWindow, ActiveObiect& place, ActiveObiect& player)
+void MP::GuiMarketPlace::_draw_menu(sf::RenderWindow& aMainWindow, Places& place, ActiveObiect& player)
 {
 	aMainWindow.draw(aAnimation.getObiectSprite());
 
 	for (int i = 0; i < _button_array.size(); i++)
-	{
 		_button_array[i]->render(aMainWindow);
-	}
-	aMainWindow.draw(panelA->aAnimation.getObiectSprite());
-	aMainWindow.draw(panelB->aAnimation.getObiectSprite());
 
+	panelA->render(aMainWindow);
+	panelB->render(aMainWindow);
 
-	place.aItemsManager.getWood()->drawItem(aMainWindow);
-	place.aItemsManager.getIron()->drawItem(aMainWindow);
-	place.aItemsManager.getGold()->drawItem(aMainWindow);
-	place.aItemsManager.getFood()->drawItem(aMainWindow);
-	place.aItemsManager.getArcher()->drawItem(aMainWindow);
-	place.aItemsManager.getSwordsman()->drawItem(aMainWindow);
-	place.aItemsManager.getSpearman()->drawItem(aMainWindow);
+	place.getItemsForTrade().getWood()->drawItem(aMainWindow);
+	place.getItemsForTrade().getIron()->drawItem(aMainWindow);
+	place.getItemsForTrade().getGold()->drawItem(aMainWindow);
+	place.getItemsForTrade().getFood()->drawItem(aMainWindow);
+	place.getItemsForTrade().getArcher()->drawItem(aMainWindow);
+	place.getItemsForTrade().getSwordsman()->drawItem(aMainWindow);
+	place.getItemsForTrade().getSpearman()->drawItem(aMainWindow);
 
 	player.aItemsManager.getWood()->drawItem(aMainWindow);
 	player.aItemsManager.getIron()->drawItem(aMainWindow);
