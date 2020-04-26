@@ -13,18 +13,16 @@ namespace MP
 
 		void _draw_items(sf::RenderWindow &mainWindow, ItemsManager& aItemsManager);
 
+		void _update_items(ItemsManager &aItemsManager);
+
 	public:
 
 		MapGui(sf::Texture* texturePtr);
 
-		void updateItems(ItemsManager &aItemsManager);
-
-		void drawMapGui(sf::RenderWindow& mainWindow, ItemsManager& aItemsManager);
-
+		void render(sf::RenderWindow& mainWindow, ItemsManager& aItemsManager);
 
 		void update(ItemsManager& aItemsManager);
-		void render();
-
+		
 	};
 }
 #endif // !_MAPGUI_H_

@@ -15,7 +15,13 @@ namespace MP
 
 		sf::Vector2f _gui_coord;
 
+		void _update_cursor(TaskManager& aMainTaskManager, Camera& aCamera);
+
+		void _check_if_player_clicked(TaskManager& aTaskManager, Camera& aCamera);
+
 	public:
+
+		Cursor(sf::Texture* texturePtr);
 
 		void setGameCoord(sf::Vector2f gameCoord);
 		
@@ -25,16 +31,9 @@ namespace MP
 
 		sf::Vector2f getGuiCoord();
 
-		Cursor(sf::Texture* texturePtr);
-
-		void updateCursor(TaskManager& aMainTaskManager, Camera& aCamera);
-
-		void checkIfPlayerClicked(TaskManager& aTaskManager, Camera& aCamera);
-
-
 		void update(TaskManager& aMainTaskManager, Camera& aCamera);
 
-		void render();
+		void render(sf::RenderWindow &mainWindow);
 	};
 }
 #endif // !_CURSOR_H_

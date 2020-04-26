@@ -16,6 +16,14 @@ namespace MP
 		std::shared_ptr <Item> _archer;
 		std::shared_ptr <Item> _swordsman;
 
+	/*	std::unique_ptr <Item> _gold;
+		std::unique_ptr <Item> _iron;
+		std::unique_ptr <Item> _wood;
+		std::unique_ptr <Item> _food;
+		std::unique_ptr <Item> _spearman;
+		std::unique_ptr <Item> _archer;
+		std::unique_ptr <Item> _swordsman;*/
+
 	public:
 
 		void setItems(sf::Font& aFont,
@@ -34,6 +42,14 @@ namespace MP
 		std::shared_ptr <Item>& getSpearman();
 		std::shared_ptr <Item>& getArcher();
 		std::shared_ptr <Item>& getSwordsman();
+
+		//std::unique_ptr <Item>& getGold();
+		//std::unique_ptr <Item>& getIron();
+		//std::unique_ptr <Item>& getWood();
+		//std::unique_ptr <Item>& getFood();
+		//std::unique_ptr <Item>& getSpearman();
+		//std::unique_ptr <Item>& getArcher();
+		//std::unique_ptr <Item>& getSwordsman();
 
 		bool addItem(std::shared_ptr <Item>& aItem, int ammount);
 

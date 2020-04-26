@@ -12,6 +12,6 @@ void MP::PathIcon::update()
 {
 }
 
-void MP::PathIcon::render()
+void MP::PathIcon::render(sf::RenderWindow& mainWindow)
 {
 }

@@ -30,7 +30,7 @@ sf::Text & MP::GuiButton::getText()
 	return _a_text;
 }
 
-void MP::GuiButton::setButtonActive(bool isActive)
+void MP::GuiButton::set_button_active(bool isActive)
 {
 	if (isActive == true)
 		aAnimation.changeSprite(0);
@@ -40,12 +40,12 @@ void MP::GuiButton::setButtonActive(bool isActive)
 	_is_active = isActive;
 }
 
-bool MP::GuiButton::getButtonActive()
+bool MP::GuiButton::getButtonIsActive()
 {
 	return _is_active;
 }
 
-void MP::GuiButton::drawButton(sf::RenderWindow& aMainWindow)
+void MP::GuiButton::draw_button(sf::RenderWindow& aMainWindow)
 {
 
 	aMainWindow.draw(aAnimation.getObiectSprite());
@@ -65,10 +65,12 @@ void MP::GuiButton::setButtonPosition(sf::Vector2f newPostion)
 	_a_text.setPosition(newPostion);
 }
 
-void MP::GuiButton::update()
+void MP::GuiButton::update(bool isActive)
 {
+	set_button_active(isActive);
 }
 
-void MP::GuiButton::render()
+void MP::GuiButton::render(sf::RenderWindow& aMainWindow)
 {
+	draw_button(aMainWindow);
 }

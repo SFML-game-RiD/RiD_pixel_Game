@@ -11,6 +11,10 @@ namespace MP
 	private:
 
 		void _create_buttons(sf::Texture* buttonTexture, sf::Font& aFont);
+	
+		void _select_button(sf::Vector2f mouseCoord);
+
+		void _press_button(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow);
 
 	public:
 
@@ -18,13 +22,9 @@ namespace MP
 
 		GuiPlacesMenu(sf::Texture* placesMenuTexture, sf::Texture* buttonTexture, sf::Font& aFont);
 
-		void selectButton(sf::Vector2f mouseCoord);
-
-		void pressButton(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow);
-
-
 		void update(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, sf::Vector2f guiMouseCoord);
-		void render();
+		
+		void render(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow);
 
 	};
 }

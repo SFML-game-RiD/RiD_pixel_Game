@@ -49,6 +49,8 @@ namespace MP
 
 		void _unmark_path();
 
+		void _procedure_player_auto_or_normal_move(TaskManager& aMainTaskManager, sf::Clock& GameClock, MP::Map& aMap, sf::Vector2f &mouseGameCoord);
+
 	public:
 
 		Player(sf::Texture *texturePtr,sf::Texture *pathIconTexturePtr);
@@ -59,7 +61,7 @@ namespace MP
 
 		void render(sf::RenderWindow &mainWindow);
 
-		void procedurePlayerAutoOrNormalMove(TaskManager& aMainTaskManager, sf::Clock& GameClock, MP::Map& aMap, sf::Vector2f &mouseGameCoord);
+	
 	};
 
 

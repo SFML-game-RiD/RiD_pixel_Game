@@ -1,11 +1,11 @@
 #ifndef TREE_H
 #define TREE_H
 
-#include "StaticObiect.h"
+#include "Obiect.h"
 
 namespace MP
 {
-	class Tree :public StaticObiect
+	class Tree :public Obiect
 	{
 	private:
 

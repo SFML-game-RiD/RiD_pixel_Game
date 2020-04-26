@@ -12,7 +12,7 @@ namespace MP
 		Places();
 
 		void update();
-		void render();
+		void render(sf::RenderWindow& mainWindow);
 	};
 }
 #endif // !_PLACES_H_

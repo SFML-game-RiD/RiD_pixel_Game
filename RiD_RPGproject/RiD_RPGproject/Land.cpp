@@ -16,7 +16,8 @@ void MP::Land::update()
 {
 }
 
-void MP::Land::render()
+void MP::Land::render(sf::RenderWindow& mainWindow)
 {
+	mainWindow.draw(aAnimation.getObiectSprite());
 }
  

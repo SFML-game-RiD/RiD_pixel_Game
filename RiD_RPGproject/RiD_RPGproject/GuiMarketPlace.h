@@ -27,27 +27,24 @@ namespace MP
 
 		void _buy_item(ItemsManager& seller, ItemsManager& buyer);
 	
-	public:
+		void _update_market_place(ActiveObiect& place,ActiveObiect &player);
 
-		ItemsManager itemsSample;
+		void _draw_menu(sf::RenderWindow& aMainWindow,ActiveObiect& place, ActiveObiect& player);
+
+		void _select_button(sf::Vector2f guiMouseCoord);
+
+		void _press_button(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, std::shared_ptr<Player>& aPlayer, std::shared_ptr<Places>& aPlace);
+
+	public:
 
 		GuiMarketPlace();
 
 		GuiMarketPlace(sf::Texture* marketplaceBackgroundTexture, sf::Texture* buttonTexture, sf::Texture* panelLeftTexture, sf::Texture* panelRightTexture, sf::Font& aFont);
 
-		void updateMarketPlace(ActiveObiect& place,ActiveObiect &player);
-
-		void drawMenu(sf::RenderWindow& aMainWindow,ActiveObiect& place, ActiveObiect& player);
-
-		void selectButton(sf::Vector2f guiMouseCoord);
-
-		void pressButton(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, std::shared_ptr<Player>& aPlayer, std::shared_ptr<Places>& aPlace);
-	
-
-
 		void update(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, sf::Vector2f guiMouseCoord, std::shared_ptr<Player>& aPlayer, std::shared_ptr<Places>& aPlace);
 
-		void render();
+		void render(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, std::shared_ptr<Places> aPlace ,std::shared_ptr<Player> aPlayer);
+		
 	};
 
 }

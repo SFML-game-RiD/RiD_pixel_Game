@@ -40,7 +40,7 @@ void MP::Calculator::startMainGameProcedures(TaskManager& aMainTaskManager, Obie
 	aObiectManager.getGuiManager().getMapGui()->update(aObiectManager.getPlayer()->aItemsManager);
 }
 
-void MP::Calculator::StartMenuProcedures(TaskManager &aMainTaskManager, ObiectManager & aObiectManager,Camera& aCamera)
+void MP::Calculator::startMenuProcedures(TaskManager &aMainTaskManager, ObiectManager & aObiectManager,Camera& aCamera)
 {
 
 	aObiectManager.getGuiManager().getGuiMainMenu()->update(aMainTaskManager, aCamera.getWindow(), aObiectManager.getCursor()->getGuiCoord());

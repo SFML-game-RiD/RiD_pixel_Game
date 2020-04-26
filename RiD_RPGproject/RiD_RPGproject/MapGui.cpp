@@ -9,7 +9,7 @@ MP::MapGui::MapGui(sf::Texture* texturePtr)
 
 }
 
-void MP::MapGui::updateItems(ItemsManager& aItemsManager)
+void MP::MapGui::_update_items(ItemsManager& aItemsManager)
 {
 	aItemsManager.getWood()->setItemPosition(sf::Vector2f(1100, 25));
 	aItemsManager.getIron()->setItemPosition(sf::Vector2f(1300, 25));
@@ -28,7 +28,7 @@ void MP::MapGui::updateItems(ItemsManager& aItemsManager)
 
 }
 
-void MP::MapGui::drawMapGui(sf::RenderWindow& mainWindow, ItemsManager& aItemsManager)
+void MP::MapGui::render(sf::RenderWindow& mainWindow, ItemsManager& aItemsManager)
 {
 	mainWindow.draw(aAnimation.getObiectSprite());
 	_draw_items(mainWindow, aItemsManager);
@@ -36,11 +36,7 @@ void MP::MapGui::drawMapGui(sf::RenderWindow& mainWindow, ItemsManager& aItemsMa
 
 void MP::MapGui::update(ItemsManager& aItemsManager)
 {
-	updateItems(aItemsManager);
-}
-
-void MP::MapGui::render()
-{
+	_update_items(aItemsManager);
 }
 
 void MP::MapGui::_draw_items(sf::RenderWindow& mainWindow, ItemsManager& aItemsManager)

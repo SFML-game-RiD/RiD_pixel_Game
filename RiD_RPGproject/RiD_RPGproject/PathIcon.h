@@ -11,7 +11,8 @@ namespace MP
 		PathIcon(sf::Texture* texturePtr,sf::Vector2f spawnCoord);
 
 		void update();
-		void render();
+
+		void render(sf::RenderWindow& mainWindow);
 	};
 }
 #endif // !_PATHICON_H_

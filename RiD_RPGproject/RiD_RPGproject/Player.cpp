@@ -238,7 +238,7 @@ void MP::Player::goToPlace(Map& aGameMap, TaskManager& aMainTaskManger)
 
 void MP::Player::update(TaskManager& aMainTaskManager, sf::Clock& GameClock, MP::Map& aMap, sf::Vector2f mouseGameCoord)
 {
-	procedurePlayerAutoOrNormalMove(aMainTaskManager, GameClock, aMap, mouseGameCoord);
+	_procedure_player_auto_or_normal_move(aMainTaskManager, GameClock, aMap, mouseGameCoord);
 }
 
 void MP::Player::render(sf::RenderWindow& mainWindow)
@@ -251,7 +251,7 @@ void MP::Player::render(sf::RenderWindow& mainWindow)
 	}
 }
 
-void MP::Player::procedurePlayerAutoOrNormalMove(TaskManager& aMainTaskManager, sf::Clock& gameClock, MP::Map &aMap, sf::Vector2f& mouseGameCoord)
+void MP::Player::_procedure_player_auto_or_normal_move(TaskManager& aMainTaskManager, sf::Clock& gameClock, MP::Map &aMap, sf::Vector2f& mouseGameCoord)
 {
 	switch (aMainTaskManager.getTask(MP::TaskManager::taskRange::mainOrder))
 	{

@@ -113,14 +113,14 @@ void RiD::RiDmain::_calculate_for_state_game()
 
 void RiD::RiDmain::_calculate_for_state_menu()
 {
-	_a_calculator.StartMenuProcedures(_a_main_task_manager, _a_obiect_manager, _a_camera);
+	_a_calculator.startMenuProcedures(_a_main_task_manager, _a_obiect_manager, _a_camera);
 }
 
 void RiD::RiDmain::_draw_for_state_game()
 {
 	_a_camera.clearCamera();
 
-	_a_obiect_drawer.drawAllObiects(_a_main_task_manager,_a_camera,_a_obiect_manager);
+	_a_obiect_drawer.drawGame(_a_main_task_manager,_a_camera,_a_obiect_manager);
 
 	_a_camera.drawFrame(); 
 }

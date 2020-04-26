@@ -16,19 +16,21 @@ namespace MP
 
 	 	virtual	void _create_buttons(sf::Texture* buttonTexture, sf::Font& aFont);
 
+		virtual void _select_button(sf::Vector2f guiMouseCoord);
+
+		virtual void _press_button(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow);
+
+		void _draw_menu(sf::RenderWindow& aMainWindow);
+
 	public:
 
 		GuiMenu();
 
 		GuiMenu(sf::Texture* texturePtr, sf::Texture* buttonTexture, sf::Font& aFont);
 
-		void drawMenu(sf::RenderWindow& aMainWindow);
-
-		virtual void selectButton(sf::Vector2f guiMouseCoord);
-
-		virtual void pressButton(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow);
-
 		virtual void update(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, sf::Vector2f guiMouseCoord);
+
+		virtual void render(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow);
 	};
 }
 #endif // !_GUIMENU_H_

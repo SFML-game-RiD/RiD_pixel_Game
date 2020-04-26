@@ -7,11 +7,11 @@ void MP::ObiectDrawer::_draw_land(sf::RenderWindow& mainWindow, ObiectManager& a
 	MapElement * tmp= aObiectManager.getMapElementHead();
 	while (tmp != nullptr)
 	{
-			mainWindow.draw(tmp->getLandTile().aAnimation.getObiectSprite()); //land drawing.
-			
+			tmp->getLandTile().render(mainWindow); //land drawing
+
 			if (tmp->getPlace() != nullptr)
-			mainWindow.draw(tmp->getPlace()->aAnimation.getObiectSprite());//place drawing.
-		
+				tmp->getPlace()->render(mainWindow);//place drawing
+
 		tmp = tmp->getNextElement();
 	}
 }
@@ -22,19 +22,8 @@ void MP::ObiectDrawer::_draw_trees(sf::RenderWindow& mainWindow, ObiectManager& 
 	std::list<Tree >::iterator iterator;
 	iterator = aTree->begin();
 
-	for(int i =0;i<aTree->size();i++)
-	{
-		mainWindow.draw(iterator->aAnimation.getObiectSprite());
-		iterator++;
-	}
-}
-
-void MP::ObiectDrawer::_draw_map_gui_obiects(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager)
-{
-	//Drawing map gui
-	_draw_map_gui(mainWindow,aObiectManager);
-	//Drawing cursor
-	_draw_cursor(mainWindow, aObiectManager);
+	for (iterator; iterator != aTree->end(); iterator++)
+		iterator->render(mainWindow);
 }
 
 void MP::ObiectDrawer::_draw_active_obiects(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager)
@@ -52,18 +41,7 @@ void MP::ObiectDrawer::_draw_active_obiects(sf::RenderWindow& mainWindow, Obiect
 		it->render(mainWindow);
 
 }
-
-void MP::ObiectDrawer::_draw_map_gui(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager)
-{
-	aObiectManager.getGuiManager().getMapGui()->drawMapGui(mainWindow, aObiectManager.getPlayer()->aItemsManager);
-}
-
-void MP::ObiectDrawer::_draw_cursor(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager)
-{
-	mainWindow.draw(aObiectManager.getCursor()->aAnimation.getObiectSprite());
-}
-
-void MP::ObiectDrawer::drawAllObiects(TaskManager& aMainTaskManager, Camera& aGameCamera, ObiectManager& aObiectManager)
+void MP::ObiectDrawer::drawGame(TaskManager& aMainTaskManager, Camera& aGameCamera, ObiectManager& aObiectManager)
 {
 		//GAME DRAWING
 		aGameCamera.changeViewToGame();
@@ -73,29 +51,21 @@ void MP::ObiectDrawer::drawAllObiects(TaskManager& aMainTaskManager, Camera& aGa
 
 		//GUI DRAWING
 		aGameCamera.changeViewToGui();
-		_draw_map_gui_obiects(aGameCamera.getWindow(), aObiectManager);
+		//Drawing map gui
+		aObiectManager.getGuiManager().getMapGui()->render(aGameCamera.getWindow(), aObiectManager.getPlayer()->aItemsManager);
+		//Drawing cursor
+		aObiectManager.getCursor()->render(aGameCamera.getWindow());
 }
 
 void MP::ObiectDrawer::drawMenu(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, Camera& aGameCamera)
 {
 	aGameCamera.changeViewToGui();
-	if (aMainTaskManager.getCurrentState() == MP::TaskManager::stateType::stateMainMenu
-		or aMainTaskManager.getCurrentState() == MP::TaskManager::stateType::statePlacesMenu)
-	{
-		if (aMainTaskManager.getCurrentState() == TaskManager::stateType::stateMainMenu)
-		{
-			aObiectManager.getGuiManager().getGuiMainMenu()->drawMenu(aGameCamera.getWindow());
-		}
-		else if (aMainTaskManager.getCurrentState() == TaskManager::stateType::statePlacesMenu)
-		{
-			aObiectManager.getGuiManager().getGuiPlacesMenu()->drawMenu(aGameCamera.getWindow());
-		}
-	}
-	else if (aMainTaskManager.getCurrentState() == MP::TaskManager::stateType::stateMarketPlace)
-	{
-		aObiectManager.getGuiManager().getGuiMarketPlace()->drawMenu(aGameCamera.getWindow(), 
-			*aObiectManager.getMap().findElementAddressSquareRange(aObiectManager.getPlayer()->getObiectCoord(),aObiectManager.getMapElementHead())->getPlace(),//getting places
-			*aObiectManager.getPlayer());//getting player
-	}
-	_draw_cursor(aGameCamera.getWindow(), aObiectManager);
+
+	aObiectManager.getGuiManager().getGuiMainMenu()->render(aMainTaskManager,aGameCamera.getWindow());
+
+	aObiectManager.getGuiManager().getGuiPlacesMenu()->render(aMainTaskManager, aGameCamera.getWindow());
+
+	aObiectManager.getGuiManager().getGuiMarketPlace()->render(aMainTaskManager, aGameCamera.getWindow(),aObiectManager.getMap().findElementAddressSquareRange(aObiectManager.getPlayer()->getObiectCoord(), aObiectManager.getMapElementHead())->getPlace(),aObiectManager.getPlayer());
+
+	aObiectManager.getCursor()->render(aGameCamera.getWindow());
 }

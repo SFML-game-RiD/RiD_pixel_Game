@@ -1,11 +1,11 @@
 #ifndef LAND_H
 #define LAND_H
 
-#include "StaticObiect.h"
+#include "Obiect.h"
 
 namespace MP
 {
-	class Land:public StaticObiect
+	class Land:public Obiect
 	{
 	private:
 
@@ -16,7 +16,7 @@ namespace MP
 		Land( int x,int y); //Is only use for path creator, stores coordination.
 
 		void update();
-		void render();
+		void render(sf::RenderWindow &mainWindow);
 	};
 }
 #endif // !_LAND_H_

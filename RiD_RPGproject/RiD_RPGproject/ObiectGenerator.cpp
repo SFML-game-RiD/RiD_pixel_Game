@@ -160,14 +160,6 @@ void MP::ObiectGenerator::_generate_gui(ObiectManager& aObiectManager)
 		&_a_asset_manager.getTexture("panelright"),
 		_a_asset_manager.getFont("font"));
 
-	aObiectManager.getGuiManager().getGuiMarketPlace()->itemsSample.setItems(_a_asset_manager.getFont("font"),
-		0, &_a_asset_manager.getTexture("gold"),
-		0, &_a_asset_manager.getTexture("iron"),
-		0, &_a_asset_manager.getTexture("wood"),
-		0, &_a_asset_manager.getTexture("food"),
-		0, &_a_asset_manager.getTexture("spearman"),
-		0, &_a_asset_manager.getTexture("archer"),
-		0, &_a_asset_manager.getTexture("swordsman"));
 }
 
 void MP::ObiectGenerator::_generate_items_for_places(ItemsManager& itemsFromPlaces,int multiplier)

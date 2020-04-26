@@ -12,6 +12,10 @@ namespace MP
 
 		bool _is_active;
 
+		void draw_button(sf::RenderWindow& aMainWindow);
+
+		void set_button_active(bool isActive);
+
 	public:
 
 		GuiButton(sf::Texture* texturePtr,sf::Vector2f buttonPosition, sf::Vector2f relativelyTextPosition, sf::Font &aFont, std::string buttonName);
@@ -20,18 +24,13 @@ namespace MP
 
 		sf::Text& getText();
 
-		void setButtonActive(bool isActive);
-
-		bool getButtonActive();
-
-		void drawButton(sf::RenderWindow& aMainWindow);
+		bool getButtonIsActive();
 
 		void setButtonPosition(sf::Vector2f newPostion);
 
+		void update(bool isActive);
 
-		void update();
-
-		void render();
+		void render(sf::RenderWindow& aMainWindow);
 	};
 }
 #endif // !1

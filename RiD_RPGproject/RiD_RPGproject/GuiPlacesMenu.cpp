@@ -29,35 +29,35 @@ MP::GuiPlacesMenu::GuiPlacesMenu(sf::Texture* texturePtr, sf::Texture* buttonTex
 
 }
 
-void MP::GuiPlacesMenu::selectButton(sf::Vector2f mouseCoord)
+void MP::GuiPlacesMenu::_select_button(sf::Vector2f mouseCoord)
 {
 	for (int i = 0; i < _button_array.size(); i++)
 	{
 		if (mouseCoord.x >= _button_array[i]->getObiectCoord().x and mouseCoord.x <= _button_array[i]->getObiectCoord().x + 275
 			and mouseCoord.y >= _button_array[i]->getObiectCoord().y + 112 and mouseCoord.y <= _button_array[i]->getObiectCoord().y + 163)
-			_button_array[i]->setButtonActive(true);
+			_button_array[i]->update(true);
 		else
-			_button_array[i]->setButtonActive(false);
+			_button_array[i]->update(false);
 	}
 }
 
-void MP::GuiPlacesMenu::pressButton(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow)
+void MP::GuiPlacesMenu::_press_button(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow)
 {
-	if (_button_array[0]->getButtonActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft)
+	if (_button_array[0]->getButtonIsActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft)
 	{
 		aMainTaskManager.resetOrdersAndReply();
 		aMainTaskManager.setState(TaskManager::stateType::stateMarketPlace);
 	
 	}
-	if (_button_array[1]->getButtonActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft)
+	if (_button_array[1]->getButtonIsActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft)
 	{
 		aMainTaskManager.resetOrdersAndReply();
 	}
-	if (_button_array[2]->getButtonActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft)
+	if (_button_array[2]->getButtonIsActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft)
 	{
 		aMainTaskManager.resetOrdersAndReply();
 	}
-	if (_button_array[3]->getButtonActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft)
+	if (_button_array[3]->getButtonIsActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft)
 	{
 		aMainTaskManager.resetOrdersAndReply();
 		aMainTaskManager.setState(TaskManager::stateType::stateGame);
@@ -68,11 +68,13 @@ void MP::GuiPlacesMenu::update(TaskManager& aMainTaskManager, sf::RenderWindow& 
 {
 	if (aMainTaskManager.getCurrentState() == TaskManager::stateType::statePlacesMenu)
 	{
-		selectButton(GuiMouseCoord);
-		pressButton(aMainTaskManager,aMainWindow);
+		_select_button(GuiMouseCoord);
+		_press_button(aMainTaskManager,aMainWindow);
 	}
 }
 
-void MP::GuiPlacesMenu::render()
+void MP::GuiPlacesMenu::render(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow)
 {
+	if (aMainTaskManager.getCurrentState() == TaskManager::stateType::statePlacesMenu)
+		_draw_menu(aMainWindow);
 }

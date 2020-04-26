@@ -131,7 +131,7 @@ MP::GuiMarketPlace::GuiMarketPlace(sf::Texture* marketplaceBackgroundTexture, sf
 
 }
 
-void MP::GuiMarketPlace::updateMarketPlace(ActiveObiect& place, ActiveObiect& player)
+void MP::GuiMarketPlace::_update_market_place(ActiveObiect& place, ActiveObiect& player)
 {
 	
 	panelA->setObiectCoord(-400, 60);
@@ -176,13 +176,13 @@ void MP::GuiMarketPlace::updateMarketPlace(ActiveObiect& place, ActiveObiect& pl
 
 }
 
-void MP::GuiMarketPlace::drawMenu(sf::RenderWindow& aMainWindow, ActiveObiect& place, ActiveObiect& player)
+void MP::GuiMarketPlace::_draw_menu(sf::RenderWindow& aMainWindow, ActiveObiect& place, ActiveObiect& player)
 {
 	aMainWindow.draw(aAnimation.getObiectSprite());
 
 	for (int i = 0; i < _button_array.size(); i++)
 	{
-		_button_array[i]->drawButton(aMainWindow);
+		_button_array[i]->render(aMainWindow);
 	}
 	aMainWindow.draw(panelA->aAnimation.getObiectSprite());
 	aMainWindow.draw(panelB->aAnimation.getObiectSprite());
@@ -205,64 +205,64 @@ void MP::GuiMarketPlace::drawMenu(sf::RenderWindow& aMainWindow, ActiveObiect& p
 	player.aItemsManager.getSpearman()->drawItem(aMainWindow);
 }
 
-void MP::GuiMarketPlace::selectButton(sf::Vector2f mouseCoord)
+void MP::GuiMarketPlace::_select_button(sf::Vector2f mouseCoord)
 {
 	for (int i = 0; i < _button_array.size(); i++)
 	{
 		if (mouseCoord.x >= _button_array[i]->getObiectCoord().x and mouseCoord.x <= _button_array[i]->getObiectCoord().x + 275
 			and mouseCoord.y >= _button_array[i]->getObiectCoord().y + 112 and mouseCoord.y <= _button_array[i]->getObiectCoord().y + 163)
-			_button_array[i]->setButtonActive(true);
+			_button_array[i]->update(true);
 		else
-			_button_array[i]->setButtonActive(false);
+			_button_array[i]->update(false);
 	}
 }
 
-void MP::GuiMarketPlace::pressButton(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, std::shared_ptr<Player>& aPlayer, std::shared_ptr<Places>& aPlaces)
+void MP::GuiMarketPlace::_press_button(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, std::shared_ptr<Player>& aPlayer, std::shared_ptr<Places>& aPlaces)
 {
-	if (_button_array[0]->getButtonActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft) //buy
+	if (_button_array[0]->getButtonIsActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft) //buy
 	{
 		_buy_item(aPlaces->aItemsManager, aPlayer->aItemsManager);
 	}
-	if (_button_array[1]->getButtonActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft) //sell
+	if (_button_array[1]->getButtonIsActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft) //sell
 	{
 		_buy_item(aPlayer->aItemsManager,aPlaces->aItemsManager);
 	}
-	if (_button_array[2]->getButtonActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft)
+	if (_button_array[2]->getButtonIsActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft)
 	{
 		_button_array[3]->setButtonPosition(sf::Vector2f(365, 325));
 		_button_array[2]->setButtonPosition(sf::Vector2f(365, 9000));
 		_current_item = std::make_unique<Wood>();
 		aMainTaskManager.endTask(TaskManager::taskRange::mainOrder);
 	}
-	if (_button_array[3]->getButtonActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft)
+	if (_button_array[3]->getButtonIsActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft)
 	{
 		_button_array[4]->setButtonPosition(sf::Vector2f(365, 325));
 		_button_array[3]->setButtonPosition(sf::Vector2f(365, 9000));
 		_current_item = std::make_unique<Iron>();
 		aMainTaskManager.endTask(TaskManager::taskRange::mainOrder);
 	}
-	if (_button_array[4]->getButtonActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft) 
+	if (_button_array[4]->getButtonIsActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft) 
 	{
 		_button_array[5]->setButtonPosition(sf::Vector2f(365, 325));
 		_button_array[4]->setButtonPosition(sf::Vector2f(365, 9000));
 		_current_item = std::make_unique<Spearman>();
 		aMainTaskManager.endTask(TaskManager::taskRange::mainOrder);
 	}
-	if (_button_array[5]->getButtonActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft) 
+	if (_button_array[5]->getButtonIsActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft) 
 	{
 		_button_array[6]->setButtonPosition(sf::Vector2f(365, 325));
 		_button_array[5]->setButtonPosition(sf::Vector2f(365, 9000));
 		_current_item = std::make_unique<Swordsman>();
 		aMainTaskManager.endTask(TaskManager::taskRange::mainOrder);
 	}
-	if (_button_array[6]->getButtonActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft) 
+	if (_button_array[6]->getButtonIsActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft) 
 	{
 		_button_array[7]->setButtonPosition(sf::Vector2f(365, 325));
 		_button_array[6]->setButtonPosition(sf::Vector2f(365, 9000));
 		_current_item = std::make_unique<Archer>();
 		aMainTaskManager.endTask(TaskManager::taskRange::mainOrder);
 	}
-	if (_button_array[7]->getButtonActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft) 
+	if (_button_array[7]->getButtonIsActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft) 
 	{
 		_button_array[2]->setButtonPosition(sf::Vector2f(365, 325));
 		_button_array[7]->setButtonPosition(sf::Vector2f(365, 9000));
@@ -277,12 +277,14 @@ void MP::GuiMarketPlace::update(TaskManager& aMainTaskManager, sf::RenderWindow&
 {
 	if (aMainTaskManager.getCurrentState() == MP::TaskManager::stateType::stateMarketPlace)
 	{
-		updateMarketPlace(*aPlace, *aPlayer);
-		selectButton(guiMouseCoord);
-		pressButton(aMainTaskManager, aMainWindow, aPlayer, aPlace);
+		_update_market_place(*aPlace, *aPlayer);
+		_select_button(guiMouseCoord);
+		_press_button(aMainTaskManager, aMainWindow, aPlayer, aPlace);
 	}
 }
 
-void MP::GuiMarketPlace::render()
+void MP::GuiMarketPlace::render(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow ,std::shared_ptr<Places> aPlace, std::shared_ptr<Player> aPlayer)
 {
+	if (aMainTaskManager.getCurrentState() == MP::TaskManager::stateType::stateMarketPlace)
+		_draw_menu(aMainWindow, *aPlace, *aPlayer);
 }

@@ -202,7 +202,6 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RiDmain.cpp" />
     <ClCompile Include="Spearman.cpp" />
-    <ClCompile Include="StaticObiect.cpp" />
     <ClCompile Include="Swordsman.cpp" />
     <ClCompile Include="TaskManager.cpp" />
     <ClCompile Include="Town.cpp" />
@@ -259,7 +258,6 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="RiDmain.h" />
     <ClInclude Include="Spearman.h" />
-    <ClInclude Include="StaticObiect.h" />
     <ClInclude Include="Swordsman.h" />
     <ClInclude Include="TaskManager.h" />
     <ClInclude Include="Town.h" />

@@ -26,7 +26,7 @@ MP::Cursor::Cursor(sf::Texture* texturePtr)
 	aAnimation.setOrigin(18, 15);//Don't change it !
 }
 
-void MP::Cursor::updateCursor(TaskManager& aTaskManager, Camera& aCamera)
+void MP::Cursor::_update_cursor(TaskManager& aTaskManager, Camera& aCamera)
 {
 	//saving gui cursor coord for drawing 
 	aCamera.changeViewToGui();
@@ -45,12 +45,12 @@ void MP::Cursor::updateCursor(TaskManager& aTaskManager, Camera& aCamera)
 
 }
 
-void MP::Cursor::checkIfPlayerClicked(TaskManager& aTaskManager, Camera& aCamera)
+void MP::Cursor::_check_if_player_clicked(TaskManager& aTaskManager, Camera& aCamera)
 {
 	if (aTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft) //instructions below managing cursor behaviour
 	{
-		if (_gui_coord.x < 1040) // PROTOTYPE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! it fixed path creating on gui bar 
-		{						 // changing screen width will cause bug
+		if (_gui_coord.x < 1040) 
+		{						
 			if (aTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft
 				and aTaskManager.getTask(TaskManager::taskRange::reply) == TaskManager::taskType::taskNone
 				and aTaskManager.getTask(TaskManager::taskRange::order) == TaskManager::taskType::taskNone)
@@ -87,10 +87,11 @@ void MP::Cursor::checkIfPlayerClicked(TaskManager& aTaskManager, Camera& aCamera
 
 void MP::Cursor::update(TaskManager& aMainTaskManager, Camera& aCamera)
 {
-	updateCursor(aMainTaskManager, aCamera);
-	checkIfPlayerClicked(aMainTaskManager, aCamera);
+	_update_cursor(aMainTaskManager, aCamera);
+	_check_if_player_clicked(aMainTaskManager, aCamera);
 }
 
-void MP::Cursor::render()
+void MP::Cursor::render(sf::RenderWindow& mainWindow)
 {
+	mainWindow.draw(aAnimation.getObiectSprite());
 }

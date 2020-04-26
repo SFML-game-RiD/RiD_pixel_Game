@@ -41,12 +41,6 @@
     <ClCompile Include="ObiectGenerator.cpp">
       <Filter>MANAGERS, HEAD CLASS</Filter>
     </ClCompile>
-    <ClCompile Include="ObiectManager.cpp">
-      <Filter>MANAGERS, HEAD CLASS</Filter>
-    </ClCompile>
-    <ClCompile Include="ObiectDrawer.cpp">
-      <Filter>MANAGERS, HEAD CLASS</Filter>
-    </ClCompile>
     <ClCompile Include="ActiveObiect.cpp">
       <Filter>OBIECT\ACTIVE OBIECT</Filter>
     </ClCompile>
@@ -55,12 +49,6 @@
     </ClCompile>
     <ClCompile Include="RiDmain.cpp">
       <Filter>MANAGERS, HEAD CLASS\MAIN CLASS</Filter>
-    </ClCompile>
-    <ClCompile Include="StaticObiect.cpp">
-      <Filter>OBIECT\STATIC OBIECT</Filter>
-    </ClCompile>
-    <ClCompile Include="Land.cpp">
-      <Filter>OBIECT\STATIC OBIECT\land</Filter>
     </ClCompile>
     <ClCompile Include="Map.cpp">
       <Filter>GAME MAP</Filter>
@@ -80,16 +68,7 @@
     <ClCompile Include="Village.cpp">
       <Filter>OBIECT\PLACES</Filter>
     </ClCompile>
-    <ClCompile Include="Tree.cpp">
-      <Filter>OBIECT\STATIC OBIECT</Filter>
-    </ClCompile>
     <ClCompile Include="Camera.cpp">
-      <Filter>MANAGERS, HEAD CLASS</Filter>
-    </ClCompile>
-    <ClCompile Include="Calculator.cpp">
-      <Filter>MANAGERS, HEAD CLASS</Filter>
-    </ClCompile>
-    <ClCompile Include="TaskManager.cpp">
       <Filter>MANAGERS, HEAD CLASS</Filter>
     </ClCompile>
     <ClCompile Include="Move.cpp">
@@ -164,7 +143,27 @@
     <ClCompile Include="GuiMarketPlace.cpp">
       <Filter>OBIECT\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="GuiPanel.cpp" />
+    <ClCompile Include="GuiPanel.cpp">
+      <Filter>OBIECT\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Land.cpp">
+      <Filter>OBIECT</Filter>
+    </ClCompile>
+    <ClCompile Include="Tree.cpp">
+      <Filter>OBIECT</Filter>
+    </ClCompile>
+    <ClCompile Include="ObiectDrawer.cpp">
+      <Filter>MANAGERS, HEAD CLASS\DRAW</Filter>
+    </ClCompile>
+    <ClCompile Include="Calculator.cpp">
+      <Filter>MANAGERS, HEAD CLASS\CALCULATE</Filter>
+    </ClCompile>
+    <ClCompile Include="ObiectManager.cpp">
+      <Filter>MANAGERS, HEAD CLASS\MANAGE OBIECT</Filter>
+    </ClCompile>
+    <ClCompile Include="TaskManager.cpp">
+      <Filter>MANAGERS, HEAD CLASS\MANAGE TASK</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Animation.h">
@@ -206,12 +205,6 @@
     <ClInclude Include="ObiectGenerator.h">
       <Filter>MANAGERS, HEAD CLASS</Filter>
     </ClInclude>
-    <ClInclude Include="ObiectManager.h">
-      <Filter>MANAGERS, HEAD CLASS</Filter>
-    </ClInclude>
-    <ClInclude Include="ObiectDrawer.h">
-      <Filter>MANAGERS, HEAD CLASS</Filter>
-    </ClInclude>
     <ClInclude Include="ActiveObiect.h">
       <Filter>OBIECT\ACTIVE OBIECT</Filter>
     </ClInclude>
@@ -220,12 +213,6 @@
     </ClInclude>
     <ClInclude Include="RiDmain.h">
       <Filter>MANAGERS, HEAD CLASS\MAIN CLASS</Filter>
-    </ClInclude>
-    <ClInclude Include="StaticObiect.h">
-      <Filter>OBIECT\STATIC OBIECT</Filter>
-    </ClInclude>
-    <ClInclude Include="Land.h">
-      <Filter>OBIECT\STATIC OBIECT\land</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
       <Filter>GAME MAP</Filter>
@@ -245,16 +232,7 @@
     <ClInclude Include="Village.h">
       <Filter>OBIECT\PLACES</Filter>
     </ClInclude>
-    <ClInclude Include="Tree.h">
-      <Filter>OBIECT\STATIC OBIECT</Filter>
-    </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>MANAGERS, HEAD CLASS</Filter>
-    </ClInclude>
-    <ClInclude Include="Calculator.h">
-      <Filter>MANAGERS, HEAD CLASS</Filter>
-    </ClInclude>
-    <ClInclude Include="TaskManager.h">
       <Filter>MANAGERS, HEAD CLASS</Filter>
     </ClInclude>
     <ClInclude Include="Move.h">
@@ -329,7 +307,27 @@
     <ClInclude Include="GuiMarketPlace.h">
       <Filter>OBIECT\GUI</Filter>
     </ClInclude>
-    <ClInclude Include="GuiPanel.h" />
+    <ClInclude Include="GuiPanel.h">
+      <Filter>OBIECT\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Tree.h">
+      <Filter>OBIECT</Filter>
+    </ClInclude>
+    <ClInclude Include="Land.h">
+      <Filter>OBIECT</Filter>
+    </ClInclude>
+    <ClInclude Include="ObiectDrawer.h">
+      <Filter>MANAGERS, HEAD CLASS\DRAW</Filter>
+    </ClInclude>
+    <ClInclude Include="Calculator.h">
+      <Filter>MANAGERS, HEAD CLASS\CALCULATE</Filter>
+    </ClInclude>
+    <ClInclude Include="ObiectManager.h">
+      <Filter>MANAGERS, HEAD CLASS\MANAGE OBIECT</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskManager.h">
+      <Filter>MANAGERS, HEAD CLASS\MANAGE TASK</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="OBIECT">
@@ -352,12 +350,6 @@
     </Filter>
     <Filter Include="OBIECT\ACTIVE OBIECT">
       <UniqueIdentifier>{9856b24c-57a5-45b9-b105-8187a99dcf37}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="OBIECT\STATIC OBIECT">
-      <UniqueIdentifier>{001855a2-f094-4af1-82fe-62c3c470dc89}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="OBIECT\STATIC OBIECT\land">
-      <UniqueIdentifier>{d5b922b2-85df-4733-8fe9-7ea15a642192}</UniqueIdentifier>
     </Filter>
     <Filter Include="OBIECT\PLACES">
       <UniqueIdentifier>{ae191765-e778-4606-a7ae-b7cd710a5acb}</UniqueIdentifier>
@@ -388,6 +380,18 @@
     </Filter>
     <Filter Include="OBIECT\ITEMS">
       <UniqueIdentifier>{8e1c16ad-1742-47a1-993d-c901e392a4d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MANAGERS, HEAD CLASS\DRAW">
+      <UniqueIdentifier>{8f681cd1-4e9c-428e-925e-27c4a42d1d9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MANAGERS, HEAD CLASS\CALCULATE">
+      <UniqueIdentifier>{7249e363-bd01-4d19-99d6-1cc76ffa5ff4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MANAGERS, HEAD CLASS\MANAGE OBIECT">
+      <UniqueIdentifier>{9c0641ae-1878-4958-89dc-0e0814d601af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MANAGERS, HEAD CLASS\MANAGE TASK">
+      <UniqueIdentifier>{624f1dfe-d450-4c4c-b1d6-0e7ab57aa4e2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

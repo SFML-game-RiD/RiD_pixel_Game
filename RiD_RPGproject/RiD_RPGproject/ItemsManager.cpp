@@ -14,25 +14,46 @@ void MP::ItemsManager::setItems(sf::Font &aFont,unsigned int gold, sf::Texture* 
 	unsigned int wood, sf::Texture* woodTextures, unsigned int food, sf::Texture* foodTextures, unsigned int spearman,
 	sf::Texture* spearmanTextures, unsigned int archer, sf::Texture* archerTextures, unsigned int swordsman, sf::Texture* swordsmanTextures)
 {
-	_gold = std::make_shared<Gold>(goldTextures,aFont);
+	//_gold = std::make_shared<Gold>(goldTextures,aFont);
+	//_gold->setItemAmount(gold);
+
+	//_iron = std::make_shared<Iron>(ironTextures,aFont);
+	//_iron->setItemAmount(iron);
+
+	//_food = std::make_shared<Food>(foodTextures,aFont);
+	//_food->setItemAmount(food);
+
+	//_spearman = std::make_shared<Spearman>(spearmanTextures,aFont);
+	//_spearman->setItemAmount(spearman);
+
+	//_archer= std::make_shared<Archer>(archerTextures,aFont);
+	//_archer->setItemAmount(archer);
+
+	//_wood= std::make_shared<Wood>(woodTextures,aFont);
+	//_wood->setItemAmount(wood);
+
+	//_swordsman = std::make_shared<Swordsman>(swordsmanTextures,aFont);
+	//_swordsman->setItemAmount(swordsman);
+
+	_gold = std::make_unique<Gold>(goldTextures, aFont);
 	_gold->setItemAmount(gold);
 
-	_iron = std::make_shared<Iron>(ironTextures,aFont);
+	_iron = std::make_unique<Iron>(ironTextures, aFont);
 	_iron->setItemAmount(iron);
 
-	_food = std::make_shared<Food>(foodTextures,aFont);
+	_food = std::make_unique<Food>(foodTextures, aFont);
 	_food->setItemAmount(food);
 
-	_spearman = std::make_shared<Spearman>(spearmanTextures,aFont);
+	_spearman = std::make_unique<Spearman>(spearmanTextures, aFont);
 	_spearman->setItemAmount(spearman);
 
-	_archer= std::make_shared<Archer>(archerTextures,aFont);
+	_archer = std::make_unique<Archer>(archerTextures, aFont);
 	_archer->setItemAmount(archer);
 
-	_wood= std::make_shared<Wood>(woodTextures,aFont);
+	_wood = std::make_unique<Wood>(woodTextures, aFont);
 	_wood->setItemAmount(wood);
 
-	_swordsman = std::make_shared<Swordsman>(swordsmanTextures,aFont);
+	_swordsman = std::make_unique<Swordsman>(swordsmanTextures, aFont);
 	_swordsman->setItemAmount(swordsman);
 }
 
