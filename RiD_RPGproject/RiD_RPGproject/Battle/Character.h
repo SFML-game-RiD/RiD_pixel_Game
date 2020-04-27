@@ -22,13 +22,13 @@ namespace RTB
 		HPBar* _hp_bar = nullptr;
 		RiD::Movement* _movement = nullptr;
 		Hitbox* _hitbox = nullptr;
-		short _health_points;
-		short _sword_damage, _spear_damage, _bow_damage;
+		short _health_points = 0;
+		short _sword_damage = 0, _spear_damage = 0, _bow_damage = 0;
 		sf::Vector2f _position;
-		bool _is_alive;
-		short _direction;
-		float _speed;
-		enum directions { up, left, down, right };
+		bool _is_alive = false;
+		short _direction = 1;
+		float _speed = 0.0;
+		enum class directions { up, left, down, right };
 		bool _moving_up = true, _moving_down = true, _moving_right = true, _moving_left = true;
 
 

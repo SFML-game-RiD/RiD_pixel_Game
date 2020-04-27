@@ -32,20 +32,20 @@ namespace RTB
 	void Player::_isColidingWithTile(std::vector<std::vector<std::unique_ptr<MapElement>>>& map_objects)
 	{
 		sf::Vector2i character_position = { (int)(((2 * _character_sprite->getPosition().y + _character_sprite->getPosition().x) / 2) / 25), (int)(((2 * _character_sprite->getPosition().y - _character_sprite->getPosition().x) / 2) / 25) };
-		unsigned int height = map_objects[0].size(), width = map_objects.size();
+		int height = map_objects[0].size(), width = map_objects.size();
 
 		if (character_position.y > height - 1 || character_position.x < 0 || character_position.x > width - 1 || character_position.y < 0)//checks if character is situated "inside" the map
 		{
-			if (_direction == up)
+			if (_direction == static_cast<short>(directions::up))
 				_moving_up = false;
 
-			else if (_direction == down)
+			else if (_direction == static_cast<short>(directions::down))
 				_moving_down = false;
 
-			else if (_direction == right)
+			else if (_direction == static_cast<short>(directions::right))
 				_moving_right = false;
 
-			else if (_direction == left)
+			else if (_direction == static_cast<short>(directions::left))
 				_moving_left = false;
 		}
 		else
@@ -89,16 +89,16 @@ namespace RTB
 				{
 					if (checkOrientedCollision(map_objects[i][j]->getObjectsHitbox(), _hitbox->getRectangle()))
 					{
-						if (_direction == up)
+						if (_direction == static_cast<short>(directions::up))
 							_moving_up = false;
 
-						else if (_direction == down)
+						else if (_direction == static_cast<short>(directions::down))
 							_moving_down = false;
 
-						else if (_direction == right)
+						else if (_direction == static_cast<short>(directions::right))
 							_moving_right = false;
 
-						else if (_direction == left)
+						else if (_direction == static_cast<short>(directions::left))
 							_moving_left = false;
 					}
 				}
@@ -215,13 +215,13 @@ namespace RTB
 		{
 			_position = _character_sprite->getPosition();
 			if (_shot_destination.x - _position.x > 0 && abs(_shot_destination.x - _position.x) > abs(_shot_destination.y - _position.y))
-				_direction = right;
+				_direction = static_cast<short>(directions::right);
 			else if (_shot_destination.x - _position.x < 0 && abs(_shot_destination.x - _position.x)> abs(_shot_destination.y - _position.y))
-				_direction = left;
+				_direction = static_cast<short>(directions::left);
 			else if (_shot_destination.y - _position.y > 0 && abs(_shot_destination.x - _position.x) < abs(_shot_destination.y - _position.y))
-				_direction = down;
+				_direction = static_cast<short>(directions::down);
 			else if (_shot_destination.y - _position.y < 0 && abs(_shot_destination.x - _position.x) < abs(_shot_destination.y - _position.y))
-				_direction = up;
+				_direction = static_cast<short>(directions::up);
 			_movement->bowShot(time, _direction);
 			_arrows->update();
 		}

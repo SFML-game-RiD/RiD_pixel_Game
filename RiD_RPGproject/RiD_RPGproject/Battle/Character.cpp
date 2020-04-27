@@ -6,7 +6,7 @@ namespace RTB
 {
 	sf::Vector2i Character::_isoTo2D(sf::Vector2f position)
 	{
-		return sf::Vector2i(((2 * position.y + position.x) / 2) / 25, ((2 * position.y - position.x) / 2) / 25);
+		return sf::Vector2i(static_cast<int>(((2 * position.y + position.x) / 2) / 25), static_cast<int>(((2 * position.y - position.x) / 2) / 25));
 	}
 	void Character::setPosition(sf::Vector2f position)
 	{
@@ -32,8 +32,8 @@ namespace RTB
 
 	bool Character::checkOrientedCollision(const sf::RectangleShape& Object1, const sf::RectangleShape& Object2)
 	{
-		OrientedHitbox OH1(Object1, Object1.getSize().x, Object1.getSize().y);
-		OrientedHitbox OH2(Object2, Object2.getSize().x, Object2.getSize().y);
+		OrientedHitbox OH1(Object1, static_cast<int>(Object1.getSize().x), static_cast<int>(Object1.getSize().y));
+		OrientedHitbox OH2(Object2, static_cast<int>(Object2.getSize().x), static_cast<int>(Object2.getSize().y));
 
 		// Create the four distinct axes that are perpendicular to the edges of the two rectangles
 		sf::Vector2f Axes[4] = {

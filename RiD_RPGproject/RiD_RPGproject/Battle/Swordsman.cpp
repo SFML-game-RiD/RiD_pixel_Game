@@ -69,7 +69,7 @@ namespace RTB
 			_is_enemy_choosen = false;
 		else
 		{
-			int distance;
+			float distance;
 			distance = static_cast<float>(sqrt(pow((_isoTo2D((*_choosen_enemy)->getPosition()).x - _isoTo2D(_position).x), 2) + pow((_isoTo2D((*_choosen_enemy)->getPosition()).y - _isoTo2D(_position).y), 2)));
 			if (distance < 2)
 				_movement->triggerAttack();

@@ -68,8 +68,8 @@ namespace RTB
 			_is_enemy_choosen = false;
 		else
 		{
-			int distance;
-			distance = sqrt(pow((_isoTo2D((*_choosen_enemy)->getPosition()).x - _isoTo2D(_position).x), 2) + pow((_isoTo2D((*_choosen_enemy)->getPosition()).y - _isoTo2D(_position).y), 2));
+			float distance;
+			distance = static_cast<float>(sqrt(pow((_isoTo2D((*_choosen_enemy)->getPosition()).x - _isoTo2D(_position).x), 2) + pow((_isoTo2D((*_choosen_enemy)->getPosition()).y - _isoTo2D(_position).y), 2)));
 			if (distance < 8 && !_arrows->isFlying())
 			{
 				_shot_destination = { (int)(*_choosen_enemy)->getPosition().x, (int)(*_choosen_enemy)->getPosition().y };
@@ -95,13 +95,13 @@ namespace RTB
 		{
 			_position = _character_sprite->getPosition();
 			if (_shot_destination.x - _position.x > 0 && abs(_shot_destination.x - _position.x) > abs(_shot_destination.y - _position.y))
-				_direction = right;
+				_direction = static_cast<short>(directions::right);
 			else if (_shot_destination.x - _position.x < 0 && abs(_shot_destination.x - _position.x)> abs(_shot_destination.y - _position.y))
-				_direction = left;
+				_direction = static_cast<short>(directions::left);
 			else if (_shot_destination.y - _position.y > 0 && abs(_shot_destination.x - _position.x) < abs(_shot_destination.y - _position.y))
-				_direction = down;
+				_direction = static_cast<short>(directions::down);
 			else if (_shot_destination.y - _position.y < 0 && abs(_shot_destination.x - _position.x) < abs(_shot_destination.y - _position.y))
-				_direction = up;
+				_direction = static_cast<short>(directions::up);
 			_movement->bowShot(time,_direction);
 			_arrows->update();
 		}
