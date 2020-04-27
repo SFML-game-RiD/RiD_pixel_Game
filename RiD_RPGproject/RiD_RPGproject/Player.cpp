@@ -71,19 +71,19 @@ MP::Player::Player(sf::Texture* texturePtr, sf::Texture* pathIconTexturePtr)
 
 void MP::Player::_player_animation(sf::Clock& globalClock, TaskManager &aMainTaskManager)
 {
-	if (aMainTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskGoUp)
+	if (aMainTaskManager.findTask(MP::TaskNode::taskType::taskGoUp,false))
 		_player_animation_up(globalClock);
 
-	if (aMainTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskGoDown)
+	if (aMainTaskManager.findTask(MP::TaskNode::taskType::taskGoDown, false))
 		_player_animation_down(globalClock);
 
-	if (aMainTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskGoLeft)
+	if (aMainTaskManager.findTask(MP::TaskNode::taskType::taskGoLeft, false))
 		_player_animation_left(globalClock);
 
-	if (aMainTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskGoRight)
+	if (aMainTaskManager.findTask(MP::TaskNode::taskType::taskGoRight, false))
 		_player_animation_right(globalClock);
 
-	if (aMainTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskNone)
+	if (aMainTaskManager.findTask(MP::TaskNode::taskType::taskNone, false))
 		_player_animation_idle(globalClock);
 }
 
@@ -91,65 +91,57 @@ void MP::Player::_player_move(sf::Clock& aGameClock, TaskManager& aMainTaskManag
 {
 	Move tmp;
 
-	switch (aMainTaskManager.getTask(MP::TaskManager::taskRange::order))
-	{
-	case(MP::TaskManager::taskType::taskGoUp):
+	if (aMainTaskManager.findTask(MP::TaskNode::taskType::taskGoUp, false))
 		tmp.moveBlockUp(*this, aGameClock, aMainTaskManager);
-		break;
-	case(MP::TaskManager::taskType::taskGoLeft):
-		tmp.moveBlockLeft(*this, aGameClock, aMainTaskManager);
-		break;
-	case(MP::TaskManager::taskType::taskGoDown):
-		tmp.moveBlockDown(*this, aGameClock, aMainTaskManager);
-		break;
-	case(MP::TaskManager::taskType::taskGoRight):
-		tmp.moveBlockRight(*this, aGameClock, aMainTaskManager);
-		break;
-	default:
-	{
-		this->resetBlockLenghtCopy();
-	}
 
-	}
+	if (aMainTaskManager.findTask(MP::TaskNode::taskType::taskGoLeft, false))
+		tmp.moveBlockLeft(*this, aGameClock, aMainTaskManager);
+
+	if (aMainTaskManager.findTask(MP::TaskNode::taskType::taskGoDown, false))
+		tmp.moveBlockDown(*this, aGameClock, aMainTaskManager);
+
+	if (aMainTaskManager.findTask(MP::TaskNode::taskType::taskGoRight, false))
+		tmp.moveBlockRight(*this, aGameClock, aMainTaskManager);
+
+	if (aMainTaskManager.isTaskListEmpty())
+		this->resetBlockLenghtCopy();
 }
 
 
 void MP::Player::_player_automatic_move(Map& aMap, TaskManager& aTaskManager)
 {
-	if (_path != nullptr and  aPawnObiectTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskNone)
+	if (_path != nullptr and  aPawnObiectTaskManager.isTaskListEmpty())
 	{
 
 		MapElement* nextDestination = _path;//Takes new destination (new block).
-		MapElement* tmp = aMap.findElementAddressSquareRange(getObiectCoord(), aMap.getMapElementList());//Return element where computer player stands.
+		MapElement* tmp = aMap.findElementAddressSquareRange(getObiectCoord(), aMap.getMapElementList());//Return element where pawn stands.
 
 		if (tmp->getLandTile().getObiectCoord().x == nextDestination->getLandTile().getObiectCoord().x
 			and tmp->getLandTile().getObiectCoord().y + _block_length == nextDestination->getLandTile().getObiectCoord().y)//Goes down
 
-			aPawnObiectTaskManager.setTask(MP::TaskManager::taskRange::order, MP::TaskManager::taskType::taskGoDown);
+			aPawnObiectTaskManager.addTask( MP::TaskNode::taskType::taskGoDown);
 
 		else if (tmp->getLandTile().getObiectCoord().x == nextDestination->getLandTile().getObiectCoord().x
 			and tmp->getLandTile().getObiectCoord().y - _block_length == nextDestination->getLandTile().getObiectCoord().y)//Goes up
 
-			aPawnObiectTaskManager.setTask(MP::TaskManager::taskRange::order, MP::TaskManager::taskType::taskGoUp);
+			aPawnObiectTaskManager.addTask(MP::TaskNode::taskType::taskGoUp);
 
 		else if (tmp->getLandTile().getObiectCoord().x + _block_length == nextDestination->getLandTile().getObiectCoord().x//Goes right
 			and tmp->getLandTile().getObiectCoord().y == nextDestination->getLandTile().getObiectCoord().y)
 
-			aPawnObiectTaskManager.setTask(MP::TaskManager::taskRange::order, MP::TaskManager::taskType::taskGoRight);
+			aPawnObiectTaskManager.addTask(MP::TaskNode::taskType::taskGoRight);
 
 		else if (tmp->getLandTile().getObiectCoord().x - _block_length == nextDestination->getLandTile().getObiectCoord().x//Goes left
 			and tmp->getLandTile().getObiectCoord().y == nextDestination->getLandTile().getObiectCoord().y)
 
-			aPawnObiectTaskManager.setTask(MP::TaskManager::taskRange::order, MP::TaskManager::taskType::taskGoLeft);
+			aPawnObiectTaskManager.addTask(MP::TaskNode::taskType::taskGoLeft);
 
 
 		_set_path(_path->getNextElement());//Deleting usless element
 		delete nextDestination;
 	}
-	else if(_path == nullptr and aPawnObiectTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskNone)
-	{
-		aTaskManager.resetOrdersAndReply();
-	}
+	else if(_path == nullptr and aPawnObiectTaskManager.isTaskListEmpty())
+		aTaskManager.deleteTaskList();
 }
 
 
@@ -162,43 +154,40 @@ void MP::Player::_set_path(MapElement*& newPath)
 
 void MP::Player::_player_auto_animation(sf::Clock& globalClock)
 {
-	if (aPawnObiectTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskGoUp)
+	if (aPawnObiectTaskManager.findTask(MP::TaskNode::taskType::taskGoUp, false))
 		_player_animation_up(globalClock);
 
-	if (aPawnObiectTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskGoDown)
+	if (aPawnObiectTaskManager.findTask(MP::TaskNode::taskType::taskGoDown, false))
 		_player_animation_down(globalClock);
 
-	if (aPawnObiectTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskGoLeft)
+	if (aPawnObiectTaskManager.findTask(MP::TaskNode::taskType::taskGoLeft, false))
 		_player_animation_left(globalClock);
 
-	if (aPawnObiectTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskGoRight)
+	if (aPawnObiectTaskManager.findTask(MP::TaskNode::taskType::taskGoRight, false))
 		_player_animation_right(globalClock);
+
+	if (aPawnObiectTaskManager.findTask(MP::TaskNode::taskType::taskNone, false))
+		_player_animation_idle(globalClock);
 }
 
 void MP::Player::_player_auto_move(sf::Clock& globalClock)
 {
 	MP::Move tmp;
 
-	switch (aPawnObiectTaskManager.getTask(MP::TaskManager::taskRange::order))
-	{
-	case(MP::TaskManager::taskType::taskGoUp):
+	if (aPawnObiectTaskManager.findTask(MP::TaskNode::taskType::taskGoUp, false))
 		tmp.moveBlockUp(*this, globalClock);
-		break;
-	case(MP::TaskManager::taskType::taskGoLeft):
-		tmp.moveBlockLeft(*this, globalClock);
-		break;
-	case(MP::TaskManager::taskType::taskGoDown):
-		tmp.moveBlockDown(*this, globalClock);
-		break;
-	case(MP::TaskManager::taskType::taskGoRight):
-		tmp.moveBlockRight(*this, globalClock);
-		break;
-	default:
-	{
-		this->resetBlockLenghtCopy();
-	}
 
-	}
+	if (aPawnObiectTaskManager.findTask(MP::TaskNode::taskType::taskGoLeft, false))
+		tmp.moveBlockLeft(*this, globalClock);
+
+	if (aPawnObiectTaskManager.findTask(MP::TaskNode::taskType::taskGoDown, false))
+		tmp.moveBlockDown(*this, globalClock);
+
+	if (aPawnObiectTaskManager.findTask(MP::TaskNode::taskType::taskGoRight, false))
+		tmp.moveBlockRight(*this, globalClock);
+
+	if (aPawnObiectTaskManager.isTaskListEmpty())
+		this->resetBlockLenghtCopy();
 }
 
 void MP::Player::_delete_player_path()
@@ -263,98 +252,76 @@ void MP::Player::render(sf::RenderWindow& mainWindow)
 	}
 }
 
-void MP::Player::_procedure_player_auto_or_normal_move(TaskManager& aMainTaskManager, sf::Clock& gameClock, MP::Map &aMap, sf::Vector2f& mouseGameCoord)
+void MP::Player::_procedure_player_auto_or_normal_move(TaskManager& aMainTaskManager, sf::Clock& gameClock, MP::Map& aMap, sf::Vector2f& mouseGameCoord)
 {
-	switch (aMainTaskManager.getTask(MP::TaskManager::taskRange::mainOrder))
-	{
-	case(MP::TaskManager::taskType::taskNormalMove):
+	if (aMainTaskManager.findTask(MP::TaskNode::taskType::taskNormalMove, false))
 	{
 		_player_move(gameClock, aMainTaskManager);
 
 		_player_animation(gameClock, aMainTaskManager);
+	}
+	if (!aMainTaskManager.findTask(MP::TaskNode::taskType::taskNormalMove, false) or (!aMainTaskManager.findTask(MP::TaskNode::taskType::taskAutoMove, false)))
+		_player_animation_idle(gameClock);
 
-	}break;
-	case(MP::TaskManager::taskType::taskNone):
+	if (aMainTaskManager.findTask(MP::TaskNode::taskType::taskCreateAutoPath, true))
 	{
-		_player_animation(gameClock, aMainTaskManager);
-	}break;
-	case(MP::TaskManager::taskType::taskAutoMove):
+		//geting start and stop coordinates
+
+		MapElement* start = aMap.findElementAddressSquareRange(getObiectCoord(), aMap.getMapElementList());
+
+		MapElement* stop = aMap.findElementAddressSquareRange(mouseGameCoord, aMap.getMapElementList());
+
+		if (stop->isWalkable())
+		{
+			if (start->getLandTile().getObiectCoord() != stop->getLandTile().getObiectCoord())
+			{
+
+				checkingVector = stop->getLandTile().getObiectCoord();
+
+				//creating path
+				MP::PathCreator  tmp(aMap);
+
+				aMainTaskManager.addTask(MP::TaskNode::taskType::taskWaitForDoubleClickLeft); //computer waiting for player reply
+				_set_path(tmp.findPath(start->getLandTile().getObiectCoord(), stop->getLandTile().getObiectCoord()));
+
+				_mark_path();
+			}
+		}
+		else
+			aMainTaskManager.deleteTaskList();
+	}
+	if (aMainTaskManager.findTask(MP::TaskNode::taskType::taskDoubleClickLeft, true))	//starts procedure auto move if player clicked second time
 	{
+		MapElement* checkingElement = aMap.findElementAddressSquareRange(mouseGameCoord, aMap.getMapElementList());
 
-
-
-		switch (aMainTaskManager.getTask(MP::TaskManager::taskRange::order))
+		if (checkingElement->getLandTile().getObiectCoord().x == checkingVector.x and checkingElement->getLandTile().getObiectCoord().y == checkingVector.y) //continue auto move
 		{
-		case(MP::TaskManager::taskType::taskCreateAutoPath):
+			_unmark_path();
+			aMainTaskManager.addTask(MP::TaskNode::taskType::taskExecuteAutoMove);
+		}
+		else //break auto move
 		{
-			//geting start and stop coordinates
-
-			MapElement* start = aMap.findElementAddressSquareRange(getObiectCoord(), aMap.getMapElementList());
-
-			MapElement* stop = aMap.findElementAddressSquareRange(mouseGameCoord, aMap.getMapElementList());
-
-			if (stop->isWalkable())
-			{
-				if (start->getLandTile().getObiectCoord() != stop->getLandTile().getObiectCoord())
-				{
-
-					checkingVector = stop->getLandTile().getObiectCoord();
-
-					//creating path
-					MP::PathCreator  tmp(aMap);
-
-					aMainTaskManager.setTask(MP::TaskManager::taskRange::reply, MP::TaskManager::taskType::taskWaitForDoubleClickLeft); //computer waiting for player reply
-					_set_path(tmp.findPath(start->getLandTile().getObiectCoord(), stop->getLandTile().getObiectCoord()));
-
-					_mark_path();
-				}
-
-			}
-
-
-			aMainTaskManager.endTask(MP::TaskManager::taskRange::order);
-			aMainTaskManager.endTask(MP::TaskManager::taskRange::mainOrder);
-
-
-		}break;
-		case(MP::TaskManager::taskType::taskBreakAutoMove)://breaks auto move
+			_unmark_path();
+			aMainTaskManager.addTask(MP::TaskNode::taskType::taskBreakAutoMove);
+		}
+	}
+	if (aMainTaskManager.findTask(MP::TaskNode::taskType::taskExecuteAutoMove, false))//execute auto move		
+	{
+		_player_automatic_move(aMap, aMainTaskManager);
+		_player_auto_animation(gameClock);
+		_player_auto_move(gameClock);
+	}
+	if (aMainTaskManager.findTask(MP::TaskNode::taskType::taskBreakAutoMove, false))//breaks auto move
+	{
+		if (!aPawnObiectTaskManager.isTaskListEmpty())
 		{
-			if (aPawnObiectTaskManager.getTask(TaskManager::taskRange::order) != TaskManager::taskType::taskNone)
-			{
-				_player_auto_animation(gameClock);
-				_player_auto_move(gameClock);
-			}
-			else
-			{
-				_delete_player_path();
-				aMainTaskManager.resetOrdersAndReply();
-			}
-		}break;
-		case(MP::TaskManager::taskType::taskExecuteAutoMove)://execute auto move		
-		{
-			_player_automatic_move(aMap, aMainTaskManager);
 			_player_auto_animation(gameClock);
 			_player_auto_move(gameClock);
-
-		}break;
-		case(MP::TaskManager::taskType::taskDoubleClickLeft)://starts procedure auto move if player clicked second time
-		{
-
-			MapElement* checkingElement = aMap.findElementAddressSquareRange(mouseGameCoord, aMap.getMapElementList());
-
-			if (checkingElement->getLandTile().getObiectCoord().x == checkingVector.x and checkingElement->getLandTile().getObiectCoord().y == checkingVector.y)
-			{
-				_unmark_path();
-				aMainTaskManager.setTask(MP::TaskManager::taskRange::order, MP::TaskManager::taskType::taskExecuteAutoMove);
-			}
-			else
-			{
-				aMainTaskManager.setTask(MP::TaskManager::taskRange::order, MP::TaskManager::taskType::taskBreakAutoMove);
-				_unmark_path();
-			}
-		}break;
 		}
-	}break;
-
+		else
+		{
+			_delete_player_path();
+			aMainTaskManager.deleteTaskList();
+		}
 	}
 }

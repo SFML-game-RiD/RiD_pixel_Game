@@ -54,12 +54,10 @@ void MP::Camera::_change_zoom(MP::TaskManager& aTaskManager)
 {
 	changeViewToGame();
 
-	if (aTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskZoomOut)
+	if (aTaskManager.findTask(MP::TaskNode::taskType::taskZoomOut,true))
 		_zoom_out();
-	if (aTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskZoomIn)
+	if (aTaskManager.findTask(MP::TaskNode::taskType::taskZoomIn, true))
 		_zoom_in();
-
-	aTaskManager.endTask(MP::TaskManager::taskRange::order);
 }
 
 void MP::Camera::_change_camera(sf::Vector2f coord)
@@ -85,7 +83,7 @@ void MP::Camera::changeViewToGui()
 
 void MP::Camera::update(sf::Vector2f newFocusCoord, TaskManager& aMainTaskManager)
 {
-	if (aMainTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskZoomIn or aMainTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskZoomOut)
+	if (aMainTaskManager.findTask(MP::TaskNode::taskType::taskZoomIn,false) or aMainTaskManager.findTask(MP::TaskNode::taskType::taskZoomOut, false))
 		_change_zoom(aMainTaskManager);
 
 	_change_camera(newFocusCoord);

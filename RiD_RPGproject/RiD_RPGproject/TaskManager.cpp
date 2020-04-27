@@ -3,72 +3,8 @@
 MP::TaskManager::TaskManager()
 {
 	_game_state = stateType::stateMainMenu;
-	_game_order = taskType::taskNone;
-	_game_reply = taskType::taskNone;
-	_game_main_order = taskType::taskNone;
-
 }
 
-MP::TaskManager::taskType MP::TaskManager::getTask(taskRange aTaskRange)
-{
-	switch (aTaskRange) {
-	case(taskRange::order):
-	{
-		return _game_order;
-	}break;
-	case(taskRange::reply):
-	{
-		return _game_reply;
-	}break;
-	case(taskRange::mainOrder):
-	{
-		return _game_main_order;
-	}break;
-	}
-}
-
-void MP::TaskManager::endTask(taskRange aTaskRange)
-{
-	switch (aTaskRange) {
-	case(taskRange::order):
-	{
-		_game_order = taskType::taskNone;
-	}break;
-	case(taskRange::reply):
-	{
-		_game_reply = taskType::taskNone;
-	}break;
-	case(taskRange::mainOrder):
-	{
-		_game_main_order = taskType::taskNone;
-	}break;
-	}
-}
-
-void MP::TaskManager::setTask(taskRange aTaskRange, taskType typeOfTask)
-{
-	switch (aTaskRange) {
-	case(taskRange::order):
-	{
-		_game_order = typeOfTask;
-	}break;
-	case(taskRange::reply):
-	{
-		_game_reply = typeOfTask;
-	}break;
-	case(taskRange::mainOrder):
-	{
-		_game_main_order = typeOfTask;
-	}break;
-	}
-}
-
-void MP::TaskManager::resetOrdersAndReply()
-{
-	_game_main_order = taskType::taskNone;
-	_game_order = taskType::taskNone;
-	_game_reply = taskType::taskNone;
-}
 
 void MP::TaskManager::setState(stateType aNewStateType)
 {
@@ -80,13 +16,48 @@ MP::TaskManager::stateType MP::TaskManager::getCurrentState()
 	return _game_state;
 }
 
-bool MP::TaskManager::isFree()
+
+bool MP::TaskManager::findTask(TaskNode::taskType aTaskType, bool erase)
 {
-	if (getTask(MP::TaskManager::taskRange::mainOrder) == MP::TaskManager::taskType::taskNone
-		and getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskNone
-		and getTask(MP::TaskManager::taskRange::reply) == MP::TaskManager::taskType::taskNone)
-		return true;
-	else
-		return false;
+	if (!taskList.empty())
+	{
+		std::set<std::shared_ptr<MP::TaskNode>>::iterator findTask;
+		findTask = taskList.begin();
+		for (findTask; findTask != taskList.end(); findTask++)
+		{
+			if ((*findTask)->getTask() == aTaskType)
+			{
+				if (erase)
+					taskList.erase(*findTask);
+
+					return true;
+			}
+		}
+	}
+	return false;
+}
+
+void MP::TaskManager::addTask(TaskNode::taskType newTask)
+{
+	if (!findTask(TaskNode::taskType::taskNormalMove,false))
+	{
+		std::shared_ptr<TaskNode> tmp = std::make_shared<TaskNode>(newTask);
+		taskList.insert(tmp);
+	}
+}
+
+void MP::TaskManager::deleteTaskList()
+{
+	taskList.clear();
+}
+
+std::set<std::shared_ptr<MP::TaskNode>>& MP::TaskManager::getTaskList()
+{
+	return taskList;
+}
+
+bool MP::TaskManager::isTaskListEmpty()
+{
+	return taskList.empty();
 }
 

@@ -51,6 +51,6 @@ void MP::Calculator::startMenuProcedures(TaskManager &aMainTaskManager, ObiectMa
 
 	aObiectManager.getCursor()->update(aMainTaskManager, aCamera);
 	
-	aMainTaskManager.endTask(TaskManager::taskRange::mainOrder);
+	aMainTaskManager.deleteTaskList();
 }
 

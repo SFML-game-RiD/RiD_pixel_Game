@@ -47,56 +47,36 @@ bool MP::PawnObiect::checkGoRight(MP::Map& aMap)
 
 void MP::PawnObiect::tryToMoveUp(Map& aMap, TaskManager& aMainTaskManager)
 {
-	if(aMainTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskNone
-		and aMainTaskManager.getTask(MP::TaskManager::taskRange::reply) == MP::TaskManager::taskType::taskNone
-		and aMainTaskManager.getTask(MP::TaskManager::taskRange::mainOrder) == MP::TaskManager::taskType::taskNone)
+	if (checkGoUp(aMap))
 	{
-		if (checkGoUp(aMap))
-		{
-			aMainTaskManager.setTask(MP::TaskManager::taskRange::order, MP::TaskManager::taskType::taskGoUp);
-			aMainTaskManager.setTask(MP::TaskManager::taskRange::mainOrder, MP::TaskManager::taskType::taskNormalMove);
-		}
+		aMainTaskManager.addTask(MP::TaskNode::taskType::taskGoUp);
+		aMainTaskManager.addTask(MP::TaskNode::taskType::taskNormalMove);
 	}
 }
 
 void MP::PawnObiect::tryToMoveDown(Map& aMap, TaskManager& aMainTaskManager)
 {
-	if (aMainTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskNone
-		and aMainTaskManager.getTask(MP::TaskManager::taskRange::reply) == MP::TaskManager::taskType::taskNone
-		and aMainTaskManager.getTask(MP::TaskManager::taskRange::mainOrder) == MP::TaskManager::taskType::taskNone)
+	if (checkGoDown(aMap))
 	{
-		if (checkGoDown(aMap))
-		{
-			aMainTaskManager.setTask(MP::TaskManager::taskRange::order, MP::TaskManager::taskType::taskGoDown);
-			aMainTaskManager.setTask(MP::TaskManager::taskRange::mainOrder, MP::TaskManager::taskType::taskNormalMove);
-		}
+		aMainTaskManager.addTask(MP::TaskNode::taskType::taskGoDown);
+		aMainTaskManager.addTask(MP::TaskNode::taskType::taskNormalMove);
 	}
 }
 
 void MP::PawnObiect::tryToMoveLeft(Map& aMap, TaskManager& aMainTaskManager)
 {
-	if ( aMainTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskNone
-		and aMainTaskManager.getTask(MP::TaskManager::taskRange::reply) == MP::TaskManager::taskType::taskNone
-		and aMainTaskManager.getTask(MP::TaskManager::taskRange::mainOrder) == MP::TaskManager::taskType::taskNone)
-	{ 
-		if (checkGoLeft(aMap))
-		{
-			aMainTaskManager.setTask(MP::TaskManager::taskRange::order, MP::TaskManager::taskType::taskGoLeft);
-			aMainTaskManager.setTask(MP::TaskManager::taskRange::mainOrder, MP::TaskManager::taskType::taskNormalMove);
-		}
+	if (checkGoLeft(aMap))
+	{
+		aMainTaskManager.addTask(MP::TaskNode::taskType::taskGoLeft);
+		aMainTaskManager.addTask(MP::TaskNode::taskType::taskNormalMove);
 	}
 }
 
 void MP::PawnObiect::tryToMoveRight(Map& aMap, TaskManager& aMainTaskManager)
 {
-	if (aMainTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskNone
-		and aMainTaskManager.getTask(MP::TaskManager::taskRange::reply) == MP::TaskManager::taskType::taskNone
-		and aMainTaskManager.getTask(MP::TaskManager::taskRange::mainOrder) == MP::TaskManager::taskType::taskNone)
+	if (checkGoRight(aMap))
 	{
-		if (checkGoRight(aMap))
-		{
-			aMainTaskManager.setTask(MP::TaskManager::taskRange::order, MP::TaskManager::taskType::taskGoRight);
-			aMainTaskManager.setTask(MP::TaskManager::taskRange::mainOrder, MP::TaskManager::taskType::taskNormalMove);
-		}
+		aMainTaskManager.addTask(MP::TaskNode::taskType::taskGoRight);
+		aMainTaskManager.addTask(MP::TaskNode::taskType::taskNormalMove);
 	}
 }

@@ -204,6 +204,7 @@
     <ClCompile Include="Spearman.cpp" />
     <ClCompile Include="Swordsman.cpp" />
     <ClCompile Include="TaskManager.cpp" />
+    <ClCompile Include="TaskNode.cpp" />
     <ClCompile Include="Town.cpp" />
     <ClCompile Include="Tree.cpp" />
     <ClCompile Include="Village.cpp" />
@@ -260,6 +261,7 @@
     <ClInclude Include="Spearman.h" />
     <ClInclude Include="Swordsman.h" />
     <ClInclude Include="TaskManager.h" />
+    <ClInclude Include="TaskNode.h" />
     <ClInclude Include="Town.h" />
     <ClInclude Include="Tree.h" />
     <ClInclude Include="Village.h" />

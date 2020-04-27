@@ -1,6 +1,8 @@
 #ifndef TASKMANAGER_H
 #define TASKMANAGER_H
-
+#include <set>
+#include <iostream>
+#include "TaskNode.h"
 
 namespace MP
 {
@@ -8,82 +10,37 @@ namespace MP
 	{
 	public:
 
-		
 		enum class stateType
-	{
+		{
 			stateGame,
 			stateMainMenu,
 			statePlacesMenu,
 			stateMarketPlace
-	};
-	enum class taskType
-		{
-			//Move basic tasks
-
-			taskNone,
-			taskGoUp,
-			taskGoDown,
-			taskGoRight,
-			taskGoLeft,
-			
-			//Auto move tasks
-			taskAutoMove,
-			taskNormalMove,
-			taskBreakAutoMove,
-			taskExecuteAutoMove,
-			taskCreateAutoPath,
-			//Camera tasks
-
-			taskZoomIn,
-			taskZoomOut,
-
-			//Mouse tasks
-
-			taskClickLeft,
-			taskClickRight,
-			taskDoubleClickLeft,
-			taskWaitForDoubleClickLeft
-
-
-		
-
 		};
 
-	enum class taskRange
-	{
-		mainOrder,
-		order,
-		reply
-	
-	};
-
 	private:
-		
+
 		stateType _game_state;
 
-		taskType _game_order;
-	
-		taskType _game_reply;
+		std::set<std::shared_ptr<TaskNode>> taskList;
 
-		taskType _game_main_order;
-	
 	public:
 
 		TaskManager();
-
-		taskType getTask(taskRange aTaskRange);
-
-		void endTask(taskRange aTaskRange);
-
-		void setTask(taskRange aTaskRange, taskType typeOfTask);
-
-		void resetOrdersAndReply();
 
 		void setState(stateType aNewStateType);
 
 		stateType getCurrentState();
 
-		bool isFree();
+		bool findTask(TaskNode::taskType aTaskType, bool erase);
+
+		void addTask(TaskNode::taskType newTask);
+
+		void deleteTaskList();
+
+		std::set<std::shared_ptr<TaskNode>>& getTaskList();
+
+		bool isTaskListEmpty();
 	};
 }
 

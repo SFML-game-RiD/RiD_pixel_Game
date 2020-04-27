@@ -39,9 +39,10 @@ void RiD::RiDmain::_event_function_for_state_game()
 			_a_camera.getWindow().close();
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-			if (_a_main_task_manager.isFree())
+			if (_a_main_task_manager.isTaskListEmpty())
+			{
 				_a_main_task_manager.setState(MP::TaskManager::stateType::stateMainMenu);
-
+			}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 			_a_obiect_manager.getPlayer()->tryToMoveUp(_a_obiect_manager.getMap(),_a_main_task_manager);
 
@@ -55,27 +56,20 @@ void RiD::RiDmain::_event_function_for_state_game()
 			_a_obiect_manager.getPlayer()->tryToMoveRight(_a_obiect_manager.getMap(), _a_main_task_manager);
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
-			if (_a_main_task_manager.isFree())
+			if (_a_main_task_manager.isTaskListEmpty())
 				_a_obiect_manager.getPlayer()->goToPlace(_a_obiect_manager.getMap(), _a_main_task_manager);
 			
 
 		if (_event.type == sf::Event::MouseWheelScrolled)
 		{
-			if (_a_main_task_manager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskNone)
-			{
 				if (_event.mouseWheelScroll.delta > 0)
-					_a_main_task_manager.setTask(MP::TaskManager::taskRange::order, MP::TaskManager::taskType::taskZoomIn);
+					_a_main_task_manager.addTask(MP::TaskNode::taskType::taskZoomIn);
 				else
-					_a_main_task_manager.setTask(MP::TaskManager::taskRange::order, MP::TaskManager::taskType::taskZoomOut);
-			}
+					_a_main_task_manager.addTask(MP::TaskNode::taskType::taskZoomOut);
 		}
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-			if (_a_main_task_manager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskNone or
-				_a_main_task_manager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskExecuteAutoMove)
-			{
-				_a_main_task_manager.setTask(MP::TaskManager::taskRange::mainOrder, MP::TaskManager::taskType::taskClickLeft);
-			}
+			_a_main_task_manager.addTask(MP::TaskNode::taskType::taskClickLeft);
 		}
 	}
 }
@@ -99,8 +93,8 @@ void RiD::RiDmain::_event_function_for_menu()
 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-			if(_a_main_task_manager.isFree())
-			_a_main_task_manager.setTask(MP::TaskManager::taskRange::mainOrder, MP::TaskManager::taskType::taskClickLeft);
+			if(_a_main_task_manager.isTaskListEmpty())
+			_a_main_task_manager.addTask(MP::TaskNode::taskType::taskClickLeft);
 		}
 	
 	}

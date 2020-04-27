@@ -47,42 +47,39 @@ void MP::Cursor::_update_cursor(TaskManager& aTaskManager, Camera& aCamera)
 
 void MP::Cursor::_check_if_player_clicked(TaskManager& aTaskManager, Camera& aCamera)
 {
-	if (aTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft) //instructions below managing cursor behaviour
+	if (aTaskManager.findTask(TaskNode::taskType::taskClickLeft,true)) //instructions below managing cursor behaviour
 	{
-		if (_gui_coord.x < 1040) 
-		{						
-			if (aTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft
-				and aTaskManager.getTask(TaskManager::taskRange::reply) == TaskManager::taskType::taskNone
-				and aTaskManager.getTask(TaskManager::taskRange::order) == TaskManager::taskType::taskNone)
+		if (_gui_coord.x < 1040) //map
+		{	
+			if (aTaskManager.isTaskListEmpty())
 			{
-
-				aTaskManager.setTask(TaskManager::taskRange::mainOrder, TaskManager::taskType::taskAutoMove);
-				aTaskManager.setTask(TaskManager::taskRange::order, TaskManager::taskType::taskCreateAutoPath);
-
+				aTaskManager.addTask(TaskNode::taskType::taskAutoMove);
+				aTaskManager.addTask(TaskNode::taskType::taskCreateAutoPath);
 			}
-			else if (aTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft
-				and aTaskManager.getTask(TaskManager::taskRange::reply) == TaskManager::taskType::taskWaitForDoubleClickLeft
-				and aTaskManager.getTask(TaskManager::taskRange::order) == TaskManager::taskType::taskNone)
+			if (aTaskManager.findTask(MP::TaskNode::taskType::taskWaitForDoubleClickLeft, true))
 			{
-
-				aTaskManager.setTask(TaskManager::taskRange::mainOrder, TaskManager::taskType::taskAutoMove);
-				aTaskManager.setTask(TaskManager::taskRange::order, TaskManager::taskType::taskDoubleClickLeft);
+				aTaskManager.addTask(MP::TaskNode::taskType::taskDoubleClickLeft);
+			}
+			if (aTaskManager.findTask(TaskNode::taskType::taskExecuteAutoMove, true))
+			{
+				aTaskManager.addTask(MP::TaskNode::taskType::taskBreakAutoMove);
 			}
 
-			else if (aTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft
-				and aTaskManager.getTask(TaskManager::taskRange::order) == TaskManager::taskType::taskExecuteAutoMove)
-			{
-				aTaskManager.setTask(TaskManager::taskRange::mainOrder, TaskManager::taskType::taskAutoMove);
-				aTaskManager.setTask(TaskManager::taskRange::order, TaskManager::taskType::taskBreakAutoMove);
+		}
+		else //gui
+		{
+			if(aTaskManager.findTask(TaskNode::taskType::taskAutoMove,false))
+			{ 
+
 			}
-			else if (aTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft
-				and aTaskManager.getTask(TaskManager::taskRange::order) == TaskManager::taskType::taskBreakAutoMove)
+			else
 			{
-				aTaskManager.setTask(TaskManager::taskRange::mainOrder, TaskManager::taskType::taskAutoMove);
-				aTaskManager.setTask(TaskManager::taskRange::order, TaskManager::taskType::taskBreakAutoMove);
+			}
+			if (aTaskManager.findTask(TaskNode::taskType::taskExecuteAutoMove, true))
+			{
+				aTaskManager.addTask(MP::TaskNode::taskType::taskBreakAutoMove);
 			}
 		}
-		
 	}
 }
 

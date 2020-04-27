@@ -217,58 +217,52 @@ void MP::GuiMarketPlace::_select_button(sf::Vector2f mouseCoord)
 
 void MP::GuiMarketPlace::_press_button(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, std::shared_ptr<Player>& aPlayer, std::shared_ptr<Places>& aPlaces)
 {
-	if (_button_array[0]->getButtonIsActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft) //buy
+	if (_button_array[0]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::taskClickLeft,true))//buy
 	{
 		_buy_item(aPlaces->aItemsManager, aPlayer->aItemsManager);
 	}
-	if (_button_array[1]->getButtonIsActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft) //sell
+	if (_button_array[1]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::taskClickLeft, true)) //sell
 	{
 		_buy_item(aPlayer->aItemsManager,aPlaces->aItemsManager);
 	}
-	if (_button_array[2]->getButtonIsActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft)
+	if (_button_array[2]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::taskClickLeft, true))
 	{
 		_button_array[3]->setButtonPosition(sf::Vector2f(365, 325));
 		_button_array[2]->setButtonPosition(sf::Vector2f(365, 9000));
 		_current_item = std::make_unique<Wood>();
-		aMainTaskManager.endTask(TaskManager::taskRange::mainOrder);
 	}
-	if (_button_array[3]->getButtonIsActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft)
+	if (_button_array[3]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::taskClickLeft, true))
 	{
 		_button_array[4]->setButtonPosition(sf::Vector2f(365, 325));
 		_button_array[3]->setButtonPosition(sf::Vector2f(365, 9000));
 		_current_item = std::make_unique<Iron>();
-		aMainTaskManager.endTask(TaskManager::taskRange::mainOrder);
 	}
-	if (_button_array[4]->getButtonIsActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft) 
+	if (_button_array[4]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::taskClickLeft, true))
 	{
 		_button_array[5]->setButtonPosition(sf::Vector2f(365, 325));
 		_button_array[4]->setButtonPosition(sf::Vector2f(365, 9000));
 		_current_item = std::make_unique<Spearman>();
-		aMainTaskManager.endTask(TaskManager::taskRange::mainOrder);
 	}
-	if (_button_array[5]->getButtonIsActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft) 
+	if (_button_array[5]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::taskClickLeft, true))
 	{
 		_button_array[6]->setButtonPosition(sf::Vector2f(365, 325));
 		_button_array[5]->setButtonPosition(sf::Vector2f(365, 9000));
 		_current_item = std::make_unique<Swordsman>();
-		aMainTaskManager.endTask(TaskManager::taskRange::mainOrder);
 	}
-	if (_button_array[6]->getButtonIsActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft) 
+	if (_button_array[6]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::taskClickLeft, true))
 	{
 		_button_array[7]->setButtonPosition(sf::Vector2f(365, 325));
 		_button_array[6]->setButtonPosition(sf::Vector2f(365, 9000));
 		_current_item = std::make_unique<Archer>();
-		aMainTaskManager.endTask(TaskManager::taskRange::mainOrder);
 	}
-	if (_button_array[7]->getButtonIsActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft) 
+	if (_button_array[7]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::taskClickLeft, true))
 	{
 		_button_array[2]->setButtonPosition(sf::Vector2f(365, 325));
 		_button_array[7]->setButtonPosition(sf::Vector2f(365, 9000));
 		_current_item = std::make_unique<Food>();
-		aMainTaskManager.endTask(TaskManager::taskRange::mainOrder);
 	}
 
-	aMainTaskManager.endTask(TaskManager::taskRange::mainOrder);
+	aMainTaskManager.deleteTaskList();
 }
 
 void MP::GuiMarketPlace::update(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, sf::Vector2f guiMouseCoord, std::shared_ptr<Player>& aPlayer, std::shared_ptr<Places>& aPlace)

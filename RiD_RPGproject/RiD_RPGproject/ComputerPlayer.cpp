@@ -34,33 +34,28 @@ void MP::ComputerPlayer::_delete_path()
 
 void MP::ComputerPlayer::_get_next_task(Map& aMap)
 {
-
-	if (aPawnObiectTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskNone)
+	if (aPawnObiectTaskManager.isTaskListEmpty())
 	{
 		if (_path == nullptr)//Sets new destination.
 		_chose_destination(aMap);
-		
-
 
 		MapElement* nextDestination = _path;//Takes new destination (new block).
 		MapElement* tmp = aMap.findElementAddressSquareRange(getObiectCoord(), aMap.getMapElementList());//Return element where computer player stands.
 
 		if (tmp->getLandTile().getObiectCoord().x == nextDestination->getLandTile().getObiectCoord().x and tmp->getLandTile().getObiectCoord().y + _block_length == nextDestination->getLandTile().getObiectCoord().y)//Goes down
-			aPawnObiectTaskManager.setTask(MP::TaskManager::taskRange::order, MP::TaskManager::taskType::taskGoDown);
+			aPawnObiectTaskManager.addTask(MP::TaskNode::taskType::taskGoDown);
 
 		else if (tmp->getLandTile().getObiectCoord().x == nextDestination->getLandTile().getObiectCoord().x and tmp->getLandTile().getObiectCoord().y - _block_length == nextDestination->getLandTile().getObiectCoord().y)//Goes up
-			aPawnObiectTaskManager.setTask(MP::TaskManager::taskRange::order, MP::TaskManager::taskType::taskGoUp);
+			aPawnObiectTaskManager.addTask(MP::TaskNode::taskType::taskGoUp);
 
 		else if (tmp->getLandTile().getObiectCoord().x + _block_length == nextDestination->getLandTile().getObiectCoord().x and tmp->getLandTile().getObiectCoord().y == nextDestination->getLandTile().getObiectCoord().y)
-			aPawnObiectTaskManager.setTask(MP::TaskManager::taskRange::order,MP::TaskManager::taskType::taskGoRight);
+			aPawnObiectTaskManager.addTask(MP::TaskNode::taskType::taskGoRight);
 
 		else if (tmp->getLandTile().getObiectCoord().x - _block_length == nextDestination->getLandTile().getObiectCoord().x and tmp->getLandTile().getObiectCoord().y == nextDestination->getLandTile().getObiectCoord().y)
-			aPawnObiectTaskManager.setTask(MP::TaskManager::taskRange::order, MP::TaskManager::taskType::taskGoLeft);
-		
+			aPawnObiectTaskManager.addTask(MP::TaskNode::taskType::taskGoLeft);
 
 		_path = _path->getNextElement();//Deleting usless element
-		delete nextDestination;
-		
+		delete nextDestination;	
 	}
 }
 
@@ -68,26 +63,20 @@ void MP::ComputerPlayer::_computer_player_move(sf::Clock& globalClock)
 {
 	MP::Move tmp;
 
-	switch (aPawnObiectTaskManager.getTask(MP::TaskManager::taskRange::order))
-	{
-	case(MP::TaskManager::taskType::taskGoUp):
+	if (aPawnObiectTaskManager.findTask(MP::TaskNode::taskType::taskGoUp, false))
 		tmp.moveBlockUp(*this, globalClock);
-		break;
-	case(MP::TaskManager::taskType::taskGoLeft):
-		tmp.moveBlockLeft(*this, globalClock);
-		break;
-	case(MP::TaskManager::taskType::taskGoDown):
-		tmp.moveBlockDown(*this, globalClock);
-		break;
-	case(MP::TaskManager::taskType::taskGoRight):
-		tmp.moveBlockRight(*this, globalClock);
-		break;
-	default:
-	{
-		this->resetBlockLenghtCopy();
-	}
 
-	}
+	if (aPawnObiectTaskManager.findTask(MP::TaskNode::taskType::taskGoLeft, false))
+		tmp.moveBlockLeft(*this, globalClock);
+
+	if (aPawnObiectTaskManager.findTask(MP::TaskNode::taskType::taskGoDown, false))
+		tmp.moveBlockDown(*this, globalClock);
+
+	if (aPawnObiectTaskManager.findTask(MP::TaskNode::taskType::taskGoRight, false))
+		tmp.moveBlockRight(*this, globalClock);
+
+	if (aPawnObiectTaskManager.isTaskListEmpty())
+		this->resetBlockLenghtCopy();
 }
 
 void MP::ComputerPlayer::update(Map& aMap, sf::Clock& gameClock)
@@ -130,16 +119,16 @@ MP::ComputerPlayer::~ComputerPlayer()
 
 void MP::ComputerPlayer::_computer_player_animation(sf::Clock& globalClock)
 {
-	if (aPawnObiectTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskGoUp)
+	if (aPawnObiectTaskManager.findTask(MP::TaskNode::taskType::taskGoUp, false))
 		_computer_player_animation_up(globalClock);
 
-	if (aPawnObiectTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskGoDown)
+	if (aPawnObiectTaskManager.findTask(MP::TaskNode::taskType::taskGoDown, false))
 		_computer_player_animation_down(globalClock);
 
-	if (aPawnObiectTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskGoLeft)
+	if (aPawnObiectTaskManager.findTask(MP::TaskNode::taskType::taskGoLeft, false))
 		_computer_player_animation_left(globalClock);
 
-	if (aPawnObiectTaskManager.getTask(MP::TaskManager::taskRange::order) == MP::TaskManager::taskType::taskGoRight)
+	if (aPawnObiectTaskManager.findTask(MP::TaskNode::taskType::taskGoRight, false))
 		_computer_player_animation_right(globalClock);
 }
 

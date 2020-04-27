@@ -48,22 +48,22 @@ void MP::GuiMainMenu::_select_button(sf::Vector2f guiMouseCoord)
 
 void MP::GuiMainMenu::_press_button(TaskManager& aMainTaskManager,  sf::RenderWindow& aMainWindow)
 {
-	if (_button_array[0]->getButtonIsActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft)
+	if (_button_array[0]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::taskClickLeft,true))
 	{
-		aMainTaskManager.resetOrdersAndReply();
+	
 		aMainTaskManager.setState(TaskManager::stateType::stateGame);
 	}
-	if (_button_array[1]->getButtonIsActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft)
+	if (_button_array[1]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::taskClickLeft, true))
 	{
-		aMainTaskManager.resetOrdersAndReply();
+		
 	}
-	if (_button_array[2]->getButtonIsActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft)
+	if (_button_array[2]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::taskClickLeft, true))
 	{
-		aMainTaskManager.resetOrdersAndReply();
+		
 	}
-	if (_button_array[3]->getButtonIsActive() == true and aMainTaskManager.getTask(TaskManager::taskRange::mainOrder) == TaskManager::taskType::taskClickLeft)
+	if (_button_array[3]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::taskClickLeft, true))
 	{
-		aMainTaskManager.resetOrdersAndReply();
+		
 		aMainWindow.close();
 	}
 }
@@ -74,7 +74,6 @@ void MP::GuiMainMenu::update(TaskManager& aMainTaskManager, sf::RenderWindow& aM
 	{
 		_select_button(guiMouseCoord);
 		_press_button(aMainTaskManager, aMainWindow);
-		aMainTaskManager.resetOrdersAndReply();
 	}
 }
 

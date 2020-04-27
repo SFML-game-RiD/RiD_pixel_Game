@@ -164,6 +164,9 @@
     <ClCompile Include="TaskManager.cpp">
       <Filter>MANAGERS, HEAD CLASS\MANAGE TASK</Filter>
     </ClCompile>
+    <ClCompile Include="TaskNode.cpp">
+      <Filter>MANAGERS, HEAD CLASS\MANAGE TASK</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Animation.h">
@@ -326,6 +329,9 @@
       <Filter>MANAGERS, HEAD CLASS\MANAGE OBIECT</Filter>
     </ClInclude>
     <ClInclude Include="TaskManager.h">
+      <Filter>MANAGERS, HEAD CLASS\MANAGE TASK</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskNode.h">
       <Filter>MANAGERS, HEAD CLASS\MANAGE TASK</Filter>
     </ClInclude>
   </ItemGroup>
