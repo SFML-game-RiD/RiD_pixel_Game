@@ -1,10 +1,10 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include <vector>
 #include "PawnObiect.h"
 #include "Map.h"
 #include "PathIcon.h"
-#include <vector>
 #include "TaskManager.h"
 
 namespace MP
@@ -21,7 +21,7 @@ namespace MP
 
 		std::vector<PathIcon> _a_path_icon;
 
-
+		std::shared_ptr<Places> _current_place;
 
 		void _player_animation_right(sf::Clock& globalClock);
 
@@ -58,6 +58,8 @@ namespace MP
 		Player(sf::Texture *texturePtr,sf::Texture *pathIconTexturePtr);
 
 		void goToPlace(Map& aGameMap, TaskManager& aMainTaskManger);
+
+		std::shared_ptr<Places> & getCurrentPlace();
 
 		void update(TaskManager& aMainTaskManager, sf::Clock& GameClock, MP::Map& aMap, sf::Vector2f mouseGameCoord);
 

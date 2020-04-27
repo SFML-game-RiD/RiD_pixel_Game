@@ -15,9 +15,11 @@ namespace MP
 	{
 	private:
 
-		std::unique_ptr<GuiPanel> panelA;
+		std::shared_ptr<Places> _current_place;
 
-		std::unique_ptr<GuiPanel> panelB;
+		std::unique_ptr<GuiPanel> _panelA;
+
+		std::unique_ptr<GuiPanel> _panelB;
 
 		std::unique_ptr<Item> _current_item;
 
@@ -27,7 +29,7 @@ namespace MP
 
 		void _buy_item(ItemsManager& seller, ItemsManager& buyer);
 	
-		void _update_market_place(Places& place,ActiveObiect &player);
+		void _update_market_place(Places& place, ActiveObiect& player);
 
 		void _draw_menu(sf::RenderWindow& aMainWindow,Places& place, ActiveObiect& player);
 
@@ -45,6 +47,7 @@ namespace MP
 
 		void render(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, std::shared_ptr<Places> aPlace ,std::shared_ptr<Player> aPlayer);
 		
+		void setCurrentPlace(std::shared_ptr<Places>& currentPlace);
 	};
 
 }

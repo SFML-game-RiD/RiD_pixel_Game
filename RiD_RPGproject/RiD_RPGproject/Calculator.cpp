@@ -47,7 +47,7 @@ void MP::Calculator::startMenuProcedures(TaskManager &aMainTaskManager, ObiectMa
 
 	aObiectManager.getGuiManager().getGuiPlacesMenu()->update(aMainTaskManager, aCamera.getWindow(), aObiectManager.getCursor()->getGuiCoord());
 
-	aObiectManager.getGuiManager().getGuiMarketPlace()->update(aMainTaskManager, aCamera.getWindow(), aObiectManager.getCursor()->getGuiCoord(), aObiectManager.getPlayer(), aObiectManager.getMap().findElementAddressSquareRange(aObiectManager.getPlayer()->getObiectCoord(), aObiectManager.getMapElementHead())->getPlace());
+	aObiectManager.getGuiManager().getGuiMarketPlace()->update(aMainTaskManager, aCamera.getWindow(), aObiectManager.getCursor()->getGuiCoord(), aObiectManager.getPlayer(), aObiectManager.getPlayer()->getCurrentPlace());
 
 	aObiectManager.getCursor()->update(aMainTaskManager, aCamera);
 	

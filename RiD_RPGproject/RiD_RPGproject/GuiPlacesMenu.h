@@ -1,7 +1,6 @@
 #ifndef GUIPLACESMENU_H
 #define  GUIPLACESMENU_H
 #include "GuiMenu.h"
-#include "GuiMarketPlace.h"
 
 namespace MP
 {

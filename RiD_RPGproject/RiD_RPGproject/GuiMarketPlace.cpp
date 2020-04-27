@@ -37,8 +37,8 @@ void MP::GuiMarketPlace::_create_buttons(sf::Texture* buttonTexture, sf::Font& a
 void MP::GuiMarketPlace::_create_panels(sf::Texture* panelLeftTexture, sf::Texture* panelRightTexture)
 {
 
-	panelA->aAnimation.loadObiectTextures(panelLeftTexture, 1, 1,785);
-	panelB->aAnimation.loadObiectTextures(panelRightTexture, 1, 1,785);
+	_panelA->aAnimation.loadObiectTextures(panelLeftTexture, 1, 1,785);
+	_panelB->aAnimation.loadObiectTextures(panelRightTexture, 1, 1,785);
 }
 
 void MP::GuiMarketPlace::_buy_item(ItemsManager& seller, ItemsManager& buyer)
@@ -122,19 +122,16 @@ MP::GuiMarketPlace::GuiMarketPlace(sf::Texture* marketplaceBackgroundTexture, sf
 
 	_create_buttons(buttonTexture, aFont);
 
-	panelA = std::make_unique<GuiPanel>(panelLeftTexture,aFont);
-	panelB = std::make_unique<GuiPanel>(panelRightTexture,aFont);
+	_panelA = std::make_unique<GuiPanel>(panelLeftTexture,aFont);
+	_panelB = std::make_unique<GuiPanel>(panelRightTexture,aFont);
 
 	_current_item = std::make_unique<Food>();
-	
-	dynamic_cast<Food*>(_current_item.get());
-
 }
 
 void MP::GuiMarketPlace::_update_market_place(Places& place, ActiveObiect& player)
 {
-	panelA->update(sf::Vector2f(-400, 60), "      Trader");
-	panelB->update(sf::Vector2f(620, 60), "       Player");
+	_panelA->update(sf::Vector2f(-400, 60), "      Trader");
+	_panelB->update(sf::Vector2f(620, 60), "       Player");
 
 
 	place.getItemsForTrade().getWood()->setItemPosition(sf::Vector2f(-80,192));
@@ -176,15 +173,20 @@ void MP::GuiMarketPlace::_update_market_place(Places& place, ActiveObiect& playe
 
 }
 
+void MP::GuiMarketPlace::setCurrentPlace(std::shared_ptr<Places>& currentPlace)
+{
+	_current_place = currentPlace;
+}
+
 void MP::GuiMarketPlace::_draw_menu(sf::RenderWindow& aMainWindow, Places& place, ActiveObiect& player)
 {
 	aMainWindow.draw(aAnimation.getObiectSprite());
 
-	for (int i = 0; i < _button_array.size(); i++)
+	for (unsigned int i = 0; i < _button_array.size(); i++)
 		_button_array[i]->render(aMainWindow);
 
-	panelA->render(aMainWindow);
-	panelB->render(aMainWindow);
+	_panelA->render(aMainWindow);
+	_panelB->render(aMainWindow);
 
 	place.getItemsForTrade().getWood()->drawItem(aMainWindow);
 	place.getItemsForTrade().getIron()->drawItem(aMainWindow);
@@ -205,7 +207,7 @@ void MP::GuiMarketPlace::_draw_menu(sf::RenderWindow& aMainWindow, Places& place
 
 void MP::GuiMarketPlace::_select_button(sf::Vector2f mouseCoord)
 {
-	for (int i = 0; i < _button_array.size(); i++)
+	for (unsigned int i = 0; i < _button_array.size(); i++)
 	{
 		if (mouseCoord.x >= _button_array[i]->getObiectCoord().x and mouseCoord.x <= _button_array[i]->getObiectCoord().x + 275
 			and mouseCoord.y >= _button_array[i]->getObiectCoord().y + 112 and mouseCoord.y <= _button_array[i]->getObiectCoord().y + 163)
@@ -219,11 +221,11 @@ void MP::GuiMarketPlace::_press_button(TaskManager& aMainTaskManager, sf::Render
 {
 	if (_button_array[0]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::taskClickLeft,true))//buy
 	{
-		_buy_item(aPlaces->aItemsManager, aPlayer->aItemsManager);
+		_buy_item(aPlaces->getItemsForTrade(), aPlayer->aItemsManager);
 	}
 	if (_button_array[1]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::taskClickLeft, true)) //sell
 	{
-		_buy_item(aPlayer->aItemsManager,aPlaces->aItemsManager);
+		_buy_item(aPlayer->aItemsManager, aPlaces->getItemsForTrade());
 	}
 	if (_button_array[2]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::taskClickLeft, true))
 	{

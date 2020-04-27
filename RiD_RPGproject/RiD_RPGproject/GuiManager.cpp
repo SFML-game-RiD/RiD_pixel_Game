@@ -11,12 +11,12 @@ std::unique_ptr<MP::MapGui>& MP::GuiManager::getMapGui()
 	return _a_map_gui;
 }
 
-std::unique_ptr<MP::GuiMenu>& MP::GuiManager::getGuiMainMenu()
+std::unique_ptr<MP::GuiMainMenu>& MP::GuiManager::getGuiMainMenu()
 {
 	return _a_gui_main_menu;
 }
 
-std::unique_ptr<MP::GuiMenu>& MP::GuiManager::getGuiPlacesMenu()
+std::unique_ptr<MP::GuiPlacesMenu>& MP::GuiManager::getGuiPlacesMenu()
 {
 	return _a_gui_places_menu;
 }

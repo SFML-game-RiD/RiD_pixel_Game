@@ -26,7 +26,7 @@ void MP::ObiectGenerator::_generate_trees(ObiectManager& aObiectManager)
 				tmpCoord.x += _random_number() % spawnRange;
 				tmpCoord.y += _random_number() % spawnRange;
 
-				float newScale =(( _random_number() % 50)*0.01)+0.8;
+				float newScale =(( _random_number() % 50)*float(0.01))+float(0.8);
 				
 
 				std::shared_ptr<Tree> tmpTree = std::make_shared<Tree>(&_a_asset_manager.getTexture("tree"),tmpCoord,newScale);
@@ -74,7 +74,7 @@ void MP::ObiectGenerator::_generate_map(ObiectManager& aObiectManager)
 
 		if (mapFile)
 		{
-			for (int i = 0; i < line.length(); i++)
+			for (unsigned int i = 0; i < line.length(); i++)
 			{
 				MapElement* tmp = new MapElement(_a_asset_manager,x, y, line[i]);
 				aObiectManager.getMap().addMapElement(aObiectManager.getMapElementHead(), tmp);
@@ -231,7 +231,7 @@ void MP::ObiectGenerator::_generate_items_for_places(ItemsManager& itemsFromPlac
 
 MP::ObiectGenerator::ObiectGenerator()
 {
-	_random_number.seed(time(NULL));
+	_random_number.seed((unsigned int)time(NULL));
 }
 
 void MP::ObiectGenerator::generateObiects(ObiectManager& aObiectManager)

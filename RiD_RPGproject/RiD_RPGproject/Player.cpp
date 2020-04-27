@@ -51,12 +51,13 @@ void MP::Player::_player_animation_idle(sf::Clock& globalClock)
 
 MP::Player::Player(sf::Texture* texturePtr, sf::Texture* pathIconTexturePtr)
 {	
+	_path = nullptr;
 	//saving path icon texture
 	_a_path_icon_texture = pathIconTexturePtr;
 	//Loading textures.
 	aAnimation.loadObiectTextures(texturePtr,3,5,64);
 	aAnimation.changeSprite(6);
-	aAnimation.setScale(0.7, 0.7);
+	aAnimation.setScale(float(0.7), float(0.7));
 	//Getting player animation and move sleep time.
 	active_obj_sleep_time = sf::milliseconds(RiD::ConfigurationLoader::getIntData("player", "SleepTime"));
 	_obj_animation_sleep_time = sf::milliseconds(RiD::ConfigurationLoader::getIntData("player", "animationSleepTime"));
@@ -234,7 +235,13 @@ void MP::Player::goToPlace(Map& aGameMap, TaskManager& aMainTaskManger)
 	if (currentBlock->getPlace() != nullptr)
 	{
 		aMainTaskManger.setState(TaskManager::stateType::statePlacesMenu);
+		_current_place = currentBlock->getPlace();
 	}
+}
+
+std::shared_ptr<MP::Places>& MP::Player::getCurrentPlace()
+{
+	return _current_place;
 }
 
 void MP::Player::update(TaskManager& aMainTaskManager, sf::Clock& GameClock, MP::Map& aMap, sf::Vector2f mouseGameCoord)
@@ -246,7 +253,7 @@ void MP::Player::render(sf::RenderWindow& mainWindow)
 {
 	mainWindow.draw(aAnimation.getObiectSprite());
 	std::vector<PathIcon> tmpPathCopy = _a_path_icon;
-	for (int i = 0; i < tmpPathCopy.size(); i++)
+	for (unsigned int i = 0; i < tmpPathCopy.size(); i++)
 	{
 		mainWindow.draw(tmpPathCopy[i].aAnimation.getObiectSprite());
 	}

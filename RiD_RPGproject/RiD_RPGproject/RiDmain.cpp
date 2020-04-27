@@ -58,7 +58,7 @@ void RiD::RiDmain::_event_function_for_state_game()
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 			if (_a_main_task_manager.isTaskListEmpty())
 				_a_obiect_manager.getPlayer()->goToPlace(_a_obiect_manager.getMap(), _a_main_task_manager);
-			
+
 
 		if (_event.type == sf::Event::MouseWheelScrolled)
 		{

@@ -3,6 +3,7 @@
 #include "MapGui.h"
 #include "GuiMainMenu.h"
 #include "GuiMarketPlace.h"
+#include "GuiPlacesMenu.h"
 
 namespace MP
 {
@@ -14,9 +15,9 @@ namespace MP
 
 		std::unique_ptr<MapGui> _a_map_gui;
 
-		std::unique_ptr<GuiMenu> _a_gui_main_menu;
+		std::unique_ptr<GuiMainMenu> _a_gui_main_menu;
 
-		std::unique_ptr<GuiMenu> _a_gui_places_menu;
+		std::unique_ptr<GuiPlacesMenu> _a_gui_places_menu;
 
 		std::unique_ptr<GuiMarketPlace> _a_gui_market_place;
 
@@ -26,9 +27,9 @@ namespace MP
 
 		std::unique_ptr<MapGui>& getMapGui();
 
-		std::unique_ptr<GuiMenu>& getGuiMainMenu();
+		std::unique_ptr<GuiMainMenu>& getGuiMainMenu();
 
-		std::unique_ptr<GuiMenu>& getGuiPlacesMenu();
+		std::unique_ptr<GuiPlacesMenu>& getGuiPlacesMenu();
 
 		std::unique_ptr<MP::GuiMarketPlace>& getGuiMarketPlace();
 

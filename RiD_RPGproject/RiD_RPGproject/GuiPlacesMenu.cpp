@@ -26,7 +26,6 @@ MP::GuiPlacesMenu::GuiPlacesMenu(sf::Texture* texturePtr, sf::Texture* buttonTex
 	aAnimation.setOrigin(460, 460);
 
 	_create_buttons(buttonTexture, aFont);
-
 }
 
 void MP::GuiPlacesMenu::_select_button(sf::Vector2f mouseCoord)
