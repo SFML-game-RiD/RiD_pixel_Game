@@ -7,7 +7,7 @@
 #include <memory>
 #include <chrono>
 #include <random>
-//#include "../vld.h"
+#include "../vld.h"
 #include "SFML/Graphics.hpp"
 #include "../Engine/AssetManager.h"
 #include "../Map/TileMap.h"

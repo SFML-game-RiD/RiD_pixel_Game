@@ -77,6 +77,9 @@
     <ClCompile Include="Battle\GUI.cpp">
       <Filter>RealTimeBattle\GUI</Filter>
     </ClCompile>
+    <ClCompile Include="Battle\Bot.cpp">
+      <Filter>RealTimeBattle\Characters\Bots</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\InputManager.h" />
@@ -153,6 +156,9 @@
     </ClInclude>
     <ClInclude Include="Battle\GUI.h">
       <Filter>RealTimeBattle\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\Bot.h">
+      <Filter>RealTimeBattle\Characters\Bots</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

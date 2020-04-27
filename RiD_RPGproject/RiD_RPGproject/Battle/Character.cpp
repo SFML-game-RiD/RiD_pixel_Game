@@ -77,4 +77,10 @@ namespace RTB
 	{
 		return _hitbox->getRectangle();
 	}
+
+	void Character::deadBody(sf::RenderWindow& window)
+	{
+		_movement->dead();
+		window.draw(_movement->getSprite());
+	}
 }

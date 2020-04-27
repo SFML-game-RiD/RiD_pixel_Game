@@ -50,20 +50,6 @@ namespace AI
 		}
 	}
 
-	void RTBPathGenerator::_moveToExportList(PathNode*& node)
-	{
-		PathNode* tmp = this->_cutOffNodeFromClosed(node);
-		if (!_path)
-			_path = tmp;
-		else
-		{
-			PathNode* head = _path;
-			while (head->getPNext())
-				head = head->getPNext();
-			head->setPNext(tmp);
-		}
-	}
-
 	void RTBPathGenerator::_deleteOpenedList()
 	{
 		PathNode* iterator = _opened_list_head;
@@ -281,7 +267,7 @@ namespace AI
 							_walkable_area[i][j].setFCost(_end);
 							if (!_walkable_area[i][j].isWalkable() || _ifExists(_walkable_area[i][j], _closed_list_head))
 								continue;
-							else if (current->getGCost(_start)+distance(current->getPosition(),_walkable_area[i][j].getPosition())<_walkable_area[i][j].getGCost(_start)|| !_ifExists(_walkable_area[i][j], _opened_list_head))
+							else if (current->getGCost(_start) + distance(current->getPosition(), _walkable_area[i][j].getPosition()) < _walkable_area[i][j].getGCost(_start) || !_ifExists(_walkable_area[i][j], _opened_list_head))
 							{
 								PathNode* neighbour = new PathNode();
 								neighbour->setPosition(sf::Vector2i(i, j));
@@ -298,14 +284,9 @@ namespace AI
 					}
 				}
 			}
-			//if (_findByPosition(_end))
-			//{
-				this->_generatePath();
-				_deleteOpenedList();
-				_deleteClosedList();
-			//}
-			//else
-				//_path = nullptr;
+			this->_generatePath();
+			_deleteOpenedList();
+			_deleteClosedList();
 		}
 		else
 		{
@@ -339,6 +320,6 @@ namespace AI
 	int RTBPathGenerator::distance(sf::Vector2i start, sf::Vector2i end)
 	{
 		sqrt(2);
-		return sqrt(pow(start.x - end.x,2 )+ pow((start.y - end.y),2));
+		return static_cast<int>(sqrt(pow(start.x - end.x, 2) + pow((start.y - end.y), 2)));
 	}
 }

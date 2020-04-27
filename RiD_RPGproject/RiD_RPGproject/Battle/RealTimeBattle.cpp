@@ -150,7 +150,7 @@ namespace RTB
 	{
 		_tile_map = std::unique_ptr<TileMap>(new TileMap({ 50,50 }));
 		this->_armyCreation();
-		_camera.zoom(0.8);
+		_camera.zoom((float)0.8);
 		while (_window->isOpen())
 		{
 			while (_window->pollEvent(_event)) //handling events

@@ -11,7 +11,7 @@ namespace RTB
 		{
 			if ((*iterator)->isAlive() && _sword_hitbox->checkIntersection((*iterator)->getHitbox().getGlobalBounds()) == true)//checks if sword intersected one of them...
 			{
-				(*iterator)->subtractHP(10);//and subtracts hp
+				(*iterator)->subtractHP(_sword_damage);//and subtracts hp
 			}
 		}
 		_movement->notReadyToDealSwordDamage();
@@ -24,7 +24,7 @@ namespace RTB
 		{
 			if ((*iterator)->isAlive() && _arrows->isFlying() && checkOrientedCollision((*iterator)->getHitbox(), _arrows->getHitbox())/*_arrows->checkIntersection((*iterator)->getHitbox().getGlobalBounds()) == true*/)
 			{
-				(*iterator)->subtractHP(1);
+				(*iterator)->subtractHP(_bow_damage);
 			}
 		}
 	}
@@ -106,7 +106,8 @@ namespace RTB
 		}
 	}
 
-	Player::Player(sf::Texture texture, short health_points, sf::Texture& arrow_texture)
+	Player::Player(sf::Texture texture, short health_points, sf::Texture& arrow_texture):
+		_arrows(nullptr), _sword_hitbox(nullptr)
 	{
 		_health_points = health_points;
 		_character_sprite = new sf::Sprite;
@@ -116,8 +117,9 @@ namespace RTB
 		_hp_bar = new HPBar(_character_sprite, _health_points);
 		_arrows = new Arrow(_character_sprite, arrow_texture);
 		_is_alive = true;
-		_arrows_count = 10;
 		_speed = 1.f;
+		_sword_damage = 10;
+		_bow_damage = 1;
 	}
 
 	Player::~Player()
@@ -212,7 +214,6 @@ namespace RTB
 		if (_movement->isShotTriggered())
 		{
 			_position = _character_sprite->getPosition();
-			_arrows_count--;
 			if (_shot_destination.x - _position.x > 0 && abs(_shot_destination.x - _position.x) > abs(_shot_destination.y - _position.y))
 				_direction = right;
 			else if (_shot_destination.x - _position.x < 0 && abs(_shot_destination.x - _position.x)> abs(_shot_destination.y - _position.y))
@@ -232,11 +233,5 @@ namespace RTB
 
 		if (_arrows->isFlying() == false)
 			_movement->notReadyToShotArrow();
-	}
-
-	void Player::deadBody(sf::RenderWindow& window)
-	{
-		_movement->dead();
-		window.draw(_movement->getSprite());
 	}
 }

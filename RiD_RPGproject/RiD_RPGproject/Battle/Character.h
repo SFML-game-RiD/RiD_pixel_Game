@@ -23,7 +23,7 @@ namespace RTB
 		RiD::Movement* _movement = nullptr;
 		Hitbox* _hitbox = nullptr;
 		short _health_points;
-		short _damage;
+		short _sword_damage, _spear_damage, _bow_damage;
 		sf::Vector2f _position;
 		bool _is_alive;
 		short _direction;
@@ -31,32 +31,45 @@ namespace RTB
 		enum directions { up, left, down, right };
 		bool _moving_up = true, _moving_down = true, _moving_right = true, _moving_left = true;
 
+
+		//Changes isometric coordinates to 2D coordinates
+		//@param position position in 2D system
 		sf::Vector2i _isoTo2D(sf::Vector2f position);
 	public:
 
 		//Sets character's position
+		//@param position position
 		virtual void setPosition(sf::Vector2f position);
 
 		//Function responsible for all of the moves
+		//@param time game time
+		//@param map_objects all collidable objects to avoid
+		//@param list_of_bots list of bots given as target to attack
 		virtual void update(sf::Time time, std::vector<std::vector<std::unique_ptr<MapElement>>>& map_objects,
 			std::list<std::shared_ptr<Character>>& list_of_bots, sf::RenderWindow& window) = 0;
 
 		//Draws character's sprite
+		//@param window render target
 		virtual void render(sf::RenderWindow& window);
 
 		//Checks if character is alive
 		virtual bool isAlive();
 
 		//Gets character position
+		//@return characters position
 		virtual sf::Vector2f getPosition();
 
 		//Checks if two objects collide witch each other
+		//@param Object1
+		//@param Object2
 		bool checkOrientedCollision(const sf::RectangleShape& Object1, const sf::RectangleShape& Object2);
 
 		//Subtracts character's hp
+		//@param value health points to subtract
 		virtual void subtractHP(short value);
 
 		//Returns character's hitbox as rectangle
+		//@return rectangle hitbox
 		virtual sf::RectangleShape getHitbox();
 
 		//Dealing damage to bots of enemy team
@@ -65,6 +78,8 @@ namespace RTB
 		//@param window render window
 		virtual void dealDamage(sf::Time time, std::list<std::shared_ptr<Character>>& list_of_bots, sf::RenderTarget& window) = 0;
 
-		virtual void deadBody(sf::RenderWindow& window) = 0;
+		//Function drows dead body of a character
+		//@param window render target
+		virtual void deadBody(sf::RenderWindow& window);
 	};
 }
