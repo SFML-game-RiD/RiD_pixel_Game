@@ -7,9 +7,9 @@ namespace RTB
 	{
 		sf::Transform trans = Object.getTransform();
 		Points[0] = trans.transformPoint(0.f, 0.f);
-		Points[1] = trans.transformPoint(width, 0.f);
-		Points[2] = trans.transformPoint(width, height);
-		Points[3] = trans.transformPoint(0.f, height);
+		Points[1] = trans.transformPoint(static_cast<float>(width), 0.f);
+		Points[2] = trans.transformPoint(static_cast<float>(width), static_cast<float>(height));
+		Points[3] = trans.transformPoint(0.f, static_cast<float>(height));
 	}
 
 	void OrientedHitbox::ProjectOntoAxis(const sf::Vector2f& Axis, float& Min, float& Max)

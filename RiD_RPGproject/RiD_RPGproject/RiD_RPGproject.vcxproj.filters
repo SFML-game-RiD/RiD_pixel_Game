@@ -5,9 +5,6 @@
     <ClCompile Include="Engine\RiDGame.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Engine\ConfigurationLoader.cpp" />
-    <ClCompile Include="Engine\Animation.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\AssetManager.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
@@ -25,9 +22,6 @@
     </ClCompile>
     <ClCompile Include="Map\TileMap.cpp">
       <Filter>Map</Filter>
-    </ClCompile>
-    <ClCompile Include="Battle\HPBar.cpp">
-      <Filter>RealTimeBattle</Filter>
     </ClCompile>
     <ClCompile Include="Battle\Arrow.cpp">
       <Filter>RealTimeBattle</Filter>
@@ -80,14 +74,26 @@
     <ClCompile Include="Battle\Bot.cpp">
       <Filter>RealTimeBattle\Characters\Bots</Filter>
     </ClCompile>
+    <ClCompile Include="Battle\Button.cpp">
+      <Filter>RealTimeBattle\GUI\GUI elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\WindowBorder.cpp">
+      <Filter>RealTimeBattle\GUI\GUI elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\HPBar.cpp">
+      <Filter>RealTimeBattle</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\Menu.cpp">
+      <Filter>RealTimeBattle\GUI\GUI elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\Message.cpp">
+      <Filter>RealTimeBattle\GUI\GUI elements</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\InputManager.h" />
     <ClInclude Include="Engine\RiDGame.h" />
     <ClInclude Include="Engine\ConfigurationLoader.h" />
-    <ClInclude Include="Engine\Animation.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\AssetManager.h">
       <Filter>Graphics</Filter>
     </ClInclude>
@@ -105,9 +111,6 @@
     </ClInclude>
     <ClInclude Include="Map\TileMap.h">
       <Filter>Map</Filter>
-    </ClInclude>
-    <ClInclude Include="Battle\HPBar.h">
-      <Filter>RealTimeBattle</Filter>
     </ClInclude>
     <ClInclude Include="Battle\Arrow.h">
       <Filter>RealTimeBattle</Filter>
@@ -160,6 +163,21 @@
     <ClInclude Include="Battle\Bot.h">
       <Filter>RealTimeBattle\Characters\Bots</Filter>
     </ClInclude>
+    <ClInclude Include="Battle\Button.h">
+      <Filter>RealTimeBattle\GUI\GUI elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\WindowBorder.h">
+      <Filter>RealTimeBattle\GUI\GUI elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\HPBar.h">
+      <Filter>RealTimeBattle</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\Menu.h">
+      <Filter>RealTimeBattle\GUI\GUI elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\Message.h">
+      <Filter>RealTimeBattle\GUI\GUI elements</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Graphics">
@@ -191,6 +209,9 @@
     </Filter>
     <Filter Include="RealTimeBattle\GUI">
       <UniqueIdentifier>{5da42ea5-1a5f-42f2-886c-383767d4a7b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RealTimeBattle\GUI\GUI elements">
+      <UniqueIdentifier>{e4f77572-1cd8-4f93-a2ac-754434458cea}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

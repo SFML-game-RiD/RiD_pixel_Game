@@ -7,7 +7,9 @@ namespace RiD
 	Movement::Movement(sf::Texture texture, sf::Sprite*& object) : _texture(texture),
 		animations{ sf::Time::Zero, sf::seconds(1.f / 12.f), sf::Time::Zero, sf::seconds(1.f / 12.f),
 		sf::Time::Zero, sf::seconds(1.f / 12.f),sf::Time::Zero, sf::seconds(1.f / 6.f), sf::Time::Zero, sf::seconds(1.f / 10.f) },
-		_is_attack_triggered(false), _is_shot_triggered(false), _is_death_triggered(false), _object(object), _is_spear_triggered(false)
+		_is_attack_triggered(false), _is_shot_triggered(false), _is_death_triggered(false), _object(object), _is_spear_triggered(false),
+		_row(0), _yCord(0),_yAttackCord(0), _yShotCord(0), _yDeathCord(0), _ySpearCord(0),
+		_ready_to_deal_sword_damage(false), _ready_to_shot_arrow(false), _ready_to_deal_spear_damage(false)
 	{
 		_object->setTexture(_texture);
 		_xCord = 1;

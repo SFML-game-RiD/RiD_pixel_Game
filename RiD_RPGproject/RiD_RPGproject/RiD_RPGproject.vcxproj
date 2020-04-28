@@ -157,10 +157,13 @@
     <ClCompile Include="Battle\Arrow.cpp" />
     <ClCompile Include="Battle\ArrowHitbox.cpp" />
     <ClCompile Include="Battle\Bot.cpp" />
+    <ClCompile Include="Battle\Button.cpp" />
     <ClCompile Include="Battle\Character.cpp" />
     <ClCompile Include="Battle\GUI.cpp" />
     <ClCompile Include="Battle\Hitbox.cpp" />
     <ClCompile Include="Battle\HPBar.cpp" />
+    <ClCompile Include="Battle\Menu.cpp" />
+    <ClCompile Include="Battle\Message.cpp" />
     <ClCompile Include="Battle\OrientedHitbox.cpp" />
     <ClCompile Include="Battle\PathNode.cpp" />
     <ClCompile Include="Battle\Player.cpp" />
@@ -170,7 +173,7 @@
     <ClCompile Include="Battle\Spearman.cpp" />
     <ClCompile Include="Battle\SwordHitbox.cpp" />
     <ClCompile Include="Battle\Swordsman.cpp" />
-    <ClCompile Include="Engine\Animation.cpp" />
+    <ClCompile Include="Battle\WindowBorder.cpp" />
     <ClCompile Include="Engine\AssetManager.cpp" />
     <ClCompile Include="Engine\ConfigurationLoader.cpp" />
     <ClCompile Include="Engine\InputManager.cpp" />
@@ -188,10 +191,13 @@
     <ClInclude Include="Battle\Arrow.h" />
     <ClInclude Include="Battle\ArrowHitbox.h" />
     <ClInclude Include="Battle\Bot.h" />
+    <ClInclude Include="Battle\Button.h" />
     <ClInclude Include="Battle\Character.h" />
     <ClInclude Include="Battle\GUI.h" />
     <ClInclude Include="Battle\Hitbox.h" />
     <ClInclude Include="Battle\HPBar.h" />
+    <ClInclude Include="Battle\Menu.h" />
+    <ClInclude Include="Battle\Message.h" />
     <ClInclude Include="Battle\OrientedHitbox.h" />
     <ClInclude Include="Battle\PathNode.h" />
     <ClInclude Include="Battle\Player.h" />
@@ -201,7 +207,7 @@
     <ClInclude Include="Battle\Spearman.h" />
     <ClInclude Include="Battle\SwordHitbox.h" />
     <ClInclude Include="Battle\Swordsman.h" />
-    <ClInclude Include="Engine\Animation.h" />
+    <ClInclude Include="Battle\WindowBorder.h" />
     <ClInclude Include="Engine\AssetManager.h" />
     <ClInclude Include="Engine\ConfigurationLoader.h" />
     <ClInclude Include="Engine\InputManager.h" />

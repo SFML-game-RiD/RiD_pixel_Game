@@ -36,9 +36,17 @@ namespace RTB
 		bool _is_paused;
 
 		void _zoomEvent();
+
+		//Generates both armies
 		void _armyCreation();
+
+		//Checks if placed soldier collides with something
 		bool _checkPlacementCollisions(std::list<std::shared_ptr<Character>>::iterator character);
+
+		//@return is enemy team dead
 		bool _isEnemyTeamDead();
+
+		//@return is ally team dead
 		bool _isAllyTeamDead();
 	public:
 		RealTimeBattle(sf::RenderWindow& window);

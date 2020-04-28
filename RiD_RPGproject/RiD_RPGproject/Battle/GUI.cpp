@@ -5,15 +5,16 @@
 namespace RTBGUI
 {
 	GUI::GUI(sf::RenderWindow& window) :
-		_window(&window)
+		_window(&window), _is_paused(false)
 	{
-		_asset_manager.setTexture("window_border", "img/WindowBorder.png");
-		_asset_manager.setTexture("menu", "img/MenuWindow.png");
+		_window_border = std::make_unique<WindowBorder>();
+		_menu = std::make_unique<Menu>();
+		_button_yes = std::make_unique<Button>("YES");
+		_button_no = std::make_unique<Button>("NO");
+		_message = std::make_unique<Message>("  Do you really \nwant to surrender?", 40);
+
 		_asset_manager.setTexture("cursor", "img/Hand.png");
 		_asset_manager.setTexture("menu_background", "img/menu_background.png");
-
-		_window_border.setTexture(_asset_manager.getTexture("window_border"));
-		_menu.setTexture(_asset_manager.getTexture("menu"));
 		_menu_background.setTexture(_asset_manager.getTexture("menu_background"));
 
 		_window->setMouseCursorVisible(false);
@@ -32,25 +33,36 @@ namespace RTBGUI
 	{
 		_is_paused = is_paused;
 		sf::Vector2f center = _camera.getCenter();
-		_window_border.setPosition(center.x - 640.f, center.y - 360.f);
-
 		sf::Vector2f worldPos = _window->mapPixelToCoords(sf::Mouse::getPosition(*_window));
 		_cursor.setPosition(worldPos);
+
+		_window_border->update(sf::Vector2f(center.x - 640.f, center.y - 360.f));
 		if (_is_paused)
 		{
+			_message->update(sf::Vector2f(center.x - 139.f, center.y - 100.f));
 			_menu_background.setPosition(center.x - 640.f, center.y - 360.f);
-			_menu.setPosition(center.x - 160.f, center.y - 240.f);
+			_menu->update(sf::Vector2f(center.x - 160.f, center.y - 240.f));
+			_button_yes->update(sf::Vector2f(center.x - 139.f, center.y + 40.f));
+			_button_no->update(sf::Vector2f(center.x - 139.f, center.y + 100.f));
+
+			if (_button_no->getSprite().getGlobalBounds().contains(worldPos))
+				_button_no->setHovered(true);
+			else if (_button_yes->getSprite().getGlobalBounds().contains(worldPos))
+				_button_yes->setHovered(true);
 		}
 	}
 
 	void GUI::render()
 	{
-		_window->draw(_window_border);
+		_window_border->render(_window);
 		if (_is_paused)
 		{
 			_window->draw(_menu_background);
-			_window->draw(_window_border);
-			_window->draw(_menu);
+			_window_border->render(_window);
+			_menu->render(_window);
+			_button_yes->render(_window);
+			_button_no->render(_window);
+			_message->render(_window);
 		}
 		_window->draw(_cursor);
 	}

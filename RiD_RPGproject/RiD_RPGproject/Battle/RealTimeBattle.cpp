@@ -13,7 +13,7 @@ namespace RTB
 			else
 			{
 				_zoom *= ZOOM_UP;
-				_camera.zoom((float)ZOOM_UP);
+				_camera.zoom(static_cast<float>(ZOOM_UP));
 			}
 		}
 		else if (_event.mouseWheel.delta == 1)
@@ -23,7 +23,7 @@ namespace RTB
 			else
 			{
 				_zoom *= ZOOM_DOWN;
-				_camera.zoom((float)ZOOM_DOWN);
+				_camera.zoom(static_cast<float>(ZOOM_DOWN));
 			}
 		}
 	}
@@ -150,7 +150,7 @@ namespace RTB
 	{
 		_tile_map = std::unique_ptr<TileMap>(new TileMap({ 50,50 }));
 		this->_armyCreation();
-		_camera.zoom((float)0.8);
+		_camera.zoom(static_cast<float>(0.8));
 		while (_window->isOpen())
 		{
 			while (_window->pollEvent(_event)) //handling events
