@@ -9,11 +9,15 @@ namespace MP
 {
 	class PawnObiect:public ActiveObiect
 	{
-	private:
+	protected:
+
+		MapElement* _stand_land;
 
 	public:
 
 		TaskManager aPawnObiectTaskManager;
+		
+		PawnObiect();
 
 		bool checkGoUp(Map & aMap);
 
@@ -30,6 +34,8 @@ namespace MP
 		void tryToMoveLeft(Map& aMap, TaskManager& aMainTaskManager);
 
 		void tryToMoveRight(Map& aMap,TaskManager &aMainTaskManager);
+
+		MapElement* getStandLand();
 	};
 }
 #endif

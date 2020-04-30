@@ -159,7 +159,7 @@
     <ClCompile Include="Calculator.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Castle.cpp" />
-    <ClCompile Include="ComputerPlayer.cpp" />
+    <ClCompile Include="ComputerPlayerBandit.cpp" />
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Engine\Animation.cpp" />
     <ClCompile Include="Engine\AssetManager.cpp" />
@@ -217,7 +217,7 @@
     <ClInclude Include="Calculator.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Castle.h" />
-    <ClInclude Include="ComputerPlayer.h" />
+    <ClInclude Include="ComputerPlayerBandit.h" />
     <ClInclude Include="Cursor.h" />
     <ClInclude Include="Engine\Animation.h" />
     <ClInclude Include="Engine\AssetManager.h" />

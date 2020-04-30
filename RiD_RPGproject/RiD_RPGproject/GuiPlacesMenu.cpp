@@ -30,7 +30,7 @@ MP::GuiPlacesMenu::GuiPlacesMenu(sf::Texture* texturePtr, sf::Texture* buttonTex
 
 void MP::GuiPlacesMenu::_select_button(sf::Vector2f mouseCoord)
 {
-	for (int i = 0; i < _button_array.size(); i++)
+	for (unsigned int i = 0; i < _button_array.size(); i++)
 	{
 		if (mouseCoord.x >= _button_array[i]->getObiectCoord().x and mouseCoord.x <= _button_array[i]->getObiectCoord().x + 275
 			and mouseCoord.y >= _button_array[i]->getObiectCoord().y + 112 and mouseCoord.y <= _button_array[i]->getObiectCoord().y + 163)

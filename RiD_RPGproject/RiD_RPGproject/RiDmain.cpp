@@ -40,9 +40,8 @@ void RiD::RiDmain::_event_function_for_state_game()
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 			if (_a_main_task_manager.isTaskListEmpty())
-			{
 				_a_main_task_manager.setState(MP::TaskManager::stateType::stateMainMenu);
-			}
+			
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 			_a_obiect_manager.getPlayer()->tryToMoveUp(_a_obiect_manager.getMap(),_a_main_task_manager);
 

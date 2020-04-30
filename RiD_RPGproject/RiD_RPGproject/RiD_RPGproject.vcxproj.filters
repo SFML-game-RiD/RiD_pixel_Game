@@ -77,9 +77,6 @@
     <ClCompile Include="Player.cpp">
       <Filter>OBIECT\ACTIVE OBIECT\PAWNS</Filter>
     </ClCompile>
-    <ClCompile Include="ComputerPlayer.cpp">
-      <Filter>OBIECT\ACTIVE OBIECT\PAWNS</Filter>
-    </ClCompile>
     <ClCompile Include="pathNode.cpp">
       <Filter>AI</Filter>
     </ClCompile>
@@ -167,6 +164,9 @@
     <ClCompile Include="TaskNode.cpp">
       <Filter>MANAGERS, HEAD CLASS\MANAGE TASK</Filter>
     </ClCompile>
+    <ClCompile Include="ComputerPlayerBandit.cpp">
+      <Filter>OBIECT\ACTIVE OBIECT\PAWNS</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Animation.h">
@@ -242,9 +242,6 @@
       <Filter>MOVE,ANIMATION</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>OBIECT\ACTIVE OBIECT\PAWNS</Filter>
-    </ClInclude>
-    <ClInclude Include="ComputerPlayer.h">
       <Filter>OBIECT\ACTIVE OBIECT\PAWNS</Filter>
     </ClInclude>
     <ClInclude Include="pathNode.h">
@@ -333,6 +330,9 @@
     </ClInclude>
     <ClInclude Include="TaskNode.h">
       <Filter>MANAGERS, HEAD CLASS\MANAGE TASK</Filter>
+    </ClInclude>
+    <ClInclude Include="ComputerPlayerBandit.h">
+      <Filter>OBIECT\ACTIVE OBIECT\PAWNS</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

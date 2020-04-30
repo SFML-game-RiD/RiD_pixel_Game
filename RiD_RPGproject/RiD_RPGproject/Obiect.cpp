@@ -13,8 +13,8 @@ void MP::Obiect::setObiectCoord(int x, int y)
 {
 	aAnimation.setObiectSpritePosition(x, y);
 
-	_objCoord.x = x;
-	_objCoord.y = y;
+	_objCoord.x = float(x);
+	_objCoord.y = float(y);
 }
 
 void MP::Obiect::setObiectCoord(sf::Vector2f coord)

@@ -34,9 +34,6 @@ namespace MP
 			taskDoubleClickLeft,
 			taskWaitForDoubleClickLeft
 
-
-
-
 		};
 
 		taskType task;

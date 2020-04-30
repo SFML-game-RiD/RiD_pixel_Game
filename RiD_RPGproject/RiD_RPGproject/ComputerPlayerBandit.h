@@ -4,14 +4,17 @@
 #include <SFML/Graphics.hpp>
 #include "PawnObiect.h"
 #include "pathCreator.h"
+#include "Player.h"
 
 namespace MP
 {
-	class ComputerPlayer:public PawnObiect
+	class ComputerPlayerBandit:public PawnObiect
 	{
 	private:
 
 		MapElement* _path;
+
+		bool _is_enemys_check;
 
 		void _computer_player_animation_right(sf::Clock& globalClock);
 
@@ -31,12 +34,15 @@ namespace MP
 
 		void _delete_path();
 
+		bool _check_enemy(std::shared_ptr<Player>& aPlayer);
+
 	public:
 
-		ComputerPlayer(sf::Texture* texturePtr);
-		~ComputerPlayer();
+		ComputerPlayerBandit(sf::Texture* texturePtr);
 
-		void update(Map& aMap, sf::Clock& gameClock);
+		~ComputerPlayerBandit();
+
+		void update(Map& aMap, sf::Clock& gameClock, std::shared_ptr<Player>& aPlayer);
 
 		void render(sf::RenderWindow &mainWindow);
 

@@ -36,7 +36,7 @@ MP::GuiMainMenu::GuiMainMenu(sf::Texture* texturePtr, sf::Texture* buttonTexture
 void MP::GuiMainMenu::_select_button(sf::Vector2f guiMouseCoord)
 {
 
-	for (int i = 0; i < _button_array.size(); i++)
+	for (unsigned int i = 0; i < _button_array.size(); i++)
 	{
 		if (guiMouseCoord.x >=_button_array[i]->getObiectCoord().x and guiMouseCoord.x <= _button_array[i]->getObiectCoord().x + 275
 			and guiMouseCoord.y >= _button_array[i]->getObiectCoord().y + 112 and guiMouseCoord.y <= _button_array[i]->getObiectCoord().y + 163)

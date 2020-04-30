@@ -33,8 +33,8 @@ void MP::ObiectDrawer::_draw_active_obiects(sf::RenderWindow& mainWindow, Obiect
 
 
 	//drawing computer player
-	std::list<MP::ComputerPlayer> *computerPlayerList = aObiectManager.getComputerPlayerList();
-	std::list<MP::ComputerPlayer>::iterator it;
+	std::list<MP::ComputerPlayerBandit> *computerPlayerList = aObiectManager.getComputerPlayerList();
+	std::list<MP::ComputerPlayerBandit>::iterator it;
 	it = computerPlayerList->begin();
 
 	for (it; it != computerPlayerList->end(); it++)

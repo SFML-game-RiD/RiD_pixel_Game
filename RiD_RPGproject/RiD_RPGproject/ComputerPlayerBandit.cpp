@@ -1,8 +1,8 @@
-#include "ComputerPlayer.h"
+#include "ComputerPlayerBandit.h"
 #include "Move.h"
 
 
-void MP::ComputerPlayer::_chose_destination(Map &aMap)
+void MP::ComputerPlayerBandit::_chose_destination(Map &aMap)
 {
 	MP::PathCreator tmp(aMap);
 	sf::Vector2f destinationCoord = aMap.returnRandomWalkableElement()->getLandTile().getObiectCoord();
@@ -16,7 +16,7 @@ void MP::ComputerPlayer::_chose_destination(Map &aMap)
 	_path =  tmp.findPath(startingElement->getLandTile().getObiectCoord(),destinationCoord);
 }
 
-void MP::ComputerPlayer::_delete_path()
+void MP::ComputerPlayerBandit::_delete_path()
 {
 	if (_path == nullptr)
 		return;
@@ -32,7 +32,35 @@ void MP::ComputerPlayer::_delete_path()
 	}
 }
 
-void MP::ComputerPlayer::_get_next_task(Map& aMap)
+bool MP::ComputerPlayerBandit::_check_enemy(std::shared_ptr<Player>& aPlayer)
+{
+	if (!_is_enemys_check and _stand_land!=nullptr)
+	{
+		MapElement* SL = _stand_land;
+		MapElement* PCL = aPlayer->getStandLand();
+		MapElement* SLup = _stand_land->getUpPtrCopy();
+		MapElement* SLdown = _stand_land->getDownPtrCopy();
+		MapElement* SLleft = _stand_land->getLeftPtrCopy();
+		MapElement* SLright = _stand_land->getRightPtrCopy();
+
+		_is_enemys_check = true;
+
+		if (SL == PCL or SL->getDownPtrCopy() == PCL or SL->getRightPtrCopy() == PCL or SL->getLeftPtrCopy() == PCL or SL->getUpPtrCopy() == PCL)
+			return true;
+
+		if (SLup->getRightPtrCopy() == PCL or SLup->getLeftPtrCopy() == PCL or SLup->getUpPtrCopy() == PCL)
+			return true;
+
+		if (SLdown->getDownPtrCopy() == PCL or SLdown->getRightPtrCopy() == PCL or SLdown->getLeftPtrCopy() == PCL)
+			return true;
+
+		if (SLleft->getLeftPtrCopy() == PCL or SLright->getRightPtrCopy() == PCL)
+			return true;
+	}
+	return false;
+}
+
+void MP::ComputerPlayerBandit::_get_next_task(Map& aMap)
 {
 	if (aPawnObiectTaskManager.isTaskListEmpty())
 	{
@@ -41,6 +69,9 @@ void MP::ComputerPlayer::_get_next_task(Map& aMap)
 
 		MapElement* nextDestination = _path;//Takes new destination (new block).
 		MapElement* tmp = aMap.findElementAddressSquareRange(getObiectCoord(), aMap.getMapElementList());//Return element where computer player stands.
+
+		_stand_land = tmp;
+		_is_enemys_check = false;
 
 		if (tmp->getLandTile().getObiectCoord().x == nextDestination->getLandTile().getObiectCoord().x and tmp->getLandTile().getObiectCoord().y + _block_length == nextDestination->getLandTile().getObiectCoord().y)//Goes down
 			aPawnObiectTaskManager.addTask(MP::TaskNode::taskType::taskGoDown);
@@ -59,7 +90,7 @@ void MP::ComputerPlayer::_get_next_task(Map& aMap)
 	}
 }
 
-void MP::ComputerPlayer::_computer_player_move(sf::Clock& globalClock)
+void MP::ComputerPlayerBandit::_computer_player_move(sf::Clock& globalClock)
 {
 	MP::Move tmp;
 
@@ -79,27 +110,15 @@ void MP::ComputerPlayer::_computer_player_move(sf::Clock& globalClock)
 		this->resetBlockLenghtCopy();
 }
 
-void MP::ComputerPlayer::update(Map& aMap, sf::Clock& gameClock)
-{
-	_get_next_task(aMap);
-	_computer_player_animation(gameClock);
-	_computer_player_move(gameClock);
-}
-
-void MP::ComputerPlayer::render(sf::RenderWindow& mainWindow)
-{
-	mainWindow.draw(aAnimation.getObiectSprite());
-}
-
-MP::ComputerPlayer::ComputerPlayer(sf::Texture* texturePtr)
+MP::ComputerPlayerBandit::ComputerPlayerBandit(sf::Texture* texturePtr)
 {
 
 	_path = nullptr;
-
+	_is_enemys_check = false;
 	//Loading textures.
 	aAnimation.loadObiectTextures(texturePtr, 4, 4, 64);
 	aAnimation.changeSprite(6);
-	aAnimation.setScale(0.85, 0.85);
+	aAnimation.setScale(0.8, 0.8);
 
 	//Getting computer player animation and move sleep time.
 	active_obj_sleep_time = sf::milliseconds(RiD::ConfigurationLoader::getIntData("computer player", "SleepTime"));
@@ -112,12 +131,12 @@ MP::ComputerPlayer::ComputerPlayer(sf::Texture* texturePtr)
 	setObiectCoord(RiD::ConfigurationLoader::getIntData("computer player", "coordinateX"), RiD::ConfigurationLoader::getIntData("computer player", "coordinateY"));
 }
 
-MP::ComputerPlayer::~ComputerPlayer()
+MP::ComputerPlayerBandit::~ComputerPlayerBandit()
 {
 	_delete_path();
 }
 
-void MP::ComputerPlayer::_computer_player_animation(sf::Clock& globalClock)
+void MP::ComputerPlayerBandit::_computer_player_animation(sf::Clock& globalClock)
 {
 	if (aPawnObiectTaskManager.findTask(MP::TaskNode::taskType::taskGoUp, false))
 		_computer_player_animation_up(globalClock);
@@ -132,7 +151,7 @@ void MP::ComputerPlayer::_computer_player_animation(sf::Clock& globalClock)
 		_computer_player_animation_right(globalClock);
 }
 
-void MP::ComputerPlayer::_computer_player_animation_right(sf::Clock& globalClock)
+void MP::ComputerPlayerBandit::_computer_player_animation_right(sf::Clock& globalClock)
 {
 	if (globalClock.getElapsedTime() > _ready_animation_time)
 	{
@@ -141,7 +160,7 @@ void MP::ComputerPlayer::_computer_player_animation_right(sf::Clock& globalClock
 	}
 }
 
-void MP::ComputerPlayer::_computer_player_animation_left(sf::Clock& globalClock)
+void MP::ComputerPlayerBandit::_computer_player_animation_left(sf::Clock& globalClock)
 {
 	if (globalClock.getElapsedTime() > _ready_animation_time)
 	{
@@ -150,7 +169,7 @@ void MP::ComputerPlayer::_computer_player_animation_left(sf::Clock& globalClock)
 	}
 }
 
-void MP::ComputerPlayer::_computer_player_animation_up(sf::Clock& globalClock)
+void MP::ComputerPlayerBandit::_computer_player_animation_up(sf::Clock& globalClock)
 {
 	if (globalClock.getElapsedTime() > _ready_animation_time)
 	{
@@ -159,7 +178,7 @@ void MP::ComputerPlayer::_computer_player_animation_up(sf::Clock& globalClock)
 	}
 }
 
-void MP::ComputerPlayer::_computer_player_animation_down(sf::Clock& globalClock)
+void MP::ComputerPlayerBandit::_computer_player_animation_down(sf::Clock& globalClock)
 {
 	if (globalClock.getElapsedTime() > _ready_animation_time)
 	{
@@ -168,3 +187,16 @@ void MP::ComputerPlayer::_computer_player_animation_down(sf::Clock& globalClock)
 	}
 }
 
+void MP::ComputerPlayerBandit::update(Map& aMap, sf::Clock& gameClock, std::shared_ptr<Player>& aPlayer)
+{
+	if (_check_enemy(aPlayer))
+		std::cout << " WYKRYLEM GRACZA \n" << std::endl;
+	_get_next_task(aMap);
+	_computer_player_animation(gameClock);
+	_computer_player_move(gameClock);
+}
+
+void MP::ComputerPlayerBandit::render(sf::RenderWindow& mainWindow)
+{
+	mainWindow.draw(aAnimation.getObiectSprite());
+}

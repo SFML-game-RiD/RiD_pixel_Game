@@ -4,13 +4,13 @@
 
 void MP::Calculator::_computer_players_procedure(ObiectManager& aObiectManager, sf::Clock& gameClock, Map& aMap)
 {
-	std::list<ComputerPlayer>* computerPlayerList = aObiectManager.getComputerPlayerList();
-	std::list<ComputerPlayer>::iterator it;
+	std::list<ComputerPlayerBandit>* computerPlayerList = aObiectManager.getComputerPlayerList();
+	std::list<ComputerPlayerBandit>::iterator it;
 
 	it = computerPlayerList->begin();
 
 	for (it; it != computerPlayerList->end(); it++)
-		it->update(aMap, gameClock);
+		it->update(aMap, gameClock,aObiectManager.getPlayer());
 }
 
 void MP::Calculator::_trees_procedure(sf::Clock& globalClock, ObiectManager& aObiectManager)

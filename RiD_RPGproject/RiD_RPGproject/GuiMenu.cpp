@@ -17,7 +17,7 @@ void MP::GuiMenu::_draw_menu(sf::RenderWindow& aMainWindow)
 {
 	aMainWindow.draw(aAnimation.getObiectSprite());
 
-	for (int i = 0; i < _button_array.size(); i++)
+	for (unsigned int i = 0; i < _button_array.size(); i++)
 	{
 		_button_array[i]->render(aMainWindow);
 	}
@@ -25,7 +25,7 @@ void MP::GuiMenu::_draw_menu(sf::RenderWindow& aMainWindow)
 
 void MP::GuiMenu::_select_button(sf::Vector2f mouseCoord)
 {
-	for (int i = 0; i < _button_array.size(); i++)
+	for (unsigned int i = 0; i < _button_array.size(); i++)
 	{
 		if (mouseCoord.x >= _button_array[i]->getObiectCoord().x and mouseCoord.x <= _button_array[i]->getObiectCoord().x + 275
 			and mouseCoord.y >= _button_array[i]->getObiectCoord().y + 112 and mouseCoord.y <= _button_array[i]->getObiectCoord().y + 163)

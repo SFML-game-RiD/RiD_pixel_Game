@@ -7,7 +7,7 @@
 #include "Land.h"
 #include "Map.h"
 #include "Tree.h"
-#include "ComputerPlayer.h"
+#include "ComputerPlayerBandit.h"
 #include "Cursor.h"
 #include "GuiManager.h"
 
@@ -26,7 +26,7 @@ namespace MP
 
 		std::shared_ptr<Player> _player;
 
-		std::list<ComputerPlayer> _computer_player_list;
+		std::list<ComputerPlayerBandit> _computer_player_list;
 
 		std::list<Tree> _tree_list;
 		
@@ -44,7 +44,7 @@ namespace MP
 
 		void addObiect(std::shared_ptr<Player> &newPlayer);
 		
-		void addObiect(ComputerPlayer &newComputerPlayer);
+		void addObiect(ComputerPlayerBandit &newComputerPlayer);
 
 		std::shared_ptr<Player> & getPlayer();
 		
@@ -56,7 +56,7 @@ namespace MP
 
 		bool access();
 
-		std::list<MP::ComputerPlayer>* getComputerPlayerList();
+		std::list<MP::ComputerPlayerBandit>* getComputerPlayerList();
 
 		std::shared_ptr<Cursor>& getCursor();
 
