@@ -48,7 +48,6 @@ namespace MP
 
 		std::shared_ptr<Player> & getPlayer();
 		
-		MapElement *& getMapElementHead();
 	
 		Map& getMap();
 

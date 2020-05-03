@@ -1,6 +1,6 @@
-#include "Animation.h"
+#include "SpriteAnimation.h"
 
-void  MP::Animation::_get_rectangle_array(int columns, int rows, int squareLength)
+void  MP::SpriteAnimation::_get_rectangle_array(int columns, int rows, int squareLength)
 {
 	int x = 0, y = 0;
 
@@ -19,55 +19,55 @@ void  MP::Animation::_get_rectangle_array(int columns, int rows, int squareLengt
 	}
 }
 
-void MP::Animation::setObiectSpritePosition(int x, int y)
+void MP::SpriteAnimation::setObiectSpritePosition(int x, int y)
 {
 	_obj_sprite.setPosition(x, y);
 }
 
-void MP::Animation::setObiectSpritePosition(sf::Vector2f coord)
+void MP::SpriteAnimation::setObiectSpritePosition(sf::Vector2f coord)
 {
 	_obj_sprite.setPosition(coord.x, coord.y);
 }
 
-sf::Sprite& MP::Animation::getObiectSprite()
+sf::Sprite& MP::SpriteAnimation::getObiectSprite()
 {
 	return _obj_sprite;
 }
 
-void MP::Animation::loadObiectTextures(sf::Texture *texturePtr, int columns, int rows, int squareLength)
+void MP::SpriteAnimation::loadObiectTextures(sf::Texture *texturePtr, int columns, int rows, int squareLength)
 {
 	_set_obiect_texture(texturePtr);
 	_get_rectangle_array(columns, rows, squareLength);
 	changeSprite(0);
 }
 
-void MP::Animation::_set_obiect_texture(sf::Texture * texture)
+void MP::SpriteAnimation::_set_obiect_texture(sf::Texture * texture)
 {
 	_obj_sprite.setTexture(*texture);
 }
 
-void MP::Animation::_set_obiect_texture_rect(sf::IntRect &textureRect)
+void MP::SpriteAnimation::_set_obiect_texture_rect(sf::IntRect &textureRect)
 {
 	_obj_sprite.setTextureRect(textureRect);
 }
 
-void MP::Animation::changeSprite(int spriteNumber)
+void MP::SpriteAnimation::changeSprite(int spriteNumber)
 {
 	_set_obiect_texture_rect(_obiect_rectangle_array[spriteNumber]);
 	_current_sprite = spriteNumber;
 }
 
-const std::vector<sf::IntRect>& MP::Animation::getOryginalArray()
+const std::vector<sf::IntRect>& MP::SpriteAnimation::getOryginalArray()
 {
 	return _obiect_rectangle_array;
 }
 
-int MP::Animation::getCurrentSprite()
+int MP::SpriteAnimation::getCurrentSprite()
 {
 	return _current_sprite;
 }
 
-void MP::Animation::setNextSprite(int from, int to)
+void MP::SpriteAnimation::setNextSprite(int from, int to)
 {
 	int currentSpriteNumber = getCurrentSprite();
 
@@ -81,22 +81,22 @@ void MP::Animation::setNextSprite(int from, int to)
 	changeSprite(currentSpriteNumber);
 }
 
-void MP::Animation::setScale(float x, float y)
+void MP::SpriteAnimation::setScale(float x, float y)
 {
 	_obj_sprite.setScale(x, y);
 }
 
-sf::Vector2f MP::Animation::getScale()
+sf::Vector2f MP::SpriteAnimation::getScale()
 {
 	return _obj_sprite.getScale();
 }
 
-void MP::Animation::setOrigin(int x, int y)
+void MP::SpriteAnimation::setOrigin(int x, int y)
 {
 	_obj_sprite.setOrigin(x, y);
 }
 
-void MP::Animation::setColor(sf::Color newColor)
+void MP::SpriteAnimation::setColor(sf::Color newColor)
 {
 	_obj_sprite.setColor(newColor);
 }

@@ -16,10 +16,11 @@ namespace MP
 
 		int _block_length;
 
-		MapElement * _map_element_list;
+		float _block_length_neg_one;
 
-		void _delete_map(MapElement *&head);
+		std::vector<std::vector<MapElement*>> _map_array;
 
+		void _delete_map();
 
 	public:
 
@@ -27,22 +28,21 @@ namespace MP
 
 		~Map();
 
-		void createWeb();
+		MapElement* findElementAddress(sf::Vector2f coordinates);
 
-		void addMapElement(MapElement*& head, MapElement*& newElement);
+		MapElement* findElementAddress(float x,float y);
 
-		MapElement*& getMapElementList();
+		MapElement* findElementAddressSquareRange(sf::Vector2f coordinates);
 
-		MapElement* findElementAddress(sf::Vector2f coordinates, MapElement*& mapElementHead);
-
-		MapElement* findElementAddressSquareRange(sf::Vector2f coordinates, MapElement*& mapElementHead);
-
-		void copyMapElementList(MapElement* aMapElementList);
+		void copyMapArrayAndBlockSize(std::vector<std::vector<MapElement*>> &aMapElementList,int blockSize);
 
 		MapElement* returnRandomWalkableElement();
 
 		void  setLastElementCoord(sf::Vector2f aVector);
 
+		std::vector<std::vector<MapElement*>>& getMapArray();
+		
+		int getBlockSize();
 	};
 }
 #endif // !Map

@@ -1,12 +1,12 @@
-#ifndef MAPANIMATION_H
-#define MAPANIMATION_H
+#ifndef SPRITEANIMATION_H
+#define SPRITEANIMATION_H
 #include <vector>
 #include "Engine/ConfigurationLoader.h"
 #include <SFML/Graphics.hpp>
 
 namespace MP
 {
-	class Animation
+	class SpriteAnimation
 	{
 	private:
 

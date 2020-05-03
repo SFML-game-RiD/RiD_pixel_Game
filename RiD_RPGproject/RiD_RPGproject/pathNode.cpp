@@ -1,4 +1,4 @@
-#include "pathNode.h"
+#include "PathNode.h"
 
 
 
@@ -56,6 +56,11 @@ MP::PathNode*& MP::PathNode::getNextNode()
 	return _next_node;
 }
 
+MP::PathNode* MP::PathNode::getNextNodeCopy()
+{
+		return _next_node;
+}
+
 void MP::PathNode::setParent(MP::PathNode* aNode)
 {
 	_parent = aNode;
@@ -64,6 +69,11 @@ void MP::PathNode::setParent(MP::PathNode* aNode)
 MP::PathNode*& MP::PathNode::getParent()
 {
 	return _parent;
+}
+
+void MP::PathNode::setNextNode(PathNode* aNextNode)
+{
+	_next_node = aNextNode;
 }
 
 MP::PathNode& MP::PathNode::operator=(MP::MapElement*& anElement)

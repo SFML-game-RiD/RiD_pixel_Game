@@ -2,7 +2,7 @@
 
 MP::GuiManager::GuiManager()
 {
-	_last_camera_view_size= sf::Vector2f(RiD::ConfigurationLoader::getIntData("video settings", "screenWidth"), RiD::ConfigurationLoader::getIntData("video settings", "screenHeight"));
+	_last_camera_view_size= sf::Vector2f(float(RiD::ConfigurationLoader::getIntData("video settings", "screenWidth")), float(RiD::ConfigurationLoader::getIntData("video settings", "screenHeight")));
 
 }
 

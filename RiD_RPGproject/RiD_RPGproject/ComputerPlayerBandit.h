@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "PawnObiect.h"
-#include "pathCreator.h"
+#include "PathCreator.h"
 #include "Player.h"
 
 namespace MP
@@ -34,7 +34,7 @@ namespace MP
 
 		void _delete_path();
 
-		bool _check_enemy(std::shared_ptr<Player>& aPlayer);
+		//bool _check_enemy(std::shared_ptr<Player>& aPlayer);
 
 	public:
 

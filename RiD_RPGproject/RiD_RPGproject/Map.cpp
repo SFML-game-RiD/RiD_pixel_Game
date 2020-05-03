@@ -1,116 +1,56 @@
 #include "Map.h"
-#include <iostream>
 #include <fstream>
 
-void MP::Map::addMapElement(MapElement*& head, MapElement*& newElement)
-{
-	
 
-	if (head == nullptr)
-		head = newElement;
-	else
-	addMapElement(head->getNextElement(), newElement);
-}
-
-void MP::Map::createWeb()
+void MP::Map::_delete_map()
 {
-	if (_map_element_list != nullptr)
+	std::vector<std::vector<MapElement*>>::iterator it;
+	std::vector<MapElement*>::iterator it2;
+
+	unsigned int counter = 0;
+
+	for (it = _map_array.begin(); it != _map_array.end(); it++)
 	{
-		MapElement* linkingElement = _map_element_list;
-
-
-		while (linkingElement != nullptr)
-		{
-			sf::Vector2f tmpCoord= linkingElement->getLandTile().getObiectCoord();
-
-			//up
-			tmpCoord.y-=_block_length;
-			linkingElement->setUpPtr(findElementAddress(tmpCoord, _map_element_list));
-			tmpCoord.y+= _block_length;
-
-			//down
-			tmpCoord.y+= _block_length;
-			linkingElement->setDownPtr(findElementAddress(tmpCoord, _map_element_list));
-			tmpCoord.y-= _block_length;
-
-			//left
-			tmpCoord.x-= _block_length;
-			linkingElement->setLeftPtr(findElementAddress(tmpCoord, _map_element_list));
-			tmpCoord.x+= _block_length;
-
-			//right
-			tmpCoord.x+= _block_length;
-			linkingElement->setRightPtr(findElementAddress(tmpCoord, _map_element_list));
-			tmpCoord.x-= _block_length;
-
-			linkingElement = linkingElement->getNextElement();
-		}
-	}
-}
-
-MP::MapElement*& MP::Map::getMapElementList()
-{
-	return _map_element_list;
-}
-
-void MP::Map::_delete_map(MapElement*& head)
-{
-	if (head == nullptr)
-		return;
-	else 
-	{
-		_delete_map(head->getNextElement());
-
-		delete head;
+		for (it2 = _map_array[counter].begin(); it2 != _map_array[counter].end(); it2++)
+			delete* it2;
+		counter++;
 	}
 }
 
 
 MP::Map::Map()
 {
-	_random_value.seed(time(0));
-	_map_element_list = nullptr;
+	_random_value.seed(unsigned int(time(0)));
 	_block_length = RiD::ConfigurationLoader::getIntData("game settings", "blockLength");
+	_block_length_neg_one = float(pow(_block_length, -1));
 }
 
 MP::Map::~Map()
 {
-	_delete_map(_map_element_list);
+	_delete_map();
 }
 
 
-MP::MapElement * MP::Map::findElementAddress(sf::Vector2f coordinates, MapElement*& mapElementHead)
+MP::MapElement * MP::Map::findElementAddress(sf::Vector2f coordinates)
 {
-	if (mapElementHead == nullptr)
-		return nullptr;
-	else
-	{
-		if (mapElementHead->getLandTile().getObiectCoord().x == coordinates.x and mapElementHead->getLandTile().getObiectCoord().y == coordinates.y)
-			return mapElementHead;
-
-		findElementAddress(coordinates, mapElementHead->getNextElement());
-	}
+	return _map_array[unsigned int(coordinates.y * _block_length_neg_one)][unsigned int(coordinates.x * _block_length_neg_one)];
 }
 
-MP::MapElement* MP::Map::findElementAddressSquareRange(sf::Vector2f coordinates, MapElement*& mapElementHead)
+MP::MapElement* MP::Map::findElementAddress(float x, float y)
 {
-	if (mapElementHead == nullptr)
-		return nullptr;
-	else
-	{
-		if (mapElementHead == nullptr)
-			mapElementHead = nullptr;
-		if (coordinates.x <= mapElementHead->getLandTile().getObiectCoord().x+_block_length and
-			coordinates.y <= mapElementHead->getLandTile().getObiectCoord().y + _block_length )
-			return mapElementHead;
-
-		findElementAddressSquareRange(coordinates, mapElementHead->getNextElement());
-	}
+	return _map_array[unsigned int(y * _block_length_neg_one)][unsigned int(x * _block_length_neg_one)];
 }
 
-void MP::Map::copyMapElementList(MapElement* aMapElementList)
+MP::MapElement* MP::Map::findElementAddressSquareRange(sf::Vector2f coordinates)
 {
-	_map_element_list = aMapElementList;
+	return _map_array[unsigned int(coordinates.y * _block_length_neg_one)][unsigned int(coordinates.x * _block_length_neg_one)];
+}
+
+void MP::Map::copyMapArrayAndBlockSize(std::vector<std::vector<MapElement*>> &aMapElementList, int blockSize)
+{
+	_map_array = aMapElementList;
+	_block_length = blockSize;
+	_block_length_neg_one = float(pow(_block_length, -1));
 }
 
 MP::MapElement* MP::Map::returnRandomWalkableElement()
@@ -118,16 +58,16 @@ MP::MapElement* MP::Map::returnRandomWalkableElement()
 
 	MapElement* tmp=nullptr;
 	sf::Vector2f randVector;
-	randVector.x = _random_value() % _last_element_coord.x;
-	randVector.y = _random_value() % _last_element_coord.y;
+	randVector.x = float(_random_value() % _last_element_coord.x);
+	randVector.y = float(_random_value() % _last_element_coord.y);
 
-	tmp = findElementAddressSquareRange(randVector, _map_element_list);
+	tmp = findElementAddressSquareRange(randVector);
 
 	while (tmp->isWalkable() ==false)
 	{
-		randVector.x = _random_value() % _last_element_coord.x;
-		randVector.y = _random_value() % _last_element_coord.y;
-	tmp=findElementAddressSquareRange(randVector, _map_element_list);
+		randVector.x = float(_random_value() % _last_element_coord.x);
+		randVector.y = float(_random_value() % _last_element_coord.y);
+	tmp=findElementAddressSquareRange(randVector);
 	if (tmp == nullptr)
 		tmp = nullptr;
 	}
@@ -136,6 +76,16 @@ MP::MapElement* MP::Map::returnRandomWalkableElement()
 
 void MP::Map::setLastElementCoord(sf::Vector2f aVector)
 {
-	_last_element_coord.x = aVector.x;
-	_last_element_coord.y = aVector.y;
+	_last_element_coord.x = int(aVector.x);
+	_last_element_coord.y = int(aVector.y);
+}
+
+std::vector<std::vector<MP::MapElement*>>& MP::Map::getMapArray()
+{
+	return	_map_array;
+}
+
+int MP::Map::getBlockSize()
+{
+	return _block_length;
 }

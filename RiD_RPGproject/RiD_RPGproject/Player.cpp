@@ -1,8 +1,8 @@
 #include "Player.h"
 #include "Engine/ConfigurationLoader.h"
-#include "Animation.h"
+#include "SpriteAnimation.h"
 #include "Move.h"
-#include "pathCreator.h"
+#include "PathCreator.h"
 
 void MP::Player::_player_animation_right(sf::Clock& globalClock)
 {
@@ -115,7 +115,7 @@ void MP::Player::_player_automatic_move(Map& aMap, TaskManager& aTaskManager)
 	{
 
 		MapElement* nextDestination = _path;//Takes new destination (new block).
-		MapElement* tmp = aMap.findElementAddressSquareRange(getObiectCoord(), aMap.getMapElementList());//Return element where pawn stands.
+		MapElement* tmp = aMap.findElementAddressSquareRange(getObiectCoord());//Return element where pawn stands.
 
 		if (tmp->getLandTile().getObiectCoord().x == nextDestination->getLandTile().getObiectCoord().x
 			and tmp->getLandTile().getObiectCoord().y + _block_length == nextDestination->getLandTile().getObiectCoord().y)//Goes down
@@ -229,7 +229,7 @@ void MP::Player::_unmark_path()
 
 void MP::Player::goToPlace(Map& aGameMap, TaskManager& aMainTaskManger)
 {
-	MapElement *currentBlock = aGameMap.findElementAddressSquareRange(this->getObiectCoord(), aGameMap.getMapElementList());
+	MapElement *currentBlock = aGameMap.findElementAddressSquareRange(this->getObiectCoord());
 
 
 	if (currentBlock->getPlace() != nullptr)
@@ -274,9 +274,9 @@ void MP::Player::_procedure_player_auto_or_normal_move(TaskManager& aMainTaskMan
 	{
 		//geting start and stop coordinates
 
-		MapElement* start = aMap.findElementAddressSquareRange(getObiectCoord(), aMap.getMapElementList());
+		MapElement* start = aMap.findElementAddressSquareRange(getObiectCoord());
 
-		MapElement* stop = aMap.findElementAddressSquareRange(mouseGameCoord, aMap.getMapElementList());
+		MapElement* stop = aMap.findElementAddressSquareRange(mouseGameCoord);
 
 		if (stop->isWalkable())
 		{
@@ -299,7 +299,7 @@ void MP::Player::_procedure_player_auto_or_normal_move(TaskManager& aMainTaskMan
 	}
 	if (aMainTaskManager.findTask(MP::TaskNode::taskType::taskDoubleClickLeft, true))	//starts procedure auto move if player clicked second time
 	{
-		MapElement* checkingElement = aMap.findElementAddressSquareRange(mouseGameCoord, aMap.getMapElementList());
+		MapElement* checkingElement = aMap.findElementAddressSquareRange(mouseGameCoord);
 
 		if (checkingElement->getLandTile().getObiectCoord().x == checkingVector.x and checkingElement->getLandTile().getObiectCoord().y == checkingVector.y) //continue auto move
 		{

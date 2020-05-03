@@ -11,7 +11,7 @@ namespace MP
 	{
 	protected:
 
-		MapElement* _stand_land;
+		MapElement* _current_land;
 
 	public:
 
@@ -35,7 +35,7 @@ namespace MP
 
 		void tryToMoveRight(Map& aMap,TaskManager &aMainTaskManager);
 
-		MapElement* getStandLand();
+		MapElement* getCurrentLand();
 	};
 }
 #endif

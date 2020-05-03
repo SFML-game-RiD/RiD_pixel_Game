@@ -1,4 +1,4 @@
-#include "pathCreator.h"
+#include "PathCreator.h"
 
 
 MP::PathCreator::PathCreator(Map& aMap)
@@ -25,8 +25,8 @@ MP::MapElement*& MP::PathCreator::findPath(sf::Vector2f start, sf::Vector2f stop
 	//Adding to open list start coord.
 	_add(start);
 
-	//Finding smallest F value.
-	*this - _find_smallest_F();
+	//Adding to closed list.
+	*this - _open_list;
 
 	//Setting parent pointer to his own addres. It helps while creating path.
 	_closed_list->setParent(_closed_list);
@@ -38,7 +38,7 @@ MP::MapElement*& MP::PathCreator::findPath(sf::Vector2f start, sf::Vector2f stop
 
 		_set_parent_for_elements();
 
-		*this - _find_smallest_F();
+		*this - _open_list;
 
 		_try_to_create_path();
 	}
@@ -54,8 +54,7 @@ MP::MapElement*& MP::PathCreator::findPath(sf::Vector2f start, sf::Vector2f stop
 
 MP::PathCreator& MP::PathCreator::operator=(MP::Map& aMap)
 {
-	_map_copy->copyMapElementList(aMap.getMapElementList());
-
+	_map_copy->copyMapArrayAndBlockSize(aMap.getMapArray(),aMap.getBlockSize());
 	return *this;
 }
 
@@ -95,14 +94,36 @@ MP::PathCreator& MP::PathCreator::operator+(PathNode*& aNode)
 	}
 	else
 	{
+		PathNode* ninja = _open_list;
 		PathNode* tmp = _open_list;
 
-		while (tmp->getNextNode() != nullptr)
+		if (aNode->getCostF() < tmp->getCostF())
+		{
+			aNode->getNextNode() = tmp;
+			_open_list = aNode;
+			return *this;
+		}
+		else
+		{
 			tmp = tmp->getNextNode();
 
-		tmp->getNextNode() = aNode;
+			while (tmp != nullptr)
+			{
+				if (aNode->getCostF() < tmp->getCostF())
+				{
+					 ninja->getNextNode()=aNode;
+					 aNode->getNextNode()=tmp;
+					return *this;
+				}
+				tmp = tmp->getNextNode();
+				ninja = ninja->getNextNode();
 
-		return *this;
+			}
+
+			ninja->setNextNode(aNode);
+
+			return *this;
+		}
 	}
 }
 
@@ -115,6 +136,7 @@ MP::PathCreator& MP::PathCreator::operator-(MP::PathNode* aNode)
 	if (tmp == nullptr)
 	{
 		_closed_list = aNode;
+
 		this->_disconnect_from_open_list(aNode->getMapElementAddress());
 
 		return *this;
@@ -155,27 +177,6 @@ MP::PathNode* MP::PathCreator::_find_path_node(MapElement* whichNodeContain)
 	}
 
 	return nullptr;
-}
-
-MP::PathNode*& MP::PathCreator::_find_smallest_F()
-{
-	PathNode* smallestFElement;
-	PathNode* tmp = _open_list;
-
-	smallestFElement = tmp;
-
-	if (tmp->getNextNode() != nullptr)
-		tmp = tmp->getNextNode();
-
-	while (tmp != nullptr)
-	{
-		if (smallestFElement->getCostF() > tmp->getCostF())
-		{
-			smallestFElement = tmp;
-		}
-		tmp = tmp->getNextNode();
-	}
-	return smallestFElement;
 }
 
 MP::PathNode* MP::PathCreator::_find_in_closed_list(MapElement* whichNodeContain)
@@ -279,10 +280,13 @@ void MP::PathCreator::_set_parent_for_elements()
 
 	while (tmp != nullptr)
 	{
+		sf::Vector2f currentCoord = tmp->getMapElementAddress()->getLandTile().getObiectCoord();
 		//Setting parent for elements from open and closed list.
-		tmp->setParentForElement(this->_find_path_node(tmp->getMapElementAddress()->getUpPtr()),
-			this->_find_path_node(tmp->getMapElementAddress()->getDownPtr()),
-			this->_find_path_node(tmp->getMapElementAddress()->getLeftPtr()), this->_find_path_node(tmp->getMapElementAddress()->getRightPtr()));
+		tmp->setParentForElement(
+			this->_find_path_node(_map_copy->findElementAddress(currentCoord.x,currentCoord.y-_map_copy->getBlockSize())),
+			this->_find_path_node(_map_copy->findElementAddress(currentCoord.x, currentCoord.y + _map_copy->getBlockSize())),
+			this->_find_path_node(_map_copy->findElementAddress(currentCoord.x- _map_copy->getBlockSize(), currentCoord.y)),
+			this->_find_path_node(_map_copy->findElementAddress(currentCoord.x+ _map_copy->getBlockSize(), currentCoord.y)));
 		tmp = tmp->getNextNode();
 	}
 }
@@ -293,45 +297,50 @@ void MP::PathCreator::_find_walkable_elements()
 
 	while (tmp != nullptr)
 	{
+		sf::Vector2f currentCoord = tmp->getMapElementAddress()->getLandTile().getObiectCoord();
 		//Up.
-		if (tmp->getMapElementAddress()->getUpPtr() != nullptr and tmp->getMapElementAddress()->getUpPtr()->isWalkable() == true) { //If element exist and is walkable. 
+		if (_map_copy->findElementAddress(currentCoord.x, currentCoord.y - _map_copy->getBlockSize()) != nullptr and
+			_map_copy->findElementAddress(currentCoord.x, currentCoord.y - _map_copy->getBlockSize())->isWalkable() == true) { //If element exist and is walkable. 
 
-			if (this->_find_in_closed_list(tmp->getMapElementAddress()->getUpPtr()) == nullptr and
-				this->_find_in_open_list(tmp->getMapElementAddress()->getUpPtr()) == nullptr)//If element is not in open or close list.
+			if (this->_find_in_closed_list(_map_copy->findElementAddress(currentCoord.x, currentCoord.y - _map_copy->getBlockSize())) == nullptr and
+				this->_find_in_open_list(_map_copy->findElementAddress(currentCoord.x, currentCoord.y - _map_copy->getBlockSize())) == nullptr)//If element is not in open or close list.
 			{
-				this->_add(tmp->getMapElementAddress()->getUpPtr()->getLandTile().getObiectCoord());
+				this->_add(sf::Vector2f(currentCoord.x, currentCoord.y - _map_copy->getBlockSize()));
 			}
 		}
 
 		//Down.
-		if (tmp->getMapElementAddress()->getDownPtr() != nullptr and tmp->getMapElementAddress()->getDownPtr()->isWalkable() == true) {
+		if (_map_copy->findElementAddress(currentCoord.x, currentCoord.y + _map_copy->getBlockSize()) != nullptr and
+			_map_copy->findElementAddress(currentCoord.x, currentCoord.y + _map_copy->getBlockSize())->isWalkable() == true) {
 
-			if (this->_find_in_closed_list(tmp->getMapElementAddress()->getDownPtr()) == nullptr and
-				this->_find_in_open_list(tmp->getMapElementAddress()->getDownPtr()) == nullptr)
+			if (this->_find_in_closed_list(_map_copy->findElementAddress(currentCoord.x, currentCoord.y + _map_copy->getBlockSize())) == nullptr and
+				this->_find_in_open_list(_map_copy->findElementAddress(currentCoord.x, currentCoord.y + _map_copy->getBlockSize())) == nullptr)
 			{
-				this->_add(tmp->getMapElementAddress()->getDownPtr()->getLandTile().getObiectCoord());
+				this->_add(sf::Vector2f(currentCoord.x, currentCoord.y + _map_copy->getBlockSize()));
 			}
 		}
 
 		//Left.
-		if (tmp->getMapElementAddress()->getLeftPtr() != nullptr and tmp->getMapElementAddress()->getLeftPtr()->isWalkable() == true)
+		if (_map_copy->findElementAddress(currentCoord.x - _map_copy->getBlockSize(), currentCoord.y) != nullptr and
+			_map_copy->findElementAddress(currentCoord.x - _map_copy->getBlockSize(), currentCoord.y)->isWalkable() == true)
 		{
 
-			if (this->_find_in_closed_list(tmp->getMapElementAddress()->getLeftPtr()) == nullptr and
-				this->_find_in_open_list(tmp->getMapElementAddress()->getLeftPtr()) == nullptr)
+			if (this->_find_in_closed_list(_map_copy->findElementAddress(currentCoord.x - _map_copy->getBlockSize(), currentCoord.y)) == nullptr and
+				this->_find_in_open_list(_map_copy->findElementAddress(currentCoord.x - _map_copy->getBlockSize(), currentCoord.y)) == nullptr)
 			{
-				this->_add(tmp->getMapElementAddress()->getLeftPtr()->getLandTile().getObiectCoord());
+				this->_add(sf::Vector2f(currentCoord.x - _map_copy->getBlockSize(), currentCoord.y));
 			}
 		}
 
 		//Right.
-		if (tmp->getMapElementAddress()->getRightPtr() != nullptr and tmp->getMapElementAddress()->getRightPtr()->isWalkable() == true)
+		if (_map_copy->findElementAddress(currentCoord.x + _map_copy->getBlockSize(), currentCoord.y) != nullptr and
+			_map_copy->findElementAddress(currentCoord.x + _map_copy->getBlockSize(), currentCoord.y)->isWalkable() == true)
 		{
 
-			if (this->_find_in_closed_list(tmp->getMapElementAddress()->getRightPtr()) == nullptr and
-				this->_find_in_open_list(tmp->getMapElementAddress()->getRightPtr()) == nullptr)
+			if (this->_find_in_closed_list(_map_copy->findElementAddress(currentCoord.x + _map_copy->getBlockSize(), currentCoord.y)) == nullptr and
+				this->_find_in_open_list(_map_copy->findElementAddress(currentCoord.x + _map_copy->getBlockSize(), currentCoord.y)) == nullptr)
 			{
-				this->_add(tmp->getMapElementAddress()->getRightPtr()->getLandTile().getObiectCoord());
+				this->_add(sf::Vector2f(currentCoord.x + _map_copy->getBlockSize(), currentCoord.y));
 			}
 		}
 		tmp = tmp->getNextNode();
@@ -341,7 +350,7 @@ void MP::PathCreator::_find_walkable_elements()
 void MP::PathCreator::_add(sf::Vector2f aCoord)
 {
 	PathNode* tmp = new PathNode;
-	MapElement* tmpElement = _map_copy->findElementAddress(aCoord, _map_copy->getMapElementList());
+	MapElement* tmpElement = _map_copy->findElementAddress(aCoord);
 
 
 	*tmp = tmpElement;
@@ -349,7 +358,6 @@ void MP::PathCreator::_add(sf::Vector2f aCoord)
 
 	*this + tmp;//Adding to open list.
 }
-
 
 void MP::PathCreator::_try_to_create_path()
 {

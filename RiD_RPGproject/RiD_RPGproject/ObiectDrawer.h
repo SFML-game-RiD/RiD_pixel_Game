@@ -3,6 +3,7 @@
 
 #include "ObiectManager.h"
 #include "Camera.h"
+#include "MapElement.h"
 
 namespace MP
 {

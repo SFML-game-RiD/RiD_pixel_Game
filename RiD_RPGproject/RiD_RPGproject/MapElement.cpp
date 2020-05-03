@@ -4,38 +4,8 @@
 #include "Town.h"
 #include "Castle.h"
 
-void MP::MapElement::_create_village(sf::Texture* texturePtr, sf::Vector2f coord)
-{
-	_a_place = std::make_shared<MP::Village>(texturePtr,this->getLandTile().getObiectCoord());
-}
-
-void MP::MapElement::_create_town(sf::Texture* texturePtr, sf::Vector2f coord)
-{
-	_a_place = std::make_shared<MP::Town>(texturePtr,this->getLandTile().getObiectCoord());
-}
-
-void MP::MapElement::_create_castle(sf::Texture* texturePtr, sf::Vector2f coord)
-{
-	_a_place = std::make_shared<MP::Castle>(texturePtr,this->getLandTile().getObiectCoord());
-}
-
-MP::Land & MP::MapElement::getLandTile()
-{
-	return *std::dynamic_pointer_cast<Land>(_land_tile);;
-}
-
-std::shared_ptr<MP::Places>& MP::MapElement::getPlace()
-{
-	return _a_place;
-}
-
-
 MP::MapElement::MapElement(RiD::AssetManager& aAssetManager, int cordX, int cordY, char mark)
 {
-	_up_element = nullptr;
-	_down_element = nullptr;
-	_left_element = nullptr;
-	_right_element = nullptr;
 
 	_next_element = nullptr;
 
@@ -68,29 +38,34 @@ MP::MapElement::MapElement(RiD::AssetManager& aAssetManager, int cordX, int cord
 	}
 }
 
+void MP::MapElement::_create_village(sf::Texture* texturePtr, sf::Vector2f coord)
+{
+	_a_place = std::make_shared<MP::Village>(texturePtr,this->getLandTile().getObiectCoord());
+}
+
+void MP::MapElement::_create_town(sf::Texture* texturePtr, sf::Vector2f coord)
+{
+	_a_place = std::make_shared<MP::Town>(texturePtr,this->getLandTile().getObiectCoord());
+}
+
+void MP::MapElement::_create_castle(sf::Texture* texturePtr, sf::Vector2f coord)
+{
+	_a_place = std::make_shared<MP::Castle>(texturePtr,this->getLandTile().getObiectCoord());
+}
+
+MP::Land & MP::MapElement::getLandTile()
+{
+	return *std::dynamic_pointer_cast<Land>(_land_tile);;
+}
+
+std::shared_ptr<MP::Places>& MP::MapElement::getPlace()
+{
+	return _a_place;
+}
+
 MP::MapElement*& MP::MapElement::getNextElement()
 {
 	return _next_element;
-}
-
-MP::MapElement*& MP::MapElement::getUpPtr()
-{
-	return _up_element;
-}
-
-MP::MapElement*& MP::MapElement::getDownPtr()
-{
-	return _down_element;
-}
-
-MP::MapElement*& MP::MapElement::getLeftPtr()
-{
-	return _left_element;
-}
-
-MP::MapElement*& MP::MapElement::getRightPtr()
-{
-	return _right_element;
 }
 
 char MP::MapElement::getMark()
@@ -103,26 +78,6 @@ void MP::MapElement::setNextPtr(MapElement* aMapElement)
 	_next_element = aMapElement;
 }
 
-void MP::MapElement::setUpPtr(MapElement* aMapElement)
-{
-	_up_element = aMapElement;
-}
-
-void MP::MapElement::setDownPtr(MapElement* aMapElement)
-{
-	_down_element = aMapElement;
-}
-
-void MP::MapElement::setLeftPtr(MapElement* aMapElement)
-{
-	_left_element = aMapElement;
-}
-
-void MP::MapElement::setRightPtr(MapElement* aMapElement)
-{
-	_right_element = aMapElement;
-}
-
 bool MP::MapElement::isWalkable()
 {
 	return _walkable;
@@ -131,29 +86,4 @@ bool MP::MapElement::isWalkable()
 MP::MapElement* MP::MapElement::returnAddress()
 {
 	return this;
-}
-
-MP::MapElement* MP::MapElement::getNextElementCopy()
-{
-	return _next_element;
-}
-
-MP::MapElement* MP::MapElement::getUpPtrCopy()
-{
-	return _up_element;
-}
-
-MP::MapElement* MP::MapElement::getDownPtrCopy()
-{
-	return _down_element;
-}
-
-MP::MapElement* MP::MapElement::getLeftPtrCopy()
-{
-	return _left_element;
-}
-
-MP::MapElement* MP::MapElement::getRightPtrCopy()
-{
-	return _right_element;
 }

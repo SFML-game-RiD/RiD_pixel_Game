@@ -4,15 +4,22 @@
 
 void MP::ObiectDrawer::_draw_land(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager)
 {	
-	MapElement * tmp= aObiectManager.getMapElementHead();
-	while (tmp != nullptr)
+	std::vector<std::vector<MapElement*>>::iterator it;
+	std::vector<MapElement*>::iterator it2;
+
+	unsigned int counter = 0;
+
+	std::vector<std::vector<MapElement*>> mapArray = aObiectManager.getMap().getMapArray();
+	for (it = mapArray.begin(); it != mapArray.end(); it++)
 	{
-			tmp->getLandTile().render(mainWindow); //land drawing
+		for (it2 = mapArray[counter].begin(); it2 != mapArray[counter].end(); it2++)
+		{
+			(*it2)->getLandTile().render(mainWindow); //land drawing
 
-			if (tmp->getPlace() != nullptr)
-				tmp->getPlace()->render(mainWindow);//place drawing
-
-		tmp = tmp->getNextElement();
+			if ((*it2)->getPlace() != nullptr)
+				(*it2)->getPlace()->render(mainWindow);//place drawing
+		}
+		counter++;
 	}
 }
 
@@ -65,7 +72,7 @@ void MP::ObiectDrawer::drawMenu(TaskManager& aMainTaskManager, ObiectManager& aO
 
 	aObiectManager.getGuiManager().getGuiPlacesMenu()->render(aMainTaskManager, aGameCamera.getWindow());
 
-	aObiectManager.getGuiManager().getGuiMarketPlace()->render(aMainTaskManager, aGameCamera.getWindow(),aObiectManager.getMap().findElementAddressSquareRange(aObiectManager.getPlayer()->getObiectCoord(), aObiectManager.getMapElementHead())->getPlace(),aObiectManager.getPlayer());
+	aObiectManager.getGuiManager().getGuiMarketPlace()->render(aMainTaskManager, aGameCamera.getWindow(),aObiectManager.getMap().findElementAddressSquareRange(aObiectManager.getPlayer()->getObiectCoord())->getPlace(),aObiectManager.getPlayer());
 
 	aObiectManager.getCursor()->render(aGameCamera.getWindow());
 }

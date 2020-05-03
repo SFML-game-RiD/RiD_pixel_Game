@@ -3,17 +3,17 @@
 
 MP::PawnObiect::PawnObiect()
 {
-	_stand_land = nullptr;
+	_current_land = nullptr;
 }
 
 bool MP::PawnObiect::checkGoUp(MP::Map& aMap)
 {
 	sf::Vector2f tmp = getObiectCoord();
 	tmp.y -= _block_length;
-	MapElement* tmp2= aMap.findElementAddressSquareRange(tmp, aMap.getMapElementList());
+	MapElement* tmp2= aMap.findElementAddressSquareRange(tmp);
 	if (tmp2 != nullptr and tmp2->isWalkable() == true)
 	{
-		_stand_land = tmp2;
+		_current_land = tmp2;
 		return true;
 	}
 	else
@@ -24,10 +24,10 @@ bool MP::PawnObiect::checkGoDown(MP::Map& aMap)
 {
 	sf::Vector2f tmp = getObiectCoord();
 	tmp.y += _block_length;
-	MapElement* tmp2 = aMap.findElementAddressSquareRange(tmp, aMap.getMapElementList());
+	MapElement* tmp2 = aMap.findElementAddressSquareRange(tmp);
 	if (tmp2 != nullptr and tmp2->isWalkable() == true)
 	{
-		_stand_land = tmp2;
+		_current_land = tmp2;
 		return true;
 	}
 	else
@@ -38,10 +38,10 @@ bool MP::PawnObiect::checkGoLeft(MP::Map& aMap)
 {
 	sf::Vector2f tmp = getObiectCoord();
 	tmp.x -= _block_length;
-	MapElement* tmp2 = aMap.findElementAddressSquareRange(tmp, aMap.getMapElementList());
+	MapElement* tmp2 = aMap.findElementAddressSquareRange(tmp);
 	if (tmp2 != nullptr and tmp2->isWalkable() == true)
 	{
-		_stand_land = tmp2;
+		_current_land = tmp2;
 		return true;
 	}
 	else
@@ -52,10 +52,10 @@ bool MP::PawnObiect::checkGoRight(MP::Map& aMap)
 {
 	sf::Vector2f tmp = getObiectCoord();
 	tmp.x += _block_length;
-	MapElement* tmp2 = aMap.findElementAddressSquareRange(tmp, aMap.getMapElementList());
+	MapElement* tmp2 = aMap.findElementAddressSquareRange(tmp);
 	if (tmp2 != nullptr and tmp2->isWalkable() == true)
 	{
-		_stand_land = tmp2;
+		_current_land = tmp2;
 		return true;
 	}
 	else
@@ -98,7 +98,7 @@ void MP::PawnObiect::tryToMoveRight(Map& aMap, TaskManager& aMainTaskManager)
 	}
 }
 
-MP::MapElement* MP::PawnObiect::getStandLand()
+MP::MapElement* MP::PawnObiect::getCurrentLand()
 {
-	return _stand_land;
+	return _current_land;
 }

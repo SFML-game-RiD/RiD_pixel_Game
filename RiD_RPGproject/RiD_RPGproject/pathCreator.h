@@ -1,7 +1,7 @@
 #ifndef _PATHCREATOR_H_
 #define _PATHCREATOR_H_
 
-#include "pathNode.h"
+#include "PathNode.h"
 #include "Map.h"
 #include "MapElement.h"
 
@@ -48,11 +48,6 @@ namespace MP
 		@return finded element address
 		*/
 		PathNode* _find_path_node(MP::MapElement* elementFromNode);
-
-		/**Findes for element with smallest F value.
-		@return addres of smallest F element.
-		*/
-		PathNode*& _find_smallest_F();
 
 		/**Search node from pathNode class, which contain "mapElement" address.
 		@param elementFromNode element from node

@@ -1,5 +1,4 @@
 #include "Move.h"
-#include <iostream>
 
 
 void MP::Move::moveBlockDown(PawnObiect& obiect, sf::Clock& currentTime)
@@ -125,20 +124,20 @@ void MP::Move::moveBlockLeft(Player& obiect, sf::Clock& currentTime, TaskManager
 
 void MP::Move::movePixelDown(ActiveObiect& obiect)
 {
-	obiect.setObiectCoord(obiect.getObiectCoord().x, obiect.getObiectCoord().y + obiect.getVelocity());
+	obiect.setObiectCoord(int(obiect.getObiectCoord().x), int(obiect.getObiectCoord().y + obiect.getVelocity()));
 }
 
 void MP::Move::movePixelUp(ActiveObiect& obiect)
 {
-	obiect.setObiectCoord(obiect.getObiectCoord().x, obiect.getObiectCoord().y - obiect.getVelocity());
+	obiect.setObiectCoord(int(obiect.getObiectCoord().x), int(obiect.getObiectCoord().y - obiect.getVelocity()));
 }
 
 void MP::Move::movePixelRight(ActiveObiect& obiect)
 {
-	obiect.setObiectCoord(obiect.getObiectCoord().x + obiect.getVelocity(), obiect.getObiectCoord().y);
+	obiect.setObiectCoord(int(obiect.getObiectCoord().x + obiect.getVelocity()), int(obiect.getObiectCoord().y));
 }
 
 void MP::Move::movePixelLeft(ActiveObiect& obiect)
 {
-	obiect.setObiectCoord(obiect.getObiectCoord().x - obiect.getVelocity(), obiect.getObiectCoord().y);
+	obiect.setObiectCoord(int(obiect.getObiectCoord().x - obiect.getVelocity()), int(obiect.getObiectCoord().y));
 }

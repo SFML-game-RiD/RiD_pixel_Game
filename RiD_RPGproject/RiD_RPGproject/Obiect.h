@@ -2,7 +2,7 @@
 #define OBIECT_H
 
 #include <SFML/Graphics.hpp>
-#include "Animation.h"
+#include "SpriteAnimation.h"
 
 namespace MP
 {
@@ -22,7 +22,7 @@ namespace MP
 
 	public:
 
-		Animation aAnimation;
+		SpriteAnimation aAnimation;
 
 		Obiect();
 

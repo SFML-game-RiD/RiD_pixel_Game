@@ -2,8 +2,9 @@
 #include "ObiectGenerator.h"
 #include "Player.h"
 #include "ActiveObiect.h"
-#include "Animation.h"
+#include "SpriteAnimation.h"
 #include "Land.h"
+#include <vector>
 #include "Engine/ConfigurationLoader.h"
 #include "ComputerPlayerBandit.h"
 #include "GuiPlacesMenu.h"
@@ -11,32 +12,42 @@
 void MP::ObiectGenerator::_generate_trees(ObiectManager& aObiectManager)
 {
 
-	MP::MapElement *tmp = aObiectManager.getMapElementHead();
+	std::vector<std::vector<MapElement* >> tmpMapArray = aObiectManager.getMap().getMapArray();
+
+	std::vector<std::vector<MapElement* >>::iterator it = tmpMapArray.begin();
+	std::vector<MapElement* >::iterator it2;
+	unsigned int counter = 0;
+
 	char controlMark = RiD::ConfigurationLoader::getStringData("game settings", "treeWallMark")[0];
-	while (tmp != nullptr)
+
+	for (it; it != tmpMapArray.end(); it++) 
 	{
-		if (tmp->getMark() == controlMark)
+		it2 = tmpMapArray[counter].begin();
+		for (it2; it2 != tmpMapArray[counter].end(); it2++)
 		{
-			int counter = RiD::ConfigurationLoader::getIntData("game settings","numberOfTrees");
-			int spawnRange = RiD::ConfigurationLoader::getIntData("game settings","blockLength");
-			spawnRange -= 10;
-			while (counter != 0)
+			if ((*it2)->getMark() == controlMark)
 			{
-				sf::Vector2f tmpCoord = tmp->getLandTile().getObiectCoord();
-				tmpCoord.x += _random_number() % spawnRange;
-				tmpCoord.y += _random_number() % spawnRange;
+				int counter = RiD::ConfigurationLoader::getIntData("game settings", "numberOfTrees");
+				int spawnRange = RiD::ConfigurationLoader::getIntData("game settings", "blockLength");
+				spawnRange -= 10;
+				while (counter != 0)
+				{
+					sf::Vector2f tmpCoord = (*it2)->getLandTile().getObiectCoord();
+					tmpCoord.x += _random_number() % spawnRange;
+					tmpCoord.y += _random_number() % spawnRange;
 
-				float newScale =(( _random_number() % 50)*float(0.01))+float(0.8);
-				
+					float newScale = ((_random_number() % 50) * float(0.01)) + float(0.8);
 
-				std::shared_ptr<Tree> tmpTree = std::make_shared<Tree>(&_a_asset_manager.getTexture("tree"),tmpCoord,newScale);
-				aObiectManager.getTreeList()->push_back(*tmpTree);
-				counter--;
-	
+
+					std::shared_ptr<Tree> tmpTree = std::make_shared<Tree>(&_a_asset_manager.getTexture("tree"), tmpCoord, newScale);
+					aObiectManager.getTreeList()->push_back(*tmpTree);
+					counter--;
+
+				}
+
 			}
-
 		}
-		tmp = tmp->getNextElement();
+		counter++;
 	}
 }
 
@@ -67,6 +78,8 @@ void MP::ObiectGenerator::_generate_map(ObiectManager& aObiectManager)
 	int blockLength = RiD::ConfigurationLoader::getIntData("game settings", "blockLength");
 	int y = 0;
 
+	std::vector<MapElement*> row;
+	unsigned int counter = 0;
 	while (mapFile)
 	{
 		int x = 0;
@@ -74,18 +87,24 @@ void MP::ObiectGenerator::_generate_map(ObiectManager& aObiectManager)
 
 		if (mapFile)
 		{
+			
+			aObiectManager.getMap().getMapArray().push_back(row);
+
 			for (unsigned int i = 0; i < line.length(); i++)
 			{
-				MapElement* tmp = new MapElement(_a_asset_manager,x, y, line[i]);
-				aObiectManager.getMap().addMapElement(aObiectManager.getMapElementHead(), tmp);
+				MapElement* tmpMapElement = new MapElement(_a_asset_manager,x, y, line[i]);
+				//aObiectManager.getMap().addMapElement(aObiectManager.getMapElementHead(), tmpMapElement);
+
+				aObiectManager.getMap().getMapArray()[counter].push_back(tmpMapElement);
+
 				x += blockLength;
-				aObiectManager.getMap().setLastElementCoord(tmp->getLandTile().getObiectCoord());
+				aObiectManager.getMap().setLastElementCoord(tmpMapElement->getLandTile().getObiectCoord());
 
-				char placesMark = tmp->getMark();
+				char placesMark = tmpMapElement->getMark();
 
-				if (tmp->getPlace() != nullptr)
+				if (tmpMapElement->getPlace() != nullptr)
 				{
-					tmp->getPlace()->aItemsManager.setItems(_a_asset_manager.getFont("font"),
+					tmpMapElement->getPlace()->aItemsManager.setItems(_a_asset_manager.getFont("font"),
 						0, &_a_asset_manager.getTexture("gold"),
 						0, &_a_asset_manager.getTexture("iron"),
 						0, &_a_asset_manager.getTexture("wood"),
@@ -94,7 +113,7 @@ void MP::ObiectGenerator::_generate_map(ObiectManager& aObiectManager)
 						0, &_a_asset_manager.getTexture("archer"),
 						0, &_a_asset_manager.getTexture("swordsman"));
 
-					tmp->getPlace()->getItemsForTrade().setItems(_a_asset_manager.getFont("font"),
+					tmpMapElement->getPlace()->getItemsForTrade().setItems(_a_asset_manager.getFont("font"),
 						0, & _a_asset_manager.getTexture("gold"),
 						0, & _a_asset_manager.getTexture("iron"),
 						0, & _a_asset_manager.getTexture("wood"),
@@ -105,22 +124,22 @@ void MP::ObiectGenerator::_generate_map(ObiectManager& aObiectManager)
 
 					if (placesMark == RiD::ConfigurationLoader::getStringData("village", "mark")[0])
 					{
-						_generate_items_for_places(tmp->getPlace()->aItemsManager,tmp->getPlace()->getItemsForTrade(), RiD::ConfigurationLoader::getIntData("village", "modulo"), RiD::ConfigurationLoader::getIntData("village", "moduloTrade"), placesMark);
+						_generate_items_for_places(tmpMapElement->getPlace()->aItemsManager,tmpMapElement->getPlace()->getItemsForTrade(), RiD::ConfigurationLoader::getIntData("village", "modulo"), RiD::ConfigurationLoader::getIntData("village", "moduloTrade"), placesMark);
 					}
 					else if (placesMark == RiD::ConfigurationLoader::getStringData("castle", "mark")[0])
 					{
-						_generate_items_for_places(tmp->getPlace()->aItemsManager, tmp->getPlace()->getItemsForTrade(), RiD::ConfigurationLoader::getIntData("castle", "modulo"), RiD::ConfigurationLoader::getIntData("village", "moduloTrade"), placesMark);
+						_generate_items_for_places(tmpMapElement->getPlace()->aItemsManager, tmpMapElement->getPlace()->getItemsForTrade(), RiD::ConfigurationLoader::getIntData("castle", "modulo"), RiD::ConfigurationLoader::getIntData("village", "moduloTrade"), placesMark);
 					}
 					else if (placesMark == RiD::ConfigurationLoader::getStringData("town", "mark")[0])
 					{
-						_generate_items_for_places(tmp->getPlace()->aItemsManager, tmp->getPlace()->getItemsForTrade(), RiD::ConfigurationLoader::getIntData("town", "modulo"), RiD::ConfigurationLoader::getIntData("village", "moduloTrade"), placesMark);
+						_generate_items_for_places(tmpMapElement->getPlace()->aItemsManager, tmpMapElement->getPlace()->getItemsForTrade(), RiD::ConfigurationLoader::getIntData("town", "modulo"), RiD::ConfigurationLoader::getIntData("village", "moduloTrade"), placesMark);
 					}
 				}
 			}
+			counter++;
 			y += blockLength;
 		}
 	}
-	aObiectManager.getMap().createWeb();
 }
 
 void MP::ObiectGenerator::_generate_computer_player(ObiectManager& aObiectManager)

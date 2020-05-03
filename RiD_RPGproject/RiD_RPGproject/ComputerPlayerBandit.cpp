@@ -6,7 +6,7 @@ void MP::ComputerPlayerBandit::_chose_destination(Map &aMap)
 {
 	MP::PathCreator tmp(aMap);
 	sf::Vector2f destinationCoord = aMap.returnRandomWalkableElement()->getLandTile().getObiectCoord();
-	MapElement* startingElement = aMap.findElementAddressSquareRange(getObiectCoord(), aMap.getMapElementList());
+	MapElement* startingElement = aMap.findElementAddressSquareRange(getObiectCoord());
 
 	while(destinationCoord == startingElement->getLandTile().getObiectCoord())
 		destinationCoord = aMap.returnRandomWalkableElement()->getLandTile().getObiectCoord();
@@ -26,39 +26,39 @@ void MP::ComputerPlayerBandit::_delete_path()
 		{
 			MapElement* tmp = _path;
 
-			_path = _path->getNextElementCopy();
+			_path = _path->getNextElement();
 			delete tmp;
 		}
 	}
 }
 
-bool MP::ComputerPlayerBandit::_check_enemy(std::shared_ptr<Player>& aPlayer)
-{
-	if (!_is_enemys_check and _stand_land!=nullptr)
-	{
-		MapElement* SL = _stand_land;
-		MapElement* PCL = aPlayer->getStandLand();
-		MapElement* SLup = _stand_land->getUpPtrCopy();
-		MapElement* SLdown = _stand_land->getDownPtrCopy();
-		MapElement* SLleft = _stand_land->getLeftPtrCopy();
-		MapElement* SLright = _stand_land->getRightPtrCopy();
-
-		_is_enemys_check = true;
-
-		if (SL == PCL or SL->getDownPtrCopy() == PCL or SL->getRightPtrCopy() == PCL or SL->getLeftPtrCopy() == PCL or SL->getUpPtrCopy() == PCL)
-			return true;
-
-		if (SLup->getRightPtrCopy() == PCL or SLup->getLeftPtrCopy() == PCL or SLup->getUpPtrCopy() == PCL)
-			return true;
-
-		if (SLdown->getDownPtrCopy() == PCL or SLdown->getRightPtrCopy() == PCL or SLdown->getLeftPtrCopy() == PCL)
-			return true;
-
-		if (SLleft->getLeftPtrCopy() == PCL or SLright->getRightPtrCopy() == PCL)
-			return true;
-	}
-	return false;
-}
+//bool MP::ComputerPlayerBandit::_check_enemy(std::shared_ptr<Player>& aPlayer)
+//{
+//	if (!_is_enemys_check and _stand_land!=nullptr)
+//	{
+//		MapElement* SL = _stand_land;
+//		MapElement* PCL = aPlayer->getStandLand();
+//		MapElement* SLup = _stand_land->getUpPtrCopy();
+//		MapElement* SLdown = _stand_land->getDownPtrCopy();
+//		MapElement* SLleft = _stand_land->getLeftPtrCopy();
+//		MapElement* SLright = _stand_land->getRightPtrCopy();
+//
+//		_is_enemys_check = true;
+//
+//		if (SL == PCL or SL->getDownPtrCopy() == PCL or SL->getRightPtrCopy() == PCL or SL->getLeftPtrCopy() == PCL or SL->getUpPtrCopy() == PCL)
+//			return true;
+//
+//		if (SLup->getRightPtrCopy() == PCL or SLup->getLeftPtrCopy() == PCL or SLup->getUpPtrCopy() == PCL)
+//			return true;
+//
+//		if (SLdown->getDownPtrCopy() == PCL or SLdown->getRightPtrCopy() == PCL or SLdown->getLeftPtrCopy() == PCL)
+//			return true;
+//
+//		if (SLleft->getLeftPtrCopy() == PCL or SLright->getRightPtrCopy() == PCL)
+//			return true;
+//	}
+//	return false;
+//}
 
 void MP::ComputerPlayerBandit::_get_next_task(Map& aMap)
 {
@@ -68,9 +68,9 @@ void MP::ComputerPlayerBandit::_get_next_task(Map& aMap)
 		_chose_destination(aMap);
 
 		MapElement* nextDestination = _path;//Takes new destination (new block).
-		MapElement* tmp = aMap.findElementAddressSquareRange(getObiectCoord(), aMap.getMapElementList());//Return element where computer player stands.
+		MapElement* tmp = aMap.findElementAddressSquareRange(getObiectCoord());//Return element where computer player stands.
 
-		_stand_land = tmp;
+		_current_land = tmp;
 		_is_enemys_check = false;
 
 		if (tmp->getLandTile().getObiectCoord().x == nextDestination->getLandTile().getObiectCoord().x and tmp->getLandTile().getObiectCoord().y + _block_length == nextDestination->getLandTile().getObiectCoord().y)//Goes down
@@ -118,7 +118,7 @@ MP::ComputerPlayerBandit::ComputerPlayerBandit(sf::Texture* texturePtr)
 	//Loading textures.
 	aAnimation.loadObiectTextures(texturePtr, 4, 4, 64);
 	aAnimation.changeSprite(6);
-	aAnimation.setScale(0.8, 0.8);
+	aAnimation.setScale(float(0.8), float(0.8));
 
 	//Getting computer player animation and move sleep time.
 	active_obj_sleep_time = sf::milliseconds(RiD::ConfigurationLoader::getIntData("computer player", "SleepTime"));
@@ -189,8 +189,8 @@ void MP::ComputerPlayerBandit::_computer_player_animation_down(sf::Clock& global
 
 void MP::ComputerPlayerBandit::update(Map& aMap, sf::Clock& gameClock, std::shared_ptr<Player>& aPlayer)
 {
-	if (_check_enemy(aPlayer))
-		std::cout << " WYKRYLEM GRACZA \n" << std::endl;
+	/*if (_check_enemy(aPlayer))
+		std::cout << " WYKRYLEM GRACZA \n" << std::endl;*/
 	_get_next_task(aMap);
 	_computer_player_animation(gameClock);
 	_computer_player_move(gameClock);

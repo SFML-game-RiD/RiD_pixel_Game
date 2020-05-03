@@ -185,7 +185,7 @@
     <ClCompile Include="Land.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
-    <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="SpriteAnimation.cpp" />
     <ClCompile Include="MapElement.cpp" />
     <ClCompile Include="MapGui.cpp" />
     <ClCompile Include="Move.cpp" />
@@ -242,7 +242,7 @@
     <ClInclude Include="ItemsManager.h" />
     <ClInclude Include="Land.h" />
     <ClInclude Include="Map.h" />
-    <ClInclude Include="Animation.h" />
+    <ClInclude Include="SpriteAnimation.h" />
     <ClInclude Include="MapElement.h" />
     <ClInclude Include="MapGui.h" />
     <ClInclude Include="Move.h" />

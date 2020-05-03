@@ -83,9 +83,6 @@
     <ClCompile Include="pathCreator.cpp">
       <Filter>AI</Filter>
     </ClCompile>
-    <ClCompile Include="Animation.cpp">
-      <Filter>MOVE,ANIMATION</Filter>
-    </ClCompile>
     <ClCompile Include="PathIcon.cpp">
       <Filter>OBIECT</Filter>
     </ClCompile>
@@ -166,6 +163,9 @@
     </ClCompile>
     <ClCompile Include="ComputerPlayerBandit.cpp">
       <Filter>OBIECT\ACTIVE OBIECT\PAWNS</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteAnimation.cpp">
+      <Filter>MOVE,ANIMATION</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -250,9 +250,6 @@
     <ClInclude Include="pathCreator.h">
       <Filter>AI</Filter>
     </ClInclude>
-    <ClInclude Include="Animation.h">
-      <Filter>MOVE,ANIMATION</Filter>
-    </ClInclude>
     <ClInclude Include="PathIcon.h">
       <Filter>OBIECT</Filter>
     </ClInclude>
@@ -333,6 +330,9 @@
     </ClInclude>
     <ClInclude Include="ComputerPlayerBandit.h">
       <Filter>OBIECT\ACTIVE OBIECT\PAWNS</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteAnimation.h">
+      <Filter>MOVE,ANIMATION</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

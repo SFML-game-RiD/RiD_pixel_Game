@@ -43,14 +43,6 @@ namespace MP
 		std::shared_ptr <Item>& getArcher();
 		std::shared_ptr <Item>& getSwordsman();
 
-		//std::unique_ptr <Item>& getGold();
-		//std::unique_ptr <Item>& getIron();
-		//std::unique_ptr <Item>& getWood();
-		//std::unique_ptr <Item>& getFood();
-		//std::unique_ptr <Item>& getSpearman();
-		//std::unique_ptr <Item>& getArcher();
-		//std::unique_ptr <Item>& getSwordsman();
-
 		bool addItem(std::shared_ptr <Item>& aItem, int ammount);
 
 		bool subtractItem(std::shared_ptr <Item>& aItem, int ammount, int buyerGold);

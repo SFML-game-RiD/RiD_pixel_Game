@@ -54,11 +54,15 @@ namespace MP
 		//Returns next node's address.
 		PathNode*& getNextNode();
 
+		PathNode* getNextNodeCopy();
+
 		//Sets parent for element using argument below.
 		void setParent(PathNode* aNode);
 
 		//Returns parent address.
 		PathNode*& getParent();
+
+		void setNextNode(PathNode* aNextNode);
 
 	};
 }
