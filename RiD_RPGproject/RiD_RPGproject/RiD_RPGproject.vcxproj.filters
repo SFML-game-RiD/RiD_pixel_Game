@@ -168,6 +168,8 @@
       <Filter>MANAGERS, HEAD CLASS</Filter>
     </ClCompile>
     <ClCompile Include="SoundManager.cpp" />
+    <ClCompile Include="Music.cpp" />
+    <ClCompile Include="Sound.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Animation.h">
@@ -336,6 +338,8 @@
       <Filter>MANAGERS, HEAD CLASS</Filter>
     </ClInclude>
     <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="Music.h" />
+    <ClInclude Include="Sound.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="OBIECT">

@@ -11,13 +11,9 @@ namespace MP
 {
 	class GuiMenu:public Object
 	{
-	private:
-
-		std::vector<std::shared_ptr<sf::SoundBuffer>> _sounds;
-
-		sf::Sound _current_sound;
-
 	protected:
+
+		
 
 		std::vector< std::shared_ptr<GuiButton>> _button_array;///Stores buttons.
 

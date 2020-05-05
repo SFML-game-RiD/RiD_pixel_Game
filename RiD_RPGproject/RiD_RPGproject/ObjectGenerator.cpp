@@ -12,6 +12,8 @@
 void MP::ObjectGenerator::_generate_trees(ObjectManager& aObiectManager)
 {
 
+	std::cout << "generates trees " << std::endl;
+
 	std::vector<std::vector<MapElement* >> tmpMapArray = aObiectManager.getMap().getMapArray();
 
 	std::vector<std::vector<MapElement* >>::iterator it = tmpMapArray.begin();
@@ -19,6 +21,13 @@ void MP::ObjectGenerator::_generate_trees(ObjectManager& aObiectManager)
 	unsigned int counter = 0;
 
 	char controlMark = RiD::ConfigurationLoader::getStringData("game settings", "treeWallMark")[0];
+
+	//only for progress
+	int a = tmpMapArray.size();
+	int b = tmpMapArray[0].size();
+	a *= b;
+	int progresCounter = 0;
+
 
 	for (it; it != tmpMapArray.end(); it++) 
 	{
@@ -38,11 +47,12 @@ void MP::ObjectGenerator::_generate_trees(ObjectManager& aObiectManager)
 
 					float newScale = ((_random_number() % 50) * float(0.01)) + float(0.8);
 
-
 					std::shared_ptr<Tree> tmpTree = std::make_shared<Tree>(&_a_asset_manager.getTexture("tree"), tmpCoord, newScale);
 					aObiectManager.getTreeList()->push_back(*tmpTree);
 					counter--;
 
+
+				
 				}
 
 			}
@@ -53,7 +63,7 @@ void MP::ObjectGenerator::_generate_trees(ObjectManager& aObiectManager)
 
 void MP::ObjectGenerator::_generate_player(ObjectManager& aObiectManager)
 {
-
+	std::cout << "generates player " << std::endl;
 	std::shared_ptr<MP::Player> tmp = std::make_shared< Player >(&_a_asset_manager.getTexture("player"), &_a_asset_manager.getTexture("pathicon"));
 
 	tmp->aItemsManager.setItems(_a_asset_manager.getFont("font"),
@@ -70,6 +80,7 @@ void MP::ObjectGenerator::_generate_player(ObjectManager& aObiectManager)
 
 void MP::ObjectGenerator::_generate_map(ObjectManager& aObiectManager)
 {
+	std::cout << "generates map " <<std::endl;
 	std::fstream mapFile;
 	mapFile.open("worldmaps/worldmap1.txt", std::ios::in);
 
@@ -93,7 +104,7 @@ void MP::ObjectGenerator::_generate_map(ObjectManager& aObiectManager)
 			for (unsigned int i = 0; i < line.length(); i++)
 			{
 				MapElement* tmpMapElement = new MapElement(_a_asset_manager,x, y, line[i]);
-				//aObiectManager.getMap().addMapElement(aObiectManager.getMapElementHead(), tmpMapElement);
+				
 
 				aObiectManager.getMap().getMapArray()[counter].push_back(tmpMapElement);
 
@@ -144,13 +155,13 @@ void MP::ObjectGenerator::_generate_map(ObjectManager& aObiectManager)
 
 void MP::ObjectGenerator::_generate_computer_player(ObjectManager& aObiectManager)
 {
+	std::cout << "generates computer players " << std::endl;
 	int computerPlayerAmmount = RiD::ConfigurationLoader::getIntData("computer player", "numberOfPlayers");
-
 	while (computerPlayerAmmount != 0)
 	{
 		std::shared_ptr<ComputerPlayerBandit> tmp= std::make_shared<ComputerPlayerBandit>(&_a_asset_manager.getTexture("bandit"));
-
 		aObiectManager.addObiect(*tmp);
+
 
 		computerPlayerAmmount--;
 	}
@@ -159,6 +170,7 @@ void MP::ObjectGenerator::_generate_computer_player(ObjectManager& aObiectManage
 
 void MP::ObjectGenerator::_generate_cursor(ObjectManager& aObiectManager)
 {
+	std::cout << "generates cursor " << std::endl;
 	std::shared_ptr<Cursor> tmp = std::make_shared<Cursor>(&_a_asset_manager.getTexture("cursor"));
 	aObiectManager.setCursor(tmp);
 
@@ -166,7 +178,7 @@ void MP::ObjectGenerator::_generate_cursor(ObjectManager& aObiectManager)
 
 void MP::ObjectGenerator::_generate_gui(ObjectManager& aObiectManager)
 {
-
+	std::cout << "generates GUI" << std::endl;
 	//creating map gui
 	aObiectManager.getGuiManager().getMapGui() = std::make_unique<MapGui>(&_a_asset_manager.getTexture("mapgui"));
 

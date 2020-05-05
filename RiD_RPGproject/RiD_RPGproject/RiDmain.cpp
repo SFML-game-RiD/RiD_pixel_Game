@@ -2,6 +2,7 @@
 #include "Engine/ConfigurationLoader.h"
 #include <iostream>
 #include "TaskManager.h"
+#include <Windows.h>
 
 void RiD::RiDmain::_create_window()
 {	
@@ -13,15 +14,16 @@ void RiD::RiDmain::_create_window()
 
 	while (_a_camera.getWindow().isOpen()) //program main loop
 	{
+	//	_music.update(_a_main_task_manager);
+
+
 		if (_a_main_task_manager.getCurrentState() == MP::TaskManager::stateType::stateGame) //If is faster than switch 
 		{
 			_event_function_for_state_game();
 			_calculate_for_state_game();
 			_draw_for_state_game();
 		}
-		else if (_a_main_task_manager.getCurrentState() == MP::TaskManager::stateType::stateMainMenu 
-			or _a_main_task_manager.getCurrentState() == MP::TaskManager::stateType::statePlacesMenu
-			or _a_main_task_manager.getCurrentState() == MP::TaskManager::stateType::stateMarketPlace)
+		else
 		{
 			_event_function_for_menu();
 			_calculate_for_state_menu();

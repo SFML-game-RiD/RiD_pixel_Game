@@ -8,7 +8,7 @@
 #include "TaskManager.h"
 #include "Calculator.h"
 #include "Camera.h"
-
+#include "Music.h"
 
 namespace RiD
 {
@@ -40,6 +40,8 @@ namespace RiD
 		sf::Event _event;
 
 		sf::Clock _clock;
+
+		MP::Music _music;
 
      	//Executes creation of window
 		void _create_window();
