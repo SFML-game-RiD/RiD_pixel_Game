@@ -130,6 +130,9 @@ void RiD::RiDmain::_draw_for_menu()
 
 RiD::RiDmain::RiDmain(int width, int height, std::string title)
 {
+
+
+
 	sf::VideoMode mode = sf::VideoMode::getFullscreenModes()[0];
 	_a_camera.getWindow().create(mode, title, sf::Style::Close | sf::Style::Fullscreen);
 	

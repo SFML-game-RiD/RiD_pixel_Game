@@ -4,8 +4,8 @@
 MP::GuiButton::GuiButton(sf::Texture* texturePtr, sf::Vector2f buttonPosition,sf::Vector2f relativelyTextPosition, sf::Font &aFont, std::string buttonName)
 {
 
-	aAnimation.loadObiectTextures(texturePtr, 2, 1, 275);
-	setObiectCoord(buttonPosition);
+	aAnimation.loadObjectTextures(texturePtr, 2, 1, 275);
+	setObjectCoord(buttonPosition);
 	_a_text.setFont(aFont);
 	sf::Vector2f realTextPostion = buttonPosition;
 	realTextPostion.x += 70;
@@ -19,10 +19,6 @@ MP::GuiButton::GuiButton(sf::Texture* texturePtr, sf::Vector2f buttonPosition,sf
 	_a_text.setCharacterSize(30);
 	_is_active = false;
 
-}
-
-void MP::GuiButton::setPressed()
-{
 }
 
 sf::Text & MP::GuiButton::getText()
@@ -48,16 +44,16 @@ bool MP::GuiButton::getButtonIsActive()
 void MP::GuiButton::draw_button(sf::RenderWindow& aMainWindow)
 {
 
-	aMainWindow.draw(aAnimation.getObiectSprite());
+	aMainWindow.draw(aAnimation.getObjectSprite());
 	aMainWindow.draw(_a_text);
 }
 
 void MP::GuiButton::setButtonPosition(sf::Vector2f newPostion)
 {	
 	sf::Vector2f oldTextPosition =_a_text.getPosition();
-	sf::Vector2f oldObjCoord = getObiectCoord();
+	sf::Vector2f oldObjCoord = getObjectCoord();
 
-	setObiectCoord(newPostion);
+	setObjectCoord(newPostion);
 
 	newPostion.x+= oldTextPosition.x - oldObjCoord.x;
 	newPostion.y+= oldTextPosition.y - oldObjCoord.y;

@@ -2,9 +2,9 @@
 
 MP::PathIcon::PathIcon(sf::Texture* texturePtr, sf::Vector2f spawnCoord)
 {
-	aAnimation.loadObiectTextures(texturePtr, 1, 1, 60);
-	setObiectCoord(spawnCoord);
-	aAnimation.setScale(0.6, 0.6);
+	aAnimation.loadObjectTextures(texturePtr, 1, 1, 60);
+	setObjectCoord(spawnCoord);
+	aAnimation.setScale(float(0.6), float(0.6));
 	aAnimation.setOrigin(-29,-29);
 }
 

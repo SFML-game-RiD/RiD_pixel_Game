@@ -2,7 +2,7 @@
 
 MP::GuiPanel::GuiPanel(sf::Texture* texturePtr, sf::Font& aFont)
 {
-	aAnimation.loadObiectTextures(texturePtr, 1, 1, 785);
+	aAnimation.loadObjectTextures(texturePtr, 1, 1, 785);
 	_panel_title.setFont(aFont);
 	_panel_title.setLetterSpacing(1);
 	_panel_title.setCharacterSize(37);
@@ -13,11 +13,11 @@ void MP::GuiPanel::update(sf::Vector2f panelPosition, std::string panelName)
 {
 	_panel_title.setString(panelName);
 	_panel_title.setPosition(panelPosition+sf::Vector2f(268,57));
-	setObiectCoord(panelPosition);
+	setObjectCoord(panelPosition);
 }
 
 void MP::GuiPanel::render(sf::RenderWindow& mainWindow)
 {
-	mainWindow.draw(aAnimation.getObiectSprite());
+	mainWindow.draw(aAnimation.getObjectSprite());
 	mainWindow.draw(_panel_title);
 }

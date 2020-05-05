@@ -1,11 +1,10 @@
-#ifndef RIDMAIN_H
-#define RIDMAIN_H
+#pragma once
 
 #include "SFML/Graphics.hpp"
-#include "ObiectDrawer.h"
+#include "ObjectDrawer.h"
 #include "Move.h"
-#include "ObiectManager.h"
-#include "ObiectGenerator.h"
+#include "ObjectManager.h"
+#include "ObjectGenerator.h"
 #include "TaskManager.h"
 #include "Calculator.h"
 #include "Camera.h"
@@ -20,11 +19,11 @@ namespace RiD
 
 		//############# OBIECT MANAGING ##############
 
-		MP::ObiectDrawer _a_obiect_drawer;
+		MP::ObjectDrawer _a_obiect_drawer;
 
-		MP::ObiectManager _a_obiect_manager;
+		MP::ObjectManager _a_obiect_manager;
 
-		MP::ObiectGenerator _a_obiect_generator;
+		MP::ObjectGenerator _a_obiect_generator;
 
 		//############################################
 
@@ -66,4 +65,3 @@ namespace RiD
 	};
 
 }
-#endif

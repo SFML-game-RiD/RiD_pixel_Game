@@ -1,14 +1,12 @@
 #include "Wood.h"
 #include <string>
-#include <iostream>
-
 MP::Wood::Wood()
 {
 }
 
 MP::Wood::Wood(sf::Texture* texturePtr,sf::Font& aFont)
 {
-	aAnimation.loadObiectTextures(texturePtr, 1, 1, 64);
+	aAnimation.loadObjectTextures(texturePtr, 1, 1, 64);
 	_item_amount_text.setFont(aFont);
 	setItemAmount(0);
 	_item_amount_text.setLetterSpacing(1);
@@ -20,7 +18,7 @@ MP::Wood::Wood(sf::Texture* texturePtr,sf::Font& aFont)
 
 void MP::Wood::setItemPosition(sf::Vector2f itemPosition)
 {
-	setObiectCoord(itemPosition);
+	setObjectCoord(itemPosition);
 	itemPosition.x += 68;
 	itemPosition.y += 30;
 
@@ -29,7 +27,7 @@ void MP::Wood::setItemPosition(sf::Vector2f itemPosition)
 
 void MP::Wood::drawItem(sf::RenderWindow& mainWindow)
 {
-	mainWindow.draw(aAnimation.getObiectSprite());
+	mainWindow.draw(aAnimation.getObjectSprite());
 	mainWindow.draw(_item_amount_text);
 }
 

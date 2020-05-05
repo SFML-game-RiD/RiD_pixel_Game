@@ -1,7 +1,7 @@
 #ifndef MAPMOVE_H
 #define MAPMOVE_H
 
-#include "PawnObiect.h"
+#include "PawnObject.h"
 #include "TaskManager.h"
 #include "Player.h"
 
@@ -11,32 +11,32 @@ namespace MP
 	{
 	private:
 
-		void movePixelDown(ActiveObiect& obiect);
+		void movePixelDown(ActiveObject& obiect);
 
-		void movePixelUp(ActiveObiect& obiect);
+		void movePixelUp(ActiveObject& obiect);
 
-		void movePixelRight(ActiveObiect& obiect);
+		void movePixelRight(ActiveObject& obiect);
 
-		void movePixelLeft(ActiveObiect& obiect);
+		void movePixelLeft(ActiveObject& obiect);
 
 	public:
 
-		void moveBlockDown(PawnObiect& obiect, sf::Clock &currentTime);
+		void moveBlockDown(PawnObject& obiect, sf::Clock &currentTime);
 
-		void moveBlockUp(PawnObiect& obiect, sf::Clock &currentTime);
+		void moveBlockUp(PawnObject& obiect, sf::Clock &currentTime);
 
-		void moveBlockRight(PawnObiect& obiect, sf::Clock &currentTime);
+		void moveBlockRight(PawnObject& obiect, sf::Clock &currentTime);
 
-		void moveBlockLeft(PawnObiect& obiect, sf::Clock &currentTime);
+		void moveBlockLeft(PawnObject& obiect, sf::Clock &currentTime);
 
 
-		void moveBlockDown(Player& obiect, sf::Clock& currentTime,TaskManager &aMainTaskManager);
+		void moveBlockDown(Player& player, sf::Clock& currentTime,TaskManager &aMainTaskManager);
 
-		void moveBlockUp(Player& obiect, sf::Clock& currentTime, TaskManager& aMainTaskManager);
+		void moveBlockUp(Player& player, sf::Clock& currentTime, TaskManager& aMainTaskManager);
 
-		void moveBlockRight(Player& obiect, sf::Clock& currentTime, TaskManager& aMainTaskManager);
+		void moveBlockRight(Player& player, sf::Clock& currentTime, TaskManager& aMainTaskManager);
 
-		void moveBlockLeft(Player& obiect, sf::Clock& currentTime, TaskManager& aMainTaskManager);
+		void moveBlockLeft(Player& player, sf::Clock& currentTime, TaskManager& aMainTaskManager);
 	};
 }
 #endif

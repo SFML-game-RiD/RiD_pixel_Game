@@ -2,7 +2,7 @@
 #include <iostream>
 
 
-void MP::Calculator::_computer_players_procedure(ObiectManager& aObiectManager, sf::Clock& gameClock, Map& aMap)
+void MP::Calculator::_computer_players_procedure(ObjectManager& aObiectManager, sf::Clock& gameClock, Map& aMap)
 {
 	std::list<ComputerPlayerBandit>* computerPlayerList = aObiectManager.getComputerPlayerList();
 	std::list<ComputerPlayerBandit>::iterator it;
@@ -13,7 +13,7 @@ void MP::Calculator::_computer_players_procedure(ObiectManager& aObiectManager, 
 		it->update(aMap, gameClock,aObiectManager.getPlayer());
 }
 
-void MP::Calculator::_trees_procedure(sf::Clock& globalClock, ObiectManager& aObiectManager)
+void MP::Calculator::_trees_procedure(sf::Clock& globalClock, ObjectManager& aObiectManager)
 {
 	std::list<Tree>* aTree = aObiectManager.getTreeList();
 	std::list<Tree >::iterator iterator;
@@ -25,13 +25,13 @@ void MP::Calculator::_trees_procedure(sf::Clock& globalClock, ObiectManager& aOb
 }
 
 
-void MP::Calculator::startMainGameProcedures(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, sf::Clock& gameClock, Camera& aCamera)
+void MP::Calculator::startMainGameProcedures(TaskManager& aMainTaskManager, ObjectManager& aObiectManager, sf::Clock& gameClock, Camera& aCamera)
 {
 	aObiectManager.getPlayer()->update(aMainTaskManager, gameClock, aObiectManager.getMap(), aObiectManager.getCursor()->getGameCoord());
 
 	_trees_procedure(gameClock, aObiectManager);
 
-	aCamera.update(aObiectManager.getPlayer()->getObiectCoord(), aMainTaskManager);
+	aCamera.update(aObiectManager.getPlayer()->getObjectCoord(), aMainTaskManager);
 
 	_computer_players_procedure(aObiectManager, gameClock, aObiectManager.getMap());
 
@@ -40,7 +40,7 @@ void MP::Calculator::startMainGameProcedures(TaskManager& aMainTaskManager, Obie
 	aObiectManager.getGuiManager().getMapGui()->update(aObiectManager.getPlayer()->aItemsManager);
 }
 
-void MP::Calculator::startMenuProcedures(TaskManager &aMainTaskManager, ObiectManager & aObiectManager,Camera& aCamera)
+void MP::Calculator::startMenuProcedures(TaskManager &aMainTaskManager, ObjectManager & aObiectManager,Camera& aCamera)
 {
 
 	aObiectManager.getGuiManager().getGuiMainMenu()->update(aMainTaskManager, aCamera.getWindow(), aObiectManager.getCursor()->getGuiCoord());

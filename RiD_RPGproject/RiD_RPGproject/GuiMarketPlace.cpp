@@ -37,8 +37,8 @@ void MP::GuiMarketPlace::_create_buttons(sf::Texture* buttonTexture, sf::Font& a
 void MP::GuiMarketPlace::_create_panels(sf::Texture* panelLeftTexture, sf::Texture* panelRightTexture)
 {
 
-	_panelA->aAnimation.loadObiectTextures(panelLeftTexture, 1, 1,785);
-	_panelB->aAnimation.loadObiectTextures(panelRightTexture, 1, 1,785);
+	_panelA->aAnimation.loadObjectTextures(panelLeftTexture, 1, 1,785);
+	_panelB->aAnimation.loadObjectTextures(panelRightTexture, 1, 1,785);
 }
 
 void MP::GuiMarketPlace::_buy_item(ItemsManager& seller, ItemsManager& buyer)
@@ -116,8 +116,8 @@ MP::GuiMarketPlace::GuiMarketPlace()
 
 MP::GuiMarketPlace::GuiMarketPlace(sf::Texture* marketplaceBackgroundTexture, sf::Texture* buttonTexture,sf::Texture *panelLeftTexture,sf::Texture *panelRightTexture, sf::Font& aFont)
 {
-	aAnimation.loadObiectTextures(marketplaceBackgroundTexture, 1, 1, 1920);
-	aAnimation.setObiectSpritePosition(0, 0);
+	aAnimation.loadObjectTextures(marketplaceBackgroundTexture, 1, 1, 1920);
+	aAnimation.setObjectSpritePosition(0, 0);
 	aAnimation.setOrigin(460, 460);
 
 	_create_buttons(buttonTexture, aFont);
@@ -128,7 +128,7 @@ MP::GuiMarketPlace::GuiMarketPlace(sf::Texture* marketplaceBackgroundTexture, sf
 	_current_item = std::make_unique<Food>();
 }
 
-void MP::GuiMarketPlace::_update_market_place(Places& place, ActiveObiect& player)
+void MP::GuiMarketPlace::_update_market_place(Places& place, ActiveObject& player)
 {
 	_panelA->update(sf::Vector2f(-400, 60), "      Trader");
 	_panelB->update(sf::Vector2f(620, 60), "       Player");
@@ -178,9 +178,9 @@ void MP::GuiMarketPlace::setCurrentPlace(std::shared_ptr<Places>& currentPlace)
 	_current_place = currentPlace;
 }
 
-void MP::GuiMarketPlace::_draw_menu(sf::RenderWindow& aMainWindow, Places& place, ActiveObiect& player)
+void MP::GuiMarketPlace::_draw_menu(sf::RenderWindow& aMainWindow, Places& place, ActiveObject& player)
 {
-	aMainWindow.draw(aAnimation.getObiectSprite());
+	aMainWindow.draw(aAnimation.getObjectSprite());
 
 	for (unsigned int i = 0; i < _button_array.size(); i++)
 		_button_array[i]->render(aMainWindow);
@@ -209,8 +209,8 @@ void MP::GuiMarketPlace::_select_button(sf::Vector2f mouseCoord)
 {
 	for (unsigned int i = 0; i < _button_array.size(); i++)
 	{
-		if (mouseCoord.x >= _button_array[i]->getObiectCoord().x and mouseCoord.x <= _button_array[i]->getObiectCoord().x + 275
-			and mouseCoord.y >= _button_array[i]->getObiectCoord().y + 112 and mouseCoord.y <= _button_array[i]->getObiectCoord().y + 163)
+		if (mouseCoord.x >= _button_array[i]->getObjectCoord().x and mouseCoord.x <= _button_array[i]->getObjectCoord().x + 275
+			and mouseCoord.y >= _button_array[i]->getObjectCoord().y + 112 and mouseCoord.y <= _button_array[i]->getObjectCoord().y + 163)
 			_button_array[i]->update(true);
 		else
 			_button_array[i]->update(false);

@@ -22,7 +22,7 @@ void MP::Item::setItemAmount(unsigned int newItemAmount)
 
 void MP::Item::setItemPosition(sf::Vector2f itemPosition)
 {
-	setObiectCoord(itemPosition);
+	setObjectCoord(itemPosition);
 	itemPosition.x += 68;
 	itemPosition.y += 30;
 
@@ -36,8 +36,8 @@ void MP::Item::drawItem(sf::RenderWindow& mainWindow)
 
 void MP::Item::setTextPostion(sf::Vector2f newPosition)
 {
-	newPosition.x += getObiectCoord().x;
-	newPosition.y += getObiectCoord().y;
+	newPosition.x += getObjectCoord().x;
+	newPosition.y += getObjectCoord().y;
 	_item_amount_text.setPosition(newPosition);
 }
 

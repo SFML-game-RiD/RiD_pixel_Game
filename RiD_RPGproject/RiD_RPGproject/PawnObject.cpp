@@ -1,14 +1,14 @@
-#include "PawnObiect.h"
+#include "PawnObject.h"
 #include "TaskManager.h"
 
-MP::PawnObiect::PawnObiect()
+MP::PawnObject::PawnObject()
 {
 	_current_land = nullptr;
 }
 
-bool MP::PawnObiect::checkGoUp(MP::Map& aMap)
+bool MP::PawnObject::_check_go_up(MP::Map& aMap)
 {
-	sf::Vector2f tmp = getObiectCoord();
+	sf::Vector2f tmp = getObjectCoord();
 	tmp.y -= _block_length;
 	MapElement* tmp2= aMap.findElementAddressSquareRange(tmp);
 	if (tmp2 != nullptr and tmp2->isWalkable() == true)
@@ -20,9 +20,9 @@ bool MP::PawnObiect::checkGoUp(MP::Map& aMap)
 		return false;
 }
 
-bool MP::PawnObiect::checkGoDown(MP::Map& aMap)
+bool MP::PawnObject::_check_go_down(MP::Map& aMap)
 {
-	sf::Vector2f tmp = getObiectCoord();
+	sf::Vector2f tmp = getObjectCoord();
 	tmp.y += _block_length;
 	MapElement* tmp2 = aMap.findElementAddressSquareRange(tmp);
 	if (tmp2 != nullptr and tmp2->isWalkable() == true)
@@ -34,9 +34,9 @@ bool MP::PawnObiect::checkGoDown(MP::Map& aMap)
 		return false;
 }
 
-bool MP::PawnObiect::checkGoLeft(MP::Map& aMap)
+bool MP::PawnObject::_check_go_left(MP::Map& aMap)
 {
-	sf::Vector2f tmp = getObiectCoord();
+	sf::Vector2f tmp = getObjectCoord();
 	tmp.x -= _block_length;
 	MapElement* tmp2 = aMap.findElementAddressSquareRange(tmp);
 	if (tmp2 != nullptr and tmp2->isWalkable() == true)
@@ -48,9 +48,9 @@ bool MP::PawnObiect::checkGoLeft(MP::Map& aMap)
 		return false;
 }
 
-bool MP::PawnObiect::checkGoRight(MP::Map& aMap)
+bool MP::PawnObject::_check_go_right(MP::Map& aMap)
 {
-	sf::Vector2f tmp = getObiectCoord();
+	sf::Vector2f tmp = getObjectCoord();
 	tmp.x += _block_length;
 	MapElement* tmp2 = aMap.findElementAddressSquareRange(tmp);
 	if (tmp2 != nullptr and tmp2->isWalkable() == true)
@@ -62,43 +62,43 @@ bool MP::PawnObiect::checkGoRight(MP::Map& aMap)
 		return false;
 }
 
-void MP::PawnObiect::tryToMoveUp(Map& aMap, TaskManager& aMainTaskManager)
+void MP::PawnObject::tryToMoveUp(Map& aMap, TaskManager& aMainTaskManager)
 {
-	if (checkGoUp(aMap) and aMainTaskManager.isTaskListEmpty())
+	if (_check_go_up(aMap) and aMainTaskManager.isTaskListEmpty())
 	{
 		aMainTaskManager.addTask(MP::TaskNode::taskType::taskGoUp);
 		aMainTaskManager.addTask(MP::TaskNode::taskType::taskNormalMove);
 	}
 }
 
-void MP::PawnObiect::tryToMoveDown(Map& aMap, TaskManager& aMainTaskManager)
+void MP::PawnObject::tryToMoveDown(Map& aMap, TaskManager& aMainTaskManager)
 {
-	if (checkGoDown(aMap) and aMainTaskManager.isTaskListEmpty())
+	if (_check_go_down(aMap) and aMainTaskManager.isTaskListEmpty())
 	{
 		aMainTaskManager.addTask(MP::TaskNode::taskType::taskGoDown);
 		aMainTaskManager.addTask(MP::TaskNode::taskType::taskNormalMove);
 	}
 }
 
-void MP::PawnObiect::tryToMoveLeft(Map& aMap, TaskManager& aMainTaskManager)
+void MP::PawnObject::tryToMoveLeft(Map& aMap, TaskManager& aMainTaskManager)
 {
-	if (checkGoLeft(aMap) and aMainTaskManager.isTaskListEmpty())
+	if (_check_go_left(aMap) and aMainTaskManager.isTaskListEmpty())
 	{
 		aMainTaskManager.addTask(MP::TaskNode::taskType::taskGoLeft);
 		aMainTaskManager.addTask(MP::TaskNode::taskType::taskNormalMove);
 	}
 }
 
-void MP::PawnObiect::tryToMoveRight(Map& aMap, TaskManager& aMainTaskManager)
+void MP::PawnObject::tryToMoveRight(Map& aMap, TaskManager& aMainTaskManager)
 {
-	if (checkGoRight(aMap) and aMainTaskManager.isTaskListEmpty())
+	if (_check_go_right(aMap) and aMainTaskManager.isTaskListEmpty())
 	{
 		aMainTaskManager.addTask(MP::TaskNode::taskType::taskGoRight);
 		aMainTaskManager.addTask(MP::TaskNode::taskType::taskNormalMove);
 	}
 }
 
-MP::MapElement* MP::PawnObiect::getCurrentLand()
+MP::MapElement* MP::PawnObject::getCurrentLand()
 {
 	return _current_land;
 }

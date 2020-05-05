@@ -10,7 +10,7 @@ void  MP::SpriteAnimation::_get_rectangle_array(int columns, int rows, int squar
 		{
 			sf::IntRect tmp(y, x, squareLength, squareLength);
 
-			_obiect_rectangle_array.push_back(tmp);
+			_object_rectangle_array.push_back(tmp);
 
 			y += squareLength;
 		}
@@ -19,47 +19,44 @@ void  MP::SpriteAnimation::_get_rectangle_array(int columns, int rows, int squar
 	}
 }
 
-void MP::SpriteAnimation::setObiectSpritePosition(int x, int y)
+void MP::SpriteAnimation::setObjectSpritePosition(int x, int y)
 {
-	_obj_sprite.setPosition(x, y);
+	_obj_sprite.setPosition(float(x),float(y));
 }
 
-void MP::SpriteAnimation::setObiectSpritePosition(sf::Vector2f coord)
+void MP::SpriteAnimation::setObjectSpritePosition(sf::Vector2f coord)
 {
 	_obj_sprite.setPosition(coord.x, coord.y);
 }
 
-sf::Sprite& MP::SpriteAnimation::getObiectSprite()
+sf::Sprite& MP::SpriteAnimation::getObjectSprite()
 {
 	return _obj_sprite;
 }
 
-void MP::SpriteAnimation::loadObiectTextures(sf::Texture *texturePtr, int columns, int rows, int squareLength)
+void MP::SpriteAnimation::loadObjectTextures(sf::Texture *texturePtr, int columns, int rows, int squareLength)
 {
-	_set_obiect_texture(texturePtr);
+	_obj_texture = texturePtr;
+	_obj_sprite.setTexture(*texturePtr);
 	_get_rectangle_array(columns, rows, squareLength);
 	changeSprite(0);
 }
 
-void MP::SpriteAnimation::_set_obiect_texture(sf::Texture * texture)
-{
-	_obj_sprite.setTexture(*texture);
-}
 
-void MP::SpriteAnimation::_set_obiect_texture_rect(sf::IntRect &textureRect)
+void MP::SpriteAnimation::_set_object_texture_rect(sf::IntRect &textureRect)
 {
 	_obj_sprite.setTextureRect(textureRect);
 }
 
 void MP::SpriteAnimation::changeSprite(int spriteNumber)
 {
-	_set_obiect_texture_rect(_obiect_rectangle_array[spriteNumber]);
+	_set_object_texture_rect(_object_rectangle_array[spriteNumber]);
 	_current_sprite = spriteNumber;
 }
 
 const std::vector<sf::IntRect>& MP::SpriteAnimation::getOryginalArray()
 {
-	return _obiect_rectangle_array;
+	return _object_rectangle_array;
 }
 
 int MP::SpriteAnimation::getCurrentSprite()
@@ -93,7 +90,7 @@ sf::Vector2f MP::SpriteAnimation::getScale()
 
 void MP::SpriteAnimation::setOrigin(int x, int y)
 {
-	_obj_sprite.setOrigin(x, y);
+	_obj_sprite.setOrigin(float(x), float(y));
 }
 
 void MP::SpriteAnimation::setColor(sf::Color newColor)

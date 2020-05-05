@@ -1,5 +1,4 @@
-#ifndef SPRITEANIMATION_H
-#define SPRITEANIMATION_H
+#pragma once
 #include <vector>
 #include "Engine/ConfigurationLoader.h"
 #include <SFML/Graphics.hpp>
@@ -18,29 +17,27 @@ namespace MP
 
 		sf::Color _obj_color;
 
-		std::vector<sf::IntRect> _obiect_rectangle_array;
+		std::vector<sf::IntRect> _object_rectangle_array;
 
 		int _current_sprite;
 
-		void _set_obiect_texture(sf::Texture * texture);
-
-		void _set_obiect_texture_rect(sf::IntRect& textureRect);
+		void _set_object_texture_rect(sf::IntRect& textureRect);
 
 		void _get_rectangle_array(int columns, int rows, int squareLength);
 
 	public:
 
-		void loadObiectTextures(sf::Texture* texturePtr, int columns, int rows, int squareLength);
+		void loadObjectTextures(sf::Texture* texturePtr, int columns, int rows, int squareLength);
 		void changeSprite(int spriteNumber);
 	
-		void setObiectSpritePosition(int x, int y);
-		void setObiectSpritePosition(sf::Vector2f coord);
+		void setObjectSpritePosition(int x, int y);
+		void setObjectSpritePosition(sf::Vector2f coord);
 		void setNextSprite(int from, int to);
 		void setScale(float x, float y);
 		void setOrigin(int x, int y);
 		void setColor(sf::Color newColor);
 	
-		sf::Sprite& getObiectSprite();
+		sf::Sprite& getObjectSprite();
 		sf::Vector2f getScale();
 		int getCurrentSprite();
 		const std::vector<sf::IntRect>& getOryginalArray();
@@ -49,4 +46,3 @@ namespace MP
 	
 	};
 }
-#endif

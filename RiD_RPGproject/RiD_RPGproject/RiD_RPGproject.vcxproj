@@ -153,7 +153,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ActiveObiect.cpp" />
+    <ClCompile Include="ActiveObject.cpp" />
     <ClCompile Include="Archer.cpp" />
     <ClCompile Include="Battle\RealTimeBattle.cpp" />
     <ClCompile Include="Calculator.cpp" />
@@ -185,19 +185,20 @@
     <ClCompile Include="Land.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="SpriteAnimation.cpp" />
     <ClCompile Include="MapElement.cpp" />
     <ClCompile Include="MapGui.cpp" />
     <ClCompile Include="Move.cpp" />
     <ClCompile Include="Map\TileMap.cpp" />
-    <ClCompile Include="Obiect.cpp" />
-    <ClCompile Include="ObiectDrawer.cpp" />
-    <ClCompile Include="ObiectGenerator.cpp" />
-    <ClCompile Include="ObiectManager.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="ObjectDrawer.cpp" />
+    <ClCompile Include="ObjectGenerator.cpp" />
+    <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="pathCreator.cpp" />
     <ClCompile Include="PathIcon.cpp" />
     <ClCompile Include="pathNode.cpp" />
-    <ClCompile Include="PawnObiect.cpp" />
+    <ClCompile Include="PawnObject.cpp" />
     <ClCompile Include="Places.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RiDmain.cpp" />
@@ -211,7 +212,7 @@
     <ClCompile Include="Wood.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ActiveObiect.h" />
+    <ClInclude Include="ActiveObject.h" />
     <ClInclude Include="Archer.h" />
     <ClInclude Include="Battle\RealTimeBattle.h" />
     <ClInclude Include="Calculator.h" />
@@ -242,19 +243,20 @@
     <ClInclude Include="ItemsManager.h" />
     <ClInclude Include="Land.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="SoundManager.h" />
     <ClInclude Include="SpriteAnimation.h" />
     <ClInclude Include="MapElement.h" />
     <ClInclude Include="MapGui.h" />
     <ClInclude Include="Move.h" />
     <ClInclude Include="Map\TileMap.h" />
-    <ClInclude Include="Obiect.h" />
-    <ClInclude Include="ObiectDrawer.h" />
-    <ClInclude Include="ObiectGenerator.h" />
-    <ClInclude Include="ObiectManager.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="ObjectDrawer.h" />
+    <ClInclude Include="ObjectGenerator.h" />
+    <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="pathCreator.h" />
     <ClInclude Include="PathIcon.h" />
     <ClInclude Include="pathNode.h" />
-    <ClInclude Include="PawnObiect.h" />
+    <ClInclude Include="PawnObject.h" />
     <ClInclude Include="Places.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RiDmain.h" />

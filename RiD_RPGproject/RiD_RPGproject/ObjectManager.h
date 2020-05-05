@@ -1,5 +1,4 @@
-#ifndef OBIECTMANAGER_H
-#define OBIECTMANAGER_H
+#pragma once
 
 #include <random>
 #include <list>
@@ -14,7 +13,7 @@
 
 namespace MP
 {
-	class ObiectManager
+	class ObjectManager
 	{
 	private:
 
@@ -38,9 +37,9 @@ namespace MP
 
 	public:
 		
-		ObiectManager();
+		ObjectManager();
 
-		~ObiectManager();
+		~ObjectManager();
 
 		void addObiect(std::shared_ptr<Player> &newPlayer);
 		
@@ -65,4 +64,3 @@ namespace MP
 	};
 
 }
-#endif

@@ -1,5 +1,5 @@
 #include "Camera.h"
-#include "ActiveObiect.h"
+#include "ActiveObject.h"
 
 void MP::Camera::_zoom_in()
 {

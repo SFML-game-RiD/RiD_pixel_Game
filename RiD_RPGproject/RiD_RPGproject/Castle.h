@@ -1,5 +1,4 @@
-#ifndef CASTLE_H
-#define CASTLE_H
+#pragma once
 #include "Places.h" 
 
 namespace MP
@@ -7,7 +6,10 @@ namespace MP
 	class Castle:public Places
 	{
 	public:
+
+		//Castle's constructor.
+		//@param texturePtr object texture.
+		//@param coord object coord.
 		Castle(sf::Texture* texturePtr, sf::Vector2f coord);
 	};
 }
-#endif

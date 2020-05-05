@@ -7,18 +7,22 @@ MP::PathNode::PathNode()
 {
 	_next_node = nullptr;
 	_parent = nullptr;
+	_cost_F = 0;
+	_cost_G = 0;
+	_cost_H = 0;
+	_a_map_element = nullptr;
 }
 
 void MP::PathNode::calculateHValue(sf::Vector2f meta)
 {
-	_cost_H = abs(meta.x - this->_a_map_element->getLandTile().getObiectCoord().x);
-	_cost_H += abs(meta.y - this->_a_map_element->getLandTile().getObiectCoord().y);
+	_cost_H = abs(meta.x - this->_a_map_element->getLandTile().getObjectCoord().x);
+	_cost_H += abs(meta.y - this->_a_map_element->getLandTile().getObjectCoord().y);
 }
 
 void MP::PathNode::calculateGValue(sf::Vector2f start)
 {
-	_cost_G = abs(start.x - this->_a_map_element->getLandTile().getObiectCoord().x);
-	_cost_G += abs(start.y - this->_a_map_element->getLandTile().getObiectCoord().y);
+	_cost_G = abs(start.x - this->_a_map_element->getLandTile().getObjectCoord().x);
+	_cost_G += abs(start.y - this->_a_map_element->getLandTile().getObjectCoord().y);
 }
 
 void MP::PathNode::setParentForElement(MP::PathNode* up, MP::PathNode* down, MP::PathNode* left, MP::PathNode* right)
@@ -82,7 +86,7 @@ MP::PathNode& MP::PathNode::operator=(MP::MapElement*& anElement)
 	return *this;
 }
 
-int MP::PathNode::getCostF()
+float MP::PathNode::getCostF()
 {
 	return _cost_F;
 }

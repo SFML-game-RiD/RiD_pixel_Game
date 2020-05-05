@@ -6,7 +6,7 @@ MP::Swordsman::Swordsman()
 
 MP::Swordsman::Swordsman(sf::Texture* texturePtr, sf::Font& aFont)
 {
-	aAnimation.loadObiectTextures(texturePtr, 1, 1, 202);
+	aAnimation.loadObjectTextures(texturePtr, 1, 1, 202);
 	_item_amount_text.setFont(aFont);
 	setItemAmount(0);
 	_item_amount_text.setLetterSpacing(1);
@@ -18,7 +18,7 @@ MP::Swordsman::Swordsman(sf::Texture* texturePtr, sf::Font& aFont)
 
 void MP::Swordsman::setItemPosition(sf::Vector2f itemPosition)
 {
-	setObiectCoord(itemPosition);
+	setObjectCoord(itemPosition);
 	itemPosition.x += 70;
 	itemPosition.y += 200;
 
@@ -27,6 +27,6 @@ void MP::Swordsman::setItemPosition(sf::Vector2f itemPosition)
 
 void MP::Swordsman::drawItem(sf::RenderWindow& mainWindow)
 {
-	mainWindow.draw(aAnimation.getObiectSprite());
+	mainWindow.draw(aAnimation.getObjectSprite());
 	mainWindow.draw(_item_amount_text);
 }

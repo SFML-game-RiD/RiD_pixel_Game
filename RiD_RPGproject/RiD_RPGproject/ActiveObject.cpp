@@ -1,7 +1,7 @@
-#include "ActiveObiect.h"
+#include "ActiveObject.h"
 #include "Engine/ConfigurationLoader.h"
 
-MP::ActiveObiect::ActiveObiect()
+MP::ActiveObject::ActiveObject()
 {
 	_last_active = sf::milliseconds(0);
 	_ready_time = sf::milliseconds(0);
@@ -14,49 +14,45 @@ MP::ActiveObiect::ActiveObiect()
 	_velocity = 0;
 }
 
-void MP::ActiveObiect::setLastActive(sf::Clock currentTime)
+void MP::ActiveObject::setLastActive(sf::Clock currentTime)
 {
 	_ready_time = _last_active = currentTime.getElapsedTime();
 	_ready_time += active_obj_sleep_time;
 }
 
-sf::Time MP::ActiveObiect::getLastActiveTime()
+sf::Time MP::ActiveObject::getLastActiveTime()
 {
 	return _last_active;
 }
 
-sf::Time MP::ActiveObiect::getReadyTime()
+sf::Time MP::ActiveObject::getReadyTime()
 {
 	return _ready_time;
 }
 
-int MP::ActiveObiect::getBlockLenghtCopy()
+int MP::ActiveObject::getBlockLenghtCopy()
 {
 	return _block_length_copy;
 }
 
-void MP::ActiveObiect::resetBlockLenghtCopy()
+void MP::ActiveObject::resetBlockLenghtCopy()
 {
 	_block_length_copy = _block_length;
 	_distance_traveled = 0;
 }
 
-void MP::ActiveObiect::decreaseBlockLengthCopy()
+void MP::ActiveObject::decreaseBlockLengthCopy()
 {
 	_block_length_copy-=_velocity;
 	_distance_traveled += _velocity;
 }
 
-void MP::ActiveObiect::procedureMove()
-{
-}
-
-int MP::ActiveObiect::getTraveledDistance()
+int MP::ActiveObject::getTraveledDistance()
 {
 	return _distance_traveled;
 }
 
-int MP::ActiveObiect::getVelocity()
+int MP::ActiveObject::getVelocity()
 {
 	return _velocity;
 }

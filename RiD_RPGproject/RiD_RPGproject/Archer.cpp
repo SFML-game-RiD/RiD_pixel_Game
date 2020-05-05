@@ -7,7 +7,7 @@ MP::Archer::Archer()
 MP::Archer::Archer(sf::Texture* texturePtr, sf::Font& aFont)
 {
 
-	aAnimation.loadObiectTextures(texturePtr, 1, 1, 202);
+	aAnimation.loadObjectTextures(texturePtr, 1, 1, 202);
 	_item_amount_text.setFont(aFont);
 	setItemAmount(0);
 	_item_amount_text.setLetterSpacing(1);
@@ -18,7 +18,7 @@ MP::Archer::Archer(sf::Texture* texturePtr, sf::Font& aFont)
 
 void MP::Archer::setItemPosition(sf::Vector2f itemPosition)
 {
-	setObiectCoord(itemPosition);
+	setObjectCoord(itemPosition);
 	itemPosition.x += 70;
 	itemPosition.y += 197;
 
@@ -27,6 +27,6 @@ void MP::Archer::setItemPosition(sf::Vector2f itemPosition)
 
 void MP::Archer::drawItem(sf::RenderWindow& mainWindow)
 {
-	mainWindow.draw(aAnimation.getObiectSprite());
+	mainWindow.draw(aAnimation.getObjectSprite());
 	mainWindow.draw(_item_amount_text);
 }

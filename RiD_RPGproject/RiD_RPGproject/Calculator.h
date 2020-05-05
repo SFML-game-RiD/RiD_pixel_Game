@@ -4,7 +4,7 @@
 #include "Move.h"
 #include "TaskManager.h"
 #include "Player.h"
-#include "ObiectManager.h"
+#include "ObjectManager.h"
 #include "Camera.h"
 
 namespace MP
@@ -13,15 +13,15 @@ namespace MP
 	{
 	private:
 
-		void _computer_players_procedure(ObiectManager& aObiectManager, sf::Clock& gameClock,Map& aMap);
+		void _computer_players_procedure(ObjectManager& aObiectManager, sf::Clock& gameClock,Map& aMap);
 
-		void _trees_procedure(sf::Clock& globalClock, ObiectManager& aObiectManager);
+		void _trees_procedure(sf::Clock& globalClock, ObjectManager& aObiectManager);
 
 	public:
 
-		void startMainGameProcedures(TaskManager& aTaskManager, ObiectManager& aObiectManager, sf::Clock& globalClock, Camera& aCamera);
+		void startMainGameProcedures(TaskManager& aTaskManager, ObjectManager& aObiectManager, sf::Clock& globalClock, Camera& aCamera);
 
-		void startMenuProcedures(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, Camera& aCamera);
+		void startMenuProcedures(TaskManager& aMainTaskManager, ObjectManager& aObiectManager, Camera& aCamera);
 	
 	};
 }

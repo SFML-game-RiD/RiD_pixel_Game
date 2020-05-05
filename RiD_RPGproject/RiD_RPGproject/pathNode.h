@@ -34,7 +34,7 @@ namespace MP
 		PathNode& operator=(MP::MapElement*& anElement);
 
 		//Returns F value.
-		int getCostF();
+		float getCostF();
 
 		//Calculates F G H value for element using coordinates below.
 		void calculate(sf::Vector2f start, sf::Vector2f stop);

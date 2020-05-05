@@ -55,7 +55,7 @@ MP::Player::Player(sf::Texture* texturePtr, sf::Texture* pathIconTexturePtr)
 	//saving path icon texture
 	_a_path_icon_texture = pathIconTexturePtr;
 	//Loading textures.
-	aAnimation.loadObiectTextures(texturePtr,3,5,64);
+	aAnimation.loadObjectTextures(texturePtr,3,5,64);
 	aAnimation.changeSprite(6);
 	aAnimation.setScale(float(0.7), float(0.7));
 	//Getting player animation and move sleep time.
@@ -65,7 +65,7 @@ MP::Player::Player(sf::Texture* texturePtr, sf::Texture* pathIconTexturePtr)
 	//Loading velocity.
 	_velocity = RiD::ConfigurationLoader::getIntData("player", "velocity");
 	//Getting player coordinates.
-	setObiectCoord(RiD::ConfigurationLoader::getIntData("player", "coordinateX"), RiD::ConfigurationLoader::getIntData("player", "coordinateY"));
+	setObjectCoord(RiD::ConfigurationLoader::getIntData("player", "coordinateX"), RiD::ConfigurationLoader::getIntData("player", "coordinateY"));
 
 }
 
@@ -115,25 +115,25 @@ void MP::Player::_player_automatic_move(Map& aMap, TaskManager& aTaskManager)
 	{
 
 		MapElement* nextDestination = _path;//Takes new destination (new block).
-		MapElement* tmp = aMap.findElementAddressSquareRange(getObiectCoord());//Return element where pawn stands.
+		MapElement* tmp = aMap.findElementAddressSquareRange(getObjectCoord());//Return element where pawn stands.
 
-		if (tmp->getLandTile().getObiectCoord().x == nextDestination->getLandTile().getObiectCoord().x
-			and tmp->getLandTile().getObiectCoord().y + _block_length == nextDestination->getLandTile().getObiectCoord().y)//Goes down
+		if (tmp->getLandTile().getObjectCoord().x == nextDestination->getLandTile().getObjectCoord().x
+			and tmp->getLandTile().getObjectCoord().y + _block_length == nextDestination->getLandTile().getObjectCoord().y)//Goes down
 
 			aPawnObiectTaskManager.addTask( MP::TaskNode::taskType::taskGoDown);
 
-		else if (tmp->getLandTile().getObiectCoord().x == nextDestination->getLandTile().getObiectCoord().x
-			and tmp->getLandTile().getObiectCoord().y - _block_length == nextDestination->getLandTile().getObiectCoord().y)//Goes up
+		else if (tmp->getLandTile().getObjectCoord().x == nextDestination->getLandTile().getObjectCoord().x
+			and tmp->getLandTile().getObjectCoord().y - _block_length == nextDestination->getLandTile().getObjectCoord().y)//Goes up
 
 			aPawnObiectTaskManager.addTask(MP::TaskNode::taskType::taskGoUp);
 
-		else if (tmp->getLandTile().getObiectCoord().x + _block_length == nextDestination->getLandTile().getObiectCoord().x//Goes right
-			and tmp->getLandTile().getObiectCoord().y == nextDestination->getLandTile().getObiectCoord().y)
+		else if (tmp->getLandTile().getObjectCoord().x + _block_length == nextDestination->getLandTile().getObjectCoord().x//Goes right
+			and tmp->getLandTile().getObjectCoord().y == nextDestination->getLandTile().getObjectCoord().y)
 
 			aPawnObiectTaskManager.addTask(MP::TaskNode::taskType::taskGoRight);
 
-		else if (tmp->getLandTile().getObiectCoord().x - _block_length == nextDestination->getLandTile().getObiectCoord().x//Goes left
-			and tmp->getLandTile().getObiectCoord().y == nextDestination->getLandTile().getObiectCoord().y)
+		else if (tmp->getLandTile().getObjectCoord().x - _block_length == nextDestination->getLandTile().getObjectCoord().x//Goes left
+			and tmp->getLandTile().getObjectCoord().y == nextDestination->getLandTile().getObjectCoord().y)
 
 			aPawnObiectTaskManager.addTask(MP::TaskNode::taskType::taskGoLeft);
 
@@ -215,7 +215,7 @@ void MP::Player::_mark_path()
 
 	while (tmp != nullptr)
 	{
-		std::unique_ptr<PathIcon> newPathIcon = std::make_unique<PathIcon>(_a_path_icon_texture, tmp->getLandTile().getObiectCoord());
+		std::unique_ptr<PathIcon> newPathIcon = std::make_unique<PathIcon>(_a_path_icon_texture, tmp->getLandTile().getObjectCoord());
 		_a_path_icon.push_back(*newPathIcon);
 		tmp = tmp->getNextElement();
 	}
@@ -229,7 +229,7 @@ void MP::Player::_unmark_path()
 
 void MP::Player::goToPlace(Map& aGameMap, TaskManager& aMainTaskManger)
 {
-	MapElement *currentBlock = aGameMap.findElementAddressSquareRange(this->getObiectCoord());
+	MapElement *currentBlock = aGameMap.findElementAddressSquareRange(this->getObjectCoord());
 
 
 	if (currentBlock->getPlace() != nullptr)
@@ -251,11 +251,11 @@ void MP::Player::update(TaskManager& aMainTaskManager, sf::Clock& GameClock, MP:
 
 void MP::Player::render(sf::RenderWindow& mainWindow)
 {
-	mainWindow.draw(aAnimation.getObiectSprite());
+	mainWindow.draw(aAnimation.getObjectSprite());
 	std::vector<PathIcon> tmpPathCopy = _a_path_icon;
 	for (unsigned int i = 0; i < tmpPathCopy.size(); i++)
 	{
-		mainWindow.draw(tmpPathCopy[i].aAnimation.getObiectSprite());
+		mainWindow.draw(tmpPathCopy[i].aAnimation.getObjectSprite());
 	}
 }
 
@@ -274,22 +274,22 @@ void MP::Player::_procedure_player_auto_or_normal_move(TaskManager& aMainTaskMan
 	{
 		//geting start and stop coordinates
 
-		MapElement* start = aMap.findElementAddressSquareRange(getObiectCoord());
+		MapElement* start = aMap.findElementAddressSquareRange(getObjectCoord());
 
 		MapElement* stop = aMap.findElementAddressSquareRange(mouseGameCoord);
 
 		if (stop->isWalkable())
 		{
-			if (start->getLandTile().getObiectCoord() != stop->getLandTile().getObiectCoord())
+			if (start->getLandTile().getObjectCoord() != stop->getLandTile().getObjectCoord())
 			{
 
-				checkingVector = stop->getLandTile().getObiectCoord();
+				checkingVector = stop->getLandTile().getObjectCoord();
 
 				//creating path
 				MP::PathCreator  tmp(aMap);
 
 				aMainTaskManager.addTask(MP::TaskNode::taskType::taskWaitForDoubleClickLeft); //computer waiting for player reply
-				_set_path(tmp.findPath(start->getLandTile().getObiectCoord(), stop->getLandTile().getObiectCoord()));
+				_set_path(tmp.findPath(start->getLandTile().getObjectCoord(), stop->getLandTile().getObjectCoord()));
 
 				_mark_path();
 			}
@@ -301,7 +301,7 @@ void MP::Player::_procedure_player_auto_or_normal_move(TaskManager& aMainTaskMan
 	{
 		MapElement* checkingElement = aMap.findElementAddressSquareRange(mouseGameCoord);
 
-		if (checkingElement->getLandTile().getObiectCoord().x == checkingVector.x and checkingElement->getLandTile().getObiectCoord().y == checkingVector.y) //continue auto move
+		if (checkingElement->getLandTile().getObjectCoord().x == checkingVector.x and checkingElement->getLandTile().getObjectCoord().y == checkingVector.y) //continue auto move
 		{
 			_unmark_path();
 			aMainTaskManager.addTask(MP::TaskNode::taskType::taskExecuteAutoMove);

@@ -2,8 +2,8 @@
 
 MP::MapGui::MapGui(sf::Texture* texturePtr)
 {
-	aAnimation.loadObiectTextures(texturePtr, 1, 1, 1920);
-	setObiectCoord(sf::Vector2f(0,0));
+	aAnimation.loadObjectTextures(texturePtr, 1, 1, 1920);
+	setObjectCoord(sf::Vector2f(0,0));
 	aAnimation.setOrigin(460, 460);
 	
 
@@ -30,7 +30,7 @@ void MP::MapGui::_update_items(ItemsManager& aItemsManager)
 
 void MP::MapGui::render(sf::RenderWindow& mainWindow, ItemsManager& aItemsManager)
 {
-	mainWindow.draw(aAnimation.getObiectSprite());
+	mainWindow.draw(aAnimation.getObjectSprite());
 	_draw_items(mainWindow, aItemsManager);
 }
 

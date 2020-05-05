@@ -1,18 +1,18 @@
-#ifndef  COMPUTER_PLAYER_H
-#define COMPUTER_PLAYER_H
-
+#pragma once
 #include <SFML/Graphics.hpp>
-#include "PawnObiect.h"
+#include "PawnObject.h"
 #include "PathCreator.h"
 #include "Player.h"
 
 namespace MP
 {
-	class ComputerPlayerBandit:public PawnObiect
+	class ComputerPlayerBandit:public PawnObject
 	{
 	private:
 
 		MapElement* _path;
+
+		int _radius;
 
 		bool _is_enemys_check;
 
@@ -34,7 +34,7 @@ namespace MP
 
 		void _delete_path();
 
-		//bool _check_enemy(std::shared_ptr<Player>& aPlayer);
+		bool _check_enemy(std::shared_ptr<Player>& aPlayer);
 
 	public:
 
@@ -49,4 +49,3 @@ namespace MP
 	};
 
 }
-#endif // ! _COMPUTER_PLAYER_H_

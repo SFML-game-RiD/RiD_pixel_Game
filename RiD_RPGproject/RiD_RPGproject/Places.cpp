@@ -15,5 +15,5 @@ void MP::Places::update()
 
 void MP::Places::render(sf::RenderWindow& mainWindow)
 {
-	mainWindow.draw(aAnimation.getObiectSprite());
+	mainWindow.draw(aAnimation.getObjectSprite());
 }

@@ -21,8 +21,8 @@ MP::GuiPlacesMenu::GuiPlacesMenu()
 
 MP::GuiPlacesMenu::GuiPlacesMenu(sf::Texture* texturePtr, sf::Texture* buttonTexture, sf::Font& aFont)
 {
-	aAnimation.loadObiectTextures(texturePtr, 1, 1, 1920);
-	aAnimation.setObiectSpritePosition(0, 0);
+	aAnimation.loadObjectTextures(texturePtr, 1, 1, 1920);
+	aAnimation.setObjectSpritePosition(0, 0);
 	aAnimation.setOrigin(460, 460);
 
 	_create_buttons(buttonTexture, aFont);
@@ -32,8 +32,8 @@ void MP::GuiPlacesMenu::_select_button(sf::Vector2f mouseCoord)
 {
 	for (unsigned int i = 0; i < _button_array.size(); i++)
 	{
-		if (mouseCoord.x >= _button_array[i]->getObiectCoord().x and mouseCoord.x <= _button_array[i]->getObiectCoord().x + 275
-			and mouseCoord.y >= _button_array[i]->getObiectCoord().y + 112 and mouseCoord.y <= _button_array[i]->getObiectCoord().y + 163)
+		if (mouseCoord.x >= _button_array[i]->getObjectCoord().x and mouseCoord.x <= _button_array[i]->getObjectCoord().x + 275
+			and mouseCoord.y >= _button_array[i]->getObjectCoord().y + 112 and mouseCoord.y <= _button_array[i]->getObjectCoord().y + 163)
 			_button_array[i]->update(true);
 		else
 			_button_array[i]->update(false);

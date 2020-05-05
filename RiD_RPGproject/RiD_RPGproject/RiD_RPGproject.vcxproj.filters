@@ -35,18 +35,6 @@
     <ClCompile Include="Engine\ConfigurationLoader.cpp">
       <Filter>FILE LOADER</Filter>
     </ClCompile>
-    <ClCompile Include="Obiect.cpp">
-      <Filter>OBIECT</Filter>
-    </ClCompile>
-    <ClCompile Include="ObiectGenerator.cpp">
-      <Filter>MANAGERS, HEAD CLASS</Filter>
-    </ClCompile>
-    <ClCompile Include="ActiveObiect.cpp">
-      <Filter>OBIECT\ACTIVE OBIECT</Filter>
-    </ClCompile>
-    <ClCompile Include="PawnObiect.cpp">
-      <Filter>OBIECT\ACTIVE OBIECT\PAWNS</Filter>
-    </ClCompile>
     <ClCompile Include="RiDmain.cpp">
       <Filter>MANAGERS, HEAD CLASS\MAIN CLASS</Filter>
     </ClCompile>
@@ -146,14 +134,8 @@
     <ClCompile Include="Tree.cpp">
       <Filter>OBIECT</Filter>
     </ClCompile>
-    <ClCompile Include="ObiectDrawer.cpp">
-      <Filter>MANAGERS, HEAD CLASS\DRAW</Filter>
-    </ClCompile>
     <ClCompile Include="Calculator.cpp">
       <Filter>MANAGERS, HEAD CLASS\CALCULATE</Filter>
-    </ClCompile>
-    <ClCompile Include="ObiectManager.cpp">
-      <Filter>MANAGERS, HEAD CLASS\MANAGE OBIECT</Filter>
     </ClCompile>
     <ClCompile Include="TaskManager.cpp">
       <Filter>MANAGERS, HEAD CLASS\MANAGE TASK</Filter>
@@ -167,6 +149,25 @@
     <ClCompile Include="SpriteAnimation.cpp">
       <Filter>MOVE,ANIMATION</Filter>
     </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>OBIECT</Filter>
+    </ClCompile>
+    <ClCompile Include="ActiveObject.cpp">
+      <Filter>OBIECT\ACTIVE OBIECT</Filter>
+    </ClCompile>
+    <ClCompile Include="PawnObject.cpp">
+      <Filter>OBIECT\ACTIVE OBIECT\PAWNS</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>MANAGERS, HEAD CLASS\MANAGE OBIECT</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectDrawer.cpp">
+      <Filter>MANAGERS, HEAD CLASS\DRAW</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectGenerator.cpp">
+      <Filter>MANAGERS, HEAD CLASS</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Animation.h">
@@ -201,18 +202,6 @@
     </ClInclude>
     <ClInclude Include="Engine\ConfigurationLoader.h">
       <Filter>FILE LOADER</Filter>
-    </ClInclude>
-    <ClInclude Include="Obiect.h">
-      <Filter>OBIECT</Filter>
-    </ClInclude>
-    <ClInclude Include="ObiectGenerator.h">
-      <Filter>MANAGERS, HEAD CLASS</Filter>
-    </ClInclude>
-    <ClInclude Include="ActiveObiect.h">
-      <Filter>OBIECT\ACTIVE OBIECT</Filter>
-    </ClInclude>
-    <ClInclude Include="PawnObiect.h">
-      <Filter>OBIECT\ACTIVE OBIECT\PAWNS</Filter>
     </ClInclude>
     <ClInclude Include="RiDmain.h">
       <Filter>MANAGERS, HEAD CLASS\MAIN CLASS</Filter>
@@ -313,14 +302,8 @@
     <ClInclude Include="Land.h">
       <Filter>OBIECT</Filter>
     </ClInclude>
-    <ClInclude Include="ObiectDrawer.h">
-      <Filter>MANAGERS, HEAD CLASS\DRAW</Filter>
-    </ClInclude>
     <ClInclude Include="Calculator.h">
       <Filter>MANAGERS, HEAD CLASS\CALCULATE</Filter>
-    </ClInclude>
-    <ClInclude Include="ObiectManager.h">
-      <Filter>MANAGERS, HEAD CLASS\MANAGE OBIECT</Filter>
     </ClInclude>
     <ClInclude Include="TaskManager.h">
       <Filter>MANAGERS, HEAD CLASS\MANAGE TASK</Filter>
@@ -334,6 +317,25 @@
     <ClInclude Include="SpriteAnimation.h">
       <Filter>MOVE,ANIMATION</Filter>
     </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>OBIECT</Filter>
+    </ClInclude>
+    <ClInclude Include="ActiveObject.h">
+      <Filter>OBIECT\ACTIVE OBIECT</Filter>
+    </ClInclude>
+    <ClInclude Include="PawnObject.h">
+      <Filter>OBIECT\ACTIVE OBIECT\PAWNS</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>MANAGERS, HEAD CLASS\MANAGE OBIECT</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectDrawer.h">
+      <Filter>MANAGERS, HEAD CLASS\DRAW</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectGenerator.h">
+      <Filter>MANAGERS, HEAD CLASS</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="OBIECT">

@@ -1,7 +1,7 @@
 #include <fstream>
-#include "ObiectGenerator.h"
+#include "ObjectGenerator.h"
 #include "Player.h"
-#include "ActiveObiect.h"
+#include "ActiveObject.h"
 #include "SpriteAnimation.h"
 #include "Land.h"
 #include <vector>
@@ -9,7 +9,7 @@
 #include "ComputerPlayerBandit.h"
 #include "GuiPlacesMenu.h"
 
-void MP::ObiectGenerator::_generate_trees(ObiectManager& aObiectManager)
+void MP::ObjectGenerator::_generate_trees(ObjectManager& aObiectManager)
 {
 
 	std::vector<std::vector<MapElement* >> tmpMapArray = aObiectManager.getMap().getMapArray();
@@ -32,7 +32,7 @@ void MP::ObiectGenerator::_generate_trees(ObiectManager& aObiectManager)
 				spawnRange -= 10;
 				while (counter != 0)
 				{
-					sf::Vector2f tmpCoord = (*it2)->getLandTile().getObiectCoord();
+					sf::Vector2f tmpCoord = (*it2)->getLandTile().getObjectCoord();
 					tmpCoord.x += _random_number() % spawnRange;
 					tmpCoord.y += _random_number() % spawnRange;
 
@@ -51,7 +51,7 @@ void MP::ObiectGenerator::_generate_trees(ObiectManager& aObiectManager)
 	}
 }
 
-void MP::ObiectGenerator::_generate_player(ObiectManager& aObiectManager)
+void MP::ObjectGenerator::_generate_player(ObjectManager& aObiectManager)
 {
 
 	std::shared_ptr<MP::Player> tmp = std::make_shared< Player >(&_a_asset_manager.getTexture("player"), &_a_asset_manager.getTexture("pathicon"));
@@ -68,7 +68,7 @@ void MP::ObiectGenerator::_generate_player(ObiectManager& aObiectManager)
 	aObiectManager.addObiect(tmp);
 }
 
-void MP::ObiectGenerator::_generate_map(ObiectManager& aObiectManager)
+void MP::ObjectGenerator::_generate_map(ObjectManager& aObiectManager)
 {
 	std::fstream mapFile;
 	mapFile.open("worldmaps/worldmap1.txt", std::ios::in);
@@ -98,7 +98,7 @@ void MP::ObiectGenerator::_generate_map(ObiectManager& aObiectManager)
 				aObiectManager.getMap().getMapArray()[counter].push_back(tmpMapElement);
 
 				x += blockLength;
-				aObiectManager.getMap().setLastElementCoord(tmpMapElement->getLandTile().getObiectCoord());
+				aObiectManager.getMap().setLastElementCoord(tmpMapElement->getLandTile().getObjectCoord());
 
 				char placesMark = tmpMapElement->getMark();
 
@@ -142,7 +142,7 @@ void MP::ObiectGenerator::_generate_map(ObiectManager& aObiectManager)
 	}
 }
 
-void MP::ObiectGenerator::_generate_computer_player(ObiectManager& aObiectManager)
+void MP::ObjectGenerator::_generate_computer_player(ObjectManager& aObiectManager)
 {
 	int computerPlayerAmmount = RiD::ConfigurationLoader::getIntData("computer player", "numberOfPlayers");
 
@@ -157,14 +157,14 @@ void MP::ObiectGenerator::_generate_computer_player(ObiectManager& aObiectManage
 
 }
 
-void MP::ObiectGenerator::_generate_cursor(ObiectManager& aObiectManager)
+void MP::ObjectGenerator::_generate_cursor(ObjectManager& aObiectManager)
 {
 	std::shared_ptr<Cursor> tmp = std::make_shared<Cursor>(&_a_asset_manager.getTexture("cursor"));
 	aObiectManager.setCursor(tmp);
 
 }
 
-void MP::ObiectGenerator::_generate_gui(ObiectManager& aObiectManager)
+void MP::ObjectGenerator::_generate_gui(ObjectManager& aObiectManager)
 {
 
 	//creating map gui
@@ -188,7 +188,7 @@ void MP::ObiectGenerator::_generate_gui(ObiectManager& aObiectManager)
 
 }
 
-void MP::ObiectGenerator::_generate_items_for_places(ItemsManager& itemsFromPlaces,ItemsManager &itemsForTrade,int multiplier,int tradeMultiplier, char placesMark)
+void MP::ObjectGenerator::_generate_items_for_places(ItemsManager& itemsFromPlaces,ItemsManager &itemsForTrade,int multiplier,int tradeMultiplier, char placesMark)
 {
 
 
@@ -248,12 +248,12 @@ void MP::ObiectGenerator::_generate_items_for_places(ItemsManager& itemsFromPlac
 	}
 }
 
-MP::ObiectGenerator::ObiectGenerator()
+MP::ObjectGenerator::ObjectGenerator()
 {
 	_random_number.seed((unsigned int)time(NULL));
 }
 
-void MP::ObiectGenerator::generateObiects(ObiectManager& aObiectManager)
+void MP::ObjectGenerator::generateObiects(ObjectManager& aObiectManager)
 {
 	_a_asset_manager.setTexture("tree", "img/mpimg/mptree.png");
 	_a_asset_manager.setTexture("land", "img/mpimg/mpgrass8.png");

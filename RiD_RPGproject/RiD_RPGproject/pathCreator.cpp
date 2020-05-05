@@ -61,8 +61,8 @@ MP::PathCreator& MP::PathCreator::operator=(MP::Map& aMap)
 MP::PathCreator& MP::PathCreator::operator^(MP::PathNode*& aNode)
 {
 	RiD::AssetManager tempAsset;
-	int uslessInt;
-	MapElement* tmpElementPtr = new MapElement(tempAsset, aNode->getMapElementAddress()->getLandTile().getObiectCoord().x, aNode->getMapElementAddress()->getLandTile().getObiectCoord().y, '~');
+	int uslessInt=0;
+	MapElement* tmpElementPtr = new MapElement(tempAsset, int(aNode->getMapElementAddress()->getLandTile().getObjectCoord().x), int(aNode->getMapElementAddress()->getLandTile().getObjectCoord().y), '~');
 
 	if (_path_map_element_for_export == nullptr)
 	{
@@ -280,7 +280,7 @@ void MP::PathCreator::_set_parent_for_elements()
 
 	while (tmp != nullptr)
 	{
-		sf::Vector2f currentCoord = tmp->getMapElementAddress()->getLandTile().getObiectCoord();
+		sf::Vector2f currentCoord = tmp->getMapElementAddress()->getLandTile().getObjectCoord();
 		//Setting parent for elements from open and closed list.
 		tmp->setParentForElement(
 			this->_find_path_node(_map_copy->findElementAddress(currentCoord.x,currentCoord.y-_map_copy->getBlockSize())),
@@ -297,7 +297,7 @@ void MP::PathCreator::_find_walkable_elements()
 
 	while (tmp != nullptr)
 	{
-		sf::Vector2f currentCoord = tmp->getMapElementAddress()->getLandTile().getObiectCoord();
+		sf::Vector2f currentCoord = tmp->getMapElementAddress()->getLandTile().getObjectCoord();
 		//Up.
 		if (_map_copy->findElementAddress(currentCoord.x, currentCoord.y - _map_copy->getBlockSize()) != nullptr and
 			_map_copy->findElementAddress(currentCoord.x, currentCoord.y - _map_copy->getBlockSize())->isWalkable() == true) { //If element exist and is walkable. 
@@ -370,8 +370,8 @@ MP::PathNode* MP::PathCreator::_find_in_closed_list_by_coords(sf::Vector2f stop)
 
 	while (tmp != nullptr)
 	{
-		if (tmp->getMapElementAddress()->getLandTile().getObiectCoord().x == stop.x and
-			tmp->getMapElementAddress()->getLandTile().getObiectCoord().y == stop.y)
+		if (tmp->getMapElementAddress()->getLandTile().getObjectCoord().x == stop.x and
+			tmp->getMapElementAddress()->getLandTile().getObjectCoord().y == stop.y)
 			return tmp;
 
 		tmp = tmp->getNextNode();

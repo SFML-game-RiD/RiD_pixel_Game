@@ -1,20 +1,28 @@
 #pragma once
-#include "Obiect.h"
+#include "Object.h"
 namespace MP
 {
-	class GuiPanel :public Obiect
+	class GuiPanel :public Object
 	{
 	private:
 
-		sf::Text _panel_title;
+		sf::Text _panel_title;///Stores player's name.
 
 	public:
 
+		//Panel's constructor.
+		//@param texturePtr object's texture.
+		//@param aFont text's font.
 		GuiPanel(sf::Texture* texturePtr, sf::Font& aFont);
 
-			void update(sf::Vector2f panelPosition, std::string panelName);
+		//Updates panel.
+		//@param panelPosition panel's coordinates.
+		//@param panelName panel's name.
+		void update(sf::Vector2f panelPosition, std::string panelName);
 
-			void render(sf::RenderWindow &mainWindow);
+		//Draws panel.
+		//@param mainWindow game's window.
+		void render(sf::RenderWindow &mainWindow);
 
 	};
 }

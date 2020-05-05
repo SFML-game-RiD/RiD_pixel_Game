@@ -2,8 +2,8 @@
 
 MP::Tree::Tree(sf::Texture* texturePtr, sf::Vector2f coord, float treeScale)
 {
-	aAnimation.loadObiectTextures( texturePtr, 2, 2, 64);
-	setObiectCoord(coord);
+	aAnimation.loadObjectTextures( texturePtr, 2, 2, 64);
+	setObjectCoord(coord);
 	aAnimation.setOrigin(32, 55);
 	aAnimation.setScale(treeScale, treeScale);
 	
@@ -28,5 +28,5 @@ void MP::Tree::update(sf::Clock& globalClock)
 
 void MP::Tree::render(sf::RenderWindow& mainWindow)
 {
-	mainWindow.draw(aAnimation.getObiectSprite());
+	mainWindow.draw(aAnimation.getObjectSprite());
 }

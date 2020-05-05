@@ -1,22 +1,27 @@
-#ifndef LAND_H
-#define LAND_H
+#pragma once
 
-#include "Obiect.h"
+#include "Object.h"
 
 namespace MP
 {
-	class Land:public Obiect
+	class Land:public Object
 	{
 	private:
 
 	public:
 
+		//Object constructor.
+		//@param texturePtr object texture.
+		//@param x the x coordinates.
+		//@param y the y coordinates.
 		Land(sf::Texture* texturePtr, int x,int y);
 
-		Land( int x,int y); //Is only use for path creator, stores coordination.
+		//Constructor used in A* algorythm.
+		//@param x the x coordinates.
+		//@param y the y coordinates.
+		Land( int x,int y);
 
 		void update();
 		void render(sf::RenderWindow &mainWindow);
 	};
 }
-#endif // !_LAND_H_

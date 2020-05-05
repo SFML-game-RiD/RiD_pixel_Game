@@ -1,7 +1,7 @@
 #include "Move.h"
 
 
-void MP::Move::moveBlockDown(PawnObiect& obiect, sf::Clock& currentTime)
+void MP::Move::moveBlockDown(PawnObject& obiect, sf::Clock& currentTime)
 {
 	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= obiect.getReadyTime())
 	{
@@ -16,7 +16,7 @@ void MP::Move::moveBlockDown(PawnObiect& obiect, sf::Clock& currentTime)
 	}
 }
 
-void MP::Move::moveBlockUp(PawnObiect& obiect, sf::Clock& currentTime)
+void MP::Move::moveBlockUp(PawnObject& obiect, sf::Clock& currentTime)
 {
 	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= obiect.getReadyTime())
 	{
@@ -31,7 +31,7 @@ void MP::Move::moveBlockUp(PawnObiect& obiect, sf::Clock& currentTime)
 	}
 }
 
-void MP::Move::moveBlockRight(PawnObiect& obiect, sf::Clock& currentTime)
+void MP::Move::moveBlockRight(PawnObject& obiect, sf::Clock& currentTime)
 {
 	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() > obiect.getReadyTime())
 	{
@@ -46,7 +46,7 @@ void MP::Move::moveBlockRight(PawnObiect& obiect, sf::Clock& currentTime)
 	}
 }
 
-void MP::Move::moveBlockLeft(PawnObiect& obiect, sf::Clock& currentTime)
+void MP::Move::moveBlockLeft(PawnObject& obiect, sf::Clock& currentTime)
 {
 	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= obiect.getReadyTime())
 	{
@@ -122,22 +122,22 @@ void MP::Move::moveBlockLeft(Player& obiect, sf::Clock& currentTime, TaskManager
 	}
 }
 
-void MP::Move::movePixelDown(ActiveObiect& obiect)
+void MP::Move::movePixelDown(ActiveObject& obiect)
 {
-	obiect.setObiectCoord(int(obiect.getObiectCoord().x), int(obiect.getObiectCoord().y + obiect.getVelocity()));
+	obiect.setObjectCoord(int(obiect.getObjectCoord().x), int(obiect.getObjectCoord().y + obiect.getVelocity()));
 }
 
-void MP::Move::movePixelUp(ActiveObiect& obiect)
+void MP::Move::movePixelUp(ActiveObject& obiect)
 {
-	obiect.setObiectCoord(int(obiect.getObiectCoord().x), int(obiect.getObiectCoord().y - obiect.getVelocity()));
+	obiect.setObjectCoord(int(obiect.getObjectCoord().x), int(obiect.getObjectCoord().y - obiect.getVelocity()));
 }
 
-void MP::Move::movePixelRight(ActiveObiect& obiect)
+void MP::Move::movePixelRight(ActiveObject& obiect)
 {
-	obiect.setObiectCoord(int(obiect.getObiectCoord().x + obiect.getVelocity()), int(obiect.getObiectCoord().y));
+	obiect.setObjectCoord(int(obiect.getObjectCoord().x + obiect.getVelocity()), int(obiect.getObjectCoord().y));
 }
 
-void MP::Move::movePixelLeft(ActiveObiect& obiect)
+void MP::Move::movePixelLeft(ActiveObject& obiect)
 {
-	obiect.setObiectCoord(int(obiect.getObiectCoord().x - obiect.getVelocity()), int(obiect.getObiectCoord().y));
+	obiect.setObjectCoord(int(obiect.getObjectCoord().x - obiect.getVelocity()), int(obiect.getObjectCoord().y));
 }

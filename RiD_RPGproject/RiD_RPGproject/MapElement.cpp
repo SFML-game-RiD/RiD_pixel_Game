@@ -24,11 +24,11 @@ MP::MapElement::MapElement(RiD::AssetManager& aAssetManager, int cordX, int cord
 		//Creating places.
 
 		if (mark == RiD::ConfigurationLoader::getStringData("village", "mark")[0])
-			_create_village(&aAssetManager.getTexture("village"), _land_tile->getObiectCoord());
+			_create_village(&aAssetManager.getTexture("village"), _land_tile->getObjectCoord());
 		else if (mark == RiD::ConfigurationLoader::getStringData("castle", "mark")[0])
-			_create_castle(&aAssetManager.getTexture("castle"), _land_tile->getObiectCoord());
+			_create_castle(&aAssetManager.getTexture("castle"), _land_tile->getObjectCoord());
 		else if (mark == RiD::ConfigurationLoader::getStringData("town", "mark")[0])
-			_create_town(&aAssetManager.getTexture("town"), _land_tile->getObiectCoord());
+			_create_town(&aAssetManager.getTexture("town"), _land_tile->getObjectCoord());
 		else
 			_a_place = nullptr;
 	}
@@ -40,17 +40,17 @@ MP::MapElement::MapElement(RiD::AssetManager& aAssetManager, int cordX, int cord
 
 void MP::MapElement::_create_village(sf::Texture* texturePtr, sf::Vector2f coord)
 {
-	_a_place = std::make_shared<MP::Village>(texturePtr,this->getLandTile().getObiectCoord());
+	_a_place = std::make_shared<MP::Village>(texturePtr,this->getLandTile().getObjectCoord());
 }
 
 void MP::MapElement::_create_town(sf::Texture* texturePtr, sf::Vector2f coord)
 {
-	_a_place = std::make_shared<MP::Town>(texturePtr,this->getLandTile().getObiectCoord());
+	_a_place = std::make_shared<MP::Town>(texturePtr,this->getLandTile().getObjectCoord());
 }
 
 void MP::MapElement::_create_castle(sf::Texture* texturePtr, sf::Vector2f coord)
 {
-	_a_place = std::make_shared<MP::Castle>(texturePtr,this->getLandTile().getObiectCoord());
+	_a_place = std::make_shared<MP::Castle>(texturePtr,this->getLandTile().getObjectCoord());
 }
 
 MP::Land & MP::MapElement::getLandTile()

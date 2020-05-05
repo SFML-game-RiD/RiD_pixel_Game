@@ -1,8 +1,8 @@
-#include "ObiectDrawer.h"
+#include "ObjectDrawer.h"
 #include "MapElement.h"
 
 
-void MP::ObiectDrawer::_draw_land(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager)
+void MP::ObjectDrawer::_draw_land(sf::RenderWindow& mainWindow, ObjectManager& aObiectManager)
 {	
 	std::vector<std::vector<MapElement*>>::iterator it;
 	std::vector<MapElement*>::iterator it2;
@@ -23,7 +23,7 @@ void MP::ObiectDrawer::_draw_land(sf::RenderWindow& mainWindow, ObiectManager& a
 	}
 }
 
-void MP::ObiectDrawer::_draw_trees(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager)
+void MP::ObjectDrawer::_draw_trees(sf::RenderWindow& mainWindow, ObjectManager& aObiectManager)
 {
 	std::list<Tree> * aTree = aObiectManager.getTreeList();
 	std::list<Tree >::iterator iterator;
@@ -33,7 +33,7 @@ void MP::ObiectDrawer::_draw_trees(sf::RenderWindow& mainWindow, ObiectManager& 
 		iterator->render(mainWindow);
 }
 
-void MP::ObiectDrawer::_draw_active_obiects(sf::RenderWindow& mainWindow, ObiectManager& aObiectManager)
+void MP::ObjectDrawer::_draw_active_obiects(sf::RenderWindow& mainWindow, ObjectManager& aObiectManager)
 {
 	//drawing player and path icon (if exist);
 	aObiectManager.getPlayer()->render(mainWindow);
@@ -48,7 +48,7 @@ void MP::ObiectDrawer::_draw_active_obiects(sf::RenderWindow& mainWindow, Obiect
 		it->render(mainWindow);
 
 }
-void MP::ObiectDrawer::drawGame(TaskManager& aMainTaskManager, Camera& aGameCamera, ObiectManager& aObiectManager)
+void MP::ObjectDrawer::drawGame(TaskManager& aMainTaskManager, Camera& aGameCamera, ObjectManager& aObiectManager)
 {
 		//GAME DRAWING
 		aGameCamera.changeViewToGame();
@@ -64,7 +64,7 @@ void MP::ObiectDrawer::drawGame(TaskManager& aMainTaskManager, Camera& aGameCame
 		aObiectManager.getCursor()->render(aGameCamera.getWindow());
 }
 
-void MP::ObiectDrawer::drawMenu(TaskManager& aMainTaskManager, ObiectManager& aObiectManager, Camera& aGameCamera)
+void MP::ObjectDrawer::drawMenu(TaskManager& aMainTaskManager, ObjectManager& aObiectManager, Camera& aGameCamera)
 {
 	aGameCamera.changeViewToGui();
 
@@ -72,7 +72,7 @@ void MP::ObiectDrawer::drawMenu(TaskManager& aMainTaskManager, ObiectManager& aO
 
 	aObiectManager.getGuiManager().getGuiPlacesMenu()->render(aMainTaskManager, aGameCamera.getWindow());
 
-	aObiectManager.getGuiManager().getGuiMarketPlace()->render(aMainTaskManager, aGameCamera.getWindow(),aObiectManager.getMap().findElementAddressSquareRange(aObiectManager.getPlayer()->getObiectCoord())->getPlace(),aObiectManager.getPlayer());
+	aObiectManager.getGuiManager().getGuiMarketPlace()->render(aMainTaskManager, aGameCamera.getWindow(),aObiectManager.getMap().findElementAddressSquareRange(aObiectManager.getPlayer()->getObjectCoord())->getPlace(),aObiectManager.getPlayer());
 
 	aObiectManager.getCursor()->render(aGameCamera.getWindow());
 }

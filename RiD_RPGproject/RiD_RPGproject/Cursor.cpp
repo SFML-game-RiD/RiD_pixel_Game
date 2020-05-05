@@ -22,7 +22,7 @@ sf::Vector2f MP::Cursor::getGuiCoord()
 
 MP::Cursor::Cursor(sf::Texture* texturePtr)
 {
-	aAnimation.loadObiectTextures(texturePtr, 1, 1, 60);
+	aAnimation.loadObjectTextures(texturePtr, 1, 1, 60);
 	aAnimation.setOrigin(18, 15);//Don't change it !
 }
 
@@ -31,7 +31,7 @@ void MP::Cursor::_update_cursor(TaskManager& aTaskManager, Camera& aCamera)
 	//saving gui cursor coord for drawing 
 	aCamera.changeViewToGui();
 	sf::Vector2f guiMouseCoord = aCamera.getWindow().mapPixelToCoords(sf::Mouse::getPosition(aCamera.getWindow()));
-	setObiectCoord(guiMouseCoord);
+	setObjectCoord(guiMouseCoord);
 
 	//Maping to pixel from gui view
 	sf::Vector2i screenMouseCoord = sf::Mouse::getPosition(aCamera.getWindow());
@@ -91,5 +91,5 @@ void MP::Cursor::update(TaskManager& aMainTaskManager, Camera& aCamera)
 
 void MP::Cursor::render(sf::RenderWindow& mainWindow)
 {
-	mainWindow.draw(aAnimation.getObiectSprite());
+	mainWindow.draw(aAnimation.getObjectSprite());
 }

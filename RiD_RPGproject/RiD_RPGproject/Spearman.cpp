@@ -6,7 +6,7 @@ MP::Spearman::Spearman()
 
 MP::Spearman::Spearman(sf::Texture* texturePtr, sf::Font& aFont)
 {
-	aAnimation.loadObiectTextures(texturePtr, 1, 1, 236);
+	aAnimation.loadObjectTextures(texturePtr, 1, 1, 236);
 	_item_amount_text.setFont(aFont);
 	setItemAmount(0);
 	_item_amount_text.setLetterSpacing(1);
@@ -17,7 +17,7 @@ MP::Spearman::Spearman(sf::Texture* texturePtr, sf::Font& aFont)
 
 void MP::Spearman::setItemPosition(sf::Vector2f itemPosition)
 {
-	setObiectCoord(itemPosition);
+	setObjectCoord(itemPosition);
 	itemPosition.x += 80;
 	itemPosition.y += 221;
 	_item_amount_text.setPosition(itemPosition);
@@ -25,6 +25,6 @@ void MP::Spearman::setItemPosition(sf::Vector2f itemPosition)
 
 void MP::Spearman::drawItem(sf::RenderWindow& mainWindow)
 {
-	mainWindow.draw(aAnimation.getObiectSprite());
+	mainWindow.draw(aAnimation.getObjectSprite());
 	mainWindow.draw(_item_amount_text);
 }

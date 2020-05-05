@@ -1,7 +1,7 @@
-#include "Obiect.h"
+#include "Object.h"
 #include "Engine/ConfigurationLoader.h"
 
-MP::Obiect::Obiect()
+MP::Object::Object()
 {
 	_objCoord.x = 0;
 	_objCoord.y = 0;
@@ -9,35 +9,27 @@ MP::Obiect::Obiect()
 	_last_animation_active = sf::milliseconds(0);
 }
 
-void MP::Obiect::setObiectCoord(int x, int y)
+void MP::Object::setObjectCoord(int x, int y)
 {
-	aAnimation.setObiectSpritePosition(x, y);
+	aAnimation.setObjectSpritePosition(x, y);
 
 	_objCoord.x = float(x);
 	_objCoord.y = float(y);
 }
 
-void MP::Obiect::setObiectCoord(sf::Vector2f coord)
+void MP::Object::setObjectCoord(sf::Vector2f coord)
 {
-	aAnimation.setObiectSpritePosition(coord);
+	aAnimation.setObjectSpritePosition(coord);
 	_objCoord = coord;
 }
 
-sf::Vector2f  MP::Obiect::getObiectCoord()
+sf::Vector2f  MP::Object::getObjectCoord()
 {
 	return _objCoord;
 }
 
-void MP::Obiect::setLastActiveAnimation(sf::Clock currentTime)
+void MP::Object::setLastActiveAnimation(sf::Clock currentTime)
 {
 	_ready_animation_time = _last_animation_active = currentTime.getElapsedTime();
 	_ready_animation_time += _obj_animation_sleep_time;
 }
-
-//void MP::Obiect::update()
-//{
-//}
-//
-//void MP::Obiect::render()
-//{
-//}
