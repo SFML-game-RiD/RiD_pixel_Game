@@ -2,16 +2,16 @@
 
 void MP::GuiPlacesMenu::_create_buttons(sf::Texture* buttonTexture, sf::Font& aFont)
 {
-	std::shared_ptr<GuiButton> tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(365, 25), sf::Vector2f(-45, 0), aFont, "go to market place");
+	std::shared_ptr<GuiButton> tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(400, 50), sf::Vector2f(-45, 0), aFont, "go to market place");
 	_button_array.push_back(tmp);
 
-	tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(365, 175), sf::Vector2f(-32, 0), aFont, "attack the place");
+	tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(400, 200), sf::Vector2f(-32, 0), aFont, "attack the place");
 	_button_array.push_back(tmp);
 
-	tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(365, 325), sf::Vector2f(-45, 0), aFont, "check notice board");
+	tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(400, 350), sf::Vector2f(-45, 0), aFont, "check notice board");
 	_button_array.push_back(tmp);
 
-	tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(365, 475), sf::Vector2f(40, 0), aFont, "exit");
+	tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(400, 500), sf::Vector2f(40, 0), aFont, "exit");
 	_button_array.push_back(tmp);
 }
 

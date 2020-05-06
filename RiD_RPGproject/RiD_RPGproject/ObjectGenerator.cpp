@@ -188,7 +188,7 @@ void MP::ObjectGenerator::_generate_gui(ObjectManager& aObiectManager)
 
 
 	//creating places menu
-	aObiectManager.getGuiManager().getGuiPlacesMenu() = std::make_unique<GuiPlacesMenu>(&_a_asset_manager.getTexture("menu"), &_a_asset_manager.getTexture("button"), _a_asset_manager.getFont("font"));
+	aObiectManager.getGuiManager().getGuiPlacesMenu() = std::make_unique<GuiPlacesMenu>(&_a_asset_manager.getTexture("placesmenu"), &_a_asset_manager.getTexture("button"), _a_asset_manager.getFont("font"));
 	
 	//creating market place menu
 	aObiectManager.getGuiManager().getGuiMarketPlace() = std::make_unique<GuiMarketPlace>(
@@ -285,6 +285,7 @@ void MP::ObjectGenerator::generateObiects(ObjectManager& aObiectManager)
 	_a_asset_manager.setTexture("pathicon", "img/mpimg/icons/move.png");
 	_a_asset_manager.setTexture("mapgui", "img/GUI/rid_map_gui_2.png");
 	_a_asset_manager.setTexture("menu", "img/GUI/rid_main_menu.png");
+	_a_asset_manager.setTexture("placesmenu", "img/GUI/places_menu.png");
 	_a_asset_manager.setTexture("button", "img/GUI/button.png");
 	_a_asset_manager.setTexture("marketplace", "img/GUI/rid_marketplace_background.png");
 	_a_asset_manager.setTexture("panelleft", "img/GUI/rid_panel_bottom_left.png");

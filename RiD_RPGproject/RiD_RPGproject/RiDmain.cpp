@@ -14,7 +14,7 @@ void RiD::RiDmain::_create_window()
 
 	while (_a_camera.getWindow().isOpen()) //program main loop
 	{
-	//	_music.update(_a_main_task_manager);
+	_music.update(_a_main_task_manager);
 
 
 		if (_a_main_task_manager.getCurrentState() == MP::TaskManager::stateType::stateGame) //If is faster than switch 
@@ -86,10 +86,6 @@ void RiD::RiDmain::_event_function_for_menu()
 		{
 			if (_a_main_task_manager.getCurrentState() == MP::TaskManager::stateType::stateMarketPlace)
 				_a_main_task_manager.setState(MP::TaskManager::stateType::statePlacesMenu);
-
-			if(_a_main_task_manager.getCurrentState() == MP::TaskManager::stateType::statePlacesMenu)
-				_a_main_task_manager.setState(MP::TaskManager::stateType::stateGame);
-
 		}
 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
