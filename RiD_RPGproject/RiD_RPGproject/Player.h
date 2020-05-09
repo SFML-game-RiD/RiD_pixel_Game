@@ -4,6 +4,7 @@
 #include "Map.h"
 #include "PathIcon.h"
 #include "TaskManager.h"
+#include "SoundManager.h"
 
 namespace MP
 {
@@ -84,6 +85,8 @@ namespace MP
 		//@param mouseGameCoord mouse's game coordination.
 		void _procedure_player_auto_or_normal_move(TaskManager& aMainTaskManager, sf::Clock& GameClock, MP::Map& aMap, sf::Vector2f &mouseGameCoord);
 
+		void _song_procedure(MP::SoundManager& aSoundManager, TaskManager& aMainTaskManager);
+
 	public:
 
 		//Player's constructor.
@@ -105,7 +108,7 @@ namespace MP
 		//@param gameClock game's clock.
 		//@param gameMap game's map.
 		//@param mouseGameCoord
-		void update(TaskManager& aMainTaskManager, sf::Clock& gameClock, MP::Map& gamesMap, sf::Vector2f mouseGameCoord);
+		void update(SoundManager& aSoundManager, TaskManager& aMainTaskManager, sf::Clock& gameClock, MP::Map& gamesMap, sf::Vector2f mouseGameCoord);
 
 		//Draws player.
 		void render(sf::RenderWindow &mainWindow);

@@ -12,7 +12,7 @@ void MP::Move::moveBlockDown(PawnObject& obiect, sf::Clock& currentTime)
 	else if (obiect.getBlockLenghtCopy() <= 0)
 	{
 		obiect.resetBlockLenghtCopy();
-		obiect.aPawnObiectTaskManager.deleteTaskList();
+		obiect.aPawnObjectTaskManager.deleteTaskList();
 	}
 }
 
@@ -27,7 +27,7 @@ void MP::Move::moveBlockUp(PawnObject& obiect, sf::Clock& currentTime)
 	else if (obiect.getBlockLenghtCopy() <= 0) // Arrived
 	{
 		obiect.resetBlockLenghtCopy();
-		obiect.aPawnObiectTaskManager.deleteTaskList();
+		obiect.aPawnObjectTaskManager.deleteTaskList();
 	}
 }
 
@@ -42,7 +42,7 @@ void MP::Move::moveBlockRight(PawnObject& obiect, sf::Clock& currentTime)
 	else if (obiect.getBlockLenghtCopy() <= 0) // Arrived
 	{
 		obiect.resetBlockLenghtCopy();
-		obiect.aPawnObiectTaskManager.deleteTaskList();
+		obiect.aPawnObjectTaskManager.deleteTaskList();
 	}
 }
 
@@ -57,7 +57,7 @@ void MP::Move::moveBlockLeft(PawnObject& obiect, sf::Clock& currentTime)
 	else if (obiect.getBlockLenghtCopy() <= 0) // Arrived
 	{
 		obiect.resetBlockLenghtCopy();
-		obiect.aPawnObiectTaskManager.deleteTaskList();
+		obiect.aPawnObjectTaskManager.deleteTaskList();
 	}
 }
 

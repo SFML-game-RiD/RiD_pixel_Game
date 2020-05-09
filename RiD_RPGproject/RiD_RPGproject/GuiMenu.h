@@ -24,7 +24,7 @@ namespace MP
 
 		//Checks mouse coordinates and makes button active.
 		//mouseCoord mouse's coordinates.
-		virtual void _select_button(sf::Vector2f guiMouseCoord);
+		virtual void _select_button(SoundManager& aSoundManager, TaskManager& aTaskManager, sf::Vector2f guiMouseCoord);
 
 		//Starts procedures relative to pressed button.
 		//@param aMainTaskManager main task manager.
@@ -50,7 +50,7 @@ namespace MP
 		//@param aMainTaskManager main task manager.
 		//@param aMainWindow game's main window.
 		//@param guiMouseCoord mouse's coord from gui view.
-		virtual void update(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, sf::Vector2f guiMouseCoord);
+		virtual void update(SoundManager& aSoundManager, TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, sf::Vector2f guiMouseCoord);
 
 		//Draws GUI.
 		//@param aMainTaskManager main task manager.

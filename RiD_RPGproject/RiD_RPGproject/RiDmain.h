@@ -43,6 +43,8 @@ namespace RiD
 
 		MP::Music _music;
 
+		MP::SoundManager _a_sound_manager;
+
      	//Executes creation of window
 		void _create_window();
 

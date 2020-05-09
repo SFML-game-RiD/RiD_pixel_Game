@@ -13,15 +13,15 @@ namespace MP
 	{
 	private:
 
-		void _computer_players_procedure(ObjectManager& aObiectManager, sf::Clock& gameClock,Map& aMap);
+		void _computer_players_procedure(SoundManager& aSoundManager, ObjectManager& aObiectManager, sf::Clock& gameClock,Map& aMap);
 
 		void _trees_procedure(sf::Clock& globalClock, ObjectManager& aObiectManager);
 
 	public:
 
-		void startMainGameProcedures(TaskManager& aTaskManager, ObjectManager& aObiectManager, sf::Clock& globalClock, Camera& aCamera);
+		void startMainGameProcedures(SoundManager& aSoundManager, TaskManager& aTaskManager, ObjectManager& aObiectManager, sf::Clock& globalClock, Camera& aCamera);
 
-		void startMenuProcedures(TaskManager& aMainTaskManager, ObjectManager& aObiectManager, Camera& aCamera);
+		void startMenuProcedures(SoundManager& aSoundManager, TaskManager& aMainTaskManager, ObjectManager& aObiectManager, Camera& aCamera);
 	
 	};
 }

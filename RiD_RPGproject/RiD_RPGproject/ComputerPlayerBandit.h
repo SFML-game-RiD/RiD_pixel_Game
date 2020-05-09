@@ -36,13 +36,15 @@ namespace MP
 
 		bool _check_enemy(std::shared_ptr<Player>& aPlayer);
 
+		void _song_procedure(MP::SoundManager& aSoundManager);
+
 	public:
 
 		ComputerPlayerBandit(sf::Texture* texturePtr);
 
 		~ComputerPlayerBandit();
 
-		void update(Map& aMap, sf::Clock& gameClock, std::shared_ptr<Player>& aPlayer);
+		void update(SoundManager& aSoundManager, Map& aMap, sf::Clock& gameClock, std::shared_ptr<Player>& aPlayer);
 
 		void render(sf::RenderWindow &mainWindow);
 

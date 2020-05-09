@@ -1,5 +1,5 @@
 #include "Music.h"
-
+#include "Engine/ConfigurationLoader.h"
 
 
 void MP::Music::_set_music(std::string music_name, std::string file_name)
@@ -32,7 +32,8 @@ MP::Music::Music()
 {
 	_set_music("robinHood", "music/robin_hood_savant.ogg");
 	_set_music("tickle", "music/tickle_savant.ogg");
-	//_play("robinHood",true);
+	_current_playing_music.setVolume(float(RiD::ConfigurationLoader::getIntData("game settings","musicVolume")));
+	_play("robinHood",true);
 }
 
 void MP::Music::update(TaskManager& mainTaskManager)

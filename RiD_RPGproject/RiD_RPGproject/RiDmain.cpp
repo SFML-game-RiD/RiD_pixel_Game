@@ -99,12 +99,12 @@ void RiD::RiDmain::_event_function_for_menu()
 
 void RiD::RiDmain::_calculate_for_state_game()
 {
-	_a_calculator.startMainGameProcedures(_a_main_task_manager, _a_obiect_manager, _clock, _a_camera);
+	_a_calculator.startMainGameProcedures(_a_sound_manager,_a_main_task_manager, _a_obiect_manager, _clock, _a_camera);
 }
 
 void RiD::RiDmain::_calculate_for_state_menu()
 {
-	_a_calculator.startMenuProcedures(_a_main_task_manager, _a_obiect_manager, _a_camera);
+	_a_calculator.startMenuProcedures(_a_sound_manager,_a_main_task_manager, _a_obiect_manager, _a_camera);
 }
 
 void RiD::RiDmain::_draw_for_state_game()

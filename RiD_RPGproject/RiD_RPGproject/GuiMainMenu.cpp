@@ -43,16 +43,16 @@ MP::GuiMainMenu::GuiMainMenu(sf::Texture* texturePtr, sf::Texture* buttonTexture
 	_create_buttons(buttonTexture,aFont);
 }
 
-void MP::GuiMainMenu::_select_button(sf::Vector2f guiMouseCoord)
+void MP::GuiMainMenu::_select_button(SoundManager& aSoundManager, TaskManager& aTaskManager, sf::Vector2f guiMouseCoord)
 {
 
 	for (unsigned int i = 0; i < _button_array.size(); i++)
 	{
 		if (guiMouseCoord.x >=_button_array[i]->getObjectCoord().x and guiMouseCoord.x <= _button_array[i]->getObjectCoord().x + 275
 			and guiMouseCoord.y >= _button_array[i]->getObjectCoord().y + 112 and guiMouseCoord.y <= _button_array[i]->getObjectCoord().y + 163)
-			_button_array[i]->update(true);
+			_button_array[i]->update(aSoundManager, aTaskManager, true);
 		else
-			_button_array[i]->update(false);
+			_button_array[i]->update( aSoundManager,  aTaskManager, false);
 	}
 }
 
@@ -78,11 +78,11 @@ void MP::GuiMainMenu::_press_button(TaskManager& aMainTaskManager,  sf::RenderWi
 	}
 }
 
-void MP::GuiMainMenu::update(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, sf::Vector2f guiMouseCoord)
+void MP::GuiMainMenu::update(SoundManager& aSoundManager, TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, sf::Vector2f guiMouseCoord)
 {
 	if (aMainTaskManager.getCurrentState() == TaskManager::stateType::stateMainMenu)
 	{
-		_select_button(guiMouseCoord);
+		_select_button( aSoundManager, aMainTaskManager, guiMouseCoord);
 		_press_button(aMainTaskManager, aMainWindow);
 	}
 }

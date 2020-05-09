@@ -1,5 +1,8 @@
 #pragma once
 #include "Object.h"
+#include "SoundManager.h"
+#include "Sound.h"
+#include "TaskManager.h"
 
 namespace MP
 {
@@ -11,6 +14,8 @@ namespace MP
 
 		bool _is_active;///Tells if button is active.
 
+		bool _was_played;///Tells if sound was played.
+
 		//Draws button.
 		//@param aMainWindow game's window.
 		void draw_button(sf::RenderWindow& aMainWindow);
@@ -18,6 +23,10 @@ namespace MP
 		//Sets button state.
 		//@param isActive new button's state.
 		void set_button_active(bool isActive);
+
+		MP::Sound _sound_player;
+
+		void _song_procedure(MP::SoundManager& aSoundManager,MP::TaskManager &aMainTaskManager);
 
 	public:
 
@@ -43,7 +52,7 @@ namespace MP
 
 		//Updates button.
 		//@param isActive button's state.
-		void update(bool isActive);
+		void update(SoundManager& aSoundManager, TaskManager& aTaskManager,bool isActive);
 
 		//Draws button.
 		//@param aMainWindow game's main window.

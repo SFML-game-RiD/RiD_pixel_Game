@@ -4,6 +4,7 @@
 MP::PawnObject::PawnObject()
 {
 	_current_land = nullptr;
+	_sound_player.setSpeed(1.5);
 }
 
 bool MP::PawnObject::_check_go_up(MP::Map& aMap)

@@ -29,7 +29,7 @@ namespace MP
 
 	public:
 
-		TaskManager aPawnObiectTaskManager;///Special task manager for pawns.
+		TaskManager aPawnObjectTaskManager;///Special task manager for pawns.
 		
 		//Pawn's constructor.
 		PawnObject();

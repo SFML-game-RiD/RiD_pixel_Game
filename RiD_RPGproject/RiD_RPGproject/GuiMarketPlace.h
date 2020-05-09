@@ -50,7 +50,7 @@ namespace MP
 
 		//Checks mouse coordinates and makes button active.
 		//@param mouseCoord mouse's coordinates.
-		void _select_button(sf::Vector2f guiMouseCoord);
+		void _select_button(SoundManager& aSoundManager, TaskManager& aTaskManager, sf::Vector2f guiMouseCoord);
 
 		//Starts procedures relative to pressed button.
 		//@param aMainTaskManager main task manager.
@@ -76,7 +76,7 @@ namespace MP
 		//@param mouseCoord mouse's coordinates.
 		//@param aPlayer store's player.
 		//@param aPlace store's place.
-		void update(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, sf::Vector2f guiMouseCoord, std::shared_ptr<Player>& aPlayer, std::shared_ptr<Places>& aPlace);
+		void update(SoundManager& aSoundManager,TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, sf::Vector2f guiMouseCoord, std::shared_ptr<Player>& aPlayer, std::shared_ptr<Places>& aPlace);
 
 		//Draws market place.
 		//@param aMainTaskManager main task manager.

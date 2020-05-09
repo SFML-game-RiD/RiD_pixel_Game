@@ -1,6 +1,8 @@
 #pragma once
 #include "Object.h"
 #include "ItemsManager.h"
+#include "Sound.h"
+
 
 namespace MP
 {
@@ -21,6 +23,8 @@ namespace MP
 		int _distance_traveled;//Current traveled distance.
 
 		int _velocity; ///Obiect velocity. Use only divisible numbers by block length.
+
+		MP::Sound _sound_player;
 
 	public:
 

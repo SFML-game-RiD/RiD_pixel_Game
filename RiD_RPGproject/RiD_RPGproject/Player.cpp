@@ -111,7 +111,7 @@ void MP::Player::_player_move(sf::Clock& aGameClock, TaskManager& aMainTaskManag
 
 void MP::Player::_player_automatic_move(Map& aMap, TaskManager& aTaskManager)
 {
-	if (_path != nullptr and  aPawnObiectTaskManager.isTaskListEmpty())
+	if (_path != nullptr and  aPawnObjectTaskManager.isTaskListEmpty())
 	{
 
 		MapElement* nextDestination = _path;//Takes new destination (new block).
@@ -120,28 +120,28 @@ void MP::Player::_player_automatic_move(Map& aMap, TaskManager& aTaskManager)
 		if (tmp->getLandTile().getObjectCoord().x == nextDestination->getLandTile().getObjectCoord().x
 			and tmp->getLandTile().getObjectCoord().y + _block_length == nextDestination->getLandTile().getObjectCoord().y)//Goes down
 
-			aPawnObiectTaskManager.addTask( MP::TaskNode::taskType::taskGoDown);
+			aPawnObjectTaskManager.addTask( MP::TaskNode::taskType::taskGoDown);
 
 		else if (tmp->getLandTile().getObjectCoord().x == nextDestination->getLandTile().getObjectCoord().x
 			and tmp->getLandTile().getObjectCoord().y - _block_length == nextDestination->getLandTile().getObjectCoord().y)//Goes up
 
-			aPawnObiectTaskManager.addTask(MP::TaskNode::taskType::taskGoUp);
+			aPawnObjectTaskManager.addTask(MP::TaskNode::taskType::taskGoUp);
 
 		else if (tmp->getLandTile().getObjectCoord().x + _block_length == nextDestination->getLandTile().getObjectCoord().x//Goes right
 			and tmp->getLandTile().getObjectCoord().y == nextDestination->getLandTile().getObjectCoord().y)
 
-			aPawnObiectTaskManager.addTask(MP::TaskNode::taskType::taskGoRight);
+			aPawnObjectTaskManager.addTask(MP::TaskNode::taskType::taskGoRight);
 
 		else if (tmp->getLandTile().getObjectCoord().x - _block_length == nextDestination->getLandTile().getObjectCoord().x//Goes left
 			and tmp->getLandTile().getObjectCoord().y == nextDestination->getLandTile().getObjectCoord().y)
 
-			aPawnObiectTaskManager.addTask(MP::TaskNode::taskType::taskGoLeft);
+			aPawnObjectTaskManager.addTask(MP::TaskNode::taskType::taskGoLeft);
 
 
 		_set_path(_path->getNextElement());//Deleting usless element
 		delete nextDestination;
 	}
-	else if(_path == nullptr and aPawnObiectTaskManager.isTaskListEmpty())
+	else if(_path == nullptr and aPawnObjectTaskManager.isTaskListEmpty())
 		aTaskManager.deleteTaskList();
 }
 
@@ -155,19 +155,19 @@ void MP::Player::_set_path(MapElement*& newPath)
 
 void MP::Player::_player_auto_animation(sf::Clock& globalClock)
 {
-	if (aPawnObiectTaskManager.findTask(MP::TaskNode::taskType::taskGoUp, false))
+	if (aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoUp, false))
 		_player_animation_up(globalClock);
 
-	if (aPawnObiectTaskManager.findTask(MP::TaskNode::taskType::taskGoDown, false))
+	if (aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoDown, false))
 		_player_animation_down(globalClock);
 
-	if (aPawnObiectTaskManager.findTask(MP::TaskNode::taskType::taskGoLeft, false))
+	if (aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoLeft, false))
 		_player_animation_left(globalClock);
 
-	if (aPawnObiectTaskManager.findTask(MP::TaskNode::taskType::taskGoRight, false))
+	if (aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoRight, false))
 		_player_animation_right(globalClock);
 
-	if (aPawnObiectTaskManager.findTask(MP::TaskNode::taskType::taskNone, false))
+	if (aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskNone, false))
 		_player_animation_idle(globalClock);
 }
 
@@ -175,19 +175,19 @@ void MP::Player::_player_auto_move(sf::Clock& globalClock)
 {
 	MP::Move tmp;
 
-	if (aPawnObiectTaskManager.findTask(MP::TaskNode::taskType::taskGoUp, false))
+	if (aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoUp, false))
 		tmp.moveBlockUp(*this, globalClock);
 
-	if (aPawnObiectTaskManager.findTask(MP::TaskNode::taskType::taskGoLeft, false))
+	if (aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoLeft, false))
 		tmp.moveBlockLeft(*this, globalClock);
 
-	if (aPawnObiectTaskManager.findTask(MP::TaskNode::taskType::taskGoDown, false))
+	if (aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoDown, false))
 		tmp.moveBlockDown(*this, globalClock);
 
-	if (aPawnObiectTaskManager.findTask(MP::TaskNode::taskType::taskGoRight, false))
+	if (aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoRight, false))
 		tmp.moveBlockRight(*this, globalClock);
 
-	if (aPawnObiectTaskManager.isTaskListEmpty())
+	if (aPawnObjectTaskManager.isTaskListEmpty())
 		this->resetBlockLenghtCopy();
 }
 
@@ -244,8 +244,9 @@ std::shared_ptr<MP::Places>& MP::Player::getCurrentPlace()
 	return _current_place;
 }
 
-void MP::Player::update(TaskManager& aMainTaskManager, sf::Clock& GameClock, MP::Map& aMap, sf::Vector2f mouseGameCoord)
+void MP::Player::update(SoundManager &aSoundManager,TaskManager& aMainTaskManager, sf::Clock& GameClock, MP::Map& aMap, sf::Vector2f mouseGameCoord)
 {
+	_song_procedure(aSoundManager, aMainTaskManager);
 	_procedure_player_auto_or_normal_move(aMainTaskManager, GameClock, aMap, mouseGameCoord);
 }
 
@@ -320,7 +321,7 @@ void MP::Player::_procedure_player_auto_or_normal_move(TaskManager& aMainTaskMan
 	}
 	if (aMainTaskManager.findTask(MP::TaskNode::taskType::taskBreakAutoMove, false))//breaks auto move
 	{
-		if (!aPawnObiectTaskManager.isTaskListEmpty())
+		if (!aPawnObjectTaskManager.isTaskListEmpty())
 		{
 			_player_auto_animation(gameClock);
 			_player_auto_move(gameClock);
@@ -331,4 +332,18 @@ void MP::Player::_procedure_player_auto_or_normal_move(TaskManager& aMainTaskMan
 			aMainTaskManager.deleteTaskList();
 		}
 	}
+}
+
+void MP::Player::_song_procedure(MP::SoundManager& aSoundManager, TaskManager& aMainTaskManager)
+{
+	if(!_sound_player.isPlaying())
+		if(aMainTaskManager.findTask(MP::TaskNode::taskType::taskGoDown,false) or 
+			aMainTaskManager.findTask(MP::TaskNode::taskType::taskGoUp, false) or
+			aMainTaskManager.findTask(MP::TaskNode::taskType::taskGoLeft, false) or
+			aMainTaskManager.findTask(MP::TaskNode::taskType::taskGoRight, false) or
+			aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoDown, false)or
+			aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoUp, false)or
+			aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoLeft, false)or
+			aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoRight, false))
+	_sound_player.playSound(aSoundManager.getSound("pawnSound"));
 }

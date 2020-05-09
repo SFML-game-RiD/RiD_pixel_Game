@@ -205,15 +205,15 @@ void MP::GuiMarketPlace::_draw_menu(sf::RenderWindow& aMainWindow, Places& place
 	player.aItemsManager.getSpearman()->drawItem(aMainWindow);
 }
 
-void MP::GuiMarketPlace::_select_button(sf::Vector2f mouseCoord)
+void MP::GuiMarketPlace::_select_button(SoundManager& aSoundManager, TaskManager& aTaskManager, sf::Vector2f mouseCoord)
 {
 	for (unsigned int i = 0; i < _button_array.size(); i++)
 	{
 		if (mouseCoord.x >= _button_array[i]->getObjectCoord().x and mouseCoord.x <= _button_array[i]->getObjectCoord().x + 275
 			and mouseCoord.y >= _button_array[i]->getObjectCoord().y + 112 and mouseCoord.y <= _button_array[i]->getObjectCoord().y + 163)
-			_button_array[i]->update(true);
+			_button_array[i]->update(aSoundManager, aTaskManager, true);
 		else
-			_button_array[i]->update(false);
+			_button_array[i]->update(aSoundManager, aTaskManager, false);
 	}
 }
 
@@ -267,12 +267,12 @@ void MP::GuiMarketPlace::_press_button(TaskManager& aMainTaskManager, sf::Render
 	aMainTaskManager.deleteTaskList();
 }
 
-void MP::GuiMarketPlace::update(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, sf::Vector2f guiMouseCoord, std::shared_ptr<Player>& aPlayer, std::shared_ptr<Places>& aPlace)
+void MP::GuiMarketPlace::update(SoundManager & aSoundManager,TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, sf::Vector2f guiMouseCoord, std::shared_ptr<Player>& aPlayer, std::shared_ptr<Places>& aPlace)
 {
 	if (aMainTaskManager.getCurrentState() == MP::TaskManager::stateType::stateMarketPlace)
 	{
 		_update_market_place(*aPlace, *aPlayer);
-		_select_button(guiMouseCoord);
+		_select_button(aSoundManager, aMainTaskManager,guiMouseCoord);
 		_press_button(aMainTaskManager, aMainWindow, aPlayer, aPlace);
 	}
 }

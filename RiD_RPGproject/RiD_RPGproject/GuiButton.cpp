@@ -18,6 +18,7 @@ MP::GuiButton::GuiButton(sf::Texture* texturePtr, sf::Vector2f buttonPosition,sf
 	_a_text.setLetterSpacing(1.5);
 	_a_text.setCharacterSize(30);
 	_is_active = false;
+	_was_played = false;
 
 }
 
@@ -34,6 +35,22 @@ void MP::GuiButton::set_button_active(bool isActive)
 		aAnimation.changeSprite(1);
 
 	_is_active = isActive;
+	if (!isActive)
+		_was_played=isActive;
+}
+
+void MP::GuiButton::_song_procedure(MP::SoundManager& aSoundManager, MP::TaskManager& aMainTaskManager)
+{
+	if (_is_active)
+	{	
+		if (!_was_played)
+		{
+			_sound_player.playSound(aSoundManager.getSound("activeButtonSound"));
+			_was_played = true;
+		}
+		if(aMainTaskManager.findTask(TaskNode::taskType::taskClickLeft,false))
+		_sound_player.playSound(aSoundManager.getSound("pressedButtonSound"));
+	}
 }
 
 bool MP::GuiButton::getButtonIsActive()
@@ -61,8 +78,9 @@ void MP::GuiButton::setButtonPosition(sf::Vector2f newPostion)
 	_a_text.setPosition(newPostion);
 }
 
-void MP::GuiButton::update(bool isActive)
+void MP::GuiButton::update(SoundManager &aSoundManager,TaskManager &aTaskManager,bool isActive)
 {
+	_song_procedure(aSoundManager, aTaskManager);
 	set_button_active(isActive);
 }
 
