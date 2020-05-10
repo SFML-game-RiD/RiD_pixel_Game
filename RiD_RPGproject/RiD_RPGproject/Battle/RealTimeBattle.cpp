@@ -48,13 +48,13 @@ namespace RTB
 			position.y = enemy_position_width(RNG) * 25;
 			position = _tile_map->_twoDToIso(position);
 			(*iterator)->setPosition({ position.x,position.y });
-			while (_checkPlacementCollisions(iterator))
+			/*while (_checkPlacementCollisions(iterator))
 			{
 				position.x = enemy_position_height(RNG) * 25;
 				position.y = enemy_position_width(RNG) * 25;
 				position = _tile_map->_twoDToIso(position);
 				(*iterator)->setPosition({ position.x,position.y });
-			}
+			}*/
 		}
 
 		for (unsigned short i = 0; i < 7; ++i)
@@ -76,13 +76,13 @@ namespace RTB
 			position.y = ally_position_width(RNG) * 25;
 			position = _tile_map->_twoDToIso(position);
 			(*iterator)->setPosition({ position.x,position.y });
-			while (_checkPlacementCollisions(iterator))
+			/*while (_checkPlacementCollisions(iterator))
 			{
 				position.x = ally_position_height(RNG) * 25;
 				position.y = ally_position_width(RNG) * 25;
 				position = _tile_map->_twoDToIso(position);
 				(*iterator)->setPosition({ position.x,position.y });
-			}
+			}*/
 		}
 	}
 
@@ -237,6 +237,13 @@ namespace RTB
 						while(!(*_choosen_ally)->isAlive())
 							_choosen_ally = _pickRandomAlly();
 						_is_ally_choosen = true;
+					}
+					else if (_event.mouseButton.button == sf::Mouse::Right && _user_interface->getButtonBook()->getSprite().getGlobalBounds().contains(worldPos) && !_is_paused)
+					{
+						if (_user_interface->isLeftPanelShown())
+							_user_interface->showLeftPanel(false);
+						else
+							_user_interface->showLeftPanel(true);
 					}
 				}
 				if (_event.type == sf::Event::LostFocus)

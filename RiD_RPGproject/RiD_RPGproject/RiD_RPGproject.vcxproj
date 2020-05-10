@@ -167,6 +167,7 @@
     <ClCompile Include="Battle\Menu.cpp" />
     <ClCompile Include="Battle\Message.cpp" />
     <ClCompile Include="Battle\OrientedHitbox.cpp" />
+    <ClCompile Include="Battle\Panel.cpp" />
     <ClCompile Include="Battle\PathNode.cpp" />
     <ClCompile Include="Battle\Player.cpp" />
     <ClCompile Include="Battle\RealTimeBattle.cpp" />
@@ -203,6 +204,7 @@
     <ClInclude Include="Battle\Menu.h" />
     <ClInclude Include="Battle\Message.h" />
     <ClInclude Include="Battle\OrientedHitbox.h" />
+    <ClInclude Include="Battle\Panel.h" />
     <ClInclude Include="Battle\PathNode.h" />
     <ClInclude Include="Battle\Player.h" />
     <ClInclude Include="Battle\RealTimeBattle.h" />

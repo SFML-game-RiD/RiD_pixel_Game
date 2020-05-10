@@ -6,6 +6,8 @@
 #include "Menu.h"
 #include "Message.h"
 #include "Cursor.h"
+#include "BookButton.h"
+#include "Panel.h"
 
 namespace RTBGUI
 {
@@ -16,12 +18,15 @@ namespace RTBGUI
 		std::unique_ptr<Cursor> _cursor;
 		std::shared_ptr<Button> _button_yes, _button_no, _button_ok;
 		std::unique_ptr<WindowBorder> _window_border;
+		std::unique_ptr<Panel> _panel;
 		std::unique_ptr<Menu> _menu;
 		std::unique_ptr<Message> _message_menu, _message_lost, _message_won;
+		std::shared_ptr<BookButton> _book;
 		RiD::AssetManager _asset_manager;
 		sf::Sprite _menu_background, _lost_background, _won_background;
 		sf::View _camera, _gui;
 		sf::Event _event;
+		bool _show_left_panel;
 	public:
 		GUI(sf::RenderWindow& window);
 		~GUI();
@@ -34,6 +39,10 @@ namespace RTBGUI
 
 		void setCameraCenter(sf::Vector2f center);
 
+		void showLeftPanel(bool show);
+
+		bool isLeftPanelShown();
+
 		sf::View getCamera();
 
 		std::shared_ptr<Button> getButtonNo();
@@ -41,5 +50,7 @@ namespace RTBGUI
 		std::shared_ptr<Button> getButtonYes();
 
 		std::shared_ptr<Button> getButtonOk();
+
+		std::shared_ptr<BookButton> getButtonBook();
 	};
 }

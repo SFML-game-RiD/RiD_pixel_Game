@@ -95,6 +95,9 @@
     <ClCompile Include="Battle\BookButton.cpp">
       <Filter>RealTimeBattle\GUI\GUI elements</Filter>
     </ClCompile>
+    <ClCompile Include="Battle\Panel.cpp">
+      <Filter>RealTimeBattle\GUI\GUI elements</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\InputManager.h" />
@@ -188,6 +191,9 @@
       <Filter>RealTimeBattle\GUI\GUI elements</Filter>
     </ClInclude>
     <ClInclude Include="Battle\BookButton.h">
+      <Filter>RealTimeBattle\GUI\GUI elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\Panel.h">
       <Filter>RealTimeBattle\GUI\GUI elements</Filter>
     </ClInclude>
   </ItemGroup>

@@ -5,11 +5,13 @@
 namespace RTBGUI
 {
 	GUI::GUI(sf::RenderWindow& window) :
-		_window(&window)
+		_window(&window), _show_left_panel(true)
 	{
 		_window_border = std::make_unique<WindowBorder>();
 		_menu = std::make_unique<Menu>();
 		_cursor = std::make_unique<Cursor>();
+		_panel = std::make_unique<Panel>();
+		_book = std::make_shared<BookButton>();
 		_button_yes = std::make_shared<Button>("YES");
 		_button_no = std::make_shared<Button>("NO");
 		_button_ok = std::make_shared<Button>(" OK");
@@ -71,6 +73,13 @@ namespace RTBGUI
 			if (_button_ok->getSprite().getGlobalBounds().contains(worldPos))
 				_button_ok->setHovered(true);
 		}
+		else if (!is_paused)
+		{
+			_book->update(sf::Vector2f(center.x + 560.f, center.y - 335.f));
+			if (_book->getSprite().getGlobalBounds().contains(worldPos))
+				_book->setHovered(true);
+			_panel->update(sf::Vector2f(center.x - 636.f, center.y - 321.f));
+		}
 	}
 
 	void GUI::render(bool& is_paused, bool& is_surrendered, bool ally_team_dead, bool enemy_team_dead)
@@ -101,6 +110,12 @@ namespace RTBGUI
 			_button_ok->render(_window);
 			_message_won->render(_window);
 		}
+		else if (!is_paused)
+		{
+			_book->render(_window);
+			if (_show_left_panel)
+				_panel->render(_window);
+		}
 		_cursor->render(_window);
 	}
 
@@ -112,6 +127,16 @@ namespace RTBGUI
 	void GUI::setCameraCenter(sf::Vector2f center)
 	{
 		_camera.setCenter(center);
+	}
+
+	void GUI::showLeftPanel(bool show)
+	{
+		_show_left_panel = show;
+	}
+
+	bool GUI::isLeftPanelShown()
+	{
+		return _show_left_panel;
 	}
 
 	sf::View GUI::getCamera()
@@ -132,5 +157,10 @@ namespace RTBGUI
 	std::shared_ptr<Button> GUI::getButtonOk()
 	{
 		return _button_ok;
+	}
+
+	std::shared_ptr<BookButton> GUI::getButtonBook()
+	{
+		return _book;
 	}
 }
