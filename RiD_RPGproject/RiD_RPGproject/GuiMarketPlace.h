@@ -25,7 +25,7 @@ namespace MP
 		//Creates buttons.
 		//@param buttonTexture button's texture.
 		//@param aFont game's font.
-		void _create_buttons(sf::Texture* buttonTexture, sf::Font& aFont);
+		void _create_buttons(RiD::AssetManager& aAssetManager);
 
 		//Creates panels.
 		//@param panelLefttexture panel's texture.
@@ -68,8 +68,9 @@ namespace MP
 		//@param panelLeftTexture panel's texture.
 		//@param panelRightTexture panel's texture.
 		//@param aFont game's font.
-		GuiMarketPlace(sf::Texture* marketplaceBackgroundTexture, sf::Texture* buttonTexture, sf::Texture* panelLeftTexture, sf::Texture* panelRightTexture, sf::Font& aFont);
-
+	//	GuiMarketPlace(sf::Texture* marketplaceBackgroundTexture, sf::Texture* buttonTexture, sf::Texture* panelLeftTexture, sf::Texture* panelRightTexture, sf::Font& aFont);
+		GuiMarketPlace(RiD::AssetManager &aAssetManager);
+	
 		//Updates market place.
 		//@param aMainTaskManager main task manager.
 		//@param aMainWindow game's window.

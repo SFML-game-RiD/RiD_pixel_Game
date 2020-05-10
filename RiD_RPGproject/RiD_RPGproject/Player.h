@@ -85,7 +85,7 @@ namespace MP
 		//@param mouseGameCoord mouse's game coordination.
 		void _procedure_player_auto_or_normal_move(TaskManager& aMainTaskManager, sf::Clock& GameClock, MP::Map& aMap, sf::Vector2f &mouseGameCoord);
 
-		void _song_procedure(MP::SoundManager& aSoundManager, TaskManager& aMainTaskManager);
+		void _song_procedure(sf::Clock& gameClock, MP::SoundManager& aSoundManager, TaskManager& aMainTaskManager);
 
 	public:
 

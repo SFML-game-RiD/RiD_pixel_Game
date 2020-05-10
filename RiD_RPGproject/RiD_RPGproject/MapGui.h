@@ -1,5 +1,6 @@
 #pragma once
 #include "Object.h"
+#include "Engine/AssetManager.h"
 #include "TaskManager.h"
 #include "ItemsManager.h"
 
@@ -23,7 +24,7 @@ namespace MP
 
 		//Gui's constructor.
 		//@param texturePtr object's texture.
-		MapGui(sf::Texture* texturePtr);
+		MapGui(RiD::AssetManager& aAssetManager);
 
 		//@param mainWindow game window.
 		//@param aItemsManager items manager.

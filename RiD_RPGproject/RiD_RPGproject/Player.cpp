@@ -246,7 +246,7 @@ std::shared_ptr<MP::Places>& MP::Player::getCurrentPlace()
 
 void MP::Player::update(SoundManager &aSoundManager,TaskManager& aMainTaskManager, sf::Clock& GameClock, MP::Map& aMap, sf::Vector2f mouseGameCoord)
 {
-	_song_procedure(aSoundManager, aMainTaskManager);
+	_song_procedure(GameClock,aSoundManager, aMainTaskManager);
 	_procedure_player_auto_or_normal_move(aMainTaskManager, GameClock, aMap, mouseGameCoord);
 }
 
@@ -334,16 +334,33 @@ void MP::Player::_procedure_player_auto_or_normal_move(TaskManager& aMainTaskMan
 	}
 }
 
-void MP::Player::_song_procedure(MP::SoundManager& aSoundManager, TaskManager& aMainTaskManager)
+void MP::Player::_song_procedure(sf::Clock &gameClock,MP::SoundManager& aSoundManager, TaskManager& aMainTaskManager)
 {
+	if (aMainTaskManager.isTaskListEmpty())
+	{
+		if (_whinney_once == true)
+		{
+			_sound_player.stopSound();
+			if (objectTimer.timeControl(gameClock, sf::seconds(1.3)))
+			{
+				_sound_player.playSound(aSoundManager.getSound("horseWhinney"));
+				_whinney_once = false;
+			}
+		}
+	}
+
 	if(!_sound_player.isPlaying())
-		if(aMainTaskManager.findTask(MP::TaskNode::taskType::taskGoDown,false) or 
+		if (aMainTaskManager.findTask(MP::TaskNode::taskType::taskGoDown, false) or
 			aMainTaskManager.findTask(MP::TaskNode::taskType::taskGoUp, false) or
 			aMainTaskManager.findTask(MP::TaskNode::taskType::taskGoLeft, false) or
 			aMainTaskManager.findTask(MP::TaskNode::taskType::taskGoRight, false) or
-			aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoDown, false)or
-			aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoUp, false)or
-			aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoLeft, false)or
+			aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoDown, false) or
+			aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoUp, false) or
+			aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoLeft, false) or
 			aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoRight, false))
-	_sound_player.playSound(aSoundManager.getSound("pawnSound"));
+		{
+			_sound_player.playSound(aSoundManager.getSound("pawnSound"));
+			_whinney_once = true;
+			objectTimer.setTimer(gameClock, sf::seconds(1.3));
+		}
 }

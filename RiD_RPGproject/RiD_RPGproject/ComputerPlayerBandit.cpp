@@ -1,7 +1,7 @@
 #include "ComputerPlayerBandit.h"
 #include "Move.h"
 
-MP::ComputerPlayerBandit::ComputerPlayerBandit(sf::Texture* texturePtr)
+MP::ComputerPlayerBandit::ComputerPlayerBandit(sf::Texture* texturePtr, sf::Vector2f computerPlayerCoordinates)
 {
 
 	_path = nullptr;
@@ -19,7 +19,7 @@ MP::ComputerPlayerBandit::ComputerPlayerBandit(sf::Texture* texturePtr)
 	_velocity = RiD::ConfigurationLoader::getIntData("computer player", "velocity");
 
 	//Getting player coordinates.
-	setObjectCoord(RiD::ConfigurationLoader::getIntData("computer player", "coordinateX"), RiD::ConfigurationLoader::getIntData("computer player", "coordinateY"));
+	setObjectCoord(computerPlayerCoordinates);
 
 	//Loading radius
 	_radius = RiD::ConfigurationLoader::getIntData("computer player", "radius");
@@ -85,6 +85,9 @@ void MP::ComputerPlayerBandit::_song_procedure(MP::SoundManager& aSoundManager)
 			aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoLeft, false) or
 			aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoRight, false))
 			_sound_player.playSound(aSoundManager.getSound("pawnSound"));
+
+	if (aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskNone, false))
+		_sound_player.playSound(aSoundManager.getSound("whinneySound"));
 }
 
 void MP::ComputerPlayerBandit::_get_next_task(Map& aMap)

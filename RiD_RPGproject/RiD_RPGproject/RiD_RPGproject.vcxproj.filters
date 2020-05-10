@@ -170,6 +170,7 @@
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="Music.cpp" />
     <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Animation.h">
@@ -340,6 +341,7 @@
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="Music.h" />
     <ClInclude Include="Sound.h" />
+    <ClInclude Include="Timer.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="OBIECT">

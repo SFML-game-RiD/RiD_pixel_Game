@@ -1,8 +1,8 @@
 #include "MapGui.h"
 
-MP::MapGui::MapGui(sf::Texture* texturePtr)
+MP::MapGui::MapGui(RiD::AssetManager& aAssetManager)
 {
-	aAnimation.loadObjectTextures(texturePtr, 1, 1, 1920);
+	aAnimation.loadObjectTextures(&aAssetManager.getTexture("mapgui"), 1, 1, 1920);
 	setObjectCoord(sf::Vector2f(0,0));
 	aAnimation.setOrigin(460, 460);
 	

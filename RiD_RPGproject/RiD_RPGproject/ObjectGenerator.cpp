@@ -159,7 +159,10 @@ void MP::ObjectGenerator::_generate_computer_player(ObjectManager& aObiectManage
 	int computerPlayerAmmount = RiD::ConfigurationLoader::getIntData("computer player", "numberOfPlayers");
 	while (computerPlayerAmmount != 0)
 	{
-		std::shared_ptr<ComputerPlayerBandit> tmp= std::make_shared<ComputerPlayerBandit>(&_a_asset_manager.getTexture("bandit"));
+		sf::Vector2f computerPlayerCoords = aObiectManager.getMap().returnRandomWalkableElement()->getLandTile().getObjectCoord();
+		computerPlayerCoords.x += 10;
+		computerPlayerCoords.y += 6;
+		std::shared_ptr<ComputerPlayerBandit> tmp= std::make_shared<ComputerPlayerBandit>(&_a_asset_manager.getTexture("bandit"), computerPlayerCoords);
 		aObiectManager.addObiect(*tmp);
 
 
@@ -180,23 +183,18 @@ void MP::ObjectGenerator::_generate_gui(ObjectManager& aObiectManager)
 {
 	std::cout << "generates GUI" << std::endl;
 	//creating map gui
-	aObiectManager.getGuiManager().getMapGui() = std::make_unique<MapGui>(&_a_asset_manager.getTexture("mapgui"));
+	aObiectManager.getGuiManager().getMapGui() = std::make_unique<MapGui>(_a_asset_manager);
 
 
 	//creating main menu
-	aObiectManager.getGuiManager().getGuiMainMenu() = std::make_unique<GuiMainMenu>(&_a_asset_manager.getTexture("menu"), &_a_asset_manager.getTexture("button"),_a_asset_manager.getFont("font"));
+	aObiectManager.getGuiManager().getGuiMainMenu() = std::make_unique<GuiMainMenu>(_a_asset_manager);
 
 
 	//creating places menu
-	aObiectManager.getGuiManager().getGuiPlacesMenu() = std::make_unique<GuiPlacesMenu>(&_a_asset_manager.getTexture("placesmenu"), &_a_asset_manager.getTexture("button"), _a_asset_manager.getFont("font"));
+	aObiectManager.getGuiManager().getGuiPlacesMenu() = std::make_unique<GuiPlacesMenu>(_a_asset_manager);
 	
 	//creating market place menu
-	aObiectManager.getGuiManager().getGuiMarketPlace() = std::make_unique<GuiMarketPlace>(
-		&_a_asset_manager.getTexture("marketplace"),
-		&_a_asset_manager.getTexture("button"),
-		&_a_asset_manager.getTexture("panelleft"),
-		&_a_asset_manager.getTexture("panelright"),
-		_a_asset_manager.getFont("font"));
+	aObiectManager.getGuiManager().getGuiMarketPlace() = std::make_unique<GuiMarketPlace>(_a_asset_manager);
 
 }
 

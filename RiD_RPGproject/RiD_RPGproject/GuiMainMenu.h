@@ -12,7 +12,7 @@ namespace MP
 		//Creates buttons.
 		//@param buttonTexture button's texture.
 		//@param aFont game's font.
-		void _create_buttons(sf::Texture* buttonTexture, sf::Font& aFont);
+		void _create_buttons(RiD::AssetManager& aAssetManager);
 
 		//Checks mouse coordinates and makes button active.
 		//mouseCoord mouse's coordinates.
@@ -32,7 +32,7 @@ namespace MP
 		//@param texturePtr place's texture.
 		//@param buttonTexture button's texture.
 		//@aFont game's font.
-		GuiMainMenu(sf::Texture* texturePtr, sf::Texture* buttonTexture,sf::Font &aFont);
+		GuiMainMenu(RiD::AssetManager& aAssetManager);
 	
 		//Updates GUI.
 		//@param aMainTaskManager main task manager.

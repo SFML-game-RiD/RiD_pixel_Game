@@ -2,31 +2,19 @@
 
 
 
-void MP::GuiMainMenu::_create_buttons(sf::Texture* buttonTexture, sf::Font& aFont)
+void MP::GuiMainMenu::_create_buttons(RiD::AssetManager& aAssetManager)
 {
-	std::shared_ptr<GuiButton> tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(1000, 90), sf::Vector2f(36, 0), aFont, "start");
+	std::shared_ptr<GuiButton> tmp = std::make_shared<GuiButton>(aAssetManager, sf::Vector2f(1000, 90), sf::Vector2f(36, 0), "start");
 	_button_array.push_back(tmp);
 
-	tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(1000,250), sf::Vector2f(10, 0), aFont, "save game");
+	tmp = std::make_shared<GuiButton>(aAssetManager, sf::Vector2f(1000,250), sf::Vector2f(10, 0), "save game");
 	_button_array.push_back(tmp);
 
-	tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(1000, 400), sf::Vector2f(10, 0), aFont, "load game");
+	tmp = std::make_shared<GuiButton>(aAssetManager, sf::Vector2f(1000, 400), sf::Vector2f(10, 0), "load game");
 	_button_array.push_back(tmp);
 
-	tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(1000, 550), sf::Vector2f(40, 0), aFont, "exit");
+	tmp = std::make_shared<GuiButton>(aAssetManager, sf::Vector2f(1000, 550), sf::Vector2f(40, 0), "exit");
 	_button_array.push_back(tmp);
-
-	//std::shared_ptr<GuiButton> tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(365, 25), sf::Vector2f(36, 0), aFont, "start");
-	//_button_array.push_back(tmp);
-
-	//tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(365, 175), sf::Vector2f(10, 0), aFont, "save game");
-	//_button_array.push_back(tmp);
-
-	//tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(365, 325), sf::Vector2f(10, 0), aFont, "load game");
-	//_button_array.push_back(tmp);
-
-	//tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(365, 475), sf::Vector2f(40, 0), aFont, "exit");
-	//_button_array.push_back(tmp);
 }
 
 MP::GuiMainMenu::GuiMainMenu()
@@ -34,13 +22,13 @@ MP::GuiMainMenu::GuiMainMenu()
 
 }
 
-MP::GuiMainMenu::GuiMainMenu(sf::Texture* texturePtr, sf::Texture* buttonTexture, sf::Font &aFont)
+MP::GuiMainMenu::GuiMainMenu(RiD::AssetManager& aAssetManager)
 {
-	aAnimation.loadObjectTextures(texturePtr, 1, 1, 1920);
+	aAnimation.loadObjectTextures(&aAssetManager.getTexture("menu"), 1, 1, 1920);
 	aAnimation.setObjectSpritePosition(0, 0);
 	aAnimation.setOrigin(460,460);
 
-	_create_buttons(buttonTexture,aFont);
+	_create_buttons(aAssetManager);
 }
 
 void MP::GuiMainMenu::_select_button(SoundManager& aSoundManager, TaskManager& aTaskManager, sf::Vector2f guiMouseCoord)

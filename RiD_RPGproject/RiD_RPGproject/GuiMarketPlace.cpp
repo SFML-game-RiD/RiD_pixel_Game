@@ -7,30 +7,30 @@
 #include "Swordsman.h"
 #include "Spearman.h"
 
-void MP::GuiMarketPlace::_create_buttons(sf::Texture* buttonTexture, sf::Font& aFont)
+void MP::GuiMarketPlace::_create_buttons(RiD::AssetManager& aAssetManager)
 {
-	std::shared_ptr<GuiButton> tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(365, 25), sf::Vector2f(42, 0), aFont, "buy");
+	std::shared_ptr<GuiButton> tmp = std::make_shared<GuiButton>(aAssetManager, sf::Vector2f(365, 25), sf::Vector2f(42, 0), "buy");
 	_button_array.push_back(tmp);
 
-	tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(365, 175), sf::Vector2f(40, 0), aFont, "sell");
+	tmp = std::make_shared<GuiButton>(aAssetManager, sf::Vector2f(365, 175), sf::Vector2f(40, 0), "sell");
 	_button_array.push_back(tmp);
 
-	tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(365, 325), sf::Vector2f(40, 0), aFont, "food");
+	tmp = std::make_shared<GuiButton>(aAssetManager, sf::Vector2f(365, 325), sf::Vector2f(40, 0), "food");
 	_button_array.push_back(tmp);
 
-	tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(365, 9000), sf::Vector2f(40, 0), aFont, "wood");
+	tmp = std::make_shared<GuiButton>(aAssetManager, sf::Vector2f(365, 9000), sf::Vector2f(40, 0), "wood");
 	_button_array.push_back(tmp);
 
-	tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(365, 9000), sf::Vector2f(40, 0), aFont, "iron");
+	tmp = std::make_shared<GuiButton>(aAssetManager, sf::Vector2f(365, 9000), sf::Vector2f(40, 0), "iron");
 	_button_array.push_back(tmp);
 
-	tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(365, 9000), sf::Vector2f(20, 0), aFont, "spearman");
+	tmp = std::make_shared<GuiButton>(aAssetManager, sf::Vector2f(365, 9000), sf::Vector2f(20, 0), "spearman");
 	_button_array.push_back(tmp);
 
-	tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(365, 9000), sf::Vector2f(20, 0), aFont, "swordsman");
+	tmp = std::make_shared<GuiButton>(aAssetManager, sf::Vector2f(365, 9000), sf::Vector2f(20, 0), "swordsman");
 	_button_array.push_back(tmp);
 
-	tmp = std::make_shared<GuiButton>(buttonTexture, sf::Vector2f(365, 9000), sf::Vector2f(30, 0), aFont, "archer");
+	tmp = std::make_shared<GuiButton>(aAssetManager, sf::Vector2f(365, 9000), sf::Vector2f(30, 0), "archer");
 	_button_array.push_back(tmp);
 }
 
@@ -114,16 +114,16 @@ MP::GuiMarketPlace::GuiMarketPlace()
 {
 }
 
-MP::GuiMarketPlace::GuiMarketPlace(sf::Texture* marketplaceBackgroundTexture, sf::Texture* buttonTexture,sf::Texture *panelLeftTexture,sf::Texture *panelRightTexture, sf::Font& aFont)
+MP::GuiMarketPlace::GuiMarketPlace(RiD::AssetManager& aAssetManager)
 {
-	aAnimation.loadObjectTextures(marketplaceBackgroundTexture, 1, 1, 1920);
+	aAnimation.loadObjectTextures(&aAssetManager.getTexture("marketplace"), 1, 1, 1920);
 	aAnimation.setObjectSpritePosition(0, 0);
 	aAnimation.setOrigin(460, 460);
 
-	_create_buttons(buttonTexture, aFont);
+	_create_buttons(aAssetManager);
 
-	_panelA = std::make_unique<GuiPanel>(panelLeftTexture,aFont);
-	_panelB = std::make_unique<GuiPanel>(panelRightTexture,aFont);
+	_panelA = std::make_unique<GuiPanel>(&aAssetManager.getTexture("panelleft"),aAssetManager.getFont("font"));
+	_panelB = std::make_unique<GuiPanel>(&aAssetManager.getTexture("panelright"), aAssetManager.getFont("font"));
 
 	_current_item = std::make_unique<Food>();
 }

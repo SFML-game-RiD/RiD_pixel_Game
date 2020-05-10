@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Timer.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include "SpriteAnimation.h"
@@ -23,6 +23,8 @@ namespace MP
 		std::vector<sf::SoundBuffer> _sounds;
 
 	public:
+
+		Timer objectTimer;
 
 		SpriteAnimation aAnimation;///Manage animations.
 

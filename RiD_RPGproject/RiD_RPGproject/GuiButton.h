@@ -2,6 +2,7 @@
 #include "Object.h"
 #include "SoundManager.h"
 #include "Sound.h"
+#include "Engine/AssetManager.h"
 #include "TaskManager.h"
 
 namespace MP
@@ -36,7 +37,7 @@ namespace MP
 		//@param relativelyTextPosition button's text position, relatively to button.
 		//@param aFont game's font.
 		//@param buttonName button's name.
-		GuiButton(sf::Texture* texturePtr,sf::Vector2f buttonPosition, sf::Vector2f relativelyTextPosition, sf::Font &aFont, std::string buttonName);
+		GuiButton(RiD::AssetManager& aAssetManager,sf::Vector2f buttonPosition, sf::Vector2f relativelyTextPosition, std::string buttonName);
 
 		//Returns button's text.
 		//@return button's text.

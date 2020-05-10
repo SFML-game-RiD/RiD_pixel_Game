@@ -1,12 +1,12 @@
 #include "GuiButton.h"
 
 
-MP::GuiButton::GuiButton(sf::Texture* texturePtr, sf::Vector2f buttonPosition,sf::Vector2f relativelyTextPosition, sf::Font &aFont, std::string buttonName)
+MP::GuiButton::GuiButton(RiD::AssetManager& aAssetManager, sf::Vector2f buttonPosition,sf::Vector2f relativelyTextPosition, std::string buttonName)
 {
 
-	aAnimation.loadObjectTextures(texturePtr, 2, 1, 275);
+	aAnimation.loadObjectTextures(&aAssetManager.getTexture("button"), 2, 1, 275);
 	setObjectCoord(buttonPosition);
-	_a_text.setFont(aFont);
+	_a_text.setFont(aAssetManager.getFont("font"));
 	sf::Vector2f realTextPostion = buttonPosition;
 	realTextPostion.x += 70;
 	realTextPostion.y += 115;

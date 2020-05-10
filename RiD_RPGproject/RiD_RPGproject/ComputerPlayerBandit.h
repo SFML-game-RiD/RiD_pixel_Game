@@ -40,7 +40,7 @@ namespace MP
 
 	public:
 
-		ComputerPlayerBandit(sf::Texture* texturePtr);
+		ComputerPlayerBandit(sf::Texture* texturePtr,sf::Vector2f computerPlayerCoordinates);
 
 		~ComputerPlayerBandit();
 

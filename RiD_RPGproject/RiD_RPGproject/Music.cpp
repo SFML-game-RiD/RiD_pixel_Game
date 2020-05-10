@@ -33,7 +33,7 @@ MP::Music::Music()
 	_set_music("robinHood", "music/robin_hood_savant.ogg");
 	_set_music("tickle", "music/tickle_savant.ogg");
 	_current_playing_music.setVolume(float(RiD::ConfigurationLoader::getIntData("game settings","musicVolume")));
-	_play("robinHood",true);
+//	_play("robinHood",true);
 }
 
 void MP::Music::update(TaskManager& mainTaskManager)

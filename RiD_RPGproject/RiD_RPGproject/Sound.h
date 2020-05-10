@@ -8,6 +8,9 @@ private:
 	sf::Sound _sound;
 
 	float _volume;
+
+
+	void _reset_counter();
 public:
 	
 	Sound();
@@ -17,5 +20,7 @@ public:
 	bool isPlaying();
 
 	void setSpeed(float speed);
+
+	void stopSound();
 };
 }

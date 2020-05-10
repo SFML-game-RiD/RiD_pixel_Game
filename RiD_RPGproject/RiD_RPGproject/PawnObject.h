@@ -27,6 +27,8 @@ namespace MP
 		//@param gameMap game's map.
 		bool _check_go_right(Map& gameMap);
 
+		bool _whinney_once;
+
 	public:
 
 		TaskManager aPawnObjectTaskManager;///Special task manager for pawns.

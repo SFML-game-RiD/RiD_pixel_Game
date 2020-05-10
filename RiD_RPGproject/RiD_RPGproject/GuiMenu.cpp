@@ -1,6 +1,6 @@
 #include "GuiMenu.h"
 
-void MP::GuiMenu::_create_buttons(sf::Texture* buttonTexture, sf::Font& aFont)
+void MP::GuiMenu::_create_buttons(RiD::AssetManager& aAssetManager)
 {
 
 }
@@ -9,7 +9,7 @@ MP::GuiMenu::GuiMenu()
 {
 }
 
-MP::GuiMenu::GuiMenu(sf::Texture* texturePtr, sf::Texture* buttonTexture, sf::Font& aFont)
+MP::GuiMenu::GuiMenu(RiD::AssetManager& aAssetManager)
 {
 }
 
