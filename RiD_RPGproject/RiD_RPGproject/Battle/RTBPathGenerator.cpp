@@ -243,7 +243,6 @@ namespace AI
 		{
 			_start = start;
 			_end = end;
-			int neighbour_current_cost;
 			unsigned short neighbors_bounds[4];
 
 			PathNode* first = new PathNode();
@@ -284,9 +283,14 @@ namespace AI
 					}
 				}
 			}
-			this->_generatePath();
-			_deleteOpenedList();
-			_deleteClosedList();
+			if (_findByPosition(_end))
+			{
+				this->_generatePath();
+				_deleteOpenedList();
+				_deleteClosedList();
+			}
+			else
+				_path = nullptr;
 		}
 		else
 		{
@@ -319,7 +323,6 @@ namespace AI
 
 	int RTBPathGenerator::distance(sf::Vector2i start, sf::Vector2i end)
 	{
-		sqrt(2);
 		return static_cast<int>(sqrt(pow(start.x - end.x, 2) + pow((start.y - end.y), 2)));
 	}
 }

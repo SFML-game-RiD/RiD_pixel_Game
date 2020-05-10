@@ -6,11 +6,11 @@ namespace RTB
 {
 	sf::Vector2i Arrow::_isoTo2D(sf::Vector2f position)
 	{
-		return sf::Vector2i(((2 * position.y + position.x) / 2) / 25, ((2 * position.y - position.x) / 2) / 25);
+		return sf::Vector2i(static_cast<int>(((2 * position.y + position.x) / 2) / 25), static_cast<int>(((2 * position.y - position.x) / 2) / 25));
 	}
 
 	Arrow::Arrow(sf::Sprite*& character, sf::Texture& texture) : _character(character), _is_flying(false), _change_direction(true),
-		_fly_time(sf::seconds(0.5)), _start_time(sf::Time::Zero)
+		_fly_time(sf::seconds(static_cast<float>(0.8))), _start_time(sf::Time::Zero)
 	{
 		_sprite = new sf::Sprite;
 		_sprite->setTexture(texture);

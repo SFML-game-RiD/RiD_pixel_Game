@@ -5,21 +5,26 @@
 namespace RTBGUI
 {
 	GUI::GUI(sf::RenderWindow& window) :
-		_window(&window), _is_paused(false)
+		_window(&window)
 	{
 		_window_border = std::make_unique<WindowBorder>();
 		_menu = std::make_unique<Menu>();
-		_button_yes = std::make_unique<Button>("YES");
-		_button_no = std::make_unique<Button>("NO");
-		_message = std::make_unique<Message>("  Do you really \nwant to surrender?", 40);
+		_cursor = std::make_unique<Cursor>();
+		_button_yes = std::make_shared<Button>("YES");
+		_button_no = std::make_shared<Button>("NO");
+		_button_ok = std::make_shared<Button>(" OK");
+		_message_menu = std::make_unique<Message>("  Do you really \nwant to surrender?", 40);
+		_message_lost = std::make_unique<Message>("    You Lost", 40);
+		_message_won = std::make_unique<Message>("    You won", 40);
 
-		_asset_manager.setTexture("cursor", "img/Hand.png");
-		_asset_manager.setTexture("menu_background", "img/menu_background.png");
-		_menu_background.setTexture(_asset_manager.getTexture("menu_background"));
+		_asset_manager.setTexture("menuBackground", "img/menuBackground.png");
+		_menu_background.setTexture(_asset_manager.getTexture("menuBackground"));
+		_asset_manager.setTexture("lostBackground", "img/lostBackground.png");
+		_lost_background.setTexture(_asset_manager.getTexture("lostBackground"));
+		_asset_manager.setTexture("wonBackground", "img/wonBackground.png");
+		_won_background.setTexture(_asset_manager.getTexture("wonBackground"));
 
 		_window->setMouseCursorVisible(false);
-		_cursor.setTexture(_asset_manager.getTexture("cursor"));
-		_cursor.setOrigin(18.f, 14.f);
 
 		_camera.reset(sf::FloatRect(0, 0, 1280, 720));
 	}
@@ -29,17 +34,15 @@ namespace RTBGUI
 		_window = nullptr;
 	}
 
-	void GUI::update(bool is_paused)
+	void GUI::update(bool& is_paused, bool& is_surrendered, bool ally_team_dead, bool enemy_team_dead, bool& return_from_battle)
 	{
-		_is_paused = is_paused;
 		sf::Vector2f center = _camera.getCenter();
 		sf::Vector2f worldPos = _window->mapPixelToCoords(sf::Mouse::getPosition(*_window));
-		_cursor.setPosition(worldPos);
-
+		_cursor->update(worldPos);
 		_window_border->update(sf::Vector2f(center.x - 640.f, center.y - 360.f));
-		if (_is_paused)
+		if (is_paused)
 		{
-			_message->update(sf::Vector2f(center.x - 139.f, center.y - 100.f));
+			_message_menu->update(sf::Vector2f(center.x - 139.f, center.y - 100.f));
 			_menu_background.setPosition(center.x - 640.f, center.y - 360.f);
 			_menu->update(sf::Vector2f(center.x - 160.f, center.y - 240.f));
 			_button_yes->update(sf::Vector2f(center.x - 139.f, center.y + 40.f));
@@ -50,21 +53,55 @@ namespace RTBGUI
 			else if (_button_yes->getSprite().getGlobalBounds().contains(worldPos))
 				_button_yes->setHovered(true);
 		}
+		else if (ally_team_dead || is_surrendered)
+		{
+			_lost_background.setPosition(center.x - 640.f, center.y - 360.f);
+			_menu->update(sf::Vector2f(center.x - 160.f, center.y - 240.f));
+			_message_lost->update(sf::Vector2f(center.x - 139.f, center.y - 100.f));
+			_button_ok->update(sf::Vector2f(center.x - 139.f, center.y + 40.f));
+			if (_button_ok->getSprite().getGlobalBounds().contains(worldPos))
+				_button_ok->setHovered(true);
+		}
+		else if (enemy_team_dead)
+		{
+			_won_background.setPosition(center.x - 640.f, center.y - 360.f);
+			_menu->update(sf::Vector2f(center.x - 160.f, center.y - 240.f));
+			_message_won->update(sf::Vector2f(center.x - 139.f, center.y - 100.f));
+			_button_ok->update(sf::Vector2f(center.x - 139.f, center.y + 40.f));
+			if (_button_ok->getSprite().getGlobalBounds().contains(worldPos))
+				_button_ok->setHovered(true);
+		}
 	}
 
-	void GUI::render()
+	void GUI::render(bool& is_paused, bool& is_surrendered, bool ally_team_dead, bool enemy_team_dead)
 	{
 		_window_border->render(_window);
-		if (_is_paused)
+		if (is_paused)
 		{
 			_window->draw(_menu_background);
 			_window_border->render(_window);
 			_menu->render(_window);
 			_button_yes->render(_window);
 			_button_no->render(_window);
-			_message->render(_window);
+			_message_menu->render(_window);
 		}
-		_window->draw(_cursor);
+		else if (ally_team_dead || is_surrendered)
+		{
+			_window->draw(_lost_background);
+			_window_border->render(_window);
+			_menu->render(_window);
+			_button_ok->render(_window);
+			_message_lost->render(_window);
+		}
+		else if (enemy_team_dead)
+		{
+			_window->draw(_won_background);
+			_window_border->render(_window);
+			_menu->render(_window);
+			_button_ok->render(_window);
+			_message_won->render(_window);
+		}
+		_cursor->render(_window);
 	}
 
 	void GUI::setCameraZoom(float zoom)
@@ -80,5 +117,20 @@ namespace RTBGUI
 	sf::View GUI::getCamera()
 	{
 		return _camera;
+	}
+
+	std::shared_ptr<Button> GUI::getButtonNo()
+	{
+		return _button_no;
+	}
+
+	std::shared_ptr<Button> GUI::getButtonYes()
+	{
+		return _button_yes;
+	}
+
+	std::shared_ptr<Button> GUI::getButtonOk()
+	{
+		return _button_ok;
 	}
 }

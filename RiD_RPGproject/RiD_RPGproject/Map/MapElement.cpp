@@ -4,25 +4,25 @@
 
 namespace RTB
 {
-	MapElement::MapElement(sf::Texture& ground, sf::Vector2f position)
+	MapElement::MapElement(sf::Texture* ground, sf::Vector2f position)
 	{
-		_ground_sprite = std::make_unique<sf::Sprite>(ground);
-		_ground_sprite->setTexture(ground);
+		_ground_sprite = std::make_unique<sf::Sprite>();
+		_ground_sprite->setTexture(*ground);
 		_ground_sprite->setPosition(position);
 		_walkable = true;
 	}
 
-	void MapElement::setFlora(sf::Texture& flora, sf::Vector2f position)
+	void MapElement::setFlora(sf::Texture* flora, sf::Vector2f position)
 	{
-		_flora_sprite = std::make_unique<sf::Sprite>(flora);
-		_flora_sprite->setTexture(flora);
+		_flora_sprite = std::make_unique<sf::Sprite>();
+		_flora_sprite->setTexture(*flora);
 		_flora_sprite->setPosition(position);
 	}
 
-	void MapElement::setObject(sf::Texture& object, sf::Vector2f position, sf::Vector2f origin, sf::Vector2f hitbox_size, sf::Vector2f hitbox_position_offset, float hitbox_rotation_angle)
+	void MapElement::setObject(sf::Texture* object, sf::Vector2f position, sf::Vector2f origin, sf::Vector2f hitbox_size, sf::Vector2f hitbox_position_offset, float hitbox_rotation_angle)
 	{
-		_object_sprite = std::make_unique<sf::Sprite>(object);
-		_object_sprite->setTexture(object);
+		_object_sprite = std::make_unique<sf::Sprite>();
+		_object_sprite->setTexture(*object);
 		_object_sprite->setOrigin(origin);
 		_object_sprite->setPosition(position);
 		_hitbox.setOutlineColor(sf::Color::Green);

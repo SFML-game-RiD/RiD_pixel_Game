@@ -38,9 +38,9 @@ namespace RTB
 
 		for (unsigned short i = 0; i < 8; ++i)
 			_list_of_enemies.emplace_back(new Swordsman(_asset_manager.getTexture("enemy_swordsman"), 100, _tile_map->getWalkableArea()));
-		for (unsigned short i = 0; i < 4; ++i)
+		for (unsigned short i = 0; i < 8; ++i)
 			_list_of_enemies.emplace_back(new Archer(_asset_manager.getTexture("enemy_archer"), 100, _asset_manager.getTexture("arrow"), _tile_map->getWalkableArea()));
-		for (unsigned short i = 0; i < 4; ++i)
+		for (unsigned short i = 0; i < 8; ++i)
 			_list_of_enemies.emplace_back(new Spearman(_asset_manager.getTexture("enemy_spearman"), 100, _tile_map->getWalkableArea()));
 		for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_enemies.begin(); iterator != _list_of_enemies.end(); iterator++)
 		{
@@ -57,11 +57,11 @@ namespace RTB
 			}
 		}
 
-		for (unsigned short i = 0; i < 8; ++i)
+		for (unsigned short i = 0; i < 7; ++i)
 			_list_of_allies.emplace_back(new Swordsman(_asset_manager.getTexture("ally_swordsman"), 100, _tile_map->getWalkableArea()));
-		for (unsigned short i = 0; i < 4; ++i)
+		for (unsigned short i = 0; i < 8; ++i)
 			_list_of_allies.emplace_back(new Archer(_asset_manager.getTexture("ally_archer"), 100, _asset_manager.getTexture("arrow"), _tile_map->getWalkableArea()));
-		for (unsigned short i = 0; i < 3; ++i)
+		for (unsigned short i = 0; i < 8; ++i)
 			_list_of_allies.emplace_back(new Spearman(_asset_manager.getTexture("ally_spearman"), 100, _tile_map->getWalkableArea()));
 
 		_list_of_allies.emplace_back(new Player(_asset_manager.getTexture("player"), 100, _asset_manager.getTexture("arrow")));
@@ -92,12 +92,10 @@ namespace RTB
 		position.x = ((2 * (*character)->getPosition().y + (*character)->getPosition().x) / 2) / 25;
 		position.y = ((2 * (*character)->getPosition().y - (*character)->getPosition().x) / 2) / 25;
 		if (position.x > _tile_map->getHeight() || position.x < 0 ||
-			position.y > _tile_map->getWidth() || position.y < 0)//checks if character is not situated "inside" the map
+			position.y > _tile_map->getWidth() || position.y < 0) //checks if character is not situated "inside" the map
 			return true;//collides
-		else ///////////to do
-		{
+		else 
 			return false;// do not collides
-		}
 	}
 
 	bool RealTimeBattle::_isEnemyTeamDead()
@@ -124,8 +122,54 @@ namespace RTB
 		return true;
 	}
 
+	std::list<std::shared_ptr<Character>>::iterator RealTimeBattle::_pickRandomAlly()
+	{
+		auto start = _list_of_allies.begin(), end = _list_of_allies.end();
+		unsigned seed = static_cast<unsigned>(std::chrono::high_resolution_clock::now().time_since_epoch().count());
+		std::mt19937 gen(seed);
+		std::uniform_int_distribution<int> dis(0, std::distance(start, end) - 1);
+		std::advance(start, dis(gen));
+		return start;
+	}
+
+	void RealTimeBattle::_charactersUpdatesAndRenders()
+	{
+		for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_enemies.begin(); iterator != _list_of_enemies.end(); iterator++)
+		{
+			if (!(*iterator)->isAlive())
+				(*iterator)->deadBody(*_window);
+			else continue;
+		}
+		for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_allies.begin(); iterator != _list_of_allies.end(); iterator++)
+		{
+			if (!(*iterator)->isAlive())
+				(*iterator)->deadBody(*_window);
+			else continue;
+		}
+
+		for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_enemies.begin(); iterator != _list_of_enemies.end(); iterator++)
+		{
+			if ((*iterator)->isAlive())
+			{
+				(*iterator)->update(_clock.getElapsedTime(), _tile_map->getCollidableObjects(), _list_of_allies, *_window);
+				(*iterator)->dealDamage(_clock.getElapsedTime(), _list_of_allies, *_window);
+				(*iterator)->render(*_window);
+			}
+		}
+
+		for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_allies.begin(); iterator != _list_of_allies.end(); iterator++)
+		{
+			if ((*iterator)->isAlive())
+			{
+				(*iterator)->update(_clock.getElapsedTime(), _tile_map->getCollidableObjects(), _list_of_enemies, *_window);
+				(*iterator)->dealDamage(_clock.getElapsedTime(), _list_of_enemies, *_window);
+				(*iterator)->render(*_window);
+			}
+		}
+	}
+
 	RealTimeBattle::RealTimeBattle(sf::RenderWindow& window) :
-		_player(nullptr), _tile_map(nullptr), _user_interface(nullptr), _is_paused(false)
+		_player(nullptr), _tile_map(nullptr), _user_interface(nullptr), _is_paused(false), _is_surrendered(false), _return_from_battle(false), _is_ally_choosen(false)
 	{
 		_window = &window;
 		_camera.reset(sf::FloatRect(0, 0, 1280, 720));
@@ -169,6 +213,34 @@ namespace RTB
 							_is_paused = true;
 					}
 				}
+
+				if (_event.type == sf::Event::MouseButtonPressed)
+				{
+					sf::Vector2f center = _camera.getCenter();
+					sf::Vector2f worldPos = _window->mapPixelToCoords(sf::Mouse::getPosition(*_window));
+					if (_event.mouseButton.button == sf::Mouse::Left && _user_interface->getButtonNo()->getSprite().getGlobalBounds().contains(worldPos) && _is_paused)
+					{
+						_is_paused = false;
+					}
+					else if (_event.mouseButton.button == sf::Mouse::Left && _user_interface->getButtonYes()->getSprite().getGlobalBounds().contains(worldPos) && _is_paused)
+					{
+						_is_paused = false;
+						_is_surrendered = true;
+					}
+					else if (_event.mouseButton.button == sf::Mouse::Left && _user_interface->getButtonOk()->getSprite().getGlobalBounds().contains(worldPos) && (this->_isAllyTeamDead() || _is_surrendered))
+						_return_from_battle = true;
+					else if (_event.mouseButton.button == sf::Mouse::Left && _user_interface->getButtonOk()->getSprite().getGlobalBounds().contains(worldPos) && this->_isEnemyTeamDead())
+						_return_from_battle = true;
+					else if (_event.mouseButton.button == sf::Mouse::Left && !this->_isAllyTeamDead() && !this->_isEnemyTeamDead() && !_player->isAlive())
+					{
+						_choosen_ally = _pickRandomAlly();
+						while(!(*_choosen_ally)->isAlive())
+							_choosen_ally = _pickRandomAlly();
+						_is_ally_choosen = true;
+					}
+				}
+				if (_event.type == sf::Event::LostFocus)
+					_is_paused = true;
 			}
 
 			_window->clear();
@@ -185,57 +257,31 @@ namespace RTB
 					_user_interface->setCameraCenter(_player->getPosition());
 					_camera.setCenter(_player->getPosition()); //camera is centered on the player
 				}
-
-				for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_enemies.begin(); iterator != _list_of_enemies.end(); iterator++)
+				else if (_is_ally_choosen)
 				{
-					if (!(*iterator)->isAlive())
-						(*iterator)->deadBody(*_window);
-					else continue;
-				}
-				for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_allies.begin(); iterator != _list_of_allies.end(); iterator++)
-				{
-					if (!(*iterator)->isAlive())
-						(*iterator)->deadBody(*_window);
-					else continue;
+					_user_interface->setCameraCenter((*_choosen_ally)->getPosition());
+					_camera.setCenter((*_choosen_ally)->getPosition());
 				}
 
-				for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_enemies.begin(); iterator != _list_of_enemies.end(); iterator++)
-				{
-					if ((*iterator)->isAlive())
-					{
-						(*iterator)->update(_clock.getElapsedTime(), _tile_map->getCollidableObjects(), _list_of_allies, *_window);
-						(*iterator)->dealDamage(_clock.getElapsedTime(), _list_of_allies, *_window);
-						(*iterator)->render(*_window);
-					}
-				}
+				this->_charactersUpdatesAndRenders();
 
-				for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_allies.begin(); iterator != _list_of_allies.end(); iterator++)
-				{
-					if ((*iterator)->isAlive())
-					{
-						(*iterator)->update(_clock.getElapsedTime(), _tile_map->getCollidableObjects(), _list_of_enemies, *_window);
-						(*iterator)->dealDamage(_clock.getElapsedTime(), _list_of_enemies, *_window);
-						(*iterator)->render(*_window);
-					}
-				}
 				_tile_map->drawObjects(*_window);
 			}
 			//Updating and drawing user interface
 			_window->setView(_user_interface->getCamera());
-			_user_interface->update(_is_paused);
-			_user_interface->render();
+
+			_user_interface->update(_is_paused, _is_surrendered, this->_isAllyTeamDead(), this->_isEnemyTeamDead(), _return_from_battle);
+			_user_interface->render(_is_paused, _is_surrendered, this->_isAllyTeamDead(), this->_isEnemyTeamDead());
 
 			//Displaying everything
 			_window->display();
 
-			if (this->_isAllyTeamDead())
-			{
-				std::cout << "you lost";
+			if ((_return_from_battle && this->_isAllyTeamDead()) || (_return_from_battle && _is_surrendered))
+			{ 
 				return;
 			}
-			else if (this->_isEnemyTeamDead())
+			else if (_return_from_battle && this->_isEnemyTeamDead())
 			{
-				std::cout << "you won";
 				return;
 			}
 		}

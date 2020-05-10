@@ -21,6 +21,7 @@ namespace RiD
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 			{
 				realTimeBattle.mainLoop();
+				return;
 			}
 
 			_data->window.clear();

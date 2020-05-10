@@ -70,25 +70,25 @@ namespace RTB
 		{
 		case dirt:
 		{
-			std::unique_ptr<MapElement> ptr = std::unique_ptr<MapElement>(new MapElement(_asset_manager.getTexture("dirt"), this->_twoDToIso()));
+			std::unique_ptr<MapElement> ptr = std::unique_ptr<MapElement>(new MapElement(&_asset_manager.getTexture("dirt"), this->_twoDToIso()));
 			_map_elements[_position_x][_position_y] = std::move(ptr);
 			break;
 		}
 		case grass:
 		{
-			std::unique_ptr<MapElement> ptr = std::unique_ptr<MapElement>(new MapElement(_asset_manager.getTexture("grass"), this->_twoDToIso()));
+			std::unique_ptr<MapElement> ptr = std::unique_ptr<MapElement>(new MapElement(&_asset_manager.getTexture("grass"), this->_twoDToIso()));
 			_map_elements[_position_x][_position_y] = std::move(ptr);
 			break;
 		}
 		case water:
 		{
-			std::unique_ptr<MapElement> ptr = std::unique_ptr<MapElement>(new MapElement(_asset_manager.getTexture("water"), this->_twoDToIso()));
+			std::unique_ptr<MapElement> ptr = std::unique_ptr<MapElement>(new MapElement(&_asset_manager.getTexture("water"), this->_twoDToIso()));
 			_map_elements[_position_x][_position_y] = std::move(ptr);
 			break;
 		}
 		case road:
 		{
-			std::unique_ptr<MapElement> ptr = std::unique_ptr<MapElement>(new MapElement(_asset_manager.getTexture("road"), this->_twoDToIso()));
+			std::unique_ptr<MapElement> ptr = std::unique_ptr<MapElement>(new MapElement(&_asset_manager.getTexture("road"), this->_twoDToIso()));
 			_map_elements[_position_x][_position_y] = std::move(ptr);
 			break;
 		}
@@ -103,13 +103,13 @@ namespace RTB
 		case no_flora:
 			break;
 		case tinyFlower:
-			_map_elements[_position_x][_position_y]->setFlora(_asset_manager.getTexture("tinyFlowers"), this->_twoDToIso());
+			_map_elements[_position_x][_position_y]->setFlora(&_asset_manager.getTexture("tinyFlowers"), this->_twoDToIso());
 			break;
 		case redFlower:
-			_map_elements[_position_x][_position_y]->setFlora(_asset_manager.getTexture("redFlower"), this->_twoDToIso());
+			_map_elements[_position_x][_position_y]->setFlora(&_asset_manager.getTexture("redFlower"), this->_twoDToIso());
 			break;
 		case fence1Fallen:
-			_map_elements[_position_x][_position_y]->setFlora(_asset_manager.getTexture("fence1Fallen"), this->_twoDToIso());
+			_map_elements[_position_x][_position_y]->setFlora(&_asset_manager.getTexture("fence1Fallen"), this->_twoDToIso());
 			break;
 		}
 	}
@@ -122,16 +122,16 @@ namespace RTB
 		case no_object:
 			break;
 		case fence1:
-			_map_elements[_position_x][_position_y]->setObject(_asset_manager.getTexture("fence1"), { isometric.x, isometric.y }, { 15, 55 }, { 45,12 }, { 8.f, 10.f }, -30);
+			_map_elements[_position_x][_position_y]->setObject(&_asset_manager.getTexture("fence1"), { isometric.x, isometric.y }, { 15, 55 }, { 45,12 }, { 8.f, 10.f }, -30);
 			break;
 		case sign:
-			_map_elements[_position_x][_position_y]->setObject(_asset_manager.getTexture("sign"), { isometric.x + 20 , isometric.y + 8 }, { 24, 50 }, { 5,5 }, { 0.f, 0.f }, 0);
+			_map_elements[_position_x][_position_y]->setObject(&_asset_manager.getTexture("sign"), { isometric.x + 20 , isometric.y + 8 }, { 24, 50 }, { 5,5 }, { 0.f, 0.f }, 0);
 			break;
 		case tree:
-			_map_elements[_position_x][_position_y]->setObject(_asset_manager.getTexture("tree"), { isometric.x, isometric.y }, { 50, 136 }, { 44,18 }, { 0.f, 0.f }, 0);
+			_map_elements[_position_x][_position_y]->setObject(&_asset_manager.getTexture("tree"), { isometric.x, isometric.y }, { 50, 136 }, { 44,18 }, { 0.f, 0.f }, 0);
 			break;
 		case chest:
-			_map_elements[_position_x][_position_y]->setObject(_asset_manager.getTexture("chest"), { isometric.x + 30, isometric.y + 30 }, { 42, 72 }, { 38,18 }, { -24.f, -24.f }, 0);
+			_map_elements[_position_x][_position_y]->setObject(&_asset_manager.getTexture("chest"), { isometric.x + 30, isometric.y + 30 }, { 42, 72 }, { 38,18 }, { -24.f, -24.f }, 0);
 			break;
 
 		}
@@ -284,12 +284,12 @@ namespace RTB
 		return _walkable_area;
 	}
 
-	unsigned short& TileMap::getWidth()
+	unsigned int& TileMap::getWidth()
 	{
 		return _width;
 	}
 
-	unsigned short& TileMap::getHeight()
+	unsigned int& TileMap::getHeight()
 	{
 		return _height;
 	}

@@ -13,10 +13,10 @@ namespace RTB
 		sf::RectangleShape _hitbox;
 		bool _walkable;
 	public:
-		MapElement(sf::Texture& ground, sf::Vector2f position);
+		MapElement(sf::Texture* ground, sf::Vector2f position);
 
-		void setFlora(sf::Texture& flora, sf::Vector2f position);
-		void setObject(sf::Texture& object, sf::Vector2f position, sf::Vector2f origin, sf::Vector2f hitbox_size, sf::Vector2f hitbox_position_offset, float hitbox_rotation_angle);
+		void setFlora(sf::Texture* flora, sf::Vector2f position);
+		void setObject(sf::Texture* object, sf::Vector2f position, sf::Vector2f origin, sf::Vector2f hitbox_size, sf::Vector2f hitbox_position_offset, float hitbox_rotation_angle);
 
 		sf::Sprite getGround();
 		sf::Sprite getFlora();

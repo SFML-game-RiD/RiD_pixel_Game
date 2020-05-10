@@ -26,7 +26,7 @@ namespace RTB
 
 		std::vector<std::vector<AI::PathNode>> _walkable_area;
 
-		unsigned short _width , _height , _tile_type;
+		unsigned int _width , _height , _tile_type;
 		sf::Vector2f _point;
 
 		sf::Vector2f _twoDToIso();
@@ -46,9 +46,9 @@ namespace RTB
 
 		std::vector<std::vector<AI::PathNode>>& getWalkableArea();
 
-		unsigned short& getWidth();
+		unsigned int& getWidth();
 
-		unsigned short& getHeight();
+		unsigned int& getHeight();
 
 		sf::Vector2f _twoDToIso(sf::Vector2f position);
 	};

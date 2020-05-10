@@ -156,9 +156,11 @@
     <ClCompile Include="Battle\Archer.cpp" />
     <ClCompile Include="Battle\Arrow.cpp" />
     <ClCompile Include="Battle\ArrowHitbox.cpp" />
+    <ClCompile Include="Battle\BookButton.cpp" />
     <ClCompile Include="Battle\Bot.cpp" />
     <ClCompile Include="Battle\Button.cpp" />
     <ClCompile Include="Battle\Character.cpp" />
+    <ClCompile Include="Battle\Cursor.cpp" />
     <ClCompile Include="Battle\GUI.cpp" />
     <ClCompile Include="Battle\Hitbox.cpp" />
     <ClCompile Include="Battle\HPBar.cpp" />
@@ -190,9 +192,11 @@
     <ClInclude Include="Battle\Archer.h" />
     <ClInclude Include="Battle\Arrow.h" />
     <ClInclude Include="Battle\ArrowHitbox.h" />
+    <ClInclude Include="Battle\BookButton.h" />
     <ClInclude Include="Battle\Bot.h" />
     <ClInclude Include="Battle\Button.h" />
     <ClInclude Include="Battle\Character.h" />
+    <ClInclude Include="Battle\Cursor.h" />
     <ClInclude Include="Battle\GUI.h" />
     <ClInclude Include="Battle\Hitbox.h" />
     <ClInclude Include="Battle\HPBar.h" />
