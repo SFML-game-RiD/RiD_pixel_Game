@@ -185,6 +185,8 @@
     <ClCompile Include="Land.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Mission.cpp" />
+    <ClCompile Include="MissionCreator.cpp" />
     <ClCompile Include="Music.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SoundManager.cpp" />
@@ -246,6 +248,8 @@
     <ClInclude Include="ItemsManager.h" />
     <ClInclude Include="Land.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="Mission.h" />
+    <ClInclude Include="MissionCreator.h" />
     <ClInclude Include="Music.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SoundManager.h" />

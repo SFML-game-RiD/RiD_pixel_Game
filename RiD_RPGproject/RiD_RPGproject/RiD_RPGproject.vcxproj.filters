@@ -167,10 +167,18 @@
     <ClCompile Include="ObjectGenerator.cpp">
       <Filter>MANAGERS, HEAD CLASS</Filter>
     </ClCompile>
-    <ClCompile Include="SoundManager.cpp" />
-    <ClCompile Include="Music.cpp" />
-    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Music.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="MissionCreator.cpp" />
+    <ClCompile Include="Mission.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Animation.h">
@@ -338,10 +346,18 @@
     <ClInclude Include="ObjectGenerator.h">
       <Filter>MANAGERS, HEAD CLASS</Filter>
     </ClInclude>
-    <ClInclude Include="SoundManager.h" />
-    <ClInclude Include="Music.h" />
-    <ClInclude Include="Sound.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="Music.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="MissionCreator.h" />
+    <ClInclude Include="Mission.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="OBIECT">
@@ -406,6 +422,9 @@
     </Filter>
     <Filter Include="MANAGERS, HEAD CLASS\MANAGE TASK">
       <UniqueIdentifier>{624f1dfe-d450-4c4c-b1d6-0e7ab57aa4e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{67823770-71ab-4c02-97a1-4fc64be8e915}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

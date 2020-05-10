@@ -1,3 +1,4 @@
+#include <thread>
 #include "Calculator.h"
 #include <iostream>
 
@@ -9,8 +10,33 @@ void MP::Calculator::_computer_players_procedure(SoundManager &aSoundManager,Obj
 
 	it = computerPlayerList->begin();
 
+
 	for (it; it != computerPlayerList->end(); it++)
 		it->update(aSoundManager,aMap, gameClock,aObiectManager.getPlayer());
+
+	//std::list<ComputerPlayerBandit> *computerPlayerList = aObiectManager.getComputerPlayerList();
+	//std::list<ComputerPlayerBandit>::iterator it;
+	//
+	//it = computerPlayerList->begin();
+
+	//std::thread threadArray[3];
+
+	//while (it != computerPlayerList->end())
+	//{
+	//	for (unsigned int i = 0; i < 3; i++)
+	//	{
+	//		if (it != computerPlayerList->end())
+	//		{
+
+	//			threadArray[i] = std::thread(&ComputerPlayerBandit::update, it, std::ref(aSoundManager), std::ref(aMap), std::ref(gameClock), std::ref(aObiectManager.getPlayer()));
+	//			it++;
+	//		}
+	//	}
+	//	
+	//	threadArray[0].join();
+	//	threadArray[1].join();
+	//	threadArray[2].join();
+	//}
 }
 
 void MP::Calculator::_trees_procedure(sf::Clock& globalClock, ObjectManager& aObiectManager)
@@ -28,7 +54,7 @@ void MP::Calculator::_trees_procedure(sf::Clock& globalClock, ObjectManager& aOb
 void MP::Calculator::startMainGameProcedures(SoundManager & aSoundManager, TaskManager& aMainTaskManager, ObjectManager& aObiectManager, sf::Clock& gameClock, Camera& aCamera)
 {
 	aObiectManager.getPlayer()->update(aSoundManager,aMainTaskManager, gameClock, aObiectManager.getMap(), aObiectManager.getCursor()->getGameCoord());
-
+	
 	_trees_procedure(gameClock, aObiectManager);
 
 	aCamera.update(aObiectManager.getPlayer()->getObjectCoord(), aMainTaskManager);
