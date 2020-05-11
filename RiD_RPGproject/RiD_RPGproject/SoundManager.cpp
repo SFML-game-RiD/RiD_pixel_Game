@@ -6,6 +6,8 @@ MP::SoundManager::SoundManager()
 	setSound("activeButtonSound", "sound/active_button_sound.wav");
 	setSound("pressedButtonSound", "sound/pressed_button_sound.wav");
 	setSound("horseWhinney", "sound/horse_whinney.wav");
+	setSound("missionCompleted", "sound/mission_completed.wav");
+	setSound("missionNextState", "sound/mission_next_state.wav");
 }
 
 void MP::SoundManager::setSound(std::string sound_name, std::string file_name)

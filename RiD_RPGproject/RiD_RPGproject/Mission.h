@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-
+#include "Sound.h"
 
 namespace MP
 {
@@ -30,12 +30,15 @@ namespace MP
 		int _swordsman_needs;
 		int _archer_needs;
 
-		std::string _start_message[5];
-		std::string _destination_message[5];
-		std::string _end_message[5];
+		std::string _start_message[12];
+		std::string _destination_message[12];
+		std::string _end_message[12];
 
 		void _download_mission(const char* missionPath);
+
 	public:
+
+		MP::Sound missionSoundPlayer;
 
 		Mission(const char* missionPath);
 
@@ -47,6 +50,9 @@ namespace MP
 		std::string* getStartMessage();
 		std::string* getEndMessage();
 		std::string* getDestinationMessage();
+
+		int getAwardAmount(std::string itemName);
+		int getNeedsAmount(std::string itemName);
 	};
 
 }

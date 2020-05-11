@@ -66,7 +66,7 @@ bool MP::PawnObject::_check_go_right(MP::Map& aMap)
 
 void MP::PawnObject::tryToMoveUp(Map& aMap, TaskManager& aMainTaskManager)
 {
-	if (_check_go_up(aMap))
+	if (_check_go_up(aMap) and !aMainTaskManager.findTask(MP::TaskNode::taskType::taskAutoMove,false) and !aMainTaskManager.findTask(TaskNode::taskType::taskNormalMove, false))
 	{
 		aMainTaskManager.addTask(MP::TaskNode::taskType::taskGoUp);
 		aMainTaskManager.addTask(MP::TaskNode::taskType::taskNormalMove);
@@ -75,7 +75,7 @@ void MP::PawnObject::tryToMoveUp(Map& aMap, TaskManager& aMainTaskManager)
 
 void MP::PawnObject::tryToMoveDown(Map& aMap, TaskManager& aMainTaskManager)
 {
-	if (_check_go_down(aMap) )
+	if (_check_go_down(aMap) and !aMainTaskManager.findTask(MP::TaskNode::taskType::taskAutoMove, false) and !aMainTaskManager.findTask(TaskNode::taskType::taskNormalMove, false))
 	{
 		aMainTaskManager.addTask(MP::TaskNode::taskType::taskGoDown);
 		aMainTaskManager.addTask(MP::TaskNode::taskType::taskNormalMove);
@@ -84,7 +84,7 @@ void MP::PawnObject::tryToMoveDown(Map& aMap, TaskManager& aMainTaskManager)
 
 void MP::PawnObject::tryToMoveLeft(Map& aMap, TaskManager& aMainTaskManager)
 {
-	if (_check_go_left(aMap) )
+	if (_check_go_left(aMap) and !aMainTaskManager.findTask(MP::TaskNode::taskType::taskAutoMove, false) and !aMainTaskManager.findTask(TaskNode::taskType::taskNormalMove, false))
 	{
 		aMainTaskManager.addTask(MP::TaskNode::taskType::taskGoLeft);
 		aMainTaskManager.addTask(MP::TaskNode::taskType::taskNormalMove);
@@ -93,7 +93,7 @@ void MP::PawnObject::tryToMoveLeft(Map& aMap, TaskManager& aMainTaskManager)
 
 void MP::PawnObject::tryToMoveRight(Map& aMap, TaskManager& aMainTaskManager)
 {
-	if (_check_go_right(aMap) )
+	if (_check_go_right(aMap) and !aMainTaskManager.findTask(MP::TaskNode::taskType::taskAutoMove, false) and !aMainTaskManager.findTask(TaskNode::taskType::taskNormalMove, false))
 	{
 		aMainTaskManager.addTask(MP::TaskNode::taskType::taskGoRight);
 		aMainTaskManager.addTask(MP::TaskNode::taskType::taskNormalMove);

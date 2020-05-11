@@ -37,7 +37,8 @@ namespace MP
 			//Mission
 			taskMission,
 			taskMissionGoToDestination,
-			taskMissionGetReward
+			taskMissionGetReward,
+			taskMissionReturn
 
 		};
 

@@ -41,6 +41,7 @@ void RiD::RiDmain::_event_function_for_state_game()
 			_a_camera.getWindow().close();
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+			if(!_a_main_task_manager.findTask(MP::TaskNode::taskType::taskAutoMove,false) and !_a_main_task_manager.findTask(MP::TaskNode::taskType::taskNormalMove, false))
 				_a_main_task_manager.setState(MP::TaskManager::stateType::stateMainMenu);
 			
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
@@ -56,7 +57,8 @@ void RiD::RiDmain::_event_function_for_state_game()
 			_a_obiect_manager.getPlayer()->tryToMoveRight(_a_obiect_manager.getMap(), _a_main_task_manager);
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
-			if(!_a_main_task_manager.findTask(MP::TaskNode::taskType::taskAutoMove,false))
+			if(!_a_main_task_manager.findTask(MP::TaskNode::taskType::taskAutoMove,false) and 
+			   !_a_main_task_manager.findTask(MP::TaskNode::taskType::taskNormalMove, false))
 				_a_obiect_manager.getPlayer()->goToPlace(_a_obiect_manager.getMap(), _a_main_task_manager);
 
 
@@ -88,10 +90,7 @@ void RiD::RiDmain::_event_function_for_menu()
 		}
 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-		{
-			if(_a_main_task_manager.isTaskListEmpty())
 			_a_main_task_manager.addTask(MP::TaskNode::taskType::taskClickLeft);
-		}
 	
 	}
 }

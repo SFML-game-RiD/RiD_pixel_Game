@@ -63,7 +63,7 @@ void MP::Calculator::startMainGameProcedures(SoundManager & aSoundManager, TaskM
 
 	aObiectManager.getCursor()->update(aMainTaskManager, aCamera);
 
-	aObiectManager.getGuiManager().getMapGui()->update(aObiectManager.getPlayer()->aItemsManager);
+	aObiectManager.getGuiManager().getMapGui()->update(aObiectManager.getPlayer()->aItemsManager,aObiectManager.getPlayer()->getMessage());
 }
 
 void MP::Calculator::startMenuProcedures(SoundManager& aSoundManager, TaskManager &aMainTaskManager, ObjectManager & aObiectManager,Camera& aCamera)

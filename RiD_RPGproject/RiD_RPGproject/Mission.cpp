@@ -55,7 +55,7 @@ void MP::Mission::_download_mission(const char *missionPath)
 			_archer_needs = atoi(pVal118);
 			
 
-			for(int i=1;i<6;i++)
+			for(int i=1;i<13;i++)
 			{
 				std::string tmp = std::to_string(i); 
 				std::string key = (std::string("line") + tmp);
@@ -63,7 +63,7 @@ void MP::Mission::_download_mission(const char *missionPath)
 				std::string tmp2 = pVal0;
 				_start_message[(i-1)] = tmp2;
 			}
-			for(int i=1;i<6;i++)
+			for(int i=1;i<13;i++)
 			{
 				std::string tmp = std::to_string(i);
 				std::string key = (std::string("line") + tmp);
@@ -71,7 +71,7 @@ void MP::Mission::_download_mission(const char *missionPath)
 				std::string tmp2 = pVal0;
 				_end_message[(i - 1)] = tmp2;
 			}
-			for(int i=1;i<6;i++)
+			for(int i=1;i<13;i++)
 			{
 				std::string tmp = std::to_string(i);
 				std::string key = (std::string("line") + tmp);
@@ -122,4 +122,72 @@ std::string* MP::Mission::getEndMessage()
 std::string* MP::Mission::getDestinationMessage()
 {
 	return _destination_message;
+}
+
+int MP::Mission::getAwardAmount(std::string itemName)
+{
+	if (itemName == "gold")
+		if (_gold_award != -1)
+			return _gold_award;
+		else return 0;
+	else if(itemName=="food")
+		if (_food_award != -1)
+			return _food_award;
+		else return 0;
+	else if (itemName=="wood")
+		if (_wood_award != -1)
+			return _wood_award;
+		else return 0;
+	else if (itemName=="iron")
+		if (_iron_award != -1)
+			return _iron_award;
+		else return 0;
+	else if (itemName=="archer")
+		if (_archer_award != -1)
+			return _archer_award;
+		else return 0;
+	else if (itemName=="spearman")
+		if (_spearman_award != -1)
+			return _spearman_award;
+		else return 0;
+	else if (itemName=="swordsman")
+		if (_swordsman_award != -1)
+			return _swordsman_award;
+		else return 0;
+
+	return -9999999;
+}
+
+int MP::Mission::getNeedsAmount(std::string itemName)
+{
+	if (itemName == "gold")
+		if (_gold_needs != -1)
+			return _gold_needs;
+		else return 0;
+	else if (itemName == "food")
+		if (_food_needs != -1)
+			return _food_needs;
+		else return 0;
+	else if (itemName == "wood")
+		if (_wood_needs != -1)
+			return _wood_needs;
+		else return 0;
+	else if (itemName == "iron")
+		if (_iron_needs != -1)
+			return _iron_needs;
+		else return 0;
+	else if (itemName == "archer")
+		if (_archer_needs != -1)
+			return _archer_needs;
+		else return 0;
+	else if (itemName == "spearman")
+		if (_spearman_needs != -1)
+			return _spearman_needs;
+		else return 0;
+	else if (itemName == "swordsman")
+		if (_swordsman_needs != -1)
+			return _swordsman_needs;
+		else return 0;
+
+	return -9999999;
 }

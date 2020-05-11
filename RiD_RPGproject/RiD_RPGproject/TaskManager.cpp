@@ -39,7 +39,8 @@ bool MP::TaskManager::findTask(TaskNode::taskType aTaskType, bool erase)
 
 void MP::TaskManager::addTask(TaskNode::taskType newTask)
 {
-	if (!findTask(TaskNode::taskType::taskNormalMove,false)and !findTask(newTask, false))
+	//if (!findTask(TaskNode::taskType::taskNormalMove,false)and !findTask(newTask, false))
+	if (!findTask(newTask, false))
 	{
 		std::shared_ptr<TaskNode> tmp = std::make_shared<TaskNode>(newTask);
 		taskList.insert(tmp);

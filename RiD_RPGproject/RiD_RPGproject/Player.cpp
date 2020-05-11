@@ -67,6 +67,9 @@ MP::Player::Player(sf::Texture* texturePtr, sf::Texture* pathIconTexturePtr)
 	//Getting player coordinates.
 	setObjectCoord(RiD::ConfigurationLoader::getIntData("player", "coordinateX"), RiD::ConfigurationLoader::getIntData("player", "coordinateY"));
 
+	message[0] = "You have no mission.";
+	message[2] = "Go and check notice board.";
+
 }
 
 void MP::Player::_player_animation(sf::Clock& globalClock, TaskManager &aMainTaskManager)
@@ -243,6 +246,11 @@ std::shared_ptr<MP::Places>& MP::Player::getCurrentPlace()
 	return _current_place;
 }
 
+std::string* MP::Player::getMessage()
+{
+	return message;
+}
+
 void MP::Player::update(SoundManager &aSoundManager,TaskManager& aMainTaskManager, sf::Clock& GameClock, MP::Map& aMap, sf::Vector2f mouseGameCoord)
 {
 	_current_land=aMap.findElementAddressSquareRange(this->getObjectCoord());
@@ -263,7 +271,7 @@ void MP::Player::render(sf::RenderWindow& mainWindow)
 
 void MP::Player::_procedure_player_auto_or_normal_move(TaskManager& aMainTaskManager, sf::Clock& gameClock, MP::Map& aMap, sf::Vector2f& mouseGameCoord)
 {
-	if (aMainTaskManager.findTask(MP::TaskNode::taskType::taskNormalMove, false))
+	if (aMainTaskManager.findTask(MP::TaskNode::taskType::taskNormalMove, false) and !aMainTaskManager.findTask(TaskNode::taskType::taskAutoMove, false))
 	{
 		_player_move(gameClock, aMainTaskManager);
 
@@ -295,15 +303,19 @@ void MP::Player::_procedure_player_auto_or_normal_move(TaskManager& aMainTaskMan
 
 				_mark_path();
 			}
+			else
+			{
+				aMainTaskManager.findTask(TaskNode::taskType::taskAutoMove, true);
+			}
 		}
 		else
 			aMainTaskManager.findTask(TaskNode::taskType::taskAutoMove,true);
 	}
-	if (aMainTaskManager.findTask(MP::TaskNode::taskType::taskDoubleClickLeft, true))	//starts procedure auto move if player clicked second time
+ if (aMainTaskManager.findTask(MP::TaskNode::taskType::taskDoubleClickLeft, true))	//starts procedure auto move if player clicked second time
 	{
 		MapElement* checkingElement = aMap.findElementAddressSquareRange(mouseGameCoord);
 
-		if (checkingElement->getLandTile().getObjectCoord().x == checkingVector.x and checkingElement->getLandTile().getObjectCoord().y == checkingVector.y) //continue auto move
+		if (checkingElement->getLandTile().getObjectCoord().x == checkingVector.x and checkingElement->getLandTile().getObjectCoord().y == checkingVector.y and checkingElement != aMap.findElementAddressSquareRange(getObjectCoord())) //continue auto move
 		{
 			_unmark_path();
 			aMainTaskManager.addTask(MP::TaskNode::taskType::taskExecuteAutoMove);
@@ -336,34 +348,26 @@ void MP::Player::_procedure_player_auto_or_normal_move(TaskManager& aMainTaskMan
 	}
 }
 
-void MP::Player::_song_procedure(sf::Clock &gameClock,MP::SoundManager& aSoundManager, TaskManager& aMainTaskManager)
+void MP::Player::_song_procedure(sf::Clock& gameClock, MP::SoundManager& aSoundManager, TaskManager& aMainTaskManager)
 {
-	if (aMainTaskManager.isTaskListEmpty())
+	if (aMainTaskManager.findTask(MP::TaskNode::taskType::taskAutoMove, false) or aMainTaskManager.findTask(MP::TaskNode::taskType::taskNormalMove, false))
 	{
+		if (!_sound_player.isPlaying())
+		{
+			_sound_player.playSound(aSoundManager.getSound("pawnSound"));
+			_whinney_once = true;
+			objectTimer.setTimer(gameClock, sf::seconds(float(1.3)));
+		}
+	}
+	else if (!aMainTaskManager.findTask(MP::TaskNode::taskType::taskAutoMove, false) and !aMainTaskManager.findTask(MP::TaskNode::taskType::taskNormalMove, false))
 		if (_whinney_once == true)
 		{
 			_sound_player.stopSound();
-			if (objectTimer.timeControl(gameClock, sf::seconds(1.3)))
+			if (objectTimer.timeControl(gameClock, sf::seconds(float(1.3))))
 			{
 				_sound_player.playSound(aSoundManager.getSound("horseWhinney"));
 				_whinney_once = false;
 			}
-		}
-	}
-
-	if(!_sound_player.isPlaying())
-		if (aMainTaskManager.findTask(MP::TaskNode::taskType::taskGoDown, false) or
-			aMainTaskManager.findTask(MP::TaskNode::taskType::taskGoUp, false) or
-			aMainTaskManager.findTask(MP::TaskNode::taskType::taskGoLeft, false) or
-			aMainTaskManager.findTask(MP::TaskNode::taskType::taskGoRight, false) or
-			aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoDown, false) or
-			aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoUp, false) or
-			aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoLeft, false) or
-			aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoRight, false))
-		{
-			_sound_player.playSound(aSoundManager.getSound("pawnSound"));
-			_whinney_once = true;
-			objectTimer.setTimer(gameClock, sf::seconds(1.3));
 		}
 }
 
@@ -371,27 +375,72 @@ void MP::Player::_mission_procedure(TaskManager& aMainTaskManager,Map &gameMap, 
 {
 	if (aMainTaskManager.findTask(TaskNode::taskType::taskMission, true))
 	{
-		_current_mision = _a_mission_creator.getMission(_current_place->getPlaceMark());
-		_destination_place = gameMap.getRandomPlace(_current_mision->getDestination());
-		_destination_place->markPlace();
-		aMainTaskManager.addTask(TaskNode::taskType::taskMissionGoToDestination);
-
-	}
-	else if (aMainTaskManager.findTask(TaskNode::taskType::taskMissionGoToDestination, false))
-	{	
-		if(_current_land!=nullptr)
-		if (_current_land->getPlace() == _destination_place)
+		if (_current_mision == nullptr)
 		{
-			if (_current_mision->getAction() == "nothing")
-				aMainTaskManager.addTask(TaskNode::taskType::taskMissionGetReward);
+			_current_mision = _a_mission_creator.getMission(_current_place->getPlaceMark());
+			_destination_place = gameMap.getRandomPlace(_current_mision->getDestination());
+			_destination_place->markPlace();
+			_employer_place = _current_place;
 
-			_destination_place->unmarkPlace();
+			for (int i = 0; i < 12; i++)
+				message[i] = _current_mision->getStartMessage()[i];
 
-			aMainTaskManager.findTask(TaskNode::taskType::taskMissionGoToDestination, true);
+
+			aMainTaskManager.addTask(TaskNode::taskType::taskMissionGoToDestination);
+			_current_mision->missionSoundPlayer.playSound(aSoundManager.getSound("missionNextState"));
 		}
 	}
-	else if (aMainTaskManager.findTask(TaskNode::taskType::taskMissionGetReward, true))
+	 if (aMainTaskManager.findTask(TaskNode::taskType::taskMissionGoToDestination, false))
+	{	
+	
+		//if(_current_land!=nullptr)
+		if (_current_land->getPlace() == _destination_place)
+		{
+
+			aMainTaskManager.findTask(TaskNode::taskType::taskMissionGoToDestination, true);
+
+			if (_current_mision->getAction() == "nothing")
+				aMainTaskManager.addTask(TaskNode::taskType::taskMissionGetReward);
+			else if (_current_mision->getAction() == "return")
+			{
+				_current_mision->missionSoundPlayer.playSound(aSoundManager.getSound("missionNextState"));
+				aMainTaskManager.addTask(TaskNode::taskType::taskMissionReturn);
+				_destination_place->unmarkPlace();
+				_employer_place->markPlace();
+			}
+
+			
+
+			for (int i = 0; i < 12; i++)
+				message[i] = _current_mision->getDestinationMessage()[i];
+
+			
+		}
+	}
+	 if (aMainTaskManager.findTask(TaskNode::taskType::taskMissionGetReward, true))
 	{
-		std::cout << "NAGRODA"<<std::endl;
+		_current_mision->missionSoundPlayer.playSound(aSoundManager.getSound("missionCompleted"));
+		for (int i = 0; i < 12; i++)
+			message[i] = _current_mision->getEndMessage()[i];
+
+		aItemsManager.getGold()->setItemAmount(aItemsManager.getGold()->getItemAmount()+ _current_mision->getAwardAmount("gold"));
+		aItemsManager.getWood()->setItemAmount(aItemsManager.getWood()->getItemAmount()+ _current_mision->getAwardAmount("wood"));
+		aItemsManager.getIron()->setItemAmount(aItemsManager.getIron()->getItemAmount()+ _current_mision->getAwardAmount("iron"));
+		aItemsManager.getFood()->setItemAmount(aItemsManager.getFood()->getItemAmount()+ _current_mision->getAwardAmount("food"));
+		aItemsManager.getSpearman()->setItemAmount(aItemsManager.getSpearman()->getItemAmount()+ _current_mision->getAwardAmount("spearman"));
+		aItemsManager.getSwordsman()->setItemAmount(aItemsManager.getSwordsman()->getItemAmount()+ _current_mision->getAwardAmount("swordsman"));
+		aItemsManager.getArcher()->setItemAmount(aItemsManager.getArcher()->getItemAmount()+ _current_mision->getAwardAmount("archer"));
+
+		_current_mision = nullptr;
+		_destination_place->unmarkPlace();
+		_employer_place->unmarkPlace();
+	}
+	 if (aMainTaskManager.findTask(TaskNode::taskType::taskMissionReturn, false))
+	{
+		if (_current_land->getPlace() == _employer_place)
+		{
+			aMainTaskManager.addTask(TaskNode::taskType::taskMissionGetReward);
+			aMainTaskManager.findTask(TaskNode::taskType::taskMissionReturn, true);
+		}
 	}
 }

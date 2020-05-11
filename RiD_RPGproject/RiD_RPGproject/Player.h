@@ -25,9 +25,13 @@ namespace MP
 
 		std::shared_ptr<Places> _destination_place;
 
+		std::shared_ptr<Places> _employer_place;
+
 		MissionCreator _a_mission_creator;
 
 		std::shared_ptr<Mission> _current_mision;
+
+		std::string message[12];
 
 		//Changes player's sprite.
 		//@param globalClock games'clock.
@@ -111,6 +115,8 @@ namespace MP
 		//Returns current place.
 		//return current place.
 		std::shared_ptr<Places> & getCurrentPlace();
+
+		std::string* getMessage();
 
 		//Updates player.
 		//@param aMainTaskManager game's task manager.

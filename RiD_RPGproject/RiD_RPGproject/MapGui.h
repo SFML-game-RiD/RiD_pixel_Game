@@ -11,6 +11,8 @@ namespace MP
 	{
 	private:
 
+		sf::Text _text_array[12];
+
 		//Draws items.
 		//@param mainWindow game window.
 		//@param aItemsManager items manager.
@@ -32,7 +34,7 @@ namespace MP
 
 		//Updates gui.
 		//@param aItemsManager items manager.
-		void update(ItemsManager& aItemsManager);
+		void update(ItemsManager& aItemsManager, std::string textArray[12]);
 		
 	};
 }

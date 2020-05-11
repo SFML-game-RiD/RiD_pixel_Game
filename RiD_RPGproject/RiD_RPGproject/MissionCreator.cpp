@@ -13,6 +13,7 @@ MP::MissionCreator::MissionCreator()
 {
 	_random_number.seed(time(NULL));
 	_set_mission("missions/town_medicine.ini", "townmedicine");
+	_set_mission("missions/castle_supply.ini", "castlesupply");
 }
 
 std::shared_ptr<MP::Mission> MP::MissionCreator::getMission(char placeMark)
@@ -21,13 +22,13 @@ std::shared_ptr<MP::Mission> MP::MissionCreator::getMission(char placeMark)
 
 	if (placeMark == RiD::ConfigurationLoader::getStringData("castle", "mark")[0])
 	{
-
+		missionName = "castlesupply";
 	}
-	if (placeMark == RiD::ConfigurationLoader::getStringData("town", "mark")[0])
+	else if (placeMark == RiD::ConfigurationLoader::getStringData("town", "mark")[0])
 	{
 		missionName = "townmedicine";
 	}
-	if (placeMark == RiD::ConfigurationLoader::getStringData("village", "mark")[0])
+	else if (placeMark == RiD::ConfigurationLoader::getStringData("village", "mark")[0])
 	{
 
 	}
