@@ -21,11 +21,11 @@ namespace MP
 
 		bool _walkable;
 
-		void _create_village(sf::Texture* texturePtr, sf::Vector2f coord);
+		void _create_village(RiD::AssetManager& aAssetManager, sf::Vector2f coord);
 
-		void _create_town(sf::Texture* texturePtr, sf::Vector2f coord);
+		void _create_town(RiD::AssetManager&, sf::Vector2f coord);
 
-		void _create_castle(sf::Texture* texturePtr, sf::Vector2f coord);
+		void _create_castle(RiD::AssetManager&, sf::Vector2f coord);
 
 	public:
 
@@ -33,7 +33,7 @@ namespace MP
 
 		Land & getLandTile();
 
-		std::shared_ptr<Places>& getPlace();
+		std::shared_ptr<Places> getPlace();
 
 		
 

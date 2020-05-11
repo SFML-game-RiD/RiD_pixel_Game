@@ -69,7 +69,6 @@ MP::Player::Player(sf::Texture* texturePtr, sf::Texture* pathIconTexturePtr)
 
 }
 
-
 void MP::Player::_player_animation(sf::Clock& globalClock, TaskManager &aMainTaskManager)
 {
 	if (aMainTaskManager.findTask(MP::TaskNode::taskType::taskGoUp,false))
@@ -108,7 +107,6 @@ void MP::Player::_player_move(sf::Clock& aGameClock, TaskManager& aMainTaskManag
 		this->resetBlockLenghtCopy();
 }
 
-
 void MP::Player::_player_automatic_move(Map& aMap, TaskManager& aTaskManager)
 {
 	if (_path != nullptr and  aPawnObjectTaskManager.isTaskListEmpty())
@@ -141,17 +139,18 @@ void MP::Player::_player_automatic_move(Map& aMap, TaskManager& aTaskManager)
 		_set_path(_path->getNextElement());//Deleting usless element
 		delete nextDestination;
 	}
-	else if(_path == nullptr and aPawnObjectTaskManager.isTaskListEmpty())
-		aTaskManager.deleteTaskList();
+	else if (_path == nullptr and aPawnObjectTaskManager.isTaskListEmpty())
+	{
+		aTaskManager.findTask(TaskNode::taskType::taskExecuteAutoMove, true);
+		aTaskManager.findTask(TaskNode::taskType::taskAutoMove, true);
+		aTaskManager.findTask(TaskNode::taskType::taskBreakAutoMove, true);
+	}
 }
-
-
 
 void MP::Player::_set_path(MapElement*& newPath)
 {
 	_path = newPath;
 }
-
 
 void MP::Player::_player_auto_animation(sf::Clock& globalClock)
 {
@@ -246,6 +245,8 @@ std::shared_ptr<MP::Places>& MP::Player::getCurrentPlace()
 
 void MP::Player::update(SoundManager &aSoundManager,TaskManager& aMainTaskManager, sf::Clock& GameClock, MP::Map& aMap, sf::Vector2f mouseGameCoord)
 {
+	_current_land=aMap.findElementAddressSquareRange(this->getObjectCoord());
+	_mission_procedure(aMainTaskManager, aMap, aSoundManager);
 	_song_procedure(GameClock,aSoundManager, aMainTaskManager);
 	_procedure_player_auto_or_normal_move(aMainTaskManager, GameClock, aMap, mouseGameCoord);
 }
@@ -296,7 +297,7 @@ void MP::Player::_procedure_player_auto_or_normal_move(TaskManager& aMainTaskMan
 			}
 		}
 		else
-			aMainTaskManager.deleteTaskList();
+			aMainTaskManager.findTask(TaskNode::taskType::taskAutoMove,true);
 	}
 	if (aMainTaskManager.findTask(MP::TaskNode::taskType::taskDoubleClickLeft, true))	//starts procedure auto move if player clicked second time
 	{
@@ -329,7 +330,8 @@ void MP::Player::_procedure_player_auto_or_normal_move(TaskManager& aMainTaskMan
 		else
 		{
 			_delete_player_path();
-			aMainTaskManager.deleteTaskList();
+			aMainTaskManager.findTask(TaskNode::taskType::taskAutoMove,true);
+			aMainTaskManager.findTask(TaskNode::taskType::taskBreakAutoMove,true);
 		}
 	}
 }
@@ -363,4 +365,33 @@ void MP::Player::_song_procedure(sf::Clock &gameClock,MP::SoundManager& aSoundMa
 			_whinney_once = true;
 			objectTimer.setTimer(gameClock, sf::seconds(1.3));
 		}
+}
+
+void MP::Player::_mission_procedure(TaskManager& aMainTaskManager,Map &gameMap, SoundManager& aSoundManager)
+{
+	if (aMainTaskManager.findTask(TaskNode::taskType::taskMission, true))
+	{
+		_current_mision = _a_mission_creator.getMission(_current_place->getPlaceMark());
+		_destination_place = gameMap.getRandomPlace(_current_mision->getDestination());
+		_destination_place->markPlace();
+		aMainTaskManager.addTask(TaskNode::taskType::taskMissionGoToDestination);
+
+	}
+	else if (aMainTaskManager.findTask(TaskNode::taskType::taskMissionGoToDestination, false))
+	{	
+		if(_current_land!=nullptr)
+		if (_current_land->getPlace() == _destination_place)
+		{
+			if (_current_mision->getAction() == "nothing")
+				aMainTaskManager.addTask(TaskNode::taskType::taskMissionGetReward);
+
+			_destination_place->unmarkPlace();
+
+			aMainTaskManager.findTask(TaskNode::taskType::taskMissionGoToDestination, true);
+		}
+	}
+	else if (aMainTaskManager.findTask(TaskNode::taskType::taskMissionGetReward, true))
+	{
+		std::cout << "NAGRODA"<<std::endl;
+	}
 }

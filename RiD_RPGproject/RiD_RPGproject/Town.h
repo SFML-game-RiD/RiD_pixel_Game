@@ -11,6 +11,6 @@ namespace MP
 		//Town's constructor.
 		//@param texturePtr object texture.
 		//@param coord object coord.
-		Town(sf::Texture* texturePtr, sf::Vector2f coord);
+		Town(RiD::AssetManager& aAssetManager, sf::Vector2f coord);
 	};
 }

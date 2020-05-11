@@ -32,7 +32,12 @@ namespace MP
 			taskClickLeft,
 			taskClickRight,
 			taskDoubleClickLeft,
-			taskWaitForDoubleClickLeft
+			taskWaitForDoubleClickLeft,
+
+			//Mission
+			taskMission,
+			taskMissionGoToDestination,
+			taskMissionGetReward
 
 		};
 

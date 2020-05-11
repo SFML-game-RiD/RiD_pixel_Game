@@ -264,7 +264,7 @@ void MP::GuiMarketPlace::_press_button(TaskManager& aMainTaskManager, sf::Render
 		_current_item = std::make_unique<Food>();
 	}
 
-	aMainTaskManager.deleteTaskList();
+	//aMainTaskManager.deleteTaskList();
 }
 
 void MP::GuiMarketPlace::update(SoundManager & aSoundManager,TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, sf::Vector2f guiMouseCoord, std::shared_ptr<Player>& aPlayer, std::shared_ptr<Places>& aPlace)

@@ -1,8 +1,9 @@
 #include "Village.h"
 
 
-MP::Village::Village(sf::Texture* texturePtr, sf::Vector2f coord)
+MP::Village::Village(RiD::AssetManager& aAssetManager, sf::Vector2f coord)
 {
-	aAnimation.loadObjectTextures(texturePtr, 1, 1, 64);
+	aAnimation.loadObjectTextures(&aAssetManager.getTexture("village"), 1, 1, 64);
 	setObjectCoord(coord);
+	_place_mark = RiD::ConfigurationLoader::getStringData("village", "mark")[0];
 }

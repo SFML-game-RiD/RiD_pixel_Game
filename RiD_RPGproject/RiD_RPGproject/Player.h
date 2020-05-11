@@ -5,6 +5,7 @@
 #include "PathIcon.h"
 #include "TaskManager.h"
 #include "SoundManager.h"
+#include "MissionCreator.h"
 
 namespace MP
 {
@@ -21,6 +22,12 @@ namespace MP
 		std::vector<PathIcon> _a_path_icon;///Stores path's icon.
 
 		std::shared_ptr<Places> _current_place;///Stores current place which interact witch player.
+
+		std::shared_ptr<Places> _destination_place;
+
+		MissionCreator _a_mission_creator;
+
+		std::shared_ptr<Mission> _current_mision;
 
 		//Changes player's sprite.
 		//@param globalClock games'clock.
@@ -86,6 +93,8 @@ namespace MP
 		void _procedure_player_auto_or_normal_move(TaskManager& aMainTaskManager, sf::Clock& GameClock, MP::Map& aMap, sf::Vector2f &mouseGameCoord);
 
 		void _song_procedure(sf::Clock& gameClock, MP::SoundManager& aSoundManager, TaskManager& aMainTaskManager);
+
+		void _mission_procedure(TaskManager& aMainTaskManager, Map& gameMap, SoundManager& aSoundManager);
 
 	public:
 

@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "ActiveObject.h"
+#include "Engine/AssetManager.h"
 
 namespace MP
 {
@@ -8,7 +9,12 @@ namespace MP
 	{
 	private:
 
-		ItemsManager itemsForTrade;///Manages items.
+		ItemsManager _items_for_trade;///Manages items.
+
+	protected:
+
+
+		char _place_mark;
 
 	public:
 
@@ -25,5 +31,11 @@ namespace MP
 		//Draws object on screen.
 		//@param mainWindow game window.
 		void render(sf::RenderWindow& mainWindow);
+
+		char getPlaceMark();
+
+		void markPlace();
+		
+		void unmarkPlace();
 	};
 }

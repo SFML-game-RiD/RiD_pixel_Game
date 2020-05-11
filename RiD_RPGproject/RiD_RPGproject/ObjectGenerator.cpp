@@ -151,6 +151,7 @@ void MP::ObjectGenerator::_generate_map(ObjectManager& aObiectManager)
 			y += blockLength;
 		}
 	}
+	aObiectManager.getMap().createPlacesList();
 }
 
 void MP::ObjectGenerator::_generate_computer_player(ObjectManager& aObiectManager)

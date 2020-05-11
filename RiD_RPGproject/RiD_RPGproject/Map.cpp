@@ -17,6 +17,22 @@ void MP::Map::_delete_map()
 	}
 }
 
+void MP::Map::createPlacesList()
+{
+	std::vector<std::vector<MapElement*>>::iterator it;
+	std::vector<MapElement*>::iterator it2;
+
+	unsigned int counter = 0;
+
+	for (it = _map_array.begin(); it != _map_array.end(); it++)
+	{
+		for (it2 = _map_array[counter].begin(); it2 != _map_array[counter].end(); it2++)
+			if ((*it2)->getPlace() != nullptr)
+				_places_list.push_back((*it2)->getPlace());
+		counter++;
+	}
+}
+
 
 MP::Map::Map()
 {
@@ -88,4 +104,15 @@ std::vector<std::vector<MP::MapElement*>>& MP::Map::getMapArray()
 int MP::Map::getBlockSize()
 {
 	return _block_length;
+}
+
+std::shared_ptr<MP::Places> MP::Map::getRandomPlace(char mark)
+{
+	while (true)
+	{	
+		int counter = _random_value() % (_places_list.size());
+
+		if(_places_list[counter]->getPlaceMark()==mark)
+		return _places_list[counter];
+	}
 }

@@ -51,7 +51,9 @@ void MP::Cursor::_check_if_player_clicked(TaskManager& aTaskManager, Camera& aCa
 	{
 		if (_gui_coord.x < 1040) //map
 		{	
-			if (aTaskManager.isTaskListEmpty())
+			if (!aTaskManager.findTask(TaskNode::taskType::taskExecuteAutoMove, false)and
+				!aTaskManager.findTask(MP::TaskNode::taskType::taskWaitForDoubleClickLeft, false)and
+				!aTaskManager.findTask(TaskNode::taskType::taskAutoMove, false))
 			{
 				aTaskManager.addTask(TaskNode::taskType::taskAutoMove);
 				aTaskManager.addTask(TaskNode::taskType::taskCreateAutoPath);

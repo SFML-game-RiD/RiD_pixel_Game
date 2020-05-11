@@ -22,6 +22,8 @@ namespace MP
 		//@param aMainWindow game's main window.
 		void _press_button(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow);
 
+		
+
 	public:
 
 		//GUI's constructor.

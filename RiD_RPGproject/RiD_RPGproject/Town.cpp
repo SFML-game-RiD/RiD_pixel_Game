@@ -1,7 +1,8 @@
 #include "Town.h"
 
-MP::Town::Town(sf::Texture* texturePtr, sf::Vector2f coord)
+MP::Town::Town(RiD::AssetManager& aAssetManager, sf::Vector2f coord)
 {
-	aAnimation.loadObjectTextures(texturePtr, 1, 1, 64);
+	aAnimation.loadObjectTextures(&aAssetManager.getTexture("town"), 1, 1, 64);
 	setObjectCoord(coord);
+	_place_mark = RiD::ConfigurationLoader::getStringData("town", "mark")[0];
 }

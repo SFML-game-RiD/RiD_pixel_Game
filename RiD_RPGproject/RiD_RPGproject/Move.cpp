@@ -72,7 +72,8 @@ void MP::Move::moveBlockDown(Player& obiect, sf::Clock& currentTime, TaskManager
 	else if (obiect.getBlockLenghtCopy() <= 0)
 	{
 		obiect.resetBlockLenghtCopy();
-		aMainTaskManager.deleteTaskList();
+		aMainTaskManager.findTask(TaskNode::taskType::taskNormalMove, true);
+		aMainTaskManager.findTask(TaskNode::taskType::taskGoDown, true);
 
 	}
 }
@@ -88,7 +89,8 @@ void MP::Move::moveBlockUp(Player& obiect, sf::Clock& currentTime, TaskManager& 
 	else if (obiect.getBlockLenghtCopy() <= 0) // Arrived
 	{
 		obiect.resetBlockLenghtCopy();
-		aMainTaskManager.deleteTaskList();
+		aMainTaskManager.findTask(TaskNode::taskType::taskNormalMove, true);
+		aMainTaskManager.findTask(TaskNode::taskType::taskGoUp, true);
 	}
 }
 
@@ -103,7 +105,8 @@ void MP::Move::moveBlockRight(Player& obiect, sf::Clock& currentTime, TaskManage
 	else if (obiect.getBlockLenghtCopy() <= 0) // Arrived
 	{
 		obiect.resetBlockLenghtCopy();
-		aMainTaskManager.deleteTaskList();
+		aMainTaskManager.findTask(TaskNode::taskType::taskNormalMove, true);
+		aMainTaskManager.findTask(TaskNode::taskType::taskGoRight, true);
 	}
 }
 
@@ -118,7 +121,8 @@ void MP::Move::moveBlockLeft(Player& obiect, sf::Clock& currentTime, TaskManager
 	else if (obiect.getBlockLenghtCopy() <= 0) // Arrived
 	{
 		obiect.resetBlockLenghtCopy();
-		aMainTaskManager.deleteTaskList();
+		aMainTaskManager.findTask(TaskNode::taskType::taskNormalMove, true);
+		aMainTaskManager.findTask(TaskNode::taskType::taskGoLeft, true);
 	}
 }
 

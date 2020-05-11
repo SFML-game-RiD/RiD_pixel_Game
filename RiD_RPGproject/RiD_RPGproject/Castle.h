@@ -10,6 +10,6 @@ namespace MP
 		//Castle's constructor.
 		//@param texturePtr object texture.
 		//@param coord object coord.
-		Castle(sf::Texture* texturePtr, sf::Vector2f coord);
+		Castle(RiD::AssetManager &aAssetManager, sf::Vector2f coord);
 	};
 }

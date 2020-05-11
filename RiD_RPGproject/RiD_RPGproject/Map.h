@@ -20,7 +20,11 @@ namespace MP
 
 		std::vector<std::vector<MapElement*>> _map_array;
 
+		std::vector<std::shared_ptr<Places>> _places_list;
+
 		void _delete_map();
+
+	
 
 	public:
 
@@ -43,6 +47,10 @@ namespace MP
 		std::vector<std::vector<MapElement*>>& getMapArray();
 		
 		int getBlockSize();
+
+		std::shared_ptr<Places> getRandomPlace(char mark);
+		
+		void createPlacesList();
 	};
 }
 #endif // !Map

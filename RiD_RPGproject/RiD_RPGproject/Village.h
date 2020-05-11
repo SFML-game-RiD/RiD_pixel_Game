@@ -11,6 +11,6 @@ namespace MP
 		//Village's constructor.
 		//@param texturePtr object texture.
 		//@param coord object coord.
-		Village(sf::Texture* texturePtr, sf::Vector2f coord);
+		Village(RiD::AssetManager& aAssetManager, sf::Vector2f coord);
 	};
 }

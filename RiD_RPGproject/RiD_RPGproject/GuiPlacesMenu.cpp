@@ -51,6 +51,8 @@ void MP::GuiPlacesMenu::_press_button(TaskManager& aMainTaskManager, sf::RenderW
 	}
 	if (_button_array[2]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::taskClickLeft, true))
 	{
+		aMainTaskManager.addTask(TaskNode::taskType::taskMission);
+		aMainTaskManager.setState(TaskManager::stateType::stateGame);
 	}
 	if (_button_array[3]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::taskClickLeft, true))
 	{

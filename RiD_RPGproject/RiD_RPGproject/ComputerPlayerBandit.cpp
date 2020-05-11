@@ -199,10 +199,7 @@ void MP::ComputerPlayerBandit::_computer_player_animation_down(sf::Clock& global
 void MP::ComputerPlayerBandit::update(SoundManager& aSoundManager, Map& aMap, sf::Clock& gameClock, std::shared_ptr<Player>& aPlayer)
 {
 	if (_check_enemy(aPlayer))
-	{
-		std::cout << " WYKRYLEM GRACZA \n" << std::endl;
-	
-	}	
+	{	}
 	_song_procedure(aSoundManager);
 	_get_next_task(aMap);
 	_computer_player_animation(gameClock);

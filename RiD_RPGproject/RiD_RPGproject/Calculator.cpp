@@ -77,6 +77,6 @@ void MP::Calculator::startMenuProcedures(SoundManager& aSoundManager, TaskManage
 
 	aObiectManager.getCursor()->update(aMainTaskManager, aCamera);
 	
-	aMainTaskManager.deleteTaskList();
+	aMainTaskManager.findTask(TaskNode::taskType::taskClickLeft, true);
 }
 
