@@ -9,7 +9,7 @@ namespace MP
 	public:
 
 		//Village's constructor.
-		//@param texturePtr object texture.
+		//@param aAssetManager contains textures.
 		//@param coord object coord.
 		Village(RiD::AssetManager& aAssetManager, sf::Vector2f coord);
 	};

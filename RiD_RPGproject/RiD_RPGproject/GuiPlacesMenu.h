@@ -9,12 +9,10 @@ namespace MP
 	private:
 
 		//Creates buttons.
-		//@param buttonTexture button's texture.
-		//@param aFont game's font.
+		//@param aAssetManager contains textures and fonts.
 		void _create_buttons(RiD::AssetManager& aAssetManager);
 	
 		//Checks mouse coordinates and makes button active.
-		//mouseCoord mouse's coordinates.
 		void _select_button(SoundManager& aSoundManager, TaskManager& aTaskManager, sf::Vector2f mouseCoord);
 
 		//Starts procedures relative to pressed button.
@@ -30,15 +28,14 @@ namespace MP
 		GuiPlacesMenu();
 
 		//GUI's constructor.
-		//@param placesMenuTexture place's texture.
-		//@param buttonTexture button's texture.
-		//@aFont game's font.
+		//@param aAssetManager contains textures and fonts.
 		GuiPlacesMenu(RiD::AssetManager& aAssetManager);
 
 		//Updates GUI.
 		//@param aMainTaskManager main task manager.
 		//@param aMainWindow game's main window.
 		//@param guiMouseCoord mouse's coord from gui view.
+		//@param aSoundManager stores sounds.
 		void update(SoundManager& aSoundManager, TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, sf::Vector2f guiMouseCoord);
 		
 		//Draws GUI.

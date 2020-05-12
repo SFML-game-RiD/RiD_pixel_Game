@@ -22,6 +22,7 @@ namespace MP
 		Land( int x,int y);
 
 		void update();
+
 		void render(sf::RenderWindow &mainWindow);
 	};
 }

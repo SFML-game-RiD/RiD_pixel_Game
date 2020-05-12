@@ -10,8 +10,7 @@ namespace MP
 	private:
 
 		//Creates buttons.
-		//@param buttonTexture button's texture.
-		//@param aFont game's font.
+		//@param aAssetManager contains textures and fonts.
 		void _create_buttons(RiD::AssetManager& aAssetManager);
 
 		//Checks mouse coordinates and makes button active.
@@ -29,9 +28,7 @@ namespace MP
 		GuiMainMenu();
 
 		//GUI's constructor.
-		//@param texturePtr place's texture.
-		//@param buttonTexture button's texture.
-		//@aFont game's font.
+		//@param aAssetManager contains textures and fonts.
 		GuiMainMenu(RiD::AssetManager& aAssetManager);
 	
 		//Updates GUI.

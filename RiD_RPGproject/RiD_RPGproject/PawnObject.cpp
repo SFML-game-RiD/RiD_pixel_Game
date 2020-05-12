@@ -4,8 +4,8 @@
 MP::PawnObject::PawnObject()
 {
 	_current_land = nullptr;
-	_sound_player.setSpeed(1.15);
 	_whinney_once = false;
+	_sound_player.setSpeed(float(1.15));
 }
 
 bool MP::PawnObject::_check_go_up(MP::Map& aMap)

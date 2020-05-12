@@ -24,8 +24,6 @@ namespace MP
 
 		void _delete_map();
 
-	
-
 	public:
 
 		Map();

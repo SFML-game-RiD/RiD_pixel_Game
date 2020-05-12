@@ -32,10 +32,9 @@ namespace MP
 	public:
 
 		//Button's constructor.
-		//@param texturePtr button's texture.
+		//@param aAssetManager contains textures and fonts.
 		//@param buttonPositon button's coordinates.
 		//@param relativelyTextPosition button's text position, relatively to button.
-		//@param aFont game's font.
 		//@param buttonName button's name.
 		GuiButton(RiD::AssetManager& aAssetManager,sf::Vector2f buttonPosition, sf::Vector2f relativelyTextPosition, std::string buttonName);
 

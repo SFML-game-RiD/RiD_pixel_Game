@@ -5,12 +5,11 @@ namespace MP
 class Sound
 {
 private:
+
 	sf::Sound _sound;
 
 	float _volume;
 
-
-	void _reset_counter();
 public:
 	
 	Sound();

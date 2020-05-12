@@ -50,9 +50,6 @@ void MP::ObjectGenerator::_generate_trees(ObjectManager& aObiectManager)
 					std::shared_ptr<Tree> tmpTree = std::make_shared<Tree>(&_a_asset_manager.getTexture("tree"), tmpCoord, newScale);
 					aObiectManager.getTreeList()->push_back(*tmpTree);
 					counter--;
-
-
-				
 				}
 
 			}

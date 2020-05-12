@@ -167,7 +167,6 @@
     <ClCompile Include="ObjectGenerator.cpp">
       <Filter>MANAGERS, HEAD CLASS</Filter>
     </ClCompile>
-    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Music.cpp">
       <Filter>Sound</Filter>
     </ClCompile>
@@ -177,8 +176,15 @@
     <ClCompile Include="SoundManager.cpp">
       <Filter>Sound</Filter>
     </ClCompile>
-    <ClCompile Include="MissionCreator.cpp" />
-    <ClCompile Include="Mission.cpp" />
+    <ClCompile Include="Mission.cpp">
+      <Filter>MISSION</Filter>
+    </ClCompile>
+    <ClCompile Include="MissionCreator.cpp">
+      <Filter>MISSION</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>MANAGERS, HEAD CLASS</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Animation.h">
@@ -346,7 +352,6 @@
     <ClInclude Include="ObjectGenerator.h">
       <Filter>MANAGERS, HEAD CLASS</Filter>
     </ClInclude>
-    <ClInclude Include="Timer.h" />
     <ClInclude Include="Music.h">
       <Filter>Sound</Filter>
     </ClInclude>
@@ -356,8 +361,15 @@
     <ClInclude Include="SoundManager.h">
       <Filter>Sound</Filter>
     </ClInclude>
-    <ClInclude Include="MissionCreator.h" />
-    <ClInclude Include="Mission.h" />
+    <ClInclude Include="Mission.h">
+      <Filter>MISSION</Filter>
+    </ClInclude>
+    <ClInclude Include="MissionCreator.h">
+      <Filter>MISSION</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>MANAGERS, HEAD CLASS</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="OBIECT">
@@ -425,6 +437,9 @@
     </Filter>
     <Filter Include="Sound">
       <UniqueIdentifier>{67823770-71ab-4c02-97a1-4fc64be8e915}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MISSION">
+      <UniqueIdentifier>{78a04c37-167b-4b87-b46e-2c3e4e77dde9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

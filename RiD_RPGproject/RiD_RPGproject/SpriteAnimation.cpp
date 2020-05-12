@@ -34,6 +34,12 @@ sf::Sprite& MP::SpriteAnimation::getObjectSprite()
 	return _obj_sprite;
 }
 
+MP::SpriteAnimation::SpriteAnimation()
+{
+	_obj_texture = nullptr;
+	_current_sprite = 0;
+}
+
 void MP::SpriteAnimation::loadObjectTextures(sf::Texture *texturePtr, int columns, int rows, int squareLength)
 {
 	_obj_texture = texturePtr;

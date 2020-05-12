@@ -13,7 +13,6 @@ namespace MP
 
 	protected:
 
-
 		char _place_mark;
 
 	public:

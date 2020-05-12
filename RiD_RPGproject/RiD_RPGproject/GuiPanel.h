@@ -6,7 +6,7 @@ namespace MP
 	{
 	private:
 
-		sf::Text _panel_title;///Stores player's name.
+		sf::Text _panel_title;///Stores text.
 
 	public:
 

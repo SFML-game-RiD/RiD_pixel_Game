@@ -23,8 +23,7 @@ namespace MP
 		std::unique_ptr<Item> _current_item;///Stores current item used in trade.
 
 		//Creates buttons.
-		//@param buttonTexture button's texture.
-		//@param aFont game's font.
+		//@param aAssetManager contains textures and fonts.
 		void _create_buttons(RiD::AssetManager& aAssetManager);
 
 		//Creates panels.

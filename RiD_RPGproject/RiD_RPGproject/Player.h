@@ -21,13 +21,13 @@ namespace MP
 
 		std::vector<PathIcon> _a_path_icon;///Stores path's icon.
 
+	 	MissionCreator _a_mission_creator;
+
 		std::shared_ptr<Places> _current_place;///Stores current place which interact witch player.
 
 		std::shared_ptr<Places> _destination_place;
 
 		std::shared_ptr<Places> _employer_place;
-
-		MissionCreator _a_mission_creator;
 
 		std::shared_ptr<Mission> _current_mision;
 

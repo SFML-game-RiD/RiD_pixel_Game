@@ -11,7 +11,7 @@ void MP::MissionCreator::_set_mission(const char* missionPath, std::string missi
 
 MP::MissionCreator::MissionCreator()
 {
-	_random_number.seed(time(NULL));
+	_random_number.seed(time(0));
 	_set_mission("missions/town_medicine.ini", "townmedicine");
 	_set_mission("missions/castle_supply.ini", "castlesupply");
 }

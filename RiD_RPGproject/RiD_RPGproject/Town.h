@@ -9,7 +9,7 @@ namespace MP
 	public:
 
 		//Town's constructor.
-		//@param texturePtr object texture.
+		//@param aAssetManager contains textures.
 		//@param coord object coord.
 		Town(RiD::AssetManager& aAssetManager, sf::Vector2f coord);
 	};

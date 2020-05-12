@@ -16,14 +16,6 @@ namespace MP
 		std::shared_ptr <Item> _archer;
 		std::shared_ptr <Item> _swordsman;
 
-	/*	std::unique_ptr <Item> _gold;
-		std::unique_ptr <Item> _iron;
-		std::unique_ptr <Item> _wood;
-		std::unique_ptr <Item> _food;
-		std::unique_ptr <Item> _spearman;
-		std::unique_ptr <Item> _archer;
-		std::unique_ptr <Item> _swordsman;*/
-
 	public:
 
 		void setItems(sf::Font& aFont,

@@ -27,6 +27,8 @@ namespace MP
 
 	public:
 
+		SpriteAnimation();
+
 		void loadObjectTextures(sf::Texture* texturePtr, int columns, int rows, int squareLength);
 		void changeSprite(int spriteNumber);
 	

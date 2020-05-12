@@ -13,8 +13,6 @@ namespace MP
 
 		bool _is_timer_rdy;
 
-		
-
 	public:
 
 		Timer();

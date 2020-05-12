@@ -3,6 +3,7 @@
 
 MP::Sound::Sound()
 {
+	_volume = 0;
 	_sound.setVolume(float(RiD::ConfigurationLoader::getIntData("game settings", "soundVolume")));
 }
 

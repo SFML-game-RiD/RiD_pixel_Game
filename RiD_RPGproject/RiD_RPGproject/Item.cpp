@@ -2,10 +2,14 @@
 
 MP::Item::Item()
 {
+	_item_cost = 0;
+	_item_amount = 0;
 }
 
 MP::Item::Item(sf::Texture* texturePtr,  sf::Font& aFont)
 {
+	_item_cost = 0;
+	_item_amount = 0;
 }
 
 void MP::Item::setItemAmount(unsigned int newItemAmount)

@@ -19,6 +19,7 @@ namespace MP
 
 		//This two variables below should be exported to another class.
 		int _mod_number;
+
 		std::mt19937 _random_number;
 
 		//OBIECTS

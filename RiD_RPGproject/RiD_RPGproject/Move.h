@@ -11,13 +11,13 @@ namespace MP
 	{
 	private:
 
-		void movePixelDown(ActiveObject& obiect);
+		void _move_pixel_down(ActiveObject& obiect);
 
-		void movePixelUp(ActiveObject& obiect);
+		void _move_pixel_up(ActiveObject& obiect);
 
-		void movePixelRight(ActiveObject& obiect);
+		void _move_pixel_right(ActiveObject& obiect);
 
-		void movePixelLeft(ActiveObject& obiect);
+		void _move_pixel_left(ActiveObject& obiect);
 
 	public:
 

@@ -14,17 +14,15 @@ namespace MP
 
 	protected:
 
-		sf::Time _ready_animation_time;///Ammount of time when object will change his sprite.
+		sf::Time _ready_animation_time;///Amount of time when object will change his sprite.
 
 		sf::Time _last_animation_active;///Last time when object changed sprite.
 
-		sf::Time _obj_animation_sleep_time;///Ammount of time when object dont' change his sprite.
-
-		std::vector<sf::SoundBuffer> _sounds;
+		sf::Time _obj_animation_sleep_time;///Amount of time when object dont' change his sprite.
 
 	public:
 
-		Timer objectTimer;
+		Timer objectTimer;///Creates times delay.
 
 		SpriteAnimation aAnimation;///Manage animations.
 

@@ -8,7 +8,7 @@ namespace MP
 	{
 	private:
 
-		std::map<std::string,sf::SoundBuffer> _sound;
+		std::map<std::string,sf::SoundBuffer> _sound;///Contains sound buffers.
 
 	public:
 			
@@ -23,16 +23,6 @@ namespace MP
 		//@param sound_name name of the sound.
 		//@returns sound.
 		sf::SoundBuffer& getSound(std::string sound_name);
-
-		////Sets music.
-		////@param music_name name of the music.
-		////@param file_name name of the file from which it will be taken.
-		//void setMusic(std::string music_name, std::string file_name);
-
-		////Returns music path.
-		////@param music_name name of the music.
-		////@return music path.
-		//std::string& getMusic(std::string music_name);
 	};
 
 }

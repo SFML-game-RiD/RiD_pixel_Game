@@ -18,8 +18,7 @@ namespace MP
 		std::vector< std::shared_ptr<GuiButton>> _button_array;///Stores buttons.
 
 		//Creates buttons.
-		//@param buttonTexture button's texture.
-		//@param aFont game's font.
+		//@param aAssetManager contains textures and fonts.
 	 	virtual	void _create_buttons(RiD::AssetManager& aAssetManager);
 
 		//Checks mouse coordinates and makes button active.
