@@ -1,15 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+
+    <ClCompile Include="Engine\RiDGame.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Engine\Animation.cpp">
-      <Filter>aaareal time game\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\AssetManager.cpp">
       <Filter>aaareal time game\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Movement.cpp">
-      <Filter>aaareal time game\RealTimeBattle</Filter>
     </ClCompile>
     <ClCompile Include="Battle\RealTimeBattle.cpp">
       <Filter>aaareal time game\RealTimeBattle</Filter>
@@ -188,17 +184,95 @@
     <ClCompile Include="Grass.cpp">
       <Filter>OBIECT</Filter>
     </ClCompile>
+    <ClCompile Include="Battle\Arrow.cpp">
+      <Filter>RealTimeBattle</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\ArrowHitbox.cpp">
+      <Filter>RealTimeBattle\Hitboxes</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\Hitbox.cpp">
+      <Filter>RealTimeBattle\Hitboxes</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\SwordHitbox.cpp">
+      <Filter>RealTimeBattle\Hitboxes</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\Character.cpp">
+      <Filter>RealTimeBattle\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Movement.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\OrientedHitbox.cpp">
+      <Filter>RealTimeBattle\Hitboxes</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\Player.cpp">
+      <Filter>RealTimeBattle\Characters\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\Swordsman.cpp">
+      <Filter>RealTimeBattle\Characters\Bots</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\Archer.cpp">
+      <Filter>RealTimeBattle\Characters\Bots</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\PathNode.cpp">
+      <Filter>RealTimeBattle\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="Map\MapElement.cpp">
+      <Filter>Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\RTBPathGenerator.cpp">
+      <Filter>RealTimeBattle\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\Spearman.cpp">
+      <Filter>RealTimeBattle\Characters\Bots</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\SpearHitbox.cpp">
+      <Filter>RealTimeBattle\Hitboxes</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\GUI.cpp">
+      <Filter>RealTimeBattle\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\Bot.cpp">
+      <Filter>RealTimeBattle\Characters\Bots</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\Button.cpp">
+      <Filter>RealTimeBattle\GUI\GUI elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\WindowBorder.cpp">
+      <Filter>RealTimeBattle\GUI\GUI elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\HPBar.cpp">
+      <Filter>RealTimeBattle</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\Menu.cpp">
+      <Filter>RealTimeBattle\GUI\GUI elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\Message.cpp">
+      <Filter>RealTimeBattle\GUI\GUI elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\Cursor.cpp">
+      <Filter>RealTimeBattle\GUI\GUI elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\BookButton.cpp">
+      <Filter>RealTimeBattle\GUI\GUI elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle\Panel.cpp">
+      <Filter>RealTimeBattle\GUI\GUI elements</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\ConfigurationLoader.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\InputManager.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Engine\Animation.h">
-      <Filter>aaareal time game\Graphics</Filter>
-    </ClInclude>
+
+    <ClInclude Include="Engine\RiDGame.h" />
     <ClInclude Include="Engine\AssetManager.h">
       <Filter>aaareal time game\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Movement.h">
-      <Filter>aaareal time game\RealTimeBattle</Filter>
-    </ClInclude>
+
     <ClInclude Include="Battle\RealTimeBattle.h">
       <Filter>aaareal time game\RealTimeBattle</Filter>
     </ClInclude>
@@ -376,6 +450,87 @@
     <ClInclude Include="Grass.h">
       <Filter>OBIECT</Filter>
     </ClInclude>
+    <ClInclude Include="Battle\Arrow.h">
+      <Filter>RealTimeBattle</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\ArrowHitbox.h">
+      <Filter>RealTimeBattle\Hitboxes</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\Hitbox.h">
+      <Filter>RealTimeBattle\Hitboxes</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\SwordHitbox.h">
+      <Filter>RealTimeBattle\Hitboxes</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\Character.h">
+      <Filter>RealTimeBattle\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Movement.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\OrientedHitbox.h">
+      <Filter>RealTimeBattle\Hitboxes</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\Player.h">
+      <Filter>RealTimeBattle\Characters\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\Archer.h">
+      <Filter>RealTimeBattle\Characters\Bots</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\PathNode.h">
+      <Filter>RealTimeBattle\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Map\MapElement.h">
+      <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\RTBPathGenerator.h">
+      <Filter>RealTimeBattle\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\Swordsman.h">
+      <Filter>RealTimeBattle\Characters\Bots</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\Spearman.h">
+      <Filter>RealTimeBattle\Characters\Bots</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\SpearHitbox.h">
+      <Filter>RealTimeBattle\Hitboxes</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\GUI.h">
+      <Filter>RealTimeBattle\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\Bot.h">
+      <Filter>RealTimeBattle\Characters\Bots</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\Button.h">
+      <Filter>RealTimeBattle\GUI\GUI elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\WindowBorder.h">
+      <Filter>RealTimeBattle\GUI\GUI elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\HPBar.h">
+      <Filter>RealTimeBattle</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\Menu.h">
+      <Filter>RealTimeBattle\GUI\GUI elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\Message.h">
+      <Filter>RealTimeBattle\GUI\GUI elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\Cursor.h">
+      <Filter>RealTimeBattle\GUI\GUI elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\BookButton.h">
+      <Filter>RealTimeBattle\GUI\GUI elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle\Panel.h">
+      <Filter>RealTimeBattle\GUI\GUI elements</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\ConfigurationLoader.h">
+      <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\InputManager.h">
+      <Filter>Other</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="OBIECT">
@@ -420,32 +575,31 @@
     <Filter Include="aaareal time game\Map">
       <UniqueIdentifier>{451275a9-f84e-44ad-92be-416a8cc5041e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="aaareal time game\Graphics">
-      <UniqueIdentifier>{7bbe2dbb-b8a1-4384-b29d-731b1e455d25}</UniqueIdentifier>
+
+    <Filter Include="RealTimeBattle\Hitboxes">
+      <UniqueIdentifier>{2b87ce3b-17c5-4e70-9b3e-5e1ce07367de}</UniqueIdentifier>
     </Filter>
-    <Filter Include="OBIECT\GUI">
-      <UniqueIdentifier>{b31011f7-b679-428f-8242-a4e2d0d65396}</UniqueIdentifier>
+    <Filter Include="RealTimeBattle\Characters">
+      <UniqueIdentifier>{e44483cf-abce-459a-a607-d456ce7706f7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="OBIECT\ITEMS">
-      <UniqueIdentifier>{8e1c16ad-1742-47a1-993d-c901e392a4d9}</UniqueIdentifier>
+    <Filter Include="RealTimeBattle\Characters\Bots">
+      <UniqueIdentifier>{46b01904-74ab-49a4-9624-73121cd6672e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MANAGERS, HEAD CLASS\DRAW">
-      <UniqueIdentifier>{8f681cd1-4e9c-428e-925e-27c4a42d1d9d}</UniqueIdentifier>
+    <Filter Include="RealTimeBattle\Characters\Player">
+      <UniqueIdentifier>{c0d5cf8e-2dab-494a-96c6-4a702ca4e545}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MANAGERS, HEAD CLASS\CALCULATE">
-      <UniqueIdentifier>{7249e363-bd01-4d19-99d6-1cc76ffa5ff4}</UniqueIdentifier>
+    <Filter Include="RealTimeBattle\AI">
+      <UniqueIdentifier>{af8281f5-da0b-4d4c-b1e1-85d14a0d86d8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MANAGERS, HEAD CLASS\MANAGE OBIECT">
-      <UniqueIdentifier>{9c0641ae-1878-4958-89dc-0e0814d601af}</UniqueIdentifier>
+    <Filter Include="RealTimeBattle\GUI">
+      <UniqueIdentifier>{5da42ea5-1a5f-42f2-886c-383767d4a7b0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MANAGERS, HEAD CLASS\MANAGE TASK">
-      <UniqueIdentifier>{624f1dfe-d450-4c4c-b1d6-0e7ab57aa4e2}</UniqueIdentifier>
+    <Filter Include="RealTimeBattle\GUI\GUI elements">
+      <UniqueIdentifier>{e4f77572-1cd8-4f93-a2ac-754434458cea}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sound">
-      <UniqueIdentifier>{67823770-71ab-4c02-97a1-4fc64be8e915}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MISSION">
-      <UniqueIdentifier>{78a04c37-167b-4b87-b46e-2c3e4e77dde9}</UniqueIdentifier>
+    <Filter Include="Other">
+      <UniqueIdentifier>{47a51bb7-4f55-490b-9acc-2592c74c84d7}</UniqueIdentifier>
+
     </Filter>
   </ItemGroup>
 </Project>

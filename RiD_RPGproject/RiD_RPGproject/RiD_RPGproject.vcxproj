@@ -72,14 +72,17 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+
     <IncludePath>C:\Program Files %28x86%29\Visual Leak Detector\include;$(VC_IncludePath);$(IncludePath);C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um;C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared</IncludePath>
     <LibraryPath>C:\Program Files %28x86%29\Visual Leak Detector\lib\Win32;$(LibraryPath)</LibraryPath>
+
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(VC_IncludePath);$(IncludePath);C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared;C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -153,15 +156,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ActiveObject.cpp" />
-    <ClCompile Include="Archer.cpp" />
+
+    <ClCompile Include="Battle\Archer.cpp" />
+    <ClCompile Include="Battle\Arrow.cpp" />
+    <ClCompile Include="Battle\ArrowHitbox.cpp" />
+    <ClCompile Include="Battle\BookButton.cpp" />
+    <ClCompile Include="Battle\Bot.cpp" />
+    <ClCompile Include="Battle\Button.cpp" />
+    <ClCompile Include="Battle\Character.cpp" />
+    <ClCompile Include="Battle\Cursor.cpp" />
+    <ClCompile Include="Battle\GUI.cpp" />
+    <ClCompile Include="Battle\Hitbox.cpp" />
+    <ClCompile Include="Battle\HPBar.cpp" />
+    <ClCompile Include="Battle\Menu.cpp" />
+    <ClCompile Include="Battle\Message.cpp" />
+    <ClCompile Include="Battle\OrientedHitbox.cpp" />
+    <ClCompile Include="Battle\Panel.cpp" />
+    <ClCompile Include="Battle\PathNode.cpp" />
+    <ClCompile Include="Battle\Player.cpp" />
     <ClCompile Include="Battle\RealTimeBattle.cpp" />
-    <ClCompile Include="Calculator.cpp" />
-    <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="Castle.cpp" />
-    <ClCompile Include="ComputerPlayerBandit.cpp" />
-    <ClCompile Include="Cursor.cpp" />
-    <ClCompile Include="Engine\Animation.cpp" />
+    <ClCompile Include="Battle\RTBPathGenerator.cpp" />
+    <ClCompile Include="Battle\SpearHitbox.cpp" />
+    <ClCompile Include="Battle\Spearman.cpp" />
+    <ClCompile Include="Battle\SwordHitbox.cpp" />
+    <ClCompile Include="Battle\Swordsman.cpp" />
+    <ClCompile Include="Battle\WindowBorder.cpp" />
+
     <ClCompile Include="Engine\AssetManager.cpp" />
     <ClCompile Include="Engine\ConfigurationLoader.cpp" />
     <ClCompile Include="Engine\InputManager.cpp" />
@@ -185,6 +205,7 @@
     <ClCompile Include="ItemsManager.cpp" />
     <ClCompile Include="Land.cpp" />
     <ClCompile Include="main.cpp" />
+
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Mission.cpp" />
     <ClCompile Include="MissionCreator.cpp" />
@@ -195,6 +216,7 @@
     <ClCompile Include="MapElement.cpp" />
     <ClCompile Include="MapGui.cpp" />
     <ClCompile Include="Move.cpp" />
+
     <ClCompile Include="Map\TileMap.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectDrawer.cpp" />
@@ -218,15 +240,31 @@
     <ClCompile Include="Wood.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ActiveObject.h" />
-    <ClInclude Include="Archer.h" />
+
+    <ClInclude Include="Battle\Archer.h" />
+    <ClInclude Include="Battle\Arrow.h" />
+    <ClInclude Include="Battle\ArrowHitbox.h" />
+    <ClInclude Include="Battle\BookButton.h" />
+    <ClInclude Include="Battle\Bot.h" />
+    <ClInclude Include="Battle\Button.h" />
+    <ClInclude Include="Battle\Character.h" />
+    <ClInclude Include="Battle\Cursor.h" />
+    <ClInclude Include="Battle\GUI.h" />
+    <ClInclude Include="Battle\Hitbox.h" />
+    <ClInclude Include="Battle\HPBar.h" />
+    <ClInclude Include="Battle\Menu.h" />
+    <ClInclude Include="Battle\Message.h" />
+    <ClInclude Include="Battle\OrientedHitbox.h" />
+    <ClInclude Include="Battle\Panel.h" />
+    <ClInclude Include="Battle\PathNode.h" />
+    <ClInclude Include="Battle\Player.h" />
     <ClInclude Include="Battle\RealTimeBattle.h" />
-    <ClInclude Include="Calculator.h" />
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="Castle.h" />
-    <ClInclude Include="ComputerPlayerBandit.h" />
-    <ClInclude Include="Cursor.h" />
-    <ClInclude Include="Engine\Animation.h" />
+    <ClInclude Include="Battle\RTBPathGenerator.h" />
+    <ClInclude Include="Battle\SpearHitbox.h" />
+    <ClInclude Include="Battle\Spearman.h" />
+    <ClInclude Include="Battle\SwordHitbox.h" />
+    <ClInclude Include="Battle\Swordsman.h" />
+    <ClInclude Include="Battle\WindowBorder.h" />
     <ClInclude Include="Engine\AssetManager.h" />
     <ClInclude Include="Engine\ConfigurationLoader.h" />
     <ClInclude Include="Engine\InputManager.h" />
