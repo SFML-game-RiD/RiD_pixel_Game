@@ -1,10 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Engine\InputManager.cpp" />
     <ClCompile Include="Engine\RiDGame.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Engine\ConfigurationLoader.cpp" />
     <ClCompile Include="Engine\AssetManager.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
@@ -98,11 +96,15 @@
     <ClCompile Include="Battle\Panel.cpp">
       <Filter>RealTimeBattle\GUI\GUI elements</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\ConfigurationLoader.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\InputManager.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Engine\InputManager.h" />
     <ClInclude Include="Engine\RiDGame.h" />
-    <ClInclude Include="Engine\ConfigurationLoader.h" />
     <ClInclude Include="Engine\AssetManager.h">
       <Filter>Graphics</Filter>
     </ClInclude>
@@ -196,6 +198,12 @@
     <ClInclude Include="Battle\Panel.h">
       <Filter>RealTimeBattle\GUI\GUI elements</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\ConfigurationLoader.h">
+      <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\InputManager.h">
+      <Filter>Other</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Graphics">
@@ -230,6 +238,9 @@
     </Filter>
     <Filter Include="RealTimeBattle\GUI\GUI elements">
       <UniqueIdentifier>{e4f77572-1cd8-4f93-a2ac-754434458cea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Other">
+      <UniqueIdentifier>{47a51bb7-4f55-490b-9acc-2592c74c84d7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -4,7 +4,8 @@
 
 namespace AI
 {
-	PathNode::PathNode()
+	PathNode::PathNode():
+		_F(0), _G(0), _H(0), _next_node(nullptr), _parent_node(nullptr)
 	{
 		_walkable = 1;
 	}

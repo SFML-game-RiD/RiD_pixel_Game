@@ -231,8 +231,8 @@ namespace RTB
 		{
 			for (unsigned int j = 0; j < _width; ++j)
 			{
-				_point.x = i * 25;
-				_point.y = j * 25;
+				_point.x = static_cast<float>(i * 25);
+				_point.y = static_cast<float>(j * 25);
 				_tile_type = _level[i][j];
 				this->_placeTile(i, j);
 
