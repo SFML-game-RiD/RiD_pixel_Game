@@ -117,7 +117,7 @@ namespace RTB
 		_hp_bar = new HPBar(_character_sprite, _health_points);
 		_arrows = new Arrow(_character_sprite, arrow_texture);
 		_is_alive = true;
-		_speed = 1.f;
+		_speed = 0.7f;
 		_sword_damage = 10;
 		_bow_damage = 1;
 	}

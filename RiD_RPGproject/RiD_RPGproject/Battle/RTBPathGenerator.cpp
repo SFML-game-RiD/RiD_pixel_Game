@@ -36,7 +36,8 @@ namespace AI
 
 	void RTBPathGenerator::_moveToClosedList(PathNode*& node)
 	{
-		PathNode* tmp = this->_cutOffNodeFromOpen(node);
+		PathNode* tmp = nullptr;
+		tmp = this->_cutOffNodeFromOpen(node);
 		if (_closed_list_head)
 		{
 			tmp->setPNext(_closed_list_head);

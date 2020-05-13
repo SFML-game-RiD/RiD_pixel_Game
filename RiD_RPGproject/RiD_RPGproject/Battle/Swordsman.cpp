@@ -29,7 +29,7 @@ namespace RTB
 		_hp_bar = new HPBar(_character_sprite, _health_points);
 		_is_alive = true;
 		_is_enemy_choosen = false;
-		_speed = 0.6f;
+		_speed = 0.3f;
 		_sword_damage = 10;
 	}
 

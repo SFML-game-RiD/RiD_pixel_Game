@@ -30,7 +30,7 @@ namespace RTB
 		_arrows = new Arrow(_character_sprite, arrow_texture);
 		_is_alive = true;
 		_is_enemy_choosen = false;
-		_speed = 0.9f;
+		_speed = 0.6f;
 		_bow_damage = 1;
 	}
 
