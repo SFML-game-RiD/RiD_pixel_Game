@@ -19,6 +19,8 @@ namespace MP
 		std::mt19937 _random_number;
 
 		void _generate_trees(ObjectManager& aObiectManager);
+		
+		void _generate_grass(ObjectManager& aObiectManager);
 
 		void _generate_player(ObjectManager& aObiectManager);
 

@@ -33,6 +33,16 @@ void MP::ObjectDrawer::_draw_trees(sf::RenderWindow& mainWindow, ObjectManager& 
 		iterator->render(mainWindow);
 }
 
+void MP::ObjectDrawer::_draw_grass(sf::RenderWindow& mainWindow, ObjectManager& aObiectManager)
+{
+	std::vector<Grass>* aGrass = aObiectManager.getGrassVector();
+	std::vector<Grass >::iterator iterator;
+	iterator = aGrass->begin();
+
+	for (iterator; iterator != aGrass->end(); iterator++)
+		iterator->render(mainWindow);
+}
+
 void MP::ObjectDrawer::_draw_active_obiects(sf::RenderWindow& mainWindow, ObjectManager& aObiectManager)
 {
 	//drawing player and path icon (if exist);
@@ -53,6 +63,7 @@ void MP::ObjectDrawer::drawGame(TaskManager& aMainTaskManager, Camera& aGameCame
 		//GAME DRAWING
 		aGameCamera.changeViewToGame();
 		_draw_land(aGameCamera.getWindow(), aObiectManager);
+		_draw_grass(aGameCamera.getWindow(), aObiectManager);
 		_draw_active_obiects(aGameCamera.getWindow(), aObiectManager);
 		_draw_trees(aGameCamera.getWindow(), aObiectManager);
 

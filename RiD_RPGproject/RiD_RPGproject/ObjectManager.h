@@ -9,7 +9,7 @@
 #include "ComputerPlayerBandit.h"
 #include "Cursor.h"
 #include "GuiManager.h"
-
+#include "Grass.h"
 
 namespace MP
 {
@@ -29,6 +29,8 @@ namespace MP
 		std::list<ComputerPlayerBandit> _computer_player_list;
 
 		std::list<Tree> _tree_list;
+
+		std::vector<Grass> _grass_list;
 		
 		std::shared_ptr<Cursor> _a_cursor;
 	
@@ -52,6 +54,8 @@ namespace MP
 		Map& getMap();
 
 		std::list<Tree> * getTreeList();
+
+		std::vector<Grass>* getGrassVector();
 
 		bool access();
 

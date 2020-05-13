@@ -22,7 +22,6 @@ void MP::ObjectGenerator::_generate_trees(ObjectManager& aObiectManager)
 
 	char controlMark = RiD::ConfigurationLoader::getStringData("game settings", "treeWallMark")[0];
 
-	//only for progress
 	int a = tmpMapArray.size();
 	int b = tmpMapArray[0].size();
 	a *= b;
@@ -53,6 +52,50 @@ void MP::ObjectGenerator::_generate_trees(ObjectManager& aObiectManager)
 				}
 
 			}
+		}
+		counter++;
+	}
+}
+
+void MP::ObjectGenerator::_generate_grass(ObjectManager& aObiectManager)
+{
+	std::cout << "generates grass " << std::endl;
+
+	std::vector<std::vector<MapElement* >> tmpMapArray = aObiectManager.getMap().getMapArray();
+
+	std::vector<std::vector<MapElement* >>::iterator it = tmpMapArray.begin();
+	std::vector<MapElement* >::iterator it2;
+	unsigned int counter = 0;
+
+	//char controlMark = RiD::ConfigurationLoader::getStringData("game settings", "treeWallMark")[0];
+
+	int a = tmpMapArray.size();
+	int b = tmpMapArray[0].size();
+	a *= b;
+	int progresCounter = 0;
+
+
+	for (it; it != tmpMapArray.end(); it++)
+	{
+		it2 = tmpMapArray[counter].begin();
+		for (it2; it2 != tmpMapArray[counter].end(); it2++)
+		{
+				int counter = RiD::ConfigurationLoader::getIntData("game settings", "numberOfGrass");
+				int spawnRange = RiD::ConfigurationLoader::getIntData("game settings", "blockLength");
+				spawnRange -= 10;
+				if((*it2)->getPlace()==nullptr)
+				while (counter != 0)
+				{
+					sf::Vector2f tmpCoord = (*it2)->getLandTile().getObjectCoord();
+					tmpCoord.x += _random_number() % spawnRange;
+					tmpCoord.y += _random_number() % spawnRange;
+
+					float newScale = ((_random_number() % 50) * float(0.01)) + float(0.8);
+
+					std::unique_ptr<Grass> tmpTree = std::make_unique<Grass>(&_a_asset_manager.getTexture("grass"), tmpCoord, newScale);
+					aObiectManager.getGrassVector()->push_back(*tmpTree);
+					counter--;
+				}
 		}
 		counter++;
 	}
@@ -265,6 +308,7 @@ void MP::ObjectGenerator::generateObiects(ObjectManager& aObiectManager)
 {
 	_a_asset_manager.setTexture("tree", "img/mpimg/mptree.png");
 	_a_asset_manager.setTexture("land", "img/mpimg/mpgrass8.png");
+	_a_asset_manager.setTexture("grass", "img/mpimg/grass3.png");
 	_a_asset_manager.setTexture("player", "img/mpimg/mpcharacter.png");
 	_a_asset_manager.setTexture("bandit", "img/mpimg/mpcomputerplayerbandit.png");
 	_a_asset_manager.setTexture("village", "img/mpimg/places/mpvillage.png");
@@ -291,6 +335,7 @@ void MP::ObjectGenerator::generateObiects(ObjectManager& aObiectManager)
 
 	_generate_map(aObiectManager);
 	_generate_trees(aObiectManager);
+	_generate_grass(aObiectManager);
 	_generate_player(aObiectManager);
 	_generate_computer_player(aObiectManager);
 	_generate_cursor(aObiectManager);

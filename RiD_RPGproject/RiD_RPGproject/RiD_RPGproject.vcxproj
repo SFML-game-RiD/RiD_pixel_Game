@@ -172,6 +172,7 @@
     <ClCompile Include="Engine\StateMachine.cpp" />
     <ClCompile Include="Food.cpp" />
     <ClCompile Include="Gold.cpp" />
+    <ClCompile Include="Grass.cpp" />
     <ClCompile Include="GuiButton.cpp" />
     <ClCompile Include="GuiManager.cpp" />
     <ClCompile Include="GuiMainMenu.cpp" />
@@ -236,6 +237,7 @@
     <ClInclude Include="Engine\StateMachine.h" />
     <ClInclude Include="Food.h" />
     <ClInclude Include="Gold.h" />
+    <ClInclude Include="Grass.h" />
     <ClInclude Include="GuiButton.h" />
     <ClInclude Include="GuiManager.h" />
     <ClInclude Include="GuiMainMenu.h" />

@@ -66,3 +66,8 @@ std::list<MP::Tree> * MP::ObjectManager::getTreeList()
 {
 	return &_tree_list;
 }
+
+std::vector<MP::Grass>* MP::ObjectManager::getGrassVector()
+{
+	return &_grass_list;
+}

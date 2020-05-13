@@ -12,6 +12,8 @@ namespace MP
 		void _draw_land(sf::RenderWindow& mainWindow, ObjectManager& aObiectManager);
 
 		void _draw_trees(sf::RenderWindow& mainWindow, ObjectManager& aObiectManager);
+
+		void _draw_grass(sf::RenderWindow& mainWindow, ObjectManager& aObiectManager);
 		
 		void _draw_active_obiects(sf::RenderWindow& mainWindow, ObjectManager& aObiectManager);
 		

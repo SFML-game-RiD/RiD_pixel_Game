@@ -185,6 +185,9 @@
     <ClCompile Include="Timer.cpp">
       <Filter>MANAGERS, HEAD CLASS</Filter>
     </ClCompile>
+    <ClCompile Include="Grass.cpp">
+      <Filter>OBIECT</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Animation.h">
@@ -369,6 +372,9 @@
     </ClInclude>
     <ClInclude Include="Timer.h">
       <Filter>MANAGERS, HEAD CLASS</Filter>
+    </ClInclude>
+    <ClInclude Include="Grass.h">
+      <Filter>OBIECT</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

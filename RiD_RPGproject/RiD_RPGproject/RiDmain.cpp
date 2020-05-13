@@ -7,7 +7,6 @@
 void RiD::RiDmain::_create_window()
 {	
 	
-	//generating obiects
 	_a_obiect_generator.generateObiects(_a_obiect_manager);
 	std::printf("generated successful \n");
 	
@@ -17,7 +16,7 @@ void RiD::RiDmain::_create_window()
 	_music.update(_a_main_task_manager);
 
 
-		if (_a_main_task_manager.getCurrentState() == MP::TaskManager::stateType::stateGame) //If is faster than switch 
+		if (_a_main_task_manager.getCurrentState() == MP::TaskManager::stateType::stateGame)
 		{
 			_event_function_for_state_game();
 			_calculate_for_state_game();
@@ -91,7 +90,6 @@ void RiD::RiDmain::_event_function_for_menu()
 
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 			_a_main_task_manager.addTask(MP::TaskNode::taskType::taskClickLeft);
-	
 	}
 }
 
@@ -127,14 +125,12 @@ void RiD::RiDmain::_draw_for_menu()
 RiD::RiDmain::RiDmain(int width, int height, std::string title)
 {
 
-
-
-	sf::VideoMode mode = sf::VideoMode::getFullscreenModes()[0];
-	_a_camera.getWindow().create(mode, title, sf::Style::Close | sf::Style::Fullscreen);
+	//sf::VideoMode mode = sf::VideoMode::getFullscreenModes()[0];
+	//_a_camera.getWindow().create(mode, title, sf::Style::Close | sf::Style::Fullscreen);
 	
 
-	//_a_camera.getWindow().create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
-	//_a_camera.getWindow().setFramerateLimit(RiD::ConfigurationLoader::getIntData("video settings", "gameFPS"));
+	_a_camera.getWindow().create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
+	_a_camera.getWindow().setFramerateLimit(RiD::ConfigurationLoader::getIntData("video settings", "gameFPS"));
 	_a_camera.getWindow().setMouseCursorVisible(false);
 	this->_create_window();
 
