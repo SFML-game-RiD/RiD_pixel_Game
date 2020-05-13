@@ -123,6 +123,7 @@ namespace RiD
 				_is_attack_triggered = false;
 				_ready_to_deal_sword_damage = true;
 				_xAttackCord = 0;
+				_audio_manager.playSound("swordSwing",30.f,2.f);
 			}
 		}
 	}
@@ -142,6 +143,7 @@ namespace RiD
 				_is_spear_triggered = false;
 				_ready_to_deal_spear_damage = true;
 				_xSpearCord = 0;
+				_audio_manager.playSound("spearPoke", 100.f, 2.f);
 			}
 		}
 	}
@@ -162,6 +164,7 @@ namespace RiD
 				_is_shot_triggered = false;
 				_ready_to_shot_arrow = true;
 				_xshotCord = 0;
+				_audio_manager.playSound("arrow", 40.f, 1.f);
 			}
 		}
 	}
@@ -194,6 +197,7 @@ namespace RiD
 				{
 					_is_death_triggered = false;
 					_xDeathCord = 0;
+					_audio_manager.playSound("death", 20.f, 2.f);
 				}
 			}
 		}

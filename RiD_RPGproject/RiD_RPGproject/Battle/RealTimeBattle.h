@@ -11,6 +11,7 @@
 #include "SFML/Graphics.hpp"
 #include "../Engine/AssetManager.h"
 #include "../Map/TileMap.h"
+#include "../Engine/AudioManager.h"
 #include "Player.h"
 #include "Swordsman.h"
 #include "Archer.h"
@@ -28,6 +29,7 @@ namespace RTB
 		sf::View _camera;
 		sf::Clock _clock;
 		RiD::AssetManager _asset_manager;
+		RiD::AudioManager _audio_manager;
 		std::list<std::shared_ptr<Character>> _list_of_enemies;
 		std::list<std::shared_ptr<Character>> _list_of_allies;
 		std::unique_ptr<TileMap> _tile_map;

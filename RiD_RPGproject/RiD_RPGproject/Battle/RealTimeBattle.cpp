@@ -136,14 +136,24 @@ namespace RTB
 	{
 		for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_enemies.begin(); iterator != _list_of_enemies.end(); iterator++)
 		{
+			if(!(*iterator)->isAlive())
+				(*iterator)->deadBody(*_window);
+		}
+
+		for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_allies.begin(); iterator != _list_of_allies.end(); iterator++)
+		{
+			if (!(*iterator)->isAlive())
+				(*iterator)->deadBody(*_window);
+		}
+
+		for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_enemies.begin(); iterator != _list_of_enemies.end(); iterator++)
+		{
 			if ((*iterator)->isAlive())
 			{
 				(*iterator)->update(_clock.getElapsedTime(), _tile_map->getCollidableObjects(), _list_of_allies, *_window);
 				(*iterator)->dealDamage(_clock.getElapsedTime(), _list_of_allies, *_window);
 				(*iterator)->render(*_window);
 			}
-			else
-				(*iterator)->deadBody(*_window);
 		}
 
 		for (std::list<std::shared_ptr<Character>>::iterator iterator = _list_of_allies.begin(); iterator != _list_of_allies.end(); iterator++)
@@ -154,8 +164,6 @@ namespace RTB
 				(*iterator)->dealDamage(_clock.getElapsedTime(), _list_of_enemies, *_window);
 				(*iterator)->render(*_window);
 			}
-			else
-				(*iterator)->deadBody(*_window);
 		}
 	}
 
@@ -186,6 +194,7 @@ namespace RTB
 		_tile_map = std::unique_ptr<TileMap>(new TileMap({ 50,50 }));
 		this->_armyCreation();
 		_camera.zoom(static_cast<float>(0.8));
+		_audio_manager.playMusic("audio/mainTheme.wav", 20.f);
 		while (_window->isOpen())
 		{
 			while (_window->pollEvent(_event)) //handling events

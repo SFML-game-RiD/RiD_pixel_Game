@@ -4,7 +4,7 @@
     <ClCompile Include="Engine\RiDGame.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Engine\AssetManager.cpp">
-      <Filter>Graphics</Filter>
+      <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="Battle\RealTimeBattle.cpp">
       <Filter>RealTimeBattle</Filter>
@@ -37,7 +37,7 @@
       <Filter>RealTimeBattle\Characters</Filter>
     </ClCompile>
     <ClCompile Include="Engine\Movement.cpp">
-      <Filter>Graphics</Filter>
+      <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="Battle\OrientedHitbox.cpp">
       <Filter>RealTimeBattle\Hitboxes</Filter>
@@ -102,11 +102,14 @@
     <ClCompile Include="Engine\InputManager.cpp">
       <Filter>Other</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\AudioManager.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\RiDGame.h" />
     <ClInclude Include="Engine\AssetManager.h">
-      <Filter>Graphics</Filter>
+      <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="Battle\RealTimeBattle.h">
       <Filter>RealTimeBattle</Filter>
@@ -139,7 +142,7 @@
       <Filter>RealTimeBattle\Characters</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Movement.h">
-      <Filter>Graphics</Filter>
+      <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="Battle\OrientedHitbox.h">
       <Filter>RealTimeBattle\Hitboxes</Filter>
@@ -204,11 +207,11 @@
     <ClInclude Include="Engine\InputManager.h">
       <Filter>Other</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\AudioManager.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Graphics">
-      <UniqueIdentifier>{7bbe2dbb-b8a1-4384-b29d-731b1e455d25}</UniqueIdentifier>
-    </Filter>
     <Filter Include="RealTimeBattle">
       <UniqueIdentifier>{527538d0-5527-4348-a93d-2e9a31ab96c9}</UniqueIdentifier>
     </Filter>
@@ -241,6 +244,9 @@
     </Filter>
     <Filter Include="Other">
       <UniqueIdentifier>{47a51bb7-4f55-490b-9acc-2592c74c84d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{7bbe2dbb-b8a1-4384-b29d-731b1e455d25}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

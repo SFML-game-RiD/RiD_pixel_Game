@@ -17,7 +17,7 @@ namespace RTB
 		_movement->notReadyToDealSwordDamage();
 	}
 
-	Swordsman::Swordsman(sf::Texture texture, short health_points, std::vector<std::vector<AI::PathNode>>& walkable_area):
+	Swordsman::Swordsman(sf::Texture texture, short health_points, std::vector<std::vector<AI::PathNode>>& walkable_area) :
 		_sword_hitbox(nullptr)
 	{
 		_path_generator = new AI::RTBPathGenerator(walkable_area);

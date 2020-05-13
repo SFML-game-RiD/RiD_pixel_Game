@@ -1,6 +1,7 @@
 #pragma once
 
 #include "AssetManager.h"
+#include "../Engine/AudioManager.h"
 
 namespace RiD
 {
@@ -21,6 +22,7 @@ namespace RiD
 			sf::Time spear_animation_frame_duration;
 		};
 		animationDuration animations;
+		RiD::AudioManager _audio_manager;
 		bool _is_attack_triggered, _is_shot_triggered, _is_death_triggered, _is_spear_triggered;
 		short _row, _xCord, _yCord, _direction, _xAttackCord,
 			_yAttackCord, _xshotCord, _yShotCord, _yDeathCord, _xDeathCord, _ySpearCord, _xSpearCord;
