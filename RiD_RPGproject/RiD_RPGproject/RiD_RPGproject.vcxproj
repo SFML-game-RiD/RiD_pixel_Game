@@ -72,7 +72,10 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(VC_IncludePath);$(IncludePath);C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um;C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared;C:\Program Files (x86)\Visual Leak Detector</IncludePath>
+
+    <IncludePath>C:\Program Files %28x86%29\Visual Leak Detector\include;$(VC_IncludePath);$(IncludePath);C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um;C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Visual Leak Detector\lib\Win32;$(LibraryPath)</LibraryPath>
+
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -96,7 +99,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\SFML-2.5.1\lib;%(AdditionalLibraryDirectories);$(WindowsSdkDir)\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-audio-d.lib;sfml-network-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;sfml-audio-d.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -130,7 +133,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-system.lib;sfml-audio.lib;sfml-network.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;winmm.lib;opengl32.lib;freetype.lib;sfml-graphics.lib;sfml-window.lib;sfml-system.lib;sfml-audio.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -153,6 +156,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+
     <ClCompile Include="Battle\Archer.cpp" />
     <ClCompile Include="Battle\Arrow.cpp" />
     <ClCompile Include="Battle\ArrowHitbox.cpp" />
@@ -177,6 +181,7 @@
     <ClCompile Include="Battle\SwordHitbox.cpp" />
     <ClCompile Include="Battle\Swordsman.cpp" />
     <ClCompile Include="Battle\WindowBorder.cpp" />
+
     <ClCompile Include="Engine\AssetManager.cpp" />
     <ClCompile Include="Engine\ConfigurationLoader.cpp" />
     <ClCompile Include="Engine\InputManager.cpp" />
@@ -185,11 +190,57 @@
     <ClCompile Include="Engine\RiDGame.cpp" />
     <ClCompile Include="Engine\State.cpp" />
     <ClCompile Include="Engine\StateMachine.cpp" />
+    <ClCompile Include="Food.cpp" />
+    <ClCompile Include="Gold.cpp" />
+    <ClCompile Include="Grass.cpp" />
+    <ClCompile Include="GuiButton.cpp" />
+    <ClCompile Include="GuiManager.cpp" />
+    <ClCompile Include="GuiMainMenu.cpp" />
+    <ClCompile Include="GuiMarketPlace.cpp" />
+    <ClCompile Include="GuiMenu.cpp" />
+    <ClCompile Include="GuiPanel.cpp" />
+    <ClCompile Include="GuiPlacesMenu.cpp" />
+    <ClCompile Include="Iron.cpp" />
+    <ClCompile Include="Item.cpp" />
+    <ClCompile Include="ItemsManager.cpp" />
+    <ClCompile Include="Land.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Map\MapElement.cpp" />
+
+    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Mission.cpp" />
+    <ClCompile Include="MissionCreator.cpp" />
+    <ClCompile Include="Music.cpp" />
+    <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
+    <ClCompile Include="SpriteAnimation.cpp" />
+    <ClCompile Include="MapElement.cpp" />
+    <ClCompile Include="MapGui.cpp" />
+    <ClCompile Include="Move.cpp" />
+
     <ClCompile Include="Map\TileMap.cpp" />
+    <ClCompile Include="Object.cpp" />
+    <ClCompile Include="ObjectDrawer.cpp" />
+    <ClCompile Include="ObjectGenerator.cpp" />
+    <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="pathCreator.cpp" />
+    <ClCompile Include="PathIcon.cpp" />
+    <ClCompile Include="pathNode.cpp" />
+    <ClCompile Include="PawnObject.cpp" />
+    <ClCompile Include="Places.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="RiDmain.cpp" />
+    <ClCompile Include="Spearman.cpp" />
+    <ClCompile Include="Swordsman.cpp" />
+    <ClCompile Include="TaskManager.cpp" />
+    <ClCompile Include="TaskNode.cpp" />
+    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Town.cpp" />
+    <ClCompile Include="Tree.cpp" />
+    <ClCompile Include="Village.cpp" />
+    <ClCompile Include="Wood.cpp" />
   </ItemGroup>
   <ItemGroup>
+
     <ClInclude Include="Battle\Archer.h" />
     <ClInclude Include="Battle\Arrow.h" />
     <ClInclude Include="Battle\ArrowHitbox.h" />
@@ -222,8 +273,51 @@
     <ClInclude Include="Engine\RiDGame.h" />
     <ClInclude Include="Engine\State.h" />
     <ClInclude Include="Engine\StateMachine.h" />
-    <ClInclude Include="Map\MapElement.h" />
+    <ClInclude Include="Food.h" />
+    <ClInclude Include="Gold.h" />
+    <ClInclude Include="Grass.h" />
+    <ClInclude Include="GuiButton.h" />
+    <ClInclude Include="GuiManager.h" />
+    <ClInclude Include="GuiMainMenu.h" />
+    <ClInclude Include="GuiMarketPlace.h" />
+    <ClInclude Include="GuiMenu.h" />
+    <ClInclude Include="GuiPanel.h" />
+    <ClInclude Include="GuiPlacesMenu.h" />
+    <ClInclude Include="Iron.h" />
+    <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemsManager.h" />
+    <ClInclude Include="Land.h" />
+    <ClInclude Include="Map.h" />
+    <ClInclude Include="Mission.h" />
+    <ClInclude Include="MissionCreator.h" />
+    <ClInclude Include="Music.h" />
+    <ClInclude Include="Sound.h" />
+    <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="SpriteAnimation.h" />
+    <ClInclude Include="MapElement.h" />
+    <ClInclude Include="MapGui.h" />
+    <ClInclude Include="Move.h" />
     <ClInclude Include="Map\TileMap.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="ObjectDrawer.h" />
+    <ClInclude Include="ObjectGenerator.h" />
+    <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="pathCreator.h" />
+    <ClInclude Include="PathIcon.h" />
+    <ClInclude Include="pathNode.h" />
+    <ClInclude Include="PawnObject.h" />
+    <ClInclude Include="Places.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="RiDmain.h" />
+    <ClInclude Include="Spearman.h" />
+    <ClInclude Include="Swordsman.h" />
+    <ClInclude Include="TaskManager.h" />
+    <ClInclude Include="TaskNode.h" />
+    <ClInclude Include="Timer.h" />
+    <ClInclude Include="Town.h" />
+    <ClInclude Include="Tree.h" />
+    <ClInclude Include="Village.h" />
+    <ClInclude Include="Wood.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

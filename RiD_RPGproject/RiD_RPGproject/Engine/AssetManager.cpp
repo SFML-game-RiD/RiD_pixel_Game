@@ -5,6 +5,7 @@ namespace RiD
 {
 	AssetManager::AssetManager(){}
 	AssetManager::~AssetManager(){}
+	
 	void AssetManager::setTexture(std::string tex_name, std::string file_name)
 	{
 		sf::Texture texture;

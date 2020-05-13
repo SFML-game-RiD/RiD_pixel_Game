@@ -29,12 +29,12 @@ int RiD::ConfigurationLoader::getIntData(std::string sectionName, std::string da
 		}
 		else
 		{
-			throw std::invalid_argument("Failed to load configuration data from 'RiDconfig.ini'");
+			throw std::invalid_argument(" Failed to load configuration data from 'RiDconfig.ini'");
 		}
 	}
 	catch (std::invalid_argument & error)
 	{
-		std::cout << "Data error. " << error.what() << std::endl;
+		std::cout << "Data error. " << "|" << sectionName<<"|"<< dataName << "|" << error.what() << std::endl;
 	}
 }
 
