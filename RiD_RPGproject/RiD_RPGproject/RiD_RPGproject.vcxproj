@@ -72,14 +72,18 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+<<<<<<< HEAD
     <IncludePath>$(VC_IncludePath);$(IncludePath);C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um;C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared;C:\Program Files (x86)\Visual Leak Detector</IncludePath>
+=======
+    <IncludePath>C:\Program Files %28x86%29\Visual Leak Detector\include;$(VC_IncludePath);$(IncludePath);C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um;C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Visual Leak Detector\lib\Win32;$(LibraryPath)</LibraryPath>
+>>>>>>> parent of 83b0627... Merge branch 'master' into mapPart
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(VC_IncludePath);$(IncludePath);C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared;C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -153,6 +157,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClCompile Include="Battle\Archer.cpp" />
     <ClCompile Include="Battle\Arrow.cpp" />
     <ClCompile Include="Battle\ArrowHitbox.cpp" />
@@ -177,6 +182,17 @@
     <ClCompile Include="Battle\SwordHitbox.cpp" />
     <ClCompile Include="Battle\Swordsman.cpp" />
     <ClCompile Include="Battle\WindowBorder.cpp" />
+=======
+    <ClCompile Include="ActiveObject.cpp" />
+    <ClCompile Include="Archer.cpp" />
+    <ClCompile Include="Battle\RealTimeBattle.cpp" />
+    <ClCompile Include="Calculator.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Castle.cpp" />
+    <ClCompile Include="ComputerPlayerBandit.cpp" />
+    <ClCompile Include="Cursor.cpp" />
+    <ClCompile Include="Engine\Animation.cpp" />
+>>>>>>> parent of 83b0627... Merge branch 'master' into mapPart
     <ClCompile Include="Engine\AssetManager.cpp" />
     <ClCompile Include="Engine\ConfigurationLoader.cpp" />
     <ClCompile Include="Engine\InputManager.cpp" />
@@ -186,10 +202,24 @@
     <ClCompile Include="Engine\State.cpp" />
     <ClCompile Include="Engine\StateMachine.cpp" />
     <ClCompile Include="main.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="Map\MapElement.cpp" />
+=======
+    <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Mission.cpp" />
+    <ClCompile Include="MissionCreator.cpp" />
+    <ClCompile Include="Music.cpp" />
+    <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
+    <ClCompile Include="SpriteAnimation.cpp" />
+    <ClCompile Include="MapElement.cpp" />
+    <ClCompile Include="MapGui.cpp" />
+    <ClCompile Include="Move.cpp" />
+>>>>>>> parent of 83b0627... Merge branch 'master' into mapPart
     <ClCompile Include="Map\TileMap.cpp" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClInclude Include="Battle\Archer.h" />
     <ClInclude Include="Battle\Arrow.h" />
     <ClInclude Include="Battle\ArrowHitbox.h" />
@@ -207,13 +237,17 @@
     <ClInclude Include="Battle\Panel.h" />
     <ClInclude Include="Battle\PathNode.h" />
     <ClInclude Include="Battle\Player.h" />
+=======
+    <ClInclude Include="ActiveObject.h" />
+    <ClInclude Include="Archer.h" />
+>>>>>>> parent of 83b0627... Merge branch 'master' into mapPart
     <ClInclude Include="Battle\RealTimeBattle.h" />
-    <ClInclude Include="Battle\RTBPathGenerator.h" />
-    <ClInclude Include="Battle\SpearHitbox.h" />
-    <ClInclude Include="Battle\Spearman.h" />
-    <ClInclude Include="Battle\SwordHitbox.h" />
-    <ClInclude Include="Battle\Swordsman.h" />
-    <ClInclude Include="Battle\WindowBorder.h" />
+    <ClInclude Include="Calculator.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Castle.h" />
+    <ClInclude Include="ComputerPlayerBandit.h" />
+    <ClInclude Include="Cursor.h" />
+    <ClInclude Include="Engine\Animation.h" />
     <ClInclude Include="Engine\AssetManager.h" />
     <ClInclude Include="Engine\ConfigurationLoader.h" />
     <ClInclude Include="Engine\InputManager.h" />

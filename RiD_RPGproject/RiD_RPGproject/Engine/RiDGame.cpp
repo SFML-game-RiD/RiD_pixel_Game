@@ -8,7 +8,7 @@ namespace RiD
 	{
 		sf::Event event;
 		sf::Clock clock;
-		RTB::RealTimeBattle realTimeBattle(this->_data->window);
+		RTB::RealTimeBattle realTimeBattle;
 
 		while (this->_data->window.isOpen()) //program main loop
 		{
@@ -20,8 +20,7 @@ namespace RiD
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
 			{
-				realTimeBattle.mainLoop();
-				return;
+				realTimeBattle.mainLoop(this->_data->window);
 			}
 
 			_data->window.clear();
