@@ -73,11 +73,16 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <IncludePath>$(VC_IncludePath);$(IncludePath);C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um;C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared;C:\Program Files (x86)\Visual Leak Detector</IncludePath>
 =======
     <IncludePath>C:\Program Files %28x86%29\Visual Leak Detector\include;$(VC_IncludePath);$(IncludePath);C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um;C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared</IncludePath>
     <LibraryPath>C:\Program Files %28x86%29\Visual Leak Detector\lib\Win32;$(LibraryPath)</LibraryPath>
 >>>>>>> parent of 83b0627... Merge branch 'master' into mapPart
+=======
+    <IncludePath>C:\Program Files %28x86%29\Visual Leak Detector\include;$(VC_IncludePath);$(IncludePath);C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\um;C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Visual Leak Detector\lib\Win32;$(LibraryPath)</LibraryPath>
+>>>>>>> mapPart
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -158,6 +163,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <ClCompile Include="Battle\Archer.cpp" />
     <ClCompile Include="Battle\Arrow.cpp" />
     <ClCompile Include="Battle\ArrowHitbox.cpp" />
@@ -186,13 +192,21 @@
     <ClCompile Include="ActiveObject.cpp" />
     <ClCompile Include="Archer.cpp" />
     <ClCompile Include="Battle\RealTimeBattle.cpp" />
+=======
+    <ClCompile Include="ActiveObject.cpp" />
+    <ClCompile Include="Archer.cpp" />
+    <ClCompile Include="Battle\RealTimeBattle.cpp" />
+>>>>>>> mapPart
     <ClCompile Include="Calculator.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Castle.cpp" />
     <ClCompile Include="ComputerPlayerBandit.cpp" />
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="Engine\Animation.cpp" />
+<<<<<<< HEAD
 >>>>>>> parent of 83b0627... Merge branch 'master' into mapPart
+=======
+>>>>>>> mapPart
     <ClCompile Include="Engine\AssetManager.cpp" />
     <ClCompile Include="Engine\ConfigurationLoader.cpp" />
     <ClCompile Include="Engine\InputManager.cpp" />
@@ -203,8 +217,11 @@
     <ClCompile Include="Engine\StateMachine.cpp" />
     <ClCompile Include="main.cpp" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <ClCompile Include="Map\MapElement.cpp" />
 =======
+=======
+>>>>>>> mapPart
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Mission.cpp" />
     <ClCompile Include="MissionCreator.cpp" />
@@ -215,10 +232,14 @@
     <ClCompile Include="MapElement.cpp" />
     <ClCompile Include="MapGui.cpp" />
     <ClCompile Include="Move.cpp" />
+<<<<<<< HEAD
 >>>>>>> parent of 83b0627... Merge branch 'master' into mapPart
+=======
+>>>>>>> mapPart
     <ClCompile Include="Map\TileMap.cpp" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
 <<<<<<< HEAD
     <ClInclude Include="Battle\Archer.h" />
     <ClInclude Include="Battle\Arrow.h" />
@@ -241,6 +262,10 @@
     <ClInclude Include="ActiveObject.h" />
     <ClInclude Include="Archer.h" />
 >>>>>>> parent of 83b0627... Merge branch 'master' into mapPart
+=======
+    <ClInclude Include="ActiveObject.h" />
+    <ClInclude Include="Archer.h" />
+>>>>>>> mapPart
     <ClInclude Include="Battle\RealTimeBattle.h" />
     <ClInclude Include="Calculator.h" />
     <ClInclude Include="Camera.h" />
