@@ -48,13 +48,13 @@ namespace RTB
 			position.y = enemy_position_width(RNG) * 25;
 			position = _tile_map->_twoDToIso(position);
 			(*iterator)->setPosition({ position.x,position.y });
-			/*while (_checkPlacementCollisions(iterator))
+			while (_checkPlacementCollisions(iterator))
 			{
 				position.x = enemy_position_height(RNG) * 25;
 				position.y = enemy_position_width(RNG) * 25;
 				position = _tile_map->_twoDToIso(position);
 				(*iterator)->setPosition({ position.x,position.y });
-			}*/
+			}
 		}
 
 		for (unsigned short i = 0; i < 7; ++i)
@@ -76,13 +76,13 @@ namespace RTB
 			position.y = ally_position_width(RNG) * 25;
 			position = _tile_map->_twoDToIso(position);
 			(*iterator)->setPosition({ position.x,position.y });
-			/*while (_checkPlacementCollisions(iterator))
+			while (_checkPlacementCollisions(iterator))
 			{
 				position.x = ally_position_height(RNG) * 25;
 				position.y = ally_position_width(RNG) * 25;
 				position = _tile_map->_twoDToIso(position);
 				(*iterator)->setPosition({ position.x,position.y });
-			}*/
+			}
 		}
 	}
 
@@ -104,8 +104,6 @@ namespace RTB
 		{
 			if ((*iterator)->isAlive())
 				return false;
-			else
-				continue;
 		}
 		return true;
 	}
@@ -116,8 +114,6 @@ namespace RTB
 		{
 			if ((*iterator)->isAlive())
 				return false;
-			else
-				continue;
 		}
 		return true;
 	}

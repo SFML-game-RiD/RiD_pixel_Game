@@ -18,11 +18,8 @@ namespace RiD
 					this->_data->window.close();
 			}
 
-			//if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
-			//{
 				realTimeBattle.mainLoop();
 				return;
-			//}
 
 			_data->window.clear();
 			_data->window.display();
