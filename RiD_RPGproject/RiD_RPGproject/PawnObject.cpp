@@ -8,7 +8,7 @@ MP::PawnObject::PawnObject()
 	_sound_player.setSpeed(float(1.15));
 }
 
-bool MP::PawnObject::_check_go_up(MP::Map& aMap)
+bool MP::PawnObject::checkGoUp(MP::Map& aMap)
 {
 	sf::Vector2f tmp = getObjectCoord();
 	tmp.y -= _block_length;
@@ -22,7 +22,7 @@ bool MP::PawnObject::_check_go_up(MP::Map& aMap)
 		return false;
 }
 
-bool MP::PawnObject::_check_go_down(MP::Map& aMap)
+bool MP::PawnObject::checkGoDown(MP::Map& aMap)
 {
 	sf::Vector2f tmp = getObjectCoord();
 	tmp.y += _block_length;
@@ -36,7 +36,7 @@ bool MP::PawnObject::_check_go_down(MP::Map& aMap)
 		return false;
 }
 
-bool MP::PawnObject::_check_go_left(MP::Map& aMap)
+bool MP::PawnObject::checkGoLeft(MP::Map& aMap)
 {
 	sf::Vector2f tmp = getObjectCoord();
 	tmp.x -= _block_length;
@@ -50,7 +50,7 @@ bool MP::PawnObject::_check_go_left(MP::Map& aMap)
 		return false;
 }
 
-bool MP::PawnObject::_check_go_right(MP::Map& aMap)
+bool MP::PawnObject::checkGoRight(MP::Map& aMap)
 {
 	sf::Vector2f tmp = getObjectCoord();
 	tmp.x += _block_length;
@@ -63,42 +63,42 @@ bool MP::PawnObject::_check_go_right(MP::Map& aMap)
 	else
 		return false;
 }
-
-void MP::PawnObject::tryToMoveUp(Map& aMap, TaskManager& aMainTaskManager)
-{
-	if (_check_go_up(aMap) and !aMainTaskManager.findTask(MP::TaskNode::taskType::taskAutoMove,false) and !aMainTaskManager.findTask(TaskNode::taskType::taskNormalMove, false))
-	{
-		aMainTaskManager.addTask(MP::TaskNode::taskType::taskGoUp);
-		aMainTaskManager.addTask(MP::TaskNode::taskType::taskNormalMove);
-	}
-}
-
-void MP::PawnObject::tryToMoveDown(Map& aMap, TaskManager& aMainTaskManager)
-{
-	if (_check_go_down(aMap) and !aMainTaskManager.findTask(MP::TaskNode::taskType::taskAutoMove, false) and !aMainTaskManager.findTask(TaskNode::taskType::taskNormalMove, false))
-	{
-		aMainTaskManager.addTask(MP::TaskNode::taskType::taskGoDown);
-		aMainTaskManager.addTask(MP::TaskNode::taskType::taskNormalMove);
-	}
-}
-
-void MP::PawnObject::tryToMoveLeft(Map& aMap, TaskManager& aMainTaskManager)
-{
-	if (_check_go_left(aMap) and !aMainTaskManager.findTask(MP::TaskNode::taskType::taskAutoMove, false) and !aMainTaskManager.findTask(TaskNode::taskType::taskNormalMove, false))
-	{
-		aMainTaskManager.addTask(MP::TaskNode::taskType::taskGoLeft);
-		aMainTaskManager.addTask(MP::TaskNode::taskType::taskNormalMove);
-	}
-}
-
-void MP::PawnObject::tryToMoveRight(Map& aMap, TaskManager& aMainTaskManager)
-{
-	if (_check_go_right(aMap) and !aMainTaskManager.findTask(MP::TaskNode::taskType::taskAutoMove, false) and !aMainTaskManager.findTask(TaskNode::taskType::taskNormalMove, false))
-	{
-		aMainTaskManager.addTask(MP::TaskNode::taskType::taskGoRight);
-		aMainTaskManager.addTask(MP::TaskNode::taskType::taskNormalMove);
-	}
-}
+//
+//void MP::PawnObject::tryToMoveUp(Map& aMap, TaskManager& aMainTaskManager)
+//{
+//	if (_check_go_up(aMap) and !aMainTaskManager.findTask(TaskNode::taskType::TASK_MOVE, false))
+//	{
+//		aMainTaskManager.addTask(MP::TaskNode::taskType::TASK_MOVE_UP);
+//		aMainTaskManager.addTask(MP::TaskNode::taskType::TASK_MOVE);
+//	}
+//}
+//
+//void MP::PawnObject::tryToMoveDown(Map& aMap, TaskManager& aMainTaskManager)
+//{
+//	if (_check_go_down(aMap)and !aMainTaskManager.findTask(TaskNode::taskType::TASK_MOVE, false))
+//	{
+//		aMainTaskManager.addTask(MP::TaskNode::taskType::TASK_MOVE_DOWN);
+//		aMainTaskManager.addTask(MP::TaskNode::taskType::TASK_MOVE);
+//	}
+//}
+//
+//void MP::PawnObject::tryToMoveLeft(Map& aMap, TaskManager& aMainTaskManager)
+//{
+//	if (_check_go_left(aMap)and !aMainTaskManager.findTask(TaskNode::taskType::TASK_MOVE, false))
+//	{
+//		aMainTaskManager.addTask(MP::TaskNode::taskType::TASK_MOVE_LEFT);
+//		aMainTaskManager.addTask(MP::TaskNode::taskType::TASK_MOVE);
+//	}
+//}
+//
+//void MP::PawnObject::tryToMoveRight(Map& aMap, TaskManager& aMainTaskManager)
+//{
+//	if (_check_go_right(aMap) and !aMainTaskManager.findTask(TaskNode::taskType::TASK_MOVE, false))
+//	{
+//		aMainTaskManager.addTask(MP::TaskNode::taskType::TASK_MOVE_RIGHT);
+//		aMainTaskManager.addTask(MP::TaskNode::taskType::TASK_MOVE);
+//	}
+//}
 
 MP::MapElement* MP::PawnObject::getCurrentLand()
 {

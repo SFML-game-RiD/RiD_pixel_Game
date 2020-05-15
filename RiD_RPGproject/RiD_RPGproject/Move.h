@@ -37,6 +37,26 @@ namespace MP
 		void moveBlockRight(Player& player, sf::Clock& currentTime, TaskManager& aMainTaskManager);
 
 		void moveBlockLeft(Player& player, sf::Clock& currentTime, TaskManager& aMainTaskManager);
+
+		//Checks if main task manager is empty.
+		//@param gameMap game's map.
+		//@param aMainTaskManager game's task manager.
+		void tryToMoveUp(PawnObject& pawn, Map& gameMap, TaskManager& aMainTaskManager);
+
+		//Checks if main task manager is empty.
+		//@param gameMap game's map.
+		//@param aMainTaskManager game's task manager.
+		void tryToMoveDown(PawnObject& pawn, Map& gameMap, TaskManager& aMainTaskManager);
+
+		//Checks if main task manager is empty.
+		//@param gameMap game's map.
+		//@param aMainTaskManager game's task manager.
+		void tryToMoveLeft(PawnObject& pawn, Map& gameMap, TaskManager& aMainTaskManager);
+
+		//Checks if main task manager is empty.
+		//@param gameMap game's map.
+		//@param aMainTaskManager game's task manager.
+		void tryToMoveRight(PawnObject& pawn, Map& gameMap, TaskManager& aMainTaskManager);
 	};
 }
 #endif

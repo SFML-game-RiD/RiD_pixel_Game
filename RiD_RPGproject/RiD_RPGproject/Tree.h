@@ -1,5 +1,6 @@
 #pragma once
 #include "Object.h"
+#include "TaskManager.h"
 
 namespace MP
 {
@@ -21,11 +22,11 @@ namespace MP
 
 		//Updates object.
 		//@param globalClock measure game time.
-		void update(sf::Clock& globalClock);
+		void update(TaskManager& aMainTaskManager, sf::Clock& globalClock);
 
 		//Draws object on screen.
 		//@param mainWindow game window.
-		void render(sf::RenderWindow &mainWindow);
+		void render(TaskManager& aMainTaskManager, sf::RenderWindow &mainWindow);
 
 	};
 }

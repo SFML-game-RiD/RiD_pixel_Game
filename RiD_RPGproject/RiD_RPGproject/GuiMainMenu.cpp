@@ -46,20 +46,20 @@ void MP::GuiMainMenu::_select_button(SoundManager& aSoundManager, TaskManager& a
 
 void MP::GuiMainMenu::_press_button(TaskManager& aMainTaskManager,  sf::RenderWindow& aMainWindow)
 {
-	if (_button_array[0]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::taskClickLeft,true))
+	if (_button_array[0]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::LEFT_MOUSE_BUTTON,true))
 	{
 	
 		aMainTaskManager.setState(TaskManager::stateType::stateGame);
 	}
-	if (_button_array[1]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::taskClickLeft, true))
+	if (_button_array[1]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::LEFT_MOUSE_BUTTON, true))
 	{
 		
 	}
-	if (_button_array[2]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::taskClickLeft, true))
+	if (_button_array[2]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::LEFT_MOUSE_BUTTON, true))
 	{
 		
 	}
-	if (_button_array[3]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::taskClickLeft, true))
+	if (_button_array[3]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::LEFT_MOUSE_BUTTON, true))
 	{
 		
 		aMainWindow.close();

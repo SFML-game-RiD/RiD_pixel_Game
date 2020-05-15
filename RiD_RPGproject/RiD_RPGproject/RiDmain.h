@@ -49,13 +49,10 @@ namespace RiD
 		void _create_window();
 
 		void _event_function_for_state_game();
-		void _event_function_for_menu();
 
 		void _calculate_for_state_game();
-		void _calculate_for_state_menu();
 
 		void _draw_for_state_game();
-	    void _draw_for_menu();
 
 
 	public:

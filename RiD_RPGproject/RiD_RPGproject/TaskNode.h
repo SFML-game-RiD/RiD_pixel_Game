@@ -2,37 +2,41 @@
 #include <vector>
 namespace MP
 {
+	
 	class TaskNode
 	{
 	public:
 
 		enum class taskType
 		{
+			W_PRESSED,
+			A_PRESSED,
+			S_PRESSED,
+			D_PRESSED,
+			E_PRESSED,
+			ESC_PRESSED,
+			MOUSE_SCROLL_UP,
+			MOUSE_SCROLL_DOWN,
+			LEFT_MOUSE_BUTTON,
 
-			taskNone,
+			TASK_IDLE,
 
 			//Move basic tasks
-			taskNormalMove,
-			taskGoUp,
-			taskGoDown,
-			taskGoRight,
-			taskGoLeft,
+			TASK_MOVE,
+			TASK_MOVE_UP,
+			TASK_MOVE_DOWN,
+			TASK_MOVE_RIGHT,
+			TASK_MOVE_LEFT,
 
 			//Auto move tasks
-			taskAutoMove,
-			taskBreakAutoMove,
-			taskExecuteAutoMove,
-			taskCreateAutoPath,
-
-			//Camera tasks
-			taskZoomIn,
-			taskZoomOut,
+			TASK_AUTO_MOVE,
+			TASK_BREAK_AUTO_MOVE,
+			TASK_EXECUTE_AUTO_MOVE,
+			TASK_CREATE_PATH,
 
 			//Mouse tasks
-			taskClickLeft,
-			taskClickRight,
-			taskDoubleClickLeft,
-			taskWaitForDoubleClickLeft,
+			TASK_LEFT_DOUBLE_CLICK,
+			TASK_WAIT_FOR_LEFT_DOUBLE_CLICK,
 
 			//Mission
 			taskMission,
@@ -41,13 +45,15 @@ namespace MP
 			taskMissionReturn
 
 		};
+	private:
 
-		taskType task;
+		taskType _task;
 
 	public:
 
-		TaskNode(taskType newTask);
+		TaskNode(taskType newTask,bool block=false);
 
 		TaskNode::taskType getTask();
+
 	};
 }

@@ -80,14 +80,11 @@ void MP::ComputerPlayerBandit::_song_procedure(MP::SoundManager& aSoundManager)
 {
 	if (!_sound_player.isPlaying())
 		if(_is_enemys_check)
-		if (aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoDown, false) or
-			aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoUp, false) or
-			aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoLeft, false) or
-			aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoRight, false))
+		if (aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::TASK_MOVE_DOWN, false) or
+			aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::TASK_MOVE_UP, false) or
+			aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::TASK_MOVE_LEFT, false) or
+			aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::TASK_MOVE_RIGHT, false))
 			_sound_player.playSound(aSoundManager.getSound("pawnSound"));
-
-	if (aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskNone, false))
-		_sound_player.playSound(aSoundManager.getSound("whinneySound"));
 }
 
 void MP::ComputerPlayerBandit::_get_next_task(Map& aMap)
@@ -104,16 +101,16 @@ void MP::ComputerPlayerBandit::_get_next_task(Map& aMap)
 		_is_enemys_check = false;
 
 		if (tmp->getLandTile().getObjectCoord().x == nextDestination->getLandTile().getObjectCoord().x and tmp->getLandTile().getObjectCoord().y + _block_length == nextDestination->getLandTile().getObjectCoord().y)//Goes down
-			aPawnObjectTaskManager.addTask(MP::TaskNode::taskType::taskGoDown);
+			aPawnObjectTaskManager.addTask(MP::TaskNode::taskType::TASK_MOVE_DOWN);
 
 		else if (tmp->getLandTile().getObjectCoord().x == nextDestination->getLandTile().getObjectCoord().x and tmp->getLandTile().getObjectCoord().y - _block_length == nextDestination->getLandTile().getObjectCoord().y)//Goes up
-			aPawnObjectTaskManager.addTask(MP::TaskNode::taskType::taskGoUp);
+			aPawnObjectTaskManager.addTask(MP::TaskNode::taskType::TASK_MOVE_UP);
 
 		else if (tmp->getLandTile().getObjectCoord().x + _block_length == nextDestination->getLandTile().getObjectCoord().x and tmp->getLandTile().getObjectCoord().y == nextDestination->getLandTile().getObjectCoord().y)
-			aPawnObjectTaskManager.addTask(MP::TaskNode::taskType::taskGoRight);
+			aPawnObjectTaskManager.addTask(MP::TaskNode::taskType::TASK_MOVE_RIGHT);
 
 		else if (tmp->getLandTile().getObjectCoord().x - _block_length == nextDestination->getLandTile().getObjectCoord().x and tmp->getLandTile().getObjectCoord().y == nextDestination->getLandTile().getObjectCoord().y)
-			aPawnObjectTaskManager.addTask(MP::TaskNode::taskType::taskGoLeft);
+			aPawnObjectTaskManager.addTask(MP::TaskNode::taskType::TASK_MOVE_LEFT);
 
 		_path = _path->getNextElement();//Deleting usless element
 		delete nextDestination;	
@@ -124,16 +121,16 @@ void MP::ComputerPlayerBandit::_computer_player_move(sf::Clock& globalClock)
 {
 	MP::Move tmp;
 
-	if (aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoUp, false))
+	if (aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::TASK_MOVE_UP, false))
 		tmp.moveBlockUp(*this, globalClock);
 
-	if (aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoLeft, false))
+	if (aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::TASK_MOVE_LEFT, false))
 		tmp.moveBlockLeft(*this, globalClock);
 
-	if (aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoDown, false))
+	if (aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::TASK_MOVE_DOWN, false))
 		tmp.moveBlockDown(*this, globalClock);
 
-	if (aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoRight, false))
+	if (aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::TASK_MOVE_RIGHT, false))
 		tmp.moveBlockRight(*this, globalClock);
 
 	if (aPawnObjectTaskManager.isTaskListEmpty())
@@ -147,16 +144,16 @@ MP::ComputerPlayerBandit::~ComputerPlayerBandit()
 
 void MP::ComputerPlayerBandit::_computer_player_animation(sf::Clock& globalClock)
 {
-	if (aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoUp, false))
+	if (aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::TASK_MOVE_UP, false))
 		_computer_player_animation_up(globalClock);
 
-	if (aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoDown, false))
+	if (aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::TASK_MOVE_DOWN, false))
 		_computer_player_animation_down(globalClock);
 
-	if (aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoLeft, false))
+	if (aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::TASK_MOVE_LEFT, false))
 		_computer_player_animation_left(globalClock);
 
-	if (aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::taskGoRight, false))
+	if (aPawnObjectTaskManager.findTask(MP::TaskNode::taskType::TASK_MOVE_RIGHT, false))
 		_computer_player_animation_right(globalClock);
 }
 
@@ -196,17 +193,22 @@ void MP::ComputerPlayerBandit::_computer_player_animation_down(sf::Clock& global
 	}
 }
 
-void MP::ComputerPlayerBandit::update(SoundManager& aSoundManager, Map& aMap, sf::Clock& gameClock, std::shared_ptr<Player>& aPlayer)
+void MP::ComputerPlayerBandit::update(TaskManager& aMainTaskManager, SoundManager& aSoundManager, Map& aMap, sf::Clock& gameClock, std::shared_ptr<Player>& aPlayer)
 {
-	if (_check_enemy(aPlayer))
-	{	}
-	_song_procedure(aSoundManager);
-	_get_next_task(aMap);
-	_computer_player_animation(gameClock);
-	_computer_player_move(gameClock);
+	if (aMainTaskManager.getCurrentState() == TaskManager::stateType::stateGame)
+	{
+		if (_check_enemy(aPlayer))
+		{
+		}
+		_song_procedure(aSoundManager);
+		_get_next_task(aMap);
+		_computer_player_animation(gameClock);
+		_computer_player_move(gameClock);
+	}
 }
 
-void MP::ComputerPlayerBandit::render(sf::RenderWindow& mainWindow)
+void MP::ComputerPlayerBandit::render(TaskManager& aMainTaskManager,sf::RenderWindow& mainWindow)
 {
+	if (aMainTaskManager.getCurrentState() == TaskManager::stateType::stateGame)
 	mainWindow.draw(aAnimation.getObjectSprite());
 }

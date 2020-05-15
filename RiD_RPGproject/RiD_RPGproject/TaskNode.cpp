@@ -1,12 +1,12 @@
 #include "TaskNode.h"
 
 
-MP::TaskNode::TaskNode(taskType newTask)
+MP::TaskNode::TaskNode(taskType newTask, bool block)
 {
-	task = newTask;
+	_task = newTask;
 }
 
 MP::TaskNode::taskType MP::TaskNode::getTask()
 {
-	return task;
+	return _task;
 }

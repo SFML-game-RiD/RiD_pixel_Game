@@ -219,52 +219,50 @@ void MP::GuiMarketPlace::_select_button(SoundManager& aSoundManager, TaskManager
 
 void MP::GuiMarketPlace::_press_button(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, std::shared_ptr<Player>& aPlayer, std::shared_ptr<Places>& aPlaces)
 {
-	if (_button_array[0]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::taskClickLeft,true))//buy
+	if (_button_array[0]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::LEFT_MOUSE_BUTTON,true))//buy
 	{
 		_buy_item(aPlaces->getItemsForTrade(), aPlayer->aItemsManager);
 	}
-	if (_button_array[1]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::taskClickLeft, true)) //sell
+	if (_button_array[1]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::LEFT_MOUSE_BUTTON, true)) //sell
 	{
 		_buy_item(aPlayer->aItemsManager, aPlaces->getItemsForTrade());
 	}
-	if (_button_array[2]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::taskClickLeft, true))
+	if (_button_array[2]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::LEFT_MOUSE_BUTTON, true))
 	{
 		_button_array[3]->setButtonPosition(sf::Vector2f(365, 325));
 		_button_array[2]->setButtonPosition(sf::Vector2f(365, 9000));
 		_current_item = std::make_unique<Wood>();
 	}
-	if (_button_array[3]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::taskClickLeft, true))
+	if (_button_array[3]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::LEFT_MOUSE_BUTTON, true))
 	{
 		_button_array[4]->setButtonPosition(sf::Vector2f(365, 325));
 		_button_array[3]->setButtonPosition(sf::Vector2f(365, 9000));
 		_current_item = std::make_unique<Iron>();
 	}
-	if (_button_array[4]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::taskClickLeft, true))
+	if (_button_array[4]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::LEFT_MOUSE_BUTTON, true))
 	{
 		_button_array[5]->setButtonPosition(sf::Vector2f(365, 325));
 		_button_array[4]->setButtonPosition(sf::Vector2f(365, 9000));
 		_current_item = std::make_unique<Spearman>();
 	}
-	if (_button_array[5]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::taskClickLeft, true))
+	if (_button_array[5]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::LEFT_MOUSE_BUTTON, true))
 	{
 		_button_array[6]->setButtonPosition(sf::Vector2f(365, 325));
 		_button_array[5]->setButtonPosition(sf::Vector2f(365, 9000));
 		_current_item = std::make_unique<Swordsman>();
 	}
-	if (_button_array[6]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::taskClickLeft, true))
+	if (_button_array[6]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::LEFT_MOUSE_BUTTON, true))
 	{
 		_button_array[7]->setButtonPosition(sf::Vector2f(365, 325));
 		_button_array[6]->setButtonPosition(sf::Vector2f(365, 9000));
 		_current_item = std::make_unique<Archer>();
 	}
-	if (_button_array[7]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::taskClickLeft, true))
+	if (_button_array[7]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::LEFT_MOUSE_BUTTON, true))
 	{
 		_button_array[2]->setButtonPosition(sf::Vector2f(365, 325));
 		_button_array[7]->setButtonPosition(sf::Vector2f(365, 9000));
 		_current_item = std::make_unique<Food>();
 	}
-
-	//aMainTaskManager.deleteTaskList();
 }
 
 void MP::GuiMarketPlace::update(SoundManager & aSoundManager,TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, sf::Vector2f guiMouseCoord, std::shared_ptr<Player>& aPlayer, std::shared_ptr<Places>& aPlace)

@@ -13,21 +13,9 @@ void RiD::RiDmain::_create_window()
 
 	while (_a_camera.getWindow().isOpen()) //program main loop
 	{
-	_music.update(_a_main_task_manager);
-
-
-		if (_a_main_task_manager.getCurrentState() == MP::TaskManager::stateType::stateGame)
-		{
-			_event_function_for_state_game();
-			_calculate_for_state_game();
-			_draw_for_state_game();
-		}
-		else
-		{
-			_event_function_for_menu();
-			_calculate_for_state_menu();
-			_draw_for_menu();
-		}
+		_event_function_for_state_game();
+		_calculate_for_state_game();
+		_draw_for_state_game();
 	}
 }
 
@@ -40,67 +28,48 @@ void RiD::RiDmain::_event_function_for_state_game()
 			_a_camera.getWindow().close();
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-			if(!_a_main_task_manager.findTask(MP::TaskNode::taskType::taskAutoMove,false) and !_a_main_task_manager.findTask(MP::TaskNode::taskType::taskNormalMove, false))
-				_a_main_task_manager.setState(MP::TaskManager::stateType::stateMainMenu);
-			
+			_a_main_task_manager.addTask(MP::TaskNode::taskType::ESC_PRESSED);
+
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-			_a_obiect_manager.getPlayer()->tryToMoveUp(_a_obiect_manager.getMap(),_a_main_task_manager);
+			_a_main_task_manager.addTask(MP::TaskNode::taskType::W_PRESSED);
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-			_a_obiect_manager.getPlayer()->tryToMoveLeft(_a_obiect_manager.getMap(),_a_main_task_manager);
+			_a_main_task_manager.addTask(MP::TaskNode::taskType::A_PRESSED);
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-			_a_obiect_manager.getPlayer()->tryToMoveDown(_a_obiect_manager.getMap(), _a_main_task_manager);
+			_a_main_task_manager.addTask(MP::TaskNode::taskType::S_PRESSED);
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-			_a_obiect_manager.getPlayer()->tryToMoveRight(_a_obiect_manager.getMap(), _a_main_task_manager);
+			_a_main_task_manager.addTask(MP::TaskNode::taskType::D_PRESSED);
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
-			if(!_a_main_task_manager.findTask(MP::TaskNode::taskType::taskAutoMove,false) and 
-			   !_a_main_task_manager.findTask(MP::TaskNode::taskType::taskNormalMove, false))
-				_a_obiect_manager.getPlayer()->goToPlace(_a_obiect_manager.getMap(), _a_main_task_manager);
+			_a_main_task_manager.addTask(MP::TaskNode::taskType::E_PRESSED);
 
 
 		if (_event.type == sf::Event::MouseWheelScrolled)
 		{
-				if (_event.mouseWheelScroll.delta > 0)
-					_a_main_task_manager.addTask(MP::TaskNode::taskType::taskZoomIn);
-				else
-					_a_main_task_manager.addTask(MP::TaskNode::taskType::taskZoomOut);
+			if (_event.mouseWheelScroll.delta > 0)
+				_a_main_task_manager.addTask(MP::TaskNode::taskType::MOUSE_SCROLL_UP);
+			else
+				_a_main_task_manager.addTask(MP::TaskNode::taskType::MOUSE_SCROLL_DOWN);
 		}
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-		{
-			_a_main_task_manager.addTask(MP::TaskNode::taskType::taskClickLeft);
-		}
-	}
-}
-
-void RiD::RiDmain::_event_function_for_menu()
-{
-	while (_a_camera.getWindow().pollEvent(_event)) //handling events
-	{
-		if (_event.type == sf::Event::EventType::Closed)
-			_a_camera.getWindow().close();
-
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-		{
-			if (_a_main_task_manager.getCurrentState() == MP::TaskManager::stateType::stateMarketPlace)
-				_a_main_task_manager.setState(MP::TaskManager::stateType::statePlacesMenu);
-		}
-
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-			_a_main_task_manager.addTask(MP::TaskNode::taskType::taskClickLeft);
+			_a_main_task_manager.addTask(MP::TaskNode::taskType::LEFT_MOUSE_BUTTON);
 	}
 }
 
 void RiD::RiDmain::_calculate_for_state_game()
-{
-	_a_calculator.startMainGameProcedures(_a_sound_manager,_a_main_task_manager, _a_obiect_manager, _clock, _a_camera);
-}
+{	
+	_music.update(_a_main_task_manager);
 
-void RiD::RiDmain::_calculate_for_state_menu()
-{
-	_a_calculator.startMenuProcedures(_a_sound_manager,_a_main_task_manager, _a_obiect_manager, _a_camera);
+	_a_calculator.updateGame(_a_sound_manager,_a_main_task_manager, _a_obiect_manager, _clock, _a_camera);
+
+	_a_obiect_manager.getCursor()->update(_a_main_task_manager, _a_camera);
+
+	_a_camera.update(_a_obiect_manager.getPlayer()->getObjectCoord(), _a_main_task_manager);
+
+	//Deleting basic task from keyboard, mouse ect.
+	_a_main_task_manager.resetInput();
 }
 
 void RiD::RiDmain::_draw_for_state_game()
@@ -111,16 +80,6 @@ void RiD::RiDmain::_draw_for_state_game()
 
 	_a_camera.drawFrame(); 
 }
-
-void RiD::RiDmain::_draw_for_menu()
-{
-	_a_camera.clearCamera();
-
-	_a_obiect_drawer.drawMenu(_a_main_task_manager,_a_obiect_manager,_a_camera);
-
-	_a_camera.drawFrame();
-}
-
 
 RiD::RiDmain::RiDmain(int width, int height, std::string title)
 {

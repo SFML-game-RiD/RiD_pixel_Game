@@ -30,11 +30,11 @@ namespace MP
 
 		//@param mainWindow game window.
 		//@param aItemsManager items manager.
-		void render(sf::RenderWindow& mainWindow, ItemsManager& aItemsManager);
+		void render(TaskManager& aMainTaskManager, sf::RenderWindow& mainWindow, ItemsManager& aItemsManager);
 
 		//Updates gui.
 		//@param aItemsManager items manager.
-		void update(ItemsManager& aItemsManager, std::string textArray[12]);
+		void update(TaskManager& aMainTaskManager, ItemsManager& aItemsManager, std::string textArray[12]);
 		
 	};
 }

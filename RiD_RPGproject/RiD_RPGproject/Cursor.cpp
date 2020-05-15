@@ -47,41 +47,25 @@ void MP::Cursor::_update_cursor(TaskManager& aTaskManager, Camera& aCamera)
 
 void MP::Cursor::_check_if_player_clicked(TaskManager& aTaskManager, Camera& aCamera)
 {
-	if (aTaskManager.findTask(TaskNode::taskType::taskClickLeft,true)) //instructions below managing cursor behaviour
+	if (aTaskManager.findTask(TaskNode::taskType::LEFT_MOUSE_BUTTON,false)) //instructions below managing cursor behaviour
 	{
 		if (aTaskManager.getCurrentState() == TaskManager::stateType::stateGame)
 		{
-			if (_gui_coord.x < 1040) //map
+			if (_gui_coord.x < 1040 and _gui_coord.x>-460) //map
 			{
-				if (!aTaskManager.findTask(TaskNode::taskType::taskExecuteAutoMove, false) and
-					!aTaskManager.findTask(MP::TaskNode::taskType::taskWaitForDoubleClickLeft, false) and
-					!aTaskManager.findTask(TaskNode::taskType::taskAutoMove, false))
+				if (aTaskManager.findTask(TaskNode::taskType::TASK_EXECUTE_AUTO_MOVE, false))//for break auto move
+					aTaskManager.addTask(TaskNode::taskType::TASK_BREAK_AUTO_MOVE);
+				else if (aTaskManager.findTask(TaskNode::taskType::TASK_WAIT_FOR_LEFT_DOUBLE_CLICK, true))//for start auto move after path marking
+					aTaskManager.addTask(TaskNode::taskType::TASK_LEFT_DOUBLE_CLICK);
+				else
 				{
-					aTaskManager.addTask(TaskNode::taskType::taskAutoMove);
-					aTaskManager.addTask(TaskNode::taskType::taskCreateAutoPath);
-				}
-				if (aTaskManager.findTask(MP::TaskNode::taskType::taskWaitForDoubleClickLeft, true))
-				{
-					aTaskManager.addTask(MP::TaskNode::taskType::taskDoubleClickLeft);
-				}
-				if (aTaskManager.findTask(TaskNode::taskType::taskExecuteAutoMove, true))
-				{
-					aTaskManager.addTask(MP::TaskNode::taskType::taskBreakAutoMove);
+					aTaskManager.addTask(TaskNode::taskType::TASK_CREATE_PATH);//for start auto move procedure
+					aTaskManager.addTask(TaskNode::taskType::TASK_AUTO_MOVE);
 				}
 			}
 			else //gui
 			{
-				if (aTaskManager.findTask(TaskNode::taskType::taskAutoMove, false))
-				{
-
-				}
-				else
-				{
-				}
-				if (aTaskManager.findTask(TaskNode::taskType::taskExecuteAutoMove, true))
-				{
-					aTaskManager.addTask(MP::TaskNode::taskType::taskBreakAutoMove);
-				}
+				aTaskManager.addTask(TaskNode::taskType::TASK_BREAK_AUTO_MOVE);
 			}
 		}
 	}

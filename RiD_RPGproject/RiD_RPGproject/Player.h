@@ -58,7 +58,7 @@ namespace MP
 		//@param aMainTaskManager game's task manager.
 		void _player_animation(sf::Clock& globalClock, TaskManager& aMainTaskManager);
 
-		//Starts player;s move. 
+		//Starts player's move. 
 		//@param globalClock game's clock.
 		//@param aMainTaskManager game's task manager.
 		void _player_move(sf::Clock& globalClock, TaskManager& aMainTaskManager);
@@ -72,14 +72,6 @@ namespace MP
 		//@param newPath new path head.
 		void _set_path(MapElement*& newPath);
 
-		//Starts player's auto animation.
-		//@param globalClock game's clock.
-		void _player_auto_animation(sf::Clock& globalClock);
-
-		//Starts player's auto move.
-		//@param globalClock game's clock.
-		void _player_auto_move(sf::Clock& globalClock);
-
 		//Delets player's path.
 		void _delete_player_path();
 
@@ -89,16 +81,13 @@ namespace MP
 		//Delets path icon.
 		void _unmark_path();
 
-		//Starts move procedure according to task manager.
-		//@param aMainTaskManager game's task manager.
-		//@param GameClock game's clock.
-		//@param aMap game's map.
-		//@param mouseGameCoord mouse's game coordination.
-		void _procedure_player_auto_or_normal_move(TaskManager& aMainTaskManager, sf::Clock& GameClock, MP::Map& aMap, sf::Vector2f &mouseGameCoord);
+		void _procedure_player_auto_move(TaskManager& aMainTaskManager, sf::Clock& GameClock, MP::Map& aMap, sf::Vector2f &mouseGameCoord);
 
 		void _song_procedure(sf::Clock& gameClock, MP::SoundManager& aSoundManager, TaskManager& aMainTaskManager);
 
 		void _mission_procedure(TaskManager& aMainTaskManager, Map& gameMap, SoundManager& aSoundManager);
+
+		void _keyboard_handling(TaskManager& aMainTaskManager, Map& gameMap);
 
 	public:
 
@@ -126,7 +115,7 @@ namespace MP
 		void update(SoundManager& aSoundManager, TaskManager& aMainTaskManager, sf::Clock& gameClock, MP::Map& gamesMap, sf::Vector2f mouseGameCoord);
 
 		//Draws player.
-		void render(sf::RenderWindow &mainWindow);
+		void render(TaskManager& aMainTaskManager, sf::RenderWindow &mainWindow);
 
 	
 	};

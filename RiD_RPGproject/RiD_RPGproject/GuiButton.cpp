@@ -48,7 +48,7 @@ void MP::GuiButton::_song_procedure(MP::SoundManager& aSoundManager, MP::TaskMan
 			_sound_player.playSound(aSoundManager.getSound("activeButtonSound"));
 			_was_played = true;
 		}
-		if(aMainTaskManager.findTask(TaskNode::taskType::taskClickLeft,false))
+		if(aMainTaskManager.findTask(TaskNode::taskType::LEFT_MOUSE_BUTTON,false))
 		_sound_player.playSound(aSoundManager.getSound("pressedButtonSound"));
 	}
 }

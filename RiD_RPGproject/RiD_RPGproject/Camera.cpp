@@ -53,9 +53,9 @@ void MP::Camera::_change_zoom(MP::TaskManager& aTaskManager)
 {
 	changeViewToGame();
 
-	if (aTaskManager.findTask(MP::TaskNode::taskType::taskZoomOut,true))
+	if (aTaskManager.findTask(MP::TaskNode::taskType::MOUSE_SCROLL_DOWN,true))
 		_zoom_out();
-	if (aTaskManager.findTask(MP::TaskNode::taskType::taskZoomIn, true))
+	if (aTaskManager.findTask(MP::TaskNode::taskType::MOUSE_SCROLL_UP, true))
 		_zoom_in();
 }
 
@@ -82,7 +82,7 @@ void MP::Camera::changeViewToGui()
 
 void MP::Camera::update(sf::Vector2f newFocusCoord, TaskManager& aMainTaskManager)
 {
-	if (aMainTaskManager.findTask(MP::TaskNode::taskType::taskZoomIn,false) or aMainTaskManager.findTask(MP::TaskNode::taskType::taskZoomOut, false))
+	if (aMainTaskManager.findTask(MP::TaskNode::taskType::MOUSE_SCROLL_UP,false) or aMainTaskManager.findTask(MP::TaskNode::taskType::MOUSE_SCROLL_DOWN, false))
 		_change_zoom(aMainTaskManager);
 
 	_change_camera(newFocusCoord);

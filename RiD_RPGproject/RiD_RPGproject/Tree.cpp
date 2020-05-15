@@ -21,12 +21,14 @@ void MP::Tree::_tree_animation(sf::Clock& globalClock)
 }
 
 
-void MP::Tree::update(sf::Clock& globalClock)
+void MP::Tree::update(TaskManager& aMainTaskManager, sf::Clock& globalClock)
 {
+	if(aMainTaskManager.getCurrentState()==TaskManager::stateType::stateGame)
 	_tree_animation(globalClock);
 }
 
-void MP::Tree::render(sf::RenderWindow& mainWindow)
+void MP::Tree::render(TaskManager& aMainTaskManager, sf::RenderWindow& mainWindow)
 {
+	if (aMainTaskManager.getCurrentState() == TaskManager::stateType::stateGame)
 	mainWindow.draw(aAnimation.getObjectSprite());
 }

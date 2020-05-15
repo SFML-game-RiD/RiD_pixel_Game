@@ -44,9 +44,9 @@ namespace MP
 
 		~ComputerPlayerBandit();
 
-		void update(SoundManager& aSoundManager, Map& aMap, sf::Clock& gameClock, std::shared_ptr<Player>& aPlayer);
+		void update(TaskManager& aMainTaskManager,SoundManager& aSoundManager, Map& aMap, sf::Clock& gameClock, std::shared_ptr<Player>& aPlayer);
 
-		void render(sf::RenderWindow &mainWindow);
+		void render(TaskManager& aMainTaskManager,sf::RenderWindow &mainWindow);
 
 	};
 

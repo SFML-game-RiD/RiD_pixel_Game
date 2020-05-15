@@ -22,7 +22,7 @@ namespace MP
 
 		stateType _game_state;
 
-		std::set<std::shared_ptr<TaskNode>> taskList;
+		std::set<std::shared_ptr<TaskNode>> _task_list;
 
 	public:
 
@@ -41,6 +41,12 @@ namespace MP
 		std::set<std::shared_ptr<TaskNode>>& getTaskList();
 
 		bool isTaskListEmpty();
+
+		void updateState();
+
+		void keyboardHandling();
+
+		void resetInput();
 	};
 }
 

@@ -11,22 +11,6 @@ namespace MP
 
 		MapElement* _current_land;///Stores ptr to current land, where pawn stands.
 
-		//Checks if up map element is walkable.
-		//@param gameMap game's map.
-		bool _check_go_up(Map& gameMap);
-
-		//Checks if up map element is walkable.
-		//@param gameMap game's map.
-		bool _check_go_down(Map& gameMap);
-
-		//Checks if up map element is walkable.
-		//@param gameMap game's map.
-		bool _check_go_left(Map& gameMap);
-
-		//Checks if up map element is walkable.
-		//@param gameMap game's map.
-		bool _check_go_right(Map& gameMap);
-
 		bool _whinney_once;
 
 	public:
@@ -36,25 +20,22 @@ namespace MP
 		//Pawn's constructor.
 		PawnObject();
 
-		//Checks if main task manager is empty.
-		//@param gameMap game's map.
-		//@param aMainTaskManager game's task manager.
-		void tryToMoveUp(Map& gameMap, TaskManager& aMainTaskManager);
 
-		//Checks if main task manager is empty.
+		//Checks if up map element is walkable.
 		//@param gameMap game's map.
-		//@param aMainTaskManager game's task manager.
-		void tryToMoveDown(Map& gameMap, TaskManager& aMainTaskManager);
+		bool checkGoUp(Map& gameMap);
 
-		//Checks if main task manager is empty.
+		//Checks if up map element is walkable.
 		//@param gameMap game's map.
-		//@param aMainTaskManager game's task manager.
-		void tryToMoveLeft(Map& gameMap, TaskManager& aMainTaskManager);
+		bool checkGoDown(Map& gameMap);
 
-		//Checks if main task manager is empty.
+		//Checks if up map element is walkable.
 		//@param gameMap game's map.
-		//@param aMainTaskManager game's task manager.
-		void tryToMoveRight(Map& gameMap,TaskManager &aMainTaskManager);
+		bool checkGoLeft(Map& gameMap);
+
+		//Checks if up map element is walkable.
+		//@param gameMap game's map.
+		bool checkGoRight(Map& gameMap);
 
 		//Returns current land, where pawn stands.
 		//@return current land.

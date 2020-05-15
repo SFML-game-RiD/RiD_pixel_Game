@@ -11,19 +11,15 @@ namespace MP
 
 		void _draw_land(sf::RenderWindow& mainWindow, ObjectManager& aObiectManager);
 
-		void _draw_trees(sf::RenderWindow& mainWindow, ObjectManager& aObiectManager);
+		void _draw_trees(TaskManager& aMainTaskManager, sf::RenderWindow& mainWindow, ObjectManager& aObiectManager);
 
 		void _draw_grass(sf::RenderWindow& mainWindow, ObjectManager& aObiectManager);
 		
-		void _draw_active_obiects(sf::RenderWindow& mainWindow, ObjectManager& aObiectManager);
+		void _draw_active_obiects(TaskManager& aMainTaskManager, sf::RenderWindow& mainWindow, ObjectManager& aObiectManager);
 		
 	public:
 
 		void drawGame(TaskManager& aMainTaskManager, Camera &aGameCamera, ObjectManager & aObiectManager);
-
-		void drawMenu(TaskManager &aMainTaskManager , ObjectManager& aObiectManager, Camera& aGameCamera);
-
-	
 
 	};
 
