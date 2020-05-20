@@ -1,17 +1,21 @@
 #ifndef CALCULATOR_H
 #define CALCULATOR_H
-
+#include <thread>
 #include "Move.h"
 #include "TaskManager.h"
 #include "Player.h"
 #include "ObjectManager.h"
 #include "Camera.h"
 
+
 namespace MP
 {
 	class Calculator
 	{
 	private:
+
+		std::thread th1, th2;
+
 
 		void _computer_players_procedure(TaskManager& aMainTaskManager, SoundManager& aSoundManager, ObjectManager& aObiectManager, sf::Clock& gameClock,Map& aMap);
 

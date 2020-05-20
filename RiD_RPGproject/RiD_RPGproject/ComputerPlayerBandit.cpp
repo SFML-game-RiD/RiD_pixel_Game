@@ -57,21 +57,30 @@ void MP::ComputerPlayerBandit::_delete_path()
 
 bool MP::ComputerPlayerBandit::_check_enemy(std::shared_ptr<Player>& aPlayer)
 {
-	if (!_is_enemys_check and _current_land!=nullptr)
-	{
-		sf::Vector2f radiusCoord;
-		sf::Vector2f player = aPlayer->getObjectCoord();
-		radiusCoord.x = getObjectCoord().x - _radius;
-		radiusCoord.y = getObjectCoord().y - _radius;
-		
-		_is_enemys_check = false;
+	sf::Vector2f radiusCoord;
+	sf::Vector2f player = aPlayer->getObjectCoord();
+	radiusCoord.x = getObjectCoord().x - _radius;
+	radiusCoord.y = getObjectCoord().y - _radius;
 
-		if (radiusCoord.x + 2 * _radius > player.x and radiusCoord.x < player.x)
-			if (radiusCoord.y + 2 * _radius > player.y and radiusCoord.y < player.y)
+
+	if (radiusCoord.x + 2 * _radius > player.x and radiusCoord.x < player.x)
+		if (radiusCoord.y + 2 * _radius > player.y and radiusCoord.y < player.y)
+		{
+			if (!_is_enemys_check)
 			{
+				aAnimation.setColor(sf::Color(240, 128, 128));
+				active_obj_sleep_time = sf::milliseconds(35);
 				_is_enemys_check = true;
-				return true;
 			}
+
+			return true;
+		}
+
+	if (_is_enemys_check)
+	{
+		aAnimation.setColor(sf::Color(255, 255, 255));
+		_is_enemys_check = false;
+		active_obj_sleep_time = sf::milliseconds(55);
 	}
 	return false;
 }
@@ -87,7 +96,16 @@ void MP::ComputerPlayerBandit::_song_procedure(MP::SoundManager& aSoundManager)
 			_sound_player.playSound(aSoundManager.getSound("pawnSound"));
 }
 
-void MP::ComputerPlayerBandit::_get_next_task(Map& aMap)
+void MP::ComputerPlayerBandit::_attack_player(Map &gameMap,std::shared_ptr<Player>& player)
+{
+	_delete_path();
+	MapElement* playerField = player->getCurrentLand();
+	PathCreator tmp(gameMap);
+
+	_path = tmp.findPath(getCurrentLand()->getLandTile().getObjectCoord(),playerField->getLandTile().getObjectCoord());
+}
+
+void MP::ComputerPlayerBandit::_get_next_task(Map& aMap, std::shared_ptr<Player>& player)
 {
 	if (aPawnObjectTaskManager.isTaskListEmpty())
 	{
@@ -98,7 +116,8 @@ void MP::ComputerPlayerBandit::_get_next_task(Map& aMap)
 		MapElement* tmp = aMap.findElementAddressSquareRange(getObjectCoord());//Return element where computer player stands.
 
 		_current_land = tmp;
-		_is_enemys_check = false;
+		//_is_enemys_check = false;
+		_check_enemy(player);
 
 		if (tmp->getLandTile().getObjectCoord().x == nextDestination->getLandTile().getObjectCoord().x and tmp->getLandTile().getObjectCoord().y + _block_length == nextDestination->getLandTile().getObjectCoord().y)//Goes down
 			aPawnObjectTaskManager.addTask(MP::TaskNode::taskType::TASK_MOVE_DOWN);
@@ -197,11 +216,15 @@ void MP::ComputerPlayerBandit::update(TaskManager& aMainTaskManager, SoundManage
 {
 	if (aMainTaskManager.getCurrentState() == TaskManager::stateType::stateGame)
 	{
-		if (_check_enemy(aPlayer))
+		if (_is_enemys_check)
 		{
+		//	aAnimation.setColor(sf::Color(220, 20, 60));//red
+			_attack_player(aMap, aPlayer);
 		}
+	//	else
+	///		aAnimation.setColor(sf::Color(255, 255, 255));
 		_song_procedure(aSoundManager);
-		_get_next_task(aMap);
+		_get_next_task(aMap, aPlayer);
 		_computer_player_animation(gameClock);
 		_computer_player_move(gameClock);
 	}

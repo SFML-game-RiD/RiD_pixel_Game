@@ -10,20 +10,24 @@ void MP::Calculator::_computer_players_procedure(TaskManager& aMainTaskManager, 
 
 	it = computerPlayerList->begin();
 
-
 	for (it; it != computerPlayerList->end(); it++)
 		it->update(aMainTaskManager,aSoundManager,aMap, gameClock,aObiectManager.getPlayer());
+
 }
 
 void MP::Calculator::_trees_procedure(TaskManager& aMainTaskManager, sf::Clock& globalClock, ObjectManager& aObiectManager)
 {
+
 	std::list<Tree>* aTree = aObiectManager.getTreeList();
 	std::list<Tree >::iterator iterator;
 	iterator = aTree->begin();
 
+
+
 	for (iterator; iterator != aTree->end(); iterator++)
 		if (aObiectManager.access())
 			iterator->update(aMainTaskManager,globalClock);
+
 }
 
 

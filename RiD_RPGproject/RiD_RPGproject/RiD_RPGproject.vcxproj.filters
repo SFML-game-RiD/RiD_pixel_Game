@@ -35,9 +35,6 @@
     <ClCompile Include="Engine\ConfigurationLoader.cpp">
       <Filter>FILE LOADER</Filter>
     </ClCompile>
-    <ClCompile Include="RiDmain.cpp">
-      <Filter>MANAGERS, HEAD CLASS\MAIN CLASS</Filter>
-    </ClCompile>
     <ClCompile Include="Map.cpp">
       <Filter>GAME MAP</Filter>
     </ClCompile>
@@ -60,10 +57,10 @@
       <Filter>MANAGERS, HEAD CLASS</Filter>
     </ClCompile>
     <ClCompile Include="Move.cpp">
-      <Filter>OBJECT\ACTIVE OBIECT\PAWNS\MOVE,ANIMATION</Filter>
+      <Filter>OBJECT\ACTIVE OBJECT\PAWNS\MOVE,ANIMATION</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>OBJECT\ACTIVE OBIECT\PAWNS</Filter>
+      <Filter>OBJECT\ACTIVE OBJECT\PAWNS</Filter>
     </ClCompile>
     <ClCompile Include="pathNode.cpp">
       <Filter>AI</Filter>
@@ -144,19 +141,19 @@
       <Filter>MANAGERS, HEAD CLASS\MANAGE TASK</Filter>
     </ClCompile>
     <ClCompile Include="ComputerPlayerBandit.cpp">
-      <Filter>OBJECT\ACTIVE OBIECT\PAWNS</Filter>
+      <Filter>OBJECT\ACTIVE OBJECT\PAWNS</Filter>
     </ClCompile>
     <ClCompile Include="SpriteAnimation.cpp">
-      <Filter>OBJECT\ACTIVE OBIECT\PAWNS\MOVE,ANIMATION</Filter>
+      <Filter>OBJECT\ACTIVE OBJECT\PAWNS\MOVE,ANIMATION</Filter>
     </ClCompile>
     <ClCompile Include="Object.cpp">
       <Filter>OBJECT</Filter>
     </ClCompile>
     <ClCompile Include="ActiveObject.cpp">
-      <Filter>OBJECT\ACTIVE OBIECT</Filter>
+      <Filter>OBJECT\ACTIVE OBJECT</Filter>
     </ClCompile>
     <ClCompile Include="PawnObject.cpp">
-      <Filter>OBJECT\ACTIVE OBIECT\PAWNS</Filter>
+      <Filter>OBJECT\ACTIVE OBJECT\PAWNS</Filter>
     </ClCompile>
     <ClCompile Include="ObjectManager.cpp">
       <Filter>MANAGERS, HEAD CLASS\MANAGE OBIECT</Filter>
@@ -188,6 +185,7 @@
     <ClCompile Include="Grass.cpp">
       <Filter>OBJECT</Filter>
     </ClCompile>
+    <ClCompile Include="RiDmain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Animation.h">
@@ -223,9 +221,6 @@
     <ClInclude Include="Engine\ConfigurationLoader.h">
       <Filter>FILE LOADER</Filter>
     </ClInclude>
-    <ClInclude Include="RiDmain.h">
-      <Filter>MANAGERS, HEAD CLASS\MAIN CLASS</Filter>
-    </ClInclude>
     <ClInclude Include="Map.h">
       <Filter>GAME MAP</Filter>
     </ClInclude>
@@ -248,10 +243,10 @@
       <Filter>MANAGERS, HEAD CLASS</Filter>
     </ClInclude>
     <ClInclude Include="Move.h">
-      <Filter>OBJECT\ACTIVE OBIECT\PAWNS\MOVE,ANIMATION</Filter>
+      <Filter>OBJECT\ACTIVE OBJECT\PAWNS\MOVE,ANIMATION</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>OBJECT\ACTIVE OBIECT\PAWNS</Filter>
+      <Filter>OBJECT\ACTIVE OBJECT\PAWNS</Filter>
     </ClInclude>
     <ClInclude Include="pathNode.h">
       <Filter>AI</Filter>
@@ -332,19 +327,19 @@
       <Filter>MANAGERS, HEAD CLASS\MANAGE TASK</Filter>
     </ClInclude>
     <ClInclude Include="ComputerPlayerBandit.h">
-      <Filter>OBJECT\ACTIVE OBIECT\PAWNS</Filter>
+      <Filter>OBJECT\ACTIVE OBJECT\PAWNS</Filter>
     </ClInclude>
     <ClInclude Include="SpriteAnimation.h">
-      <Filter>OBJECT\ACTIVE OBIECT\PAWNS\MOVE,ANIMATION</Filter>
+      <Filter>OBJECT\ACTIVE OBJECT\PAWNS\MOVE,ANIMATION</Filter>
     </ClInclude>
     <ClInclude Include="Object.h">
       <Filter>OBJECT</Filter>
     </ClInclude>
     <ClInclude Include="ActiveObject.h">
-      <Filter>OBJECT\ACTIVE OBIECT</Filter>
+      <Filter>OBJECT\ACTIVE OBJECT</Filter>
     </ClInclude>
     <ClInclude Include="PawnObject.h">
-      <Filter>OBJECT\ACTIVE OBIECT\PAWNS</Filter>
+      <Filter>OBJECT\ACTIVE OBJECT\PAWNS</Filter>
     </ClInclude>
     <ClInclude Include="ObjectManager.h">
       <Filter>MANAGERS, HEAD CLASS\MANAGE OBIECT</Filter>
@@ -376,13 +371,11 @@
     <ClInclude Include="Grass.h">
       <Filter>OBJECT</Filter>
     </ClInclude>
+    <ClInclude Include="RiDmain.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="MANAGERS, HEAD CLASS">
       <UniqueIdentifier>{a91205af-2276-4eff-99ab-1acf6d8a0453}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MANAGERS, HEAD CLASS\MAIN CLASS">
-      <UniqueIdentifier>{bcc76a78-f4cf-4b1c-8104-b4d97af2dc8c}</UniqueIdentifier>
     </Filter>
     <Filter Include="FILE LOADER">
       <UniqueIdentifier>{875c2c9c-9536-4316-af8f-186540127064}</UniqueIdentifier>
@@ -429,12 +422,6 @@
     <Filter Include="OBJECT">
       <UniqueIdentifier>{5b2eb87f-393a-4b9d-8030-d14268c9cbc4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="OBJECT\ACTIVE OBIECT">
-      <UniqueIdentifier>{9856b24c-57a5-45b9-b105-8187a99dcf37}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="OBJECT\ACTIVE OBIECT\PAWNS">
-      <UniqueIdentifier>{1f9b6629-19c1-4984-bcdc-706d42602cc5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="OBJECT\PLACES">
       <UniqueIdentifier>{ae191765-e778-4606-a7ae-b7cd710a5acb}</UniqueIdentifier>
     </Filter>
@@ -444,7 +431,13 @@
     <Filter Include="OBJECT\ITEMS">
       <UniqueIdentifier>{8e1c16ad-1742-47a1-993d-c901e392a4d9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="OBJECT\ACTIVE OBIECT\PAWNS\MOVE,ANIMATION">
+    <Filter Include="OBJECT\ACTIVE OBJECT">
+      <UniqueIdentifier>{9856b24c-57a5-45b9-b105-8187a99dcf37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OBJECT\ACTIVE OBJECT\PAWNS">
+      <UniqueIdentifier>{1f9b6629-19c1-4984-bcdc-706d42602cc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="OBJECT\ACTIVE OBJECT\PAWNS\MOVE,ANIMATION">
       <UniqueIdentifier>{366204a4-da86-493d-be0b-d81d04255ad4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>

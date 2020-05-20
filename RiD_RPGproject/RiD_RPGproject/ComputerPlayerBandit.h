@@ -28,7 +28,7 @@ namespace MP
 
 		void _computer_player_move(sf::Clock& globalClock);
 
-		void _get_next_task(Map& aMap);
+		void _get_next_task(Map& aMap, std::shared_ptr<Player>& player);
 
 		void _chose_destination(Map& aMap);
 
@@ -37,6 +37,8 @@ namespace MP
 		bool _check_enemy(std::shared_ptr<Player>& aPlayer);
 
 		void _song_procedure(MP::SoundManager& aSoundManager);
+
+		void _attack_player(Map& gameMap, std::shared_ptr<Player>& player);
 
 	public:
 
