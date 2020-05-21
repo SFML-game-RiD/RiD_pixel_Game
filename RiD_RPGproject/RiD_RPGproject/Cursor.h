@@ -15,14 +15,14 @@ namespace MP
 		sf::Vector2f _gui_coord;///Stores mouse's coord from gui view.
 
 		//Updates cursor.
-		//@param aMainTaskManager main game's task manager.
-		//@param aCamera game's camera.
-		void _update_cursor(TaskManager& aMainTaskManager, Camera& aCamera);
+		//@param mainTaskManager main game's task manager.
+		//@param gameCamera game's camera.
+		void _update_cursor(TaskManager& mainTaskManager, Camera& gameCamera);
 
 		//Checks if player clicked.
-		//@param aMainTaskManager main game's task manager.
-		//@param aCamera game's camera.
-		void _check_if_player_clicked(TaskManager& aTaskManager, Camera& aCamera);
+		//@param mainTaskManager main game's task manager.
+		//@param gameCamera game's camera.
+		void _check_if_player_clicked(TaskManager& mainTaskManager, Camera& gameCamera);
 
 	public:
 
@@ -42,14 +42,14 @@ namespace MP
 		//@param guiCoord coordinates.
 		void setGuiCoord(sf::Vector2f guiCoord);
 
-		//Returns gui coord.
-		//@return gui coord.
+		//Returns gui's coord.
+		//@return gui's coord.
 		sf::Vector2f getGuiCoord();
 
 		//Updates cursor.
-		//@param aMainTaskManager main game's task manager.
-		//@param aCamera game's camera.
-		void update(TaskManager& aMainTaskManager, Camera& aCamera);
+		//@param mainTaskManager main game's task manager.
+		//@param gameCamera game's camera.
+		void update(TaskManager& mainTaskManager, Camera& gameCamera);
 
 		//Draws cursor.
 		//@param mainWindow game's window.

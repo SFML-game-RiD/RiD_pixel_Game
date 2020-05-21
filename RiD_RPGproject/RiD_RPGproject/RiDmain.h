@@ -16,52 +16,45 @@ namespace RiD
 	{
 	private:
 
+		MP::ObjectDrawer _a_object_drawer;///Draws objects.
 
-		//############# OBIECT MANAGING ##############
+		MP::ObjectManager _a_object_manager;///Manages objects.
 
-		MP::ObjectDrawer _a_obiect_drawer;
+		MP::ObjectGenerator _a_object_generator;///Generates objects.
 
-		MP::ObjectManager _a_obiect_manager;
+		MP::Calculator _a_calculator;///Executes game's objects updates functions.
 
-		MP::ObjectGenerator _a_obiect_generator;
+		MP::TaskManager _a_main_task_manager;///Stores tasks from keyboard ect.
 
-		//############################################
+		MP::Camera _a_camera;///Manages game's ang gui view. 
 
-		//############# OBIECT MODIFYING #############
+		sf::Event _event;///Handles event.
 
-		MP::Calculator _a_calculator;
+		sf::Clock _clock;///Game's clock.
 
-		MP::TaskManager _a_main_task_manager;
+		MP::Music _music;///Plays musics.
 
-		//############################################
+		MP::SoundManager _a_sound_manager;///Stores sounds.
 
-		MP::Camera _a_camera;
-
-		sf::Event _event;
-
-		sf::Clock _clock;
-
-		MP::Music _music;
-
-		MP::SoundManager _a_sound_manager;
-
-     	//Executes creation of window
+     	//Executes creation of window.
 		void _create_window();
+		
+		//Manages events function.
+		void _event_function();
 
-		void _event_function_for_state_game();
-
-		void _calculate_for_state_game();
-
-		void _draw_for_state_game();
+		//Manages updates functions.
+		void _calculate();
+		
+		//Manages draws funtion.
+		void _draw();
 
 
 	public:
-		/*
-		Constructor that creates main window
-		@param width width of the window
-		@param height height of the window
-		@param title title on the top bar
-		*/
+
+		//Constructor that creates main window.
+		//@param width width of the window.
+		//@param height height of the window.
+		//@param title title on the top bar.
 		RiDmain(int width, int height, std::string title);
 	};
 

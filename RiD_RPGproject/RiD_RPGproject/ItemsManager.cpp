@@ -72,24 +72,24 @@ std::shared_ptr<MP::Item>& MP::ItemsManager::getSwordsman()
 }
 
 
-bool MP::ItemsManager::addItem(std::shared_ptr <Item>& aItem, int ammount)
+bool MP::ItemsManager::addItem(std::shared_ptr <Item>& aItem, int amount)
 {
-	if (_gold->getItemAmount() - (ammount * aItem->getItemCost()) >= 0)
+	if (_gold->getItemAmount() - (amount * aItem->getItemCost()) >= 0)
 	{
-		aItem->setItemAmount(aItem->getItemAmount() + ammount);
-		_gold->setItemAmount(_gold->getItemAmount() - (ammount * aItem->getItemCost()));
+		aItem->setItemAmount(aItem->getItemAmount() + amount);
+		_gold->setItemAmount(_gold->getItemAmount() - (amount * aItem->getItemCost()));
 		return true;
 	}
 	else
 		return false;
 }
 
-bool MP::ItemsManager::subtractItem(std::shared_ptr <Item>& aItem, int ammount, int buyerGold)
+bool MP::ItemsManager::subtractItem(std::shared_ptr <Item>& aItem, int amount, int buyerGold)
 {
-	if ((aItem->getItemAmount() - ammount) >= 0 and aItem->getItemCost()*ammount <= buyerGold)
+	if ((aItem->getItemAmount() - amount) >= 0 and aItem->getItemCost()*amount <= buyerGold)
 	{
-		aItem->setItemAmount(aItem->getItemAmount() - ammount);
-		_gold->setItemAmount(_gold->getItemAmount() + (ammount * aItem->getItemCost()));
+		aItem->setItemAmount(aItem->getItemAmount() - amount);
+		_gold->setItemAmount(_gold->getItemAmount() + (amount * aItem->getItemCost()));
 		return true;
 	}
 	else

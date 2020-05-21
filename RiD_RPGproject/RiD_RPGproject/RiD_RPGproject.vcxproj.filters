@@ -33,133 +33,106 @@
       <Filter>aaareal time game</Filter>
     </ClCompile>
     <ClCompile Include="Engine\ConfigurationLoader.cpp">
-      <Filter>FILE LOADER</Filter>
+      <Filter>Data loader</Filter>
     </ClCompile>
     <ClCompile Include="Map.cpp">
-      <Filter>GAME MAP</Filter>
+      <Filter>Game map</Filter>
     </ClCompile>
     <ClCompile Include="MapElement.cpp">
-      <Filter>GAME MAP</Filter>
+      <Filter>Game map</Filter>
     </ClCompile>
     <ClCompile Include="Places.cpp">
-      <Filter>OBJECT\PLACES</Filter>
+      <Filter>Object\Places</Filter>
     </ClCompile>
     <ClCompile Include="Castle.cpp">
-      <Filter>OBJECT\PLACES</Filter>
+      <Filter>Object\Places</Filter>
     </ClCompile>
     <ClCompile Include="Town.cpp">
-      <Filter>OBJECT\PLACES</Filter>
+      <Filter>Object\Places</Filter>
     </ClCompile>
     <ClCompile Include="Village.cpp">
-      <Filter>OBJECT\PLACES</Filter>
+      <Filter>Object\Places</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>MANAGERS, HEAD CLASS</Filter>
     </ClCompile>
     <ClCompile Include="Move.cpp">
-      <Filter>OBJECT\ACTIVE OBJECT\PAWNS\MOVE,ANIMATION</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>OBJECT\ACTIVE OBJECT\PAWNS</Filter>
+      <Filter>Animation, Move</Filter>
     </ClCompile>
     <ClCompile Include="pathNode.cpp">
-      <Filter>AI</Filter>
+      <Filter>Path creator</Filter>
     </ClCompile>
     <ClCompile Include="pathCreator.cpp">
-      <Filter>AI</Filter>
+      <Filter>Path creator</Filter>
     </ClCompile>
     <ClCompile Include="PathIcon.cpp">
-      <Filter>OBJECT</Filter>
+      <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="MapGui.cpp">
-      <Filter>OBJECT\GUI</Filter>
+      <Filter>Object\GUI</Filter>
     </ClCompile>
     <ClCompile Include="GuiManager.cpp">
-      <Filter>OBJECT\GUI</Filter>
+      <Filter>Object\GUI</Filter>
     </ClCompile>
     <ClCompile Include="Cursor.cpp">
-      <Filter>OBJECT\GUI</Filter>
+      <Filter>Object\GUI</Filter>
     </ClCompile>
     <ClCompile Include="GuiButton.cpp">
-      <Filter>OBJECT\GUI</Filter>
+      <Filter>Object\GUI</Filter>
     </ClCompile>
     <ClCompile Include="ItemsManager.cpp">
       <Filter>MANAGERS, HEAD CLASS</Filter>
     </ClCompile>
     <ClCompile Include="Wood.cpp">
-      <Filter>OBJECT\ITEMS</Filter>
+      <Filter>Object\Items</Filter>
     </ClCompile>
     <ClCompile Include="Swordsman.cpp">
-      <Filter>OBJECT\ITEMS</Filter>
+      <Filter>Object\Items</Filter>
     </ClCompile>
     <ClCompile Include="Spearman.cpp">
-      <Filter>OBJECT\ITEMS</Filter>
+      <Filter>Object\Items</Filter>
     </ClCompile>
     <ClCompile Include="Iron.cpp">
-      <Filter>OBJECT\ITEMS</Filter>
+      <Filter>Object\Items</Filter>
     </ClCompile>
     <ClCompile Include="Gold.cpp">
-      <Filter>OBJECT\ITEMS</Filter>
+      <Filter>Object\Items</Filter>
     </ClCompile>
     <ClCompile Include="Food.cpp">
-      <Filter>OBJECT\ITEMS</Filter>
+      <Filter>Object\Items</Filter>
     </ClCompile>
     <ClCompile Include="Archer.cpp">
-      <Filter>OBJECT\ITEMS</Filter>
+      <Filter>Object\Items</Filter>
     </ClCompile>
     <ClCompile Include="Item.cpp">
-      <Filter>OBJECT\ITEMS</Filter>
+      <Filter>Object\Items</Filter>
     </ClCompile>
     <ClCompile Include="GuiPlacesMenu.cpp">
-      <Filter>OBJECT\GUI</Filter>
+      <Filter>Object\GUI</Filter>
     </ClCompile>
     <ClCompile Include="GuiMainMenu.cpp">
-      <Filter>OBJECT\GUI</Filter>
+      <Filter>Object\GUI</Filter>
     </ClCompile>
     <ClCompile Include="GuiMenu.cpp">
-      <Filter>OBJECT\GUI</Filter>
+      <Filter>Object\GUI</Filter>
     </ClCompile>
     <ClCompile Include="GuiMarketPlace.cpp">
-      <Filter>OBJECT\GUI</Filter>
+      <Filter>Object\GUI</Filter>
     </ClCompile>
     <ClCompile Include="GuiPanel.cpp">
-      <Filter>OBJECT\GUI</Filter>
+      <Filter>Object\GUI</Filter>
     </ClCompile>
     <ClCompile Include="Land.cpp">
-      <Filter>OBJECT</Filter>
+      <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="Tree.cpp">
-      <Filter>OBJECT</Filter>
-    </ClCompile>
-    <ClCompile Include="Calculator.cpp">
-      <Filter>MANAGERS, HEAD CLASS\CALCULATE</Filter>
-    </ClCompile>
-    <ClCompile Include="TaskManager.cpp">
-      <Filter>MANAGERS, HEAD CLASS\MANAGE TASK</Filter>
-    </ClCompile>
-    <ClCompile Include="TaskNode.cpp">
-      <Filter>MANAGERS, HEAD CLASS\MANAGE TASK</Filter>
-    </ClCompile>
-    <ClCompile Include="ComputerPlayerBandit.cpp">
-      <Filter>OBJECT\ACTIVE OBJECT\PAWNS</Filter>
+      <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="SpriteAnimation.cpp">
-      <Filter>OBJECT\ACTIVE OBJECT\PAWNS\MOVE,ANIMATION</Filter>
+      <Filter>Animation, Move</Filter>
     </ClCompile>
     <ClCompile Include="Object.cpp">
-      <Filter>OBJECT</Filter>
-    </ClCompile>
-    <ClCompile Include="ActiveObject.cpp">
-      <Filter>OBJECT\ACTIVE OBJECT</Filter>
-    </ClCompile>
-    <ClCompile Include="PawnObject.cpp">
-      <Filter>OBJECT\ACTIVE OBJECT\PAWNS</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjectManager.cpp">
-      <Filter>MANAGERS, HEAD CLASS\MANAGE OBIECT</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjectDrawer.cpp">
-      <Filter>MANAGERS, HEAD CLASS\DRAW</Filter>
+      <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="ObjectGenerator.cpp">
       <Filter>MANAGERS, HEAD CLASS</Filter>
@@ -174,18 +147,35 @@
       <Filter>Sound</Filter>
     </ClCompile>
     <ClCompile Include="Mission.cpp">
-      <Filter>MISSION</Filter>
+      <Filter>Mission creator</Filter>
     </ClCompile>
     <ClCompile Include="MissionCreator.cpp">
-      <Filter>MISSION</Filter>
+      <Filter>Mission creator</Filter>
     </ClCompile>
     <ClCompile Include="Timer.cpp">
       <Filter>MANAGERS, HEAD CLASS</Filter>
     </ClCompile>
     <ClCompile Include="Grass.cpp">
-      <Filter>OBJECT</Filter>
+      <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="RiDmain.cpp" />
+    <ClCompile Include="Calculator.cpp" />
+    <ClCompile Include="ObjectDrawer.cpp" />
+    <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="TaskNode.cpp" />
+    <ClCompile Include="TaskManager.cpp" />
+    <ClCompile Include="ActiveObject.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="ComputerPlayerBandit.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="PawnObject.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Animation.h">
@@ -219,133 +209,106 @@
       <Filter>aaareal time game</Filter>
     </ClInclude>
     <ClInclude Include="Engine\ConfigurationLoader.h">
-      <Filter>FILE LOADER</Filter>
+      <Filter>Data loader</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
-      <Filter>GAME MAP</Filter>
+      <Filter>Game map</Filter>
     </ClInclude>
     <ClInclude Include="MapElement.h">
-      <Filter>GAME MAP</Filter>
+      <Filter>Game map</Filter>
     </ClInclude>
     <ClInclude Include="Places.h">
-      <Filter>OBJECT\PLACES</Filter>
+      <Filter>Object\Places</Filter>
     </ClInclude>
     <ClInclude Include="Castle.h">
-      <Filter>OBJECT\PLACES</Filter>
+      <Filter>Object\Places</Filter>
     </ClInclude>
     <ClInclude Include="Town.h">
-      <Filter>OBJECT\PLACES</Filter>
+      <Filter>Object\Places</Filter>
     </ClInclude>
     <ClInclude Include="Village.h">
-      <Filter>OBJECT\PLACES</Filter>
+      <Filter>Object\Places</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>MANAGERS, HEAD CLASS</Filter>
     </ClInclude>
     <ClInclude Include="Move.h">
-      <Filter>OBJECT\ACTIVE OBJECT\PAWNS\MOVE,ANIMATION</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>OBJECT\ACTIVE OBJECT\PAWNS</Filter>
+      <Filter>Animation, Move</Filter>
     </ClInclude>
     <ClInclude Include="pathNode.h">
-      <Filter>AI</Filter>
+      <Filter>Path creator</Filter>
     </ClInclude>
     <ClInclude Include="pathCreator.h">
-      <Filter>AI</Filter>
+      <Filter>Path creator</Filter>
     </ClInclude>
     <ClInclude Include="PathIcon.h">
-      <Filter>OBJECT</Filter>
+      <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="MapGui.h">
-      <Filter>OBJECT\GUI</Filter>
+      <Filter>Object\GUI</Filter>
     </ClInclude>
     <ClInclude Include="GuiManager.h">
-      <Filter>OBJECT\GUI</Filter>
+      <Filter>Object\GUI</Filter>
     </ClInclude>
     <ClInclude Include="Cursor.h">
-      <Filter>OBJECT\GUI</Filter>
+      <Filter>Object\GUI</Filter>
     </ClInclude>
     <ClInclude Include="GuiButton.h">
-      <Filter>OBJECT\GUI</Filter>
+      <Filter>Object\GUI</Filter>
     </ClInclude>
     <ClInclude Include="ItemsManager.h">
       <Filter>MANAGERS, HEAD CLASS</Filter>
     </ClInclude>
     <ClInclude Include="Wood.h">
-      <Filter>OBJECT\ITEMS</Filter>
+      <Filter>Object\Items</Filter>
     </ClInclude>
     <ClInclude Include="Swordsman.h">
-      <Filter>OBJECT\ITEMS</Filter>
+      <Filter>Object\Items</Filter>
     </ClInclude>
     <ClInclude Include="Spearman.h">
-      <Filter>OBJECT\ITEMS</Filter>
+      <Filter>Object\Items</Filter>
     </ClInclude>
     <ClInclude Include="Iron.h">
-      <Filter>OBJECT\ITEMS</Filter>
+      <Filter>Object\Items</Filter>
     </ClInclude>
     <ClInclude Include="Gold.h">
-      <Filter>OBJECT\ITEMS</Filter>
+      <Filter>Object\Items</Filter>
     </ClInclude>
     <ClInclude Include="Food.h">
-      <Filter>OBJECT\ITEMS</Filter>
+      <Filter>Object\Items</Filter>
     </ClInclude>
     <ClInclude Include="Archer.h">
-      <Filter>OBJECT\ITEMS</Filter>
+      <Filter>Object\Items</Filter>
     </ClInclude>
     <ClInclude Include="Item.h">
-      <Filter>OBJECT\ITEMS</Filter>
+      <Filter>Object\Items</Filter>
     </ClInclude>
     <ClInclude Include="GuiPlacesMenu.h">
-      <Filter>OBJECT\GUI</Filter>
+      <Filter>Object\GUI</Filter>
     </ClInclude>
     <ClInclude Include="GuiMainMenu.h">
-      <Filter>OBJECT\GUI</Filter>
+      <Filter>Object\GUI</Filter>
     </ClInclude>
     <ClInclude Include="GuiMenu.h">
-      <Filter>OBJECT\GUI</Filter>
+      <Filter>Object\GUI</Filter>
     </ClInclude>
     <ClInclude Include="GuiMarketPlace.h">
-      <Filter>OBJECT\GUI</Filter>
+      <Filter>Object\GUI</Filter>
     </ClInclude>
     <ClInclude Include="GuiPanel.h">
-      <Filter>OBJECT\GUI</Filter>
+      <Filter>Object\GUI</Filter>
     </ClInclude>
     <ClInclude Include="Tree.h">
-      <Filter>OBJECT</Filter>
+      <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="Land.h">
-      <Filter>OBJECT</Filter>
-    </ClInclude>
-    <ClInclude Include="Calculator.h">
-      <Filter>MANAGERS, HEAD CLASS\CALCULATE</Filter>
-    </ClInclude>
-    <ClInclude Include="TaskManager.h">
-      <Filter>MANAGERS, HEAD CLASS\MANAGE TASK</Filter>
-    </ClInclude>
-    <ClInclude Include="TaskNode.h">
-      <Filter>MANAGERS, HEAD CLASS\MANAGE TASK</Filter>
-    </ClInclude>
-    <ClInclude Include="ComputerPlayerBandit.h">
-      <Filter>OBJECT\ACTIVE OBJECT\PAWNS</Filter>
+      <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="SpriteAnimation.h">
-      <Filter>OBJECT\ACTIVE OBJECT\PAWNS\MOVE,ANIMATION</Filter>
+      <Filter>Animation, Move</Filter>
     </ClInclude>
     <ClInclude Include="Object.h">
-      <Filter>OBJECT</Filter>
-    </ClInclude>
-    <ClInclude Include="ActiveObject.h">
-      <Filter>OBJECT\ACTIVE OBJECT</Filter>
-    </ClInclude>
-    <ClInclude Include="PawnObject.h">
-      <Filter>OBJECT\ACTIVE OBJECT\PAWNS</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectManager.h">
-      <Filter>MANAGERS, HEAD CLASS\MANAGE OBIECT</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectDrawer.h">
-      <Filter>MANAGERS, HEAD CLASS\DRAW</Filter>
+      <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="ObjectGenerator.h">
       <Filter>MANAGERS, HEAD CLASS</Filter>
@@ -360,31 +323,39 @@
       <Filter>Sound</Filter>
     </ClInclude>
     <ClInclude Include="Mission.h">
-      <Filter>MISSION</Filter>
+      <Filter>Mission creator</Filter>
     </ClInclude>
     <ClInclude Include="MissionCreator.h">
-      <Filter>MISSION</Filter>
+      <Filter>Mission creator</Filter>
     </ClInclude>
     <ClInclude Include="Timer.h">
       <Filter>MANAGERS, HEAD CLASS</Filter>
     </ClInclude>
     <ClInclude Include="Grass.h">
-      <Filter>OBJECT</Filter>
+      <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="RiDmain.h" />
+    <ClInclude Include="Calculator.h" />
+    <ClInclude Include="ObjectDrawer.h" />
+    <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="TaskNode.h" />
+    <ClInclude Include="TaskManager.h" />
+    <ClInclude Include="ActiveObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="ComputerPlayerBandit.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="PawnObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="MANAGERS, HEAD CLASS">
       <UniqueIdentifier>{a91205af-2276-4eff-99ab-1acf6d8a0453}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="FILE LOADER">
-      <UniqueIdentifier>{875c2c9c-9536-4316-af8f-186540127064}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GAME MAP">
-      <UniqueIdentifier>{4a4dc6c9-4962-4040-9c5c-9c0569eaa35d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="AI">
-      <UniqueIdentifier>{8c743e31-e8ce-452f-aa52-91b357456671}</UniqueIdentifier>
     </Filter>
     <Filter Include="aaareal time game">
       <UniqueIdentifier>{15d43c2a-74e0-4803-94ec-aab86831ba74}</UniqueIdentifier>
@@ -401,44 +372,35 @@
     <Filter Include="aaareal time game\Graphics">
       <UniqueIdentifier>{7bbe2dbb-b8a1-4384-b29d-731b1e455d25}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MANAGERS, HEAD CLASS\DRAW">
-      <UniqueIdentifier>{8f681cd1-4e9c-428e-925e-27c4a42d1d9d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MANAGERS, HEAD CLASS\CALCULATE">
-      <UniqueIdentifier>{7249e363-bd01-4d19-99d6-1cc76ffa5ff4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MANAGERS, HEAD CLASS\MANAGE OBIECT">
-      <UniqueIdentifier>{9c0641ae-1878-4958-89dc-0e0814d601af}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MANAGERS, HEAD CLASS\MANAGE TASK">
-      <UniqueIdentifier>{624f1dfe-d450-4c4c-b1d6-0e7ab57aa4e2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Sound">
       <UniqueIdentifier>{67823770-71ab-4c02-97a1-4fc64be8e915}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MISSION">
+    <Filter Include="Game map">
+      <UniqueIdentifier>{4a4dc6c9-4962-4040-9c5c-9c0569eaa35d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data loader">
+      <UniqueIdentifier>{875c2c9c-9536-4316-af8f-186540127064}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Path creator">
+      <UniqueIdentifier>{8c743e31-e8ce-452f-aa52-91b357456671}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mission creator">
       <UniqueIdentifier>{78a04c37-167b-4b87-b46e-2c3e4e77dde9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="OBJECT">
+    <Filter Include="Animation, Move">
+      <UniqueIdentifier>{366204a4-da86-493d-be0b-d81d04255ad4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
       <UniqueIdentifier>{5b2eb87f-393a-4b9d-8030-d14268c9cbc4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="OBJECT\PLACES">
+    <Filter Include="Object\Places">
       <UniqueIdentifier>{ae191765-e778-4606-a7ae-b7cd710a5acb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="OBJECT\GUI">
+    <Filter Include="Object\GUI">
       <UniqueIdentifier>{b31011f7-b679-428f-8242-a4e2d0d65396}</UniqueIdentifier>
     </Filter>
-    <Filter Include="OBJECT\ITEMS">
+    <Filter Include="Object\Items">
       <UniqueIdentifier>{8e1c16ad-1742-47a1-993d-c901e392a4d9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="OBJECT\ACTIVE OBJECT">
-      <UniqueIdentifier>{9856b24c-57a5-45b9-b105-8187a99dcf37}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="OBJECT\ACTIVE OBJECT\PAWNS">
-      <UniqueIdentifier>{1f9b6629-19c1-4984-bcdc-706d42602cc5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="OBJECT\ACTIVE OBJECT\PAWNS\MOVE,ANIMATION">
-      <UniqueIdentifier>{366204a4-da86-493d-be0b-d81d04255ad4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

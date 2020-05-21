@@ -18,8 +18,8 @@ namespace MP
 		bool _was_played;///Tells if sound was played.
 
 		//Draws button.
-		//@param aMainWindow game's window.
-		void draw_button(sf::RenderWindow& aMainWindow);
+		//@param mainWindow game's window.
+		void draw_button(sf::RenderWindow& mainWindow);
 
 		//Sets button state.
 		//@param isActive new button's state.
@@ -52,10 +52,10 @@ namespace MP
 
 		//Updates button.
 		//@param isActive button's state.
-		void update(SoundManager& aSoundManager, TaskManager& aTaskManager,bool isActive);
+		void update(SoundManager& aSoundManager, TaskManager& mainTaskManager,bool isActive);
 
 		//Draws button.
-		//@param aMainWindow game's main window.
-		void render(sf::RenderWindow& aMainWindow);
+		//@param mainWindow game's main window.
+		void render(sf::RenderWindow& mainWindow);
 	};
 }

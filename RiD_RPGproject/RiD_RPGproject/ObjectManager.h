@@ -17,54 +17,74 @@ namespace MP
 	{
 	private:
 
-		//This two variables below should be exported to another class.
-		int _mod_number;
+		int _mod_number;///Used to generate proper random number.
 
-		std::mt19937 _random_number;
+		std::mt19937 _random_number;///Generates random number.
 
-		//OBIECTS
+		std::shared_ptr<Player> _player;///Stores player.
 
-		std::shared_ptr<Player> _player;
+		std::list<ComputerPlayerBandit> _computer_player_list;///Stores computer player list's
 
-		std::list<ComputerPlayerBandit> _computer_player_list;
+		std::list<Tree> _tree_list;///Stores tree's list.
 
-		std::list<Tree> _tree_list;
-
-		std::vector<Grass> _grass_list;
+		std::vector<Grass> _grass_list;///Store's grass vector.
 		
-		std::shared_ptr<Cursor> _a_cursor;
+		std::shared_ptr<Cursor> _a_cursor;///Store's cursor.
 	
-		Map _a_map;
+		Map _a_map;///game's map.
 
-		GuiManager _a_gui_manager;
+		GuiManager _a_gui_manager;///Stores gui.
 
 	public:
 		
+		//Object manager's constructor.
 		ObjectManager();
 
+		//Object manager's destructor.
 		~ObjectManager();
 
+		//Sets player.
+		//@param newPlayer player.
 		void addObiect(std::shared_ptr<Player> &newPlayer);
 		
+		//Sets computer players.
+		//@param newComputerPlayer new computer players.
 		void addObiect(ComputerPlayerBandit &newComputerPlayer);
 
+		//Return player.
+		//@return player.
 		std::shared_ptr<Player> & getPlayer();
 		
-	
+		//Returns oryginal map.
+		//@return map.
 		Map& getMap();
 
+		//return tree list ptr.
+		//@return tree list.
 		std::list<Tree> * getTreeList();
 
+		//Returns grass's vector.
+		//@return grass's vector.
 		std::vector<Grass>* getGrassVector();
 
+		//If returns true, tree's animation is allowed.
+		//@return tree's animation permission.
 		bool access();
 
+		//Returns computer plaer list.
+		//@return computer player list.
 		std::list<MP::ComputerPlayerBandit>* getComputerPlayerList();
 
+		//Returns cursor.
+		//@return cursor.
 		std::shared_ptr<Cursor>& getCursor();
 
+		//Sets cursor.
+		//@param aCursor cursor.
 		void setCursor(std::shared_ptr<Cursor> &aCursor);
 
+		//Return gui manager.
+		//@return gui manager.
 		GuiManager& getGuiManager();
 	};
 

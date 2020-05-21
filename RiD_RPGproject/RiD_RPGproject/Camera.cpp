@@ -80,10 +80,10 @@ void MP::Camera::changeViewToGui()
 	_window.setView(_gui_view);
 }
 
-void MP::Camera::update(sf::Vector2f newFocusCoord, TaskManager& aMainTaskManager)
+void MP::Camera::update(sf::Vector2f newFocusCoord, TaskManager& mainTaskManager)
 {
-	if (aMainTaskManager.findTask(MP::TaskNode::taskType::MOUSE_SCROLL_UP,false) or aMainTaskManager.findTask(MP::TaskNode::taskType::MOUSE_SCROLL_DOWN, false))
-		_change_zoom(aMainTaskManager);
+	if (mainTaskManager.findTask(MP::TaskNode::taskType::MOUSE_SCROLL_UP,false) or mainTaskManager.findTask(MP::TaskNode::taskType::MOUSE_SCROLL_DOWN, false))
+		_change_zoom(mainTaskManager);
 
 	_change_camera(newFocusCoord);
 }

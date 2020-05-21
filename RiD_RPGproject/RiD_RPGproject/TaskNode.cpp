@@ -1,7 +1,7 @@
 #include "TaskNode.h"
 
 
-MP::TaskNode::TaskNode(taskType newTask, bool block)
+MP::TaskNode::TaskNode(taskType newTask)
 {
 	_task = newTask;
 }

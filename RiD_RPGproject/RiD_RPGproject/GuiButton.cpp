@@ -58,11 +58,11 @@ bool MP::GuiButton::getButtonIsActive()
 	return _is_active;
 }
 
-void MP::GuiButton::draw_button(sf::RenderWindow& aMainWindow)
+void MP::GuiButton::draw_button(sf::RenderWindow& mainWindow)
 {
 
-	aMainWindow.draw(aAnimation.getObjectSprite());
-	aMainWindow.draw(_a_text);
+	mainWindow.draw(aAnimation.getObjectSprite());
+	mainWindow.draw(_a_text);
 }
 
 void MP::GuiButton::setButtonPosition(sf::Vector2f newPostion)
@@ -84,7 +84,7 @@ void MP::GuiButton::update(SoundManager &aSoundManager,TaskManager &aTaskManager
 	set_button_active(isActive);
 }
 
-void MP::GuiButton::render(sf::RenderWindow& aMainWindow)
+void MP::GuiButton::render(sf::RenderWindow& mainWindow)
 {
-	draw_button(aMainWindow);
+	draw_button(mainWindow);
 }

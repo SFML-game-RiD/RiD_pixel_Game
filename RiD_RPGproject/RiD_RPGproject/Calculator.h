@@ -1,5 +1,4 @@
-#ifndef CALCULATOR_H
-#define CALCULATOR_H
+#pragma once
 #include <thread>
 #include "Move.h"
 #include "TaskManager.h"
@@ -14,17 +13,29 @@ namespace MP
 	{
 	private:
 
-		std::thread th1, th2;
+		//Executes computer players' procedures.
+		//@param mainTaskManager manage's tasks.
+		//@param aSoundManager plays sound.
+		//@param aObjectManager stores objects.
+		//@param gameClock game's clock.
+		//@param aMap game's map.
+		void _computer_players_procedure(TaskManager& mainTaskManger, SoundManager& aSoundManager, ObjectManager& aObjectManager, sf::Clock& gameClock,Map& aMap);
 
-
-		void _computer_players_procedure(TaskManager& aMainTaskManager, SoundManager& aSoundManager, ObjectManager& aObiectManager, sf::Clock& gameClock,Map& aMap);
-
-		void _trees_procedure(TaskManager& aMainTaskManager, sf::Clock& globalClock, ObjectManager& aObiectManager);
+		//Executes trees' procedures.
+		//@param mainTaskManager manage's tasks.
+		//@param gameClock game's clock.
+		//@param aObjectManager stores objects.
+		void _trees_procedure(TaskManager& mainTaskManger, sf::Clock& gameClock, ObjectManager& aObjectManager);
 
 	public:
 
-		void updateGame(SoundManager& aSoundManager, TaskManager& aTaskManager, ObjectManager& aObiectManager, sf::Clock& globalClock, Camera& aCamera);
+		//Executes games procedures, updates objects, manages tasks.
+		//@param aSoundManager plays sound.
+		//@param mainTaskManager manage's tasks.
+		//@param aObjectManager stores objects.
+		//@param gameClock game's clock.
+		//@param aCamera game's camera.
+		void updateGame(SoundManager& aSoundManager, TaskManager& mainTaskManger, ObjectManager& aObjectManager, sf::Clock& gameClock, Camera& aCamera);
 
 	};
 }
-#endif

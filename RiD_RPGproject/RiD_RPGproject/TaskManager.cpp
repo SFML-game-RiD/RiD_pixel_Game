@@ -98,11 +98,6 @@ void MP::TaskManager::keyboardHandling()
 		addTask(TaskNode::taskType::TASK_MOVE_DOWN);
 	else if(findTask(TaskNode::taskType::D_PRESSED, false))
 		addTask(TaskNode::taskType::TASK_MOVE_RIGHT);
-
-	else if (findTask(TaskNode::taskType::E_PRESSED, false))
-	{
-		//TODO 
-	}
 }
 
 void MP::TaskManager::resetInput()

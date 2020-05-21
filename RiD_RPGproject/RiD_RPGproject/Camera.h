@@ -1,6 +1,4 @@
-#ifndef CAMERA_H
-#define CAMERA_H
-
+#pragma once 
 #include "TaskManager.h"
 #include "GuiManager.h"
 
@@ -10,40 +8,53 @@ namespace MP
 	{
 	private:
 
-		int _max_x_size;
+		int _max_x_size;///Min resolution zoom.
 
-		int _min_x_size;
+		int _min_x_size;///Maksimum resolution.
 
-		sf::RenderWindow _window;
+		sf::RenderWindow _window;///Game's window/
 
-		sf::View _game_view;
+		sf::View _game_view;///Game's view.
 
-		sf::View _gui_view;
+		sf::View _gui_view;///Gui's view.
 
+		//Changes zoom.
 		void _zoom_in();
 
+		//Changes zoom.
 		void _zoom_out();
 
+		//Changes zoom realtive to task.
 		void _change_zoom(MP::TaskManager& aTaskManager);
 
+		//Sets camera centre's point.
+		//@param coord camera's centre point.
 		void _change_camera(sf::Vector2f coord);
 
 	public:	
 
+		//Camera constructor.
 		Camera();
 
+		//Returns game's window.
 		sf::RenderWindow & getWindow();
 
+		//Clears game view.
 		void clearCamera();
 
+		//Draws frame.
 		void drawFrame();
 		
-		void changeViewToGame();//allows to update game
+		//Changes view to game.
+		void changeViewToGame();
 
-		void changeViewToGui();//updates gui
+		//Changes view to gui.
+		void changeViewToGui();
 
-		void update(sf::Vector2f newFocusCoord, TaskManager &aMainTaskManager);
+		//Updates camera.
+		//@param newFocusCoord new focus coordinates.
+		//@param mainTaskManager games task manager.
+		void update(sf::Vector2f newFocusCoord, TaskManager &mainTaskManager);
 
 	};
 }
-#endif // !_CAMERA_H_

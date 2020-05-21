@@ -2,14 +2,14 @@
 #include "MapElement.h"
 
 
-void MP::ObjectDrawer::_draw_land(sf::RenderWindow& mainWindow, ObjectManager& aObiectManager)
+void MP::ObjectDrawer::_draw_land(sf::RenderWindow& mainWindow, ObjectManager& aObjectManager)
 {	
 	std::vector<std::vector<MapElement*>>::iterator it;
 	std::vector<MapElement*>::iterator it2;
 
 	unsigned int counter = 0;
 
-	std::vector<std::vector<MapElement*>> mapArray = aObiectManager.getMap().getMapArray();
+	std::vector<std::vector<MapElement*>> mapArray = aObjectManager.getMap().getMapArray();
 	for (it = mapArray.begin(); it != mapArray.end(); it++)
 	{
 		for (it2 = mapArray[counter].begin(); it2 != mapArray[counter].end(); it2++)
@@ -23,19 +23,19 @@ void MP::ObjectDrawer::_draw_land(sf::RenderWindow& mainWindow, ObjectManager& a
 	}
 }
 
-void MP::ObjectDrawer::_draw_trees(TaskManager& aMainTaskManager, sf::RenderWindow& mainWindow, ObjectManager& aObiectManager)
+void MP::ObjectDrawer::_draw_trees(TaskManager& mainTaskManger, sf::RenderWindow& mainWindow, ObjectManager& aObjectManager)
 {
-	std::list<Tree> * aTree = aObiectManager.getTreeList();
+	std::list<Tree> * aTree = aObjectManager.getTreeList();
 	std::list<Tree >::iterator iterator;
 	iterator = aTree->begin();
 
 	for (iterator; iterator != aTree->end(); iterator++)
-		iterator->render(aMainTaskManager,mainWindow);
+		iterator->render(mainTaskManger,mainWindow);
 }
 
-void MP::ObjectDrawer::_draw_grass(sf::RenderWindow& mainWindow, ObjectManager& aObiectManager)
+void MP::ObjectDrawer::_draw_grass(sf::RenderWindow& mainWindow, ObjectManager& aObjectManager)
 {
-	std::vector<Grass>* aGrass = aObiectManager.getGrassVector();
+	std::vector<Grass>* aGrass = aObjectManager.getGrassVector();
 	std::vector<Grass >::iterator iterator;
 	iterator = aGrass->begin();
 
@@ -43,40 +43,40 @@ void MP::ObjectDrawer::_draw_grass(sf::RenderWindow& mainWindow, ObjectManager& 
 		iterator->render(mainWindow);
 }
 
-void MP::ObjectDrawer::_draw_active_obiects(TaskManager& aMainTaskManager, sf::RenderWindow& mainWindow, ObjectManager& aObiectManager)
+void MP::ObjectDrawer::_draw_active_obiects(TaskManager& mainTaskManger, sf::RenderWindow& mainWindow, ObjectManager& aObjectManager)
 {
 	//drawing player and path icon (if exist);
-	aObiectManager.getPlayer()->render(aMainTaskManager,mainWindow);
+	aObjectManager.getPlayer()->render(mainTaskManger,mainWindow);
 
 
 	//drawing computer player
-	std::list<MP::ComputerPlayerBandit> *computerPlayerList = aObiectManager.getComputerPlayerList();
+	std::list<MP::ComputerPlayerBandit> *computerPlayerList = aObjectManager.getComputerPlayerList();
 	std::list<MP::ComputerPlayerBandit>::iterator it;
 	it = computerPlayerList->begin();
 
 	for (it; it != computerPlayerList->end(); it++)
-		it->render(aMainTaskManager,mainWindow);
+		it->render(mainTaskManger,mainWindow);
 
 }
-void MP::ObjectDrawer::drawGame(TaskManager& aMainTaskManager, Camera& aGameCamera, ObjectManager& aObiectManager)
+void MP::ObjectDrawer::drawGame(TaskManager& mainTaskManger, Camera& aGameCamera, ObjectManager& aObjectManager)
 {
 	//GAME DRAWING
 	aGameCamera.changeViewToGame();
-	_draw_land(aGameCamera.getWindow(), aObiectManager);
-	_draw_grass(aGameCamera.getWindow(), aObiectManager);
-	_draw_active_obiects(aMainTaskManager, aGameCamera.getWindow(), aObiectManager);
-	_draw_trees(aMainTaskManager, aGameCamera.getWindow(), aObiectManager);
+	_draw_land(aGameCamera.getWindow(), aObjectManager);
+	_draw_grass(aGameCamera.getWindow(), aObjectManager);
+	_draw_active_obiects(mainTaskManger, aGameCamera.getWindow(), aObjectManager);
+	_draw_trees(mainTaskManger, aGameCamera.getWindow(), aObjectManager);
 
 	//GUI DRAWING
 	aGameCamera.changeViewToGui();
 	//Drawing map gui
-	aObiectManager.getGuiManager().getMapGui()->render(aMainTaskManager, aGameCamera.getWindow(), aObiectManager.getPlayer()->aItemsManager);
+	aObjectManager.getGuiManager().getMapGui()->render(mainTaskManger, aGameCamera.getWindow(), aObjectManager.getPlayer()->aItemsManager);
 	//Drawing cursor
-	aObiectManager.getGuiManager().getGuiMainMenu()->render(aMainTaskManager, aGameCamera.getWindow());
+	aObjectManager.getGuiManager().getGuiMainMenu()->render(mainTaskManger, aGameCamera.getWindow());
 
-	aObiectManager.getGuiManager().getGuiPlacesMenu()->render(aMainTaskManager, aGameCamera.getWindow());
+	aObjectManager.getGuiManager().getGuiPlacesMenu()->render(mainTaskManger, aGameCamera.getWindow());
 
-	aObiectManager.getGuiManager().getGuiMarketPlace()->render(aMainTaskManager, aGameCamera.getWindow(), aObiectManager.getMap().findElementAddressSquareRange(aObiectManager.getPlayer()->getObjectCoord())->getPlace(), aObiectManager.getPlayer());
+	aObjectManager.getGuiManager().getGuiMarketPlace()->render(mainTaskManger, aGameCamera.getWindow(), aObjectManager.getMap().findElementAddressSquareRange(aObjectManager.getPlayer()->getObjectCoord())->getPlace(), aObjectManager.getPlayer());
 
-	aObiectManager.getCursor()->render(aGameCamera.getWindow());
+	aObjectManager.getCursor()->render(aGameCamera.getWindow());
 }

@@ -13,7 +13,7 @@ namespace MP
 
 	protected:
 
-		char _place_mark;
+		char _place_mark;///Stores place's mark.
 
 	public:
 
@@ -31,10 +31,14 @@ namespace MP
 		//@param mainWindow game window.
 		void render(sf::RenderWindow& mainWindow);
 
+		//Returns place's mark.
+		//@return place's mark.
 		char getPlaceMark();
 
+		//Sets new place's color.
 		void markPlace();
 		
+		//Sets default color.
 		void unmarkPlace();
 	};
 }

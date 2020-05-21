@@ -26,55 +26,55 @@ MP::Cursor::Cursor(sf::Texture* texturePtr)
 	aAnimation.setOrigin(18, 15);//Don't change it !
 }
 
-void MP::Cursor::_update_cursor(TaskManager& aTaskManager, Camera& aCamera)
+void MP::Cursor::_update_cursor(TaskManager& mainTaskManager, Camera& gameCamera)
 {
 	//saving gui cursor coord for drawing 
-	aCamera.changeViewToGui();
-	sf::Vector2f guiMouseCoord = aCamera.getWindow().mapPixelToCoords(sf::Mouse::getPosition(aCamera.getWindow()));
+	gameCamera.changeViewToGui();
+	sf::Vector2f guiMouseCoord = gameCamera.getWindow().mapPixelToCoords(sf::Mouse::getPosition(gameCamera.getWindow()));
 	setObjectCoord(guiMouseCoord);
 
 	//Maping to pixel from gui view
-	sf::Vector2i screenMouseCoord = sf::Mouse::getPosition(aCamera.getWindow());
+	sf::Vector2i screenMouseCoord = sf::Mouse::getPosition(gameCamera.getWindow());
 
 	//Mapin from pixel to game view
-	aCamera.changeViewToGame();
-	sf::Vector2f gameMouseCoord = aCamera.getWindow().mapPixelToCoords(screenMouseCoord);
+	gameCamera.changeViewToGame();
+	sf::Vector2f gameMouseCoord = gameCamera.getWindow().mapPixelToCoords(screenMouseCoord);
 
 	setGameCoord(gameMouseCoord);
 	setGuiCoord(guiMouseCoord);
 
 }
 
-void MP::Cursor::_check_if_player_clicked(TaskManager& aTaskManager, Camera& aCamera)
+void MP::Cursor::_check_if_player_clicked(TaskManager& mainTaskManager, Camera& gameCamera)
 {
-	if (aTaskManager.findTask(TaskNode::taskType::LEFT_MOUSE_BUTTON,false)) //instructions below managing cursor behaviour
+	if (mainTaskManager.findTask(TaskNode::taskType::LEFT_MOUSE_BUTTON,false)) //instructions below managing cursor behaviour
 	{
-		if (aTaskManager.getCurrentState() == TaskManager::stateType::stateGame)
+		if (mainTaskManager.getCurrentState() == TaskManager::stateType::stateGame)
 		{
 			if (_gui_coord.x < 1040 and _gui_coord.x>-460) //map
 			{
-				if (aTaskManager.findTask(TaskNode::taskType::TASK_EXECUTE_AUTO_MOVE, false))//for break auto move
-					aTaskManager.addTask(TaskNode::taskType::TASK_BREAK_AUTO_MOVE);
-				else if (aTaskManager.findTask(TaskNode::taskType::TASK_WAIT_FOR_LEFT_DOUBLE_CLICK, true))//for start auto move after path marking
-					aTaskManager.addTask(TaskNode::taskType::TASK_LEFT_DOUBLE_CLICK);
+				if (mainTaskManager.findTask(TaskNode::taskType::TASK_EXECUTE_AUTO_MOVE, false))//for break auto move
+					mainTaskManager.addTask(TaskNode::taskType::TASK_BREAK_AUTO_MOVE);
+				else if (mainTaskManager.findTask(TaskNode::taskType::TASK_WAIT_FOR_LEFT_DOUBLE_CLICK, true))//for start auto move after path marking
+					mainTaskManager.addTask(TaskNode::taskType::TASK_LEFT_DOUBLE_CLICK);
 				else
 				{
-					aTaskManager.addTask(TaskNode::taskType::TASK_CREATE_PATH);//for start auto move procedure
-					aTaskManager.addTask(TaskNode::taskType::TASK_AUTO_MOVE);
+					mainTaskManager.addTask(TaskNode::taskType::TASK_CREATE_PATH);//for start auto move procedure
+					mainTaskManager.addTask(TaskNode::taskType::TASK_AUTO_MOVE);
 				}
 			}
 			else //gui
 			{
-				aTaskManager.addTask(TaskNode::taskType::TASK_BREAK_AUTO_MOVE);
+				mainTaskManager.addTask(TaskNode::taskType::TASK_BREAK_AUTO_MOVE);
 			}
 		}
 	}
 }
 
-void MP::Cursor::update(TaskManager& aMainTaskManager, Camera& aCamera)
+void MP::Cursor::update(TaskManager& mainTaskManager, Camera& gameCamera)
 {
-	_update_cursor(aMainTaskManager, aCamera);
-	_check_if_player_clicked(aMainTaskManager, aCamera);
+	_update_cursor(mainTaskManager, gameCamera);
+	_check_if_player_clicked(mainTaskManager, gameCamera);
 }
 
 void MP::Cursor::render(sf::RenderWindow& mainWindow)

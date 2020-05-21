@@ -12,10 +12,6 @@ MP::Land::Land(int x, int y)
 	setObjectCoord(x, y);
 }
 
-void MP::Land::update()
-{
-}
-
 void MP::Land::render(sf::RenderWindow& mainWindow)
 {
 	mainWindow.draw(aAnimation.getObjectSprite());

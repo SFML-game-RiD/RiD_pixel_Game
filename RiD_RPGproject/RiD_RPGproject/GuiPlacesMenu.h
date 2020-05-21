@@ -13,7 +13,10 @@ namespace MP
 		void _create_buttons(RiD::AssetManager& aAssetManager);
 	
 		//Checks mouse coordinates and makes button active.
-		void _select_button(SoundManager& aSoundManager, TaskManager& aTaskManager, sf::Vector2f mouseCoord);
+		//@param aSoundManager plays sounds.
+		//@param mainTaskManager main task manager.
+		//@param mouseCoord mouse's coordinates.
+		void _select_button(SoundManager& aSoundManager, TaskManager& mainTaskManager, sf::Vector2f mouseCoord);
 
 		//Starts procedures relative to pressed button.
 		//@param aMainTaskManager main task manager.
@@ -32,16 +35,16 @@ namespace MP
 		GuiPlacesMenu(RiD::AssetManager& aAssetManager);
 
 		//Updates GUI.
-		//@param aMainTaskManager main task manager.
+		//@param mainTaskManager main task manager.
 		//@param aMainWindow game's main window.
 		//@param guiMouseCoord mouse's coord from gui view.
 		//@param aSoundManager stores sounds.
-		void update(SoundManager& aSoundManager, TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, sf::Vector2f guiMouseCoord);
+		void update(SoundManager& aSoundManager, TaskManager& mainTaskManager, sf::RenderWindow& aMainWindow, sf::Vector2f guiMouseCoord);
 		
 		//Draws GUI.
-		//@param aMainTaskManager main task manager.
+		//@param mainTaskManager main task manager.
 		//@param aMainWindow game's main window.
-		void render(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow);
+		void render(TaskManager& mainTaskManager, sf::RenderWindow& aMainWindow);
 
 	};
 }

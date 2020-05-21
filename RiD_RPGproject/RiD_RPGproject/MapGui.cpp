@@ -31,9 +31,9 @@ void MP::MapGui::_update_items(ItemsManager& aItemsManager)
 	aItemsManager.getSpearman()->aAnimation.setScale(1, 1);
 }
 
-void MP::MapGui::render(TaskManager& aMainTaskManager, sf::RenderWindow& mainWindow, ItemsManager& aItemsManager)
+void MP::MapGui::render(TaskManager& mainTaskManager, sf::RenderWindow& mainWindow, ItemsManager& aItemsManager)
 {
-	if (aMainTaskManager.getCurrentState() == TaskManager::stateType::stateGame)
+	if (mainTaskManager.getCurrentState() == TaskManager::stateType::stateGame)
 	{
 		mainWindow.draw(aAnimation.getObjectSprite());
 		_draw_items(mainWindow, aItemsManager);
@@ -44,9 +44,9 @@ void MP::MapGui::render(TaskManager& aMainTaskManager, sf::RenderWindow& mainWin
 
 }
 
-void MP::MapGui::update(TaskManager& aMainTaskManager, ItemsManager& aItemsManager, std::string textArray[12])
+void MP::MapGui::update(TaskManager& mainTaskManager, ItemsManager& aItemsManager, std::string textArray[12])
 {
-	if (aMainTaskManager.getCurrentState() == TaskManager::stateType::stateGame)
+	if (mainTaskManager.getCurrentState() == TaskManager::stateType::stateGame)
 	{
 		_update_items(aItemsManager);
 

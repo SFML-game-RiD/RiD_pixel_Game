@@ -62,9 +62,9 @@ MP::MapElement* MP::Map::findElementAddressSquareRange(sf::Vector2f coordinates)
 	return _map_array[unsigned int(coordinates.y * _block_length_neg_one)][unsigned int(coordinates.x * _block_length_neg_one)];
 }
 
-void MP::Map::copyMapArrayAndBlockSize(std::vector<std::vector<MapElement*>> &aMapElementList, int blockSize)
+void MP::Map::copyMapArrayAndBlockSize(std::vector<std::vector<MapElement*>> &mapElementArray, int blockSize)
 {
-	_map_array = aMapElementList;
+	_map_array = mapElementArray;
 	_block_length = blockSize;
 	_block_length_neg_one = float(pow(_block_length, -1));
 }

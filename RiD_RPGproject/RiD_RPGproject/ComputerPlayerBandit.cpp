@@ -212,17 +212,12 @@ void MP::ComputerPlayerBandit::_computer_player_animation_down(sf::Clock& global
 	}
 }
 
-void MP::ComputerPlayerBandit::update(TaskManager& aMainTaskManager, SoundManager& aSoundManager, Map& aMap, sf::Clock& gameClock, std::shared_ptr<Player>& aPlayer)
+void MP::ComputerPlayerBandit::update(TaskManager& mainTaskManager, SoundManager& aSoundManager, Map& aMap, sf::Clock& gameClock, std::shared_ptr<Player>& aPlayer)
 {
-	if (aMainTaskManager.getCurrentState() == TaskManager::stateType::stateGame)
+	if (mainTaskManager.getCurrentState() == TaskManager::stateType::stateGame)
 	{
 		if (_is_enemys_check)
-		{
-		//	aAnimation.setColor(sf::Color(220, 20, 60));//red
 			_attack_player(aMap, aPlayer);
-		}
-	//	else
-	///		aAnimation.setColor(sf::Color(255, 255, 255));
 		_song_procedure(aSoundManager);
 		_get_next_task(aMap, aPlayer);
 		_computer_player_animation(gameClock);
@@ -230,8 +225,8 @@ void MP::ComputerPlayerBandit::update(TaskManager& aMainTaskManager, SoundManage
 	}
 }
 
-void MP::ComputerPlayerBandit::render(TaskManager& aMainTaskManager,sf::RenderWindow& mainWindow)
+void MP::ComputerPlayerBandit::render(TaskManager& mainTaskManager,sf::RenderWindow& mainWindow)
 {
-	if (aMainTaskManager.getCurrentState() == TaskManager::stateType::stateGame)
+	if (mainTaskManager.getCurrentState() == TaskManager::stateType::stateGame)
 	mainWindow.draw(aAnimation.getObjectSprite());
 }

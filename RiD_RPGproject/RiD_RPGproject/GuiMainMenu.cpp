@@ -31,52 +31,52 @@ MP::GuiMainMenu::GuiMainMenu(RiD::AssetManager& aAssetManager)
 	_create_buttons(aAssetManager);
 }
 
-void MP::GuiMainMenu::_select_button(SoundManager& aSoundManager, TaskManager& aTaskManager, sf::Vector2f guiMouseCoord)
+void MP::GuiMainMenu::_select_button(SoundManager& aSoundManager, TaskManager& mainTaskManager, sf::Vector2f guiMouseCoord)
 {
 
 	for (unsigned int i = 0; i < _button_array.size(); i++)
 	{
 		if (guiMouseCoord.x >=_button_array[i]->getObjectCoord().x and guiMouseCoord.x <= _button_array[i]->getObjectCoord().x + 275
 			and guiMouseCoord.y >= _button_array[i]->getObjectCoord().y + 112 and guiMouseCoord.y <= _button_array[i]->getObjectCoord().y + 163)
-			_button_array[i]->update(aSoundManager, aTaskManager, true);
+			_button_array[i]->update(aSoundManager, mainTaskManager, true);
 		else
-			_button_array[i]->update( aSoundManager,  aTaskManager, false);
+			_button_array[i]->update( aSoundManager,  mainTaskManager, false);
 	}
 }
 
-void MP::GuiMainMenu::_press_button(TaskManager& aMainTaskManager,  sf::RenderWindow& aMainWindow)
+void MP::GuiMainMenu::_press_button(TaskManager& mainTaskManager,  sf::RenderWindow& mainWindow)
 {
-	if (_button_array[0]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::LEFT_MOUSE_BUTTON,true))
+	if (_button_array[0]->getButtonIsActive() == true and mainTaskManager.findTask(TaskNode::taskType::LEFT_MOUSE_BUTTON,true))
 	{
 	
-		aMainTaskManager.setState(TaskManager::stateType::stateGame);
+		mainTaskManager.setState(TaskManager::stateType::stateGame);
 	}
-	if (_button_array[1]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::LEFT_MOUSE_BUTTON, true))
+	if (_button_array[1]->getButtonIsActive() == true and mainTaskManager.findTask(TaskNode::taskType::LEFT_MOUSE_BUTTON, true))
 	{
 		
 	}
-	if (_button_array[2]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::LEFT_MOUSE_BUTTON, true))
+	if (_button_array[2]->getButtonIsActive() == true and mainTaskManager.findTask(TaskNode::taskType::LEFT_MOUSE_BUTTON, true))
 	{
 		
 	}
-	if (_button_array[3]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::LEFT_MOUSE_BUTTON, true))
+	if (_button_array[3]->getButtonIsActive() == true and mainTaskManager.findTask(TaskNode::taskType::LEFT_MOUSE_BUTTON, true))
 	{
 		
-		aMainWindow.close();
+		mainWindow.close();
 	}
 }
 
-void MP::GuiMainMenu::update(SoundManager& aSoundManager, TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, sf::Vector2f guiMouseCoord)
+void MP::GuiMainMenu::update(SoundManager& aSoundManager, TaskManager& mainTaskManager, sf::RenderWindow& mainWindow, sf::Vector2f guiMouseCoord)
 {
-	if (aMainTaskManager.getCurrentState() == TaskManager::stateType::stateMainMenu)
+	if (mainTaskManager.getCurrentState() == TaskManager::stateType::stateMainMenu)
 	{
-		_select_button( aSoundManager, aMainTaskManager, guiMouseCoord);
-		_press_button(aMainTaskManager, aMainWindow);
+		_select_button( aSoundManager, mainTaskManager, guiMouseCoord);
+		_press_button(mainTaskManager, mainWindow);
 	}
 }
 
-void MP::GuiMainMenu::render(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow)
+void MP::GuiMainMenu::render(TaskManager& mainTaskManager, sf::RenderWindow& mainWindow)
 {
-	if (aMainTaskManager.getCurrentState() == TaskManager::stateType::stateMainMenu)
-		_draw_menu(aMainWindow);
+	if (mainTaskManager.getCurrentState() == TaskManager::stateType::stateMainMenu)
+		_draw_menu(mainWindow);
 }

@@ -25,13 +25,13 @@ namespace MP
 
 		std::shared_ptr<Places> _current_place;///Stores current place which interact witch player.
 
-		std::shared_ptr<Places> _destination_place;
+		std::shared_ptr<Places> _destination_place; ///Destination place.
 
-		std::shared_ptr<Places> _employer_place;
+		std::shared_ptr<Places> _employer_place;///Player's emplyer.
 
-		std::shared_ptr<Mission> _current_mision;
+		std::shared_ptr<Mission> _current_mision;///Current mission.
 
-		std::string message[12];
+		std::string message[12];/// Message which updates gui message.
 
 		//Changes player's sprite.
 		//@param globalClock games'clock.
@@ -55,18 +55,18 @@ namespace MP
 
 		//Starts player's animation. 
 		//@param globalClock game's clock.
-		//@param aMainTaskManager game's task manager.
-		void _player_animation(sf::Clock& globalClock, TaskManager& aMainTaskManager);
+		//@param mainTaskManger game's task manager.
+		void _player_animation(sf::Clock& globalClock, TaskManager& mainTaskManger);
 
 		//Starts player's move. 
 		//@param globalClock game's clock.
-		//@param aMainTaskManager game's task manager.
-		void _player_move(sf::Clock& globalClock, TaskManager& aMainTaskManager);
+		//@param mainTaskManger game's task manager.
+		void _player_move(sf::Clock& globalClock, TaskManager& mainTaskManger);
 
 		//Starts player's auto move. 
 		//@param aMap game's map.
-		//@param aMainTaskManager game's task manager.
-		void _player_automatic_move(Map& aMap, TaskManager& aMainTaskManager);
+		//@param mainTaskManger game's task manager.
+		void _player_automatic_move(Map& aMap, TaskManager& mainTaskManger);
 
 		//Sets new path.
 		//@param newPath new path head.
@@ -81,13 +81,29 @@ namespace MP
 		//Delets path icon.
 		void _unmark_path();
 
-		void _procedure_player_auto_move(TaskManager& aMainTaskManager, sf::Clock& GameClock, MP::Map& aMap, sf::Vector2f &mouseGameCoord);
+		//Starts procedure auto move.
+		//@param mainTaskManger manages tasks.
+		//@param gameClock game's clock.
+		//@param aMap game's map.
+		//@param mouseGameCoord stores mouse game coord.
+		void _procedure_player_auto_move(TaskManager& mainTaskManger, sf::Clock& gameClock, MP::Map& aMap, sf::Vector2f &mouseGameCoord);
 
-		void _song_procedure(sf::Clock& gameClock, MP::SoundManager& aSoundManager, TaskManager& aMainTaskManager);
+		//Starts song procedure
+		//@param gameClock game's clock.
+		//@param aSoundManager plays songs.
+		//@param mainTaskManger manages tasks.
+		void _song_procedure(sf::Clock& gameClock, MP::SoundManager& aSoundManager, TaskManager& mainTaskManger);
 
-		void _mission_procedure(TaskManager& aMainTaskManager, Map& gameMap, SoundManager& aSoundManager);
+		//Starts mission procedure.
+		//@param mainTaskManger manages tasks.
+		//@param gameMap game's map.
+		//@param aSoundManager plays sounds.
+		void _mission_procedure(TaskManager& mainTaskManger, Map& gameMap, SoundManager& aSoundManager);
 
-		void _keyboard_handling(TaskManager& aMainTaskManager, Map& gameMap);
+		//Handles keyboard.
+		//@param mainTaskManger manage's task.
+		//@param gameMap game's map.
+		void _keyboard_handling(TaskManager& mainTaskManger, Map& gameMap);
 
 	public:
 
@@ -105,17 +121,22 @@ namespace MP
 		//return current place.
 		std::shared_ptr<Places> & getCurrentPlace();
 
+		//Returns message.
+		//@return message.
 		std::string* getMessage();
 
 		//Updates player.
-		//@param aMainTaskManager game's task manager.
+		//@param aSoundManager plays sounds.
+		//@param mainTaskManger game's task manager.
 		//@param gameClock game's clock.
 		//@param gameMap game's map.
 		//@param mouseGameCoord
-		void update(SoundManager& aSoundManager, TaskManager& aMainTaskManager, sf::Clock& gameClock, MP::Map& gamesMap, sf::Vector2f mouseGameCoord);
+		void update(SoundManager& aSoundManager, TaskManager& mainTaskManger, sf::Clock& gameClock, MP::Map& gamesMap, sf::Vector2f mouseGameCoord);
 
 		//Draws player.
-		void render(TaskManager& aMainTaskManager, sf::RenderWindow &mainWindow);
+		//@param mainTaskManger game's task manager.
+		//@param mainWindow game's window.
+		void render(TaskManager& mainTaskManger, sf::RenderWindow &mainWindow);
 
 	
 	};

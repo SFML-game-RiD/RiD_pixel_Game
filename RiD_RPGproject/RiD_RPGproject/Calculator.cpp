@@ -3,53 +3,53 @@
 #include <iostream>
 
 
-void MP::Calculator::_computer_players_procedure(TaskManager& aMainTaskManager, SoundManager &aSoundManager,ObjectManager& aObiectManager, sf::Clock& gameClock, Map& aMap)
+void MP::Calculator::_computer_players_procedure(TaskManager& mainTaskManger, SoundManager &aSoundManager,ObjectManager& aObjectManager, sf::Clock& gameClock, Map& aMap)
 {
-	std::list<ComputerPlayerBandit>* computerPlayerList = aObiectManager.getComputerPlayerList();
+	std::list<ComputerPlayerBandit>* computerPlayerList = aObjectManager.getComputerPlayerList();
 	std::list<ComputerPlayerBandit>::iterator it;
 
 	it = computerPlayerList->begin();
 
 	for (it; it != computerPlayerList->end(); it++)
-		it->update(aMainTaskManager,aSoundManager,aMap, gameClock,aObiectManager.getPlayer());
+		it->update(mainTaskManger,aSoundManager,aMap, gameClock,aObjectManager.getPlayer());
 
 }
 
-void MP::Calculator::_trees_procedure(TaskManager& aMainTaskManager, sf::Clock& globalClock, ObjectManager& aObiectManager)
+void MP::Calculator::_trees_procedure(TaskManager& mainTaskManger, sf::Clock& globalClock, ObjectManager& aObjectManager)
 {
 
-	std::list<Tree>* aTree = aObiectManager.getTreeList();
+	std::list<Tree>* aTree = aObjectManager.getTreeList();
 	std::list<Tree >::iterator iterator;
 	iterator = aTree->begin();
 
 
 
 	for (iterator; iterator != aTree->end(); iterator++)
-		if (aObiectManager.access())
-			iterator->update(aMainTaskManager,globalClock);
+		if (aObjectManager.access())
+			iterator->update(mainTaskManger,globalClock);
 
 }
 
 
-void MP::Calculator::updateGame(SoundManager& aSoundManager, TaskManager& aMainTaskManager, ObjectManager& aObiectManager, sf::Clock& gameClock, Camera& aCamera)
+void MP::Calculator::updateGame(SoundManager& aSoundManager, TaskManager& mainTaskManger, ObjectManager& aObjectManager, sf::Clock& gameClock, Camera& aCamera)
 {
 	//state
 
-	aMainTaskManager.updateState();
+	mainTaskManger.updateState();
 
 	//game
-	aObiectManager.getPlayer()->update(aSoundManager, aMainTaskManager, gameClock, aObiectManager.getMap(), aObiectManager.getCursor()->getGameCoord());
+	aObjectManager.getPlayer()->update(aSoundManager, mainTaskManger, gameClock, aObjectManager.getMap(), aObjectManager.getCursor()->getGameCoord());
 
-	_trees_procedure(aMainTaskManager, gameClock, aObiectManager);
+	_trees_procedure(mainTaskManger, gameClock, aObjectManager);
 
-	_computer_players_procedure(aMainTaskManager, aSoundManager, aObiectManager, gameClock, aObiectManager.getMap());
+	_computer_players_procedure(mainTaskManger, aSoundManager, aObjectManager, gameClock, aObjectManager.getMap());
 
 	//menu
-	aObiectManager.getGuiManager().getMapGui()->update(aMainTaskManager, aObiectManager.getPlayer()->aItemsManager, aObiectManager.getPlayer()->getMessage());
+	aObjectManager.getGuiManager().getMapGui()->update(mainTaskManger, aObjectManager.getPlayer()->aItemsManager, aObjectManager.getPlayer()->getMessage());
 
-	aObiectManager.getGuiManager().getGuiMainMenu()->update(aSoundManager, aMainTaskManager, aCamera.getWindow(), aObiectManager.getCursor()->getGuiCoord());
+	aObjectManager.getGuiManager().getGuiMainMenu()->update(aSoundManager, mainTaskManger, aCamera.getWindow(), aObjectManager.getCursor()->getGuiCoord());
 
-	aObiectManager.getGuiManager().getGuiPlacesMenu()->update(aSoundManager, aMainTaskManager, aCamera.getWindow(), aObiectManager.getCursor()->getGuiCoord());
+	aObjectManager.getGuiManager().getGuiPlacesMenu()->update(aSoundManager, mainTaskManger, aCamera.getWindow(), aObjectManager.getCursor()->getGuiCoord());
 
-	aObiectManager.getGuiManager().getGuiMarketPlace()->update(aSoundManager, aMainTaskManager, aCamera.getWindow(), aObiectManager.getCursor()->getGuiCoord(), aObiectManager.getPlayer(), aObiectManager.getPlayer()->getCurrentPlace());
+	aObjectManager.getGuiManager().getGuiMarketPlace()->update(aSoundManager, mainTaskManger, aCamera.getWindow(), aObjectManager.getCursor()->getGuiCoord(), aObjectManager.getPlayer(), aObjectManager.getPlayer()->getCurrentPlace());
 }

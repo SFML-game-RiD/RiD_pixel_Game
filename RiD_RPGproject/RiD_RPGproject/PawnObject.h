@@ -11,7 +11,7 @@ namespace MP
 
 		MapElement* _current_land;///Stores ptr to current land, where pawn stands.
 
-		bool _whinney_once;
+		bool _whinney_once;///Stores if horse can makes sound.
 
 	public:
 

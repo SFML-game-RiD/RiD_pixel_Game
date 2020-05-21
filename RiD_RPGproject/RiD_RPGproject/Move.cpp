@@ -2,183 +2,183 @@
 
 
 
-void MP::Move::moveBlockDown(PawnObject& obiect, sf::Clock& currentTime)
+void MP::Move::moveBlockDown(PawnObject& object, sf::Clock& currentTime)
 {
-	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= obiect.getReadyTime())
+	if (object.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= object.getReadyTime())
 	{
-		_move_pixel_down(obiect);
-		obiect.decreaseBlockLengthCopy();
-		obiect.setLastActive(currentTime);
+		_move_pixel_down(object);
+		object.decreaseBlockLengthCopy();
+		object.setLastActive(currentTime);
 	}
-	else if (obiect.getBlockLenghtCopy() <= 0)
+	else if (object.getBlockLenghtCopy() <= 0)
 	{
-		obiect.resetBlockLenghtCopy();
-		obiect.aPawnObjectTaskManager.deleteTaskList();
+		object.resetBlockLenghtCopy();
+		object.aPawnObjectTaskManager.deleteTaskList();
 	}
 }
 
-void MP::Move::moveBlockUp(PawnObject& obiect, sf::Clock& currentTime)
+void MP::Move::moveBlockUp(PawnObject& object, sf::Clock& currentTime)
 {
-	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= obiect.getReadyTime())
+	if (object.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= object.getReadyTime())
 	{
-		_move_pixel_up(obiect);
-		obiect.decreaseBlockLengthCopy();
-		obiect.setLastActive(currentTime);
+		_move_pixel_up(object);
+		object.decreaseBlockLengthCopy();
+		object.setLastActive(currentTime);
 	}
-	else if (obiect.getBlockLenghtCopy() <= 0) // Arrived
+	else if (object.getBlockLenghtCopy() <= 0) // Arrived
 	{
-		obiect.resetBlockLenghtCopy();
-		obiect.aPawnObjectTaskManager.deleteTaskList();
+		object.resetBlockLenghtCopy();
+		object.aPawnObjectTaskManager.deleteTaskList();
 	}
 }
 
-void MP::Move::moveBlockRight(PawnObject& obiect, sf::Clock& currentTime)
+void MP::Move::moveBlockRight(PawnObject& object, sf::Clock& currentTime)
 {
-	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() > obiect.getReadyTime())
+	if (object.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() > object.getReadyTime())
 	{
-		_move_pixel_right(obiect);
-		obiect.decreaseBlockLengthCopy();
-		obiect.setLastActive(currentTime);
+		_move_pixel_right(object);
+		object.decreaseBlockLengthCopy();
+		object.setLastActive(currentTime);
 	}
-	else if (obiect.getBlockLenghtCopy() <= 0) // Arrived
+	else if (object.getBlockLenghtCopy() <= 0) // Arrived
 	{
-		obiect.resetBlockLenghtCopy();
-		obiect.aPawnObjectTaskManager.deleteTaskList();
+		object.resetBlockLenghtCopy();
+		object.aPawnObjectTaskManager.deleteTaskList();
 	}
 }
 
-void MP::Move::moveBlockLeft(PawnObject& obiect, sf::Clock& currentTime)
+void MP::Move::moveBlockLeft(PawnObject& object, sf::Clock& currentTime)
 {
-	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= obiect.getReadyTime())
+	if (object.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= object.getReadyTime())
 	{
-		_move_pixel_left(obiect);
-		obiect.decreaseBlockLengthCopy();
-		obiect.setLastActive(currentTime);
+		_move_pixel_left(object);
+		object.decreaseBlockLengthCopy();
+		object.setLastActive(currentTime);
 	}
-	else if (obiect.getBlockLenghtCopy() <= 0) // Arrived
+	else if (object.getBlockLenghtCopy() <= 0) // Arrived
 	{
-		obiect.resetBlockLenghtCopy();
-		obiect.aPawnObjectTaskManager.deleteTaskList();
-	}
-}
-
-void MP::Move::moveBlockDown(Player& obiect, sf::Clock& currentTime, TaskManager& aMainTaskManager)
-{
-	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= obiect.getReadyTime())
-	{
-		_move_pixel_down(obiect);
-		obiect.decreaseBlockLengthCopy();
-		obiect.setLastActive(currentTime);
-	}
-	else if (obiect.getBlockLenghtCopy() <= 0)
-	{
-		obiect.resetBlockLenghtCopy();
-		aMainTaskManager.findTask(TaskNode::taskType::TASK_MOVE, true);
-		aMainTaskManager.findTask(TaskNode::taskType::TASK_MOVE_DOWN, true);
-
+		object.resetBlockLenghtCopy();
+		object.aPawnObjectTaskManager.deleteTaskList();
 	}
 }
 
-void MP::Move::moveBlockUp(Player& obiect, sf::Clock& currentTime, TaskManager& aMainTaskManager)
+void MP::Move::moveBlockDown(Player& player, sf::Clock& currentTime, TaskManager& mainTaskManager)
 {
-	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= obiect.getReadyTime())
+	if (player.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= player.getReadyTime())
 	{
-		_move_pixel_up(obiect);
-		obiect.decreaseBlockLengthCopy();
-		obiect.setLastActive(currentTime);
+		_move_pixel_down(player);
+		player.decreaseBlockLengthCopy();
+		player.setLastActive(currentTime);
 	}
-	else if (obiect.getBlockLenghtCopy() <= 0) // Arrived
+	else if (player.getBlockLenghtCopy() <= 0)
 	{
-		obiect.resetBlockLenghtCopy();
-		aMainTaskManager.findTask(TaskNode::taskType::TASK_MOVE, true);
-		aMainTaskManager.findTask(TaskNode::taskType::TASK_MOVE_UP, true);
-	}
-}
+		player.resetBlockLenghtCopy();
+		mainTaskManager.findTask(TaskNode::taskType::TASK_MOVE, true);
+		mainTaskManager.findTask(TaskNode::taskType::TASK_MOVE_DOWN, true);
 
-void MP::Move::moveBlockRight(Player& obiect, sf::Clock& currentTime, TaskManager& aMainTaskManager)
-{
-	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() > obiect.getReadyTime())
-	{
-		_move_pixel_right(obiect);
-		obiect.decreaseBlockLengthCopy();
-		obiect.setLastActive(currentTime);
-	}
-	else if (obiect.getBlockLenghtCopy() <= 0) // Arrived
-	{
-		obiect.resetBlockLenghtCopy();
-		aMainTaskManager.findTask(TaskNode::taskType::TASK_MOVE, true);
-		aMainTaskManager.findTask(TaskNode::taskType::TASK_MOVE_RIGHT, true);
 	}
 }
 
-void MP::Move::moveBlockLeft(Player& obiect, sf::Clock& currentTime, TaskManager& aMainTaskManager)
+void MP::Move::moveBlockUp(Player& player, sf::Clock& currentTime, TaskManager& mainTaskManager)
 {
-	if (obiect.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= obiect.getReadyTime())
+	if (player.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= player.getReadyTime())
 	{
-		_move_pixel_left(obiect);
-		obiect.decreaseBlockLengthCopy();
-		obiect.setLastActive(currentTime);
+		_move_pixel_up(player);
+		player.decreaseBlockLengthCopy();
+		player.setLastActive(currentTime);
 	}
-	else if (obiect.getBlockLenghtCopy() <= 0) // Arrived
+	else if (player.getBlockLenghtCopy() <= 0) // Arrived
 	{
-		obiect.resetBlockLenghtCopy();
-		aMainTaskManager.findTask(TaskNode::taskType::TASK_MOVE, true);
-		aMainTaskManager.findTask(TaskNode::taskType::TASK_MOVE_LEFT, true);
-	}
-}
-
-void MP::Move::_move_pixel_down(ActiveObject& obiect)
-{
-	obiect.setObjectCoord(int(obiect.getObjectCoord().x), int(obiect.getObjectCoord().y + obiect.getVelocity()));
-}
-
-void MP::Move::_move_pixel_up(ActiveObject& obiect)
-{
-	obiect.setObjectCoord(int(obiect.getObjectCoord().x), int(obiect.getObjectCoord().y - obiect.getVelocity()));
-}
-
-void MP::Move::_move_pixel_right(ActiveObject& obiect)
-{
-	obiect.setObjectCoord(int(obiect.getObjectCoord().x + obiect.getVelocity()), int(obiect.getObjectCoord().y));
-}
-
-void MP::Move::_move_pixel_left(ActiveObject& obiect)
-{
-	obiect.setObjectCoord(int(obiect.getObjectCoord().x - obiect.getVelocity()), int(obiect.getObjectCoord().y));
-}
-
-void MP::Move::tryToMoveUp(PawnObject &pawn ,Map& aMap, TaskManager& aMainTaskManager)
-{
-	if (pawn.checkGoUp(aMap) and !aMainTaskManager.findTask(TaskNode::taskType::TASK_MOVE, false) and !aMainTaskManager.findTask(TaskNode::taskType::TASK_AUTO_MOVE, false))
-	{
-		aMainTaskManager.addTask(MP::TaskNode::taskType::TASK_MOVE_UP);
-		aMainTaskManager.addTask(MP::TaskNode::taskType::TASK_MOVE);
+		player.resetBlockLenghtCopy();
+		mainTaskManager.findTask(TaskNode::taskType::TASK_MOVE, true);
+		mainTaskManager.findTask(TaskNode::taskType::TASK_MOVE_UP, true);
 	}
 }
 
-void MP::Move::tryToMoveDown(PawnObject& pawn, Map& aMap, TaskManager& aMainTaskManager)
+void MP::Move::moveBlockRight(Player& player, sf::Clock& currentTime, TaskManager& mainTaskManager)
 {
-	if (pawn.checkGoDown(aMap) and !aMainTaskManager.findTask(TaskNode::taskType::TASK_MOVE, false) and !aMainTaskManager.findTask(TaskNode::taskType::TASK_AUTO_MOVE, false))
+	if (player.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() > player.getReadyTime())
 	{
-		aMainTaskManager.addTask(MP::TaskNode::taskType::TASK_MOVE_DOWN);
-		aMainTaskManager.addTask(MP::TaskNode::taskType::TASK_MOVE);
+		_move_pixel_right(player);
+		player.decreaseBlockLengthCopy();
+		player.setLastActive(currentTime);
+	}
+	else if (player.getBlockLenghtCopy() <= 0) // Arrived
+	{
+		player.resetBlockLenghtCopy();
+		mainTaskManager.findTask(TaskNode::taskType::TASK_MOVE, true);
+		mainTaskManager.findTask(TaskNode::taskType::TASK_MOVE_RIGHT, true);
 	}
 }
 
-void MP::Move::tryToMoveLeft(PawnObject& pawn, Map& aMap, TaskManager& aMainTaskManager)
+void MP::Move::moveBlockLeft(Player& player, sf::Clock& currentTime, TaskManager& mainTaskManager)
 {
-	if (pawn.checkGoLeft(aMap) and !aMainTaskManager.findTask(TaskNode::taskType::TASK_MOVE, false) and !aMainTaskManager.findTask(TaskNode::taskType::TASK_AUTO_MOVE, false))
+	if (player.getBlockLenghtCopy() > 0 && currentTime.getElapsedTime() >= player.getReadyTime())
 	{
-		aMainTaskManager.addTask(MP::TaskNode::taskType::TASK_MOVE_LEFT);
-		aMainTaskManager.addTask(MP::TaskNode::taskType::TASK_MOVE);
+		_move_pixel_left(player);
+		player.decreaseBlockLengthCopy();
+		player.setLastActive(currentTime);
+	}
+	else if (player.getBlockLenghtCopy() <= 0) // Arrived
+	{
+		player.resetBlockLenghtCopy();
+		mainTaskManager.findTask(TaskNode::taskType::TASK_MOVE, true);
+		mainTaskManager.findTask(TaskNode::taskType::TASK_MOVE_LEFT, true);
 	}
 }
 
-void MP::Move::tryToMoveRight(PawnObject& pawn, Map& aMap, TaskManager& aMainTaskManager)
+void MP::Move::_move_pixel_down(ActiveObject& object)
 {
-	if (pawn.checkGoRight(aMap) and !aMainTaskManager.findTask(TaskNode::taskType::TASK_MOVE, false) and !aMainTaskManager.findTask(TaskNode::taskType::TASK_AUTO_MOVE, false))
+	object.setObjectCoord(int(object.getObjectCoord().x), int(object.getObjectCoord().y + object.getVelocity()));
+}
+
+void MP::Move::_move_pixel_up(ActiveObject& object)
+{
+	object.setObjectCoord(int(object.getObjectCoord().x), int(object.getObjectCoord().y - object.getVelocity()));
+}
+
+void MP::Move::_move_pixel_right(ActiveObject& object)
+{
+	object.setObjectCoord(int(object.getObjectCoord().x + object.getVelocity()), int(object.getObjectCoord().y));
+}
+
+void MP::Move::_move_pixel_left(ActiveObject& object)
+{
+	object.setObjectCoord(int(object.getObjectCoord().x - object.getVelocity()), int(object.getObjectCoord().y));
+}
+
+void MP::Move::tryToMoveUp(PawnObject &pawn ,Map& gameMap, TaskManager& mainTaskManager)
+{
+	if (pawn.checkGoUp(gameMap) and !mainTaskManager.findTask(TaskNode::taskType::TASK_MOVE, false) and !mainTaskManager.findTask(TaskNode::taskType::TASK_AUTO_MOVE, false))
 	{
-		aMainTaskManager.addTask(MP::TaskNode::taskType::TASK_MOVE_RIGHT);
-		aMainTaskManager.addTask(MP::TaskNode::taskType::TASK_MOVE);
+		mainTaskManager.addTask(MP::TaskNode::taskType::TASK_MOVE_UP);
+		mainTaskManager.addTask(MP::TaskNode::taskType::TASK_MOVE);
+	}
+}
+
+void MP::Move::tryToMoveDown(PawnObject& pawn, Map& gameMap, TaskManager& mainTaskManager)
+{
+	if (pawn.checkGoDown(gameMap) and !mainTaskManager.findTask(TaskNode::taskType::TASK_MOVE, false) and !mainTaskManager.findTask(TaskNode::taskType::TASK_AUTO_MOVE, false))
+	{
+		mainTaskManager.addTask(MP::TaskNode::taskType::TASK_MOVE_DOWN);
+		mainTaskManager.addTask(MP::TaskNode::taskType::TASK_MOVE);
+	}
+}
+
+void MP::Move::tryToMoveLeft(PawnObject& pawn, Map& gameMap, TaskManager& mainTaskManager)
+{
+	if (pawn.checkGoLeft(gameMap) and !mainTaskManager.findTask(TaskNode::taskType::TASK_MOVE, false) and !mainTaskManager.findTask(TaskNode::taskType::TASK_AUTO_MOVE, false))
+	{
+		mainTaskManager.addTask(MP::TaskNode::taskType::TASK_MOVE_LEFT);
+		mainTaskManager.addTask(MP::TaskNode::taskType::TASK_MOVE);
+	}
+}
+
+void MP::Move::tryToMoveRight(PawnObject& pawn, Map& gameMap, TaskManager& mainTaskManager)
+{
+	if (pawn.checkGoRight(gameMap) and !mainTaskManager.findTask(TaskNode::taskType::TASK_MOVE, false) and !mainTaskManager.findTask(TaskNode::taskType::TASK_AUTO_MOVE, false))
+	{
+		mainTaskManager.addTask(MP::TaskNode::taskType::TASK_MOVE_RIGHT);
+		mainTaskManager.addTask(MP::TaskNode::taskType::TASK_MOVE);
 	}
 }

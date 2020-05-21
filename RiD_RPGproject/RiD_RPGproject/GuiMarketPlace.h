@@ -42,19 +42,23 @@ namespace MP
 		void _update_market_place(Places& place, ActiveObject& player);
 
 		//Updates market place.
-		//@param aMainWindow main game's window.
+		//@param mainWindow main game's window.
 		//@param place trades object.
 		//@param player trades object.
-		void _draw_menu(sf::RenderWindow& aMainWindow,Places& place, ActiveObject& player);
+		void _draw_menu(sf::RenderWindow& mainWindow,Places& place, ActiveObject& player);
 
 		//Checks mouse coordinates and makes button active.
+		//@param aSoundManager plays sounds.
+		//@param mainTaskManager main task manager.
 		//@param mouseCoord mouse's coordinates.
-		void _select_button(SoundManager& aSoundManager, TaskManager& aTaskManager, sf::Vector2f guiMouseCoord);
+		void _select_button(SoundManager& aSoundManager, TaskManager& mainTaskManager, sf::Vector2f guiMouseCoord);
 
 		//Starts procedures relative to pressed button.
-		//@param aMainTaskManager main task manager.
-		//@param aMainWindow game's main window.
-		void _press_button(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, std::shared_ptr<Player>& aPlayer, std::shared_ptr<Places>& aPlace);
+		//@param mainTaskManager main task manager.
+		//@param mainWindow game's main window.
+		//@param aPlayer player.
+		//@param aPlace current place.
+		void _press_button(TaskManager& mainTaskManager, sf::RenderWindow& mainWindow, std::shared_ptr<Player>& aPlayer, std::shared_ptr<Places>& aPlace);
 
 	public:
 
@@ -62,28 +66,24 @@ namespace MP
 		GuiMarketPlace();
 
 		//GUI market place constructor.
-		//@param marketplaceBackgroundTexture background's texture.
-		//@param buttonTexture button's texture.
-		//@param panelLeftTexture panel's texture.
-		//@param panelRightTexture panel's texture.
-		//@param aFont game's font.
-	//	GuiMarketPlace(sf::Texture* marketplaceBackgroundTexture, sf::Texture* buttonTexture, sf::Texture* panelLeftTexture, sf::Texture* panelRightTexture, sf::Font& aFont);
+		//@param aAssetManager stores textures.
 		GuiMarketPlace(RiD::AssetManager &aAssetManager);
 	
 		//Updates market place.
-		//@param aMainTaskManager main task manager.
-		//@param aMainWindow game's window.
+		//@param aSoundManager plays sounds.
+		//@param mainTaskManager main task manager.
+		//@param mainWindow game's window.
 		//@param mouseCoord mouse's coordinates.
 		//@param aPlayer store's player.
 		//@param aPlace store's place.
-		void update(SoundManager& aSoundManager,TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, sf::Vector2f guiMouseCoord, std::shared_ptr<Player>& aPlayer, std::shared_ptr<Places>& aPlace);
+		void update(SoundManager& aSoundManager,TaskManager& mainTaskManager, sf::RenderWindow& mainWindow, sf::Vector2f guiMouseCoord, std::shared_ptr<Player>& aPlayer, std::shared_ptr<Places>& aPlace);
 
 		//Draws market place.
-		//@param aMainTaskManager main task manager.
+		//@param mainTaskManager main task manager.
 		//@param aMainWindow game's window.
 		//@param aPlayer store's player.
 		//@param aPlace store's place.
-		void render(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, std::shared_ptr<Places> aPlace ,std::shared_ptr<Player> aPlayer);
+		void render(TaskManager& mainTaskManager, sf::RenderWindow& aMainWindow, std::shared_ptr<Places> aPlace ,std::shared_ptr<Player> aPlayer);
 		
 		//Sets current place.
 		//@param currentPlace current place which trades with player.

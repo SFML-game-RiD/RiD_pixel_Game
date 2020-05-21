@@ -21,12 +21,14 @@ namespace MP
 		Tree(sf::Texture* texturePtr, sf::Vector2f coord, float treeScale);
 
 		//Updates object.
+		//@param mainTaskManager stores tasks.
 		//@param globalClock measure game time.
-		void update(TaskManager& aMainTaskManager, sf::Clock& globalClock);
+		void update(TaskManager& mainTaskManager, sf::Clock& globalClock);
 
 		//Draws object on screen.
+		//@param mainTaskManager stores tasks.
 		//@param mainWindow game window.
-		void render(TaskManager& aMainTaskManager, sf::RenderWindow &mainWindow);
+		void render(TaskManager& mainTaskManager, sf::RenderWindow &mainWindow);
 
 	};
 }

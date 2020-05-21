@@ -178,31 +178,31 @@ void MP::GuiMarketPlace::setCurrentPlace(std::shared_ptr<Places>& currentPlace)
 	_current_place = currentPlace;
 }
 
-void MP::GuiMarketPlace::_draw_menu(sf::RenderWindow& aMainWindow, Places& place, ActiveObject& player)
+void MP::GuiMarketPlace::_draw_menu(sf::RenderWindow& mainWindow, Places& place, ActiveObject& player)
 {
-	aMainWindow.draw(aAnimation.getObjectSprite());
+	mainWindow.draw(aAnimation.getObjectSprite());
 
 	for (unsigned int i = 0; i < _button_array.size(); i++)
-		_button_array[i]->render(aMainWindow);
+		_button_array[i]->render(mainWindow);
 
-	_panelA->render(aMainWindow);
-	_panelB->render(aMainWindow);
+	_panelA->render(mainWindow);
+	_panelB->render(mainWindow);
 
-	place.getItemsForTrade().getWood()->drawItem(aMainWindow);
-	place.getItemsForTrade().getIron()->drawItem(aMainWindow);
-	place.getItemsForTrade().getGold()->drawItem(aMainWindow);
-	place.getItemsForTrade().getFood()->drawItem(aMainWindow);
-	place.getItemsForTrade().getArcher()->drawItem(aMainWindow);
-	place.getItemsForTrade().getSwordsman()->drawItem(aMainWindow);
-	place.getItemsForTrade().getSpearman()->drawItem(aMainWindow);
+	place.getItemsForTrade().getWood()->drawItem(mainWindow);
+	place.getItemsForTrade().getIron()->drawItem(mainWindow);
+	place.getItemsForTrade().getGold()->drawItem(mainWindow);
+	place.getItemsForTrade().getFood()->drawItem(mainWindow);
+	place.getItemsForTrade().getArcher()->drawItem(mainWindow);
+	place.getItemsForTrade().getSwordsman()->drawItem(mainWindow);
+	place.getItemsForTrade().getSpearman()->drawItem(mainWindow);
 
-	player.aItemsManager.getWood()->drawItem(aMainWindow);
-	player.aItemsManager.getIron()->drawItem(aMainWindow);
-	player.aItemsManager.getGold()->drawItem(aMainWindow);
-	player.aItemsManager.getFood()->drawItem(aMainWindow);
-	player.aItemsManager.getArcher()->drawItem(aMainWindow);
-	player.aItemsManager.getSwordsman()->drawItem(aMainWindow);
-	player.aItemsManager.getSpearman()->drawItem(aMainWindow);
+	player.aItemsManager.getWood()->drawItem(mainWindow);
+	player.aItemsManager.getIron()->drawItem(mainWindow);
+	player.aItemsManager.getGold()->drawItem(mainWindow);
+	player.aItemsManager.getFood()->drawItem(mainWindow);
+	player.aItemsManager.getArcher()->drawItem(mainWindow);
+	player.aItemsManager.getSwordsman()->drawItem(mainWindow);
+	player.aItemsManager.getSpearman()->drawItem(mainWindow);
 }
 
 void MP::GuiMarketPlace::_select_button(SoundManager& aSoundManager, TaskManager& aTaskManager, sf::Vector2f mouseCoord)
@@ -217,7 +217,7 @@ void MP::GuiMarketPlace::_select_button(SoundManager& aSoundManager, TaskManager
 	}
 }
 
-void MP::GuiMarketPlace::_press_button(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, std::shared_ptr<Player>& aPlayer, std::shared_ptr<Places>& aPlaces)
+void MP::GuiMarketPlace::_press_button(TaskManager& aMainTaskManager, sf::RenderWindow& mainWindow, std::shared_ptr<Player>& aPlayer, std::shared_ptr<Places>& aPlaces)
 {
 	if (_button_array[0]->getButtonIsActive() == true and aMainTaskManager.findTask(TaskNode::taskType::LEFT_MOUSE_BUTTON,true))//buy
 	{
@@ -265,13 +265,13 @@ void MP::GuiMarketPlace::_press_button(TaskManager& aMainTaskManager, sf::Render
 	}
 }
 
-void MP::GuiMarketPlace::update(SoundManager & aSoundManager,TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, sf::Vector2f guiMouseCoord, std::shared_ptr<Player>& aPlayer, std::shared_ptr<Places>& aPlace)
+void MP::GuiMarketPlace::update(SoundManager & aSoundManager,TaskManager& aMainTaskManager, sf::RenderWindow& mainWindow, sf::Vector2f guiMouseCoord, std::shared_ptr<Player>& aPlayer, std::shared_ptr<Places>& aPlace)
 {
 	if (aMainTaskManager.getCurrentState() == MP::TaskManager::stateType::stateMarketPlace)
 	{
 		_update_market_place(*aPlace, *aPlayer);
 		_select_button(aSoundManager, aMainTaskManager,guiMouseCoord);
-		_press_button(aMainTaskManager, aMainWindow, aPlayer, aPlace);
+		_press_button(aMainTaskManager, mainWindow, aPlayer, aPlace);
 	}
 }
 

@@ -22,13 +22,15 @@ namespace MP
 	 	virtual	void _create_buttons(RiD::AssetManager& aAssetManager);
 
 		//Checks mouse coordinates and makes button active.
-		//mouseCoord mouse's coordinates.
-		virtual void _select_button(SoundManager& aSoundManager, TaskManager& aTaskManager, sf::Vector2f guiMouseCoord);
+		//@param aSoundManager plays sounds.
+		//@param mainTaskManager main task manager.
+		//@param mouseCoord mouse's coordinates.
+		virtual void _select_button(SoundManager& aSoundManager, TaskManager& mainTaskManager, sf::Vector2f guiMouseCoord);
 
 		//Starts procedures relative to pressed button.
-		//@param aMainTaskManager main task manager.
+		//@param mainTaskManager main task manager.
 		//@param aMainWindow game's main window.
-		virtual void _press_button(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow);
+		virtual void _press_button(TaskManager& mainTaskManager, sf::RenderWindow& aMainWindow);
 
 		//Draws menu.
 		//@param aMainWindow game's window.
@@ -40,20 +42,19 @@ namespace MP
 		GuiMenu();
 
 		//GUI's constructor.
-		//@param placesMenuTexture place's texture.
-		//@param buttonTexture button's texture.
-		//@aFont game's font.
+		//@param aAssetManager stores textures.
 		GuiMenu(RiD::AssetManager& aAssetManager);
 
 		//Updates GUI.
-		//@param aMainTaskManager main task manager.
+		//@param aSoundManager plays sound.
+		//@param mainTaskManager main task manager.
 		//@param aMainWindow game's main window.
 		//@param guiMouseCoord mouse's coord from gui view.
-		virtual void update(SoundManager& aSoundManager, TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow, sf::Vector2f guiMouseCoord);
+		virtual void update(SoundManager& aSoundManager, TaskManager& mainTaskManager, sf::RenderWindow& aMainWindow, sf::Vector2f guiMouseCoord);
 
 		//Draws GUI.
-		//@param aMainTaskManager main task manager.
+		//@param mainTaskManager main task manager.
 		//@param aMainWindow game's main window.
-		virtual void render(TaskManager& aMainTaskManager, sf::RenderWindow& aMainWindow);
+		virtual void render(TaskManager& mainTaskManager, sf::RenderWindow& aMainWindow);
 	};
 }

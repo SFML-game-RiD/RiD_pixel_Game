@@ -11,7 +11,8 @@ namespace MP
 		std::map<std::string,sf::SoundBuffer> _sound;///Contains sound buffers.
 
 	public:
-			
+		
+		//Sound manager's constructor.
 		SoundManager();
 		
 		//Sets sound.

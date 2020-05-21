@@ -42,7 +42,7 @@ namespace MP
 
 		//Sets text position retlative to object coordination.
 		//@param newPosioton new coordinates position.
-		void setTextPostion(sf::Vector2f newPosition); //retlative to obj coordination
+		void setTextPostion(sf::Vector2f newPosition);
 
 		//Returns item's cost.
 		//@return item's cost.

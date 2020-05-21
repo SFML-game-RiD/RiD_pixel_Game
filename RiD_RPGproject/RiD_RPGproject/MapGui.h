@@ -11,7 +11,7 @@ namespace MP
 	{
 	private:
 
-		sf::Text _text_array[12];
+		sf::Text _text_array[12];///Gui text.
 
 		//Draws items.
 		//@param mainWindow game window.
@@ -28,13 +28,17 @@ namespace MP
 		//@param texturePtr object's texture.
 		MapGui(RiD::AssetManager& aAssetManager);
 
+		//Renders gui.
+		//@param mainTaskManager.
 		//@param mainWindow game window.
 		//@param aItemsManager items manager.
-		void render(TaskManager& aMainTaskManager, sf::RenderWindow& mainWindow, ItemsManager& aItemsManager);
+		void render(TaskManager& mainTaskManger, sf::RenderWindow& mainWindow, ItemsManager& aItemsManager);
 
 		//Updates gui.
+		//@param mainTaskManager.
 		//@param aItemsManager items manager.
-		void update(TaskManager& aMainTaskManager, ItemsManager& aItemsManager, std::string textArray[12]);
+		//@param textArray
+		void update(TaskManager& mainTaskManager, ItemsManager& aItemsManager, std::string textArray[12]);
 		
 	};
 }

@@ -21,8 +21,7 @@ namespace MP
 		//@param y the y coordinates.
 		Land( int x,int y);
 
-		void update();
-
+		//Renders land.
 		void render(sf::RenderWindow &mainWindow);
 	};
 }

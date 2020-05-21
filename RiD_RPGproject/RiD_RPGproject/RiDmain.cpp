@@ -7,19 +7,19 @@
 void RiD::RiDmain::_create_window()
 {	
 	
-	_a_obiect_generator.generateObiects(_a_obiect_manager);
+	_a_object_generator.generateObiects(_a_object_manager);
 	std::printf("generated successful \n");
 	
 
 	while (_a_camera.getWindow().isOpen()) //program main loop
 	{
-		_event_function_for_state_game();
-		_calculate_for_state_game();
-		_draw_for_state_game();
+		_event_function();
+		_calculate();
+		_draw();
 	}
 }
 
-void RiD::RiDmain::_event_function_for_state_game()
+void RiD::RiDmain::_event_function()
 {
 
 	while (_a_camera.getWindow().pollEvent(_event)) //handling events
@@ -58,25 +58,25 @@ void RiD::RiDmain::_event_function_for_state_game()
 	}
 }
 
-void RiD::RiDmain::_calculate_for_state_game()
+void RiD::RiDmain::_calculate()
 {	
 	_music.update(_a_main_task_manager);
 
-	_a_calculator.updateGame(_a_sound_manager,_a_main_task_manager, _a_obiect_manager, _clock, _a_camera);
+	_a_calculator.updateGame(_a_sound_manager,_a_main_task_manager, _a_object_manager, _clock, _a_camera);
 
-	_a_obiect_manager.getCursor()->update(_a_main_task_manager, _a_camera);
+	_a_object_manager.getCursor()->update(_a_main_task_manager, _a_camera);
 
-	_a_camera.update(_a_obiect_manager.getPlayer()->getObjectCoord(), _a_main_task_manager);
+	_a_camera.update(_a_object_manager.getPlayer()->getObjectCoord(), _a_main_task_manager);
 
 	//Deleting basic task from keyboard, mouse ect.
 	_a_main_task_manager.resetInput();
 }
 
-void RiD::RiDmain::_draw_for_state_game()
+void RiD::RiDmain::_draw()
 {
 	_a_camera.clearCamera();
 
-	_a_obiect_drawer.drawGame(_a_main_task_manager,_a_camera,_a_obiect_manager);
+	_a_object_drawer.drawGame(_a_main_task_manager,_a_camera,_a_object_manager);
 
 	_a_camera.drawFrame(); 
 }
@@ -84,12 +84,12 @@ void RiD::RiDmain::_draw_for_state_game()
 RiD::RiDmain::RiDmain(int width, int height, std::string title)
 {
 
-	sf::VideoMode mode = sf::VideoMode::getFullscreenModes()[0];
-	_a_camera.getWindow().create(mode, title, sf::Style::Close | sf::Style::Fullscreen);
+	/*sf::VideoMode mode = sf::VideoMode::getFullscreenModes()[0];
+	_a_camera.getWindow().create(mode, title, sf::Style::Close | sf::Style::Fullscreen);*/
 	
 
-	/*_a_camera.getWindow().create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
-	_a_camera.getWindow().setFramerateLimit(RiD::ConfigurationLoader::getIntData("video settings", "gameFPS"));*/
+	_a_camera.getWindow().create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
+	_a_camera.getWindow().setFramerateLimit(RiD::ConfigurationLoader::getIntData("video settings", "gameFPS"));
 	_a_camera.getWindow().setMouseCursorVisible(false);
 	this->_create_window();
 

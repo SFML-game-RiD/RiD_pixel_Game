@@ -12,7 +12,7 @@ namespace MP
 		//@param spawnCoord object coord.
 		PathIcon(sf::Texture* texturePtr,sf::Vector2f spawnCoord);
 
-		//Updates pathIcon.
+		//Updates path's icon.
 		void update();
 
 		//Draws object on screen.

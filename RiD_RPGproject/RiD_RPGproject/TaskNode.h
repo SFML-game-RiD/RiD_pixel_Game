@@ -7,7 +7,7 @@ namespace MP
 	{
 	public:
 
-		enum class taskType
+		enum class taskType///Stores task's type.
 		{
 			W_PRESSED,
 			A_PRESSED,
@@ -47,12 +47,16 @@ namespace MP
 		};
 	private:
 
-		taskType _task;
+		taskType _task;//Task type.
 
 	public:
 
-		TaskNode(taskType newTask,bool block=false);
+		//Creates new task.
+		//@param newTask new game's task.
+		TaskNode(taskType newTask);
 
+		//Returns task.
+		//@return task.
 		TaskNode::taskType getTask();
 
 	};
