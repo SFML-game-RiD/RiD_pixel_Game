@@ -40,7 +40,7 @@ namespace MP
 
 	public:
 
-		MP::Sound missionSoundPlayer;//Stores sound.
+		MP::Sound missionSoundPlayer;///Stores sound.
 
 		//Sets mission.
 		//@param missionPath path to .ini file.
@@ -76,10 +76,12 @@ namespace MP
 
 		//Get awards.
 		//@param itemName item's name from which award is being taken.
+		//@return award amount.
 		int getAwardAmount(std::string itemName);
 
 		//Get needs.
 		//@param itemName item's name from which needs is being taken.
+		//@return needs amount.
 		int getNeedsAmount(std::string itemName);
 	};
 

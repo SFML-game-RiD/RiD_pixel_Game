@@ -181,6 +181,8 @@
     <ClCompile Include="Mission.cpp" />
     <ClCompile Include="MissionCreator.cpp" />
     <ClCompile Include="Music.cpp" />
+    <ClCompile Include="PathCreator.cpp" />
+    <ClCompile Include="PathNode.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="SpriteAnimation.cpp" />
@@ -191,9 +193,7 @@
     <ClCompile Include="ObjectDrawer.cpp" />
     <ClCompile Include="ObjectGenerator.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
-    <ClCompile Include="pathCreator.cpp" />
     <ClCompile Include="PathIcon.cpp" />
-    <ClCompile Include="pathNode.cpp" />
     <ClCompile Include="PawnObject.cpp" />
     <ClCompile Include="Places.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -236,6 +236,8 @@
     <ClInclude Include="Mission.h" />
     <ClInclude Include="MissionCreator.h" />
     <ClInclude Include="Music.h" />
+    <ClInclude Include="PathCreator.h" />
+    <ClInclude Include="PathNode.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="SpriteAnimation.h" />
@@ -246,9 +248,7 @@
     <ClInclude Include="ObjectDrawer.h" />
     <ClInclude Include="ObjectGenerator.h" />
     <ClInclude Include="ObjectManager.h" />
-    <ClInclude Include="pathCreator.h" />
     <ClInclude Include="PathIcon.h" />
-    <ClInclude Include="pathNode.h" />
     <ClInclude Include="PawnObject.h" />
     <ClInclude Include="Places.h" />
     <ClInclude Include="Player.h" />

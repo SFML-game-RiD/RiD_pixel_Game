@@ -56,7 +56,7 @@ namespace MP
 		MapElement *& getNextElement();
 
 		//Returns places mark.
-		//return places mark.
+		//@return places mark.
 		char getMark();
 
 		//Sets next element's ptr.

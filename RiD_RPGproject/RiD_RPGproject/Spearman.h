@@ -21,10 +21,10 @@ namespace MP
 
 		//Sets item position.
 		//@param itemPosition obiect's position.
-		 void setItemPosition(sf::Vector2f itemPosition);
+		void setItemPosition(sf::Vector2f itemPosition);
 
-		 //Draws item.
+		//Draws item.
 		//@param mainWindow game's window.
-		 void drawItem(sf::RenderWindow& mainWindow);
+		void drawItem(sf::RenderWindow& mainWindow);
 	};
 }

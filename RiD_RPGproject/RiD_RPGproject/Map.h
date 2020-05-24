@@ -27,10 +27,10 @@ namespace MP
 
 	public:
 
-		//Map constructor.
+		//Map's constructor.
 		Map();
 
-		//Map destructor.
+		//Map's destructor.
 		~Map();
 
 		//Findes element's address.

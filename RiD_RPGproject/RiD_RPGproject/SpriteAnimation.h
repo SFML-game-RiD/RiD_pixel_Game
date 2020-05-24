@@ -86,6 +86,7 @@ namespace MP
 		int getCurrentSprite();
 
 		//Gets rectangle array.
+		//@return rectangle's array.
 		const std::vector<sf::IntRect>& getOryginalArray();
 	
 

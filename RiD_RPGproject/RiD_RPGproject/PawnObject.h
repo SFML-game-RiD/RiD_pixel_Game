@@ -23,18 +23,22 @@ namespace MP
 
 		//Checks if up map element is walkable.
 		//@param gameMap game's map.
+		//@return true if element is walkable.
 		bool checkGoUp(Map& gameMap);
 
 		//Checks if up map element is walkable.
 		//@param gameMap game's map.
+		//@return true if element is walkable.
 		bool checkGoDown(Map& gameMap);
 
 		//Checks if up map element is walkable.
 		//@param gameMap game's map.
+		//@return true if element is walkable.
 		bool checkGoLeft(Map& gameMap);
 
 		//Checks if up map element is walkable.
 		//@param gameMap game's map.
+		//@return true if element is walkable.
 		bool checkGoRight(Map& gameMap);
 
 		//Returns current land, where pawn stands.

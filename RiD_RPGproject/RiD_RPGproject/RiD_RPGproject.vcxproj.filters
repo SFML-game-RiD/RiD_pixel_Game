@@ -29,12 +29,6 @@
     <ClCompile Include="Move.cpp">
       <Filter>Animation, Move</Filter>
     </ClCompile>
-    <ClCompile Include="pathNode.cpp">
-      <Filter>Path creator</Filter>
-    </ClCompile>
-    <ClCompile Include="pathCreator.cpp">
-      <Filter>Path creator</Filter>
-    </ClCompile>
     <ClCompile Include="PathIcon.cpp">
       <Filter>Object</Filter>
     </ClCompile>
@@ -147,6 +141,12 @@
       <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="Engine\AssetManager.cpp" />
+    <ClCompile Include="PathCreator.cpp">
+      <Filter>Path creator</Filter>
+    </ClCompile>
+    <ClCompile Include="PathNode.cpp">
+      <Filter>Path creator</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\ConfigurationLoader.h">
@@ -175,12 +175,6 @@
     </ClInclude>
     <ClInclude Include="Move.h">
       <Filter>Animation, Move</Filter>
-    </ClInclude>
-    <ClInclude Include="pathNode.h">
-      <Filter>Path creator</Filter>
-    </ClInclude>
-    <ClInclude Include="pathCreator.h">
-      <Filter>Path creator</Filter>
     </ClInclude>
     <ClInclude Include="PathIcon.h">
       <Filter>Object</Filter>
@@ -294,6 +288,12 @@
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="Engine\AssetManager.h" />
+    <ClInclude Include="PathCreator.h">
+      <Filter>Path creator</Filter>
+    </ClInclude>
+    <ClInclude Include="PathNode.h">
+      <Filter>Path creator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="MANAGERS, HEAD CLASS">

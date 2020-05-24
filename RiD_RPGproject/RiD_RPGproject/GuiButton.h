@@ -25,9 +25,12 @@ namespace MP
 		//@param isActive new button's state.
 		void set_button_active(bool isActive);
 
-		MP::Sound _sound_player;
+		MP::Sound _sound_player; //Plays songs.
 
-		void _song_procedure(MP::SoundManager& aSoundManager,MP::TaskManager &aMainTaskManager);
+		//Starts song procedure.
+		//@param aSoundManager plays song.
+		//@param mainTaskManager manages task.
+		void _song_procedure(MP::SoundManager& aSoundManager,MP::TaskManager &mainTaskManager);
 
 	public:
 
@@ -51,6 +54,8 @@ namespace MP
 		void setButtonPosition(sf::Vector2f newPostion);
 
 		//Updates button.
+		//@param aSoundManager plays sounds.
+		//@param mainTaskManager manages tasks.
 		//@param isActive button's state.
 		void update(SoundManager& aSoundManager, TaskManager& mainTaskManager,bool isActive);
 

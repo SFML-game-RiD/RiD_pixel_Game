@@ -77,6 +77,7 @@ namespace MP
 
 		//Findes pathNode's element in close list using coord.
 		//@param stop stop coordinates.
+		//@return pathNode's element.
 		PathNode* _find_in_closed_list_by_coords(sf::Vector2f stop);
 
 		//Creates path for script player, using parent's pointer.
@@ -107,6 +108,7 @@ namespace MP
 		//Findes path from start to stop. Returns mapElement list.
 		//@param start starting coordinates
 		//@param stop end of path
+		//@return path from start to stop.
 		MapElement*& findPath(sf::Vector2f start, sf::Vector2f stop);
 
 	};

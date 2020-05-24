@@ -25,6 +25,7 @@ namespace MP
 		void _zoom_out();
 
 		//Changes zoom realtive to task.
+		//@param aTaskManager game's task manager.
 		void _change_zoom(MP::TaskManager& aTaskManager);
 
 		//Sets camera centre's point.
@@ -33,10 +34,11 @@ namespace MP
 
 	public:	
 
-		//Camera constructor.
+		//Camera's constructor.
 		Camera();
 
 		//Returns game's window.
+		//@return game's window.
 		sf::RenderWindow & getWindow();
 
 		//Clears game view.

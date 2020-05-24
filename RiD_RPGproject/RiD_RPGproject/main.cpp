@@ -1,7 +1,7 @@
 #include "SFML/Graphics.hpp"
 #include "Engine/ConfigurationLoader.h"
 #include "RiDmain.h"
-//#include <vld.h>
+
 
 int main()
 {

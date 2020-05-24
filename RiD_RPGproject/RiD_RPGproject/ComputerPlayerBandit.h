@@ -60,7 +60,7 @@ namespace MP
 		bool _check_enemy(std::shared_ptr<Player>& aPlayer);
 
 		//Starts song procedure.
-		//@param aSoundManager plays songs.
+		//@param aSoundManager stores sound's buffers.
 		void _song_procedure(MP::SoundManager& aSoundManager);
 
 		//Start procedure attack player.
@@ -80,7 +80,7 @@ namespace MP
 
 		//Updates computer player.
 		//@param mainTaskManger stores task's.
-		//@param aSoundManager plays sounds.
+		//@param aSoundManager stores sound's buffers.
 		//@param aMap game's map.
 		//@param gameClock game's clock.
 		//@param aPlayer player.

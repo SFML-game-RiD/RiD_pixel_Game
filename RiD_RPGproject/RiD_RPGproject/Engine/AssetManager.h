@@ -8,10 +8,12 @@ namespace RiD
 	class AssetManager
 	{
 	private:
-		std::map<std::string, sf::Texture> _textures;
-		std::map<std::string, sf::Font> _fonts;
+		std::map<std::string, sf::Texture> _textures;///Stores textures.
+		std::map<std::string, sf::Font> _fonts;///Stores fonts.
 	public:
+		//Constructor
 		AssetManager();
+		//Destructor
 		~AssetManager();
 
 		/*

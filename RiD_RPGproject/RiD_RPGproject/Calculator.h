@@ -15,7 +15,7 @@ namespace MP
 
 		//Executes computer players' procedures.
 		//@param mainTaskManager manage's tasks.
-		//@param aSoundManager plays sound.
+		//@param aSoundManager stores sound buffer.
 		//@param aObjectManager stores objects.
 		//@param gameClock game's clock.
 		//@param aMap game's map.
@@ -30,7 +30,7 @@ namespace MP
 	public:
 
 		//Executes games procedures, updates objects, manages tasks.
-		//@param aSoundManager plays sound.
+		//@param aSoundManager stores sound buffer.
 		//@param mainTaskManager manage's tasks.
 		//@param aObjectManager stores objects.
 		//@param gameClock game's clock.

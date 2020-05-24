@@ -50,7 +50,7 @@ namespace MP
 		//Checks mouse coordinates and makes button active.
 		//@param aSoundManager plays sounds.
 		//@param mainTaskManager main task manager.
-		//@param mouseCoord mouse's coordinates.
+		//@param guiMouseCoord mouse's coordinates.
 		void _select_button(SoundManager& aSoundManager, TaskManager& mainTaskManager, sf::Vector2f guiMouseCoord);
 
 		//Starts procedures relative to pressed button.
@@ -70,7 +70,7 @@ namespace MP
 		GuiMarketPlace(RiD::AssetManager &aAssetManager);
 	
 		//Updates market place.
-		//@param aSoundManager plays sounds.
+		//@param aSoundManager stores sounds' buffers..
 		//@param mainTaskManager main task manager.
 		//@param mainWindow game's window.
 		//@param mouseCoord mouse's coordinates.

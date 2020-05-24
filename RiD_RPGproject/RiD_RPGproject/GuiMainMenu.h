@@ -14,6 +14,7 @@ namespace MP
 		void _create_buttons(RiD::AssetManager& aAssetManager);
 
 		//Checks mouse coordinates and makes button active.
+		//@param aSoundManager stores sounds buffers.
 		//@param mouseCoord mouse's coordinates.
 		//@param mainTaskManager game's task manager.
 		void _select_button(SoundManager& aSoundManager, TaskManager& mainTaskManager, sf::Vector2f mouseCoord);

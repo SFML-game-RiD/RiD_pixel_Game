@@ -29,15 +29,15 @@ namespace MP
 		MapGui(RiD::AssetManager& aAssetManager);
 
 		//Renders gui.
-		//@param mainTaskManager.
-		//@param mainWindow game window.
-		//@param aItemsManager items manager.
+		//@param mainTaskManager manages tasks.
+		//@param mainWindow game's window.
+		//@param aItemsManager items' manager.
 		void render(TaskManager& mainTaskManger, sf::RenderWindow& mainWindow, ItemsManager& aItemsManager);
 
 		//Updates gui.
-		//@param mainTaskManager.
-		//@param aItemsManager items manager.
-		//@param textArray
+		//@param mainTaskManager manages tasks.
+		//@param aItemsManager items' manager.
+		//@param textArray stores text.
 		void update(TaskManager& mainTaskManager, ItemsManager& aItemsManager, std::string textArray[12]);
 		
 	};

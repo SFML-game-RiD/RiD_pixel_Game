@@ -88,12 +88,14 @@ void RiD::RiDmain::_draw()
 RiD::RiDmain::RiDmain(int width, int height, std::string title)
 {
 
-	/*sf::VideoMode mode = sf::VideoMode::getFullscreenModes()[0];
-	_a_camera.getWindow().create(mode, title, sf::Style::Close | sf::Style::Fullscreen);*/
+	sf::VideoMode mode = sf::VideoMode::getFullscreenModes()[0];
+	_a_camera.getWindow().create(mode, title, sf::Style::Close | sf::Style::Fullscreen);
 	
 
-	_a_camera.getWindow().create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
-	_a_camera.getWindow().setFramerateLimit(RiD::ConfigurationLoader::getIntData("video settings", "gameFPS"));
+	//_a_camera.getWindow().create(sf::VideoMode(width, height), title, sf::Style::Close | sf::Style::Titlebar);
+	//_a_camera.getWindow().setFramerateLimit(RiD::ConfigurationLoader::getIntData("video settings", "gameFPS"));
+
+
 	_a_camera.getWindow().setMouseCursorVisible(false);
 	this->_create_window();
 

@@ -22,9 +22,9 @@ namespace MP
 	 	virtual	void _create_buttons(RiD::AssetManager& aAssetManager);
 
 		//Checks mouse coordinates and makes button active.
-		//@param aSoundManager plays sounds.
+		//@param aSoundManager stores sound's buffers.
 		//@param mainTaskManager main task manager.
-		//@param mouseCoord mouse's coordinates.
+		//@param guiMouseCoord mouse's coordinates.
 		virtual void _select_button(SoundManager& aSoundManager, TaskManager& mainTaskManager, sf::Vector2f guiMouseCoord);
 
 		//Starts procedures relative to pressed button.
@@ -46,7 +46,7 @@ namespace MP
 		GuiMenu(RiD::AssetManager& aAssetManager);
 
 		//Updates GUI.
-		//@param aSoundManager plays sound.
+		//@param aSoundManager stores sound's buffers.
 		//@param mainTaskManager main task manager.
 		//@param aMainWindow game's main window.
 		//@param guiMouseCoord mouse's coord from gui view.

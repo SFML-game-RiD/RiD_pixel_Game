@@ -27,7 +27,7 @@ namespace MP
 	public:
 
 		//Cursor's constructor.
-		//@ texturePtr cursor's texture.
+		//@param texturePtr cursor's texture.
 		Cursor(sf::Texture* texturePtr);
 
 		//Sets mouse's coord in game.

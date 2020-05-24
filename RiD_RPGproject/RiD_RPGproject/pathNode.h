@@ -53,19 +53,23 @@ namespace MP
 		void setParentForElement(PathNode* up, PathNode* down, PathNode* left, PathNode* right);
 
 		//Returns map element's address.
+		//@return map element's address.
 		MP::MapElement*& getMapElementAddress();
 
 		//Returns next node's address.
+		//@return next address.
 		PathNode*& getNextNode();
 
 		//Returns next node's address coopy ptr.
+		//@return next address.
 		PathNode* getNextNodeCopy();
 
 		//Sets parent for element using argument below.
 		//@param aNode path node which parents are setted.
 		void setParent(PathNode* aNode);
 
-		//Returns parent address.
+		//Returns parent's address.
+		//@return parent's address
 		PathNode*& getParent();
 
 		//Sets next node.

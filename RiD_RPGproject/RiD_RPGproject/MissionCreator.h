@@ -12,7 +12,7 @@ namespace MP
 
 		std::mt19937 _random_number;///Generates random number.
 
-		std::map<std::string,std::shared_ptr<Mission>> _missions;//Stores mission.
+		std::map<std::string,std::shared_ptr<Mission>> _missions;///Stores mission.
 		
 		//Creates mission.
 		//@param missionPath path to .ini file.

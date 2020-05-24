@@ -21,7 +21,7 @@ namespace MP
 
 		std::vector<PathIcon> _a_path_icon;///Stores path's icon.
 
-	 	MissionCreator _a_mission_creator;
+	 	MissionCreator _a_mission_creator;///Creates mission.
 
 		std::shared_ptr<Places> _current_place;///Stores current place which interact witch player.
 
@@ -90,7 +90,7 @@ namespace MP
 
 		//Starts song procedure
 		//@param gameClock game's clock.
-		//@param aSoundManager plays songs.
+		//@param aSoundManager stores sounds' buffers.
 		//@param mainTaskManger manages tasks.
 		void _song_procedure(sf::Clock& gameClock, MP::SoundManager& aSoundManager, TaskManager& mainTaskManger);
 
@@ -126,7 +126,7 @@ namespace MP
 		std::string* getMessage();
 
 		//Updates player.
-		//@param aSoundManager plays sounds.
+		//@param aSoundManager stores sounds' buffers.
 		//@param mainTaskManger game's task manager.
 		//@param gameClock game's clock.
 		//@param gameMap game's map.

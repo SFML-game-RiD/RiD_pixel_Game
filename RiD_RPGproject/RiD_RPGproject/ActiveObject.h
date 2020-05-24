@@ -20,11 +20,11 @@ namespace MP
 
 		int _block_length_copy;///Copy of block length.
 
-		int _distance_traveled;//Current traveled distance.
+		int _distance_traveled;///Current traveled distance.
 
 		int _velocity; ///Obiect velocity. Use only divisible numbers by block length.
 
-		MP::Sound _sound_player;
+		MP::Sound _sound_player;///Plays songs.
 
 	public:
 
