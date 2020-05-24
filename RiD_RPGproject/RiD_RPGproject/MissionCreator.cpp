@@ -30,7 +30,7 @@ std::shared_ptr<MP::Mission> MP::MissionCreator::getMission(char placeMark)
 	}
 	else if (placeMark == RiD::ConfigurationLoader::getStringData("village", "mark")[0])
 	{
-
+		return nullptr;
 	}
 	return _missions.at(missionName);
 }

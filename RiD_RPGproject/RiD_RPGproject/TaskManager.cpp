@@ -81,8 +81,7 @@ void MP::TaskManager::updateState()
 	}break;
 	case(TaskManager::stateType::statePlacesMenu):
 	{
-		if (findTask(TaskNode::taskType::ESC_PRESSED, false))
-			setState(TaskManager::stateType::stateGame);
+		
 	}break;
 	}
 }

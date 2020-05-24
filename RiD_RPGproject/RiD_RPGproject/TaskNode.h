@@ -37,6 +37,7 @@ namespace MP
 			//Mouse tasks
 			TASK_LEFT_DOUBLE_CLICK,
 			TASK_WAIT_FOR_LEFT_DOUBLE_CLICK,
+			LEFT_MOUSE_RELEASED,
 
 			//Mission
 			taskMission,

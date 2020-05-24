@@ -155,21 +155,13 @@
   <ItemGroup>
     <ClCompile Include="ActiveObject.cpp" />
     <ClCompile Include="Archer.cpp" />
-    <ClCompile Include="Battle\RealTimeBattle.cpp" />
     <ClCompile Include="Calculator.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Castle.cpp" />
     <ClCompile Include="ComputerPlayerBandit.cpp" />
     <ClCompile Include="Cursor.cpp" />
-    <ClCompile Include="Engine\Animation.cpp" />
     <ClCompile Include="Engine\AssetManager.cpp" />
     <ClCompile Include="Engine\ConfigurationLoader.cpp" />
-    <ClCompile Include="Engine\InputManager.cpp" />
-    <ClCompile Include="Engine\MenuState.cpp" />
-    <ClCompile Include="Engine\Movement.cpp" />
-    <ClCompile Include="Engine\RiDGame.cpp" />
-    <ClCompile Include="Engine\State.cpp" />
-    <ClCompile Include="Engine\StateMachine.cpp" />
     <ClCompile Include="Food.cpp" />
     <ClCompile Include="Gold.cpp" />
     <ClCompile Include="Grass.cpp" />
@@ -195,7 +187,6 @@
     <ClCompile Include="MapElement.cpp" />
     <ClCompile Include="MapGui.cpp" />
     <ClCompile Include="Move.cpp" />
-    <ClCompile Include="Map\TileMap.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectDrawer.cpp" />
     <ClCompile Include="ObjectGenerator.cpp" />
@@ -220,21 +211,13 @@
   <ItemGroup>
     <ClInclude Include="ActiveObject.h" />
     <ClInclude Include="Archer.h" />
-    <ClInclude Include="Battle\RealTimeBattle.h" />
     <ClInclude Include="Calculator.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Castle.h" />
     <ClInclude Include="ComputerPlayerBandit.h" />
     <ClInclude Include="Cursor.h" />
-    <ClInclude Include="Engine\Animation.h" />
     <ClInclude Include="Engine\AssetManager.h" />
     <ClInclude Include="Engine\ConfigurationLoader.h" />
-    <ClInclude Include="Engine\InputManager.h" />
-    <ClInclude Include="Engine\MenuState.h" />
-    <ClInclude Include="Engine\Movement.h" />
-    <ClInclude Include="Engine\RiDGame.h" />
-    <ClInclude Include="Engine\State.h" />
-    <ClInclude Include="Engine\StateMachine.h" />
     <ClInclude Include="Food.h" />
     <ClInclude Include="Gold.h" />
     <ClInclude Include="Grass.h" />
@@ -259,7 +242,6 @@
     <ClInclude Include="MapElement.h" />
     <ClInclude Include="MapGui.h" />
     <ClInclude Include="Move.h" />
-    <ClInclude Include="Map\TileMap.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="ObjectDrawer.h" />
     <ClInclude Include="ObjectGenerator.h" />

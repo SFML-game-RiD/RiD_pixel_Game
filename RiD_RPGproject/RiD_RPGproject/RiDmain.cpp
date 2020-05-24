@@ -53,8 +53,12 @@ void RiD::RiDmain::_event_function()
 			else
 				_a_main_task_manager.addTask(MP::TaskNode::taskType::MOUSE_SCROLL_DOWN);
 		}
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left) and _a_main_task_manager.findTask(MP::TaskNode::taskType::LEFT_MOUSE_RELEASED, true))
 			_a_main_task_manager.addTask(MP::TaskNode::taskType::LEFT_MOUSE_BUTTON);
+
+		if (_event.type == sf::Event::MouseButtonReleased)
+			if(!_a_main_task_manager.findTask(MP::TaskNode::taskType::LEFT_MOUSE_RELEASED,false))
+			_a_main_task_manager.addTask(MP::TaskNode::taskType::LEFT_MOUSE_RELEASED);
 	}
 }
 

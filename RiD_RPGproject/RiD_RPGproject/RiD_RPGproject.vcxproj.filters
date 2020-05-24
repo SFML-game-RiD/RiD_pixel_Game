@@ -2,36 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Engine\Animation.cpp">
-      <Filter>aaareal time game\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\AssetManager.cpp">
-      <Filter>aaareal time game\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Movement.cpp">
-      <Filter>aaareal time game\RealTimeBattle</Filter>
-    </ClCompile>
-    <ClCompile Include="Battle\RealTimeBattle.cpp">
-      <Filter>aaareal time game\RealTimeBattle</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\MenuState.cpp">
-      <Filter>aaareal time game\States</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\State.cpp">
-      <Filter>aaareal time game\States</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\StateMachine.cpp">
-      <Filter>aaareal time game\States</Filter>
-    </ClCompile>
-    <ClCompile Include="Map\TileMap.cpp">
-      <Filter>aaareal time game\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\RiDGame.cpp">
-      <Filter>aaareal time game</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\InputManager.cpp">
-      <Filter>aaareal time game</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\ConfigurationLoader.cpp">
       <Filter>Data loader</Filter>
     </ClCompile>
@@ -176,38 +146,9 @@
     <ClCompile Include="Player.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\AssetManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Engine\Animation.h">
-      <Filter>aaareal time game\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\AssetManager.h">
-      <Filter>aaareal time game\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Movement.h">
-      <Filter>aaareal time game\RealTimeBattle</Filter>
-    </ClInclude>
-    <ClInclude Include="Battle\RealTimeBattle.h">
-      <Filter>aaareal time game\RealTimeBattle</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\MenuState.h">
-      <Filter>aaareal time game\States</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\State.h">
-      <Filter>aaareal time game\States</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\StateMachine.h">
-      <Filter>aaareal time game\States</Filter>
-    </ClInclude>
-    <ClInclude Include="Map\TileMap.h">
-      <Filter>aaareal time game\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\RiDGame.h">
-      <Filter>aaareal time game</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\InputManager.h">
-      <Filter>aaareal time game</Filter>
-    </ClInclude>
     <ClInclude Include="Engine\ConfigurationLoader.h">
       <Filter>Data loader</Filter>
     </ClInclude>
@@ -352,25 +293,11 @@
     <ClInclude Include="Player.h">
       <Filter>Object</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\AssetManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="MANAGERS, HEAD CLASS">
       <UniqueIdentifier>{a91205af-2276-4eff-99ab-1acf6d8a0453}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="aaareal time game">
-      <UniqueIdentifier>{15d43c2a-74e0-4803-94ec-aab86831ba74}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="aaareal time game\States">
-      <UniqueIdentifier>{b363b1b8-09fc-417a-9167-625c7e1e65bc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="aaareal time game\RealTimeBattle">
-      <UniqueIdentifier>{527538d0-5527-4348-a93d-2e9a31ab96c9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="aaareal time game\Map">
-      <UniqueIdentifier>{451275a9-f84e-44ad-92be-416a8cc5041e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="aaareal time game\Graphics">
-      <UniqueIdentifier>{7bbe2dbb-b8a1-4384-b29d-731b1e455d25}</UniqueIdentifier>
     </Filter>
     <Filter Include="Sound">
       <UniqueIdentifier>{67823770-71ab-4c02-97a1-4fc64be8e915}</UniqueIdentifier>

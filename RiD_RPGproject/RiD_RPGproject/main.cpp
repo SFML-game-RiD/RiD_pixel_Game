@@ -1,5 +1,4 @@
 #include "SFML/Graphics.hpp"
-#include "Engine/RiDGame.h"
 #include "Engine/ConfigurationLoader.h"
 #include "RiDmain.h"
 //#include <vld.h>

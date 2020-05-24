@@ -23,7 +23,7 @@ sf::Vector2f MP::Cursor::getGuiCoord()
 MP::Cursor::Cursor(sf::Texture* texturePtr)
 {
 	aAnimation.loadObjectTextures(texturePtr, 1, 1, 60);
-	aAnimation.setOrigin(18, 15);//Don't change it !
+	aAnimation.setOrigin(18, 15);
 }
 
 void MP::Cursor::_update_cursor(TaskManager& mainTaskManager, Camera& gameCamera)

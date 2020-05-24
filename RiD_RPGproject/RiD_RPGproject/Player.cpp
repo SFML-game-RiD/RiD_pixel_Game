@@ -232,9 +232,6 @@ void MP::Player::update(SoundManager& aSoundManager, TaskManager& mainTaskManger
 		_procedure_player_auto_move(mainTaskManger, GameClock, aMap, mouseGameCoord);
 		_keyboard_handling(mainTaskManger, aMap);
 
-
-
-
 	}
 }
 
@@ -330,22 +327,24 @@ void MP::Player::_mission_procedure(TaskManager& mainTaskManger, Map& gameMap, S
 		if (_current_mision == nullptr)
 		{
 			_current_mision = _a_mission_creator.getMission(_current_place->getPlaceMark());
-			_destination_place = gameMap.getRandomPlace(_current_mision->getDestination());
-			_destination_place->markPlace();
-			_employer_place = _current_place;
 
-			for (int i = 0; i < 12; i++)
-				message[i] = _current_mision->getStartMessage()[i];
+			if (_current_mision != nullptr)
+			{
+				_destination_place = gameMap.getRandomPlace(_current_mision->getDestination());
+				_destination_place->markPlace();
+				_employer_place = _current_place;
+
+				for (int i = 0; i < 12; i++)
+					message[i] = _current_mision->getStartMessage()[i];
 
 
-			mainTaskManger.addTask(TaskNode::taskType::taskMissionGoToDestination);
-			_current_mision->missionSoundPlayer.playSound(aSoundManager.getSound("missionNextState"));
+				mainTaskManger.addTask(TaskNode::taskType::taskMissionGoToDestination);
+				_current_mision->missionSoundPlayer.playSound(aSoundManager.getSound("missionNextState"));
+			}
 		}
 	}
 	else if (mainTaskManger.findTask(TaskNode::taskType::taskMissionGoToDestination, false))
 	{
-
-		//if(_current_land!=nullptr)
 		if (_current_land->getPlace() == _destination_place)
 		{
 
