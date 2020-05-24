@@ -7,9 +7,9 @@ namespace MP
 	{
 	public:
 
-		//Castle's constructor.
-		//@param aAssetManager contains textures.
-		//@param coord object coord.
+		///Castle's constructor.
+		///@param aAssetManager contains textures.
+		///@param coord object coord.
 		Castle(RiD::AssetManager &aAssetManager, sf::Vector2f coord);
 	};
 }

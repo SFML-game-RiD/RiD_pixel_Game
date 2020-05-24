@@ -21,59 +21,59 @@ namespace MP
 
 	public:
 
-		//Sets ptrs to nullptr.
+		///Sets ptrs to nullptr.
 		PathNode();
 
-		//Sets map's element.
-		//@param anElement map element.
-		//@return Path node which contains map element.
+		///Sets map's element.
+		///@param anElement map element.
+		///@return Path node which contains map element.
 		PathNode& operator=(MP::MapElement*& anElement);
 
-		///Returns F value.
+		////Returns F value.
 		float getCostF();
 
-		//Calculates F G H value for element using coordinates below.
-		//@param start start coordinates.
-		//@param stop stop coordinates
+		///Calculates F G H value for element using coordinates below.
+		///@param start start coordinates.
+		///@param stop stop coordinates
 		void calculate(sf::Vector2f start, sf::Vector2f stop);
 
-		//Calculates H value using coordinates in arguments.
-		//@param meta stop coordinates.
+		///Calculates H value using coordinates in arguments.
+		///@param meta stop coordinates.
 		void calculateHValue(sf::Vector2f meta);
 
-		//Calculates G value using coordinates in arguments.
-		//@param start start coordinates.
+		///Calculates G value using coordinates in arguments.
+		///@param start start coordinates.
 		void calculateGValue(sf::Vector2f start);
 
-		//Sets parents for each node in function arguments.
-		//@param up up node.
-		//@param down down node.
-		//@param left left node.
-		//@param right right node.
+		///Sets parents for each node in function arguments.
+		///@param up up node.
+		///@param down down node.
+		///@param left left node.
+		///@param right right node.
 		void setParentForElement(PathNode* up, PathNode* down, PathNode* left, PathNode* right);
 
-		//Returns map element's address.
-		//@return map element's address.
+		///Returns map element's address.
+		///@return map element's address.
 		MP::MapElement*& getMapElementAddress();
 
-		//Returns next node's address.
-		//@return next address.
+		///Returns next node's address.
+		///@return next address.
 		PathNode*& getNextNode();
 
-		//Returns next node's address coopy ptr.
-		//@return next address.
+		///Returns next node's address coopy ptr.
+		///@return next address.
 		PathNode* getNextNodeCopy();
 
-		//Sets parent for element using argument below.
-		//@param aNode path node which parents are setted.
+		///Sets parent for element using argument below.
+		///@param aNode path node which parents are setted.
 		void setParent(PathNode* aNode);
 
-		//Returns parent's address.
-		//@return parent's address
+		///Returns parent's address.
+		///@return parent's address
 		PathNode*& getParent();
 
-		//Sets next node.
-		//aNextNode next node.
+		///Sets next node.
+		///aNextNode next node.
 		void setNextNode(PathNode* aNextNode);
 
 	};

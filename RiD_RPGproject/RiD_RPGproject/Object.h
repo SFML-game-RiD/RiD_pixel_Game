@@ -26,24 +26,24 @@ namespace MP
 
 		SpriteAnimation aAnimation;///Manage animations.
 
-		//Object's constructor.
+		///Object's constructor.
 		Object();
 
-		//Sets object's coordinates.
-		//@param x the x coordinates.
-		//@param y the y coordinates.
+		///Sets object's coordinates.
+		///@param x the x coordinates.
+		///@param y the y coordinates.
 		void setObjectCoord(int x, int y);
-
-		//Sets object's coordinates.
-		//@param coord it contain coordinates x and y.
+		
+		///Sets object's coordinates.
+		///@param coord it contain coordinates x and y.
 		void setObjectCoord( sf::Vector2f coord);
 
-		//Returns object's coord.
-		//@return object coord.
+		///Returns object's coord.
+		///@return object coord.
 		 sf::Vector2f getObjectCoord();
 
-		//Sets time, when object changed sprite.
-		//@param currentTime current time in game.
+		///Sets time, when object changed sprite.
+		///@param currentTime current time in game.
 		void setLastActiveAnimation(sf::Clock currentTime);
 	};
 }

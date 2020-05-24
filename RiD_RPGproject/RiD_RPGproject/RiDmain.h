@@ -36,25 +36,25 @@ namespace RiD
 
 		MP::SoundManager _a_sound_manager;///Stores sounds.
 
-     	//Executes creation of window.
+     	///Executes creation of window.
 		void _create_window();
 		
-		//Manages events function.
+		///Manages events function.
 		void _event_function();
 
-		//Manages updates functions.
+		///Manages updates functions.
 		void _calculate();
 		
-		//Manages draws funtion.
+		///Manages draws funtion.
 		void _draw();
 
 
 	public:
 
-		//Constructor that creates main window.
-		//@param width width of the window.
-		//@param height height of the window.
-		//@param title title on the top bar.
+		///Constructor that creates main window.
+		///@param width width of the window.
+		///@param height height of the window.
+		///@param title title on the top bar.
 		RiDmain(int width, int height, std::string title);
 	};
 

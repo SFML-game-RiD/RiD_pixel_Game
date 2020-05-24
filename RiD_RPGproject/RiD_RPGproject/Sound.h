@@ -1,33 +1,35 @@
 #pragma once
 #include <SFML/Audio.hpp>
+
+
 namespace MP
-{ 
-class Sound
 {
-private:
+	class Sound
+	{
+	private:
 
-	sf::Sound _sound;///Stores sound.
+		sf::Sound _sound;///Stores sound.
 
-	float _volume;///Stores sound volume.
+		float _volume;///Stores sound volume.
 
-public:
-	
-	//Sound's constructor.
-	Sound();
+	public:
 
-	//Plays sound.
-	//@param aSoundBuffer sound's buffer,
-	void playSound(sf::SoundBuffer & aSoundBuffer);
+		///Sound's constructor.
+		Sound();
 
-	//Returns true if sound is playing.
-	//@return true if sound is playing.
-	bool isPlaying();
+		///Plays sound.
+		///@param aSoundBuffer sound's buffer,
+		void playSound(sf::SoundBuffer& aSoundBuffer);
 
-	//Sets sound speed.
-	//@param speed current sound's speed.
-	void setSpeed(float speed);
+		///Returns true if sound is playing.
+		///@return true if sound is playing.
+		bool isPlaying();
 
-	//stops sound.
-	void stopSound();
-};
+		///Sets sound's speed.
+		///@param speed current sound's speed.
+		void setSpeed(float speed);
+
+		///stops sound.
+		void stopSound();
+	};
 }

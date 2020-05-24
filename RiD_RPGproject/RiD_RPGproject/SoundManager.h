@@ -12,17 +12,17 @@ namespace MP
 
 	public:
 		
-		//Sound manager's constructor.
+		///Sound manager's constructor.
 		SoundManager();
 		
-		//Sets sound.
-		//@param sound_name name of the sound.
-		//@param file_name name of the file from which it will be taken.
+		///Sets sound.
+		///@param sound_name name of the sound.
+		///@param file_name name of the file from which it will be taken.
 		void setSound(std::string sound_name, std::string file_name);
 		
-		//Returns sound.
-		//@param sound_name name of the sound.
-		//@returns sound.
+		///Returns sound.
+		///@param sound_name name of the sound.
+		///@returns sound.
 		sf::SoundBuffer& getSound(std::string sound_name);
 	};
 

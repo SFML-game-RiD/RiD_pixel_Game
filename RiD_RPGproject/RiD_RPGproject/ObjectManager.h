@@ -37,54 +37,54 @@ namespace MP
 
 	public:
 		
-		//Object manager's constructor.
+		///Object manager's constructor.
 		ObjectManager();
 
-		//Object manager's destructor.
+		///Object manager's destructor.
 		~ObjectManager();
 
-		//Sets player.
-		//@param newPlayer player.
+		///Sets player.
+		///@param newPlayer player.
 		void addObiect(std::shared_ptr<Player> &newPlayer);
 		
-		//Sets computer players.
-		//@param newComputerPlayer new computer players.
+		///Sets computer players.
+		///@param newComputerPlayer new computer players.
 		void addObiect(ComputerPlayerBandit &newComputerPlayer);
 
-		//Return player.
-		//@return player.
+		///Return player.
+		///@return player.
 		std::shared_ptr<Player> & getPlayer();
 		
-		//Returns oryginal map.
-		//@return map.
+		///Returns oryginal map.
+		///@return map.
 		Map& getMap();
 
 		//return tree list ptr.
 		//@return tree list.
 		std::list<Tree> * getTreeList();
 
-		//Returns grass's vector.
-		//@return grass's vector.
+		///Returns grass's vector.
+		///@return grass's vector.
 		std::vector<Grass>* getGrassVector();
 
-		//If returns true, tree's animation is allowed.
-		//@return tree's animation permission.
+		///If returns true, tree's animation is allowed.
+		///@return tree's animation permission.
 		bool access();
 
-		//Returns computer plaer list.
-		//@return computer player list.
+		///Returns computer plaer list.
+		///@return computer player list.
 		std::list<MP::ComputerPlayerBandit>* getComputerPlayerList();
 
 		//Returns cursor.
 		//@return cursor.
 		std::shared_ptr<Cursor>& getCursor();
 
-		//Sets cursor.
-		//@param aCursor cursor.
+		///Sets cursor.
+		///@param aCursor cursor.
 		void setCursor(std::shared_ptr<Cursor> &aCursor);
 
-		//Return gui manager.
-		//@return gui manager.
+		///Return gui manager.
+		///@return gui manager.
 		GuiManager& getGuiManager();
 	};
 

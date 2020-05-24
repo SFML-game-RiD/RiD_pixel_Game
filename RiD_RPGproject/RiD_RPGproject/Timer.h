@@ -15,18 +15,18 @@ namespace MP
 
 	public:
 
-		//Timer constructor.
+		///Timer constructor.
 		Timer();
 
-		//Measures time and return true if timer is ready.
-		//@param gameClock game's clock.
-		//@breakTime time when timer returns false.
-		//@return if timer is ready.
+		///Measures time and return true if timer is ready.
+		///@param gameClock game's clock.
+		///@breakTime time when timer returns false.
+		///@return if timer is ready.
 		bool timeControl(sf::Clock & gameClock,sf::Time breakTime);
 		
-		//Sets timer.
-		//@param gameClock game's clock.
-		//@breakTime time when timer returns false.
+		///Sets timer.
+		///@param gameClock game's clock.
+		///@breakTime time when timer returns false.
 		void setTimer(sf::Clock& gameClock, sf::Time breakTime);
 	
 	};

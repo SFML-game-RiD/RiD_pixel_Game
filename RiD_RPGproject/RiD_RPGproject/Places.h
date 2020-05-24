@@ -17,28 +17,28 @@ namespace MP
 
 	public:
 
-		//Place's constructor.
+		///Place's constructor.
 		Places();
 
-		//Returns place's items.
-		//@return return items.
+		///Returns place's items.
+		///@return return items.
 		ItemsManager & getItemsForTrade();
 
-		//Updates place.
+		///Updates place.
 		void update();
 
-		//Draws object on screen.
-		//@param mainWindow game window.
+		///Draws object on screen.
+		///@param mainWindow game window.
 		void render(sf::RenderWindow& mainWindow);
 
-		//Returns place's mark.
-		//@return place's mark.
+		///Returns place's mark.
+		///@return place's mark.
 		char getPlaceMark();
 
-		//Sets new place's color.
+		///Sets new place's color.
 		void markPlace();
 		
-		//Sets default color.
+		///Sets default color.
 		void unmarkPlace();
 	};
 }

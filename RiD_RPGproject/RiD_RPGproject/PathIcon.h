@@ -7,16 +7,16 @@ namespace MP
 	{
 	public:
 		
-		//Object constructor.
-		//@param texturePtr object texture.
-		//@param spawnCoord object coord.
+		///Object constructor.
+		///@param texturePtr object texture.
+		///@param spawnCoord object coord.
 		PathIcon(sf::Texture* texturePtr,sf::Vector2f spawnCoord);
 
-		//Updates path's icon.
+		///Updates path's icon.
 		void update();
 
-		//Draws object on screen.
-		//@param mainWindow 
+		///Draws object on screen.
+		///@param mainWindow 
 		void render(sf::RenderWindow& mainWindow);
 	};
 }

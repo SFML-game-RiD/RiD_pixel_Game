@@ -8,40 +8,37 @@ namespace RiD
 	class AssetManager
 	{
 	private:
+
 		std::map<std::string, sf::Texture> _textures;///Stores textures.
+
 		std::map<std::string, sf::Font> _fonts;///Stores fonts.
+
 	public:
-		//Constructor
+
+		///Constructor
 		AssetManager();
-		//Destructor
+		///Destructor
 		~AssetManager();
 
-		/*
-		Sets textures
-		@param tex_name name of the texture
-		@param file_name name of the file from which it will be taken
-		*/
+		
+		//Sets textures
+		//@param tex_name name of the texture
+		//@param file_name name of the file from which it will be taken
 		void setTexture(std::string tex_name, std::string file_name);
 
-		/*
-		Returns texture
-		@param tex_name name of the texture
-		@return texture
-		*/
+		//Returns texture
+		//@param tex_name name of the texture
+		//@return texture
 		sf::Texture& getTexture(std::string tex_name);
 
-		/*
-		Sets fonts
-		@param font_name name of the font
-		@param file_name name of the file from which it will be taken
-		*/
+		//Sets fonts
+		//@param font_name name of the font
+		//@param file_name name of the file from which it will be taken
 		void setFont(std::string font_name, std::string file_name);
 
-		/*
-		Returns font
-		@param font_name name of the font
-		@return font
-		*/
+		//Returns font
+		//@param font_name name of the font
+		//@return font
 		sf::Font& getFont(std::string font_name);
 	};
 }

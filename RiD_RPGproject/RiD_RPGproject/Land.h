@@ -10,18 +10,18 @@ namespace MP
 
 	public:
 
-		//Object constructor.
-		//@param texturePtr object texture.
-		//@param x the x coordinates.
-		//@param y the y coordinates.
+		///Object constructor.
+		///@param texturePtr object texture.
+		///@param x the x coordinates.
+		///@param y the y coordinates.
 		Land(sf::Texture* texturePtr, int x,int y);
 
 		//Constructor used in A* algorythm.
-		//@param x the x coordinates.
+		///@param x the x coordinates.
 		//@param y the y coordinates.
 		Land( int x,int y);
 
-		//Renders land.
+		///Renders land.
 		void render(sf::RenderWindow &mainWindow);
 	};
 }

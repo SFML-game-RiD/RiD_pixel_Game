@@ -19,56 +19,56 @@ namespace MP
 
 		bool _walkable;///true if element is walkable.
 
-		//Creates village.
-		//@param aAssetManager stores textures.
-		//@param coord place's coordinates.
+		///Creates village.
+		///@param aAssetManager stores textures.
+		///@param coord place's coordinates.
 		void _create_village(RiD::AssetManager& aAssetManager, sf::Vector2f coord);
 
-		//Creates town.
-		//@param aAssetManager stores textures.
-		//@param coord place's coordinates.
+		///Creates town.
+		///@param aAssetManager stores textures.
+		///@param coord place's coordinates.
 		void _create_town(RiD::AssetManager& aAssetManager, sf::Vector2f coord);
 
-		//Creates castle.
-		//@param aAssetManager stores textures.
-		//@param coord place's coordinates.
+		///Creates castle.
+		///@param aAssetManager stores textures.
+		///@param coord place's coordinates.
 		void _create_castle(RiD::AssetManager& aAssetManager,  sf::Vector2f coord);
 
 	public:
 
-		//Map element constructor.
-		//@param aAssetManager stores textures.
-		//@param cordX x coordinates.
-		//@param cordY y coordinates.
-		//@param mark place's mark if exist.
+		///Map element constructor.
+		///@param aAssetManager stores textures.
+		///@param cordX x coordinates.
+		///@param cordY y coordinates.
+		///@param mark place's mark if exist.
 		MapElement(RiD::AssetManager &aAssetManager,int cordX,int cordY,char mark);
 		
-		//Returns land tile.
-		//@return land tile.
+		///Returns land tile.
+		///@return land tile.
 		Land & getLandTile();
 		
-		//Returns place otherwise nullptr.
-		//@return place.
+		///Returns place otherwise nullptr.
+		///@return place.
 		std::shared_ptr<Places> getPlace();
 
-		//Returns next element address.
-		//@return next element address.
+		///Returns next element address.
+		///@return next element address.
 		MapElement *& getNextElement();
 
-		//Returns places mark.
-		//@return places mark.
+		///Returns places mark.
+		///@return places mark.
 		char getMark();
 
-		//Sets next element's ptr.
-		//@param aMapElement next element's ptr.
+		///Sets next element's ptr.
+		///@param aMapElement next element's ptr.
 		void setNextPtr(MapElement* aMapElement);
 		
-		//Returns if element is walkable or no.
-		//@return true if walkable.
+		///Returns if element is walkable or no.
+		///@return true if walkable.
 		bool isWalkable();
 
-		//Returns map element's address.
-		//@return map element's address.
+		///Returns map element's address.
+		///@return map element's address.
 		MapElement* returnAddress();
 	};
 }

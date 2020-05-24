@@ -15,22 +15,22 @@ namespace MP
 
 		sf::Music _current_playing_music;///Current playing music.
 
-		//Sets music.
-		//@param music_name name of the music.
-		//@param file_name name of the file from which it will be taken.
+		///Sets music.
+		///@param music_name name of the music.
+		///@param file_name name of the file from which it will be taken.
 		void _set_music(std::string music_name, std::string file_name);
 
-		//Plays music.
-		//@param musicName name of music.
-		//@param playLoop if true music will play in loop.
+		///Plays music.
+		///@param musicName name of music.
+		///@param playLoop if true music will play in loop.
 		void _play(std::string musicName, bool playLoop);
 
 	public:
 
-		//Music's constructor.
+		///Music's constructor.
 		Music();
 
-		//Updates music, changes it ect.
+		///Updates music, changes it ect.
 		void update(TaskManager &mainTaskManager);
 	};
 

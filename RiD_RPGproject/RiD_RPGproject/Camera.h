@@ -18,44 +18,44 @@ namespace MP
 
 		sf::View _gui_view;///Gui's view.
 
-		//Changes zoom.
+		///Changes zoom.
 		void _zoom_in();
 
-		//Changes zoom.
+		///Changes zoom.
 		void _zoom_out();
 
-		//Changes zoom realtive to task.
-		//@param aTaskManager game's task manager.
+		///Changes zoom realtive to task.
+		///@param aTaskManager game's task manager.
 		void _change_zoom(MP::TaskManager& aTaskManager);
 
-		//Sets camera centre's point.
-		//@param coord camera's centre point.
+		///Sets camera centre's point.
+		///@param coord camera's centre point.
 		void _change_camera(sf::Vector2f coord);
 
 	public:	
 
-		//Camera's constructor.
+		///Camera's constructor.
 		Camera();
 
-		//Returns game's window.
-		//@return game's window.
+		///Returns game's window.
+		///@return game's window.
 		sf::RenderWindow & getWindow();
 
-		//Clears game view.
+		///Clears game view.
 		void clearCamera();
 
-		//Draws frame.
+		///Draws frame.
 		void drawFrame();
 		
-		//Changes view to game.
+		///Changes view to game.
 		void changeViewToGame();
 
-		//Changes view to gui.
+		///Changes view to gui.
 		void changeViewToGui();
 
-		//Updates camera.
-		//@param newFocusCoord new focus coordinates.
-		//@param mainTaskManager games task manager.
+		///Updates camera.
+		///@param newFocusCoord new focus coordinates.
+		///@param mainTaskManager games task manager.
 		void update(sf::Vector2f newFocusCoord, TaskManager &mainTaskManager);
 
 	};

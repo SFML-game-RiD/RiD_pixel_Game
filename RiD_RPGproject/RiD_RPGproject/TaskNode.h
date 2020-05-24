@@ -48,16 +48,16 @@ namespace MP
 		};
 	private:
 
-		taskType _task;//Task type.
+		taskType _task;///Task type.
 
 	public:
 
-		//Creates new task.
-		//@param newTask new game's task.
+		///Creates new task.
+		///@param newTask new game's task.
 		TaskNode(taskType newTask);
 
-		//Returns task.
-		//@return task.
+		///Returns task.
+		///@return task.
 		TaskNode::taskType getTask();
 
 	};

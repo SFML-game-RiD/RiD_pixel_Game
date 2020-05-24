@@ -25,45 +25,45 @@ namespace MP
 
 	public:
 
-		//Sets task manager.
+		///Sets task manager.
 		TaskManager();
 
-		//Sets new state.
-		//@param aNewStateType new state.
+		///Sets new state.
+		///@param aNewStateType new state.
 		void setState(stateType aNewStateType);
 
-		//Returns state type.
-		//@return state type.
+		///Returns state type.
+		///@return state type.
 		stateType getCurrentState();
 
-		//Findes task in task list.
-		//@param aTaskType task to find.
-		//@param erase if true method deletes task.
-		//@return true if task was detected.
+		///Findes task in task list.
+		///@param aTaskType task to find.
+		///@param erase if true method deletes task.
+		///@return true if task was detected.
 		bool findTask(TaskNode::taskType aTaskType, bool erase);
 
-		//Adds new task.
-		//@param newTask new task.
+		///Adds new task.
+		///@param newTask new task.
 		void addTask(TaskNode::taskType newTask);
 		
-		//Deletes task list.
+		///Deletes task list.
 		void deleteTaskList();
 
-		//Returns task's list.
-		//@return task's list.
+		///Returns task's list.
+		///@return task's list.
 		std::set<std::shared_ptr<TaskNode>>& getTaskList();
 
-		//Returns true if tasl list is empty.
-		//@return true if tasl list is empty.
+		///Returns true if tasl list is empty.
+		///@return true if tasl list is empty.
 		bool isTaskListEmpty();
 
-		//Updates state.
+		///Updates state.
 		void updateState();
 
-		//Handles keyboard.
+		///Handles keyboard.
 		void keyboardHandling();
 
-		//Reset all tasks from keyboard and mouse.
+		///Reset all tasks from keyboard and mouse.
 		void resetInput();
 	};
 }

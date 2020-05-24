@@ -30,37 +30,37 @@ namespace MP
 
 		ItemsManager aItemsManager;///Manages items.
 
-		//Constructor.
+		///Constructor.
 		ActiveObject();
 
-		//Sets last active time.
-		//@param currentTime current game's time.
+		///Sets last active time.
+		///@param currentTime current game's time.
 		void setLastActive(sf::Clock currentTime);
 
-		//Returns last active time.
-		//@return last active time.
+		///Returns last active time.
+		///@return last active time.
 		sf::Time getLastActiveTime();
 
-		//Returns ready time.
-		//@return ready time.
+		///Returns ready time.
+		///@return ready time.
 		sf::Time getReadyTime();
 
-		//Return copy of block length.
-		//@return copy of block length.
+		///Return copy of block length.
+		///@return copy of block length.
 		int getBlockLenghtCopy();
 
-		//Returns distance traveled by obiect.
-		//@return traveled distance.
+		///Returns distance traveled by obiect.
+		///@return traveled distance.
 		int getTraveledDistance();
 		
-		//Returns velocity.
-		//@return velocity.
+		///Returns velocity.
+		///@return velocity.
 		int getVelocity();
 
-		//Resets block length copy.
+		///Resets block length copy.
 		void resetBlockLenghtCopy();
 
-		//Decreases block lenth copy.
+		///Decreases block lenth copy.
 		void decreaseBlockLengthCopy();
 	};
 }

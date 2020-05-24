@@ -34,54 +34,54 @@ namespace MP
 		std::string _destination_message[12];///Message which is shown while mission got half stage.
 		std::string _end_message[12];///Message which is shown while mission ended.
 
-		//Downloads mission from path.
-		//@param missionPath path to .ini file.
+		///Downloads mission from path.
+		///@param missionPath path to .ini file.
 		void _download_mission(const char* missionPath);
 
 	public:
 
 		MP::Sound missionSoundPlayer;///Stores sound.
 
-		//Sets mission.
-		//@param missionPath path to .ini file.
+		///Sets mission.
+		///@param missionPath path to .ini file.
 		Mission(const char* missionPath);
 
-		//Returns destination mark.
-		//@return destination mark.
+		///Returns destination mark.
+		///@return destination mark.
 		char getDestination();
 
-		//Returns emplyer mark.
-		//@return employer mark.
+		///Returns emplyer mark.
+		///@return employer mark.
 		char getEmployer();
 
-		//Returns action type.
-		//@return action type.
+		///Returns action type.
+		///@return action type.
 		std::string getAction();
 
-		//Returns fight level.
-		//@return fight level.
+		///Returns fight level.
+		///@return fight level.
 		unsigned int getFightLvl();
 
-		//Returns start message.
-		//@return start message.
+		///Returns start message.
+		///@return start message.
 		std::string* getStartMessage();
 
-		//Returns end message.
-		//@return end message.
+		///Returns end message.
+		///@return end message.
 		std::string* getEndMessage();
 
-		//Returns half stage message.
-		//@return half stage message.
+		///Returns half stage message.
+		///@return half stage message.
 		std::string* getDestinationMessage();
 
-		//Get awards.
-		//@param itemName item's name from which award is being taken.
-		//@return award amount.
+		///Get awards.
+		///@param itemName item's name from which award is being taken.
+		///@return award amount.
 		int getAwardAmount(std::string itemName);
 
-		//Get needs.
-		//@param itemName item's name from which needs is being taken.
-		//@return needs amount.
+		///Get needs.
+		///@param itemName item's name from which needs is being taken.
+		///@return needs amount.
 		int getNeedsAmount(std::string itemName);
 	};
 

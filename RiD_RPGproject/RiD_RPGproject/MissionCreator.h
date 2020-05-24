@@ -14,20 +14,20 @@ namespace MP
 
 		std::map<std::string,std::shared_ptr<Mission>> _missions;///Stores mission.
 		
-		//Creates mission.
-		//@param missionPath path to .ini file.
-		//@param missionName mission's name.
+		///Creates mission.
+		///@param missionPath path to .ini file.
+		///@param missionName mission's name.
 		void _set_mission(const char* missionPath, std::string missionName);
 
 
 	public:
 
-		//Mission creator constructor.
+		///Mission creator constructor.
 		MissionCreator();
 
-		//Returns mission.
-		//@param placeMark place's mark.
-		//@Return mission.
+		///Returns mission.
+		///@param placeMark place's mark.
+		///@Return mission.
 		std::shared_ptr<Mission> getMission(char placeMark);
 	};
 

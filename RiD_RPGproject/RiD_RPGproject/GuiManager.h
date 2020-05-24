@@ -20,20 +20,20 @@ namespace MP
 
 	public:
 
-		//Returns map gui.
-		//@return map gui.
+		///Returns map gui.
+		///@return map gui.
 		std::unique_ptr<MapGui>& getMapGui();
 
-		//Returns gui main menu.
-		//@return gui main menu.
+		///Returns gui main menu.
+		///@return gui main menu.
 		std::unique_ptr<GuiMainMenu>& getGuiMainMenu();
 
-		//Returns place menu.
-		//@return place menu.
+		///Returns place menu.
+		///@return place menu.
 		std::unique_ptr<GuiPlacesMenu>& getGuiPlacesMenu();
 
-		//Returns market place menu.
-		//@return market place menu.
+		///Returns market place menu.
+		///@return market place menu.
 		std::unique_ptr<MP::GuiMarketPlace>& getGuiMarketPlace();
 
 	};
